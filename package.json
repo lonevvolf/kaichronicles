@@ -35,7 +35,7 @@
         "downloaddata": "node src/js/scripts/downloadProjectAonData.js",
         "ts": "tsc -p tsconfig.json",
         "watch": "webpack --config webpack.config.js --watch",
-        "serve": "webpack serve --config webpack.config.js --open",
+        "serve": "webpack serve --config webpack.config.js",
         "build": "webpack --config webpack.config.js",
         "cleants": "rm -rf www/js && rm -rf src/js",
         "test": "jest"

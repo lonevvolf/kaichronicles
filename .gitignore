@@ -1,15 +1,12 @@
 # The project AON data
 www/data/projectAon
-src/patches/projectAonPatches
 
 # Typescript generated code
 www/js
 src/js
 
 # Visual Studio Code stuff
-jsconfig.json
 .vscode
-typings
 
 # Distribution directory
 dist
@@ -18,8 +15,8 @@ dist
 npm-debug.log
 node_modules
 
-# Keystore to sign apks
-keystore
+# PAON git repo
+project-aon
 
 # Tests result
 tests_log.txt
