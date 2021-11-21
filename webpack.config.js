@@ -24,6 +24,7 @@ module.exports = {
   output: {
     filename: 'kai.js',
     path: path.resolve(__dirname, 'www/js'),
+    publicPath: '/js/',
     library: 'kai'
   },
   optimization: {
