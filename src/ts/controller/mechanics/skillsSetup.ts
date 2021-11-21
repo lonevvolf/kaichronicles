@@ -26,10 +26,6 @@ export class SkillsSetup {
         // Disable next link
         gameView.enableNextLink(false);
 
-        // Book language inconsistencies: Spanish books say "ignore zero", english does not.
-        // Starting from book 13 (Grand Master), Spanish books allow zero:
-        const ignoreZero = ( state.book.language === "es" && state.book.getBookSeries().id <= BookSeriesId.Magnakai );
-
         // Combat skill
         if (state.actionChart.combatSkill !== 0) {
             $("#mechanics-detWeapon").hide();
@@ -42,7 +38,7 @@ export class SkillsSetup {
                 if (state.actionChart.combatSkill !== 0 && state.actionChart.endurance !== 0) {
                     gameView.enableNextLink(true);
                 }
-            }, ignoreZero, false);
+            }, false);
         }
 
         // Endurance points
@@ -58,7 +54,7 @@ export class SkillsSetup {
                 if (state.actionChart.combatSkill !== 0 && state.actionChart.endurance !== 0) {
                     gameView.enableNextLink(true);
                 }
-            }, ignoreZero, false);
+            }, false);
         }
 
     }

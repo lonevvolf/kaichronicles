@@ -1,5 +1,5 @@
 
-import { views, state, GoogleAnalytics } from "..";
+import { views, GoogleAnalytics } from "..";
 
 /**
  * Privacy controller page
@@ -11,7 +11,7 @@ export class privacyController {
      * Render the page
      */
     public static index() {
-        views.loadView( "privacy_" + state.language + ".html" )
+        views.loadView( "privacy.html" )
         .then(() => {
             privacyController.setupWeb();
         });

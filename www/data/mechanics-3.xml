@@ -2,12 +2,6 @@
 
 <mechanics book="3">
 
-    <!-- LIST OF TRANSLATED IMAGES -->
-    <translated-images>
-        <image>map.png</image>
-        <image>weapons.png</image>
-    </translated-images>
-
     <!-- GAME RULES -->
     <sections>
 
@@ -55,14 +49,10 @@
             <object objectId="meal" />
             <object objectId="broadsword" />
 
-            <chooseEquipment 
-                en-text="Click on the Random Table link to get money before continuing" 
-                es-text="Haz click en el link de la Tabla de la Suerte para obtener dinero antes de continuar"
+            <chooseEquipment text="Click on the Random Table link to get money before continuing" 
             />
 
-            <message 
-                en-text="You may take any two of the following:" 
-                es-text="Puedes coger hasta dos objetos:" 
+            <message text="You may take any two of the following:"  
             />
         </section>
 
@@ -125,9 +115,7 @@
         </section>
 
         <section id="sect16">
-            <message id="msg-drop-object" 
-                en-text="Drop two Backpack Items before continuing" 
-                es-text="Deja dos Objetos de Mochila antes de continuar" 
+            <message id="msg-drop-object" text="Drop two Backpack Items before continuing"  
             />
             <choiceState section="all" set="disabled" />
             <onInventoryEvent>
@@ -871,9 +859,7 @@
 
         <section id="sect152">
             <choiceState section="all" set="disabled" />
-            <numberPicker 
-                en-text="Choose the number of Gold Crowns you are going to throw"
-                es-text="Elige el número de Coronas de Oro que vas a lanzar"
+            <numberPicker text="Choose the number of Gold Crowns you are going to throw"
                 min="1" 
                 money="true"
                 />
@@ -1121,8 +1107,6 @@
         </section>
 
         <section id="sect192">
-            <!-- TODO: In this section, on spanish translation, the object description
-                 is wrong. Report it -->
             <test not="true" hasObject="glowingcrystal">
                 <choiceState section="sect267" set="disabled" />
             </test>

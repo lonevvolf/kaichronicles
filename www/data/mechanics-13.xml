@@ -3,11 +3,6 @@
 <mechanics book="13" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="https://raw.githubusercontent.com/tonib/kaichronicles/master/www/data/mechanics.xsd">
 
-    <!-- LIST OF TRANSLATED IMAGES -->
-    <translated-images>
-        <image>weapons.png</image>
-    </translated-images>
-
     <!-- GAME RULES -->
     <sections>
 
@@ -64,13 +59,11 @@
             <object objectId="dagger" />
 
             <chooseEquipment 
-                en-text="Click on the Random Table link to get money before continuing" 
-                es-text="Haz click en el link de la Tabla de la Suerte para obtener dinero antes de continuar"
+                text="Click on the Random Table link to get money before continuing" 
             />
 
             <message 
-                en-text="You may take up to five of the following (all meals count as one object):" 
-                es-text="Puedes elegir hasta cinco de los objetos (todas las comidas cuentan como un objeto):" 
+                text="You may take up to five of the following (all meals count as one object):"  
             />
 
         </section>
@@ -346,11 +339,9 @@
         <section id="sect48">
             <endurance count="-2" />
             <numberPicker 
-                en-text="Choose the number"
-                es-text="Elige el número"
+                text="Choose the number"
                 min="1" max="350" 
-                en-actionButton="Choose"
-                es-actionButton="Elige"
+                actionButton="Choose"
                 />
             <numberPickerChoosed>
                 <test expression="[NUMBERPICKER] == 26">
@@ -362,8 +353,7 @@
                 <test expression="[NUMBERPICKER] != 26">
                     <test expression="[NUMBERPICKER] != 146">
                         <toast 
-                            en-text="Wrong number!"
-                            es-text="¡Número incorrecto!" />
+                            text="Wrong number!" />
                     </test>
                 </test>
             </numberPickerChoosed>
@@ -1033,11 +1023,9 @@
 
         <section id="sect158">
             <numberPicker 
-                en-text="Choose the number"
-                es-text="Elige el número"
+                text="Choose the number"
                 min="1" max="350" 
-                en-actionButton="Choose"
-                es-actionButton="Elige"
+                actionButton="Choose"
                 />
             <numberPickerChoosed>
                 <test expression="[NUMBERPICKER] == 15">
@@ -1045,8 +1033,7 @@
                 </test>
                 <test expression="[NUMBERPICKER] != 15">
                     <toast 
-                        en-text="Wrong number!"
-                        es-text="¡Número incorrecto!" />
+                        text="Wrong number!" />
                 </test>
             </numberPickerChoosed>
         </section>
@@ -1418,11 +1405,9 @@
             <object objectId="mirror" />
             <object objectId="rope" />
             <numberPicker 
-                en-text="Choose the number"
-                es-text="Elige el número"
+                text="Choose the number"
                 min="1" max="350" 
-                en-actionButton="Choose"
-                es-actionButton="Elige"
+                actionButton="Choose"
                 />
             <numberPickerChoosed>
                 <test expression="[NUMBERPICKER] == 15">
@@ -1430,8 +1415,7 @@
                 </test>
                 <test expression="[NUMBERPICKER] != 15">
                     <toast 
-                        en-text="Wrong number!"
-                        es-text="¡Número incorrecto!" />
+                        text="Wrong number!" />
                 </test>
             </numberPickerChoosed>
         </section>

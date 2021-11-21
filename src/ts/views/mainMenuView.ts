@@ -1,4 +1,4 @@
-import { translations, state, routing, mainMenuController } from "..";
+import { translations, routing, mainMenuController } from "..";
 
 export const mainMenuView = {
 
@@ -7,13 +7,6 @@ export const mainMenuView = {
      */
     setup( ) {
         document.title = translations.text("kaiChronicles");
-
-        // TODO: Use translation on mainMenu.html instead of this ?
-        if ( state.language === "es" ) {
-            $("#menu-translate").text("English");
-        } else {
-            $("#menu-translate").text("Español");
-        }
 
         $("#menu-continue").click((e) => {
             e.preventDefault();
@@ -27,10 +20,6 @@ export const mainMenuView = {
             e.preventDefault();
             routing.redirect("loadGame");
         });
-        $("#menu-translate").click((e) => {
-            e.preventDefault();
-            mainMenuController.changeTranslation();
-        });
         $("#menu-color-theme").click((e) => {
             e.preventDefault();
             mainMenuController.changeColor();
@@ -43,12 +32,6 @@ export const mainMenuView = {
             e.preventDefault();
             routing.redirect("privacy");
         });
-
-        // Download books (only for app)
-        const $downloadBooksBtn = $("#menu-downloadbooks");
-        // Switch this to test the "Download books" view with the web browser
-        // if( true ) {
-        $downloadBooksBtn.hide();
     },
 
     /**

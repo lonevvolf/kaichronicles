@@ -1,21 +1,13 @@
-import { Language } from "..";
-
 /**
  * Project AON book metadata
  */
 export interface BookMetadata {
 
     /** English title */
-    title_en: string;
+    title: string;
 
     /** English book code */
-    code_en: string;
-
-    /** Spanish title */
-    title_es: string;
-
-    /** Spanish code */
-    code_es: string;
+    code: string;
 
     /** Illustrators folders to download */
     illustrators: string[];
@@ -47,279 +39,134 @@ export const projectAon = {
 
         // Book 1:
         {
-            title_en: "Flight from the Dark",
-            code_en: "01fftd",
-
-            title_es: "Huida de la oscuridad",
-            code_es: "01hdlo",
-
+            title: "Flight from the Dark",
+            code: "01fftd",
             illustrators: [ "chalk" ],
-
-            biographies: [ "jdbiolw" , "gcbiolw" ],
-
-            zipSize: 4887076,
-
-            revision: 2713      // Upgraded 15/4/2018
+            biographies: [ "jdbiolw" , "gcbiolw" ]
         },
 
         // Book 2:
         {
-            title_en: "Fire on the Water",
-            code_en: "02fotw",
-
-            title_es: "Fuego sobre agua",
-            code_es: "02fsea",
-
+            title: "Fire on the Water",
+            code: "02fotw",
             illustrators: [ "chalk" ],
-
-            biographies: [ "jdbiolw" , "gcbiolw" ],
-
-            zipSize: 5117979,
-
-            /*
-                TODO: CURRENTLY UNPUBLISHABLE: App version (current 1.10) should be updated BEFORE use this revision. See mechanics-2.xml > sect299
-                If a previous app version is used with the new revision, app will fail
-            */
-            revision: 0
-            // revision: 2713      // Upgraded 15/4/2018
+            biographies: [ "jdbiolw" , "gcbiolw" ]
         },
 
         // Book 3:
         {
-            title_en: "The Caverns of Kalte",
-            code_en: "03tcok",
-
-            title_es: "Las Cavernas del Kalte",
-            code_es: "03lcdk",
-
+            title: "The Caverns of Kalte",
+            code: "03tcok",
             illustrators: [ "chalk" ],
-
-            biographies: [ "jdbiolw" , "gcbiolw" ],
-
-            zipSize: 4178493,
-
-            // revision: 0
-            revision: 2713      // Upgraded 15/4/2018
+            biographies: [ "jdbiolw" , "gcbiolw" ]
         },
 
         // Book 4:
         {
-            title_en: "The Chasm of Doom",
-            code_en: "04tcod",
-
-            title_es: "El Abismo maldito",
-            code_es: "04eam",
-
+            title: "The Chasm of Doom",
+            code: "04tcod",
             illustrators: [ "chalk" ],
-
-            biographies: [ "jdbiolw" , "gcbiolw" ],
-
-            zipSize: 4408246,
-
-            // revision: 0
-            revision: 2713     // Upgraded 15/4/2018
+            biographies: [ "jdbiolw" , "gcbiolw" ]
         },
 
         // Book 5:
         {
-            title_en: "Shadow on the Sand",
-            code_en: "05sots",
-
-            title_es: "El Desierto de las Sombras",
-            code_es: "05eddls",
-
+            title: "Shadow on the Sand",
+            code: "05sots",
             illustrators: [ "chalk" ],
-
-            biographies: [ "jdbiolw" , "gcbiolw" ],
-
-            zipSize: 4183069,
-
-            /*
-                TODO: CURRENTLY UNPUBLISHABLE without patches. Spanish XML revision 2713 has a bug on the map section: Wrong close "illustration" tag
-            */
-            revision: 0
-            // revision: 2713     // Upgraded 12/5/2018
+            biographies: [ "jdbiolw" , "gcbiolw" ]
         },
 
         // Book 6:
         {
-            title_en: "The Kingdoms of Terror",
-            code_en: "06tkot",
-
-            title_es: "La Piedra de la Ciencia",
-            code_es: "06lpdlc",
-
+            title: "The Kingdoms of Terror",
+            code: "06tkot",
             illustrators: [ "chalk" ],
-
-            biographies: [ "jdbiolw" , "gcbiolw" ],
-
-            zipSize: 3088890,
-
-            // revision: 0
-            revision: 2713     // Upgraded 13/5/2018
+            biographies: [ "jdbiolw" , "gcbiolw" ]
         },
 
         // Book 7:
         {
-            title_en: "Castle Death",
-            code_en: "07cd",
-
-            title_es: "Muerte en el Castillo",
-            code_es: "07meec",
-
+            title: "Castle Death",
+            code: "07cd",
             illustrators: [ "chalk" ],
-
-            biographies: [ "jdbiolw" , "gcbiolw" ],
-
-            zipSize: 3129146,
-
-            revision: 0
+            biographies: [ "jdbiolw" , "gcbiolw" ]
         },
 
         // Book 8:
         {
-            title_en: "The Jungle of Horrors",
-            code_en: "08tjoh",
-
-            title_es: "La Jungla de los Horrores",
-            code_es: "08ljdlh",
-
+            title: "The Jungle of Horrors",
+            code: "08tjoh",
             illustrators: [ "chalk" ],
-
-            biographies: [ "jdbiolw" , "gcbiolw" ],
-
-            zipSize: 3537081,
-
-            revision: 0
+            biographies: [ "jdbiolw" , "gcbiolw" ]
         },
 
         // Book 9:
         {
-            title_en: "The Cauldron of Fear",
-            code_en: "09tcof",
-
-            title_es: "El Caldero del Miedo",
-            code_es: "09ecdm",
-
+            title: "The Cauldron of Fear",
+            code: "09tcof",
             illustrators: [ "williams" ],
-
-            biographies: [ "jdbiolw" , "bwbiolw" ],
-
-            zipSize: 2873932,
-
-            revision: 2655
+            biographies: [ "jdbiolw" , "bwbiolw" ]
         },
 
         // Book 10:
         {
-            title_en: "The Dungeons of Torgar",
-            code_en: "10tdot",
-
-            title_es: "Las Mazmorras de Torgar",
-            code_es: "10lmdt",
-
+            title: "The Dungeons of Torgar",
+            code: "10tdot",
             illustrators: [ "williams" ],
-
-            biographies: [ "jdbiolw" , "bwbiolw" ],
-
-            zipSize: 3079362,
-
-            revision: 0
-        } ,
+            biographies: [ "jdbiolw" , "bwbiolw" ]
+        },
 
         ///////////////////////////////////////
 
-        // Book 11 (IN PROGRESS / Toni):
+        // Book 11:
         {
-            title_en: "The Prisoners of Time",
-            code_en: "11tpot",
-
-            title_es: "Prisioneros del Tiempo",
-            code_es: "11pdt",
-
+            title: "The Prisoners of Time",
+            code: "11tpot",
             illustrators: [ "williams" ],
-
-            biographies: [ "jdbiolw" , "bwbiolw" ],
-
-            zipSize: 3007750,
-
-            revision: 2713
+            biographies: [ "jdbiolw" , "bwbiolw" ]
         },
 
         // Book 12 (Finished, pending of some game tests):
         {
-            title_en: "The Masters of Darkness",
-            code_en: "12tmod",
-
-            title_es: "Los Señores de la Oscuridad",
-            code_es: "12lsdlo",
-
+            title: "The Masters of Darkness",
+            code: "12tmod",
             illustrators: [ "williams" ],
-
-            biographies: [ "jdbiolw" , "bwbiolw" ],
-
-            zipSize: 3180171,
-
-            revision: 2655
+            biographies: [ "jdbiolw" , "bwbiolw" ]
         },
 
         // Book 13:
         {
-            title_en: "The Plague Lords of Ruel",
-            code_en: "13tplor",
-
-            title_es: "Los Señores de la Plaga de Ruel",
-            code_es: "13lsdlpdr",
-
+            title: "The Plague Lords of Ruel",
+            code: "13tplor",
             illustrators: [ "williams" ],
-
             biographies: [ "jdbiolw" , "bwbiolw" ],
-
-            zipSize: 3149799,
-
-            revision: 2752
         },
 
         // Book 14:
-        /*{
-            title_en: "The Captives of Kaag",
-            code_en: "14tcok",
-
-            title_es: "Los Cautivos de Kaag",
-            code_es: "14lcdk",
-
+        {
+            title: "The Captives of Kaag",
+            code: "14tcok",
             illustrators: [ "williams" ],
-
-            biographies: [ "jdbiolw" , "bwbiolw" ],
-
-            zipSize: 2980342,
-
-            revision: 2752
+            biographies: [ "jdbiolw" , "bwbiolw" ]
         },
 
         // Book 15:
         {
-            title_en: "The Darke Crusade",
-            code_en: "15tdc",
-
+            title: "The Darke Crusade",
+            code: "15tdc",
             illustrators: [ "williams" ],
-
-            biographies: [ "jdbiolw" , "bwbiolw" ],
-
-            zipSize: 2980342,
-
-            revision: 2752
-        },*/
+            biographies: [ "jdbiolw" , "bwbiolw" ]
+        },
 
     ] as BookMetadata[],
 
     /**
-     * Returns the title of a book on a given language
+     * Returns the title of a book
      * @param bookNumber Book number, 1-index based
-     * @param language Language code
      */
-    getBookTitle( bookNumber: number, language: Language ): string {
-        return projectAon.supportedBooks[bookNumber - 1][ "title_" + language ];
+    getBookTitle( bookNumber: number ): string {
+        return projectAon.supportedBooks[bookNumber - 1][ "title" ];
     },
 
     /**

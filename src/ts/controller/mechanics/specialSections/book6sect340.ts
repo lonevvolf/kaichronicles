@@ -40,7 +40,7 @@ export const book6sect340 = {
                     tournmentState[i] = value;
                     book6sect340.updateUI();
                 },
-                false , false );
+                false );
         }
     },
 

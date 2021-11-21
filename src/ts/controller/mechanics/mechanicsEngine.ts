@@ -614,12 +614,6 @@ export const mechanicsEngine = {
             conditionStatisfied = true;
         }
 
-        // Test book language
-        const bookLanguage = $rule.attr("bookLanguage");
-        if (bookLanguage && state.book.language === bookLanguage) {
-            conditionStatisfied = true;
-        }
-
         // Test section choice is enabled:
         const sectionToCheck = $rule.attr("isChoiceEnabled");
         if (sectionToCheck && mechanicsEngine.isChoiceEnabled(sectionToCheck)) {
@@ -1403,9 +1397,9 @@ export const mechanicsEngine = {
      */
     textToChoice(rule: Element) {
 
-        const linkText: string = $(rule).attr("text-" + state.language);
+        const linkText: string = $(rule).attr("text");
         if (!linkText) {
-            mechanicsEngine.debugWarning("textToChoice: text-" + state.language + " attribute not found");
+            mechanicsEngine.debugWarning("textToChoice: text attribute not found");
             return;
         }
 
@@ -1808,24 +1802,15 @@ export const mechanicsEngine = {
     },
 
     /**
-     * Get a translated property of a rule. The properties checked are 'en-<property>' and
-     * 'es-<property>'
+     * Get a property of a rule. The properties checked are '<property>'
      * @param {xmlNode} rule The rule to check
-     * @param propertyName The property to check. If it's null, the 'text' property
+     * @param propertyName The property to check. By default, the 'text' property
      * will be search
-     * @return The translated text
+     * @return The text
      */
-    getRuleText(rule: Element | JQuery<HTMLElement>, propertyName: string = null): string {
-        if (!propertyName) {
-            propertyName = "text";
-        }
-
+    getRuleText(rule: Element | JQuery<HTMLElement>, propertyName: string = "text"): string {
         const $rule = $(rule);
-        let text = $rule.attr(state.language + "-" + propertyName);
-        if (!text) {
-            // Return the english text
-            text = $rule.attr("en-" + propertyName);
-        }
+        let text = $rule.attr(propertyName);
         if (!text) {
             text = "";
         }

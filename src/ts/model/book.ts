@@ -1,4 +1,4 @@
-import { Language, state, KaiDiscipline, projectAon, Section, MgnDiscipline, GndDiscipline, BookSeriesId, SectionRenderer, BookSeries, mechanicsEngine } from "..";
+import { state, KaiDiscipline, projectAon, Section, MgnDiscipline, GndDiscipline, BookSeriesId, SectionRenderer, BookSeries, mechanicsEngine } from "..";
 
 /** Book disciplines table */
 export interface DisciplinesTable {
@@ -9,10 +9,10 @@ export interface DisciplinesTable {
         /** Discipline id */
         id: string,
 
-        /** Discipline translated name */
+        /** Discipline name */
         name: string,
 
-        /** Discipline translated description */
+        /** Discipline description */
         description: string,
 
         /** Discipline image HTML. Only for series >= Grand Master, empty string otherwise */
@@ -57,9 +57,6 @@ export class Book {
     /** Book index number (1 = first book) */
     public bookNumber: number;
 
-    /** The book language */
-    public language: Language;
-
     /** The book XML document */
     public bookXml: any;
 
@@ -80,11 +77,9 @@ export class Book {
     /**
      * Constructor
      * @param number The book index number to create (1 = first)
-     * @param language The book language ('es' = spanish / 'en' = english )
      */
-    public constructor(num: number, language: Language) {
+    public constructor(num: number) {
         this.bookNumber = num;
-        this.language = language;
         this.bookXml = null;
         this.bookRandomTable = [];
     }
@@ -226,7 +221,7 @@ export class Book {
      * @returns The download promise. The promise text is the author XML bio, fixed
      */
     private downloadAuthorInfo( authorId: string ): JQueryPromise<string> {
-        const authorFileUrl = Book.getBaseUrl() + this.bookNumber + "/" + authorId + "-" + this.language + ".inc";
+        const authorFileUrl = Book.getBaseUrl() + this.bookNumber + "/" + authorId + ".inc";
         return $.ajax({
             url: authorFileUrl,
             dataType: "text"
@@ -235,22 +230,15 @@ export class Book {
 
     /**
      * Get the code name given to the book by the Project Aon
-     * @param language The language for the book. If null, the current book language
-     * will be used
      * @returns The book code name. null if it was not found
      */
-    public getProjectAonBookCode(language: string = null): string {
-        if ( !language ) {
-            language = this.language;
-        }
-
+    public getProjectAonBookCode(): string {
         const bookMetadata = projectAon.supportedBooks[ this.bookNumber - 1 ];
         if ( !bookMetadata ) {
             return null;
         }
 
-        const languageCode = "code_" + language;
-        const bookCode = bookMetadata[ languageCode ];
+        const bookCode = bookMetadata[ "code" ];
 
         if ( !bookCode ) {
             return null;
@@ -273,14 +261,8 @@ export class Book {
      * no translated images will be searched
      * @returns The image URL, relative to application root
      */
-    public getIllustrationURL(fileName: string, mechanics: any = null): string {
-        let illDirectory;
-        if ( mechanics && mechanics.imageIsTranslated(fileName) ) {
-            illDirectory = "ill_" + this.language;
-        } else {
-            illDirectory = "ill_en";
-        }
-        const illUrl = Book.getBaseUrl() + this.bookNumber + "/" + illDirectory + "/" +
+    public getIllustrationURL(fileName: string): string {
+        const illUrl = Book.getBaseUrl() + this.bookNumber + "/ill/" +
             fileName;
         // console.log('Image URL: ' + illUrl);
         return illUrl;
@@ -288,16 +270,10 @@ export class Book {
 
     /**
      * Returns the book HTML directory on the Project Aon web site
-     * @param language The book language to get. null to get the current book
-     * language
      */
-    public getBookProjectAonHtmlDir(language: string): string {
-        if (!language) {
-            language = this.language;
-        }
-        return "https://projectaon.org/" + language + "/xhtml/" +
-            ( language === "en" ? "lw" : "ls" ) +  "/" +
-            this.getProjectAonBookCode(language) + "/";
+    public getBookProjectAonHtmlDir(): string {
+        return "https://projectaon.org/en/xhtml/lw/" +
+            this.getProjectAonBookCode() + "/";
     }
 
     /**
@@ -323,8 +299,10 @@ export class Book {
 
             this.disciplines = {};
             // Parse the disciplines section
+            // eslint-disable-next-line @typescript-eslint/no-this-alias
+            const self = this;
             $(this.bookXml).find('section[id=discplnz] > data > section[id!="mksumary"]')
-            .each((disciplineSection) => {
+            .each( function(disciplineSection) {
 
                 const $node = $(this);
 
@@ -347,7 +325,7 @@ export class Book {
                     imageHtml = SectionRenderer.renderIllustration(disciplinesSection, $disciplineIll);
                 }
 
-                this.disciplines[disciplineId] = {
+                self.disciplines[disciplineId] = {
                     id: disciplineId,
                     name: $node.find("> meta > title").text(),
                     description,
@@ -456,10 +434,10 @@ export class Book {
     /**
      * Return an array of 2 positions with the combat tables images
      */
-    public getCombatTablesImagesUrls(mechanics) {
+    public getCombatTablesImagesUrls() {
         const images = [];
-        images.push( this.getIllustrationURL( "crtpos.png", mechanics) );
-        images.push( this.getIllustrationURL( "crtneg.png", mechanics ) );
+        images.push( this.getIllustrationURL( "crtpos.png" ) );
+        images.push( this.getIllustrationURL( "crtneg.png" ) );
         return images;
     }
 

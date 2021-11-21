@@ -1,11 +1,5 @@
 import { Book, Mechanics, BookSectionStates, ActionChart, projectAon, mechanicsEngine } from ".";
 
-/** Language codes */
-export enum Language {
-    ENGLISH = "en",
-    SPANISH = "es"
-}
-
 // Variabe "state" is declared at bottom of this file
 
 /**
@@ -33,30 +27,12 @@ export class State {
      */
     public actionChart = null as ActionChart;
 
-    /**
-     * The current language ('en' = english / 'es' = spanish)
-     */
-    public language = Language.ENGLISH;
-
     // TODO: Declare enum for "color"
     /**
      * Color Theme ( 'light' or 'dark' ).
      * This is stored at localStorage['color'], not with the game state
      */
     public color = "light";
-
-    /**
-     * Setup the default browser language
-     */
-    public setupDefaultLanguage() {
-        console.log("Current language: " + navigator.language);
-        if ( !navigator.language || navigator.language.length < 2 ) {
-            return;
-        }
-        /*if ( navigator.language.toLowerCase().substr(0, 2) === "es" ) {
-            this.language = Language.SPANISH;
-        }*/
-    }
 
     /**
      * Setup the default color or persist from local storage
@@ -75,9 +51,9 @@ export class State {
     }
 
     /**
-     * Setup the state for a book number and language
+     * Setup the state for a book number
      */
-    public setup(bookNumber: number, language: Language, keepActionChart: boolean) {
+    public setup(bookNumber: number, keepActionChart: boolean) {
 
         if ( !bookNumber ) {
             bookNumber = 1;
@@ -95,8 +71,7 @@ export class State {
             this.restoreKaiMonasterySectionObjects();
         }
 
-        this.language = language;
-        this.book = new Book(bookNumber, this.language);
+        this.book = new Book(bookNumber);
         this.mechanics = new Mechanics(this.book);
 
         if ( !this.actionChart ) {
@@ -136,7 +111,6 @@ export class State {
         return {
             actionChart: this.actionChart,
             bookNumber: this.book ? this.book.bookNumber : 0,
-            language: this.language,
             sectionStates: this.sectionStates
         };
     }
@@ -177,7 +151,7 @@ export class State {
             this.restoreStateFromObject( stateKeys );
         } catch (e) {
             mechanicsEngine.debugWarning(e);
-            this.setup(1, Language.ENGLISH, false);
+            this.setup(1, false);
         }
     }
 
@@ -185,8 +159,7 @@ export class State {
      * Restore the state from an object
      */
     private restoreStateFromObject(stateKeys: any) {
-        this.language = stateKeys.language;
-        this.book = new Book(stateKeys.bookNumber, this.language);
+        this.book = new Book(stateKeys.bookNumber);
         this.mechanics = new Mechanics(this.book);
         this.actionChart = ActionChart.fromObject(stateKeys.actionChart, stateKeys.bookNumber);
         this.sectionStates = new BookSectionStates();
@@ -194,16 +167,7 @@ export class State {
     }
 
     /**
-     * Update state to change the book language
-     */
-    public updateBookTranslation(book: Book) {
-        this.book = book;
-        this.mechanics.book = book;
-        this.language = book.language;
-    }
-
-    /**
-     * Update state to change the book language
+     * Update state to change the site color
      * @param color 'light' or 'dark'
      */
     public updateColorTheme(color: string) {
@@ -229,7 +193,7 @@ export class State {
         localStorage.setItem( key , JSON.stringify( this.actionChart ) );
 
         // Move to the next book
-        this.book = new Book(this.book.bookNumber + 1, this.language);
+        this.book = new Book(this.book.bookNumber + 1);
         this.mechanics = new Mechanics(this.book);
         this.sectionStates = new BookSectionStates();
 

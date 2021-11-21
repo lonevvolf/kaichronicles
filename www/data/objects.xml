@@ -6,84 +6,68 @@
         <!-- WEAPONS ON KAI / MAGNAKAI SERIE BOOKS -->
 
         <weapon id="axe">
-            <name lang="en">Axe</name>
-            <name lang="es">Hacha</name>
+            <name>Axe</name>
             <image book="1|9" name="axe.png" />
         </weapon>
 
         <weapon id="dagger">
-            <name lang="en">Dagger</name>
-            <name lang="es">Daga</name>
+            <name>Dagger</name>
             <image book="1|9" name="dagger.png" />
         </weapon>
 
         <weapon id="sword">
-            <name lang="en">Sword</name>
-            <name lang="es">Espada</name>
+            <name>Sword</name>
             <image book="1|9" name="sword.png" />
         </weapon>
 
         <weapon id="spear">
-            <name lang="en">Spear</name>
-            <name lang="es">Lanza</name>
+            <name>Spear</name>
             <image book="1|9" name="spear.png" />
         </weapon>
 
         <weapon id="mace">
-            <name lang="en">Mace</name>
-            <name lang="es">Maza</name>
+            <name>Mace</name>
             <image book="1|9" name="mace.png" />
         </weapon>
 
         <weapon id="shortsword">
-            <name lang="en">Short Sword</name>
-            <name lang="es">Espada corta</name>
+            <name>Short Sword</name>
             <image book="1|9" name="ssword.png" />
         </weapon>
 
         <weapon id="quarterstaff">
-            <name lang="en">Quarterstaff</name>
-            <name lang="es">Estaca</name>
+            <name>Quarterstaff</name>
             <image book="1|9" name="qstaff.png" />
         </weapon>
 
         <weapon id="warhammer">
-            <name lang="en">Warhammer</name>
-            <name lang="es">Martillo de Guerra</name>
+            <name>Warhammer</name>
             <image book="1|9" name="warhammr.png" />
         </weapon>
 
         <weapon id="broadsword">
-            <name lang="en">Broad Sword</name>
-            <name lang="es">Espadón</name>
+            <name>Broad Sword</name>
             <image book="1|9" name="bsword.png" />
         </weapon>
 
         <!-- BOOOK 3 -->
 
         <weapon id="bonesword" weaponType="sword">
-            <name lang="en">Bone Sword</name>
-            <name lang="es">Espada de Hueso</name>
+            <name>Bone Sword</name>
             <image book="3" name="sword.png" />
         </weapon>
 
         <weapon id="bonedagger" weaponType="dagger">
-            <name lang="en">Bone Dagger</name>
-            <name lang="es">Puñal de Hueso</name>
+            <name>Bone Dagger</name>
             <image book="3" name="small17.png" />
         </weapon>
 
         <!-- BOOOK 4 -->
 
         <weapon id="captaindvalsword" weaponType="sword">
-            <name lang="en">Captain D’Val’s Sword</name>
-            <description lang="en">
+            <name>Captain D’Val’s Sword</name>
+            <description>
                 It has an inscription on the blade: ‘Captain Remir D’Val—King’s Guard Regiment’
-            </description>
-
-            <name lang="es">Espada del Capitán D'Val</name>
-            <description lang="es">
-                Tiene una inscripción en la empuñadura: ‘Capitán Remir D'Val. Regimiento de la Guardia del Rey’
             </description>
             <image book="1" name="sword.png" />
         </weapon>
@@ -91,14 +75,9 @@
         <!-- BOOOK 5 -->
 
         <weapon id="jakan" weaponType="bow">
-            <name lang="en">Jakan</name>
-            <description lang="en">
+            <name>Jakan</name>
+            <description>
                 A hunting bow used by the coastal fishermen of Vassagonia
-            </description>
-
-            <name lang="es">Jakan</name>
-            <description lang="es">
-                Un arco de caza de los que utilizan los pescadores de la costa de Vassagonia
             </description>
             <image book="6" name="bow.png" />
         </weapon>
@@ -106,23 +85,15 @@
         <!-- BOOOK 6 -->
 
         <weapon id="bow">
-            <name lang="en">Bow</name>
-            <name lang="es">Arco</name>
+            <name>Bow</name>
             <image book="6|9" name="bow.png" />
         </weapon>
 
         <weapon id="broninwarhammer" weaponType="warhammer">
-            <name lang="en">Bronin Warhammer</name>
-            <description lang="en">
+            <name>Bronin Warhammer</name>
+            <description>
                 Wrought of a metal called bronin. When you use it in combat it will add 1 point to your COMBAT SKILL
             </description>
-
-            <name lang="es">Martillo de Guerra de Bronin</name>
-            <description lang="es">
-                Un arma muy fina, forjada con un metal llamado bronin. Cuando lo uses en la lucha añadirá 
-                1 punto a tu DESTREZA EN EL COMBATE
-            </description>
-
             <effect class="combatSkill" increment="1" />
             <image book="1" name="warhammr.png" />
         </weapon>
@@ -135,151 +106,105 @@
         <!-- BOOOK 1 -->
 
         <special id="helmet" incompatibleWith="silverhelm">
-            <name lang="en">Helmet</name>
-            <description lang="en">This adds 2 ENDURANCE points to your total.</description>
-
-            <name lang="es">Casco</name>
-            <description lang="es">Suma 2 puntos de RESISTENCIA a tu total</description>
-
+            <name>Helmet</name>
+            <description>This adds 2 ENDURANCE points to your total.</description>
             <image book="1" name="helmet.png" />
             <effect class="endurance" increment="2" />
         </special>
 
         <special id="chainmail" incompatibleWith="chainmail|broninvest">
-            <name lang="en">Chainmail Waistcoat</name>
-            <description lang="en">This adds 4 ENDURANCE points to your total.</description>
-
-            <name lang="es">Cota de Malla</name>
-            <description lang="es">Suma 4 puntos de RESISTENCIA a tu total.</description>
-
+            <name>Chainmail Waistcoat</name>
+            <description>This adds 4 ENDURANCE points to your total.</description>
             <image book="1" name="mail.png" />
             <effect class="endurance" increment="4" />
         </special>
 
         <special id="map" itemCount="0">
-            <name lang="en">Map</name>
-            <name lang="es">Mapa</name>
+            <name>Map</name>
         </special>
 
         <special id="tombguardiangems">
-            <name lang="en">20 Tomb Guardian Gems</name>
-            <name lang="es">20 Gemas de la Tumba del Guardián</name>
+            <name>20 Tomb Guardian Gems</name>
         </special>
 
         <special id="crystalstar">
-            <name lang="en">Crystal Star Pendant</name>
-            <description lang="en">
+            <name>Crystal Star Pendant</name>
+            <description>
                 It is the symbol of the Brotherhood of the Crystal Star 
                 (the Magicians’ Guild of Toran)
-            </description>
-            
-            <name lang="es">Medallón de la Estrella de Cristal</name>
-            <description lang="es">
-                Es el símbolo de la Hermandad de la Estrella de Cristal
-                (el gremio de magos de Toran)
             </description>
         </special>
 
         <!-- BOOOK 2 -->
 
         <special id="shield" incompatibleWith="shield">
-            <name lang="en">Shield</name>
-            <description lang="en">This adds 2 points to your COMBAT SKILL</description>
+            <name>Shield</name>
+            <description>This adds 2 points to your COMBAT SKILL</description>
 
-            <name lang="es">Escudo</name>
-            <description lang="es">Añade 2 puntos a tu DESTREZA EN EL COMBATE</description>
+
+
 
             <image book="2" name="shield.png" />
             <effect class="combatSkill" increment="2" />
         </special>
 
         <special id="portbaxticket">
-            <name lang="en">Ticket to Port Bax</name>
-            <name lang="es">Billete a Port Bax</name>
+            <name>Ticket to Port Bax</name>
+
         </special>
 
         <special id="sommerswerd" weaponType="sword|broadsword|shortsword" >
-            <name lang="en">Sommerswerd</name>
-            <description lang="en">
+            <name>Sommerswerd</name>
+            <description>
                 When used in combat, the Sommerswerd will add 8 points to your COMBAT SKILL 
                 (+ Weaponskill with swords).
             </description>
-            <extraDescription lang="en">
+            <extraDescription>
                 It has the ability to absorb any magic that is used against its bearer, and it doubles 
                 the total of all ENDURANCE points lost by undead enemies in combat
             </extraDescription>
-
-            <name lang="es">Sommerswerd</name>
-            <description lang="es">
-                La Espada del Sol. Cuando luches con ella, la Sommerswerd sumarás 8 puntos a tu 
-                DESTREZA EN EL COMBATE (+ Maestría en el Manejo de 
-                Armas con cualquier tipo de espada).
-            </description>
-            <extraDescription lang="es">
-                Tiene la capacidad de absorber cualquier 
-                fuerza mágica que sea usada contra quien la esgrima y multiplica por dos los 
-                puntos de RESISTENCIA perdidos en combate por enemigos de ultratumba
-            </extraDescription>
-
             <effect class="combatSkill" increment="8" />
             <image book="2" name="ill5.png" />
         </special>
 
         <special id="magicspear" weaponType="spear">
-            <name lang="en">Magic Spear</name>
-            <name lang="es">Lanza Mágica</name>
+            <name>Magic Spear</name>
+
             <image book="1" name="spear.png" />
         </special>
 
         <special id="sealofhammerdal">
-            <name lang="en">Seal of Hammerdal</name>
-            <description lang="en">
+            <name>Seal of Hammerdal</name>
+            <description>
                 A golden ring bearing the royal arms of Durenor
             </description>
-
-            <name lang="es">Sello de Hammerdal</name>
-            <description lang="es">
-                Un  anillo de oro con el escudo real de Durenor
-            </description>
-
             <image book="2" name="seal.png" />
         </special>
         
         <special id="portbaxpapers">
-            <name lang="en">Papers</name>
-            <description lang="en">
+            <name>Papers</name>
+            <description>
                 An envelope containing a sheaf of official-looking papers
-            </description>
-
-            <name lang="es">Documentos</name>
-            <description lang="es">
-                Un sobre que contiene un fajo de papeles de aspecto oficial
             </description>
         </special>
 
         <special id="whitepass">
-            <name lang="en">White Pass</name>
-            <name lang="es">Salvoconducto Blanco</name>
+            <name>White Pass</name>
+
         </special>
 
         <special id="redpass">
-            <name lang="en">Red Pass</name>
-            <name lang="es">Salvoconducto Rojo</name>
+            <name>Red Pass</name>
+
         </special>
         
         <!-- BOOK 3 -->
         
         <special id="leatherwaistcoat" incompatibleWith="leatherwaistcoat" >
-            <name lang="en">Padded Leather Waistcoat</name>
-            <description lang="en">
+            <name>Padded Leather Waistcoat</name>
+            <description>
                 This adds 2 ENDURANCE points to your total
             </description>
-
-            <name lang="es">Cota de Cuero</name>
-            <description lang="es">
-                Te permite sumar dos puntos de RESISTENCIA al total que ya posees
-            </description>
-
             <image book="3" name="plw.png" />
             <effect class="endurance" increment="2" />
         </special>
@@ -287,100 +212,67 @@
         <special id="baknaroil" droppable="false">
             <!-- On books this is not really an object, just an "annotation" on 
                 the action chart... -->
-            <name lang="en">Baknar Oil on your skin</name>
-            <description lang="en">
+            <name>Baknar Oil on your skin</name>
+            <description>
                 Baknar oil gives excellent insulation from the bitter cold of Kalte
-            </description>
-
-            <name lang="es">Aceite de Baknar en tu piel</name>
-            <description lang="es">
-                El aceite de Baknar es un aislante excelente que protege de las temperaturas glaciares de Kalte
             </description>
         </special>
 
         <special id="diamond">
-            <name lang="en">Diamond</name>
-            <name lang="es">Diamante</name>
+            <name>Diamond</name>
+
         </special>
         
         <special id="trianglebluestone">
-            <name lang="en">Triangle of Blue Stone</name>
-            <description lang="en">
+            <name>Triangle of Blue Stone</name>
+            <description>
                 It is a small triangle of blue stone on a neck chain
             </description>
-
-            <name lang="es">Triángulo Azul de Piedra</name>
-            <description lang="es">
-                Es un triángulo azul de piedra, colgado de una cadena
-            </description>
-
             <image book="3" name="small25.png" />
         </special>
         
         <special id="bracelet" droppable="false">
-            <name lang="en">Bracelet</name>
-            <description lang="en">
+            <name>Bracelet</name>
+            <description>
                 A plain bracelet, without mark or inscription, and appear to be made of solid gold
-            </description>
-
-            <name lang="es">Brazalete</name>
-            <description lang="es">
-                Un brazalete completamente liso, sin ninguna marca o inscripción, que parece de oro macizo
             </description>
         </special>
 
         <special id="silverkeybook3">
-            <name lang="en">Silver Key (Book 3)</name>
-            <name lang="es">Llave de Plata (Libro 3)</name>
+            <name>Silver Key (Book 3)</name>
+
             <image book="1" name="small15.png" />
         </special>
 
         <special id="glowingcrystal">
-            <name lang="en">Glowing Crystal</name>
-            <name lang="es">Piedra Centelleante</name>
-            <description lang="es">
-                También se le llama Cristal Radiante
-            </description>
+            <name>Glowing Crystal</name>
             <image book="3" name="ill19.png" />
         </special>
 
         <special id="stoneeffigy">
-            <name lang="en">Stone Effigy</name>
-            <description lang="en">
+            <name>Stone Effigy</name>
+            <description>
                 A small statuette of a strange tentacled creature
             </description>
-
-            <name lang="es">Efigie de Piedra</name>
-            <description lang="es">
-                Una pequeña estatua que representa a un extraño ser dotado de tentáculos
-            </description>
-
             <image book="3" name="small10.png" />
         </special>
         
         <special id="bluestonedisc">
-            <name lang="en">Blue Stone Disc</name>
-            <name lang="es">Disco Azul de Piedra</name>
+            <name>Blue Stone Disc</name>
+
         </special>
 
         <special id="firesphere">
-            <name lang="en">Firesphere</name>
-            <name lang="es">Esfera de Fuego</name>
+            <name>Firesphere</name>
+
             <image book="3" name="small7.png" />
         </special>
 
         <special id="silverhelm" incompatibleWith="helmet" >
-            <name lang="en">Silver Helm</name>
-            <description lang="en">
+            <name>Silver Helm</name>
+            <description>
                 If worn during combat, it will increase your COMBAT SKILL by 2 points
             </description>
-
-            <name lang="es">Yelmo de Plata</name>
-            <description lang="es">
-                Siempre que lo lleves puesto en un combate, te permitirá aumentar tu 
-                DESTREZA EN EL COMBATE 2 puntos
-            </description>
-
             <image book="3" name="small26.png" />
             <effect class="combatSkill" increment="2" />
         </special>        
@@ -388,17 +280,17 @@
         <!-- BOOK 4 -->
 
         <special id="onyxmedallion">
-            <name lang="en">Onyx Medallion</name>
-            <name lang="es">Medallón de Ónice</name>
+            <name>Onyx Medallion</name>
+
             <image book="4" name="small3.png" />
         </special>
 
         <special id="scrollpoetry">
-            <name lang="en">Scroll</name>
-            <description lang="en">
+            <name>Scroll</name>
+            <description>
                 Upon the scroll is written the following verse:
             </description>
-            <extraDescription lang="en">
+            <extraDescription>
                 When the full moon shines o’er the temple deep, /
                 A sacrifice will stir from sleep /
                 The legions of a long forgotten lord. /
@@ -406,30 +298,12 @@
                 The dead of Maakengorge shall rise /
                 To claim their long-awaited reward.
             </extraDescription>
-
-            <name lang="es">Pergamino</name>
-            <description lang="es">
-                En él ves escritos los siguientes versos:
-            </description>
-            <extraDescription lang="es">
-                Cuando la luna llena brille sobre el templo, /
-                Un sacrificio pondrá fin al sueño /
-                De las legiones de un señor ya olvidado. /
-                Cuando sobre el altar muera una rubia doncella de estirpe real, /
-                Los muertos del precipicio de Maaken despertarán /
-                Para reclamar la recompensa que tanto han esperado.
-            </extraDescription>
         </special>
 
         <special id="daggerofvashna" weaponType="dagger">
-            <name lang="en">Dagger of Vashna</name>
-            <description lang="en">
+            <name>Dagger of Vashna</name>
+            <description>
                 A twisted black dagger
-            </description>
-            
-            <name lang="es">Daga de Vashna</name>
-            <description lang="es">
-                Una daga negra en forma de serpiente ondulada
             </description>
             <image book="4" name="small20.png" />
         </special>
@@ -437,489 +311,342 @@
         <!-- BOOK 5 -->
 
         <special id="jewelledmace" weaponType="mace">
-            <name lang="en">Jewelled Mace</name>
-            <description lang="en">
+            <name>Jewelled Mace</name>
+            <description>
                 Beautifully carved and encrusted with rubies, emeralds, and pearls. 
                 In the Northlands this weapon would fetch thousands of Crowns
             </description>
-            
-            <name lang="es">Maza Enjoyada</name>
-            <description lang="es">
-                Bellamente tallada, con empuñadura de plata e incrustaciones de rubíes, 
-                perlas y esmeraldas. En los países del norte esta arma costaría miles de 
-                Coronas
-            </description>
-
             <image book="1" name="mace.png" />
         </special>
 
         <special id="copperkey">
-            <name lang="en">Copper Key</name>
-            <name lang="es">Llave de Cobre</name>
+            <name>Copper Key</name>
+
 
             <image book="1" name="small15.png" />
         </special>
 
         <special id="gaolerkeys">
-            <name lang="en">Gaoler’s Keys</name>
-            <name lang="es">Llaves del Carcelero</name>
+            <name>Gaoler’s Keys</name>
+
 
             <image book="1" name="small15.png" />
         </special>
 
         <special id="herbpad">
-            <name lang="en">Herb Pad</name>
-            <name lang="es">Mascarilla de Hierbas</name>
+            <name>Herb Pad</name>
+
         </special>
         
         <special id="blacksash">
-            <name lang="en">Black Sash</name>
-            <name lang="es">Banda Negra</name>
+            <name>Black Sash</name>
+
         </special>
 
         <special id="brasswhistle">
-            <name lang="en">Brass Whistle</name>
-            <name lang="es">Silbato de Latón</name>
+            <name>Brass Whistle</name>
+
         </special>
 
         <special id="blackcrystalcube">
-            <name lang="en">Black Crystal Cube</name>
-            <name lang="es">Cubo de Cristal Negro</name>
+            <name>Black Crystal Cube</name>
+
         </special>
 
         <!-- BOOK 6 -->
 
         <special id="quiver">
-            <name lang="en">Quiver</name>
-            <name lang="es">Carcaj</name>
+            <name>Quiver</name>
+
             <image book="6|9" name="quiver.png" />
         </special>
 
         <special id="mapvaretta">
-            <name lang="en">Map of Varetta</name>
-            <name lang="es">Mapa de Varetta</name>
+            <name>Map of Varetta</name>
+
         </special>
 
         <special id="luyenticket">
-            <name lang="en">Ticket to Luyen</name>
-            <name lang="es">Billete a Luyen</name>
+            <name>Ticket to Luyen</name>
+
         </special>
 
         <special id="rhemticket">
-            <name lang="en">Ticket to Rhem</name>
-            <name lang="es">Billete a Rhem</name>
+            <name>Ticket to Rhem</name>
+
         </special>
 
         <special id="eulaticket">
-            <name lang="en">Ticket to Eula</name>
-            <name lang="es">Billete a Eula</name>
+            <name>Ticket to Eula</name>
+
         </special>
 
         <special id="cess">
-            <name lang="en">Cess</name>
-            <description lang="en">
+            <name>Cess</name>
+            <description>
                 A blue card. It is stamped with today’s date and will allow you access to the town of Amory on this day only
-            </description>
-
-            <name lang="es">Cess</name>
-            <description lang="es">
-                Una tarjeta azul. La tarjeta lleva un sello con fecha de hoy y te permitirá entrar en la ciudad de Amory sólo 
-                en este día
             </description>
         </special>
         
         <special id="rubyring">
-            <name lang="en">Ruby Ring</name>
-            <name lang="es">Anillo de Rubíes</name>
+            <name>Ruby Ring</name>
+
         </special>
         
         <special id="silverbrooch">
-            <name lang="en">Silver Brooch</name>
-            <name lang="es">Broche de Plata</name>
+            <name>Silver Brooch</name>
+
         </special>
 
         <special id="smallsilverkey">
-            <name lang="en">Small Silver Key</name>
-            <name lang="es">Pequeña Llave de Plata</name>
+            <name>Small Silver Key</name>
+
             <image book="1" name="small15.png" />
         </special>
 
         <special id="silverbowduadon" weaponType="bow">
-            <name lang="en">Silver Bow of Duadon</name>
-            <description lang="en">
+            <name>Silver Bow of Duadon</name>
+            <description>
                 A magnificent Bow made from the wood of a silver oak tree. 
                 This weapon will add 3 points to your total whenever you are using a Bow and are instructed to pick a 
                 number from the Random Number Table
             </description>
-
-            <name lang="es">Arco de Plata de Duadon</name>
-            <description lang="es">
-                Un magnifico arco hecho de madera de roble y plata. 
-                Cuando uses este arco y se te ordene elegir al azar un número de la Tabla de la Suerte. 
-                podrás sumar 3 puntos al total que obtengas
-            </description>
-
             <effect class="combatSkill" increment="3" />
             <image book="6" name="bow.png" />
         </special>
 
         <special id="tournamentbow" weaponType="bow">
             <!-- Not really an book object, but it's needed by mechanics on the bow tournment -->
-            <name lang="en">Bow</name>
-            <description lang="en">Borrowed bow for the tournament</description>
-
-            <name lang="es">Arco</name>
-            <description lang="es">Arco prestado para el torneo</description>
-
+            <name>Bow</name>
+            <description>Borrowed bow for the tournament</description>
             <image book="6" name="bow.png" />
         </special>
 
         <!-- BOOK 7 -->
 
         <special id="fireseed">
-            <name lang="en">Fireseed</name>
-            <description lang="en">
+            <name>Fireseed</name>
+            <description>
                 When thrown against a hard surface, these Fireseeds explode and burn fiercely
-            </description>
-			
-            <name lang="es">Petardo</name>
-            <description lang="es">
-                Arrojados contra una superficie dura, explotan y producen tremendas quemaduras
             </description>
         </special>
 		
         <special id="kazanoudamulet">
-            <name lang="en">Kazan-Oud Platinum Amulet</name>
-            <description lang="en">
+            <name>Kazan-Oud Platinum Amulet</name>
+            <description>
                 It will protect you from injury due to exposure to high temperatures
-            </description>
-
-            <name lang="es">Amuleto de Platino</name>
-            <description lang="es">
-                Te protegerá de los daños que puedan causarte las altas temperaturas
             </description>
         </special>
 		
         <special id="skeletonkey">
-            <name lang="en">Skeleton Key</name>
-            <name lang="es">Llave de Hueso</name>
+            <name>Skeleton Key</name>
             <image book="1" name="small15.png" />
         </special>
 		
         <special id="parchment">
-            <name lang="en">Parchment</name>
-            <name lang="es">Pergamino</name>
+            <name>Parchment</name>
         </special>
 
         <special id="silverwhistle">
-            <name lang="en">Silver Whistle</name>
-            <name lang="es">Silbato de Plata</name>
+            <name>Silver Whistle</name>
         </special>
 
         <special id="powerkey">
-            <name lang="en">Power-key</name>
-            <description lang="en">
+            <name>Power-key</name>
+            <description>
                 A gem the size of a small apple. It is a dull translucent red, but within its core a 
                 swirling mist of glittering sparks flickers with gold and silver fire
-            </description>
-
-            <name lang="es">Llave de Energía</name>
-            <description lang="es">
-                Una gema del tamaño de una manzana pequeña. Es de un color rojo translúcido y en su 
-                interior reverbera una mezcla resplandeciente de chispas doradas y plateadas
             </description>
         </special>
 
         <special id="goldkey">
-            <name lang="en">Gold key</name>
-            <name lang="es">Llave de Oro</name>
+            <name>Gold key</name>
         </special>
 
         <!-- BOOK 8 -->
 
         <special id="pass">
-            <name lang="en">Pass</name>
-            <!-- On some places is called "Pase" and on others "Salvoconducto" -->
-            <name lang="es">Pase (Salvoconducto)</name>
+            <name>Pass</name>
         </special>
 
         <!-- This is more appropriately a normal weapon, but its use is mandatory and by making it a special object, 
              we don't force the user to drop another weapon for one combat just to pick original weapon back up -->
         <special id="paidosword" weaponType="sword" itemCount="0">
-            <name lang="en">Paido’s Sword</name>
-            <name lang="es">Espada de Paido</name>
+            <name>Paido’s Sword</name>
             <image book="1" name="sword.png" />
         </special>
 
         <special id="greycrystalring">
-            <name lang="en">Grey Crystal Ring</name>
-            <name lang="es">Anillo de Cristal Gris</name>
+            <name>Grey Crystal Ring</name>
         </special>
 
         <special id="vialofclearliquid">
-            <name lang="en">Vial of Clear Liquid</name>
-            <name lang="es">Frasco con un Líquido Transparente</name>
+            <name>Vial of Clear Liquid</name>
         </special>
 
         <special id="lodestone">
-            <name lang="en">Lodestone</name>
-            <name lang="es">Piedra Imán</name>
+            <name>Lodestone</name>
         </special>
 
         <special id="giakscroll2">
-            <name lang="en">Giak’s Scroll</name>
-            <name lang="es">Pergamino Giak</name>
-
+            <name>Giak’s Scroll</name>
             <image book="8" name="small10.png" />
         </special>
 
         <!-- BOOK 9 -->
 
         <special id="psychicring">
-            <name lang="en">Psychic Ring</name>
-            <description lang="en">
+            <name>Psychic Ring</name>
+            <description>
                 It gleams incredibly, as though only minutes old, and the deep yellow stone that is set in the silvery metal glows with 
                 an eldritch light
             </description>
-
-            <name lang="es">Anillo Psíquico</name>
-            <description lang="es">
-                Brilla de un modo increíble, como creado hace tan sólo unos minutos, y la piedra de un amarillo oscuro que está engastada 
-                en metal plateado reluce de un modo fantástico
-            </description>
-
             <image book="9" name="small10.png" />
         </special>
 
         <special id="receipt" itemCount="0">
-            <name lang="en">Receipt</name>
-            <description lang="en">
+            <name>Receipt</name>
+            <description>
                 A piece of vellum stamped with a date and a number
-            </description>
-
-            <name lang="es">Recibo</name>
-            <description lang="es">
-                Un pedazo de pergamino con una fecha y un número
             </description>
         </special>
 
         <special id="invitation">
-            <name lang="en">Invitation</name>
-            <name lang="es">Invitación</name>
+            <name>Invitation</name>
         </special>
 
         <!-- BOOK 10 -->
 
         <special id="bullwhip">
-            <name lang="en">Bullwhip</name>
-            <name lang="es">Látigo</name>
-
+            <name>Bullwhip</name>
             <image book="10" name="small7.png" />
         </special>
 
         <special id="medal">
-            <name lang="en">Medal</name>
-            <description lang="en">
+            <name>Medal</name>
+            <description>
                 “I won this at the Battle of Luomi”
-            </description>
-
-            <name lang="es">Medalla</name>
-            <description lang="es">
-                “Ésta la gané en la batalla de Luomi”
             </description>
         </special>
 
         <special id="signetring" itemCount="0">
-            <name lang="en">Signet Ring</name>
-            <description lang="en">
+            <name>Signet Ring</name>
+            <description>
                 Bears Prince Graygor royal crest
-            </description>
-
-            <name lang="es">Sello</name>
-            <description lang="es">
-                Luce el escudo real del Príncipe Graygor
             </description>
         </special>
 
         <special id="blackkey">
-            <name lang="en">Black Key</name>
-            <name lang="es">Llave Negra</name>
+            <name>Black Key</name>
             <image book="1" name="small15.png" />
         </special>
 
         <special id="gorodonhorn">
-            <name lang="en">Gorodon Horn</name>
-            <description lang="en">
+            <name>Gorodon Horn</name>
+            <description>
                 “There are potion-makers in Humbold who’ll pay a grand price for these”
-            </description>
-
-            <name lang="es">Cuerno de Gorodon</name>
-            <description lang="es">
-                “Hay en Humbold fabricantes de pociones que pagarían un gran precio por éstos”
             </description>
         </special>
 
         <!-- BOOK 11 -->
 
         <special id="ironheartbroadsword" weaponType="broadsword">
-            <name lang="en">Ironheart Broadsword</name>
-            <description lang="en">
+            <name>Ironheart Broadsword</name>
+            <description>
                 A mighty broadsword set with rubies, emeralds, and polished korlinium
-            </description>
-
-            <name lang="es">Espadón de Corazón de Hierro</name>
-            <description lang="es">
-                Es un enorme espadón recamado de rubíes, esmeraldas y korlinium bruñido
             </description>
             <image book="9" name="bsword.png" />
         </special>
 
         <special id="ookorcharm">
-            <name lang="en">Ookor Charm</name>
-            <description lang="en">
+            <name>Ookor Charm</name>
+            <description>
                 A large, wooden charm shaped like the wing of a bird
-            </description>
-
-            <name lang="es">Talismán Ookor</name>
-            <description lang="es">
-                Un gran talismán de madera que posee la forma del ala de un ave
             </description>
         </special>
 
         <special id="silverrod">
-            <name lang="en">Silver Rod</name>
-            <name lang="es">Varilla de Plata</name>
+            <name>Silver Rod</name>
         </special>
 
         <special id="obsidianseal">
-            <name lang="en">Obsidian Seal</name>
-            <name lang="es">Sello de Obsidiana</name>
+            <name>Obsidian Seal</name>
         </special>
 
         <!-- BOOK 12 -->
 
         <special id="kagonitechainmail">
-            <name lang="en">Kagonite Chainmail</name>
-            <description lang="en">
+            <name>Kagonite Chainmail</name>
+            <description>
                 It's crafted from a metallic mineral called kagonite. It is as light as wood, yet ten times harder than steel.
                 It will increase your COMBAT SKILL by 3 and your ENDURANCE by 1
             </description>
-
-            <name lang="es">Cota de Malla de Kagonita</name>
-            <description lang="es">
-                Está fabricada con un mineral metálico llamado kagonita. Es un material liviano como la madera, pero diez veces 
-                más resistente que el acero. Incrementará tu DESTREZA EN EL COMBATE en 3 y tu RESISTENCIA en 1
-            </description>
-
             <image book="1" name="mail.png" />
             <effect class="combatSkill" increment="+3" />
             <effect class="endurance" increment="+1" />
         </special>
 
         <special id="helshezag" weaponType="sword">
-            <name lang="en">Helshezag</name>
-            <description lang="en">
+            <name>Helshezag</name>
+            <description>
                 It will add 5 points to your COMBAT SKILL, and 7 when used against a Darklord. In the second and subsequent rounds 
                 of every combat in which you use the sword, you must reduce your ENDURANCE level by 1 point permanently
             </description>
-
-            <name lang="es">Helshezag</name>
-            <description lang="es">
-                Añadirá 5 puntos a tu DESTREZA EN EL COMBATE, y 7 puntos cuando la uses contra un Señor de la Oscuridad. Cada vez 
-                que la utilices un combate, deberás restar 1 punto de RESISTENCIA en el segundo asalto y en los siguientes, 
-                permanentemente
-            </description>
-
             <image book="9" name="sword.png" />
             <effect class="combatSkill" increment="+5" />
         </special>
 
         <special id="broninvest" incompatibleWith="chainmail|broninvest">
-            <name lang="en">Bronin Vest</name>
-            <description lang="en">
+            <name>Bronin Vest</name>
+            <description>
                 Adds 3 points to your COMBAT SKILL and 1 to your ENDURANCE
             </description>
-
-            <name lang="es">Cota de Malla de Bronin</name>
-            <description lang="es">
-                Añadirá 3 puntos a tu DESTREZA EN EL COMBATE y 1 a tu RESISTENCIA
-            </description>
-
             <image book="1" name="mail.png" />
             <effect class="combatSkill" increment="+3" />
             <effect class="endurance" increment="+1" />
         </special>
 
         <special id="silverbracers">
-            <name lang="en">Silver Bracers</name>
-            <description lang="en">
+            <name>Silver Bracers</name>
+            <description>
                 Add 2 points to your COMBAT SKILL and 1 to your ENDURANCE
             </description>
-
-            <name lang="es">Brazales de Plata</name>
-            <description lang="es">
-                Añadirán 2 puntos a tu DESTREZA EN EL COMBATE y 1 a tu RESISTENCIA
-            </description>
-
             <effect class="combatSkill" increment="+2" />
             <effect class="endurance" increment="+1" />
         </special>
 
         <special id="crystalexplosive">
-            <name lang="en">Crystal Explosive</name>
-            <name lang="es">Cristal Explosivo</name>
+            <name>Crystal Explosive</name>
             <image book="10" name="small9.png" />
         </special>
         
         <special id="zejardulaga" isArrow="true">
-            <name lang="en">Zejar-dulaga</name>
-            <description lang="en">
+            <name>Zejar-dulaga</name>
+            <description>
                 A poisonous arrow imbued with magical accuracy. It occupies the same space in your Quiver as a normal Arrow
             </description>
-
-            <name lang="es">Zejar-dulaga</name>
-            <description lang="es">
-                Una flecha venenosa dotada de gran precisión mágica. Ocupa el mismo espacio en tu Carcaj que una Flecha normal
-            </description>
-
             <image book="12" name="small6.png" />
         </special>
 
         <special id="goldenamulet" itemCount="0">
-            <name lang="en">Golden Amulet</name>
-            <description lang="en">
+            <name>Golden Amulet</name>
+            <description>
                 "It will keep you safe from the heat and poisonous atmospheres that pervade your destination"
             </description>
-
-            <name lang="es">Amuleto Dorado</name>
-            <description lang="es">
-                "Te mantendrá a salvo del calor y la atmósfera ponzoñosa del lugar al que vas"
-            </description>
-
             <image book="12" name="small5.png" />
         </special>
 
         <special id="greenmask" itemCount="0">
-            <name lang="en">Green Mask</name>
-            <description lang="en">
+            <name>Green Mask</name>
+            <description>
                 It is made of a green, glass-like mineral and is shaped into a hideous visage
-            </description>
-
-            <name lang="es">Máscara Verde</name>
-            <description lang="es">
-                Está hecha de un mineral verde parecido al vidrio y tiene la forma de un horrible rostro
             </description>
         </special>
 
         <special id="korliniumscabbard" itemCount="0">
-            <name lang="en">Korlinium Scabbard</name>
-            <description lang="en">
+            <name>Korlinium Scabbard</name>
+            <description>
                 It will contain and keep hidden the powers of the Sommerswerd
-            </description>
-
-            <name lang="es">Vaina de Korlinium</name>
-            <description lang="es">
-                Controlará y mantendrá ocultos los poderes de la Sommerswerd
             </description>
             <image book="12" name="small4.png" />
         </special>
@@ -927,32 +654,32 @@
         <!-- BOOK 13 -->
 
         <special id="restrainer">
-            <name lang="en">Restrainer</name>
+            <name>Restrainer</name>
         </special>
 
         <special id="mapofmogaruith" itemCount="0">
-            <name lang="en">Map of Mogaruith</name>
+            <name>Map of Mogaruith</name>
         </special>
 
         <special id="cenerrobemask" itemCount="0">
-            <name lang="en">Cener Robe &amp; Mask (dress on)</name>
-            <name lang="es">Túnica y Máscara Cener (puestos)</name>
+            <name>Cener Robe &amp; Mask (dress on)</name>
+
         </special>
 
         <!-- BOOK 14 -->
 
         <special id="statuetteofzagarna">
-            <name lang="en">Statuette of Zagarna</name>
+            <name>Statuette of Zagarna</name>
         </special>
 
         <special id="statuetteofslutar">
-            <name lang="en">Statuette of Slûtar</name>
+            <name>Statuette of Slûtar</name>
         </special>
 
         <!-- BOOK 15 -->
         <special id="jadinamulet">
-            <name lang="en">Jadin Amulet</name>
-            <description lang="en">
+            <name>Jadin Amulet</name>
+            <description>
                 Adds +1 to your score when picking a number from the Random Number Table
                 when trying to avoid normal missiles (e.g. arrows, bolts, darts, etc.) aimed at you.
             </description>
@@ -966,564 +693,375 @@
         <!-- BOOOK 1 -->
 
         <object id="healingpotion">
-            <name lang="en">Healing Potion</name>
-            <description lang="en">
+            <name>Healing Potion</name>
+            <description>
                 This can restore 4 ENDURANCE points to your total, when swallowed after combat. 
                 You only have enough for one dose.
             </description>
-
-            <name lang="es">Poción Curativa</name>
-            <description lang="es">
-                Puede hacerte recuperar 4 puntos de RESISTENCIA de los que hayas perdido en combate. 
-                Sólo tienes cantidad suficiente para una dosis.
-            </description>
-
             <image book="1" name="potion.png" />
             <usage class="endurance" increment="4" />
         </object>
 
         <object id="vordakgem">
-            <name lang="en">Vordak Gem</name>
-            <name lang="es">Gema Vordak</name>
-
+            <name>Vordak Gem</name>
             <image book="1" name="small5.png" />
         </object>
 
         <object id="goldenkey">
-            <name lang="en">Golden Key</name>
-            <name lang="es">Llave de Oro</name>
-
+            <name>Golden Key</name>
             <image book="1" name="small15.png" />
         </object>
 
         <object id="laumspurmeal" isMeal="true">
-            <name lang="en">Meal of Laumspur</name>
-            <description lang="en">
+            <name>Meal of Laumspur</name>
+            <description>
                 It can be used as a Meal. Restores 3 ENDURANCE points
             </description>
-
-            <name lang="es">Comida de Laumspur</name>
-            <description lang="es">
-                Puede ser usado como comida. Devuelve 3 puntos de RESISTENCIA 
-            </description>
-
             <image book="1|9" name="food.png" />
             <usage class="endurance" increment="3" />
         </object>
         
         <object id="silverkey">
-            <name lang="en">Silver Key</name>
-            <name lang="es">Llave de Plata</name>
-
+            <name>Silver Key</name>
             <image book="1" name="small15.png" />
         </object>
        
         <object id="potionofstrength">
-            <name lang="en">Potion of Alether</name>
-            <description lang="en">
+            <name>Potion of Alether</name>
+            <description>
                 An Alether potion. It will increase your COMBAT SKILL by 2 points for the duration of a fight
             </description>
-
-            <name lang="es">Poción de Aléter</name>
-            <description lang="es">
-                Aumentará en 2 puntos tu DESTREZA EN EL COMBATE mientras dure una lucha
-            </description>
-
             <image book="1|9" name="potion.png" />
             <usage class="combatSkill" increment="2" />
         </object>
        
         <object id="torch">
-            <name lang="en">Torch</name>
-            <name lang="es">Antorcha</name>
+            <name>Torch</name>
         </object>
 
         <object id="tinderbox">
-            <name lang="en">Tinderbox</name>
-            <name lang="es">Yesca</name>
+            <name>Tinderbox</name>
             <image book="6" name="tindrbox.png" />
         </object>
 
         <object id="giakscroll">
-            <name lang="en">Giak’s Scroll</name>
-            <name lang="es">Pergamino Giak</name>
+            <name>Giak’s Scroll</name>
         </object>
 
         <object id="message">
-            <name lang="en">Message</name>
-            <description lang="en">
+            <name>Message</name>
+            <description>
                 A message written on an animal skin
             </description>
-
-            <name lang="es">Mensaje</name>
-            <description lang="es">
-                Un mensaje escrito en una piel de animal
-            </description>
-
             <image book="1" name="ill15.png" />
         </object>
 
         <object id="soap">
-            <name lang="en">Tablet of Perfumed Soap</name>
-            <name lang="es">Pastilla de Jabón Perfumado</name>
+            <name>Tablet of Perfumed Soap</name>
         </object>
 
         <!-- BOOOK 2 -->
 
         <object id="healingpotion3">
-            <name lang="en">Healing Potion</name>
-            <description lang="en">
+            <name>Healing Potion</name>
+            <description>
                 Restores 3 ENDURANCE points.
             </description>
-
-            <name lang="es">Poción Curativa</name>
-            <description lang="es">
-                Permite recuperar 3 puntos de RESISTENCIA.
-            </description>
-
             <image book="1" name="potion.png" />
             <usage class="endurance" increment="3" />
         </object>
 
         <object id="laumspurpotion">
-            <name lang="en">Laumspur Potion</name>
-            <description lang="en">
+            <name>Laumspur Potion</name>
+            <description>
                 Restores 5 ENDURANCE points.
             </description>
-
-            <name lang="es">Poción de Laumspur</name>
-            <description lang="es">
-                Permite recuperar 5 puntos de RESISTENCIA.
-            </description>
-
             <image book="1" name="potion.png" />
             <usage class="endurance" increment="5" />
         </object>
 
         <object id="blanket">
-            <name lang="en">Blanket</name>
-            <name lang="es">Manta</name>
+            <name>Blanket</name>
         </object>
 
         <object id="rope">
-            <name lang="en">Rope</name>
-            <name lang="es">Cuerda</name>
+            <name>Rope</name>
             <image book="6|9" name="rope.png" />
         </object>
 
         <object id="orangepotion">
-            <name lang="en">Potion of Orange Liquid</name>
-            <name lang="es">Poción de Líquido Naranja</name>
+            <name>Potion of Orange Liquid</name>
         </object>
 
         <object id="goldring">
-            <name lang="en">Gold Ring</name>
-            <name lang="es">Anillo de Oro</name>
+            <name>Gold Ring</name>
         </object>
 
         <!-- BOOOK 3 -->
 
         <object id="laumspurpotion4">
-            <name lang="en">Potion of Laumspur</name>
-            <description lang="en">
+            <name>Potion of Laumspur</name>
+            <description>
                 This restores 4 ENDURANCE points to your total when swallowed after combat. 
                 There is only enough for one dose
             </description>
-
-            <name lang="es">Poción de Laumspur</name>
-            <description lang="es">
-                Te hace recuperar 4 puntos de RESISTENCIA al beberla tras un combate. 
-                Sólo hay cantidad suficiente para una dosis
-            </description>
-
             <image book="3|9" name="potion.png" />
             <usage class="endurance" increment="4" />
         </object>
         
         <object id="sleepingfurs" itemCount="2">
-            <name lang="en">Sleeping Furs</name>
-            <name lang="es">Mantas de Piel</name>
+            <name>Sleeping Furs</name>
         </object>
 
         <object id="largerope" itemCount="2">
-            <name lang="en">Rope</name>
-            <name lang="es">Cuerda</name>
+            <name>Rope</name>
             <image book="6|9" name="rope.png" />
         </object>
 
         <object id="potionblackgraveweed">
-            <name lang="en">Potion of Black Graveweed</name>
-            <description lang="en">
+            <name>Potion of Black Graveweed</name>
+            <description>
                 Is a very powerful poison
-            </description>
-            <name lang="es">Poción Negra de Moras de Cementerio</name>
-            <description lang="es">
-                Es un poderoso veneno
             </description>
             <image book="3" name="small21.png" />
         </object>
 
         <object id="potiongreengallowbrush">
-            <name lang="en">Potion of Green Gallowbrush</name>
-            <description lang="en">
+            <name>Potion of Green Gallowbrush</name>
+            <description>
                  Is a very powerful sleeping potion
-            </description>
-
-            <name lang="es">Poción Verde de Hierba de Horca</name>
-            <description lang="es">
-                 Es un potente somnífero
             </description>
         </object>
 
         <object id="tent" itemCount="3">
-            <name lang="en">Tent</name>
-            <name lang="es">Tienda de Campaña</name>
+            <name>Tent</name>
         </object>
         
         <object id="redpotionlaumspur">
-            <name lang="en">Red Potion of Laumspur</name>
-            <description lang="en">
+            <name>Red Potion of Laumspur</name>
+            <description>
                 Distilled Laumspur, a herb of great healing properties. 
                 This concentrated Potion is powerful enough to restore 5 ENDURANCE points
             </description>
-
-            <name lang="es">Poción Roja de Laumspur</name>
-            <description lang="es">
-                Es un brebaje de laumspur, una hierba de grandes propiedades curativas. 
-                Esta Poción concentrada permite a quien la bebe recuperar 5 puntos de 
-                RESISTENCIA
-            </description>
-
             <usage class="endurance" increment="5" />
         </object>
 
         <object id="potionofstrength4">
-            <name lang="en">Potion of Alether</name>
-            <description lang="en">
+            <name>Potion of Alether</name>
+            <description>
                 An Alether potion. It will increase your COMBAT SKILL by 4 points for the duration of a fight
             </description>
-
-            <name lang="es">Poción de Aléter</name>
-            <description lang="es">
-                Aumentará en 4 puntos tu DESTREZA EN EL COMBATE mientras dure una lucha
-            </description>
-
             <usage class="combatSkill" increment="4" />
         </object>
 
         <!-- BOOK 4 -->
 
         <object id="brasskey">
-            <name lang="en">Brass Key</name>
-            <name lang="es">Llave de Bronce</name>
+            <name>Brass Key</name>
             <image book="1" name="small15.png" />
         </object>
 
         <object id="flaskofholywater">
-            <name lang="en">Flask of Holy Water</name>
-            <name lang="es">Frasco de Agua Santa</name>
+            <name>Flask of Holy Water</name>
         </object>
 
         <object id="whip">
-            <name lang="en">Whip</name>
-            <name lang="es">Látigo</name>
-
+            <name>Whip</name>
             <image book="10" name="small7.png" />
         </object>
 
         <object id="ironkey">
-            <name lang="en">Iron Key</name>
-            <name lang="es">Llave de Hierro</name>
+            <name>Iron Key</name>
             <image book="1" name="small15.png" />
         </object>
 
         <object id="shovel" itemCount="2">
-            <name lang="en">Shovel</name>
-            <name lang="es">Pala</name>
+            <name>Shovel</name>
         </object>
 
         <object id="pick" itemCount="2">
-            <name lang="en">Pick</name>
-            <name lang="es">Pico</name>
+            <name>Pick</name>
         </object>
 
         <object id="hourglass">
-            <name lang="en">Hourglass</name>
-            <name lang="es">Reloj de Arena</name>
+            <name>Hourglass</name>
         </object>
         
         <!-- BOOK 5 -->
 
         <object id="oedeherb">
-            <name lang="en">Oede Herb</name>
-            <description lang="en">
+            <name>Oede Herb</name>
+            <description>
                 It is a powerful substance that can be used against many deadly diseases 
                 or alternatively can be used to restore 10 ENDURANCE points if swallowed 
                 after combat
             </description>
-
-            <name lang="es">Hierba Oede</name>
-            <description lang="es">
-                La hierba contiene una sustancia eficaz contra numerosas enfermedades 
-                mortales. También puede ser utilizada para restablecer 10 puntos de 
-                RESISTENCIA tragándola después de un combate
-            </description>
-
             <usage class="endurance" increment="10" />
         </object>
         
         <object id="blowpipe">
-            <name lang="en">Blowpipe</name>
-            <name lang="es">Cerbatana</name>
+            <name>Blowpipe</name>
         </object>
         
         <object id="sleepdart">
-            <name lang="en">Sleep Dart</name>
-            <name lang="es">Dardo Somnífero</name>
+            <name>Sleep Dart</name>
         </object>
 
         <object id="larnumaoil">
-            <name lang="en">Larnuma Oil</name>
-            <description lang="en">
+            <name>Larnuma Oil</name>
+            <description>
                 Restores 2 ENDURANCE points per dose
             </description>
-
-            <name lang="es">Aceite de Larnuma</name>
-            <description lang="es">
-                Cada dosis restablece 2 puntos de RESISTENCIA
-            </description>
-
             <usage class="endurance" increment="2" />
         </object>
 
         <object id="rendalimelixir">
-            <name lang="en">Rendalim’s Elixir</name>
-            <description lang="en">
+            <name>Rendalim’s Elixir</name>
+            <description>
                 Restores 6 ENDURANCE points per dose
             </description>
-
-            <name lang="es">Elixir de Rendalim</name>
-            <description lang="es">
-                Cada dosis restablece 6 puntos de RESISTENCIA
-            </description>
-
             <usage class="endurance" increment="6" />
         </object>
 
         <object id="towel" itemCount="2">
-            <name lang="en">Towel</name>
-            <name lang="es">Toalla</name>
+            <name>Towel</name>
         </object>
         
         <object id="prism">
-            <name lang="en">Prism</name>
-            <name lang="es">Prisma</name>
+            <name>Prism</name>
         </object>
 
         <object id="silvercomb">
-            <name lang="en">Silver Comb</name>
-            <name lang="es">Peine de Plata</name>
+            <name>Silver Comb</name>
         </object>
 
         <object id="potiongallowbrush">
-            <name lang="en">Potion of Gallowbrush</name>
-            <description lang="en">
+            <name>Potion of Gallowbrush</name>
+            <description>
                 Induces sleep for 1–2 hours per dose
-            </description>
-            
-            <name lang="es">Poción de Arbusto de la Horca</name>
-            <description lang="es">
-                Hace dormir de 1 a 2 horas
             </description>
         </object>
         
         <object id="tincturegraveweed">
-            <name lang="en">Tincture of Graveweed</name>
-            <description lang="en">
+            <name>Tincture of Graveweed</name>
+            <description>
                 Causes sickness and loss of 2 ENDURANCE points per dose
-            </description>
-            
-            <name lang="es">Tintura de Hierbas de las Tumbas</name>
-            <description lang="es">
-                Causa malestar y perdida de 2 puntos de RESISTENCIA
             </description>
         </object>
 
         <object id="tincturecalacena">
-            <name lang="en">Tincture of Calacena</name>
-            <description lang="en">
+            <name>Tincture of Calacena</name>
+            <description>
                 Causes terrifying hallucinations for 1–2 hours per dose
-            </description>
-            
-            <name lang="es">Tintura de Calacena</name>
-            <description lang="es">
-                Causa horribles alucinaciones durante 1 o 2 horas
             </description>
         </object>
 
         <object id="bottlekourshah">
-            <name lang="en">Bottle of Kourshah</name>
-            <description lang="en">
+            <name>Bottle of Kourshah</name>
+            <description>
                 A lime-green wine, it tastes delicious. There is enough Kourshah in the 
                 bottle to restore 4 ENDURANCE points
             </description>
-            
-            <name lang="es">Botella de Kourshah</name>
-            <description lang="es">
-                Un licor verde lima, tiene un sabor delicioso. En la botella hay bastante 
-                Kourshah para restablecer 4 puntos de RESISTENCIA
-            </description>
-
             <usage class="endurance" increment="4" />
         </object>
         
         <object id="canteenwater">
-            <name lang="en">Canteen of Water</name>
-            <name lang="es">Cantimplora</name>
+            <name>Canteen of Water</name>
         </object>
 
         <!-- BOOK 6 -->
 
         <object id="laumspurpotion3">
-            <name lang="en">Potion of Laumspur</name>
-            <description lang="en">
+            <name>Potion of Laumspur</name>
+            <description>
                 This restores 3 ENDURANCE points to your total when swallowed after combat. 
                 There is only enough for one dose
             </description>
-
-            <name lang="es">Poción de Laumspur</name>
-            <description lang="es">
-                Te hace recuperar 3 puntos de RESISTENCIA al beberla tras un combate. 
-                Sólo hay cantidad suficiente para una dosis
-            </description>
-
             <image book="3" name="potion.png" />
             <usage class="endurance" increment="3" />
         </object>
 
         <object id="bottlewine">
-            <name lang="en">Bottle of Wine</name>
-            <name lang="es">Botella de Vino</name>
+            <name>Bottle of Wine</name>
         </object>
 
         <object id="mirror">
-            <name lang="en">Mirror</name>
-            <name lang="es">Espejo</name>
+            <name>Mirror</name>
         </object>
 
         <object id="maptekaro">
-            <name lang="en">Map of Tekaro</name>
-            <name lang="es">Mapa de Tekaro</name>
+            <name>Map of Tekaro</name>
         </object>
 
         <object id="taunorwater">
-            <name lang="en">Taunor Water</name>
-            <description lang="en">
+            <name>Taunor Water</name>
+            <description>
                 There is enough spa water to restore 6 ENDURANCE points
             </description>
-
-            <name lang="es">Agua de Taunor</name>
-            <description lang="es">
-                Tienes bastante para restablecer 6 puntos de RESISTENCIA
-            </description>
-
             <image book="1" name="potion.png" />
             <usage class="endurance" increment="6" />
         </object>
 
         <object id="aletherberries">
-            <name lang="en">Alether Berries</name>
-            <description lang="en">
+            <name>Alether Berries</name>
+            <description>
                 They will increase your COMBAT SKILL by 2 points for the duration of a fight. 
                 You cannot swallow more than one handful during any one combat
             </description>
-
-            <name lang="es">Frutos de Aléter</name>
-            <description lang="es">
-                Aumentará en 2 puntos tu DESTREZA EN EL COMBATE mientras dure una lucha. 
-                Sólo puedes tomar un puñado antes de un combate
-            </description>
-
             <usage class="combatSkill" increment="2" />
         </object>
 
         <object id="mapsommerlund">
-            <name lang="en">Map of Sommerlund</name>
-            <name lang="es">Mapa de Sommerlund</name>
+            <name>Map of Sommerlund</name>
         </object>
 
         <object id="mapluyen">
-            <name lang="en">Map of Luyen</name>
-            <name lang="es">Mapa de Luyen</name>
+            <name>Map of Luyen</name>
         </object>
 
         <!-- BOOK 7 -->
 
         <object id="lantern">
-            <name lang="en">Lantern</name>
-            <description lang="en">
+            <name>Lantern</name>
+            <description>
                 The Lantern is designed to be self-lighting. You will not need a Tinderbox or any other means of 
                 creating a flame to light it.
             </description>
-
-            <name lang="es">Linterna</name>
-            <description lang="es">
-                La Linterna ha sido creada para funcionar por sí sola. No necesitarás Yesca ni ninguna otra cosa para 
-                crear una llama con la que encenderla.
-            </description>
-
             <image book="9" name="lantern.png" />
         </object>
 
         <object id="laumspurpotion8">
-            <name lang="en">Potion of concentrated Laumspur</name>
-            <description lang="en">
+            <name>Potion of concentrated Laumspur</name>
+            <description>
                 This restores 8 ENDURANCE points to your total when swallowed after combat. 
                 There is only enough for one dose
             </description>
-
-            <name lang="es">Poción de Laumspur concentrado</name>
-            <description lang="es">
-                Te hace recuperar 8 puntos de RESISTENCIA al beberla tras un combate. 
-                Sólo hay cantidad suficiente para una dosis
-            </description>
-
             <usage class="endurance" increment="8" />
             <image book="3" name="potion.png" />
         </object>
 		
         <object id="vialbluepills">
-            <name lang="en">Vial of Blue Pills</name>
-            <description lang="en">
+            <name>Vial of Blue Pills</name>
+            <description>
                 They enable the human body to extract oxygen from water by absorbing it through the skin.
             </description>
-            <extraDescription lang="en">
+            <extraDescription>
                 They are made from the dried and crushed roots of the Sabito plant, 
                 commonly found in the Boari Jungle, but rare in any other part of Magnamund. 
-            </extraDescription>
-
-            <name lang="es">Frasco de Píldoras Azules</name>
-            <description lang="es">
-                Esas píldoras permiten al cuerpo humano extraer oxígeno del agua absorbiéndolo a través de la piel.
-            </description>
-            <extraDescription lang="es">
-                Las píldoras azules están hechas de raíces secas y trituradas de sabito, una planta que crece 
-                abundantemente en el bosque de Boari, pero que es muy rara en otras partes de Magnamund. 
             </extraDescription>
         </object>
 		
         <object id="bottlewater">
-            <name lang="en">Bottle of Water</name>
-            <name lang="es">Botella de Agua</name>
+            <name>Bottle of Water</name>
         </object>
 		
         <object id="pouchadgana">
-            <name lang="en">Pouch of Adgana</name>
-            <description lang="en">
+            <name>Pouch of Adgana</name>
+            <description>
                 Crushed Adgana leaves. One dose is enough to increase your COMBAT SKILL by 6 points for the duration of a fight.
                 It is highly addictive.
             </description>
-            <extraDescription lang="en">
+            <extraDescription>
                 If you decide to take this potion prior to combat, as soon as the combat is resolved, 
                 you must pick a number from the Random Number Table. If the number you pick is 0 or 1, you have become 
                 addicted and your ENDURANCE score must be reduced permanently by 4 points.
@@ -1531,206 +1069,135 @@
                 only half that of the original dose (i.e. it will increase your COMBAT SKILL by 3 points instead of 6), and
                 the risks of addiction are doubled (you will become addicted if you pick a 0, 1, 2, or 3 on the Random Number Table).
             </extraDescription>
-
-            <name lang="es">Bolsa con Adgana</name>
-            <description lang="es">
-                Hojas trituradas de adgana. Una dosis de estas hierbas es suficiente para aumentar en 6 puntos tu 
-                DESTREZA EN EL COMBATE durante una pelea. Produce adicción. 
-            </description>
-            <extraDescription lang="es">
-                Si decides tomar esta poción antes de un combate, 
-                existe una pequeña probabilidad de que te hagas adicto. Al terminar el combate, debes elegir al azar un 
-                número de la Tabla de la Suerte. Si el número que obtienes es 0 ó 1, te has vuelto adicto y 
-                tu RESISTENCIA disminuye permanentemente en 4 puntos.
-                Si se presenta una segunda oportunidad de tomar otra dosis de adgana, su efecto en esta ocasión será sólo 
-                la mitad que el de la primera dosis (es decir, incrementará tu DESTREZA EN EL COMBATE en 3 puntos en vez de 6), y
-                los riesgos de volverte adicto se doblan (esto es, te vuelves adicto con cualquier número de 0 a 3).
-            </extraDescription>
-
             <usage class="special" />
         </object>
 
         <object id="redrobe">
-            <name lang="en">Red Robe</name>
-            <name lang="es">Túnica con Capucha</name>
+            <name>Red Robe</name>
         </object>
 
         <!-- BOOK 8 -->
 
         <object id="silverbox">
-            <name lang="en">Silver Box</name>
-            <name lang="es">Caja de Plata</name>
+            <name>Silver Box</name>
         </object>
 
         <object id="tinctureoxydine">
-            <name lang="en">Tincture of Oxydine</name>
-            <description lang="en">
+            <name>Tincture of Oxydine</name>
+            <description>
                 Restores 2 ENDURANCE points per dose
             </description>
-
-            <name lang="es">Tintura de Oxydine</name>
-            <description lang="es">
-                Cada dosis restablece 2 puntos de RESISTENCIA
-            </description>
-
             <usage class="endurance" increment="2" />
         </object>
 
         <object id="sackofsilver">
-            <name lang="en">Sack of Silver</name>
-            <name lang="es">Saco de Plata</name>
+            <name>Sack of Silver</name>
         </object>
 
         <object id="wristandfingerguard">
-            <name lang="en">Wrist and Finger Guard</name>
-            <name lang="es">Muñequera y Dediles</name>
+            <name>Wrist and Finger Guard</name>
         </object>
 
         <object id="woodbowcase">
-            <name lang="en">Bow Case (wood)</name>
-            <name lang="es">Estuche de Arco (de madera)</name>
+            <name>Bow Case (wood)</name>
         </object>
 
         <object id="leatherbowcase">
-            <name lang="en">Bow Case (leather)</name>
-            <name lang="es">Estuche de Arco (de cuero)</name>
+            <name>Bow Case (leather)</name>
         </object>
 
         <object id="bowstring">
-            <name lang="en">Bowstring</name>
-            <name lang="es">Cuerda de Arco</name>
+            <name>Bowstring</name>
         </object>
 
         <object id="mapoftharro">
-            <name lang="en">Map of Tharro</name>
-            <name lang="es">Mapa de Tharro</name>
+            <name>Map of Tharro</name>
         </object>
 
         <object id="larnumaliqueur" itemCount="0.5">
             <!-- This object has been replaced by larnumaliqueur2 in 1.12 (usageCount implemented)-->
-            <name lang="en">Larnuma Liqueur</name>
-            <description lang="en">
+            <name>Larnuma Liqueur</name>
+            <description>
                 Restores 3 ENDURANCE points per dose
             </description>
-
-            <name lang="es">Licor de Larnuma</name>
-            <description lang="es">
-                Cada dosis restablece 3 puntos de RESISTENCIA
-            </description>
-
             <usage class="endurance" increment="3" />
         </object>
 
         <object id="larnumaliqueur2" usageCount="2">
-            <name lang="en">Larnuma Liqueur</name>
-            <description lang="en">
+            <name>Larnuma Liqueur</name>
+            <description>
                 Restores 3 ENDURANCE points per dose
             </description>
-
-            <name lang="es">Licor de Larnuma</name>
-            <description lang="es">
-                Cada dosis restablece 3 puntos de RESISTENCIA
-            </description>
-
             <usage class="endurance" increment="3" />
         </object>
 
         <!-- BOOK 9 -->
 
         <object id="silverbowl">
-            <name lang="en">Silver Bowl</name>
-            <name lang="es">Copa de Plata</name>
+            <name>Silver Bowl</name>
         </object>
 
         <object id="vialgolddust">
-            <name lang="en">Vial of Gold Dust</name>
-            <name lang="es">Redoma de Oro en Polvo</name>
+            <name>Vial of Gold Dust</name>
         </object>
 
         <object id="altarcloth">
-            <name lang="en">Altar Cloth</name>
-            <name lang="es">Sábana</name>
+            <name>Altar Cloth</name>
         </object>
 
         <object id="scrollhonour">
-            <name lang="en">Scroll of Honour</name>
-            <name lang="es">Diploma</name>
+            <name>Scroll of Honour</name>
         </object>
 
         <object id="jadinanklets">
-            <name lang="en">Jadin Anklets</name>
-            <name lang="es">Ajorca</name>
+            <name>Jadin Anklets</name>
         </object>
 
         <object id="vialbluepills2" itemCount="0.5">
             <!-- This object has been replaced by vialbluepills3 in 1.12 (usageCount implemented)-->
-            <name lang="en">Vial of Blue Pills</name>
-            <description lang="en">
+            <name>Vial of Blue Pills</name>
+            <description>
                 They enable the human body to extract oxygen from water by absorbing it through the skin.
             </description>
-            <extraDescription lang="en">
+            <extraDescription>
                 They are made from the dried and crushed roots of the Sabito plant, 
                 commonly found in the Boari Jungle, but rare in any other part of Magnamund. 
-            </extraDescription>
-
-            <name lang="es">Frasco de Píldoras Azules</name>
-            <description lang="es">
-                Esas píldoras permiten al cuerpo humano extraer oxígeno del agua absorbiéndolo a través de la piel.
-            </description>
-            <extraDescription lang="es">
-                Las píldoras azules están hechas de raíces secas y trituradas de sabito, una planta que crece 
-                abundantemente en el bosque de Boari, pero que es muy rara en otras partes de Magnamund. 
             </extraDescription>
         </object>
 
         <object id="vialbluepills3" usageCount="2">
-            <name lang="en">Vial of Blue Pills</name>
-            <description lang="en">
+            <name>Vial of Blue Pills</name>
+            <description>
                 They enable the human body to extract oxygen from water by absorbing it through the skin.
             </description>
-            <extraDescription lang="en">
+            <extraDescription>
                 They are made from the dried and crushed roots of the Sabito plant, 
                 commonly found in the Boari Jungle, but rare in any other part of Magnamund. 
-            </extraDescription>
-
-            <name lang="es">Frasco de Píldoras Azules</name>
-            <description lang="es">
-                Esas píldoras permiten al cuerpo humano extraer oxígeno del agua absorbiéndolo a través de la piel.
-            </description>
-            <extraDescription lang="es">
-                Las píldoras azules están hechas de raíces secas y trituradas de sabito, una planta que crece 
-                abundantemente en el bosque de Boari, pero que es muy rara en otras partes de Magnamund. 
             </extraDescription>
         </object>
 
         <object id="silvercandlestick">
-            <name lang="en">Silver Candlestick</name>
-            <name lang="es">Candelabro de Plata</name>
+            <name>Silver Candlestick</name>
         </object>
         
         <object id="silvergoblet">
-            <name lang="en">Silver Goblet</name>
-            <name lang="es">Copa de Plata</name>
+            <name>Silver Goblet</name>
         </object>
         
         <object id="silkjacket">
-            <name lang="en">Silk Jacket</name>
-            <name lang="es">Chaqueta de Seda</name>
+            <name>Silk Jacket</name>
         </object>
 
         <object id="crystaldecanter">
-            <name lang="en">Crystal Decanter</name>
-            <name lang="es">Garrafa de Cristal</name>
+            <name>Crystal Decanter</name>
         </object>
         
         <object id="comb">
-            <name lang="en">Comb</name>
-            <name lang="es">Peine</name>
+            <name>Comb</name>
         </object>
 
         <object id="flaskofboza">
-            <name lang="en">Flask of Boza</name>
-            <name lang="es">Jarrita de Boza</name>
+            <name>Flask of Boza</name>
         </object>
         
 
@@ -1738,320 +1205,246 @@
 
         <object id="meallaumwort">
             <!-- Can be used as Meal ???? Not mentioned on book 10 / sect276 -->
-            <name lang="en">Meal of Laumwort</name>
-            <description lang="en">
+            <name>Meal of Laumwort</name>
+            <description>
                 A herb very similar to Laumspur. Restores 2 ENDURANCE points.
             </description>
-
-            <name lang="es">Comida de Laumwort</name>
-            <description lang="es">
-                Una hierba muy semejante a la Laumspur. Devuelve 2 puntos de RESISTENCIA.
-            </description>
-
             <usage class="endurance" increment="2" />
         </object>
 
         <!-- BOOK 11 -->
 
         <object id="khetuspores">
-            <name lang="en">Khetu Spores</name>
-            <description lang="en">
+            <name>Khetu Spores</name>
+            <description>
                 If swallowed, or if the spores are allowed to infect the bloodstream, the toxin can kill in a matter of minutes
-            </description>
-
-            <name lang="es">Esporas Jetu</name>
-            <description lang="es">
-                Por vía bucal o introducidas en el torrente sanguíneo pueden provocar la muerte en cuestión de minutos
             </description>
         </object>
 
         <object id="haina">
-            <name lang="en">Haina</name>
-            <description lang="en">
+            <name>Haina</name>
+            <description>
                 Its red petals are effective in the treatment of battle-wounds. Restores 5 ENDURANCE points. 
                 They can only be used after combat
             </description>
-
-            <name lang="es">Haina</name>
-            <description lang="es">
-                Sus rojos pétalos resultan eficaces en el tratamiento de las heridas de guerra. 
-                Devuelve 5 puntos de RESISTENCIA. Sólo es posible emplearlos tras una lucha
-            </description>
-
             <usage class="endurance" increment="+5" />
         </object>
 
         <object id="meal3" isMeal="true">
-            <name lang="en">Meal: +3 EP</name>
-            <description lang="en">
+            <name>Meal: +3 EP</name>
+            <description>
                 Yoacor food. Restores 3 ENDURANCE points
-            </description>
-            <name lang="es">Comida: +3PR</name>
-            <description lang="es">
-                Comida de los Yoacors. Devuelve 3 puntos de RESISTENCIA
-            </description>
-            
+            </description>            
             <image book="1|9" name="food.png" />
             <usage class="endurance" increment="3" />
         </object>
 
         <object id="mealofsenara" isMeal="true">
-            <name lang="en">Meal of Senara</name>
-            <description lang="en">
+            <name>Meal of Senara</name>
+            <description>
                 Restores 3 ENDURANCE points
             </description>
-            <name lang="es">Comida de Senaras</name>
-            <description lang="es">
-                Devuelve 3 puntos de RESISTENCIA
-            </description>
-            
             <image book="1|9" name="food.png" />
             <usage class="endurance" increment="3" />
         </object>
 
         <object id="baylonboughfungi">
-            <name lang="en">Baylon’s Bough Fungi</name>
-            <name lang="es">Hongos del Árbol de Baylon</name>
+            <name>Baylon’s Bough Fungi</name>
         </object>
         
         <object id="conchshell">
-            <name lang="en">Conch Shell</name>
-            <name lang="es">Caracola</name>
+            <name>Conch Shell</name>
         </object>
 
         <object id="silverflask" itemCount="0.5">
             <!-- This object has been replaced by silverflask2 in 1.12 (usageCount implemented)-->
-            <name lang="en">Silver Flask</name>
-            <description lang="en">
+            <name>Silver Flask</name>
+            <description>
                 The wine has been charmed with a potent magical spell, imbuing it with special healing properties.
                 Each draught restores 4 ENDURANCE points
             </description>
-
-            <name lang="es">Frasco de Plata</name>
-            <description lang="es">
-                Este vino se halla encantado por un poderoso sortilegio que le proporciona especiales propiedades curativa.
-                Cada trago te permite recobrar 4 puntos de RESISTENCIA
-            </description>
-
             <usage class="endurance" increment="4" />
         </object>
 
         <object id="silverflask2" usageCount="2">
-            <name lang="en">Silver Flask</name>
-            <description lang="en">
+            <name>Silver Flask</name>
+            <description>
                 The wine has been charmed with a potent magical spell, imbuing it with special healing properties.
                 Each draught restores 4 ENDURANCE points
             </description>
-
-            <name lang="es">Frasco de Plata</name>
-            <description lang="es">
-                Este vino se halla encantado por un poderoso sortilegio que le proporciona especiales propiedades curativa.
-                Cada trago te permite recobrar 4 puntos de RESISTENCIA
-            </description>
-
             <usage class="endurance" increment="4" />
         </object>
 
         <!-- BOOK 12 -->
         
         <object id="blackcube">
-            <name lang="en">Black Cube</name>
-            <name lang="es">Cubo Negro</name>
+            <name>Black Cube</name>
         </object>
 
         <object id="gnallia" isMeal="true">
-            <name lang="en">Gnallia</name>
-            <description lang="en">
+            <name>Gnallia</name>
+            <description>
                 A beneficial edible bacillus. Restores 2 ENDURANCE points.
-            </description>
-            <name lang="es">Gnallia</name>
-            <description lang="es">
-                Un beneficioso bacilo comestible. Devuelve 2 puntos de RESISTENCIA.
-            </description>
-            
+            </description>            
             <image book="1|9" name="food.png" />
             <usage class="endurance" increment="2" />
         </object>
 
         <object id="blackkeybook12">
-            <name lang="en">Black Key</name>
-            <name lang="es">Llave Negra</name>
+            <name>Black Key</name>
             <image book="1" name="small15.png" />
         </object>
 
         <object id="pouchtobacco">
-            <name lang="en">Pouch of Tobacco</name>
-            <name lang="es">Tabaquera</name>
+            <name>Pouch of Tobacco</name>
         </object>
 
         <object id="pipe">
-            <name lang="en">Pipe</name>
-            <name lang="es">Pipa</name>
+            <name>Pipe</name>
         </object>
 
         <!-- BOOK 13 -->
 
         <object id="cenerrobe" itemCount="2">
-            <name lang="en">Cener Robe</name>
-            <name lang="es">Túnica Cener</name>
+            <name>Cener Robe</name>
         </object>
 
         <object id="cenermask">
-            <name lang="en">Cener Mask</name>
-            <name lang="es">Máscara Cener</name>
+            <name>Cener Mask</name>
         </object>
 
         <object id="copperkeybook13">
-            <name lang="en">Copper Key</name>
-            <name lang="es">Llave de Cobre</name>
-
+            <name>Copper Key</name>
             <image book="1" name="small15.png" />
         </object>
 
         <object id="blackberriesjar">
-            <name lang="en">Jar of Black Berries</name>
-            <name lang="es">Jarra de Bayas Negras</name>
+            <name>Jar of Black Berries</name>
         </object>
 
         <object id="laumspurjar" usageCount="5">
-            <name lang="en">Jar of Laumspur</name>
-            <description lang="en">Restores 4 ENDURANCE points when swallowed after combat.</description>
+            <name>Jar of Laumspur</name>
+            <description>Restores 4 ENDURANCE points when swallowed after combat.</description>
             <usage class="endurance" increment="4" />
         </object>
 
         <object id="aletherjar" usageCount="4">
-            <name lang="en">Jar of Alether</name>
-            <description lang="en">Increases COMBAT SKILL by 2 points for duration of one fight only.</description>
+            <name>Jar of Alether</name>
+            <description>Increases COMBAT SKILL by 2 points for duration of one fight only.</description>
             <usage class="combatSkill" increment="2" />
         </object>
 
         <object id="gallowbrushjar" usageCount="2">
-            <name lang="en">Jar of Gallowbrush</name>
-            <description lang="en">Induces 10 hours’ sleep and loss of 2 ENDURANCE points per dose.</description>
+            <name>Jar of Gallowbrush</name>
+            <description>Induces 10 hours’ sleep and loss of 2 ENDURANCE points per dose.</description>
             <usage class="endurance" increment="-2" />
         </object>
 
         <object id="sabitojar" usageCount="2">
-            <name lang="en">Jar of Sabito</name>
-            <description lang="en">Enables user to breathe underwater.</description>
+            <name>Jar of Sabito</name>
+            <description>Enables user to breathe underwater.</description>
             <usage class="endurance" increment="-2" />
         </object>
 
         <object id="laumwortjar" usageCount="3">
-            <name lang="en">Jar of Laumwort</name>
-            <description lang="en">Restores 2 ENDURANCE points if swallowed before or after combat.</description>
+            <name>Jar of Laumwort</name>
+            <description>Restores 2 ENDURANCE points if swallowed before or after combat.</description>
             <usage class="endurance" increment="+2" />
         </object>
 
         <object id="oedejar" usageCount="1">
-            <name lang="en">Jar of Oede</name>
-            <description lang="en">Very rare and valuable. Many healing properties. Cures serious diseases. Restores 10 ENDURANCE points if swallowed before or after combat.</description>
+            <name>Jar of Oede</name>
+            <description>Very rare and valuable. Many healing properties. Cures serious diseases. Restores 10 ENDURANCE points if swallowed before or after combat.</description>
             <usage class="endurance" increment="+10" />
         </object>
 
         <object id="copperbowl">
-            <name lang="en">Copper Bowl</name>
+            <name>Copper Bowl</name>
         </object>
 
         <!-- BOOK 14 -->
 
         <object id="whistle">
-            <name lang="en">Whistle</name>
+            <name>Whistle</name>
         </object>
 
         <object id="brasskeybook14">
-            <name lang="en">Brass Key</name>
-            
+            <name>Brass Key</name>            
             <image book="1" name="small15.png" />
         </object>
 
         <object id="greenkey">
-            <name lang="en">Green Key</name>
-            
+            <name>Green Key</name>            
             <image book="1" name="small15.png" />
         </object>
 
         <object id="silverflaskempty">
-            <name lang="en">Silver Flask</name>
+            <name>Silver Flask</name>
         </object>
 
         <object id="blackkeybook14">
-            <name lang="en">Black Key</name>
-            
+            <name>Black Key</name>            
             <image book="1" name="small15.png" />
         </object>
 
         <object id="hammer">
-            <name lang="en">Hammer</name>
+            <name>Hammer</name>
         </object>
 
         <!-- BOOK 15 -->
 
         <object id="signetringbook15">
-            <name lang="en">Signet Ring</name>
-            <name lang="es">Sello</name>
+            <name>Signet Ring</name>
         </object>
 
         <object id="floroa">
-            <name lang="en">Floroa</name>
-            <description lang="en">
+            <name>Floroa</name>
+            <description>
                 Restores 3 ENDURANCE points
             </description>
-
             <usage class="endurance" increment="3" />
         </object>
 		
         <object id="emptybottle">
-            <name lang="en">Bottle (Empty)</name>
-            <name lang="es">Botella (Vacío)</name>
+            <name>Bottle (Empty)</name>
         </object>
 		
         <object id="ballofstring">
-            <name lang="en">Ball of String</name>
-            <name lang="es">Bola de cuerda</name>
+            <name>Ball of String</name>
         </object>
 		
         <object id="boarwhip">
-            <name lang="en">Boar Whip</name>
-            <name lang="es">Fusta de Jabalí</name>
+            <name>Boar Whip</name>
         </object>
 
         <!-- OTHERS -->
 
         <!-- This not really an object, but needed for mechanics -->
         <object id="meal">
-            <name lang="en">Meal</name>
-            <name lang="es">Comida</name>
-            
+            <name>Meal</name>            
             <image book="1|9" name="food.png" />
         </object>
 
         <!-- This not really an object, but needed for mechanics -->
         <object id="backpack">
-            <name lang="en">Backpack</name>
-            <name lang="es">Mochila</name>
+            <name>Backpack</name>
         </object>
 
         <!-- This not really an object, but needed for mechanics -->
         <!-- TODO: Check this object, I think it can be removed -->
         <object id="backpackcontent">
-            <name lang="en">Backpack Content</name>
-            <name lang="es">Contenido de la mochila</name>
+            <name>Backpack Content</name>
         </object>
 
         <!-- This not really an object, but needed for mechanics -->
         <object id="money">
-            <name lang="en">Money</name>
-            <name lang="es">Dinero</name>
-
+            <name>Money</name>
             <image book="1" name="pouch.png" />
         </object>
 
         <!-- Usually used as part of a quiver, but occasionally found by themselves -->
         <object id="arrow">
-            <name lang="en">Arrows</name>
-            <name lang="es">Flechas</name>
-
+            <name>Arrows</name>
             <image book="6|9" name="quiver.png" />
         </object>
 

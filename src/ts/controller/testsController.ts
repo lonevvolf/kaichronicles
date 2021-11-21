@@ -1,4 +1,4 @@
-import { views, BookValidator, setupController, state, Section, SectionRenderer, randomTable, Language, projectAon, mechanicsEngine } from "..";
+import { views, BookValidator, setupController, state, Section, SectionRenderer, randomTable, projectAon, mechanicsEngine } from "..";
 
 /**
  * Application tests
@@ -119,7 +119,7 @@ export class testsController {
 
     private static testBook( validator: BookValidator ) {
         validator.validateBook();
-        const title = "Book " + validator.book.bookNumber + " (" + validator.book.language + ") ";
+        const title = "Book " + validator.book.bookNumber;
         if (validator.errors.length === 0) {
             testsController.addLog(title + "OK!");
         } else {
@@ -133,34 +133,27 @@ export class testsController {
         testsController.addLog("");
     }
 
-    private static downloadAndTestBook( bookNumber: number , language: Language ) {
+    private static downloadAndTestBook( bookNumber: number ) {
 
-        BookValidator.downloadBookAndGetValidator(bookNumber, language)
+        BookValidator.downloadBookAndGetValidator(bookNumber)
             .then((validator: BookValidator) => {
 
                 testsController.testBook(validator);
 
                 // Move to the next book:
-                let nextBookNumber = validator.book.bookNumber;
-                let nextLanguage = validator.book.language;
-                if (nextLanguage === Language.ENGLISH) {
-                    nextLanguage = Language.SPANISH;
-                } else {
-                    nextBookNumber++;
-                    nextLanguage = Language.ENGLISH;
-                }
+                const nextBookNumber = validator.book.bookNumber;
                 if (nextBookNumber > projectAon.supportedBooks.length) {
                     testsController.addLog("Finished");
                     return;
                 }
 
-                testsController.downloadAndTestBook(nextBookNumber, nextLanguage);
+                testsController.downloadAndTestBook(nextBookNumber);
             });
     }
 
     private static testAllBooks() {
         testsController.clearLog();
-        testsController.downloadAndTestBook(1, Language.ENGLISH);
+        testsController.downloadAndTestBook(1);
     }
 
     private static clearLog() {

@@ -1,4 +1,4 @@
-import { template, translations, views, mainMenuView, state, Language, settingsController } from "..";
+import { template, translations, views, mainMenuView, state, settingsController } from "..";
 
 /**
  * The application menu controller
@@ -20,14 +20,6 @@ export const mainMenuController = {
             }
 
         });
-    },
-
-    /**
-     * Change the current language
-     */
-    changeTranslation() {
-        state.language = ( state.language === Language.SPANISH ? Language.ENGLISH : Language.SPANISH );
-        mainMenuController.index();
     },
 
     /**

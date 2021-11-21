@@ -2,13 +2,6 @@
 
 <mechanics book="4">
 
-    <!-- LIST OF TRANSLATED IMAGES -->
-    <translated-images>
-        <image>map.png</image>
-        <image>weapons.png</image>
-        <image>ill16.png</image>
-    </translated-images>
-
     <!-- GAME RULES -->
     <sections>
 
@@ -61,14 +54,10 @@
             <object objectId="chainmail" />
             <object objectId="shield" />
 
-            <chooseEquipment 
-                en-text="Click on the Random Table link to get money before continuing" 
-                es-text="Haz click en el link de la Tabla de la Suerte para obtener dinero antes de continuar"
+            <chooseEquipment text="Click on the Random Table link to get money before continuing" 
             />
 
-            <message 
-                en-text="You may take up to six of the following (all meals count as one object):" 
-                es-text="Puedes elegir hasta seis de los objetos (todas las comidas cuentan como un objeto):" 
+            <message text="You may take up to six of the following (all meals count as one object):"  
             />
         </section>
 
@@ -166,9 +155,7 @@
             <!-- TODO: Unsupported -->
             <!-- I dont want to force any rule here... What if the player has no 
                  other backpack / weapon? -->
-            <message 
-                en-text="Drop some object before continuing" 
-                es-text="Deja algún objeto antes de continuar" 
+            <message text="Drop some object before continuing"  
             />
         </section>
 
@@ -1375,9 +1362,7 @@
 
         <section id="sect272">
             <endurance count="-5" />
-            <message id="msg-drop-weapon" 
-                en-text="Drop a weapon before continuing" 
-                es-text="Deja un arma antes de continuar"
+            <message id="msg-drop-weapon" text="Drop a weapon before continuing" 
             />
             <choiceState section="all" set="disabled" />
             <onInventoryEvent>

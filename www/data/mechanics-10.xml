@@ -2,11 +2,6 @@
 
 <mechanics book="10">
 
-    <!-- LIST OF TRANSLATED IMAGES -->
-    <translated-images>
-        <image>weapons.png</image>
-    </translated-images>
-
     <!-- GAME RULES -->
     <sections>
 
@@ -57,13 +52,11 @@
             <object objectId="potionofstrength" />
 
             <chooseEquipment 
-                en-text="Click on the Random Table link to get money before continuing" 
-                es-text="Haz click en el link de la Tabla de la Suerte para obtener dinero antes de continuar"
+                text="Click on the Random Table link to get money before continuing" 
             />
 
             <message 
-                en-text="You may take up to five of the following (all meals count as one object):" 
-                es-text="Puedes elegir hasta cinco de los objetos (todas las comidas cuentan como un objeto):" 
+                text="You may take up to five of the following (all meals count as one object):"  
             />
 
         </section>
@@ -133,8 +126,7 @@
 
         <section id="sect11">
             <message id="msg-drop-weapon" 
-                en-text="Drop a weapon before continuing" 
-                es-text="Deja un arma antes de continuar"
+                text="Drop a weapon before continuing" 
             />
             <choiceState section="all" set="disabled" />
             <onInventoryEvent>
@@ -1175,8 +1167,7 @@
             <endurance count="-2" />
             <!-- sect333, disable sect210 if no weapon ??? not sure -->
             <message id="msg-drop-weapon" 
-                en-text="Drop a weapon before continuing" 
-                es-text="Deja un arma antes de continuar"
+                text="Drop a weapon before continuing" 
             />
             <choiceState section="all" set="disabled" />
             <onInventoryEvent>
@@ -1857,8 +1848,7 @@
             <pick class="money" count="-( [MONEY] / 2 )" />
 
             <message id="msg-drop-special" 
-                en-text="Drop one Special Item of your choice" 
-                es-text="Deja el Objeto Especial que prefieras"
+                text="Drop one Special Item of your choice" 
             />
             <onInventoryEvent>
                 <test expression="[SPECIAL-ITEMS-ON-ACTIONCHART] &lt; 1 || [SPECIAL-ITEMS-ON-SECTION] > 0">

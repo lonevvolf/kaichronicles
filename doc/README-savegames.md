@@ -106,8 +106,6 @@ The structure:
         },
         // Current book number
         "bookNumber": 12,
-        // Current language
-        "language": "es",
 
         // Current book sections state (bookSectionStates.ts for full documentation)
         "sectionStates": {

@@ -2,11 +2,6 @@
 
 <mechanics book="9">
 
-    <!-- LIST OF TRANSLATED IMAGES -->
-    <translated-images>
-        <image>weapons.png</image>
-    </translated-images>
-
     <!-- GAME RULES -->
     <sections>
 
@@ -61,13 +56,11 @@
             <object objectId="fireseed" index="2" />
 
             <chooseEquipment
-                en-text="Click on the Random Table link to get money before continuing" 
-                es-text="Haz click en el link de la Tabla de la Suerte para obtener dinero antes de continuar"
+                text="Click on the Random Table link to get money before continuing" 
             />
 
             <message
-                en-text="You may take up to five of the following (all meals and fireseeds count as one object):" 
-                es-text="Puedes elegir hasta cinco de los objetos (todas las comidas y petardos cuentan como un objeto):" 
+                text="You may take up to five of the following (all meals and fireseeds count as one object):"  
             />
         </section>
 
@@ -120,8 +113,7 @@
             
             <currentWeapon objectId="daggerofvashna" />
             <message id="msg-drop-weapon" 
-                en-text="You must use the Dagger of Vashna as current weapon on this combat" 
-                es-text="Debes usar la Daga de Vashna como arma actual en este combate"
+                text="You must use the Dagger of Vashna as current weapon on this combat" 
             />
             <onInventoryEvent>
                 <disableCombats />
@@ -218,8 +210,7 @@
 
         <section id="sect24">
             <message id="msg-drop-weapon" 
-                en-text="Drop a weapon before continuing" 
-                es-text="Deja un arma antes de continuar"
+                text="Drop a weapon before continuing" 
             />
             <choiceState section="all" set="disabled" />
             <onInventoryEvent>
@@ -668,11 +659,9 @@
 
         <section id="sect115">
             <numberPicker
-                en-text="Answer the riddle"
-                es-text="Responde al acertijo"
+                text="Answer the riddle"
                 min="1" max="350"
-                en-actionButton="Choose"
-                es-actionButton="Elige"
+                actionButton="Choose"
                 />
             <numberPickerChoosed>
                 <test expression="[NUMBERPICKER] == 5">
@@ -680,8 +669,7 @@
                 </test>
                 <test expression="[NUMBERPICKER] != 5">
                     <toast
-                        en-text="Wrong number!"
-                        es-text="¡Número incorrecto!" />
+                        text="Wrong number!" />
                 </test>
             </numberPickerChoosed>
         </section>
@@ -922,12 +910,10 @@
         <section id="sect163">
             <choiceState section="all" set="disabled" />
             <numberPicker 
-                en-text="Choose the number of Gold Crowns you wish to give to the villagers"
-                es-text="Elige el número de Coronas de Oro que quieres dar a los aldeanos"
+                text="Choose the number of Gold Crowns you wish to give to the villagers"
                 min="1" 
                 money="true"
-                en-actionButton="Choose"
-                es-actionButton="Elige"
+                actionButton="Choose"
             />
             <numberPickerChoosed executeAtStart="true">
                 <numberPicker enabled="false" />
@@ -1174,11 +1160,9 @@
         <section id="sect204">
 
             <numberPicker
-                en-text="Answer the riddle"
-                es-text="Responde al acertijo"
+                text="Answer the riddle"
                 min="1" max="350"
-                en-actionButton="Choose"
-                es-actionButton="Elige"
+                actionButton="Choose"
                 />
             <numberPickerChoosed>
                 <test expression="[NUMBERPICKER] == 50">
@@ -1186,14 +1170,12 @@
                 </test>
                 <test expression="[NUMBERPICKER] != 50">
                     <toast
-                        en-text="Wrong number!"
-                        es-text="¡Número incorrecto!" />
+                        text="Wrong number!" />
                 </test>
             </numberPickerChoosed>
 
             <message id="msg-drop-objects" 
-                en-text="Drop one Special Item or three Backpack Items, if you want to go to the section 302" 
-                es-text="Deja un Objeto Especial o tres Objetos de la mochila, si quieres ir a la sección 302"
+                text="Drop one Special Item or three Backpack Items, if you want to go to the section 302" 
             />
             <onInventoryEvent>
                 <choiceState section="all" set="disabled" />
@@ -1470,11 +1452,9 @@
 
         <section id="sect241">
             <numberPicker
-                en-text="Choose the number"
-                es-text="Elige el número"
+                text="Choose the number"
                 min="1" max="350"
-                en-actionButton="Choose"
-                es-actionButton="Elige"
+                actionButton="Choose"
                 />
             <!-- Numbers: sect320, sect6, sect326 -->
             <numberPickerChoosed>
@@ -1489,8 +1469,7 @@
                 </test>
                 <test not="true" expression="[NUMBERPICKER] == 6 || [NUMBERPICKER] == 320 || [NUMBERPICKER] == 326">
                     <toast
-                        en-text="Wrong number!"
-                        es-text="¡Número incorrecto!" />
+                        text="Wrong number!" />
                 </test>
             </numberPickerChoosed>
         </section>
@@ -1605,8 +1584,7 @@
             <choiceState section="all" set="disabled" />
 
             <message id="msg-drop-something" 
-                en-text="Drop a coin, Weapon, Backpack Item or Special Item before continuing" 
-                es-text="Deja una moneda, Arma, Objeto de Mochila u Objeto Especial antes de continuar"
+                text="Drop a coin, Weapon, Backpack Item or Special Item before continuing" 
             />
             <onInventoryEvent>
                 <choiceState section="all" set="disabled" />

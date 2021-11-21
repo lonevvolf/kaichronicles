@@ -204,11 +204,9 @@ export class Section {
 
     /**
      * Returns the URL of this section on the project aon web site
-     * @param language The book language to get. null to get the current book
-     * language
      */
-    public getSectionAonPage = function(language: string): string {
-        return this.book.getBookProjectAonHtmlDir(language) + this.sectionId + ".htm";
+    public getSectionAonPage = function(): string {
+        return this.book.getBookProjectAonHtmlDir() + this.sectionId + ".htm";
     };
 
     /**

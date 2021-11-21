@@ -2,21 +2,6 @@
 
 <mechanics book="2">
 
-    <!-- LIST OF TRANSLATED IMAGES -->
-    <translated-images>
-        <image>acdscplz.png</image>
-        <image>map.png</image>
-        <image>seal.png</image>
-        <image>small4.png</image>
-        <image>small10.png</image>
-        <image>small16.png</image>
-        <image>small20.png</image>
-        <image>small22.png</image>
-        <image>small28.png</image>
-        <image>small29.png</image>
-        <image>weapons.png</image>
-    </translated-images>
-
     <!-- GAME RULES -->
     <sections>
 
@@ -65,13 +50,11 @@
             
             <!-- Choose equipment UI -->
             <chooseEquipment 
-                en-text="Click on the Random Table link to get money before continuing" 
-                es-text="Haz click en el link de la Tabla de la Suerte para obtener dinero antes de continuar"
+                text="Click on the Random Table link to get money before continuing" 
             />
 
             <message 
-                en-text="You may take any two of the following (both meals count as one object):" 
-                es-text="Puedes coger hasta dos objetos (ambas comidas cuentan como un objeto):" 
+                text="You may take any two of the following (both meals count as one object):"  
             />
         </section>
 
@@ -541,16 +524,13 @@
             <object objectId="backpack" />
             <object objectId="dagger" />
             <object objectId="rope" />
-            <message 
-                en-text="Pick only two objects" 
-                es-text="Coge sólo dos objetos" 
+            <message text="Pick only two objects"  
             />
         </section>
 
         <section id="sect93">
             <numberPicker 
-                en-text="Choose how many Crowns you wish to give to the beggars"
-                es-text="Elige las Coronas que desees dar a los mendigos"
+                text="Choose how many Crowns you wish to give to the beggars"
                 min="1" 
                 money="true"
                 />
@@ -1428,13 +1408,6 @@
         </section>
 
         <section id="sect290">
-            <test bookLanguage="es">
-                <!-- Spanish version -->
-                <message id="food"
-                    en-text="This text will not appear" 
-                    es-text="Debes comer otra Comida en lugar de la envenenada o perder 3 puntos de RESISTENCIA" 
-                />
-            </test>
             <meal />
         </section>
 
@@ -1472,33 +1445,9 @@
                 <choiceState section="sect102" set="disabled" />
             </test>
 
-            <!-- Oks... Spanish and English translations have different 
-                 senses here for the choices: -->
-            <test bookLanguage="en">
-                <!-- English version -->
-                <choiceSelected section="sect118">
-                    <drop objectId="magicspear" />
-                </choiceSelected>
-            </test>
-
-            <test not="true" bookLanguage="en">
-                <!-- Spanish version -->
-
-                <!-- Before changes (revision 0) -->
-                <test sectionContainsText=" o no quieres">
-                    <choiceSelected section="sect102">
-                        <drop objectId="magicspear" />
-                    </choiceSelected>
-                </test>
-
-                <!-- After changes (revision 2713, same as English version) -->
-                <test not="true" sectionContainsText=" o no quieres">
-                    <choiceSelected section="sect118">
-                        <drop objectId="magicspear" />
-                    </choiceSelected>
-                </test>
-            </test>
-
+            <choiceSelected section="sect118">
+                <drop objectId="magicspear" />
+            </choiceSelected>
         </section>
 
         <section id="sect300">

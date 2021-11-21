@@ -1,4 +1,4 @@
-import { Section, App, gameController, state, randomTable, Book, settingsController, Language, template, numberPickerMechanics, DebugMode } from "..";
+import { Section, App, gameController, state, randomTable, Book, template, numberPickerMechanics, DebugMode } from "..";
 
 /**
  * The game view interface functions
@@ -45,8 +45,6 @@ export const gameView = {
             section.getTitleText();
         $("#game-section-title").html(section.getTitleHtml());
         $("#game-section").html(section.getHtml());
-        //$("#game-aonLink-english").attr("href", section.getSectionAonPage("en"));
-        //$("#game-aonLink-spanish").attr("href", section.getSectionAonPage("es"));
     },
 
     /**
@@ -101,14 +99,6 @@ export const gameView = {
                 // Keep the current section, to ease the go-back
                 $("#game-debugNSection").val(state.sectionStates.currentSection);
                 gameController.loadSection(Book.DISCIPLINES_SECTION);
-            });
-
-            $("#game-switchlanguage").click((e: Event) => {
-                e.preventDefault();
-                settingsController.changeLanguage(state.book.language === Language.ENGLISH ? Language.SPANISH : Language.ENGLISH , false)
-                    .then(() => {
-                        gameController.loadSection(state.sectionStates.currentSection);
-                    });
             });
         }
 

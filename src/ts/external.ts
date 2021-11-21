@@ -17,17 +17,11 @@ interface JQuery {
 // index.html:
 declare const ENVIRONMENT: string;
 
-// toastr.js
-declare var toastr: Toastr;
-
 // FileSaver.js
-declare var saveAs: any;
-
-// node.js
-declare var exports;
+declare const saveAs: any;
 
 // Google analytics
-declare var ga;
+declare const ga;
 
 // xmllint.js
 declare function validateXML(parms: any): string;

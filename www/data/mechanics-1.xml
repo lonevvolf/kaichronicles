@@ -2,14 +2,6 @@
 
 <mechanics book="1">
 
-    <!-- LIST OF TRANSLATED IMAGES -->
-    <translated-images>
-        <image>map.png</image>
-        <image>small21.png</image>
-        <image>small31.png</image>
-        <image>weapons.png</image>
-    </translated-images>
-
     <!-- GAME RULES -->
     <sections>
 
@@ -68,8 +60,7 @@
 
             <!-- Choose equipment UI -->
             <chooseEquipment 
-                en-text="Click on both Random Table links before continuing" 
-                es-text="Haz click en ambos links de la Tabla de la Suerte antes de continuar"
+                text="Click on both Random Table links before continuing" 
             />
 
         </section>
@@ -497,8 +488,7 @@
 
         <section id="sect144">
             <message id="msg-drop-object" 
-                en-text="Drop a Backpack item or weapon before continuing"
-                es-text="Deja un Objeto de Mochila o una arma antes de continuar"
+                text="Drop a Backpack item or weapon before continuing"
             />
 
             <choiceState section="all" set="disabled" />
@@ -965,8 +955,7 @@
 
         <section id="sect277">
             <message id="msg-drop-weapon" 
-                en-text="Drop a weapon before continuing" 
-                es-text="Deja un arma antes de continuar"
+                text="Drop a weapon before continuing" 
             />
             <choiceState section="all" set="disabled" />
             <onInventoryEvent>
@@ -1081,8 +1070,7 @@
             <pick objectId="meal" />
             <object objectId="warhammer" />
             <message id="msg-drop-weapon" 
-                en-text="Drop a weapon before continuing" 
-                es-text="Deja un arma antes de continuar"
+                text="Drop a weapon before continuing" 
             />
             <onInventoryEvent>
                 <test expression="[WEAPON-ITEMS-CNT-ON-SECTION] > 0">

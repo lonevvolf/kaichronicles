@@ -39,40 +39,37 @@ Mandatory. The object identifier
 ### "name" tag 
 ```xml
 <weapon id="axe">
-    <name lang="en">Axe</name>
-    <name lang="es">Hacha</name>
+    <name>Axe</name>
     ...
 </weapon>
 ```
-The object name, translated to some language. **The english name translation is
-  mandatory**.
+The object name.
 
 ### "description" tag
 ```xml
 <special id="helmet">
-    <description lang="en">This adds 2 ENDURANCE points to your total.</description>
-    <description lang="es">Suma 2 puntos de RESISTENCIA a tu total</description>
+    <description>This adds 2 ENDURANCE points to your total.</description>
     ...
 </special>
 ```
-Optional. A extended description for the object, translated to some language
+Optional. A extended description for the object
 
 ### "extraDescription" tag
 ```xml
 <special id="sommerswerd" weaponType="sword|broadsword|shortsword" >
-    <name lang="en">Sommerswerd</name>
-    <description lang="en">
+    <name>Sommerswerd</name>
+    <description>
         When used in combat, the Sommerswerd will add 8 points to your COMBAT SKILL 
         (+ Weaponskill with swords).
     </description>
-    <extraDescription lang="en">
+    <extraDescription>
         It has the ability to absorb any magic that is used against its bearer, and it doubles 
         the total of all ENDURANCE points lost by undead enemies in combat
     </extraDescription>
     ...
 </special>
 ```
-Optional. A more extended description for the object, translated to some language
+Optional. A more extended description for the object
 
 ### "image" tag
 ```xml
@@ -88,7 +85,7 @@ illustrators (Chalk / Williams), different books versions should be separated by
 ### "droppable" property
 ```xml
 <special id="baknaroil" droppable="false">
-    <name lang="en">Baknar Oil on your skin</name>
+    <name>Baknar Oil on your skin</name>
     ...
 </special>
 ```
@@ -97,8 +94,8 @@ Optional. If it's false, the player will cannot drop the object
 ### "effect" tag
 ```xml
 <special id="helmet">
-    <name lang="en">Helmet</name>
-    <description lang="en">This adds 2 ENDURANCE points to your total.</description>
+    <name>Helmet</name>
+    <description>This adds 2 ENDURANCE points to your total.</description>
     <effect class="endurance" increment="2" />
     ...
 </special>
@@ -129,15 +126,13 @@ discipline). If it can be more than one, each class is separated with a "|" char
 ```xml
 <!-- This is a standard weapon -->
 <weapon id="sword">
-    <name lang="en">Sword</name>
-    <name lang="es">Espada</name>
+    <name>Sword</name>
     <image book="1" name="sword.png" />
 </weapon>
 
 <!-- This is a non-standard weapon, based on a standard weapon-->
 <weapon id="bonesword" weaponType="sword">
-    <name lang="en">Bone Sword</name>
-    <name lang="es">Espada de hueso</name>
+    <name>Bone Sword</name>
     <image book="3" name="sword.png" />
 </weapon>
 ```
@@ -145,7 +140,7 @@ discipline). If it can be more than one, each class is separated with a "|" char
 ### "weaponType" property
 ```xml
 <special id="sommerswerd" weaponType="sword|broadsword|shortsword" >
-    <name lang="en">Sommerswerd</name>
+    <name>Sommerswerd</name>
     ...
 </special>
 ```
@@ -160,8 +155,8 @@ They can have some optional tags / properties:
 ### "usage" tag
 ```xml
 <object id="healingpotion">
-    <name lang="en">Healing Potion</name>
-    <description lang="en">
+    <name>Healing Potion</name>
+    <description>
         This can restore 4 ENDURANCE points to your total, when swallowed after combat. 
         You only have enough for one dose.
     </description>

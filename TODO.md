@@ -52,23 +52,7 @@ TODO
 - Loyalty bonus for hunting should be applied to Grand Master too?
 
 ## Books erratas to report
-- Book 13, sect equipmnt: "tu nueva Carta de Acciónde Gran Maestro" should be "tu nueva Carta de Acción de Gran Maestro" (space)
-- Book 13, sect1:
-    * '" Me gustaría poder"' should be "Me gustaría poder" (space)
-    * 'en tu misión.”dice Rimoah' should be 'en tu misión,” dice Rimoah' (comma, and space)
-- Book 13, sect3: sonoroclang should be "sonoro clang" (space)
-- Book 13, sect7: domeñado should be dominado
-- Book 13, sect8: Asimilación should be Mimetismo
-- Book 13, sect9: Asimilación should be Mimetismo
-- Book 13, sect16: "si no posees" should be "Si no posees" (uppercase)
-- Book 13, sect16: "Hongo Baylon" should be "Hongos del Árbol de Baylon" (description in book 11, sect146)
-- Book 13, sect20: "Cunado" should be "Cuando"
-- Book 13, sect20: "norte Pasa al 85" should be "norte pasa al 85"
-- Book 13, sect31: "y , junto" should be "y, junto" (space)
-- Book 13, sect76: "que de dirige hacia" should be "que se dirige"
 - All book 13, EN and ES: Bow bonus should be +5 ???
-- Book 12 (Spanish): sect350: This book is different from previous. You have to click on a footer note link to continue to the next book...
-    Ugly. Add a message rule to help?
 ## Other
 - Allow to zoom illustrations?
 - Add images to disciplines in Action Chart
@@ -125,12 +109,6 @@ Reminders
 * DON'T BE RESTRICTIVE WITH CHOICES !!!!
 
 * JsDoc docs: http://usejsdoc.org/
-
-* Build project AON xhtml:
-  cd [trunk or tag directory]
-  export AONDIR=`pwd`
-  export LANGS=[laguage ("en" or "es")]
-  ./common/scripts/build-xhtml.sh
 
 * Upload code to github:
   git remote add origin https://github.com/tonib/kaichronicles.git

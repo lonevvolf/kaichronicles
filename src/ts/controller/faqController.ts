@@ -1,4 +1,4 @@
-import { template, translations, views, state } from "..";
+import { template, translations, views } from "..";
 
 /**
  * FAQ controller
@@ -9,7 +9,7 @@ export class faqController {
 
     public static index() {
         template.setNavTitle( translations.text("kaiChronicles"), "#mainMenu", true);
-        views.loadView("faq_" + state.language + ".html");
+        views.loadView("faq.html");
     }
 
     /** Return page */

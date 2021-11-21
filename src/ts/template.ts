@@ -210,7 +210,7 @@ export const template = {
         toastr.clear();
 
         // Set the translated images
-        const combatTablesUrls = state.book.getCombatTablesImagesUrls(state.mechanics);
+        const combatTablesUrls = state.book.getCombatTablesImagesUrls();
         $("#template-ctimage0").attr("src", combatTablesUrls[0]);
         $("#template-ctimage1").attr("src", combatTablesUrls[1]);
         $("#template-combatTables").modal("show");

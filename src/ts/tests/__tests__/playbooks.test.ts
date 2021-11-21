@@ -3,7 +3,7 @@
 // Setup
 /////////////////////////////////////////////////////////////////////////////////
 
-import { declareCommonHelpers, state, Book, projectAon, Language, CombatMechanics } from "../..";
+import { state, Book, projectAon, CombatMechanics } from "../..";
 import { GameDriver } from "../gameDriver";
 import { By } from "selenium-webdriver";
 
@@ -205,7 +205,6 @@ function declarePlayBookTests(book: Book) {
 
     // jest runs out of memory if the closure references the book variable. So I'll use these instead:
     const bookNumber = book.bookNumber;
-    const language = book.language;
     const bookCode = book.getProjectAonBookCode();
     // console.log("Declaring tests book " + bookCode);
 
@@ -221,7 +220,7 @@ function declarePlayBookTests(book: Book) {
         // Load book state
         beforeAll( async () => {
             // console.log("Setup book " + book.bookNumber + " / " + book.language);
-            await driver.setupBookState(bookNumber, language);
+            await driver.setupBookState(bookNumber);
         });
 
         // Declare section tests
@@ -231,7 +230,7 @@ function declarePlayBookTests(book: Book) {
     });
 }
 
-// Test single book / language?
+// Test single book?
 // This can be done with jest -t option, but it sill declares all tests and is damn slow
 let bookNumberToTest: number = 0;
 if (process.env.KAIBOOK) {
@@ -241,27 +240,15 @@ if (process.env.KAIBOOK) {
 
 // Traverse books
 for (let i = 0 ; i < projectAon.supportedBooks.length ; i++) {
-    const bookMetadata = projectAon.supportedBooks[i];
-
     if (bookNumberToTest && (i + 1) !== bookNumberToTest) {
         continue;
     }
 
-    // Traverse languages
-    for (const langKey of Object.keys(Language)) {
-        const language = Language[langKey] as Language;
-
-        if (process.env.KAILANG && process.env.KAILANG !== language) {
-            continue;
-        }
-
-        if (!bookMetadata["code_" + language]) {
-            // Untranslated
-            continue;
-        }
-
-        // Setup tests for this book
-        driver.loadBookState(i + 1, language);
-        declarePlayBookTests(state.book);
+    if (process.env.KAILANG && process.env.KAILANG !== "en") {
+        continue;
     }
+
+    // Setup tests for this book
+    driver.loadBookState(i + 1);
+    declarePlayBookTests(state.book);
 }

@@ -1,6 +1,6 @@
 import { GameDriver } from "../gameDriver";
-import { WebElement, Alert } from "selenium-webdriver";
-import { SetupDisciplines, Book, Language, BookSeries, BookSeriesId, KaiDiscipline, state, projectAon } from "../..";
+import { WebElement } from "selenium-webdriver";
+import { SetupDisciplines, Book, BookSeries, BookSeriesId, KaiDiscipline, state, projectAon } from "../..";
 
 // Selenium web driver
 const driver: GameDriver = new GameDriver();
@@ -120,7 +120,7 @@ async function testCarryDisciplinesPreviousBook(bookNumber: number) {
     // Test carry disciplines from previous book
 
     // Go to previous book and setup disciplines
-    await driver.setupBookState(bookNumber - 1, Language.ENGLISH);
+    await driver.setupBookState(bookNumber - 1);
 
     const seriesDisciplinesIds = bookSeries.getDisciplines();
 
@@ -202,7 +202,7 @@ describe("setDisciplines", () => {
         describe("Book " + bookNumber, () => {
 
             beforeEach( async () => {
-                await driver.setupBookState(bookNumber, Language.ENGLISH);
+                await driver.setupBookState(bookNumber);
                 bookSeries = BookSeries.getBookNumberSeries(bookNumber);
 
                 await driver.setDisciplines([]);

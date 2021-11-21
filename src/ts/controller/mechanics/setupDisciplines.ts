@@ -77,7 +77,7 @@ export class SetupDisciplines {
         const self = this;
         $('.subsection[id!="mksumary"]').append(mechanicsEngine.getMechanicsUI("mechanics-setDisciplines"))
             .each((index, disciplineSection) => {
-                this.setupDisciplineCheckBox($(disciplineSection));
+                self.setupDisciplineCheckBox($(disciplineSection));
             })
             // Set events when checkboxes are clicked
             .find("input[type=checkbox]")

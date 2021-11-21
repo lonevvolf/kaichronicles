@@ -1,6 +1,5 @@
 import { GameDriver } from "../gameDriver";
 import { Dir } from "fs-extra";
-import { Language } from "../../state";
 import { KaiDiscipline, MgnDiscipline, GndDiscipline } from "../../model/disciplinesDefinitions";
 import { BookSeriesId, BookSeries } from "../../model/bookSeries";
 import { Disciplines } from "../../model/disciplines";
@@ -29,14 +28,14 @@ afterAll( async () => {
 describe("combat", () => {
 
     test("noMindblast", async () => {
-        await driver.setupBookState(1, Language.ENGLISH);
+        await driver.setupBookState(1);
         await driver.setDisciplines( [ KaiDiscipline.Mindblast]  );
         await driver.goToSection("sect133");
         expect( await driver.getCombatRatio() ).toBe(-5);
     });
 
     test("noPsiSurge", async () => {
-        await driver.setupBookState(6, Language.ENGLISH);
+        await driver.setupBookState(6);
         await driver.setDisciplines( [ MgnDiscipline.PsiSurge ] );
         await driver.goToSection("sect156");
         // No mindblast bonus:
@@ -46,7 +45,7 @@ describe("combat", () => {
     });
 
     test("noKaiSurge", async () => {
-        await driver.setupBookState(13, Language.ENGLISH);
+        await driver.setupBookState(13);
         await driver.setDisciplines( [ GndDiscipline.KaiSurge ] );
         await driver.goToSection("sect56");
         // No mindblast bonus:
@@ -56,7 +55,7 @@ describe("combat", () => {
     });
 
     test("maxEludeTurn", async () => {
-        await driver.setupBookState(6, Language.ENGLISH);
+        await driver.setupBookState(6);
         await driver.goToSection("sect116");
 
         // Expect to elude to be clickable in first turn
@@ -72,7 +71,7 @@ describe("combat", () => {
     });
 
     test("mindblastBonus", async () => {
-        await driver.setupBookState(5, Language.ENGLISH);
+        await driver.setupBookState(5);
         await driver.setDisciplines( [ KaiDiscipline.Mindblast ] );
         await driver.goToSection("sect110");
 
@@ -80,7 +79,7 @@ describe("combat", () => {
     });
 
     test("psiSurgeBonus", async () => {
-        await driver.setupBookState(10, Language.ENGLISH);
+        await driver.setupBookState(10);
         await driver.setDisciplines( [ MgnDiscipline.PsiSurge ] );
         await driver.goToSection("sect81");
 
@@ -90,7 +89,7 @@ describe("combat", () => {
     });
 
     test("kaiSurgeBonus", async () => {
-        await driver.setupBookState(13, Language.ENGLISH);
+        await driver.setupBookState(13);
         await driver.setDisciplines( [ GndDiscipline.KaiSurge ] );
         await driver.goToSection("sect301");
 
@@ -100,7 +99,7 @@ describe("combat", () => {
     });
 
     test("eludeEnemyEP", async () => {
-        await driver.setupBookState(13, Language.ENGLISH);
+        await driver.setupBookState(13);
         await driver.pick("sommerswerd");
         await driver.goToSection("sect38");
 
@@ -128,7 +127,7 @@ describe("combat", () => {
     });
 
     test("combatSkillModifier", async () => {
-        await driver.setupBookState(13, Language.ENGLISH);
+        await driver.setupBookState(13);
         await driver.setDisciplines([]);
         await driver.goToSection("sect86");
         expect( await driver.getCombatRatio() ).toBe(-10);
@@ -139,7 +138,7 @@ describe("combat", () => {
 
 describe("test", () => {
     test("hasDiscipline", async () => {
-        await driver.setupBookState(13, Language.ENGLISH);
+        await driver.setupBookState(13);
 
         await driver.setDisciplines([]);
         await driver.goToSection("sect84");
@@ -153,7 +152,7 @@ describe("test", () => {
     });
 
     test("hasObject", async () => {
-        await driver.setupBookState(13, Language.ENGLISH);
+        await driver.setupBookState(13);
         await driver.pick("sommerswerd");
         await driver.goToSection("sect290");
         expect( await driver.choiceIsEnabled("sect199") ).toBe(true);
@@ -171,7 +170,7 @@ describe("test", () => {
     });
 
     test("canUseBow", async () => {
-        await driver.setupBookState(13, Language.ENGLISH);
+        await driver.setupBookState(13);
         await driver.goToSection("sect96");
         expect( await driver.choiceIsEnabled("sect225") ).toBe(false);
 
@@ -201,7 +200,7 @@ describe("test", () => {
 describe("expressions", () => {
 
     test("ENDURANCE", async () => {
-        await driver.setupBookState(13, Language.ENGLISH);
+        await driver.setupBookState(13);
 
         async function setup(endurance: number, randomValue: number) {
             await driver.loadCleanSection(Book.INITIAL_SECTION);
@@ -220,7 +219,7 @@ describe("expressions", () => {
     });
 
     test("COMBATSDURATION", async () => {
-        await driver.setupBookState(13, Language.ENGLISH);
+        await driver.setupBookState(13);
 
         async function playCombat(randomValues: number[]) {
             await driver.loadCleanSection("sect100");
@@ -254,7 +253,7 @@ describe("expressions", () => {
             await driver.increaseArrows(6);
         }
 
-        await driver.setupBookState(12, Language.ENGLISH);
+        await driver.setupBookState(12);
 
         // Expect -4 if no bow:
         await driver.setDisciplines([]);
@@ -287,7 +286,7 @@ describe("expressions", () => {
 });
 
 test("endurance", async () => {
-    await driver.setupBookState(13, Language.ENGLISH);
+    await driver.setupBookState(13);
     await driver.setDisciplines([]);
     await driver.setEndurance(10);
     await driver.goToSection("sect92");
@@ -295,7 +294,7 @@ test("endurance", async () => {
 });
 
 test("death", async () => {
-    await driver.setupBookState(13, Language.ENGLISH);
+    await driver.setupBookState(13);
     await driver.pick("healingpotion");
     await driver.setDisciplines([GndDiscipline.Deliverance]);
     await driver.goToSection("sect99");

@@ -2,11 +2,6 @@
 
 <mechanics book="14" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://raw.githubusercontent.com/cracrayol/kaichronicles/master/src/www/data/mechanics.xsd">
 
-    <!-- LIST OF TRANSLATED IMAGES -->
-    <translated-images>
-        <image>weapons.png</image>
-    </translated-images>
-
     <!-- GAME RULES -->
     <sections>
 
@@ -59,13 +54,11 @@
             <object objectId="dagger" />
 
             <chooseEquipment 
-                en-text="Click on the Random Table link to get money before continuing" 
-                es-text="Haz click en el link de la Tabla de la Suerte para obtener dinero antes de continuar"
+                text="Click on the Random Table link to get money before continuing" 
             />
 
             <message 
-                en-text="You may take up to five of the following (all meals count as one object):" 
-                es-text="Puedes elegir hasta cinco de los objetos (todas las comidas cuentan como un objeto):" 
+                text="You may take up to five of the following (all meals count as one object):"  
             />
 
         </section>
@@ -373,7 +366,7 @@
         <section id="sect52">
             <pick class="arrow" count="-1" />
             <test not="true" sectionVisited="sect346">
-                <toast duration="10000" en-text="Because you possess the Discipline of Magi-magic and have reached the rank of Kai Grand Guardian, you have consider it appropriate to make use of the Flameshaft spell to set light to the 'inflammable liquid'." />
+                <toast duration="10000" text="Because you possess the Discipline of Magi-magic and have reached the rank of Kai Grand Guardian, you have consider it appropriate to make use of the Flameshaft spell to set light to the 'inflammable liquid'." />
             </test>                
         </section>
 
@@ -823,11 +816,9 @@
 
         <section id="sect127">
             <numberPicker 
-                en-text="Choose the number"
-                es-text="Elige el número"
+                text="Choose the number"
                 min="1" max="350" 
-                en-actionButton="Choose"
-                es-actionButton="Elige"
+                actionButton="Choose"
                 />
             <numberPickerChoosed>
                 <test expression="[NUMBERPICKER] == 3">
@@ -1171,11 +1162,9 @@
 
         <section id="sect181">
             <numberPicker 
-                en-text="Choose the number"
-                es-text="Elige el número"
+                text="Choose the number"
                 min="1" max="350" 
-                en-actionButton="Choose"
-                es-actionButton="Elige"
+                actionButton="Choose"
                 />
             <numberPickerChoosed>
                 <test expression="[NUMBERPICKER] == 20">
@@ -1396,11 +1385,9 @@
 
         <section id="sect220">
             <numberPicker 
-                en-text="Choose the number"
-                es-text="Elige el número"
+                text="Choose the number"
                 min="1" max="350" 
-                en-actionButton="Choose"
-                es-actionButton="Elige"
+                actionButton="Choose"
                 />
             <numberPickerChoosed>
                 <test expression="[NUMBERPICKER] == 8">
@@ -2100,11 +2087,9 @@
 
         <section id="sect319">
             <numberPicker 
-                en-text="Choose the number"
-                es-text="Elige el número"
+                text="Choose the number"
                 min="1" max="350" 
-                en-actionButton="Choose"
-                es-actionButton="Elige"
+                actionButton="Choose"
                 />
             <numberPickerChoosed>
                 <test expression="[NUMBERPICKER] == 3">

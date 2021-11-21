@@ -2,11 +2,6 @@
 
 <mechanics book="12">
 
-    <!-- LIST OF TRANSLATED IMAGES -->
-    <translated-images>
-        <image>weapons.png</image>
-    </translated-images>
-
     <!-- GAME RULES -->
     <sections>
 
@@ -59,13 +54,11 @@
             <object objectId="axe" />
 
             <chooseEquipment 
-                en-text="Click on the Random Table link to get money before continuing" 
-                es-text="Haz click en el link de la Tabla de la Suerte para obtener dinero antes de continuar"
+                text="Click on the Random Table link to get money before continuing" 
             />
 
             <message 
-                en-text="You may take up to six of the following (all meals count as one object):" 
-                es-text="Puedes elegir hasta seis de los objetos (todas las comidas cuentan como un objeto):" 
+                text="You may take up to six of the following (all meals count as one object):"  
             />
 
         </section>
@@ -202,8 +195,7 @@
         <section id="sect15">
             <choiceState section="all" set="disabled" />
             <message id="msg-sommerswerd" 
-                en-text="You cannot use the Sommerswerd on this combat" 
-                es-text="No puedes usar la Sommerswerd en este combate"
+                text="You cannot use the Sommerswerd on this combat" 
             />
             <combat noMindblast="true" noPsiSurge="true" disabledObjects="sommerswerd"/>
             <afterCombats>
@@ -255,8 +247,7 @@
 
             <!-- Sommerswerd stuff -->
             <message id="msg-sommerswerd" 
-                en-text="If you don't want to go to section 247, change the current weapon to other than Sommerswerd" 
-                es-text="Si no quieres ir a la sección 247, cambia la arma actual a otra que no sea la Sommerswerd"
+                text="If you don't want to go to section 247, change the current weapon to other than Sommerswerd" 
             />
             <onInventoryEvent>
                 <disableCombats disabled="false" />
@@ -540,8 +531,7 @@
         <section id="sect61">
             <!-- TODO: We should keep the count of the different currencies (Lunes, Gold Crows,...). Unimplemented -->
             <numberPicker 
-                en-text="Decide how many Gold Crowns you wish to bet"
-                es-text="Decide cuántas Coronas de Oro vas a apostar"
+                text="Decide how many Gold Crowns you wish to bet"
                 min="1"
                 money="true"
                 />
@@ -582,8 +572,7 @@
 
             <!-- Sommerswerd stuff -->
             <message id="msg-sommerswerd" 
-                en-text="If you don't want to go to section 208, change the current weapon to other than Sommerswerd" 
-                es-text="Si no quieres ir a la sección 208, cambia la arma actual a otra que no sea la Sommerswerd"
+                text="If you don't want to go to section 208, change the current weapon to other than Sommerswerd" 
             />
             <onInventoryEvent>
                 <disableCombats disabled="false" />
@@ -695,15 +684,6 @@
                     <currentWeapon objectId="sommerswerd" />
                 </test>
             </afterCombats>
-
-            <test bookLanguage="es">
-                <!-- Miss English foot page 2 -->
-                <message 
-                    es-text="Solo la Daga de Vashna o la Sommerswerd pueden herirle. Si no tienes la Daga, no podrás herirle durante los tres primeros turnos" 
-                    en-text="This text will not appear" 
-                />
-            </test>
-
         </section>
 
         <section id="sect76">
@@ -751,8 +731,7 @@
 
             <!-- Sommerswerd stuff -->
             <message id="msg-sommerswerd" 
-                en-text="If you don't want to go to section 208, change the current weapon to other than Sommerswerd" 
-                es-text="Si no quieres ir a la sección 208, cambia la arma actual a otra que no sea la Sommerswerd"
+                text="If you don't want to go to section 208, change the current weapon to other than Sommerswerd" 
             />
             <onInventoryEvent>
                 <disableCombats disabled="false" />
@@ -800,8 +779,7 @@
 
             <!-- Dammage / CS modifiers -->
             <message
-                en-text="You must use the Dagger of Vashna or the sword Helshezag as current weapon on this combat" 
-                es-text="Debes usar la Daga de Vashna o la espada Helshezag como arma actual en este combate"
+                text="You must use the Dagger of Vashna or the sword Helshezag as current weapon on this combat" 
             />
             <onInventoryEvent>
                 <combat dammageMultiplier="1" />
@@ -969,8 +947,7 @@
 
             <!-- Sommerswerd stuff -->
             <message id="msg-sommerswerd" 
-                en-text="If you don't want to go to section 208, change the current weapon to other than Sommerswerd" 
-                es-text="Si no quieres ir a la sección 208, cambia la arma actual a otra que no sea la Sommerswerd"
+                text="If you don't want to go to section 208, change the current weapon to other than Sommerswerd" 
             />
             <onInventoryEvent>
                 <disableCombats disabled="false" />
@@ -1012,8 +989,7 @@
 
         <section id="sect109">
             <message id="msg-sommerswerd" 
-                en-text="You cannot use Sommerswerd or Dagger of Vashna on this combat" 
-                es-text="No puedes usar la Sommerswerd ni la Daga de Vashna en este combate"
+                text="You cannot use Sommerswerd or Dagger of Vashna on this combat" 
             />
 
             <choiceState section="all" set="disabled" />
@@ -1177,8 +1153,7 @@
             <pick objectId="helshezag" />
             <currentWeapon objectId="helshezag" />
             <message
-                en-text="You must use the Helshezag as current weapon on this combat" 
-                es-text="Debes usar la Helshezag como arma actual en este combate"
+                text="You must use the Helshezag as current weapon on this combat" 
             />
 
             <onInventoryEvent>
@@ -1404,8 +1379,7 @@
 
             <!-- Sommerswerd stuff -->
             <message id="msg-sommerswerd" 
-                en-text="If you don't want to go to section 208, change the current weapon to other than Sommerswerd" 
-                es-text="Si no quieres ir a la sección 208, cambia la arma actual a otra que no sea la Sommerswerd"
+                text="If you don't want to go to section 208, change the current weapon to other than Sommerswerd" 
             />
             <onInventoryEvent>
                 <disableCombats disabled="false" />
@@ -1430,8 +1404,7 @@
             <currentWeapon objectId="daggerofvashna" />
 
             <message
-                en-text="You must use the Dagger of Vashna as current weapon on this combat" 
-                es-text="Debes usar la Daga de Vashna como arma actual en este combate"
+                text="You must use the Dagger of Vashna as current weapon on this combat" 
             />
             <onInventoryEvent>
                 <disableCombats />
@@ -1588,31 +1561,15 @@
             <object objectId="zejardulaga" />
         </section>
 
-        <section id="sect188">
-            <!-- Language differences
-                 en: Curing **or** have reached the Kai rank of Principalin or higher
-                 es: Medicina **y** has alcanzado el rango de Principal
-            -->
-            <test bookLanguage="es">
-                <choiceState section="sect145" set="disabled" />
-                <test hasDiscipline="curing">
-                    <test expression="[KAILEVEL] >= 6">
-                        <choiceState section="sect145" set="enabled" />
-                        <choiceState section="sect201" set="disabled" />
-                    </test>
-                </test>
+        <section id="sect188">        
+            <choiceState section="sect145" set="disabled" />
+            <test hasDiscipline="curing">
+                <choiceState section="sect145" set="enabled" />
+                <choiceState section="sect201" set="disabled" />
             </test>
-            
-            <test bookLanguage="en">
-                <choiceState section="sect145" set="disabled" />
-                <test hasDiscipline="curing">
-                    <choiceState section="sect145" set="enabled" />
-                    <choiceState section="sect201" set="disabled" />
-                </test>
-                <test expression="[KAILEVEL] >= 6">
-                    <choiceState section="sect145" set="enabled" />
-                    <choiceState section="sect201" set="disabled" />
-                </test>
+            <test expression="[KAILEVEL] >= 6">
+                <choiceState section="sect145" set="enabled" />
+                <choiceState section="sect201" set="disabled" />
             </test>
         </section>
 
@@ -1907,8 +1864,7 @@
         <section id="sect230">
 
             <message
-                en-text="You must use the Dagger of Vashna or the sword Helshezag as current weapon on this combat" 
-                es-text="Debes usar la Daga de Vashna o la espada Helshezag como arma actual en este combate"
+                text="You must use the Dagger of Vashna or the sword Helshezag as current weapon on this combat" 
             />
             <test hasObject="daggerofvashna">
                 <currentWeapon objectId="daggerofvashna" />
@@ -2047,8 +2003,7 @@
         <section id="sect247">
             <choiceState section="all" set="disabled" />
             <message id="msg-sommerswerd" 
-                en-text="You cannot use the Sommerswerd on this combat" 
-                es-text="No puedes usar la Sommerswerd en este combate"
+                text="You cannot use the Sommerswerd on this combat" 
             />
             <combat disabledObjects="sommerswerd" noWeapon="2" eludeTurn="2" />
             <afterCombats>
@@ -2333,8 +2288,7 @@
 
         <section id="sect289">
             <message id="msg-sommerswerd" 
-                en-text="You cannot use the Sommerswerd on this combat" 
-                es-text="No puedes usar la Sommerswerd en este combate"
+                text="You cannot use the Sommerswerd on this combat" 
             />
 
             <choiceState section="all" set="disabled" />
@@ -2372,8 +2326,7 @@
 
             <!-- Sommerswerd stuff -->
             <message id="msg-sommerswerd" 
-                en-text="If you don't want to go to section 208, change the current weapon to other than Sommerswerd" 
-                es-text="Si no quieres ir a la sección 208, cambia la arma actual a otra que no sea la Sommerswerd"
+                text="If you don't want to go to section 208, change the current weapon to other than Sommerswerd" 
             />
             <onInventoryEvent>
                 <disableCombats disabled="false" />
@@ -2658,8 +2611,7 @@
 
             <!-- Sommerswerd stuff -->
             <message id="msg-sommerswerd" 
-                en-text="If you don't want to go to section 208, change the current weapon to other than Sommerswerd" 
-                es-text="Si no quieres ir a la sección 208, cambia la arma actual a otra que no sea la Sommerswerd"
+                text="If you don't want to go to section 208, change the current weapon to other than Sommerswerd" 
             />
             <onInventoryEvent>
                 <disableCombats disabled="false" />

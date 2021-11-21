@@ -1,5 +1,4 @@
-import { state, mechanicsEngine } from "../..";
-import { Language } from "../../state";
+import { mechanicsEngine } from "../..";
 
 /**
  * Translations table
@@ -7,363 +6,9 @@ import { Language } from "../../state";
 export class Translations {
 
     /**
-     * Spanish translations
-     */
-    private readonly es = {
-
-        //////////////////////////////////////
-        // Action chart / object tables
-        //////////////////////////////////////
-
-        "actionChart" : "Carta de Acción",
-        "combatSkill" : "Destreza en el Combate",
-        "endurancePoints" : "Puntos de Resistencia",
-        "actionBeltPouch" : "Bolsa (Máx. 50)",
-        "kaiDisciplines" : "Diciplinas del Kai",
-        "weapons" : "Armas",
-        "currentWeapon" : "Arma actual:",
-        "backpackItems" : "Objetos de Mochila",
-        "meals" : "Comidas",
-        "specialItems" : "Objetos Especiales",
-        "noneFemenine" : "Ninguna",
-        "noneMasculine" : "Ninguno",
-        "disciplineDescription" : "Descripción de la disciplina",
-        "goldCrowns" : "Coronas de Oro",
-        "arrows" : "Flechas",
-        "current" : "Actual",
-        "backpackLost" : "Has perdido tu mochila",
-        "buyObject" : "Comprar objeto",
-        "pickObject" : "Coger objeto",
-        "sellObject" : "Vender objeto",
-        "use": "Usar",
-        "setCurrentWeapon" : "Establecer como arma actual",
-        "dropObject" : "Dejar objeto",
-        "confirmSell" : "¿Seguro que quieres vender el objeto por {0} Coronas de Oro?",
-        "confirmUse" : '¿Estás seguro que quieres usar "{0}"?',
-        "confirmDrop" : '¿Seguro que quieres dejar "{0}"?',
-        "noEnoughMoney" : "No tienes suficiente dinero",
-        "confirmBuy" : "¿Seguro que quieres comprar el objeto por {0} Coronas de Oro?",
-        "msgGetObject" : 'Has cogido "{0}"',
-        "msgDropObject" : 'Has dejado "{0}"',
-        "msgGetMeal" : "Has cogido {0} comidas",
-        "msgDropMeal" : "Has dejado {0} comidas",
-        "msgGetMoney" : "Has cogido {0} Coronas de Oro",
-        "msgGetArrows" : "Has cogido {0} Flechas",
-        "msgDropMoney" : "Has perdido {0} Coronas de Oro",
-        "msgDropArrows" : "Has perdido {0} Flechas",
-        "msgEndurance" : "{0} Puntos de Resistencia",
-        "msgCombatSkill" : "{0} Destreza en el Combate",
-        "msgCurrentWeapon" : 'Tu arma actual es ahora "{0}"',
-        "msgIncompatible" : 'Ya tienes un "{0}"',
-        "msgNoMoreWeapons" : "No puedes coger mas armas",
-        "msgAlreadyBackpack" : "Ya tienes una mochila",
-        "msgNoMoreBackpackItems" : "No puedes coger mas Objetos de Mochila",
-        "msgNoMoreSpecialItems" : "No puedes coger mas Objetos Especiales",
-        "noWeapon" : "Sin arma",
-        "weaponskill" : "Dominio Manejo Armas",
-        "weaponmastery" : "Maestría Manejo Armas",
-        "grdweaponmastery" : "Gran Maestría en el Manejo de Armas",
-        "mindblast" : "Ataque Psíquico",
-        "psisurge" : "Acometida Psíquica",
-        "kaisurge": "Embestida Psíquica",
-        "countAsObjects"  : "(Cuenta como {0} objetos)",
-        "annotations" : "Anotaciones",
-        "circleFire" : "Círculo de Fuego",
-        "circleLight" : "Círculo de Luz",
-        "circleSolaris" : "Círculo de Solaris",
-        "circleSpirit" : "Círculo del Espíritu",
-        "circles" : "Círculos de la Ciencia:",
-        "kaiLevel" : "Nivel del Kai",
-        "dropMoney" : "Dejar dinero",
-        "pickMoney" : "Coger dinero",
-        "amount" : "Cantidad",
-        "maxSpecialItems" : "A partir de este libro, el número máximo de Objetos Especiales que puedes " +
-            "llevar es de 12. Podrás dejar el resto en un lugar seguro del monasterio del Kai, o dejarlo aquí. " +
-            "Si se deja aquí, el objeto se perderá. Por favor, deja los Objetos Especiales antes de continuar.",
-        "noQuiversEnough" : "No tienes suficientes Carcajes (sólo 6 Flechas por Carcaj)",
-        "restore20EPMagnakaiButton": "Medicina: +20 R (sólo si R 6 o menos, cada 100 días)",
-        "restore20EPGrdMasterButton": "Sanación: +20 R (sólo si R 8 o menos, cada 20 días)",
-        "confirm20EP": "Esta habilidad solo puede ser usada una vez cada 100 días. ¿Continuamos?",
-        "confirm20EPGrdMaster": "Esta habilidad solo puede ser usada una vez cada 20 días. ¿Continuamos?",
-        "more" : "Más",
-        "fightUnarmed" : "Luchar desarmado",
-        "permanent" : "Permanente",
-        "usageCount" : "(se puede usar {0} veces)",
-        "objectUsed" : "{0} usado",
-        "mentora": "Mentor",
-
-        //////////////////////////////////////
-        // Combats
-        //////////////////////////////////////
-
-        "combatRatio" : "PUNTUACIÓN EN EL COMBATE",
-        "randomTable" : "Tabla de la Suerte",
-        "randomTableSmall" : "T.S.",
-        "loneWolf": "Lobo Solitario",
-        "combatSkillUpper" : "DESTREZA EN EL COMBATE",
-        "enduranceUpper" : "RESISTENCIA",
-        "playTurn" : "Jugar turno",
-        "eludeCombat" : "Eludir combate",
-        "deathLetter" : "M",
-        "mechanics-combat-psisurge" : "Acometida Psíquica: +{0} DC, -{1} R por asalto",
-        "mechanics-combat-kaisurge" : "Embestida Psíquica: +{0} DC, -{1} R por asalto",
-        "sectionModifier" : "Modificador sección",
-        "objectsUse" : "Uso objetos",
-        "enemyMindblast" : "Ataque psíquico enemigo",
-
-        //////////////////////////////////////
-        // Meals
-        //////////////////////////////////////
-
-        "meal" : "Comida",
-        "useHunting" : "Usar la disciplina de Caza",
-        "eatBackpackMeal" : "Comer una Comida de la Mochila",
-        "eatBackpackObject" : "Comer",
-        "buyMeal" : "Comprar comida",
-        "doNotEat" : "No comer (-3 RESISTENCIA)",
-
-        //////////////////////////////////////
-        // Death
-        //////////////////////////////////////
-
-        "msgDeath" : "Tu vida y tu misión terminan aquí",
-        "deathRestartBook" : "Haz click aquí para reiniciar el libro",
-        "deathLoadGame" : "Haz click aquí para cargar un juego salvado",
-
-        //////////////////////////////////////
-        // Number picker
-        //////////////////////////////////////
-
-        "npWrongValue" : 'Valor erroneo para "{0}"',
-        "npMinValue" : 'El valor mínimo para "{0}" es {1}',
-        "npMaxValue" : 'El valor máximo para "{0}" es {1}',
-
-        //////////////////////////////////////
-        // Game setup
-        //////////////////////////////////////
-
-        "chooseNumberOn" : "Elige un numero en la",
-        "determineCS" : "para determinar tu Destreza en el Combate",
-        "determineE" : "para determinar tu Resistencia",
-        "combatSkillSet" : "Tu Destreza en el Combate es {0}",
-        "enduranceSet" : "Tus puntos de Resistencia son {0}",
-        "selectNDisciplines" : 'Por favor, selecciona <span id="mechanics-nDisciplines"></span> disciplinas antes de continuar.',
-        "selectNWeapons" : 'Por favor, selecciona <span id="mechanics-setDisciplines-weaponsmax">3</span> armas para Maestría en el Manejo de Armas',
-        "choose" : "Elige",
-        "maxDisciplines" : "Sólo puede elegir {0} disciplinas",
-        "onlyNWeapons" : "Sólo puedes elegir {0} armas",
-        "actionchartinfo" : "<p>" +
-            "Las siguientes secciones explican como jugar con los libros en papel. Esta aplicación es una adaptación de los " +
-            'librojuegos,  y no necesitarás escribir nada en la Carta de Acción (excepto en el campo de "Anotaciones"). La ' +
-            "aplicación intenta hacer toda la contabilidad del juego.</p>" +
-            "<p>En la Carta de Acción puedes consultar tus estadisticas y gestionar tu inventario (usar o dejar objetos, " +
-            "cambiar tu arma actual, ...).</p>" +
-            '<p>Cada vez que vean un texto azul en negrita como este "<a class="random action">Un texto</a>" en el texto ' +
-            "del libro, es una acción. Normalmente será elegir un número de la Tabla de la Suerte. Pincha en el para hacer " +
-            "dicha acción.</p>" +
-            '<p>Los textos en azul que no estén en negrita como este "<a>Un texto</a>" son enlaces a otros sitios (p.ej. a ' +
-            "la Carta de Acción, o al mapa, ...). Si pinchas en ellos irás allí.</p>" +
-            "Al final de esta página encontrás dos enlaces para elegir tu Destreza en el Combate y Resistencia. Pincha en " +
-            "ellos antes de continuar a la siguiente sección.</p>",
-
-        //////////////////////////////////////
-        // Grand Master upgrade
-        //////////////////////////////////////
-
-        "gmupgrade-info": 'De acuerdo con <a href="https://www.projectaon.org/en/ReadersHandbook/GrandMaster" target="_blank">El Manual del Lector</a>, ' +
-            "puedes cambiar tus puntuaciones al inicio de Gran Maestro. Soportamos las recomendaciones del Manual:",
-        "gmupgrade-same": "Continuar con tus puntuaciones, bonus y objetos actuales",
-        "gmupgrade-nobonus": "Descartar tus puntuaciones actuales y elegir nuevas, sumando 25 y 30 a la Tabla de la Suerte, descartar " +
-            "todos los bonus, y mantener tus armas y objetos",
-        "gmupgrade-reroll": "Descartar tus puntuaciones actuales y elegir nuevas, sumando 25 y 30 a la Tabla de la Suerte, pero mantener " +
-            "todos los bonus, armas y objetos",
-        "gmupgrade-increasestats": "Compensar el cambio de los modificadores a la Tabla de la Suerte, añadiendo 15 y 10 a tus anteriores " +
-            "puntuaciones",
-        "gmupgrade-newplayer": "Descartar todo (esto es: puntuaciones, armas, bonus y objetos) y empezar con un nuevo personaje",
-        "gmupgrade-apply": "Aplicar cambios",
-        "gmupgrade-confirm": "¡ESTOS CAMBIOS NO SE PUEDEN DESHACER! ¿Estas seguro que quieres aplicarlos?",
-        "gmupgrade-applied": "Cambios aplicados",
-
-        //////////////////////////////////////
-        // Special sections
-        //////////////////////////////////////
-
-        "beltPouch" : "Bolsa",
-        "moneyWon" : "Dinero ganado",
-        "numberToBet" : "Numero a apostar",
-        "crownsToBet" : "Coronas a apostar",
-        "play" : "Jugar",
-        "playerDices" : "Dados de {0}",
-        "playerNumber" : "Jugador {0}",
-        "targetPoints" : "BLANCOS LOBO SOLITARIO:",
-        "number" : "Número {0}",
-        "shoot" : "Disparo",
-        "adganaUse" : "Uso de adgana, número Tabla Suerte: {0}",
-        "heads" : "Cara",
-        "tails" : "Cruz",
-
-        //////////////////////////////////////
-        // About page
-        //////////////////////////////////////
-
-        "about" : "Acerca del libro",
-        "forSommerlund" : "¡Por Sommerlund y el Kai!",
-        "dedication" : "Dedicatoria",
-        "gameMechanics" : "Mecanicas del juego",
-        "aboutKaiChronicles" : "Mecánicas del juego escritas por Toni Bennasar, Timendum, Michael Terry, Javier Fernández-Sanguino, James Koval, Rendall, Garrett Scott, Julian Egelstaff y Cracrayol. El código está bajo licencia MIT. Contiene partes de código de Lone Wolf Adventures, creado por Liquid State Limited.",
-        "distribution" : "Distribución",
-        "distributionInfo" : 'Libro distribuido por el <a href="https://www.projectaon.org">Proyecto Aon</a>, bajo la <a href="#projectAonLicense">licencia del Proyecto Aon</a>.',
-        "about-authors" : "Sobre los autores del libro",
-        "webPlay" : 'Puedes jugar a este juego en un navegador web en <a class="breakable" href="https://www.projectaon.org/staff/toni">https://www.projectaon.org/staff/toni</a>.',
-
-        //////////////////////////////////////
-        // Main menu
-        //////////////////////////////////////
-
-        "appInfo" : "Esto es una aplicación para jugar a los librojuegos de Lobo Solitario, del 1 al 13.",
-        "browsersWarning" : "Sólo se soportan las últimas versiones de Chrome y Firefox. Otros navegadores o versiones no están soportados (pueden funcionar... o no).",
-        "historyWarning" : "Ten en cuenta que si borras el historial de tu navegador, perderás la partida actual. Puedes guardar la partida actual a un archivo en <i>Ajustes &gt; Guardar juego</i>.",
-        "haveFun" : "¡Divierte!",
-        "continueGame" : "Continuar el juego",
-        "newGame" : "Nuevo juego",
-        "downloadBooks" : "Descargar libros",
-        "privacy" : "Política de privacidad",
-        "menu-changecolor" : "Cambiar color",
-
-        //////////////////////////////////////
-        // New game
-        //////////////////////////////////////
-
-        "book" : "Libro",
-        "language" : "Idioma",
-        "english" : "Ingles",
-        "spanish" : "Español",
-        "agreeLicense" : "Estoy de acuerdo con los términos de la licencia del Proyecto Aon",
-        "youMustAgree" : "Has de estar de acuerdo con la licencia para poder continuar",
-        "licenseText" : "Texto de la licencia",
-        "startGame" : "Iniciar juego",
-        "noDownloadedBooks" : 'No se ha descargado ningún libro. Ve a "Descargar libros" en el menú principal',
-
-        //////////////////////////////////////
-        // Settings
-        //////////////////////////////////////
-
-        "settings" : "Ajustes",
-        "saveGame" : "Guardar partida",
-        "restartBook" : "Reiniciar libro",
-        "downloading" : "Descargando",
-        "downloadingWait" : "Descargando el libro, por favor, espere...",
-        "fileName" : "Nombre archivo",
-        "close" : "Cerrar",
-        "wrongFileName" : "El nombre de archivo contiene carácteres no válidos",
-        "gameSaved" : "Partida guardada",
-        "confirmRestart" : "¿Seguro que quieres reiniciar el libro?",
-        "randomTableValues" : "Valores de la Tabla de la Suerte",
-        "computerGenerated" : "Generados por ordenador",
-        "manual" : "Manuales",
-        "extendedCRT" : "¿Usar Tablas de Combate Extendidas (LW club newsletter 29)?",
-        "Yes" : "Sí",
-        "No" : "No",
-        "colorTheme" : "Tema de color",
-        "settings-light" : "Dia",
-        "settings-dark" : "Noche",
-
-        //////////////////////////////////////
-        // Template (Main page)
-        //////////////////////////////////////
-
-        "CS" : "D.C.",
-        "E" : "R.",
-        "map" : "Mapa",
-
-        //////////////////////////////////////
-        // Map
-        //////////////////////////////////////
-
-        "map-clickinfo" : "Haz click en el mapa para ajustar al tamaño de la pantalla / restaurar a su tamaño original.",
-        "map-changezoom" : "Cambiar zoom:",
-
-        //////////////////////////////////////
-        // Download books
-        //////////////////////////////////////
-
-        "applyChanges" : "Aplicar cambios",
-        "selectBooks" : 'Selecciona los libros que quieres descargar del <a href="https://www.projectaon.org">Proyecto Aon</a>.',
-        "noChangesSelected" : "No se han seleccionado cambios",
-        "confirmChanges" : "¿Seguro que quieres hacer los cambios seleccionados?",
-        "deletingBook" : "Borrando libro {0}",
-        "bookDeleted" : "Libro {0} borrado",
-        "deletionFailed" : "Borrado del libro {0} fallido: {1}",
-        "downloadingBook" : "Descargando libro {0}",
-        "bookDownloaded" : "Libro {0} descargado",
-        "downloadFailed" : "Descarga del libro {0} fallida: {1}",
-        "processFinishedErrors" : "¡Proceso finalizado con errores!",
-        "size" : "Tam.",
-        "noInternet" : "No hay conexión a Internet",
-        "cancel" : "Cancelar",
-        "processCancelled" : "Proceso cancelado",
-        "confirmCancel" : "¿Seguro que quiere cancelar?",
-
-        //////////////////////////////////////
-        // Kai monastery safekeeping
-        //////////////////////////////////////
-
-        "kaiMonasteryStorage" : "Objetos en el monasterio del Kai",
-        "kaiMonastery" : "Monasterio del Kai",
-        "kaiMonasteryInfo" : "Aquí puedes guardar objetos en custodia en el monasterio del Kai. Los objetos " +
-            'dejados aquí estarán disponibles cuando continues al próximo libro, en la sección "Equipo". Para guardarlos, ve ' +
-            'a la <a href="#actionChart">Carta de Acción</a> y deja los objetos que quieres guardar.',
-        "backToEquipment" : "Volver a la sección de Equipo",
-
-        //////////////////////////////////////
-        // Load game
-        //////////////////////////////////////
-
-        "loadGame" : "Cargar juego",
-        "fileDeleted" : "{0} borrado",
-        "confirmDeleteSave" : "¿Seguro que quiere borrar el juego guardado {0}?",
-        "noSavedGames" : "No se encontraron juegos guardados",
-        "exportedDownloads" : "Juegos exportados a Descargas",
-        "importedGames" : "{0} juegos importados",
-        "exportGames" : "Exportar juegos guardados...",
-        "importGames" : "Importar juegos guardados...",
-        "importExtensionsError" : 'Sólo se pueden importar archivos con extensión "zip" o "json"',
-        "confirmSavedOverwrite" : "Las siguientes partidas se sobreescribirán. ¿Seguro que quiere continuar?:\n{0}",
-        "confirmExport" : 'Esto creará un archivo Zip con todos los juegos guardados en "Descargas". ' +
-            "Esto puede ser útil para copiar tus juegos guardados a otro dispositivo, o como copia de seguridad. ¿Continuamos?",
-        "infoImport" : "Con esta función puedes importar juegos guardados a la aplicación. Esto puede ser útil para copiar " +
-            "tus juegos guardados desde otro dispositivo. Puedes seleccionar ficheros con " +
-            'extensión "json" (un juego guardado) o "zip" (múltiples juegos guardados)',
-        "fileslistExplain" : "Pincha en un juego de la lista para recuperarlo. Puedes guardar el juego actual en " +
-            "<i>Ajustes &gt; Guardar partida</i>.",
-        "exportImportGames" : "Exportar / importar partidas",
-        "exportImportGamesExplain": "Puedes exportar e importar las partidas guardadas en la aplicación. Esto puede ser útil " +
-            "para copiarlas desde / hacia otros dispositivos.",
-        "errorExporting" : "Error exportando juegos guardados",
-        "noGamesToExport" : "No hay ninguna partida guardada que exportar",
-
-        //////////////////////////////////////
-        // Others
-        //////////////////////////////////////
-
-        "tableAvailableObjects" : "Objetos disponibles:",
-        "tableSellObjects" : "Vender objetos:",
-        "doMealFirst" : "Haz primero la comida",
-        "kaiChronicles" : "Crónicas del Kai",
-        "gameRules" : "Reglas del juego",
-        "projectAonLicense" : "Licencia del Proyecto Aon",
-        "combatTables" : "Tablas de Combate",
-        "mainMenu" : "Menú principal",
-        "bookNotDownloaded" : "El libro {0} no está descargado",
-        "maximumPick" : "Sólo puedes coger {0} objetos",
-        "zeroIgnored" : "Cero ignorado",
-        "faq" : "Preguntas frecuentes"
-    };
-
-    /**
      * English translations
      */
-    private readonly en = {
+    private readonly texts = {
 
         //////////////////////////////////////
         // Action chart / object tables
@@ -572,14 +217,6 @@ export class Translations {
      * should be returned
      */
     public translateView( view: HTMLElement | JQuery<HTMLElement> , doNotClone: boolean = false ): JQuery<HTMLElement> {
-
-        const table = this[state.language];
-        if ( !table ) {
-            // Translation not available
-            mechanicsEngine.debugWarning("Translations table not found: " + state.language);
-            return $(view);
-        }
-
         let $clonedView;
         if ( doNotClone ) {
             $clonedView = $(view);
@@ -588,28 +225,16 @@ export class Translations {
         }
 
         // Translate the view
-        this.translateTags( $clonedView , table );
+        this.translateTags( $clonedView );
         return $clonedView;
     }
 
     /**
      * Translate an HTML fragment
      * @param $tags jQuery selector of tags to translate
-     * @param table Translations table to use. If null, the current language will be used
      */
-    public translateTags( $tags: JQuery<HTMLElement> , table: { [key: string]: string } = null ) {
-
-        // TODO: Is all this needed for SOME English translation? I suspect not, as the default text for HTML texts is English...
-        // TODO: As I'm not sure, I will not change it
-
-        if ( !table ) {
-            table = this[state.language];
-            if ( !table ) {
-                // Translation not available
-                mechanicsEngine.debugWarning("Translations table not found: " + state.language);
-                return;
-            }
-        }
+    public translateTags( $tags: JQuery<HTMLElement>) {
+        const table = this["texts"];
 
         const $translatedTags = $tags
             .find("[data-translation]")
@@ -620,8 +245,6 @@ export class Translations {
             const html = table[ translationId ];
             if ( html ) {
                 $t.html( html );
-            } else if (state.language !== Language.ENGLISH) {
-                mechanicsEngine.debugWarning("data-translation not found: " + translationId + ", language: " + state.language);
             }
         }
     }
@@ -634,16 +257,11 @@ export class Translations {
      */
     public text( textId: string , replacements: any[] = null ): string {
         try {
-            let table = this[state.language];
-            if ( !table ) {
-                // Use english as default
-                mechanicsEngine.debugWarning("Translations table not found: " + state.language);
-                table = this.en;
-            }
+            const table = this["texts"];
 
-            let text = table[textId];
+            let text:string = table[textId];
             if ( !text ) {
-                mechanicsEngine.debugWarning("Text code not found: " + textId + ", language: " + state.language);
+                mechanicsEngine.debugWarning("Text code not found: " + textId);
                 text = textId;
             }
 

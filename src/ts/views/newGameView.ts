@@ -1,4 +1,4 @@
-import { projectAon, Language, state, translations, newGameController } from "..";
+import { projectAon, translations, newGameController } from "..";
 
 /**
  * The new game view API
@@ -7,13 +7,10 @@ export const newGameView = {
 
     setup() {
 
-        // Set current language
-        // $("#newgame-language").val(state.language);
-
         // Add supported books
         let html = "";
         for ( let i = 1; i <= projectAon.supportedBooks.length; i++) {
-            const title = projectAon.getBookTitle( i, state.language )
+            const title = projectAon.getBookTitle( i )
             html += '<option value="' + i + '" >' +
                 i + ". " +
                 title + "</option>";
@@ -27,8 +24,7 @@ export const newGameView = {
                 alert(translations.text("youMustAgree"));
                 return;
             }
-            newGameController.startNewGame($("#newgame-book").val(),
-            Language.ENGLISH); //$("#newgame-language").val());
+            newGameController.startNewGame($("#newgame-book").val());
         });
 
         // Book change

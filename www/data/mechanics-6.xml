@@ -2,11 +2,6 @@
 
 <mechanics book="6">
 
-    <!-- LIST OF TRANSLATED IMAGES -->
-    <translated-images>
-        <image>weapons.png</image>
-    </translated-images>
-
     <!-- GAME RULES -->
     <sections>
 
@@ -60,13 +55,11 @@
             <object objectId="axe" />
 
             <chooseEquipment 
-                en-text="Click on the Random Table link to get money before continuing" 
-                es-text="Haz click en el link de la Tabla de la Suerte para obtener dinero antes de continuar"
+                text="Click on the Random Table link to get money before continuing" 
             />
 
             <message 
-                en-text="You may take up to five of the following (all meals count as one object):" 
-                es-text="Puedes elegir hasta cinco de los objetos (todas las comidas cuentan como un objeto):" 
+                text="You may take up to five of the following (all meals count as one object):"  
             />
         </section>
 
@@ -90,8 +83,7 @@
 
         <section id="sect4">
             <message id="msg-drop-weapon" 
-                en-text="Drop a weapon before continuing" 
-                es-text="Deja un arma antes de continuar"
+                text="Drop a weapon before continuing" 
             />
             <choiceState section="all" set="disabled" />
             <onInventoryEvent>
@@ -181,8 +173,7 @@
             <test not="true" expression="[MONEY] >= 2">
                 <choiceState section="sect144" set="disabled" />
                 <message id="msg-drop-object" 
-                    en-text="Drop one Backpack Item or Weapon in lieu of payment for a night in the dormitory" 
-                    es-text="Deja un Arma u Objeto de Mochila en pago por una noche en el dormitorio"
+                    text="Drop one Backpack Item or Weapon in lieu of payment for a night in the dormitory" 
                 />
                 <onInventoryEvent>
                     <test expression="( [WEAPON-ITEMS-CNT-ON-ACTIONCHART] + [BACKPACK-ITEMS-CNT-ON-ACTIONCHART] ) == 0 || ( [WEAPON-ITEMS-CNT-ON-SECTION] + [BACKPACK-ITEMS-CNT-ON-SECTION] ) > 0">
@@ -766,8 +757,7 @@
 
         <section id="sect132">
             <message id="msg-drop-proposal" 
-                en-text="If you agree to his proposal, drop 2 Special Items or 20 Gold Crowns" 
-                es-text="Si estás de acuerdo con esa propuesta, deja dos Objetos Especiales o 20 Coronas de Oro"
+                text="If you agree to his proposal, drop 2 Special Items or 20 Gold Crowns" 
             />
             <onInventoryEvent>
                 <choiceState section="all" set="disabled" />
@@ -838,8 +828,7 @@
         <section id="sect144">
             <choiceState section="all" set="disabled" />
             <message id="msg-drop-object" 
-                en-text="Drop one Backpack Item" 
-                es-text="Deja un Objeto de Mochila"
+                text="Drop one Backpack Item" 
             />
             <onInventoryEvent>
                 <test expression="[BACKPACK-ITEMS-CNT-ON-ACTIONCHART] == 0 || [BACKPACK-ITEMS-CNT-ON-SECTION] > 0">
@@ -864,8 +853,7 @@
 
         <section id="sect148">
             <message id="msg-drop-proposal" 
-                en-text="If you agree to his proposal, drop 2 Special Items or 20 Gold Crowns" 
-                es-text="Si estás de acuerdo con esa propuesta, deja dos Objetos Especiales o 20 Coronas de Oro"
+                text="If you agree to his proposal, drop 2 Special Items or 20 Gold Crowns" 
             />
             <onInventoryEvent>
                 <choiceState section="all" set="disabled" />
@@ -998,8 +986,7 @@
         <section id="sect166">
             <choiceState section="all" set="disabled" />
             <message id="msg-drop-object" 
-                en-text="Drop two Backpack Items" 
-                es-text="Deja dos Objetos de Mochila"
+                text="Drop two Backpack Items" 
             />
             <onInventoryEvent>
                 <test expression="[BACKPACK-ITEMS-CNT-ON-ACTIONCHART] == 0 || [BACKPACK-ITEMS-CNT-ON-SECTION] >= 2">
@@ -1201,8 +1188,7 @@
 
         <section id="sect220">
             <numberPicker 
-                en-text="Choose the number of Gold Crowns you want to donate"
-                es-text="Elige el número de Coronas de Oro que quieres donar"
+                text="Choose the number of Gold Crowns you want to donate"
                 min="0" 
                 money="true"
                 />
@@ -1276,8 +1262,7 @@
 
         <section id="sect245">
             <numberPicker 
-                en-text="Choose the number of Gold Crowns you want to bet"
-                es-text="Elige el número de Coronas de Oro que quieres apostar"
+                text="Choose the number of Gold Crowns you want to bet"
                 min="1" 
                 money="true"
                 />
@@ -1536,12 +1521,10 @@
 
         <section id="sect284">
             <numberPicker 
-                en-text="Choose the number of Gold Crowns you want to bet"
-                es-text="Elige el número de Coronas de Oro que quieres apostar"
+                text="Choose the number of Gold Crowns you want to bet"
                 min="1" max="10" 
                 money="true"
-                en-actionButton="Bet"
-                es-actionButton="Apuesta"
+                actionButton="Bet"
             />
             <book6sect284 />
         </section>
@@ -1591,9 +1574,6 @@
 
         <section id="sect298">
             <pick objectId="tournamentbow" />
-            <test bookLanguage="es">
-                <choiceState section="sect335" set="disabled" />
-            </test>
         </section>
 
         <section id="sect299">

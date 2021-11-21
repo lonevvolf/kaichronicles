@@ -1,4 +1,4 @@
-import { Mechanics, Book, Section, Language, Disciplines, mechanicsEngine, ExpressionEvaluator, randomMechanics, LoreCircle } from "..";
+import { Mechanics, Book, Section, Disciplines, mechanicsEngine, ExpressionEvaluator, randomMechanics, LoreCircle } from "..";
 
 /**
  * Tools to validate book mechanics
@@ -34,9 +34,9 @@ export class BookValidator {
         this.book = book;
     }
 
-    public static downloadBookAndGetValidator( bookNumber: number , language: Language ): JQueryPromise<BookValidator> {
+    public static downloadBookAndGetValidator( bookNumber: number ): JQueryPromise<BookValidator> {
 
-        const book = new Book(bookNumber, language );
+        const book = new Book(bookNumber );
         const mechanics = new Mechanics( book );
 
         const promises = [];
@@ -134,14 +134,6 @@ export class BookValidator {
             }
 
             if ( rule.nodeName === "test" ) {
-
-                // Special case: If this is a "test" rule with "bookLanguage" attr. set, check it:
-                // (there are semantic differences between languages...)
-                const language: string = $rule.attr("bookLanguage");
-                if ( language && language !== this.book.language ) {
-                    // Ignore children
-                    return;
-                }
 
                 // Other special case for books XML update. If the current XML does not contain the test text, ignore children
                 const text: string = $rule.attr("sectionContainsText");
@@ -495,21 +487,6 @@ export class BookValidator {
         this.validateSectionsAttribute( $rule , "sectionVisited" , true );
         this.validateObjectIdsAttribute( $rule , "currentWeapon" , true , true );
         this.validateObjectIdsAttribute( $rule , "objectOnSection" , true , false );
-
-        const language: string = $rule.attr("bookLanguage");
-        if ( language ) {
-            let langFound = false;
-            for (const langKey of Object.keys(Language)) {
-                if (Language[langKey] === language) {
-                    langFound = true;
-                    break;
-                }
-            }
-            if (!langFound) {
-                this.addError( $rule , "Language key not found in Language enum: " + language );
-            }
-        }
-
         this.validateSectionChoiceAttribute( $rule , "isChoiceEnabled" , false );
         this.validateObjectIdsAttribute( $rule , "hasWeaponType" , true , false );
 
@@ -618,8 +595,8 @@ export class BookValidator {
                 }
             }
 
-            if ( !$rule.attr( "en-text" ) ) {
-                this.addError( $rule , '"en-text" or "op" attribute required' );
+            if ( !$rule.attr( "text" ) ) {
+                this.addError( $rule , '"text" or "op" attribute required' );
             }
         }
     }
@@ -680,7 +657,7 @@ export class BookValidator {
         this.validateSectionsAttribute( $rule , "section" , false );
 
         const html = this.currentSection.getHtml();
-        const linkText: string = $rule.attr("text-" + this.book.language);
+        const linkText: string = $rule.attr("text");
         if ( $(html).find(':contains("' + linkText + '")').length === 0 ) {
             this.addError( $rule , 'Text to replace "' + linkText + '" not found');
         }

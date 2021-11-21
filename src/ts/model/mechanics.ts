@@ -134,13 +134,6 @@ export class Mechanics {
     }
 
     /**
-     * Clear the objects cache (due to a book language change)
-     */
-    public clearObjectsCache() {
-        this.objectsCache = {};
-    }
-
-    /**
      * Get a jquery selector for a give rule, relative to the "section" parent
      * @return {string} The jquery selector for the rule inside the section
      */

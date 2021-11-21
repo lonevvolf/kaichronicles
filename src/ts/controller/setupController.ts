@@ -16,7 +16,6 @@ export const setupController = {
             console.log("Book already loaded");
             template.setNavTitle(state.book.getBookTitle(), "#game", false);
             routing.redirect("game");
-            setupController.verifyLanguageChange();
             return;
         }
 
@@ -29,9 +28,8 @@ export const setupController = {
         } else {
             // New game. Get hash URL parameters
             const bookNumber = parseInt(routing.getHashParameter("bookNumber"), 10);
-            const language = routing.getHashParameter("language");
             const keepActionChart = routing.getHashParameter("keepActionChart");
-            state.setup(bookNumber, language, keepActionChart);
+            state.setup(bookNumber, keepActionChart);
             setupController.recordPageVisit("newgame");
         }
         template.translateMainMenu();
@@ -39,18 +37,6 @@ export const setupController = {
         return views.loadView("setup.html")
             .then(() => { setupController.runDownloads(); });
 
-    },
-
-    verifyLanguageChange() {
-        // Re-translate the main menu (needed if the language has been changed on the
-        // main menu). The book language rules:
-        if (!state.book) {
-            return;
-        }
-        if (state.language !== state.book.language) {
-            state.language = state.book.language;
-            template.translateMainMenu();
-        }
     },
 
     runDownloads() {
@@ -111,12 +97,10 @@ export const setupController = {
 
     restartBook() {
         const bookNumber = state.book.bookNumber;
-        const language = state.language;
         state.reset(false);
         template.updateStatistics(true);
         routing.redirect("setup", {
             bookNumber,
-            language,
             keepActionChart: true
         });
     },

@@ -7,12 +7,6 @@ export const settingsView = {
 
     setup() {
 
-        // Language
-        /*$("#settings-language").val(state.language);
-        $("#settings-language").change(function() {
-            settingsController.changeLanguage($(this).val(), true);
-        });*/
-
         // Color theme
         $("#settings-color-theme").val(state.color);
         $("#settings-color-theme").change(function() {
@@ -76,19 +70,5 @@ export const settingsView = {
             $("#settings-saveName").val("").focus();
         });
     },
-
-    /**
-     * Show the download book dialog, only for web
-     */
-    showDownloadDialog() {
-        $("#settings-downloadDialog").modal("show");
-    },
-
-    /**
-     * Hide the download book dialog, only for web
-     */
-    hideDownloadDialog() {
-        $("#settings-downloadDialog").modal("hide");
-    }
 
 };

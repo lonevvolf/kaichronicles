@@ -1,5 +1,5 @@
 import * as fs from "fs-extra";
-import { BookMetadata, projectAon, Language } from "..";
+import { BookMetadata, projectAon } from "..";
 
 /** Tool to download book data from the Project Aon SVN */
 export class BookData {
@@ -12,8 +12,6 @@ export class BookData {
      */
     public static readonly TARGET_ROOT = "www/data/projectAon";
 
-    // BookData.LANGUAGES = ['en','es'];
-
     /** The book number 1-based index */
     private bookNumber: number;
 
@@ -21,10 +19,7 @@ export class BookData {
     private bookMetadata: BookMetadata;
 
     /** The english book code */
-    private enCode: string;
-
-    /** The spanish book code */
-    private esCode: string;
+    private code: string;
 
     /** Array with illustrations authors directories names */
     private illAuthors: string[];
@@ -36,16 +31,8 @@ export class BookData {
     constructor(bookNumber: number) {
         this.bookNumber = bookNumber;
         this.bookMetadata = projectAon.supportedBooks[ bookNumber - 1 ];
-        this.enCode = this.bookMetadata.code_en;
-        this.esCode = this.bookMetadata.code_es;
+        this.code = this.bookMetadata.code;
         this.illAuthors = this.bookMetadata.illustrators;
-    }
-
-    /**
-     * Get the book code for a given language
-     */
-    private getBookCode(language: Language): string {
-        return language === Language.ENGLISH ? this.enCode : this.esCode;
     }
 
     /**
@@ -57,64 +44,59 @@ export class BookData {
 
     /**
      * Get the the book XML file book name
-     * @param language The language code (en/es)
      * @returns The book XML file name
      */
-    private getBookXmlName(language: Language) {
-        return this.getBookCode( language )  + ".xml";
+    private getBookXmlName() {
+        return this.code + ".xml";
     }
 
     /**
      * Get the SVN source path for the book XML, as it is configured on projectAon.ts
-     * @param language The language code (en/es)
      * @param root Optional. The SVN root to use. If null, the current published version will be used
      * @returns The currently used book XML URL at the PAON web site
      */
-    private getXmlSvnSourcePath(language: Language): string {
-        return "project-aon/" + language + "/xml/" + this.getBookXmlName( language );
+    private getXmlSvnSourcePath(): string {
+        return "project-aon/en/xml/" + this.getBookXmlName();
     }
 
     /**
-     * Download the book XML for a given language
-     * @param language The language code (en/es)
+     * Download the book XML
      */
-    private downloadXml(language: Language) {
+    private downloadXml() {
         // Download the book XML
-        const sourcePath = this.getXmlSvnSourcePath(language);
-        const targetPath = this.getBookDir() + "/" + this.getBookXmlName( language );        
+        const sourcePath = this.getXmlSvnSourcePath();
+        const targetPath = this.getBookDir() + "/" + this.getBookXmlName();        
         fs.copyFileSync(sourcePath, targetPath);
     }
 
     /**
      * Download an author biography file
      */
-    private downloadAuthorBio(language: Language, bioFileName: string) {
-        const sourcePath = "project-aon/" + language + "/xml/" + bioFileName + ".inc";
-        const targetPath = this.getBookDir() + "/" + bioFileName + "-" + language + ".inc";
+    private downloadAuthorBio(bioFileName: string) {
+        const sourcePath = "project-aon/en/xml/" + bioFileName + ".inc";
+        const targetPath = this.getBookDir() + "/" + bioFileName + ".inc";
         fs.copyFileSync(sourcePath, targetPath);
     }
 
     /**
-     * Get the svn absolute URL for illustrations directory of a given author / language
+     * Get the svn absolute URL for illustrations directory of a given author
      */
-    private getSvnIllustrationsDir( language: Language, author: string): string {
-        const booksSet = language === Language.ENGLISH ? "lw" : "ls";
-        return "project-aon/" + language + "/png/" +
-            booksSet + "/" + this.getBookCode(language) + "/ill/" +
+    private getSvnIllustrationsDir(author: string): string {
+        return "project-aon/en/png/lw/" + this.code + "/ill/" +
             author;
     }
 
     /**
      * Download illustrations
      */
-    private downloadIllustrations(language: Language, author: string) {
+    private downloadIllustrations(author: string) {
 
-        const sourceDir = this.getSvnIllustrationsDir(language, author);
-        const targetDir = this.getBookDir() + "/ill_" + language;
+        const sourceDir = this.getSvnIllustrationsDir(author);
+        const targetDir = this.getBookDir() + "/ill";
         fs.mkdirSync( targetDir );
         fs.copySync(sourceDir, targetDir);
 
-        if ( this.bookNumber === 9 && language === Language.ENGLISH ) {
+        if ( this.bookNumber === 9) {
             this.book9ObjectIllustrations();
         }
     }
@@ -128,7 +110,7 @@ export class BookData {
 
         // Already included on book 9: dagger.png, sword.png, mace.png, bow.png, food.png, potion.png, quiver.png, rope.png
 
-        const targetDir = this.getBookDir() + "/ill_en";
+        const targetDir = this.getBookDir() + "/ill";
 
         // Not included on book 9, but in later books:
         const williamsIllustrations = {
@@ -150,7 +132,7 @@ export class BookData {
      * Download the book cover
      */
     private downloadCover() {
-        const coverPath = "project-aon/en/jpeg/lw/" + this.getBookCode(Language.ENGLISH) +
+        const coverPath = "project-aon/en/jpeg/lw/" + this.code +
             "/skins/ebook/cover.jpg";
         const targetPath = this.getBookDir() + "/cover.jpg";
         fs.copyFileSync(coverPath, targetPath);
@@ -164,31 +146,23 @@ export class BookData {
 
         this.downloadCover();
 
-        for (const langKey of Object.keys(Language)) {
-            const language = Language[langKey];
-            if (!this.getBookCode( language )) {
-                // Skip books without given language
-                continue;
-            }
+        // Download authors biographies
+        this.bookMetadata.biographies.forEach( (authorBio) => {
+            this.downloadAuthorBio(authorBio);
+        });
 
-            // Download authors biographies
-            this.bookMetadata.biographies.forEach( (authorBio) => {
-                this.downloadAuthorBio(language, authorBio);
-            });
+        this.downloadXml();
 
-            this.downloadXml(language);
+        this.illAuthors.forEach( (author) => {
+            this.downloadIllustrations(author);
+        });
 
-            this.illAuthors.forEach( (author) => {
-                this.downloadIllustrations(language , author);
-            });
-
-            this.downloadCombatTablesImages(language);
-        }
+        this.downloadCombatTablesImages();
     }
 
-    private downloadCombatTablesImages(language: Language) {
-        const sourceSvnDir = this.getSvnIllustrationsDir(language, "blake");
-        const targetDir = this.getBookDir() + "/ill_" + language;
+    private downloadCombatTablesImages() {
+        const sourceSvnDir = this.getSvnIllustrationsDir("blake");
+        const targetDir = this.getBookDir() + "/ill";
         
         fs.copyFileSync(sourceSvnDir + "/crtneg.png", targetDir + "/crtneg.png");        
         fs.copyFileSync(sourceSvnDir + "/crtpos.png", targetDir + "/crtpos.png");

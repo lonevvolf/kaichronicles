@@ -8,13 +8,6 @@ General struture:
 ```xml
 <!-- Ex: Mechanics for book 1 -->
 <mechanics book="1">
-    
-    <translated-images>
-        <!-- Here goes the list of translated images (usually images that 
-             contain texts) -->
-        <image>map.png</image>
-        ...
-    </translated-images>
 
     <!-- Here goes the list of sections that must to be mechanized 
         The "count" attribute is optional. It's the number of sections on the book, 
@@ -34,10 +27,6 @@ General struture:
 
 </mechanics>
 ```
-
-The "translated-images" tag is used to determine what images should be searched on the
-current language book. Images that are not contained on this list will be get from the
-english images.
 
 ## Expressions
 
@@ -155,7 +144,7 @@ Magnakai and later: Action Chart button to restore +X EP after Y days will avail
 Game setup: The player selects the Kai disciplines
 
 ### chooseEquipment
-Game setup: Choose equipment. Property "en-text" is the text to show on the UI ("Pick X objects
+Game setup: Choose equipment. Property "text" is the text to show on the UI ("Pick X objects
 before continuing")
 
 ### pick (execute once only)
@@ -266,7 +255,6 @@ will be executed.
 * **currentWeapon="weaponId1|weaponId2|..."**: Is the current weapon (hand-to-hand) some of these kinds?
 * **combatsWon="boolean"**: Have been won all combats on this section (or not)?
 * **combatsActive="true"**: Do some combat still active (not won and not eluded)?
-* **bookLanguage="language code (en/es)"**: Is this the current book language?
 * **sectionContainsText="text"**: Does the current section contain this text?
 * **weaponskillActive="true"**: Has the player "Weaponskill" (current book discipline, no loyalty bonus) with the current weapon?
 * **not="true"**: This will negate the current test. So if all of these conditions are false,
@@ -484,8 +472,7 @@ on this section, the chilren rules will be executed
 ### numberPicker / numberPickerChoosed
 ```xml
 <numberPicker 
-    en-text="Choose the number of Gold Crowns you are going to throw"
-    es-text="Elige el número de Coronas de Oro que vas a lanzar"
+    text="Choose the number of Gold Crowns you are going to throw"
     min="1" 
     money="true"
     />
@@ -496,8 +483,7 @@ on this section, the chilren rules will be executed
     </test>
     <test expression="[NUMBERPICKER] != 34">
         <toast 
-            en-text="Wrong number!"
-            es-text="¡Número incorrecto!" />
+            text="Wrong number!" />
     </test>
 </numberPickerChoosed>
 <numberPickerChoosed executeAtStart="true">
@@ -518,20 +504,16 @@ on a previous rendering, the "numberPickerChoosed" will be executed at the secti
 ### goToSection
 ```xml
 <numberPicker 
-    en-text="Choose the number"
-    es-text="Elige el número"
+    text="Choose the number"
     min="1" max="350" 
-    en-actionButton="Choose"
-    es-actionButton="Elige"
+    actionButton="Choose"
     />
 <numberPickerChoosed>
     <test expression="[NUMBERPICKER] == 34">
         <goToSection section="sect34" />
     </test>
     <test expression="[NUMBERPICKER] != 34">
-        <toast 
-            en-text="Wrong number!"
-            es-text="¡Número incorrecto!" />
+        <toast text="Wrong number!" />
     </test>
 </numberPickerChoosed>
 ```
@@ -545,8 +527,8 @@ Changes the player current weapon to the set on "objectId" property
 
 ### toast
 ```xml
-<toast en-text="Wrong number!" es-text="¡Número incorrecto!" />
-<toast duration="10000" en-text="Because you possess..." />
+<toast text="Wrong number!" />
+<toast duration="10000" text="Because you possess..." />
 ```
 Display a "toast" message. "duration" is the toast duration in milliseconds. It's optional, the default is 5000 ms
 
@@ -620,11 +602,10 @@ It runs the "onInventoryEvent" event handler, if it exists on the section.
 ### displayIllustration
 ```xml
 <displayIllustration section="sect131" 
-    en-text="Illustration on section 131"
-    es-text="Ilustración en la sección 131"
+    text="Illustration on section 131"
 />
 ```
-Displays the first illustration on the "section" attribute section. "xx-text" is an option title to display with the illustration.
+Displays the first illustration on the "section" attribute section. "text" is an option title to display with the illustration.
 
 ### use
 ```xml

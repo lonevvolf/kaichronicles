@@ -443,8 +443,7 @@ export class SectionRenderer {
 
         const fileName: string = $illustration.find("> instance.html").attr("src");
         // Get the translated image URL:
-        const source = this.sectionToRender.book.getIllustrationURL(fileName,
-            this.sectionToRender.mechanics);
+        const source = this.sectionToRender.book.getIllustrationURL(fileName);
 
         const isLargeIllustration = (fileName.indexOf("ill") === 0);
         illustrationContent += '<div class="illustration' +
@@ -500,20 +499,11 @@ export class SectionRenderer {
             // Book 6 / sect156: The endurance attribute is "resistance"
             $enduranceAttr = $combat.find("enemy-attribute[class=resistance]");
         }
-        if ( $enduranceAttr.length === 0 ) {
-            // Book 9 / sect3 (Spanish version bug)
-            $enduranceAttr = $combat.find("enemy-attribute[class=RESISTENCIA]");
-        }
         return $enduranceAttr;
     }
 
     public static getEnemyCombatSkill( $combat: JQuery<Element> ): any {
-        let $cs = $combat.find(".combatskill");
-        if ( $cs.length === 0 ) {
-            // Book 9 / sect3 (Spanish version bug)
-            $cs = $combat.find('enemy-attribute[class="DESTREZA EN EL COMBATE"]');
-        }
-        return $cs;
+        return $combat.find(".combatskill");
     }
 
     /**

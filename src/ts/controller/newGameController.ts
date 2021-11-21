@@ -1,4 +1,4 @@
-import { state, translations, routing, template, views, newGameView, Book, Language } from "..";
+import { state, translations, routing, template, views, newGameView, Book } from "..";
 
 /**
  * New game controller
@@ -24,20 +24,18 @@ export const newGameController = {
     /**
      * Start new game event
      * @param {string} bookNumber The book number
-     * @param {string} language The book language
      */
-    startNewGame( bookNumber: number, language: string ) {
+    startNewGame( bookNumber: number) {
 
         state.reset(true);
         routing.redirect( "setup" , {
-            bookNumber,
-            language
+            bookNumber
         });
 
     },
 
     selectedBookChanged(newBookNumber: number) {
-        const book = new Book(newBookNumber, Language.ENGLISH);
+        const book = new Book(newBookNumber);
         newGameView.setCoverImage( book.getCoverURL() );
     },
 

@@ -66,7 +66,6 @@ export class App {
                     console.log("Real setup started");
 
                     // Then do the real application setup
-                    state.setupDefaultLanguage();
                     state.setupDefaultColorTheme();
                     template.setup();
                     routing.setup();

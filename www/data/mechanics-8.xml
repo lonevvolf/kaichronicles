@@ -2,11 +2,6 @@
 
 <mechanics book="8">
 
-    <!-- LIST OF TRANSLATED IMAGES -->
-    <translated-images>
-        <image>weapons.png</image>
-    </translated-images>
-
     <!-- GAME RULES -->
     <sections>
 
@@ -59,13 +54,11 @@
             <object objectId="fireseed" index="2" />
 
             <chooseEquipment
-                en-text="Click on the Random Table link to get money before continuing" 
-                es-text="Haz click en el link de la Tabla de la Suerte para obtener dinero antes de continuar"
+                text="Click on the Random Table link to get money before continuing" 
             />
 
             <message
-                en-text="You may take up to five of the following (all meals and fireseeds count as one object):" 
-                es-text="Puedes elegir hasta cinco de los objetos (todas las comidas y petardos cuentan como un objeto):" 
+                text="You may take up to five of the following (all meals and fireseeds count as one object):"  
             />
         </section>
 
@@ -361,8 +354,7 @@
             <pick objectId="paidosword" />
             <currentWeapon objectId="paidosword" />
             <message id="msg-drop-weapon" 
-                en-text="You must use the Paido sword as current weapon on this combat" 
-                es-text="Debes usar la espada de Paido como arma actual en este combate"
+                text="You must use the Paido sword as current weapon on this combat" 
             />
             <onInventoryEvent>
                 <disableCombats />
@@ -720,11 +712,9 @@
 
         <section id="sect112">
             <numberPicker
-                en-text="Answer the riddle"
-                es-text="Responde al acertijo"
+                text="Answer the riddle"
                 min="1" max="350"
-                en-actionButton="Choose"
-                es-actionButton="Elige"
+                actionButton="Choose"
                 />
             <numberPickerChoosed>
                 <test expression="[NUMBERPICKER] == 3">
@@ -732,8 +722,7 @@
                 </test>
                 <test expression="[NUMBERPICKER] != 3">
                     <toast
-                        en-text="Wrong number!"
-                        es-text="¡Número incorrecto!" />
+                        text="Wrong number!" />
                 </test>
             </numberPickerChoosed>
         </section>
@@ -819,11 +808,9 @@
 
         <section id="sect126">
             <numberPicker
-                en-text="Answer the riddle"
-                es-text="Responde al acertijo"
+                text="Answer the riddle"
                 min="1" max="350"
-                en-actionButton="Choose"
-                es-actionButton="Elige"
+                actionButton="Choose"
                 />
             <numberPickerChoosed>
                 <test expression="[NUMBERPICKER] == 16">
@@ -831,8 +818,7 @@
                 </test>
                 <test expression="[NUMBERPICKER] != 16">
                     <toast
-                        en-text="Wrong number!"
-                        es-text="¡Número incorrecto!" />
+                        text="Wrong number!" />
                 </test>
             </numberPickerChoosed>
         </section>
@@ -900,11 +886,9 @@
 
         <section id="sect141">
             <numberPicker
-                en-text="Answer the riddle"
-                es-text="Responde al acertijo"
+                text="Answer the riddle"
                 min="1" max="350"
-                en-actionButton="Choose"
-                es-actionButton="Elige"
+                actionButton="Choose"
                 />
             <numberPickerChoosed>
                 <test expression="[NUMBERPICKER] == 59">
@@ -912,8 +896,7 @@
                 </test>
                 <test expression="[NUMBERPICKER] != 59">
                     <toast
-                        en-text="Wrong number!"
-                        es-text="¡Número incorrecto!" />
+                        text="Wrong number!" />
                 </test>
             </numberPickerChoosed>
         </section>
@@ -969,8 +952,7 @@
                     <!--resetSectionState sectionId="sect156" /-->
                     <unregisterGlobalRule id="book8sect156" />
                     <toast
-                        en-text="Your wound has been healed!"
-                        es-text="¡Tu herida ha sido curada!" />
+                        text="Your wound has been healed!" />
                 </objectUsed>
             </registerGlobalRule>
         </section>
@@ -1110,8 +1092,7 @@
             <pick objectId="paidosword" />
             <currentWeapon objectId="paidosword" />
             <message id="msg-drop-weapon" 
-                en-text="You must use the Paido sword as current weapon on this combat" 
-                es-text="Debes usar la espada de Paido como arma actual en este combate"
+                text="You must use the Paido sword as current weapon on this combat" 
             />
             <onInventoryEvent>
                 <disableCombats />
@@ -1141,8 +1122,7 @@
         <section id="sect187">
             <!-- Complex. Let the player choose (TODO: This could be improved, checking the dropped weapon type) -->
             <message id="msg-drop-weapon" 
-                en-text="Drop a non-edged weapon before continuing (i.e. a Mace, Warhammer, Quarterstaff, or Bow)" 
-                es-text="Deja un arma sin filo antes de continuar (por ejemplo, una maza, un martillo de guerra, una estaca o un arco)"
+                text="Drop a non-edged weapon before continuing (i.e. a Mace, Warhammer, Quarterstaff, or Bow)" 
             />
             <choiceState section="all" set="disabled" />
             <onInventoryEvent>
@@ -1385,8 +1365,7 @@
         <section id="sect242">
             <object objectId="greycrystalring" />
             <message id="msg-drop-weapon" 
-                en-text="Drop a Lodestone, a Jewelled Mace, a Silver Helm or the Grey Crystal Ring before continuing" 
-                es-text="Deja una Piedra Imán, una Maza Enjoyada, un Yelmo Mágico de Plata o el Anillo de Cristal Gris antes de continuar"
+                text="Drop a Lodestone, a Jewelled Mace, a Silver Helm or the Grey Crystal Ring before continuing" 
             />
             <onInventoryEvent>
                 <test objectOnSection="greycrystalring|lodestone|jewelledmace|silverhelm">
@@ -1489,8 +1468,7 @@
         <section id="sect258">
             <endurance count="-8" />
             <message id="msg-drop-weapon" 
-                en-text="Drop a weapon before continuing" 
-                es-text="Deja un arma antes de continuar"
+                text="Drop a weapon before continuing" 
             />
             <onInventoryEvent>
                 <choiceState section="all" set="disabled" />
@@ -1891,11 +1869,9 @@
 
         <section id="sect338">
             <numberPicker
-                en-text="Answer the riddle"
-                es-text="Responde al acertijo"
+                text="Answer the riddle"
                 min="1" max="350"
-                en-actionButton="Choose"
-                es-actionButton="Elige"
+                actionButton="Choose"
                 />
             <numberPickerChoosed>
                 <test expression="[NUMBERPICKER] == 7">
@@ -1903,8 +1879,7 @@
                 </test>
                 <test expression="[NUMBERPICKER] != 7">
                     <toast
-                        en-text="Wrong number!"
-                        es-text="¡Número incorrecto!" />
+                        text="Wrong number!" />
                 </test>
             </numberPickerChoosed>
         </section>

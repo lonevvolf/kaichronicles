@@ -1,5 +1,5 @@
 import { WebDriver, Builder, WebElement, By, until, Alert } from "selenium-webdriver";
-import { Language, state, Mechanics, BookSectionStates, Book, declareCommonHelpers, BookSeriesId, CombatMechanics } from "..";
+import { state, Mechanics, BookSectionStates, Book, declareCommonHelpers, BookSeriesId, CombatMechanics } from "..";
 import { Type, Level } from "selenium-webdriver/lib/logging";
 import { readFileSync } from "fs-extra";
 import { ActionChart } from "../model/actionChart";
@@ -136,26 +136,23 @@ export class GameDriver {
         await this.driver.executeScript(`kai.randomTable.nextValueDebug = ${value}`);
     }
 
-    public async setupBookState(bookNumber: number, language: Language) {
+    public async setupBookState(bookNumber: number) {
         // console.log("setupBookState");
 
-        this.loadBookState(bookNumber, language);
+        this.loadBookState(bookNumber);
 
         // Go to new game page
         await this.driver.get(this.newGameUrl);
         // Select new book
         await( await this.driver.wait( until.elementLocated( By.css(`#newgame-book > option[value='${bookNumber}']`) ) , 10000) ).click();
-        // Select language
-        await ( await this.driver.findElement( By.css(`#newgame-language > option[value='${language}']`) ) ).click();
 
         // Click start game
         await (await this.driver.wait(until.elementLocated(By.id("newgame-start")), 10000)).click();
         await this.driver.wait(until.elementLocated(By.id("game-nextSection")), 5000);
     }
 
-    public loadBookState(bookNumber: number, language: Language) {
-        state.book = new Book(bookNumber, language);
-        state.language = state.book.language;
+    public loadBookState(bookNumber: number) {
+        state.book = new Book(bookNumber);
 
         // Book
         state.book.setXml(readFileSync(GameDriver.BASEPATH + state.book.getBookXmlURL(), "latin1"));

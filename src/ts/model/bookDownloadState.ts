@@ -27,10 +27,10 @@ export class BookDownloadState {
     }
 
     /**
-     * Get the translated book title
-     * @return The translated book title
+     * Get the book title
+     * @return The book title
      */
     public getTitle(): string {
-        return projectAon.getBookTitle( this.bookNumber, state.language );
+        return projectAon.getBookTitle( this.bookNumber );
     }
 }

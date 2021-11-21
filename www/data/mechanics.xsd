@@ -25,16 +25,6 @@
 
             <!-- "mechanics" children -->
             <xs:sequence>
-
-                <!-- Book translated images -->
-                <xs:element name="translated-images" minOccurs="0" maxOccurs="1">
-                    <xs:complexType>
-                        <xs:sequence>
-                            <!-- Each translated image file name -->
-                            <xs:element name="image" type="xs:string" maxOccurs="unbounded" />
-                        </xs:sequence>
-                    </xs:complexType>
-                </xs:element>
                 
                 <!-- Book sections -->
                 <xs:element name="sections">
@@ -70,8 +60,7 @@
         <!-- Section id -->
         <xs:attribute name="id" type="xs:string" use="required" />
         <xs:attribute name="pickMaximum" type="xs:integer" />
-        <xs:attribute name="en-text" type="xs:string" />
-        <xs:attribute name="es-text" type="xs:string" />
+        <xs:attribute name="text" type="xs:string" />
     </xs:complexType>
 
     <!--
@@ -131,9 +120,7 @@
         <!-- Random table index, default is zero -->
         <xs:attribute name="index" type="xs:nonNegativeInteger" />
         <!-- Section text selection (English) -->
-        <xs:attribute name="text-en" type="xs:string" />
-        <!-- Section text selection (Spanish) -->
-        <xs:attribute name="text-es" type="xs:string" />
+        <xs:attribute name="text" type="xs:string" />
         <!-- 0 == 10? -->
         <xs:attribute name="zeroAsTen" type="xs:boolean" />
     </xs:complexType>
@@ -142,9 +129,7 @@
     <!-- "chooseEquipment" rule -->
     <xs:complexType name="chooseEquipment">
         <!-- English description -->
-        <xs:attribute name="en-text" type="xs:string" use="required" />
-        <!-- Spanish description -->
-        <xs:attribute name="es-text" type="xs:string" use="required" />
+        <xs:attribute name="text" type="xs:string" use="required" />
     </xs:complexType>
 
     <xs:complexType name="test">
@@ -159,7 +144,6 @@
         <xs:attribute name="weaponskillActive" type="trueOnly" />
         <xs:attribute name="combatsWon" type="xs:boolean" />
         <xs:attribute name="combatsActive" type="trueOnly" />
-        <xs:attribute name="bookLanguage" type="xs:string" />
         <xs:attribute name="isChoiceEnabled" type="xs:string" />
         <xs:attribute name="canUseBow" type="xs:boolean" />
         <xs:attribute name="hasWeaponType" type="xs:string" />
@@ -283,8 +267,7 @@
     </xs:complexType>
     
     <xs:complexType name="message">
-        <xs:attribute name="en-text" type="xs:string"/>
-        <xs:attribute name="es-text" type="xs:string" />
+        <xs:attribute name="text" type="xs:string"/>
         <xs:attribute name="id" type="xs:string" />
         <xs:attribute name="op">
             <xs:simpleType>
@@ -324,10 +307,8 @@
     <xs:complexType name="numberPicker">
         <xs:attribute name="enabled" type="xs:boolean" />
         <xs:attribute name="money" type="xs:boolean" />
-        <xs:attribute name="en-actionButton" type="xs:string" />
-        <xs:attribute name="es-actionButton" type="xs:string" />
-        <xs:attribute name="en-text" type="xs:string" />
-        <xs:attribute name="es-text" type="xs:string" />
+        <xs:attribute name="actionButton" type="xs:string" />
+        <xs:attribute name="text" type="xs:string" />
         <xs:attribute name="min" type="xs:integer" />
         <xs:attribute name="max" type="xs:integer" />
     </xs:complexType>
@@ -367,8 +348,7 @@
     </xs:complexType>
 
     <xs:complexType name="toast">
-        <xs:attribute name="en-text" type="xs:string" use="required" />
-        <xs:attribute name="es-text" type="xs:string" />
+        <xs:attribute name="text" type="xs:string" use="required" />
         <xs:attribute name="duration" type="xs:integer" />
     </xs:complexType>
     
@@ -404,8 +384,7 @@
     </xs:complexType>
 
     <xs:complexType name="displayIllustration">
-        <xs:attribute name="en-text" type="xs:string" />
-        <xs:attribute name="es-text" type="xs:string" />
+        <xs:attribute name="text" type="xs:string" />
         <xs:attribute name="section" type="xs:string" use="required" />
     </xs:complexType>
 

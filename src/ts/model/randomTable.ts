@@ -1,10 +1,9 @@
-import { state, template, translations } from "..";
+import { state, template } from "..";
 
 /**
  * Info about a current choose
  */
 export interface RandomTableCurrentChoose {
-    ignoreZero: boolean;
     zeroAsTen: boolean;
     /**
      * The jQuery Deferred object for the promise
@@ -62,16 +61,15 @@ export class RandomTable {
         }
     }
 
-    public getRandomValueAsync(ignoreZero: boolean = false, zeroAsTen: boolean = false): JQueryPromise<number> {
+    public getRandomValueAsync(zeroAsTen: boolean = false): JQueryPromise<number> {
 
         if ( !state.actionChart.manualRandomTable ) {
             // Use computer generated random numbers:
-            return jQuery.Deferred<number>().resolve( this.getRandomValue(ignoreZero, zeroAsTen) ).promise();
+            return jQuery.Deferred<number>().resolve( this.getRandomValue(zeroAsTen) ).promise();
         }
 
         // Store info about the current selection
         this.currentAsync = {
-            ignoreZero,
             zeroAsTen,
             deferred: jQuery.Deferred()
         };
@@ -83,11 +81,6 @@ export class RandomTable {
     public randomTableUIClicked(value: number) {
 
         if ( !this.currentAsync ) {
-            return;
-        }
-
-        if ( this.currentAsync.ignoreZero && value === 0 ) {
-            toastr.info( translations.text("zeroIgnored") );
             return;
         }
 

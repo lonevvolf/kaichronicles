@@ -1,5 +1,5 @@
 import { state, ExpressionEvaluator, numberPickerMechanics, MealMechanics, translations, randomTable, mechanicsEngine,
-    EquipmentSectionMechanics, gameView, template } from "../..";
+    EquipmentSectionMechanics, template } from "../..";
 
 /**
  * Random table links mechanics
@@ -25,7 +25,7 @@ export const randomMechanics = {
         let $link;
 
         // Check if the link is selected by plain text:
-        const linkText = $(rule).attr("text-" + state.language);
+        const linkText = $(rule).attr("text");
         if (linkText) {
             const $textContainer = $(':contains("' + linkText + '")').last();
             const newHtml = $textContainer.html().replace(linkText,
@@ -52,7 +52,7 @@ export const randomMechanics = {
             randomMechanics.bindTableRandomLink($link, (value, increment) => {
                 randomMechanics.onRandomTableMechanicsClicked(rule, value, increment);
             },
-                false, zeroAsTen);
+                zeroAsTen);
         }
     },
 
@@ -116,11 +116,10 @@ export const randomMechanics = {
      * Bind a link event to a random table table
      * @param $element The jquery element with the random table tag
      * @param onLinkPressed Callback to call when the link is pressed
-     * @param {boolean} ignoreZero True if the zero random value should be ignored
      * @param {boolean} zeroAsTen true if the zero must to be returned as ten
      */
     bindTableRandomLink($element: any, onLinkPressed: (value: number, increment: number) => void,
-                        ignoreZero: boolean, zeroAsTen: boolean) {
+                        zeroAsTen: boolean) {
 
         // If the element is an span, replace it by a link
         $element = randomMechanics.setupRandomTableLink($element);
@@ -145,7 +144,7 @@ export const randomMechanics = {
             }
 
             // Get the random value
-            randomTable.getRandomValueAsync(ignoreZero, zeroAsTen)
+            randomTable.getRandomValueAsync(zeroAsTen)
                 .then((value) => {
                     // Get the increment
                     const incrementValue = $(this).attr("data-increment");

@@ -1,4 +1,4 @@
-import { setupController, translations, views, settingsView, Language, Book, state, template, mechanicsEngine } from "..";
+import { setupController, translations, views, settingsView, state, template, mechanicsEngine } from "..";
 
 /**
  * Game settings controller
@@ -18,41 +18,6 @@ export const settingsController = {
             settingsView.setup();
         });
 
-    },
-
-    /**
-     * Change the current language
-     * @param newLanguage The new language code
-     * @param updateUI Should we show progress on UI. Set true ONLY on the settings page
-     * @return The promise to download the book with the new language
-     */
-    changeLanguage(newLanguage: Language, updateUI: boolean): JQueryPromise<void> {
-
-        // TODO: Check download errors
-
-        // Load the book with the new language:
-        if ( updateUI ) {
-            settingsView.showDownloadDialog();
-        }
-        const book = new Book( state.book.bookNumber , newLanguage );
-        return book.downloadBookXml()
-        .then(() => {
-            if ( updateUI ) {
-                settingsView.hideDownloadDialog();
-            }
-            // Load game mechanics XML
-            state.updateBookTranslation(book);
-            // Set the new language title
-            template.setNavTitle( book.getBookTitle() , "#game", false);
-            // Clear the objects cache (they contain translated object names)
-            state.mechanics.clearObjectsCache();
-            // Translate the main menu
-            template.translateMainMenu();
-            // Force to reload the settings view, translated to the new language
-            if ( updateUI ) {
-                settingsController.index();
-            }
-        });
     },
 
     /**

@@ -2,12 +2,6 @@
 
 <mechanics book="5">
 
-    <!-- LIST OF TRANSLATED IMAGES -->
-    <translated-images>
-        <image>map.png</image>
-        <image>weapons.png</image>
-    </translated-images>
-
     <!-- GAME RULES -->
     <sections count="400">
 
@@ -53,18 +47,14 @@
             <object objectId="mace" />
             <object objectId="shield" />
 
-            <chooseEquipment 
-                en-text="Click on the Random Table link to get money before continuing" 
-                es-text="Haz click en el link de la Tabla de la Suerte para obtener dinero antes de continuar"
+            <chooseEquipment text="Click on the Random Table link to get money before continuing" 
             />
 
-            <message 
-                en-text="You may take up to four of the following (both meals count as one object):" 
-                es-text="Puedes elegir hasta cuatro de los objetos (ambas comidas cuentan como un objeto):" 
+            <message text="You may take up to four of the following (both meals count as one object):"  
             />
         </section>
 
-        <section id="sect1" en-text="Part I" es-text="Parte I" >
+        <section id="sect1" text="Part I" >
         </section>
 
         <section id="sect2">
@@ -185,9 +175,7 @@
 
         <section id="sect19">
             <!-- TODO: Meals right now are considered as backpack items. Wrong -->
-            <message id="msg-drop-objects" 
-                en-text="Drop the Backpack Items you want to give to the guards" 
-                es-text="Deja los Objetos de Mochila que quieres dar a los guardias"
+            <message id="msg-drop-objects" text="Drop the Backpack Items you want to give to the guards" 
             />
             <onInventoryEvent>
                 <test expression="[BACKPACK-ITEMS-CNT-ON-SECTION] >= 2">
@@ -319,9 +307,7 @@
         <section id="sect40">
             <pick class="money" count="-[MONEY]" />
             <endurance count="-2" />
-            <message id="msg-drop-object" 
-                en-text="Drop one Backpack Item before continuing" 
-                es-text="Deja un Objeto de Mochila antes de continuar" 
+            <message id="msg-drop-object" text="Drop one Backpack Item before continuing"  
             />
             <choiceState section="all" set="disabled" />
             <onInventoryEvent>
@@ -430,31 +416,19 @@
         </section>
 
         <section id="sect58">
-            <test bookLanguage="en">
-                <choiceState section="sect98" set="disabled" />
-            </test>
-            <test bookLanguage="es">
-                <test sectionContainsText="Pasa inmediatamente al 98">
-                    <!-- SVN revision >= 2713 -->
-                    <choiceState section="sect98" set="disabled" />
-                </test>
-            </test>
+            <choiceState section="sect98" set="disabled" />
 
             <numberPicker 
-                en-text="Choose the number for the Cloeasian combination lock"
-                es-text="Elige el número para la cerradura"
+                text="Choose the number for the Cloeasian combination lock"
                 min="1" max="200" 
-                en-actionButton="Choose"
-                es-actionButton="Elige"
+                actionButton="Choose"
                 />
             <numberPickerChoosed>
                 <test expression="[NUMBERPICKER] == 67">
                     <goToSection section="sect67" />
                 </test>
                 <test expression="[NUMBERPICKER] != 67">
-                    <toast 
-                        en-text="Wrong number!"
-                        es-text="¡Número incorrecto!" />
+                    <toast text="Wrong number!" />
                     <goToSection section="sect98" />
                 </test>
             </numberPickerChoosed>
@@ -471,9 +445,7 @@
             <registerGlobalRule id="book5sect63">
                 <objectUsed objectId="laumspurpotion|laumspurpotion4|redpotionlaumspur">
                     <unregisterGlobalRule id="book5sect63" />
-                    <toast 
-                        en-text="Your wound has been healed!"
-                        es-text="¡Tu herida ha sido curada!" />
+                    <toast text="Your wound has been healed!" />
                 </objectUsed>
                 <choiceSelected section="all">
                     <endurance count="-2" />
@@ -1026,7 +998,7 @@
             </test>
         </section>
 
-        <section id="sect201" en-text="Part II" es-text="Parte II" >
+        <section id="sect201" text="Part II" >
         </section>
 
         <section id="sect205">
@@ -1398,14 +1370,8 @@
         </section>
 
         <section id="sect270">
-            <message id="msg-drop-object" 
-                en-text="Drop two Backpack Items" 
-                es-text="Deja dos Objetos de Mochila"
-            />
-            <message id="msg-drop-others" 
-                en-text="Drop a Weapon and a Special Item, if you have"
-                es-text="Deja un Arma y un Objeto Especial, si los tienes"
-            />
+            <message id="msg-drop-object" text="Drop two Backpack Items" />
+            <message id="msg-drop-others" text="Drop a Weapon and a Special Item, if you have" />
             <choiceState section="all" set="disabled" />
             <onInventoryEvent>
                 <message id="msg-drop-others" op="hide" />
@@ -1751,28 +1717,21 @@
 
         <section id="sect331">
             <numberPicker 
-                en-text="Choose the number for location of the Tomb of the Majhan"
-                es-text="Elige el número de la localización de la Tumba de los Majhanes"
+                text="Choose the number for location of the Tomb of the Majhan"
                 min="1" max="400" 
-                en-actionButton="Choose"
-                es-actionButton="Elige"
+                actionButton="Choose"
                 />
             <numberPickerChoosed>
                 <test expression="[NUMBERPICKER] == 373">
                     <goToSection section="sect373" />
                 </test>
                 <test expression="[NUMBERPICKER] != 373">
-                    <toast 
-                        en-text="Wrong number!"
-                        es-text="¡Número incorrecto!" />
+                    <toast text="Wrong number!" />
                 </test>
             </numberPickerChoosed>
 
             <!-- cough cough... -->
-            <message 
-                en-text="WARNING: There is an error on the map. The city of Chula should have a flag." 
-                es-text="ATENCIÓN: Hay un error en el mapa. La ciudad de Chula debería tener una bandera." 
-            />
+            <message text="WARNING: There is an error on the map. The city of Chula should have a flag." />
         </section>
 
         <section id="sect333">

@@ -1,4 +1,4 @@
-import { Book, translations, mechanicsEngine, Language, Section, state } from "..";
+import { Book, translations, mechanicsEngine, Section, state } from "..";
 
 /**
  * Item effect / usage description
@@ -129,7 +129,7 @@ export class Item {
         this.id = objectId;
 
         // The translated object name
-        this.name = Item.getTranslatedTag($o, book, "name");
+        this.name = $o.find("name").text()
 
         // True if the object is a meal
         this.isMeal = $o.attr("isMeal") === "true";
@@ -149,7 +149,7 @@ export class Item {
         this.usageCount = txtUsageCount ? parseInt(txtUsageCount, 10) : 1;
 
         // The translated object description
-        this.description = Item.getTranslatedTag($o, book, "description");
+        this.description = $o.find("description").text()
 
         // If it's the map, add description from the book:
         if (objectId === Item.MAP) {
@@ -165,7 +165,7 @@ export class Item {
         }
 
         // Extra description
-        this.extraDescription = Item.getTranslatedTag($o, book, "extraDescription");
+        this.extraDescription = $o.find("extraDescription").text();
 
         /**
          * The weapon type. Only for special and object types. It is the kind of weapon.
@@ -204,15 +204,6 @@ export class Item {
         // Incompatibilities
         this.incompatibleWith = mechanicsEngine.getArrayProperty($o, "incompatibleWith");
 
-    }
-
-    private static getTranslatedTag($o: JQuery<Element>, book: Book, tagName: string) {
-        let text = $o.find(tagName + "[lang=" + book.language + "]").text();
-        if (!text && book.language !== Language.ENGLISH) {
-            // Maybe object is untranslated. Try to get the english text
-            text = $o.find(tagName + "[lang=" + Language.ENGLISH + "]").text();
-        }
-        return text;
     }
 
     private assignMapDescription(book: Book) {
@@ -309,7 +300,7 @@ export class Item {
             }
         }
 
-        const imageBook = new Book(this.imageBookNumber, state.book.language);
+        const imageBook = new Book(this.imageBookNumber);
         this.imageUrl = imageBook.getIllustrationURL($image.attr("name"));
     }
 }
