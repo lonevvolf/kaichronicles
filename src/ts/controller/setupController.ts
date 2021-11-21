@@ -1,4 +1,4 @@
-import { state, template, routing, views, mechanicsEngine, setupView, GoogleAnalytics, ajaxErrorMsg } from "..";
+import { state, template, routing, views, mechanicsEngine, setupView, ajaxErrorMsg } from "..";
 
 /**
  * The book loader controller
@@ -23,14 +23,12 @@ export const setupController = {
         if (state.existsPersistedState()) {
             // At this moment the mechanics/object XML is unknown, and this log errors on the console:
             // template.updateStatistics(true);
-            state.restoreState();
-            setupController.recordPageVisit("continue");
+            state.restoreState();            
         } else {
             // New game. Get hash URL parameters
             const bookNumber = parseInt(routing.getHashParameter("bookNumber"), 10);
             const keepActionChart = routing.getHashParameter("keepActionChart");
             state.setup(bookNumber, keepActionChart);
-            setupController.recordPageVisit("newgame");
         }
         template.translateMainMenu();
 
@@ -118,18 +116,6 @@ export const setupController = {
             return false;
         }
         return true;
-    },
-
-    /**
-     * Record page on Google Analytics
-     * @param {string} pageName The page name to record
-     */
-    recordPageVisit(pageName: string) {
-        try {
-            GoogleAnalytics.sendPageView("/" + pageName + "-" + state.book.bookNumber + ".html");
-        } catch (e) {
-            mechanicsEngine.debugWarning(e);
-        }
     },
 
     /** Return page */

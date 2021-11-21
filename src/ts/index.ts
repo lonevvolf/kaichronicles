@@ -78,6 +78,5 @@ export * from "./model/loreCircle";
 export * from "./model/bookValidator";
 export * from "./model/section";
 export * from "./model/sectionState";
-export * from "./model/googleAnalytics";
 export * from "./model/bookSeries";
 export * from "./model/actionChartItem";

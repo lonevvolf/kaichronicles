@@ -1,4 +1,4 @@
-import { views, state, template, routing, GoogleAnalytics, declareCommonHelpers, mechanicsEngine } from ".";
+import { views, state, template, routing, declareCommonHelpers, mechanicsEngine } from ".";
 
 /** Execution enviroment type */
 export enum EnvironmentType {
@@ -69,9 +69,6 @@ export class App {
                     state.setupDefaultColorTheme();
                     template.setup();
                     routing.setup();
-
-                    // Setup google analytics, if we are on web
-                    GoogleAnalytics.setup();
 
                     if ( App.debugMode === DebugMode.DEBUG && state.existsPersistedState() ) {
                         // If we are developing a book, avoid to press the "Continue game"

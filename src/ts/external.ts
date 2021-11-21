@@ -20,9 +20,6 @@ declare const ENVIRONMENT: string;
 // FileSaver.js
 declare const saveAs: any;
 
-// Google analytics
-declare const ga;
-
 // xmllint.js
 declare function validateXML(parms: any): string;
 
