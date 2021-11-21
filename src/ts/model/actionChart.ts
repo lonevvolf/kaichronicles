@@ -233,7 +233,7 @@ export class ActionChart {
                 this.checkCurrentWeapon();
                 return true;
 
-            case Item.SPECIAL:
+            case Item.SPECIAL: {
 
                 // Check Special Items limit
                 const nMax = ActionChart.getMaxSpecials();
@@ -258,7 +258,7 @@ export class ActionChart {
                 }
 
                 return true;
-
+            }
             case Item.OBJECT:
 
                 if (aChartItem.id === Item.BACKPACK) {
@@ -289,10 +289,11 @@ export class ActionChart {
                 console.log("Picked object " + aChartItem.id);
                 return true;
 
-            default:
+            default: {
                 const msg = "Unknown object type: " + item.type;
                 mechanicsEngine.debugWarning(msg);
                 throw msg;
+            }
         }
 
     }

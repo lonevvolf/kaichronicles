@@ -13,7 +13,7 @@
     <title>Kai Chronicles</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="lib/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="lib/bootstrap-3.4.1-dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="lib/toastr/toastr.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
@@ -191,20 +191,13 @@
 
     <!-- Third party -->
     <script src="lib/jquery-2.2.4.min.js"></script>
-    <script src="lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="lib/bootstrap-3.4.1-dist/js/bootstrap.min.js"></script>
     <script src="lib/toastr/toastr.min.js"></script>
     <script src="lib/filesaver.js"></script>
     
     <!-- @ifndef PRODUCTION -->
         <!-- xmllint.js is 2.2 MB and only used for tests, so don't include it on production -->
         <script src="lib/xmllint.js"></script>
-    <!-- @endif -->
-
-    <!-- This is the Apache Cordova API (only for App) 
-         Keep it in development (to run cordova from command line on src dir)
-      -->
-    <!-- @ifdef CORDOVA -->
-      <script src="cordova.js"></script>
     <!-- @endif -->
 
     <!-- Production scripts -->
@@ -217,19 +210,17 @@
     <!-- @endif -->
 
     <!-- Google analytics, only for web -->
-    <!-- @ifndef CORDOVA !>
-      <script>
-          try {
-            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-            })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-          }
-          catch(e) {
-            console.log(e);
-          }
-      </script>
-    <!-- @endif -->
+    <script>
+        try {
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+        }
+        catch(e) {
+          console.log(e);
+        }
+    </script>
 
     <!-- Development scripts -->
     <!-- @ifndef PRODUCTION -->

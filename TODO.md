@@ -94,25 +94,17 @@ TODO
 - Keep version number of current downloaded books, and check for book errata fixes
 - On "About the book", display the book number
 - Allow to select the current bow
-- Android application:
-  * App lifeciclye
-  * Load games page: Show info about saved games
-  * Load games page: Remove ".json" extension
-  * Save game: Do not be so restrictive with file names characters
-  * Replace toastr by Android toasts ???
-  * Remove animations from modal dialogs (only for Android, performance...)
 - Toasts with images: align text when the text is multiline
 - Combats should be sequential: First finish the first one, then the second, etc
 - If the hunting is disabled on the current section, show it on some place (Action Chart?)
 - Document all rules
-- Common performance (Android and web):
+- Common performance (web):
   * Rendering performance on book 2 / sect equimpnt
 - Test all books / all sections rendering. It should be valid HTML5
   (https://validator.w3.org/docs/api.html)
 - Test tags <ch.* /> replacements
 - Dialogs with text input: Allow to confirm with the screen keyboard ("go" button)
 - Remove the "Alert" text from the message dialog (same for confirms)
-- Google Play will require API 26 on november 2018 (upgrade Cordova version?)
 - Allow to change the font size / family
   * See http://www.lalit.org/lab/javascript-css-font-detect/
 - Tests: Check spanish and english combats: Enemies should have the same statistics
@@ -134,21 +126,11 @@ Reminders
 
 * JsDoc docs: http://usejsdoc.org/
 
-* Emulate with a given emulator name
-cordova emulate --target=Android_4_4_2 android
-cordova emulate --target=Android_5_0_1 android
-cordova emulate --target=Android_6 android
-cordova emulate --target=Android_7 android
-cordova emulate --target=Android_9 android
-
 * Build project AON xhtml:
   cd [trunk or tag directory]
   export AONDIR=`pwd`
   export LANGS=[laguage ("en" or "es")]
   ./common/scripts/build-xhtml.sh
-
-* Bug with cordova android icons:
-  http://stackoverflow.com/questions/40351434/cordova-android-6-4-0-creates-res-folder-top-level-not-inside-platforms-android
 
 * Upload code to github:
   git remote add origin https://github.com/tonib/kaichronicles.git
@@ -160,23 +142,10 @@ cordova emulate --target=Android_9 android
 * Create new tag:
   git tag <tagname>
   git push origin --tags
-  
-* Android AVD
-  cd [android-sdk]
-  tools/android avd
 
 * node.js
   Install dependencies: npm install
   Run script: npm run lint
-  
-* Debug Cordova app on Chrome:
-  URL: chrome://inspect/#devices
-
-* Remove plugin code
-  cordova plugin remove cordova-plugin-copytodownload
-
-* Cordova plugins list
-  cordova plugin list
 
 * Verify Project AON patches:
   - Verify XML changes:

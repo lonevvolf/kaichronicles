@@ -126,7 +126,7 @@ export class BookSectionStates {
         });
 
         // Other states initialization. Be sure it's not null (created on v1.3)
-        if ( !!stateObject.otherStates ) {
+        if ( stateObject.otherStates ) {
             this.otherStates = stateObject.otherStates;
         }
 

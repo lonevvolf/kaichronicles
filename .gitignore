@@ -6,10 +6,6 @@ src/patches/projectAonPatches
 www/js
 src/js
 
-# Cordova stuff
-platforms
-plugins
-
 # Visual Studio Code stuff
 jsconfig.json
 .vscode

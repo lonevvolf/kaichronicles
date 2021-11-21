@@ -1,10 +1,14 @@
 const path = require('path');
+const TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = {
   mode: 'development',
   entry: './src/ts/index.ts',
-  //devtool: "source-map",
-  devtool: 'inline-source-map',
+  devtool: "source-map",
+  devServer: {
+    static: './www',
+    port: 3000,
+  },
   module: {
     rules: [
       {
@@ -22,11 +26,8 @@ module.exports = {
     path: path.resolve(__dirname, 'www/js'),
     library: 'kai'
   },
-
-  externals: {
-    // Declare cordova plugins as external global variables, needed for web app to run
-    'cordova-plugin-file': { root: '_' },
-    'cordova-plugin-file-transfer': { root: '_' },
-    'cordova-plugin-network-information' : { root: '_' }
+  optimization: {
+    minimize: true,
+    minimizer: [new TerserPlugin()],
   }
 };

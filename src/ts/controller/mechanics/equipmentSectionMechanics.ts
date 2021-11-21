@@ -157,7 +157,7 @@ export class EquipmentSectionMechanics {
         const pickedObjects: string[] = [];
         for ( objectId in originalObjects) {
 
-            if ( !originalObjects.hasOwnProperty(objectId) ) {
+            if ( !Object.prototype.hasOwnProperty.call(originalObjects, objectId) ) {
                 continue;
             }
 

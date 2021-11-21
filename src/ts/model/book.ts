@@ -1,4 +1,4 @@
-import { Language, cordovaApp, state, KaiDiscipline, projectAon, Section, MgnDiscipline, GndDiscipline, BookSeriesId, SectionRenderer, BookSeries, mechanicsEngine } from "..";
+import { Language, state, KaiDiscipline, projectAon, Section, MgnDiscipline, GndDiscipline, BookSeriesId, SectionRenderer, BookSeries, mechanicsEngine } from "..";
 
 /** Book disciplines table */
 export interface DisciplinesTable {
@@ -94,12 +94,7 @@ export class Book {
      * @return The base URL
      */
     public static getBaseUrl(): string {
-        if ( cordovaApp.isRunningApp() ) {
-            // Return the local downloaded books directory
-            return state.localBooksLibrary.BOOKS_PATH + "/";
-        } else {
-            return "data/projectAon/";
-        }
+        return "data/projectAon/";
     }
 
     /** Do replacements on original XML to have a valid standalone XML.
@@ -136,7 +131,7 @@ export class Book {
         // Replace links
         // 12-21 12:37:11.655: E/browser(1884): Console: Uncaught TypeError: Cannot supply flags when constructing one RegExp from another http://10.0.2.2/ls/statskeeper3/model/book.js:51
         // xmlText = xmlText.replace( new RegExp( /\&link\..+?\;/ , 'g' ) , '' );
-        let exp = /\&link\..+?\;/g;
+        let exp = /&link\..+?;/g;
         xmlText = xmlText.replace( exp , "" );
 
         xmlText = xmlText.replaceAll("&copy;", "&amp;copy;" );
@@ -182,7 +177,6 @@ export class Book {
      */
     public downloadBookXml(): JQueryPromise<void> {
 
-        const self = this;
         const bookXmlUrl = this.getBookXmlURL();
         // console.log( 'Downloading book XML URL: ' + bookXmlUrl);
 
@@ -191,7 +185,7 @@ export class Book {
             dataType: "text"
         })
         .done((xml) => {
-            self.setXml(xml);
+            this.setXml(xml);
         });
     }
 
@@ -328,10 +322,9 @@ export class Book {
             const disciplinesSection = new Section(this, Book.DISCIPLINES_SECTION, state.mechanics);
 
             this.disciplines = {};
-            const self = this;
             // Parse the disciplines section
             $(this.bookXml).find('section[id=discplnz] > data > section[id!="mksumary"]')
-            .each( function(disciplineSection) {
+            .each((disciplineSection) => {
 
                 const $node = $(this);
 
@@ -354,7 +347,7 @@ export class Book {
                     imageHtml = SectionRenderer.renderIllustration(disciplinesSection, $disciplineIll);
                 }
 
-                self.disciplines[disciplineId] = {
+                this.disciplines[disciplineId] = {
                     id: disciplineId,
                     name: $node.find("> meta > title").text(),
                     description,

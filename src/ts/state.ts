@@ -1,4 +1,4 @@
-import { Book, Mechanics, BookSectionStates, ActionChart, LocalBooksLibrary, projectAon, mechanicsEngine } from ".";
+import { Book, Mechanics, BookSectionStates, ActionChart, projectAon, mechanicsEngine } from ".";
 
 /** Language codes */
 export enum Language {
@@ -46,12 +46,6 @@ export class State {
     public color = "light";
 
     /**
-     * The local books download state for the Cordova app.
-     * This member is not persisted
-     */
-    public localBooksLibrary = null as LocalBooksLibrary;
-
-    /**
      * Setup the default browser language
      */
     public setupDefaultLanguage() {
@@ -59,9 +53,9 @@ export class State {
         if ( !navigator.language || navigator.language.length < 2 ) {
             return;
         }
-        if ( navigator.language.toLowerCase().substr(0, 2) === "es" ) {
+        /*if ( navigator.language.toLowerCase().substr(0, 2) === "es" ) {
             this.language = Language.SPANISH;
-        }
+        }*/
     }
 
     /**

@@ -14,7 +14,6 @@ export const aboutController = {
             return;
         }
 
-        const self = this;
         document.title = translations.text( "about" );
         views.loadView("about.html")
         .then(() => {
@@ -32,13 +31,9 @@ export const aboutController = {
                 // Wait downloads and the HTML of each one
                 for ( const promise of promises) {
                     promise.then((xml: string) => {
-                        try {
-                            xml = Book.fixXml(xml);
-                            xml = "<div><p>" + xml + "</p></div>";
-                            self.authorInfoDownloaded(xml);
-                        } catch (e) {
-                            throw e;
-                        }
+                        xml = Book.fixXml(xml);
+                        xml = "<div><p>" + xml + "</p></div>";
+                        this.authorInfoDownloaded(xml);
                     });
                 }
             } catch (ex) {

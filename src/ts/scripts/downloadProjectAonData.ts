@@ -1,16 +1,14 @@
 import * as fs from "fs-extra";
+import * as fsn from "fs";
 import { projectAon } from "..";
 import { BookData } from "./bookData";
+import simpleGit, {SimpleGit, SimpleGitProgressEvent} from 'simple-git';
 
 /*
     Dowload Project Aon book data
     Command line parameters:
     1) Book index (1-based). If it does not exists, the "www/data/projectAon" will be re-created and all books will be downloaded
 */
-
-// Download PAON XML patches
-// THIS COULD BREAK THE PAON LICENSE, SO, DON'T DO IT
-// BookData.downloadBooksXmlPatches();
 
 // Check if we should download only a single book
 let bookNumber = 0;
@@ -39,7 +37,21 @@ if ( bookNumber ) {
     to = projectAon.supportedBooks.length;
 }
 
-// Do the download stuff
-for (let i = from; i <= to; i++) {
-    new BookData(i).downloadBookData();
+const progress = ({method, stage, progress}: SimpleGitProgressEvent) => {
+    console.log(`git.${method} ${stage} stage ${progress}% complete`);
+ }
+const git: SimpleGit = simpleGit({progress});
+let gitPromise;
+if(fsn.existsSync("project-aon")) {
+    console.log("Updating Project Aon local repository");
+    gitPromise = git.pull();
+} else {
+    console.log("Cloning Project Aon git repository. Could take time (~500MB to download).");
+    gitPromise = git.clone("https://git.projectaon.org/project-aon.git");
 }
+
+gitPromise.then(result => {
+    for (let i = from; i <= to; i++) {
+        new BookData(i).downloadBookData();
+    }
+});

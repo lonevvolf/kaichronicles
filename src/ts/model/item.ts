@@ -89,7 +89,6 @@ export class Item {
 
     /**
      * The book number that contains the image (1-index based).
-     * Needed to check if the book has been downloaded on the Cordova app
      */
     private imageBookNumber: number;
 
@@ -273,11 +272,6 @@ export class Item {
             return null;
         }
 
-        // Cordova app: Check if the book where is the image is downloaded
-        if (!state.localBooksLibrary.isBookDownloaded(this.imageBookNumber)) {
-            return null;
-        }
-
         return this.imageUrl;
     }
 
@@ -308,7 +302,7 @@ export class Item {
         if (candidateBookNumbers.length > 1) {
             // Choose the last played (or playing) book.
             for (let i = candidateBookNumbers.length - 1; i >= 0; i--) {
-                if (state.book.bookNumber >= candidateBookNumbers[i] && state.localBooksLibrary.isBookDownloaded(candidateBookNumbers[i])) {
+                if (state.book.bookNumber >= candidateBookNumbers[i]) {
                     this.imageBookNumber = candidateBookNumbers[i];
                     break;
                 }

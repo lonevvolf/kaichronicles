@@ -11,21 +11,12 @@ export const newGameController = {
     index() {
 
         // Get available books
-        const downloadedBooks = state.localBooksLibrary.getDownloadedBooks();
-
-        if ( downloadedBooks.length === 0 ) {
-            // No books downloaded:
-            alert( translations.text("noDownloadedBooks") );
-            routing.redirect("mainMenu");
-            return;
-        }
-
         template.setNavTitle( translations.text("kaiChronicles") , "#mainMenu", true);
         template.showStatistics(false);
 
         views.loadView("newGame.html")
         .then(() => {
-            newGameView.setup(downloadedBooks);
+            newGameView.setup();
         });
 
     },

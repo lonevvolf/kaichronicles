@@ -1,4 +1,4 @@
-import { template, cordovaApp, App, mechanicsEngine } from ".";
+import { template, App, mechanicsEngine } from ".";
 
 /**
  * The routes handler.
@@ -158,7 +158,7 @@ export const routing = {
     objectToUrlParms(o) {
         let str = "";
         for (const key in o) {
-            if (o.hasOwnProperty(key)) {
+            if (Object.prototype.hasOwnProperty.call(o, key)) {
                 if (str !== "") {
                     str += "&";
                 }
@@ -181,38 +181,6 @@ export const routing = {
             hash = hash.substring( idx + 1 );
         }
         return hash.getUrlParameter(paramName);
-    },
-
-    /**
-     * Hardware back button pressed (Cordova app)
-     */
-    onBackButton() {
-
-        // Get the current controler
-        const controller = routing.getCurrentController();
-        if ( !controller || !controller.getBackController ) {
-            window.history.back();
-            return;
-        }
-
-        // Get the back page for the current controller, and go there
-        const backController = controller.getBackController();
-        if ( backController === "exitApp" ) {
-            cordovaApp.closeApp();
-            return;
-        }
-
-        if ( backController === "DONOTHING" ) {
-            // ok:
-            return;
-        }
-
-        if ( !backController ) {
-            window.history.back();
-            return;
-        }
-        routing.redirect( backController );
-
     },
 
 };

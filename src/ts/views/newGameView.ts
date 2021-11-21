@@ -1,21 +1,22 @@
-import { BookDownloadState, state, translations, newGameController, cordovaApp } from "..";
+import { projectAon, Language, state, translations, newGameController } from "..";
 
 /**
  * The new game view API
  */
 export const newGameView = {
 
-    setup(downloadedBooks: BookDownloadState[]) {
+    setup() {
 
         // Set current language
-        $("#newgame-language").val(state.language);
+        // $("#newgame-language").val(state.language);
 
         // Add supported books
         let html = "";
-        for (const book of downloadedBooks) {
-            html += '<option value="' + book.bookNumber + '" >' +
-                book.bookNumber + ". " +
-                book.getTitle() + "</option>";
+        for ( let i = 1; i <= projectAon.supportedBooks.length; i++) {
+            const title = projectAon.getBookTitle( i, state.language )
+            html += '<option value="' + i + '" >' +
+                i + ". " +
+                title + "</option>";
         }
         $("#newgame-book").html(html);
 
@@ -27,7 +28,7 @@ export const newGameView = {
                 return;
             }
             newGameController.startNewGame($("#newgame-book").val(),
-                $("#newgame-language").val());
+            Language.ENGLISH); //$("#newgame-language").val());
         });
 
         // Book change
@@ -36,9 +37,7 @@ export const newGameView = {
         });
 
         // Set the first book as selected:
-        if (downloadedBooks.length > 0) {
-            newGameController.selectedBookChanged(downloadedBooks[0].bookNumber);
-        }
+        newGameController.selectedBookChanged(1);
     },
 
     /**
@@ -46,10 +45,7 @@ export const newGameView = {
      * @param {string} url The cover URL
      */
     setCoverImage(url: string) {
-        if (!cordovaApp.isRunningApp()) {
-            // Web: Clear the previous cover (PA server has a slow connection)
-            $("#newgame-cover").attr("src", "");
-        }
+        $("#newgame-cover").attr("src", "");
         $("#newgame-cover").attr("src", url);
     }
 };

@@ -1,4 +1,4 @@
-import { App, EnvironmentType, template, translations, cordovaApp, ajaxErrorMsg } from ".";
+import { App, EnvironmentType, template, translations, ajaxErrorMsg } from ".";
 
 export const views = {
 
@@ -59,10 +59,7 @@ export const views = {
         // This should be executed only on development environment:
 
         // Download the view
-        if ( !cordovaApp.isRunningApp() ) {
-            // Set a busy message
-            template.setViewContent('<img src="images/ajax-loader.gif" alt="Loading image" /> Loading view...');
-        }
+        template.setViewContent('<img src="images/ajax-loader.gif" alt="Loading image" /> Loading view...');
 
         return $.ajax({
             dataType: "html",

@@ -1,4 +1,4 @@
-import { state, settingsController, translations, setupController, routing, cordovaApp } from "..";
+import { state, settingsController, translations, setupController, routing } from "..";
 
 /**
  * Settings view
@@ -8,10 +8,10 @@ export const settingsView = {
     setup() {
 
         // Language
-        $("#settings-language").val(state.language);
+        /*$("#settings-language").val(state.language);
         $("#settings-language").change(function() {
             settingsController.changeLanguage($(this).val(), true);
-        });
+        });*/
 
         // Color theme
         $("#settings-color-theme").val(state.color);
@@ -81,9 +81,6 @@ export const settingsView = {
      * Show the download book dialog, only for web
      */
     showDownloadDialog() {
-        if (cordovaApp.isRunningApp()) {
-            return;
-        }
         $("#settings-downloadDialog").modal("show");
     },
 
@@ -91,9 +88,6 @@ export const settingsView = {
      * Hide the download book dialog, only for web
      */
     hideDownloadDialog() {
-        if (cordovaApp.isRunningApp()) {
-            return;
-        }
         $("#settings-downloadDialog").modal("hide");
     }
 

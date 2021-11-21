@@ -44,16 +44,15 @@ export class Mechanics {
      */
     public downloadXml(): JQueryPromise<void> {
 
-        const self = this;
         return $.ajax({
             url: this.getXmlURL(),
             dataType: "text"
         })
         .done((xml: string) => {
-            self.mechanicsXml = $.parseXML(xml);
+            this.mechanicsXml = $.parseXML(xml);
             if (App.debugMode === DebugMode.DEBUG) {
                 // Debug mode: Store the original XML. This can be needed to do tests (BookValidator.ts)
-                self.mechanicsXmlText = xml;
+                this.mechanicsXmlText = xml;
             }
         });
     }
@@ -76,13 +75,12 @@ export class Mechanics {
      */
     public downloadObjectsXml(): JQueryPromise<void> {
 
-        const self = this;
         return $.ajax({
             url: this.getObjectsXmlURL(),
             dataType: "xml"
         })
         .done((xml) => {
-            self.objectsXml = xml;
+            this.objectsXml = xml;
         });
     }
 

@@ -1,4 +1,4 @@
-import { template, translations, views, mainMenuView, cordovaApp, state, Language, settingsController } from "..";
+import { template, translations, views, mainMenuView, state, Language, settingsController } from "..";
 
 /**
  * The application menu controller
@@ -13,11 +13,6 @@ export const mainMenuController = {
         template.showStatistics(false);
         views.loadView("mainMenu.html").then(() => {
             mainMenuView.setup();
-
-            // Hide info only for the web site on the app:
-            if ( cordovaApp.isRunningApp() ) {
-                mainMenuView.hideWebInfo();
-            }
 
             // Check if there is a current game
             if ( !state.existsPersistedState() ) {

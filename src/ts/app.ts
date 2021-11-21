@@ -1,4 +1,4 @@
-import { views, cordovaApp, state, LocalBooksLibrary, template, routing, GoogleAnalytics, declareCommonHelpers, mechanicsEngine } from ".";
+import { views, state, template, routing, GoogleAnalytics, declareCommonHelpers, mechanicsEngine } from ".";
 
 /** Execution enviroment type */
 export enum EnvironmentType {
@@ -61,15 +61,6 @@ export class App {
 
         // First, load the views
         views.setup()
-            .then(() => {
-                // If we are running a Cordova app, wait for device APIs load
-                return cordovaApp.setup();
-            })
-            .then(() => {
-                // If we are on the app, setup the downloaded books state
-                state.localBooksLibrary = new LocalBooksLibrary();
-                return state.localBooksLibrary.setupAsync();
-            })
             .then( () => {
                 try {
                     console.log("Real setup started");

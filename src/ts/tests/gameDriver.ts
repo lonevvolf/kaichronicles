@@ -1,5 +1,5 @@
-import { WebDriver, Builder, WebElement, By, until, AlertPromise, Alert } from "selenium-webdriver";
-import { Language, state, Mechanics, BookSectionStates, Book, LocalBooksLibrary, declareCommonHelpers, BookSeriesId, CombatMechanics } from "..";
+import { WebDriver, Builder, WebElement, By, until, Alert } from "selenium-webdriver";
+import { Language, state, Mechanics, BookSectionStates, Book, declareCommonHelpers, BookSeriesId, CombatMechanics } from "..";
 import { Type, Level } from "selenium-webdriver/lib/logging";
 import { readFileSync } from "fs-extra";
 import { ActionChart } from "../model/actionChart";
@@ -17,8 +17,6 @@ export class GameDriver {
     private static readonly BASEPATH = "www/";
 
     public constructor() {
-        state.localBooksLibrary = new LocalBooksLibrary();
-
         this.newGameUrl = "http://localhost/ls";
         if (process.env.KAIURL) {
             this.newGameUrl = process.env.KAIURL;
@@ -121,10 +119,7 @@ export class GameDriver {
         const errors = [];
         for (const entry of await this.driver.manage().logs().get(Type.BROWSER)) {
             if (entry.level === Level.SEVERE ) {
-                const isCordova404error = entry.message.indexOf("cordova.js") >= 0;
-                if (!isCordova404error) {
-                    errors.push(entry.message);
-                }
+                errors.push(entry.message);
             }
         }
         return errors;
@@ -133,7 +128,7 @@ export class GameDriver {
     public async debugSleep(miliseconds: number = 2500) {
         try {
             await this.driver.wait(until.elementLocated(By.id("notexists")), miliseconds);
-        // tslint:disable-next-line: no-empty
+        // eslint-disable-next-line no-empty
         } catch { }
     }
 

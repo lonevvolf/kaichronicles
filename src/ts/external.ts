@@ -14,14 +14,6 @@ interface JQuery {
     initializeValue(): void;
 }
 
-// Cordova
-interface Navigator {
-    // This is not included in TS types, but it works. Cordova documentation does not say anything about it...
-    app: {
-        exitApp(): any;
-    };
-}
-
 // index.html:
 declare const ENVIRONMENT: string;
 
@@ -39,18 +31,6 @@ declare var ga;
 
 // xmllint.js
 declare function validateXML(parms: any): string;
-
-// cordova-plugin-zip (Cordova plugin)
-declare const zip: any;
-
-// cordova-plugin-zeep (Cordova plugin)
-declare const Zeep: any;
-
-// cordova-plugin-copytodownload (Cordova plugin)
-declare const CopyToDownload: any;
-
-// com.megster.cordova.FileChooser (Cordova plugin)
-declare const fileChooser: any;
 
 // commons.ts:
 interface Array<T> {
@@ -83,12 +63,7 @@ interface String {
 
 // Mixed:
 interface Window {
-
-    // cordova-plugin-document-contract (Cordova plugin)
-    plugins: {
-        DocumentContract: any;
-    };
-
+    
     // commons.ts:
     getUrlParameter( parmName: string ): string;
 

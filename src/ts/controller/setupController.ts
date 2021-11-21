@@ -1,4 +1,4 @@
-import { state, template, routing, translations, views, mechanicsEngine, setupView, GoogleAnalytics, ajaxErrorMsg } from "..";
+import { state, template, routing, views, mechanicsEngine, setupView, GoogleAnalytics, ajaxErrorMsg } from "..";
 
 /**
  * The book loader controller
@@ -36,15 +36,8 @@ export const setupController = {
         }
         template.translateMainMenu();
 
-        // Check if the book to setup is downloaded
-        if (!state.localBooksLibrary.isBookDownloaded(state.book.bookNumber)) {
-            alert(translations.text("bookNotDownloaded", [state.book.bookNumber]));
-            routing.redirect("mainMenu");
-            return jQuery.Deferred().reject().promise();
-        } else {
-            return views.loadView("setup.html")
-                .then(() => { setupController.runDownloads(); });
-        }
+        return views.loadView("setup.html")
+            .then(() => { setupController.runDownloads(); });
 
     },
 
@@ -101,7 +94,7 @@ export const setupController = {
         }
 
         // Wait for all downloads
-        $.when.apply($, promises)
+        $.when(...promises)
             .done(() => {
                 setupView.log("Done!");
                 setupView.done();

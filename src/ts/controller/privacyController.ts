@@ -1,5 +1,5 @@
 
-import { views, state, cordovaApp, GoogleAnalytics } from "..";
+import { views, state, GoogleAnalytics } from "..";
 
 /**
  * Privacy controller page
@@ -13,11 +13,7 @@ export class privacyController {
     public static index() {
         views.loadView( "privacy_" + state.language + ".html" )
         .then(() => {
-            if ( cordovaApp.isRunningApp() ) {
-                $("#privacy-web").hide();
-            } else {
-                privacyController.setupWeb();
-            }
+            privacyController.setupWeb();
         });
     }
 

@@ -1,4 +1,4 @@
-import { routing, state, cordovaApp, Item, translations, randomTable, mechanicsEngine, App, DebugMode } from ".";
+import { routing, state, Item, translations, randomTable, mechanicsEngine, App, DebugMode } from ".";
 
 /**
  * The HTML template API
@@ -59,14 +59,6 @@ export const template = {
         template.updateStatistics(true);
         template.translateMainMenu();
         template.changeColorTheme(state.color);
-
-        if ( cordovaApp.isRunningApp() ) {
-            // If we are on the cordova app, disable the animation (performance)
-            $("#navbar").addClass("no-transition");
-
-            // Link not needed: You have the "back" hardware button
-            $("#template-mainMenu").hide();
-        }
     },
 
     /**
@@ -171,8 +163,7 @@ export const template = {
     },
 
     /**
-     * Change a number value by other, with an animation. On the Cordova app, the
-     * change will not be animated (performance...)
+     * Change a number value by other, with an animation.
      * @param {jQuery} $element Element selector to change
      * @param newValue The new value to set
      * @param doNotAnimate True if we should do not perform the animation
@@ -181,13 +172,8 @@ export const template = {
      */
     animateValueChange( $element: JQuery<HTMLElement> , newValue: number , doNotAnimate: boolean , newColor: string = null ) {
 
-        // Disable animations on Cordova app (bad performance)
-        if ( cordovaApp.isRunningApp() ) {
-            doNotAnimate = true;
-        } else {
-            // Clear previous animations
-            $element.stop(true, true);
-        }
+        // Clear previous animations
+        $element.stop(true, true);
 
         // If the value is not going to change, do nothing
         const txtNewValue = newValue.toString();

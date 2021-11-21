@@ -40,9 +40,8 @@ export const book6sect26 = {
         book6sect26.setPlayerTargetPoints( targetPoints );
 
         // Combat is finished?
-        const self: any = this;
         if ( targetPoints <= 0 ) {
-            self.combatFinished = true;
+            this.combatFinished = true;
         }
 
         // Update player target points

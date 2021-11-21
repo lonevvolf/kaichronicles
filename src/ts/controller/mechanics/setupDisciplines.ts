@@ -73,10 +73,11 @@ export class SetupDisciplines {
         $("#mechanics-setDisciplines-weaponsmax").text(this.getExpectedNWeaponsWeaponmastery());
 
         // Add checkbox for each discipline:
+        // eslint-disable-next-line @typescript-eslint/no-this-alias
         const self = this;
         $('.subsection[id!="mksumary"]').append(mechanicsEngine.getMechanicsUI("mechanics-setDisciplines"))
             .each((index, disciplineSection) => {
-                self.setupDisciplineCheckBox($(disciplineSection));
+                this.setupDisciplineCheckBox($(disciplineSection));
             })
             // Set events when checkboxes are clicked
             .find("input[type=checkbox]")
@@ -138,10 +139,11 @@ export class SetupDisciplines {
         $well.append(html);
 
         // Add event handlers
+        // eslint-disable-next-line @typescript-eslint/no-this-alias
         const self = this;
         $well.find("input.weaponmastery-chk")
-            .click(function(e: Event) {
-                self.onWeaponmasteryWeaponClick(e, $(this));
+        .click(function(e: Event) {
+            self.onWeaponmasteryWeaponClick(e, $(this));
             });
 
         // Set the initial state

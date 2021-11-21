@@ -1,4 +1,4 @@
-import { App, EnvironmentType, cordovaApp, Cookie, mechanicsEngine } from "..";
+import { App, EnvironmentType, Cookie, mechanicsEngine } from "..";
 
 /**
  * Google Analytics stuff.
@@ -13,8 +13,8 @@ export class GoogleAnalytics {
     public static isEnabled(): boolean {
         try {
 
-            if (App.environment !== EnvironmentType.Production || cordovaApp.isRunningApp()) {
-                // Debug or in Cordova app
+            if (App.environment !== EnvironmentType.Production) {
+                // Debug
                 return false;
             }
 

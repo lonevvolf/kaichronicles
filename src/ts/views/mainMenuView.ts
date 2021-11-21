@@ -1,4 +1,4 @@
-import { translations, state, routing, mainMenuController, cordovaApp } from "..";
+import { translations, state, routing, mainMenuController } from "..";
 
 export const mainMenuView = {
 
@@ -48,14 +48,7 @@ export const mainMenuView = {
         const $downloadBooksBtn = $("#menu-downloadbooks");
         // Switch this to test the "Download books" view with the web browser
         // if( true ) {
-        if ( cordovaApp.isRunningApp() ) {
-            $("#menu-downloadbooks").click((e) => {
-                e.preventDefault();
-                routing.redirect("workWithBooks");
-            });
-        } else {
-            $downloadBooksBtn.hide();
-        }
+        $downloadBooksBtn.hide();
     },
 
     /**

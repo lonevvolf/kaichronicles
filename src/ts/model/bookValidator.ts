@@ -46,7 +46,7 @@ export class BookValidator {
 
         const dfd = jQuery.Deferred<BookValidator>();
 
-        $.when.apply($, promises)
+        $.when(...promises)
         .done( () => {
             dfd.resolve( new BookValidator(mechanics, book) );
         } )
@@ -380,7 +380,7 @@ export class BookValidator {
         }
 
         // There is some kind of error with the UTF8 encoding. acute characters throw errors of invalid character...
-        xmlText = xmlText.replace( /[áéíóú¡¿\’]/gi , "" );
+        xmlText = xmlText.replace( /[áéíóú¡¿’]/gi , "" );
 
         // xmllint.js call parameters
         const mechanicsFileName = "mechanics-" + this.book.bookNumber + ".xml";

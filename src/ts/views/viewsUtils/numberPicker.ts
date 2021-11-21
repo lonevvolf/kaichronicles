@@ -38,31 +38,30 @@ export function declareJqueryNumberFunctions() {
          * Bind number events
          */
         $.fn.bindNumberEvents = function() {
-            const self = this;
             this.parent().find("button.add-number").click((e) => {
                 e.preventDefault();
-                let n = self.getNumber();
+                let n = this.getNumber();
                 if ( isNaN(n) ) {
                     return;
                 }
                 n++;
-                if ( n <= self.getMaxValue() ) {
-                    self.setNumber(n);
+                if ( n <= this.getMaxValue() ) {
+                    this.setNumber(n);
                 }
             });
             this.parent().find("button.sub-number").click((e) => {
                 e.preventDefault();
-                let n = self.getNumber();
+                let n = this.getNumber();
                 if ( isNaN(n) ) {
                     return;
                 }
                 n--;
-                if ( n >= self.getMinValue() ) {
-                    self.setNumber(n);
+                if ( n >= this.getMinValue() ) {
+                    this.setNumber(n);
                 }
             });
             this.change(() => {
-                self.fireValueChanged();
+                this.fireValueChanged();
             });
         };
 

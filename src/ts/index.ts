@@ -3,11 +3,6 @@
  * "kai" webpack library exports
  */
 
-export * from "./cordova-stuff/documentSelection";
-export * from "./cordova-stuff/savedGamesExport";
-export * from "./cordova-stuff/cordovaFS";
-export * from "./cordova-stuff/cordovaApp";
-
 export * from "./state";
 export * from "./template";
 export * from "./views";
@@ -18,7 +13,6 @@ export * from "./common";
 export * from "./controller/mainMenuController";
 export * from "./controller/privacyController";
 export * from "./controller/testsController";
-export * from "./controller/workWithBooks";
 export * from "./controller/gameController";
 export * from "./controller/loadGameController";
 export * from "./controller/actionChartController";
@@ -50,7 +44,6 @@ export * from "./controller/kaimonasteryController";
 export * from "./controller/gameRulesController";
 
 export * from "./views/setupView";
-export * from "./views/workWithBooksView";
 export * from "./views/newGameView";
 export * from "./views/actionChartView";
 export * from "./views/gameView";
@@ -81,7 +74,6 @@ export * from "./model/expressionEvaluator";
 export * from "./model/item";
 export * from "./model/combat";
 export * from "./model/randomTable";
-export * from "./model/localBooksLibrary";
 export * from "./model/loreCircle";
 export * from "./model/bookValidator";
 export * from "./model/section";
@@ -89,4 +81,3 @@ export * from "./model/sectionState";
 export * from "./model/googleAnalytics";
 export * from "./model/bookSeries";
 export * from "./model/actionChartItem";
-export * from "./model/bookDownloadState";

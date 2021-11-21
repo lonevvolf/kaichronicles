@@ -1,4 +1,4 @@
-import { setupController, translations, views, settingsView, Language, Book, state, template, cordovaApp, cordovaFS, mechanicsEngine } from "..";
+import { setupController, translations, views, settingsView, Language, Book, state, template, mechanicsEngine } from "..";
 
 /**
  * Game settings controller
@@ -113,14 +113,7 @@ export const settingsController = {
                 return false;
             }
 
-            if ( cordovaApp.isRunningApp() ) {
-                // We are on cordova app
-                cordovaFS.saveFile( fileName , blob, () => {
-                    toastr.success( translations.text( "gameSaved" ) );
-                });
-            } else {
-                saveAs(blob, fileName);
-            }
+            saveAs(blob, fileName);
             return true;
         } catch (e) {
             mechanicsEngine.debugWarning(e);

@@ -379,16 +379,15 @@ export class SectionRenderer {
      */
     private dl($dl: JQuery<Element>, level: number): string {
         let definitionContent = "";
-        const self = this;
 
         for ( const element of $dl.find("> dt, > dd").toArray() ) {
             const $this = $(element);
-            const content = self.renderNodeChildren( $this , level );
+            const content = this.renderNodeChildren( $this , level );
             if ( $this.is("dt") ) {
                 definitionContent += "<tr><td><dl><dt>" + content + "</dt>";
             } else if ( $this.is("dd") ) {
                 definitionContent += "<dd>" + content + "</dd></dl></td></tr>";
- }
+            }
         }
 
         return '<table class="table table-striped table-bordered table-dl"><tbody>' +
