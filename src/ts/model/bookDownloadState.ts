@@ -1,4 +1,4 @@
-import { projectAon, state } from "..";
+import { projectAon } from "..";
 
 /**
  * Class to handle the download state of a Project Aon book.
@@ -21,9 +21,6 @@ export class BookDownloadState {
      */
     public constructor( bookNumber: number ) {
         this.bookNumber = bookNumber;
-
-        const sizeMB: number = ( projectAon.supportedBooks[bookNumber - 1].zipSize / 1024.0 ) / 1024.0;
-        this.size = sizeMB.toFixed(1);
     }
 
     /**

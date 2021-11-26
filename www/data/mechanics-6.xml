@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<mechanics book="6">
+<mechanics book="6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/cracrayol/kaichronicles/master/www/data/mechanics.xsd">
 
     <!-- GAME RULES -->
     <sections>
@@ -227,11 +227,7 @@
         </section>
 
         <section id="sect26">
-            <textToChoice 
-                text-en="turn immediately to 335"
-                text-es="pasa inmediatamente al 335"
-                section="sect335"
-            />
+            <textToChoice text="turn immediately to 335" section="sect335"/>
             <choiceState section="all" set="disabled" />
             <combat bow="true" />
             <book6sect26 />

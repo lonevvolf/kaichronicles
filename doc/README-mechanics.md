@@ -571,9 +571,13 @@ Single rules as "drop" have state and they will not be re-executed. If you need 
 
 ### endurance (has state)
 ```xml
-<endurance count="-2" />
+<endurance count="-2" toast="false" permanent="true" />
 ```
-Increase / decrease the current player endurance (not permanent)
+Increase / decrease the current player endurance.
+
+The "toast" property is optional (default value="true"). If true, a toast will be displayed with the endurance increase / decrease.
+
+The "permanent" property is optional (default value="false"). If true, the endurance increase / decrease is permanent.
 
 ### combatSkill (has state)
 ```xml

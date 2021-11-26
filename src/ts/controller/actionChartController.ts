@@ -397,14 +397,14 @@ export const actionChartController = {
     /**
      * Increase / decrease the current endurance
      * @param count Number to increase. Negative to decrease
-     * @param noToast True if no message should be show
+     * @param toast False if no message should be show
      * @param permanent True if the increase is permanent (it changes the original endurance)
      */
-    increaseEndurance(count: number, noToast: boolean = false, permanent: boolean = false) {
+    increaseEndurance(count: number, toast: boolean = true, permanent: boolean = false) {
 
         state.actionChart.increaseEndurance(count, permanent);
 
-        if (!noToast) {
+        if (toast) {
             // Display toast
             actionChartController.displayEnduranceChangeToast(count, permanent);
         }

@@ -14,17 +14,6 @@ export interface BookMetadata {
 
     /** Authors biographies (.inc files in [LANGUAGECODE]/xml ) */
     biographies: string[];
-
-    /** Zip size, in bytes */
-    zipSize: number;
-
-    /**
-     * Project AON SVN revision number to use.
-     * If == 0, the version at https://www.projectaon.org/data/tags/20151013 will be used
-     * If it's not zero, the file at https://www.projectaon.org/data/trunk/ will be used, with this SVN Revision number
-     * This is used at downloadProjectAonData.js
-     */
-    revision: number;
 }
 
 /**

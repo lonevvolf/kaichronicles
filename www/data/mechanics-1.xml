@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<mechanics book="1">
+<mechanics book="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/cracrayol/kaichronicles/master/www/data/mechanics.xsd">
 
     <!-- GAME RULES -->
     <sections>
@@ -162,9 +162,7 @@
                 <case from="0" to="4">
                     <randomTable index="1">
                         <case from="0" to="7">
-                            <randomTable 
-                                text-es="Elige de nuevo un número al azar"
-                                text-en="this is your last chance">
+                            <randomTable text="this is your last chance">
                                 <case from="0" to="8">
                                     <death />
                                 </case>

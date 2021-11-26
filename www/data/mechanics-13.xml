@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<mechanics book="13" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="https://raw.githubusercontent.com/tonib/kaichronicles/master/www/data/mechanics.xsd">
+<mechanics book="13" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/cracrayol/kaichronicles/master/www/data/mechanics.xsd">
 
     <!-- GAME RULES -->
     <sections>

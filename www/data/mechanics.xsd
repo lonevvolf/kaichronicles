@@ -1,14 +1,12 @@
 <?xml version="1.0"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-    <!-- Type for attributes that can be only "true" -->
     <xs:simpleType name="trueOnly">
         <xs:restriction base="xs:string">
             <xs:enumeration value="true" />
         </xs:restriction>
     </xs:simpleType>
 
-    <!-- Currencies (at currency.ts) -->
     <xs:simpleType name="currency">
         <xs:restriction base="xs:string">
             <xs:enumeration value="crown" />
@@ -22,28 +20,28 @@
     -->
     <xs:element name="mechanics">
         <xs:complexType>
-
-            <!-- "mechanics" children -->
             <xs:sequence>
-                
-                <!-- Book sections -->
                 <xs:element name="sections">
+                    <xs:annotation>
+                        <xs:documentation>The list of sections that must to be mechanized.</xs:documentation>
+                    </xs:annotation>
                     <xs:complexType>
                         <xs:sequence>
-                            <!-- Each section rules -->
                             <xs:element name="section" type="section" minOccurs="0" maxOccurs="unbounded" />
                         </xs:sequence>
-
-                        <!-- Number of sections on book. Default is 350 -->
-                        <xs:attribute name="count" type="xs:integer" />
+                        <xs:attribute name="count" type="xs:integer">
+                            <xs:annotation>
+                                <xs:documentation>Optional. It's the number of sections on the book, and the default value is "350"</xs:documentation>
+                            </xs:annotation>
+                        </xs:attribute>
                     </xs:complexType>
                 </xs:element>
-
             </xs:sequence>
-
-            <!-- Book number -->
-            <xs:attribute name="book" type="xs:integer" use="required" />
-
+            <xs:attribute name="book" type="xs:integer" use="required">
+                <xs:annotation>
+                    <xs:documentation>Number of the book.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
         </xs:complexType>
     </xs:element>
 
@@ -51,359 +49,938 @@
         *** SECTION ***
     -->
 
-    <!-- "section" tag definition -->
     <xs:complexType name="section">
-
-        <!-- "section" children -->
+        <xs:annotation>
+            <xs:documentation>Root for rules to be executed on a given section.</xs:documentation>
+        </xs:annotation>
         <xs:group ref="any_rule" minOccurs="0" maxOccurs="unbounded" />
-
-        <!-- Section id -->
-        <xs:attribute name="id" type="xs:string" use="required" />
-        <xs:attribute name="pickMaximum" type="xs:integer" />
-        <xs:attribute name="text" type="xs:string" />
+        <xs:attribute name="id" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>The section id.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="pickMaximum" type="xs:integer">
+            <xs:annotation>
+                <xs:documentation>Optional. It's the maximum number of object you can pick on the section. Objects are grouped by it's id. So if there are 2 meals, if you pick them both, it counts as a one object picked. This is for "Equipment" sections, where meals and fireseeds are grouped.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="text" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>Optional. Show a title for the section.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
     </xs:complexType>
 
     <!--
         *** RULES ***
     -->
 
-    <!-- "setSkills" rule -->
-    <xs:complexType name="setSkills" />
+    <xs:complexType name="setSkills">
+        <xs:annotation>
+            <xs:documentation>Game setup: The player selects the initial Endurance and Combat Skill.</xs:documentation>
+        </xs:annotation>
+    </xs:complexType>
 
-    <!-- "restoreDeliveranceUse" rule -->
-    <xs:complexType name="restoreDeliveranceUse" />
+    <xs:complexType name="restoreDeliveranceUse">
+        <xs:annotation>
+            <xs:documentation>Execute once only. Magnakai and later: Action Chart button to restore +X EP after Y days will available again.</xs:documentation>
+        </xs:annotation>
+    </xs:complexType>
 
-    <!-- "setDisciplines" rule -->
-    <xs:complexType name="setDisciplines" />
-    
-    <!-- "pick" rule -->
+    <xs:complexType name="setDisciplines">
+        <xs:annotation>
+            <xs:documentation>Game setup: The player selects the Kai disciplines.</xs:documentation>
+        </xs:annotation>
+    </xs:complexType>
+
     <xs:complexType name="pick">
-        <!-- Object picked id -->
-        <xs:attribute name="objectId" type="xs:string" />
-        <!-- Object class (for counters: "meal", "arrow", "money") -->
+        <xs:annotation>
+            <xs:documentation>Pick an object. If the object cannot be picked (ex, the backpack is full), the object will be available on the section.</xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="objectId" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>The identifier of the object to pick.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
         <xs:attribute name="class">
+            <xs:annotation>
+                <xs:documentation>This for counters. If you are going to pick meals (="meal"), money (="money") or "arrow".</xs:documentation>
+            </xs:annotation>
             <xs:simpleType>
                 <xs:restriction base="xs:string">
-                    <xs:enumeration value="meal"/>
-                    <xs:enumeration value="arrow"/>
-                    <xs:enumeration value="money"/>
+                    <xs:enumeration value="meal" />
+                    <xs:enumeration value="arrow" />
+                    <xs:enumeration value="money" />
                 </xs:restriction>
             </xs:simpleType>
         </xs:attribute>
-        <!-- Items count (for counters: "meals", "arrow", "money"). Value can be a number or an expresion -->
-        <xs:attribute name="count" type="xs:string" />
-        <xs:attribute name="index" type="xs:nonNegativeInteger" />
-        <!-- Currencies, only if class="money" -->
-        <xs:attribute name="currency" type="currency" />
+        <xs:attribute name="count" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>Only if class is "meal", "money" or "arrow". Expression with the number of coins / meals to pick.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="index" type="xs:nonNegativeInteger">
+            <xs:annotation>
+                <xs:documentation>Required, for ugly reasons, when there are two or more pick rules with the same object id on a section.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+
+        <xs:attribute name="currency" type="currency">
+            <xs:annotation>
+                <xs:documentation>Optional, and only for class="money". Picked coins currency, default is "crown". Values can be "crown", "lune" or "kika".</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
     </xs:complexType>
 
-    <!-- "randomTable" rule -->
     <xs:complexType name="randomTable">
-        <!-- Children. It can be any rule, or "case" -->
+        <xs:annotation>
+            <xs:documentation>Explains what to do when a random table link is clicked. When the link is clicked, the inner rules to this tag will be execute. When the link is clicked, the number got will be saved as state of the rule.</xs:documentation>
+        </xs:annotation>
         <xs:choice minOccurs="0" maxOccurs="unbounded">
-            <!-- case definition -->
             <xs:element name="case">
+                <xs:annotation>
+                    <xs:documentation>Executed conditionally for the random number got.</xs:documentation>
+                </xs:annotation>
                 <xs:complexType>
-                    <!-- case children -->
                     <xs:group ref="any_rule" minOccurs="0" maxOccurs="unbounded" />
-
-                    <xs:attribute name="value" type="xs:integer" />
-                    <xs:attribute name="from" type="xs:integer" />
-                    <xs:attribute name="to" type="xs:integer" />
+                    <xs:attribute name="value" type="xs:integer">
+                        <xs:annotation>
+                            <xs:documentation>Executed when random number EQUALS the given value</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="from" type="xs:integer">
+                        <xs:annotation>
+                            <xs:documentation>Executed when random number GREATER OR EQUALS the given value</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="to" type="xs:integer">
+                        <xs:annotation>
+                            <xs:documentation>Executed when random number LOWER OR EQUALS the given value</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
                 </xs:complexType>
             </xs:element>
-
-            <!-- Any other rule -->
             <xs:group ref="any_rule" />
         </xs:choice>
-
-        <!-- Random table index, default is zero -->
-        <xs:attribute name="index" type="xs:nonNegativeInteger" />
-        <!-- Section text selection (English) -->
-        <xs:attribute name="text" type="xs:string" />
-        <!-- 0 == 10? -->
-        <xs:attribute name="zeroAsTen" type="xs:boolean" />
+        <xs:attribute name="index" type="xs:nonNegativeInteger">
+            <xs:annotation>
+                <xs:documentation>needed only if there is more than one random table link on the section. It will select the index (zero based) of the random table link to which it refers.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="text" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>Create a random table link on the given text.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="zeroAsTen" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation>If "true", the zero value will be returned as ten.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
     </xs:complexType>
 
-    
-    <!-- "chooseEquipment" rule -->
     <xs:complexType name="chooseEquipment">
-        <!-- English description -->
-        <xs:attribute name="text" type="xs:string" use="required" />
+        <xs:annotation>
+            <xs:documentation>Game setup: Choose equipment.</xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="text" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>Text to show on the UI ("Pick X objects before continuing")</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
     </xs:complexType>
 
     <xs:complexType name="test">
-        <!-- Children -->
+        <xs:annotation>
+            <xs:documentation>This is used to execute rules conditionally. It will test a condition, and, if it's true, it will run the inner rules to this tag.</xs:documentation>
+            <xs:documentation>If there is more than one condition on the tag, if any of them is true, the inner rules will be executed (run like OR).</xs:documentation>
+            <xs:documentation>To make AND conditions, embed test tags.</xs:documentation>
+        </xs:annotation>
         <xs:group ref="any_rule" minOccurs="0" maxOccurs="unbounded" />
-
-        <xs:attribute name="hasDiscipline" type="xs:string" />
-        <xs:attribute name="hasObject" type="xs:string" />
-        <xs:attribute name="expression" type="xs:string" />
-        <xs:attribute name="sectionVisited" type="xs:string" />
-        <xs:attribute name="currentWeapon" type="xs:string" />
-        <xs:attribute name="weaponskillActive" type="trueOnly" />
-        <xs:attribute name="combatsWon" type="xs:boolean" />
-        <xs:attribute name="combatsActive" type="trueOnly" />
-        <xs:attribute name="isChoiceEnabled" type="xs:string" />
-        <xs:attribute name="canUseBow" type="xs:boolean" />
-        <xs:attribute name="hasWeaponType" type="xs:string" />
-        <xs:attribute name="hasCircle" type="xs:string" />
-        <xs:attribute name="hasWeaponskillWith" type="xs:string" />
-        <xs:attribute name="currentWeaponSpecial" type="xs:boolean" />
-        <xs:attribute name="isGlobalRuleRegistered" type="xs:string" />
-        <xs:attribute name="objectOnSection" type="xs:string" />
-        <xs:attribute name="pickedSomethingOnSection" type="xs:string" />
-        <xs:attribute name="sectionContainsText" type="xs:string" />
-        <xs:attribute name="not" type="trueOnly" />
+        <xs:attribute name="hasDiscipline" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>Do the player has any of the disciplines?</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="hasObject" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>Do the player carry any of the objects?</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="expression" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>Is the expression true?</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="sectionVisited" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>Has some of the sections been visited?</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="currentWeapon" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>Is the current weapon (hand-to-hand) some of these kinds?</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="weaponskillActive" type="trueOnly">
+            <xs:annotation>
+                <xs:documentation>Has the player "Weaponskill" (current book discipline, no loyalty bonus) with the current weapon?</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="combatsWon" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation>Have been won all combats on this section (or not)?</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="combatsActive" type="trueOnly">
+            <xs:annotation>
+                <xs:documentation>Do some combat still active (not won and not eluded)?</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="isChoiceEnabled" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>Is the choice for the given section enabled?</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="canUseBow" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation>The player has a bow and one arrow (or not)?</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="hasWeaponType" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>The player has some weapon of some of the given types?</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="hasCircle" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>The player has this Lore Circle (see loreCircle.ts for codes)</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="hasWeaponskillWith" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>The player has "Weaponskill" (current book discipline, no loyalty bonus) with the given weapon type?</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="currentWeaponSpecial" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation>Current weapon is a Special Item (or not)?</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="isGlobalRuleRegistered" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>A global rule with a given id is currently registered?</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="objectOnSection" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>Some of these objects is available on the current section?</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="pickedSomethingOnSection" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>Did the player pick something on the given section?</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="sectionContainsText" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>Does the current section contain this text?</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="not" type="trueOnly">
+            <xs:annotation>
+                <xs:documentation>This will negate the current test. So if all of these conditions are false, the inner rules will be executed</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
     </xs:complexType>
 
     <xs:complexType name="choiceState">
-        <xs:attribute name="section" type="xs:string" use="required" />
+        <xs:annotation>
+            <xs:documentation>Enable or disable section choices</xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="section" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>The section id to enable/disable. "all" for all section choices</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
         <xs:attribute name="set" use="required">
+            <xs:annotation>
+                <xs:documentation>"enabled" to enable the choice. "disabled" to disable.</xs:documentation>
+            </xs:annotation>
             <xs:simpleType>
                 <xs:restriction base="xs:string">
-                    <xs:enumeration value="enabled"/>
-                    <xs:enumeration value="disabled"/>
+                    <xs:enumeration value="enabled" />
+                    <xs:enumeration value="disabled" />
                 </xs:restriction>
             </xs:simpleType>
         </xs:attribute>
     </xs:complexType>
-    
+
     <xs:complexType name="object">
-        <xs:attribute name="objectId" type="xs:string" use="required" />
-        <xs:attribute name="price" type="xs:string" />
-        <xs:attribute name="count" type="xs:nonNegativeInteger" />
-        <xs:attribute name="useOnSection" type="xs:boolean" />
-        <xs:attribute name="unlimited" type="xs:boolean" />
-        <xs:attribute name="index" type="xs:nonNegativeInteger" />
+        <xs:annotation>
+            <xs:documentation>Make an object available on the section. The player will can pick / buy it.</xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="objectId" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>The available object id</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="price" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>If it's set, the price to buy the object (not free)</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="count" type="xs:nonNegativeInteger">
+            <xs:annotation>
+                <xs:documentation>Number of available objects</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="useOnSection" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation>If true, the player will can use the object without picking it</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="unlimited" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation>If true, there is an unlimited number of objects of this class on the section</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="index" type="xs:nonNegativeInteger">
+            <xs:annotation>
+                <xs:documentation>Required, for ugly reasons, when there are two or more objects with the same object id on a section</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
     </xs:complexType>
-    
+
     <xs:complexType name="combat">
-        <xs:attribute name="index" type="xs:nonNegativeInteger" />
-        <xs:attribute name="combatSkillModifier" type="xs:string" />
-        <xs:attribute name="combatSkillModifierIncrement" type="xs:string" />
-        <xs:attribute name="mindforceCS" type="xs:integer" />
-        <xs:attribute name="mindforceEP" type="xs:integer" />
-        <xs:attribute name="noMindblast" type="xs:boolean" />
-        <xs:attribute name="noPsiSurge" type="xs:boolean" />
-        <xs:attribute name="noKaiSurge" type="xs:boolean" />
-        <xs:attribute name="mindblastBonus" type="xs:integer" />
-        <xs:attribute name="psiSurgeBonus" type="xs:integer" />
-        <xs:attribute name="kaiSurgeBonus" type="xs:integer" />
-        <!-- noWeapon can be a number or a boolean -->
-        <xs:attribute name="noWeapon" type="xs:string" />
-        <xs:attribute name="eludeTurn" type="xs:integer" />
-        <xs:attribute name="maxEludeTurn" type="xs:integer" />
-        <xs:attribute name="eludeEnemyEP" type="xs:integer" />
-        <xs:attribute name="dammageMultiplier" type="xs:decimal" />
-        <xs:attribute name="enemyMultiplier" type="xs:decimal" />
-        <xs:attribute name="enemyTurnLoss" type="xs:nonPositiveInteger" />
-        <xs:attribute name="turnLoss" type="xs:nonPositiveInteger" />
-        <xs:attribute name="turnLossIfWounded" type="xs:nonPositiveInteger" />
-        <xs:attribute name="fake" type="xs:boolean" />
-        <xs:attribute name="restoreFactor" type="xs:decimal" />
-        <xs:attribute name="bow" type="trueOnly" />
-        <xs:attribute name="disabledObjects" type="xs:string" />
-        <xs:attribute name="mindblastMultiplier" type="xs:decimal" />
-        <xs:attribute name="mentalOnly" type="xs:boolean" />
-        <xs:attribute name="immuneTurns" type="xs:nonNegativeInteger" />
-        <xs:attribute name="enemyImmuneTurns" type="xs:nonNegativeInteger" />
-        <xs:attribute name="permanentDammage" type="xs:boolean" />
+        <xs:annotation>
+            <xs:documentation>The combat tag add modifiers to some combat of the current section.</xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="index" type="xs:nonNegativeInteger">
+            <xs:annotation>
+                <xs:documentation>Index (zero based) of the combat to which it refers</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="combatSkillModifier" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>Absolute bonus (positive or negative) for Lone Wolf combat skill on this combat</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="combatSkillModifierIncrement" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>Bonus increment (positive or negative) for Lone Wolf combat skill on this combat</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="mindforceCS" type="xs:integer">
+            <xs:annotation>
+                <xs:documentation>Bonus (negative) to the Lone Wolf combat skill due to the enemy Mindblast. It will not be applied if the player has Mindshield / Psi-screen</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="mindforceEP" type="xs:integer">
+            <xs:annotation>
+                <xs:documentation>Endurance points lost by LW each turn, due to the enemy Mindblast. It will not be applied if the player has Mindshield / Psi-screen</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="noMindblast" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation>If true, the enemy is immune to Mindblast</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="noPsiSurge" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation>If true, the enemy is immune to Psi-Surge</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="noKaiSurge" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation>If true, the enemy is immune to Kai-Surge</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="mindblastBonus" type="xs:integer">
+            <xs:annotation>
+                <xs:documentation>Special CS bonus to apply for Mindblast discipline on this combat</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="psiSurgeBonus" type="xs:integer">
+            <xs:annotation>
+                <xs:documentation>Special CS bonus to apply for Psi-Surge discipline on this combat</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="kaiSurgeBonus" type="xs:integer">
+            <xs:annotation>
+                <xs:documentation>Special CS bonus to apply for Kai-Surge discipline on this combat</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="noWeapon" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>If true, Lone Wolf cannot use any weapon on this combat. If a number, LW cannot use any weapon for that many turns</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="eludeTurn" type="xs:integer">
+            <xs:annotation>
+                <xs:documentation>Turn number after which LW can elude the combat</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="maxEludeTurn" type="xs:integer">
+            <xs:annotation>
+                <xs:documentation>Turn number after which LW cannot elude the combat anymore</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="eludeEnemyEP" type="xs:integer">
+            <xs:annotation>
+                <xs:documentation>LW can elude the combat once the enemy EP is at the value or below. eludeTurn has to be set</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="dammageMultiplier" type="xs:decimal">
+            <xs:annotation>
+                <xs:documentation>LW dammage multiplier. Can have decimals (ex. "0.5")</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="enemyMultiplier" type="xs:decimal">
+            <xs:annotation>
+                <xs:documentation>Enemy dammage multiplier. Can have decimals (ex. "0.5")</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="enemyTurnLoss" type="xs:nonPositiveInteger">
+            <xs:annotation>
+                <xs:documentation>Extra E.P. lost by the enemy each turn. Should be negative or zero</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="turnLoss" type="xs:nonPositiveInteger">
+            <xs:annotation>
+                <xs:documentation>Extra E.P. lost by LW each turn. Should be negative or zero</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="turnLossIfWounded" type="xs:nonPositiveInteger">
+            <xs:annotation>
+                <xs:documentation>Extra E.P. lost by LW, if the player has been wounded on that turn. Should be negative or zero</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="fake" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation>This is a fake combat. When it's finished, LW endurance points lost will be restored</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="restoreFactor" type="xs:decimal">
+            <xs:annotation>
+                <xs:documentation>Only applies if fake="true". Factor of the EP lost to restore after the combat. Default is 1.0 (100% of the EP lost)</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="bow" type="trueOnly">
+            <xs:annotation>
+                <xs:documentation>It's a combat with bow? (false = hand-to-hand)</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="disabledObjects" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>Set objects that cannot be used on this combat. "none" to enable all objects previously disabled.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="mindblastMultiplier" type="xs:decimal">
+            <xs:annotation>
+                <xs:documentation>CS multiplier to apply to Mindblast/Psi-Surge/Kai-Surge attacks this combat</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="mentalOnly" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation>If true, Lone Wolf cannot use any physical bonuses on this combat (any object bonus)</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="immuneTurns" type="xs:nonNegativeInteger">
+            <xs:annotation>
+                <xs:documentation>Turns during which LW will suffer no damage</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="enemyImmuneTurns" type="xs:nonNegativeInteger">
+            <xs:annotation>
+                <xs:documentation>Turns during which the enemy will suffer no damage</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="permanentDammage" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation>If true, EP lost by LW on this combat will be permanent</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
     </xs:complexType>
 
     <xs:complexType name="afterCombats">
-        <!-- Children -->
+        <xs:annotation>
+            <xs:documentation>Optional event handler to execute after the end of a combat.</xs:documentation>
+        </xs:annotation>
+
         <xs:group ref="any_rule" minOccurs="0" maxOccurs="unbounded" />
     </xs:complexType>
 
     <xs:complexType name="afterElude">
-        <!-- Children -->
+        <xs:annotation>
+            <xs:documentation>Optional event handler to execute after a combat is eluded.</xs:documentation>
+        </xs:annotation>
+
         <xs:group ref="any_rule" minOccurs="0" maxOccurs="unbounded" />
     </xs:complexType>
 
     <xs:complexType name="onInventoryEvent">
-        <!-- Children -->
+        <xs:annotation>
+            <xs:documentation>Optional event handler to execute after an action is made in the inventory.</xs:documentation>
+        </xs:annotation>
+
         <xs:group ref="any_rule" minOccurs="0" maxOccurs="unbounded" />
     </xs:complexType>
 
     <xs:complexType name="afterCombatTurn">
-        <!-- Children -->
+        <xs:annotation>
+            <xs:documentation>Optional event handler to execute after a combat turn.</xs:documentation>
+        </xs:annotation>
+
         <xs:group ref="any_rule" minOccurs="0" maxOccurs="unbounded" />
 
-        <xs:attribute name="turn" type="xs:string" use="required" />
+        <xs:attribute name="turn" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>The turn number after which the rules are executed.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
     </xs:complexType>
 
     <xs:complexType name="choiceSelected">
-        <!-- Children -->
+        <xs:annotation>
+            <xs:documentation>Optional event handler to execute after a choice is selected.</xs:documentation>
+        </xs:annotation>
+
         <xs:group ref="any_rule" minOccurs="0" maxOccurs="unbounded" />
 
-        <xs:attribute name="section" type="xs:string" use="required" />
+        <xs:attribute name="section" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>The section id that, when selected, execute the rules.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
     </xs:complexType>
 
     <xs:complexType name="numberPickerChoosed">
-        <!-- Children -->
+        <xs:annotation>
+            <xs:documentation>Optional event handler to execute when the number is picked.</xs:documentation>
+        </xs:annotation>
+
         <xs:group ref="any_rule" minOccurs="0" maxOccurs="unbounded" />
 
-        <xs:attribute name="executeAtStart" type="xs:boolean" />
+        <xs:attribute name="executeAtStart" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation>If true, and the number picker action button was clicked on a previous rendering, the "numberPickerChoosed" will be executed at the section startup.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
     </xs:complexType>
 
     <xs:complexType name="death">
+        <xs:annotation>
+            <xs:documentation>Game over. Kill the player.</xs:documentation>
+        </xs:annotation>
     </xs:complexType>
-    
+
     <xs:complexType name="endurance">
-        <xs:attribute name="count" type="xs:string" />
-        <xs:attribute name="noToast" type="xs:boolean" />
-        <xs:attribute name="permanent" type="xs:boolean" />
+        <xs:annotation>
+            <xs:documentation>Increase / decrease the current player endurance.</xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="count" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>The amount of endurance gained/lost</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="toast" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation>If true, a toast will be displayed with the endurance increase / decrease.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="permanent" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation>If true, the endurance increase / decrease is permanent.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
     </xs:complexType>
-    
+
     <xs:complexType name="meal">
-        <xs:attribute name="index" type="xs:nonNegativeInteger" />
-        <xs:attribute name="huntDisabled" type="xs:boolean" />
-        <xs:attribute name="price" type="xs:nonNegativeInteger" />
+        <xs:annotation>
+            <xs:documentation>The player must to have a meal on this section.</xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="index" type="xs:nonNegativeInteger">
+            <xs:annotation>
+                <xs:documentation>Required, for ugly reasons, when there are two or more meals on a section</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="huntDisabled" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation>If true, the player will not be allowed to use any hunting discipline, of any book series, on this meal.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="price" type="xs:nonNegativeInteger">
+            <xs:annotation>
+                <xs:documentation>If set with a integer value, this will allows to buy a meat for the given price.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
     </xs:complexType>
-    
+
     <xs:complexType name="resetSectionState">
+        <xs:annotation>
+            <xs:documentation>This will clear the state of the given section. Usefull if the player can return to that section, and there are rules with state there that must to be reexecuted</xs:documentation>
+        </xs:annotation>
         <xs:attribute name="sectionId" type="xs:string" use="required" />
     </xs:complexType>
-    
+
     <xs:complexType name="message">
-        <xs:attribute name="text" type="xs:string"/>
-        <xs:attribute name="id" type="xs:string" />
+        <xs:annotation>
+            <xs:documentation>Show (or hide) a text message at the end of a section.</xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="text" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>Text of the message to be displayed</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="id" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>Id of the message.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
         <xs:attribute name="op">
+            <xs:annotation>
+                <xs:documentation>When used with id, "show" or "hide" the message associated to the id.</xs:documentation>
+            </xs:annotation>
             <xs:simpleType>
                 <xs:restriction base="xs:string">
-                    <xs:enumeration value="show"/>
-                    <xs:enumeration value="hide"/>
+                    <xs:enumeration value="show" />
+                    <xs:enumeration value="hide" />
                 </xs:restriction>
             </xs:simpleType>
         </xs:attribute>
     </xs:complexType>
-    
+
     <xs:complexType name="drop">
-        <xs:attribute name="objectId" type="xs:string" />
-        <xs:attribute name="backpackItemSlots" type="xs:string" />
-        <xs:attribute name="specialItemSlots" type="xs:string" />
-        <xs:attribute name="restorePoint" type="xs:string" />
+        <xs:annotation>
+            <xs:documentation>Drop an object, or a set of objects. This rules is not used for counters (money, meals and arrows). If you want to decrease a counter, use the "pick" rule.</xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="objectId" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>The "objectId" can be one or more object Id, or one of the following :</xs:documentation>
+                <xs:documentation>- allweapons: Drop all weapons (it does not drop special items weapons)</xs:documentation>
+                <xs:documentation>- allweaponlike: Drop all weapons and special items weapons</xs:documentation>
+                <xs:documentation>- backpackcontent: Drop all backpack content, but not the backpack</xs:documentation>
+                <xs:documentation>- currentweapon: Drop the current hand-to-hand weapon</xs:documentation>
+                <xs:documentation>- allspecial: Drop all the special items</xs:documentation>
+                <xs:documentation>- allmeals: Drop all meals</xs:documentation>
+                <xs:documentation>- all: Drop all (weapons, backpack, special items, and money)</xs:documentation>
+                <xs:documentation>- allobjects Drop all objects (weapons, special items, and backpack content, but not the backpack itself)</xs:documentation>
+                <xs:documentation>If you set more than one object id, the first one owned by the player will be dropped</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="backpackItemSlots" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>Drop objects on some given Backpack index positions (1-based)</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="specialItemSlots" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>Drop objects on some given Special Items index positions (1-based)</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="restorePoint" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>If specified, the dropped item will can be restored with the rule "restoreInventoryState", with the given restore point id.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
     </xs:complexType>
-    
+
     <xs:complexType name="disableCombats">
+        <xs:annotation>
+            <xs:documentation>By default disables all section combats. If the optional property "disabled" is set to "false", all section combats will be re-enabled</xs:documentation>
+        </xs:annotation>
         <xs:attribute name="disabled" type="xs:boolean" />
     </xs:complexType>
 
     <xs:complexType name="combatSkill">
-        <xs:attribute name="count" type="xs:integer" use="required" />
-        <xs:attribute name="toast" type="xs:boolean" />
+        <xs:annotation>
+            <xs:documentation>Increase / decrease the original player combat skill (permanent).</xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="count" type="xs:integer" use="required">
+            <xs:annotation>
+                <xs:documentation>The amount of combat skill points gained/lost</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="toast" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation>If true, a toast will be displayed with the CS increase / decrease.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
     </xs:complexType>
-    
+
     <xs:complexType name="randomTableIncrement">
-        <xs:attribute name="increment" type="xs:string" use="required" />
-        <xs:attribute name="index" type="xs:nonNegativeInteger" />
+        <xs:annotation>
+            <xs:documentation>Will add a bonus to the random value picked.</xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="increment" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>The increment to apply. "reset" will reset to zero any previous increment.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="index" type="xs:nonNegativeInteger">
+            <xs:annotation>
+                <xs:documentation>Index (0-based) of the random table affected by this increment</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
     </xs:complexType>
-    
+
     <xs:complexType name="currentWeapon">
+        <xs:annotation>
+            <xs:documentation>Changes the player current weapon to the set on "objectId" property</xs:documentation>
+        </xs:annotation>
         <xs:attribute name="objectId" type="xs:string" use="required" />
     </xs:complexType>
 
     <xs:complexType name="numberPicker">
-        <xs:attribute name="enabled" type="xs:boolean" />
-        <xs:attribute name="money" type="xs:boolean" />
-        <xs:attribute name="actionButton" type="xs:string" />
-        <xs:attribute name="text" type="xs:string" />
-        <xs:attribute name="min" type="xs:integer" />
-        <xs:attribute name="max" type="xs:integer" />
+        <xs:annotation>
+            <xs:documentation>Add a control on the UI to select a number.</xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="enabled" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation>If set to false, disable the number picker</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="money" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation>Set to true if value correspond to a number of money</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="actionButton" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>Text displayed in the button</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="text" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>Text displayed in the number picker UI</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="min" type="xs:integer">
+            <xs:annotation>
+                <xs:documentation>Minimal value</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="max" type="xs:integer">
+            <xs:annotation>
+                <xs:documentation>Maximal value</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
     </xs:complexType>
 
     <xs:complexType name="huntStatus">
+        <xs:annotation>
+            <xs:documentation>This will enable or disable the hunting on meals until new advice. This will be used on map zones where there is no food (deserts, etc).</xs:documentation>
+        </xs:annotation>
         <xs:attribute name="enabled" type="xs:boolean" use="required" />
     </xs:complexType>
 
     <xs:complexType name="sell">
-        <xs:attribute name="objectId" type="xs:string" />
-        <xs:attribute name="class" type="xs:string" />
-        <xs:attribute name="except" type="xs:string" />
-        <xs:attribute name="price" type="xs:nonNegativeInteger" use="required" />
-        <xs:attribute name="count" type="xs:nonNegativeInteger" />
+        <xs:annotation>
+            <xs:documentation>This will allow to the player to sell a class of objects by a given price.</xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="objectId" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>The object id you can sell.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="class" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>special : You can sell any Special Item object</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="except" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>Only applies if "class" was specified. Objects id that you cannot sell.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="price" type="xs:nonNegativeInteger" use="required">
+            <xs:annotation>
+                <xs:documentation>The money got by selling the object.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="count" type="xs:nonNegativeInteger">
+            <xs:annotation>
+                <xs:documentation>Only applies if id = 'quiver' (number of arrows on the quiver) or id = 'money' (number of Gold Crowns)</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
     </xs:complexType>
 
     <xs:complexType name="saveInventoryState">
-        <xs:attribute name="restorePoint" type="xs:string" use="required" />
+        <xs:annotation>
+            <xs:documentation>Store the player current inventory state. It can be used when player loses part of the inventory, and they can be found after.</xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="restorePoint" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>Name of the restore point used to restore the inventory with "restoreInventoryState".</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
         <xs:attribute name="objectsType">
+            <xs:annotation>
+                <xs:documentation>Identifies the objects to lose / restore (all by default) :</xs:documentation>
+                <xs:documentation>- all: The backpack content, the backpack itself, special items, meals and money</xs:documentation>
+                <xs:documentation>- weaponlike: Weapons and weapon-like special items</xs:documentation>
+                <xs:documentation>- allobjects: The backpack content, special items and meals</xs:documentation>
+            </xs:annotation>
             <xs:simpleType>
                 <xs:restriction base="xs:string">
-                    <xs:enumeration value="all"/>
-                    <xs:enumeration value="weaponlike"/>
-                    <xs:enumeration value="allobjects"/>
+                    <xs:enumeration value="all" />
+                    <xs:enumeration value="weaponlike" />
+                    <xs:enumeration value="allobjects" />
                 </xs:restriction>
             </xs:simpleType>
         </xs:attribute>
     </xs:complexType>
 
     <xs:complexType name="restoreInventoryState">
+        <xs:annotation>
+            <xs:documentation>Restore the objects lost by the player at the given restorePoint.</xs:documentation>
+        </xs:annotation>
         <xs:attribute name="restorePoint" type="xs:string" use="required" />
-        <xs:attribute name="restoreWeapons" type="xs:boolean" />
+        <xs:attribute name="restoreWeapons" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation>
+            Identifies if the Weapons, and weapon Special Items should be recovered. Default value is true. If it's false, weapons are not lost, and they can be recovered after with the same restore point.
+        </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
     </xs:complexType>
 
     <xs:complexType name="goToSection">
-        <xs:attribute name="section" type="xs:string" use="required" />
+        <xs:annotation>
+            <xs:documentation>Forces a jump to another section.</xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="section" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>Specifies the section where to jump</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
     </xs:complexType>
 
     <xs:complexType name="toast">
-        <xs:attribute name="text" type="xs:string" use="required" />
-        <xs:attribute name="duration" type="xs:integer" />
+        <xs:annotation>
+            <xs:documentation>Display a "toast" message.</xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="text" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>Text of the toast.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="duration" type="xs:integer">
+            <xs:annotation>
+                <xs:documentation>Optional. Toast duration in milliseconds. Default is 5000 ms.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
     </xs:complexType>
-    
+
     <xs:complexType name="registerGlobalRule">
-        <!-- Children -->
+        <xs:annotation>
+            <xs:documentation>"registerGlobalRule" registers a set of rules that will be executed each section.</xs:documentation>
+        </xs:annotation>
+
         <xs:group ref="any_rule" minOccurs="0" maxOccurs="unbounded" />
 
-        <xs:attribute name="id" type="xs:string" use="required" />
+        <xs:attribute name="id" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>Id of the global rule. Used to unregister the global rule.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
     </xs:complexType>
-    
+
     <xs:complexType name="unregisterGlobalRule">
-        <xs:attribute name="id" type="xs:string" use="required" />
+        <xs:annotation>
+            <xs:documentation>Unregisters the set of rules identified by the given id.</xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="id" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>Id of the global rule to unregister.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
     </xs:complexType>
 
     <xs:complexType name="objectUsed">
-        <!-- Children -->
+        <xs:annotation>
+            <xs:documentation>Event handler for an object use. If some of the objects on the "objectId" property is used on this section, the chilren rules will be executed.</xs:documentation>
+        </xs:annotation>
+
         <xs:group ref="any_rule" minOccurs="0" maxOccurs="unbounded" />
 
         <xs:attribute name="objectId" type="xs:string" use="required" />
     </xs:complexType>
 
     <xs:complexType name="textToChoice">
-        <xs:attribute name="text-en" type="xs:string" use="required" />
-        <xs:attribute name="text-es" type="xs:string" use="required" />
+        <xs:annotation>
+            <xs:documentation>Replaces a section text by a choice link. This could be needed when there is no link on the original Project AON XML.</xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="text" type="xs:string" use="required" />
         <xs:attribute name="section" type="xs:string" use="required" />
     </xs:complexType>
 
-    <xs:complexType name="kaiMonasteryStorage" />
+    <xs:complexType name="kaiMonasteryStorage">
+        <xs:annotation>
+            <xs:documentation>Add a button to access to the Kai monastery stored objects. It can be added inside "equipmnt" sections only.</xs:documentation>
+        </xs:annotation>
+    </xs:complexType>
 
     <xs:complexType name="executeOnce">
-        <!-- Children -->
+        <xs:annotation>
+            <xs:documentation>Single rules as "drop" have state and they will not be re-executed. If you need the same behaviour on a set of rules, you can use "executeOnce".</xs:documentation>
+        </xs:annotation>
+
         <xs:group ref="any_rule" minOccurs="0" maxOccurs="unbounded" />
     </xs:complexType>
 
     <xs:complexType name="displayIllustration">
-        <xs:attribute name="text" type="xs:string" />
+        <xs:annotation>
+            <xs:documentation>Displays the first illustration on the "section" attribute section. "text" is an option title to display with the illustration.</xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="text" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>Optionnal title to display with the illustration.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
         <xs:attribute name="section" type="xs:string" use="required" />
     </xs:complexType>
 
     <xs:complexType name="use">
-        <xs:attribute name="objectId" type="xs:string" use="required" />
+        <xs:annotation>
+            <xs:documentation>Force use of one object.</xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="objectId" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>The object to use. If more than one object is specified, only the first one owned will be used.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
     </xs:complexType>
-    
-    <xs:complexType name="grandMasterUpgrade" />
 
-    <xs:complexType name="removeSpecialGrandMaster" />
+    <xs:complexType name="grandMasterUpgrade">
+        <xs:annotation>
+            <xs:documentation>Allow to upgrade stats at the Grand Master beginning.</xs:documentation>
+        </xs:annotation>
+    </xs:complexType>
 
-    <xs:complexType name="runInventoryEvent" />
+    <xs:complexType name="removeSpecialGrandMaster">
+        <xs:annotation>
+            <xs:documentation>Carry only allowed Special Items at the Grand Master beginning. Removes Special Items from Action Chart and Kai Monastery.</xs:documentation>
+        </xs:annotation>
+    </xs:complexType>
+
+    <xs:complexType name="runInventoryEvent">
+        <xs:annotation>
+            <xs:documentation>It runs the "onInventoryEvent" event handler, if it exists on the section.</xs:documentation>
+        </xs:annotation>
+    </xs:complexType>
 
     <!--
         *** SPECIAL SECTIONS ***
     -->
 
-    <xs:complexType name="specialsection_type" />
-    
+    <xs:complexType name="specialsection_type">
+        <xs:annotation>
+            <xs:documentation>There are sections (or parts of them) that cannot be described by the game rules. In that case, they are specific implementations.</xs:documentation>
+        </xs:annotation>
+    </xs:complexType>
+
     <!--
         *** ANY RULE DEFINITION ***
     -->
@@ -455,7 +1032,6 @@
             <xs:element name="grandMasterUpgrade" type="grandMasterUpgrade" />
             <xs:element name="removeSpecialGrandMaster" type="removeSpecialGrandMaster" />
 
-            <!-- Special sections -->
             <xs:element name="book2Sect238" type="specialsection_type" />
             <xs:element name="book2sect308" type="specialsection_type" />
             <xs:element name="book3sect88" type="specialsection_type" />
@@ -463,7 +1039,7 @@
             <xs:element name="book6sect284" type="specialsection_type" />
             <xs:element name="book6sect340" type="specialsection_type" />
             <xs:element name="book9sect91" type="specialsection_type" />
-            
+
         </xs:choice>
     </xs:group>
 

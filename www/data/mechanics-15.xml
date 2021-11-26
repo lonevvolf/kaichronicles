@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<mechanics book="15" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://raw.githubusercontent.com/cracrayol/kaichronicles/master/src/www/data/mechanics.xsd">
+<mechanics book="15" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/cracrayol/kaichronicles/master/www/data/mechanics.xsd">
 
     <!-- GAME RULES -->
     <sections>
@@ -711,16 +711,16 @@
             <test hasDiscipline="alchemy">
                 <test expression="[KAILEVEL] >= 5">
                     <combat noMindblast="true" noPsiSurge="true" kaiSurgeBonus="1" combatSkillModifier="+5" />
-                    <endurance count="+5" noToast="true" permanent="true" />
+                    <endurance count="+5" toast="false" permanent="true" />
                 </test>
             </test>
             <afterCombats>
                 <test hasDiscipline="alchemy">
                     <test expression="[KAILEVEL] >= 5">
                         <test expression="[ENDURANCE] &lt;= 5">
-                            <endurance count="6 - [ENDURANCE]" noToast="true" />
+                            <endurance count="6 - [ENDURANCE]" toast="false" />
                         </test>
-                        <endurance count="-5" noToast="true" permanent="true" />
+                        <endurance count="-5" toast="false" permanent="true" />
                     </test>
                 </test>
                 <choiceState section="all" set="enabled" />
@@ -1586,16 +1586,16 @@
             <test hasDiscipline="alchemy">
                 <test expression="[KAILEVEL] >= 5">
                     <combat noMindblast="true" noPsiSurge="true" kaiSurgeBonus="1" combatSkillModifier="+5" />
-                    <endurance count="+5" noToast="true" permanent="true" />
+                    <endurance count="+5" toast="false" permanent="true" />
                 </test>
             </test>
             <afterCombats>
                 <test hasDiscipline="alchemy">
                     <test expression="[KAILEVEL] >= 5">
                         <test expression="[ENDURANCE] &lt;= 5">
-                            <endurance count="6 - [ENDURANCE]" noToast="true" />
+                            <endurance count="6 - [ENDURANCE]" toast="false" />
                         </test>
-                        <endurance count="-5" noToast="true" permanent="true" />
+                        <endurance count="-5" toast="false" permanent="true" />
                     </test>
                 </test>
                 <choiceState section="all" set="enabled" />

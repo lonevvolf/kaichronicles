@@ -1103,9 +1103,9 @@ export const mechanicsEngine = {
         }
 
         const increase = ExpressionEvaluator.evalInteger($(rule).attr("count"));
-        const noToast = mechanicsEngine.getBooleanProperty($(rule), "noToast", false);
+        const toast = mechanicsEngine.getBooleanProperty($(rule), "toast", true);
         const permanent = mechanicsEngine.getBooleanProperty($(rule), "permanent", false);
-        actionChartController.increaseEndurance(increase, noToast, permanent);
+        actionChartController.increaseEndurance(increase, toast, permanent);
 
         state.sectionStates.markRuleAsExecuted(rule);
     },
