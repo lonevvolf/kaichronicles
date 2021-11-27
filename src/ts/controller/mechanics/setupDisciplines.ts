@@ -124,7 +124,7 @@ export class SetupDisciplines {
             $checkboxDiv.find(".mechanics-wName").text(weaponItem.name);
 
             // The weapon has been already selected?
-            const selected: boolean = state.actionChart.getWeaponSkill().contains(weaponsTable[i]);
+            const selected: boolean = state.actionChart.getWeaponSkill().includes(weaponsTable[i]);
             const $chk = $checkboxDiv.find("input");
             $chk.attr("id", SetupDisciplines.WEAPON_CHECKBOX_ID + weaponItem.id);
             $chk.attr("checked", selected);

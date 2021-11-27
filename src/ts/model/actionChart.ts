@@ -663,7 +663,7 @@ export class ActionChart {
             // Player has no Weaponskill
             return false;
         }
-        return this.getWeaponSkill().contains(weaponType);
+        return this.getWeaponSkill().includes(weaponType);
     }
 
     /**
@@ -681,10 +681,10 @@ export class ActionChart {
 
         // Check if the current weapon is disabled
         if (disabledObjectsIds.length > 0 && currentWeapon) {
-            if (disabledObjectsIds.contains(currentWeapon.id)) {
+            if (disabledObjectsIds.includes(currentWeapon.id)) {
                 // Disabled
                 currentWeapon = null;
-            } else if (currentWeapon.weaponType && disabledObjectsIds.contains(currentWeapon.weaponType)) {
+            } else if (currentWeapon.weaponType && disabledObjectsIds.includes(currentWeapon.weaponType)) {
                 // Base weapon disabled
                 currentWeapon = null;
             }
@@ -858,7 +858,7 @@ export class ActionChart {
         // Other objects (not weapons). Ex. shield. They are not applied for bow combats
         if (!combat.mentalOnly && !combat.bowCombat) {
             this.enumerateObjectsAsItems((o: Item) => {
-                if (!o.isWeapon() && o.combatSkillEffect && !combat.disabledObjects.contains(o.id)) {
+                if (!o.isWeapon() && o.combatSkillEffect && !combat.disabledObjects.includes(o.id)) {
                     bonuses.push({
                         concept: o.name,
                         increment: o.combatSkillEffect
@@ -962,7 +962,7 @@ export class ActionChart {
 
         const result = [];
         this.enumerateObjectsAsItems((o: Item) => {
-            if (o.isMeal && !result.contains(o.id)) {
+            if (o.isMeal && !result.includes(o.id)) {
                 result.push(o.id);
             }
         });
@@ -1190,11 +1190,11 @@ export class ActionChart {
     public hasDiscipline(disciplineId: string, seriesId: BookSeriesId = null): boolean {
         if (App.debugMode === DebugMode.DEBUG || App.debugMode === DebugMode.TEST) {
             const possibleDisciplines = Disciplines.getSeriesDisciplines(seriesId !== null ? seriesId : state.book.getBookSeries().id);
-            if (!possibleDisciplines.contains(disciplineId)) {
+            if (!possibleDisciplines.includes(disciplineId)) {
                 mechanicsEngine.debugWarning("Disciplines of book series " + seriesId + " do not contains discipline " + disciplineId);
             }
         }
-        return this.getSeriesDisciplines(seriesId).disciplines.contains(disciplineId);
+        return this.getSeriesDisciplines(seriesId).disciplines.includes(disciplineId);
     }
 
     /** Player has a given Kai discipline */

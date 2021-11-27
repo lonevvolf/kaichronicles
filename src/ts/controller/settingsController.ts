@@ -40,11 +40,11 @@ export const settingsController = {
     getDateForFileNames(): string {
         const now = new Date();
         return now.getFullYear() + "_" +
-            ( now.getMonth() + 1 ).toString().padLeft( 2 , "0" ) + "_" +
-            now.getDate().toString().padLeft( 2 , "0" ) + "_" +
-            now.getHours().toString().padLeft( 2 , "0" ) + "_" +
-            now.getMinutes().toString().padLeft( 2 , "0" ) + "_" +
-            now.getSeconds().toString().padLeft( 2 , "0" );
+            ( now.getMonth() + 1 ).toString().padStart( 2 , "0" ) + "_" +
+            now.getDate().toString().padStart( 2 , "0" ) + "_" +
+            now.getHours().toString().padStart( 2 , "0" ) + "_" +
+            now.getMinutes().toString().padStart( 2 , "0" ) + "_" +
+            now.getSeconds().toString().padStart( 2 , "0" );
     },
 
     /**

@@ -62,7 +62,7 @@ export class SectionRenderer {
         if ( footNotes.length > 0 ) {
             html += '<hr/><div class="footnotes">';
             for (let i = 0, len = this.footNotes.length; i < len; i++) {
-                if ( this.renderedFootNotesRefs.contains( this.footNotes[i].id ) ) {
+                if ( this.renderedFootNotesRefs.includes( this.footNotes[i].id ) ) {
                     html += this.footNotes[i].html;
                 } else {
                     // Not really an application error, it's a PAON xml error, so do not call mechanicsEngine.debugWarning()
@@ -432,7 +432,7 @@ export class SectionRenderer {
     private illustration($illustration: JQuery<Element>, level: number): string {
 
         const creator: string = $illustration.find("> meta > creator").text();
-        if ( !SectionRenderer.toRenderIllAuthors.contains( creator ) ) {
+        if ( !SectionRenderer.toRenderIllAuthors.includes( creator ) ) {
             // Author images not distributed
             console.log( "Illustration of " + creator + " author not rendered");
             return "";

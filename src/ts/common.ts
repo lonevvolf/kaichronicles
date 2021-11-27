@@ -5,31 +5,9 @@ export function declareCommonHelpers(declareJqueryPlugins: boolean = true) {
 
     /****************** STRING ******************/
 
-    if (typeof String.prototype.endsWith !== "function") {
-        String.prototype.endsWith = function(suffix) {
-            return this.indexOf(suffix, this.length - suffix.length) !== -1;
-        };
-    }
-
-    if (typeof String.prototype.startsWith !== "function") {
-        String.prototype.startsWith = function(str) {
-            return this.indexOf(str) === 0;
-        };
-    }
-
-    if (typeof String.prototype.padLeft !== "function") {
-        String.prototype.padLeft = function(padLength, padChar) {
-            let result = this;
-            while (result.length < padLength) {
-                result = padChar + result;
-            }
-            return result;
-        };
-    }
-
     if (typeof String.prototype.escapeRegExp !== "function") {
         String.prototype.escapeRegExp = function() {
-            return this.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
+            return this.replace(/([.*+?^=!:${}()|[\]/\\])/g, "\\$1");
         };
     }
 
@@ -87,12 +65,6 @@ export function declareCommonHelpers(declareJqueryPlugins: boolean = true) {
 
     /****************** ARRAY ******************/
 
-    if (typeof Array.prototype.contains !== "function") {
-        Array.prototype.contains = function(value) {
-            return $.inArray(value, this) >= 0;
-        };
-    }
-
     if (typeof Array.prototype.removeValue !== "function") {
         Array.prototype.removeValue = function(value) {
             const index = $.inArray(value, this);
@@ -102,17 +74,6 @@ export function declareCommonHelpers(declareJqueryPlugins: boolean = true) {
             } else {
                 return false;
             }
-        };
-    }
-
-    if (!Array.prototype.some) {
-        Array.prototype.some = function(fun) {
-            for (const that of this) {
-                if ( fun.call( that ) ) {
-                    return true;
-                }
-            }
-            return false;
         };
     }
 

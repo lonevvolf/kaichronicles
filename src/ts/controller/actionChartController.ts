@@ -168,7 +168,7 @@ export const actionChartController = {
 
         if (objectId === "allspecialgrdmaster") {
             actionChartController.dropItemsList(state.actionChart.getSpecialItemsIds().filter((itemId) => {
-                return !Item.ALLOWED_GRAND_MASTER.contains(itemId);
+                return !Item.ALLOWED_GRAND_MASTER.includes(itemId);
             }));
             return true;
         }

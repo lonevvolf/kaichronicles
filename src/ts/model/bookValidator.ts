@@ -91,12 +91,12 @@ export class BookValidator {
         const bookIds = Object.keys( this.book.getDisciplinesTable() );
         const enumIds = Disciplines.getSeriesDisciplines(this.book.getBookSeries().id);
         for (const d of bookIds) {
-            if (!enumIds.contains(d)) {
+            if (!enumIds.includes(d)) {
                 this.addError(null, `Book discipline id ${d} not found in application enum`);
             }
         }
         for (const d of enumIds) {
-            if (!bookIds.contains(d)) {
+            if (!bookIds.includes(d)) {
                 this.addError(null, `Application enum discipline id ${d} not found in book disciplines`);
             }
         }
@@ -424,7 +424,7 @@ export class BookValidator {
                 const bounds = randomMechanics.getCaseRuleBounds( $(child) );
                 if ( bounds && bounds[0] <= bounds[1] ) {
                     for ( let i = bounds[0]; i <= bounds[1]; i++) {
-                        if ( coverage.contains(i) ) {
+                        if ( coverage.includes(i) ) {
                             overlapped = true;
                         } else {
                             coverage.push(i);
@@ -448,7 +448,7 @@ export class BookValidator {
         }
         let missedNumbers = false;
         for ( let i = numberToTest[0]; i <= numberToTest[1]; i++) {
-            if ( !coverage.contains(i) ) {
+            if ( !coverage.includes(i) ) {
                 missedNumbers = true;
             }
         }
@@ -604,7 +604,7 @@ export class BookValidator {
     private drop( $rule: JQuery<Element> ) {
         // Special values:
         const objectId = $rule.attr( "objectId" );
-        if ( objectId && this.specialDropValues.contains( objectId ) ) {
+        if ( objectId && this.specialDropValues.includes( objectId ) ) {
             return;
         }
 

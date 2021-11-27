@@ -52,7 +52,7 @@ export class LoreCircle {
      */
     public matchCircle( disciplines: string[] ): boolean {
         for ( const d of this.disciplines ) {
-            if ( !disciplines.contains(d) ) {
+            if ( !disciplines.includes(d) ) {
                 return false;
             }
         }

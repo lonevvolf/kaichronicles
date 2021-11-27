@@ -65,7 +65,7 @@ export class kaimonasteryController {
             if (item.type !== Item.SPECIAL) {
                 return true;
             }
-            return Item.ALLOWED_GRAND_MASTER.contains(sectionItem.id);
+            return Item.ALLOWED_GRAND_MASTER.includes(sectionItem.id);
         });
 
         // Update action chart

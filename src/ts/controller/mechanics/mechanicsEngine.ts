@@ -286,7 +286,7 @@ export const mechanicsEngine = {
                 const objectsList = $rule.attr("hasObject");
                 if (objectsList) {
                     const objects = objectsList.split("|");
-                    if (objects.contains(o.id)) {
+                    if (objects.includes(o.id)) {
                         // Section should be re-rendered
                         reRender = true;
                         return "finish";
@@ -386,7 +386,7 @@ export const mechanicsEngine = {
         const $eventRule = $(mechanicsEngine.onObjectUsedRule);
         // TODO: Use mechanicsEngine.getArrayProperty here
         const objectIds = $eventRule.attr("objectId").split("|");
-        if (objectIds.contains(objectId)) {
+        if (objectIds.includes(objectId)) {
             mechanicsEngine.runChildRules($eventRule);
         }
     },
@@ -526,7 +526,7 @@ export const mechanicsEngine = {
             // Check if the player has some of the disciplines
             const allDisciplines = Object.keys(state.book.getDisciplinesTable());
             for (const discipline of disciplineToTest) {
-                if (!allDisciplines.contains(discipline)) {
+                if (!allDisciplines.includes(discipline)) {
                     mechanicsEngine.debugWarning("Unknown discipline: " + discipline);
                 }
                 if (state.actionChart.hasDiscipline(discipline)) {
@@ -662,7 +662,7 @@ export const mechanicsEngine = {
 
         // A global rule id is registered?
         const globalRuleId: string = $rule.attr("isGlobalRuleRegistered");
-        if (globalRuleId && state.sectionStates.globalRulesIds.contains(globalRuleId)) {
+        if (globalRuleId && state.sectionStates.globalRulesIds.includes(globalRuleId)) {
             conditionStatisfied = true;
         }
 
@@ -821,7 +821,7 @@ export const mechanicsEngine = {
 
             for (const id of objectIds) {
                 const item = state.mechanics.getObject(objectId);
-                if (!except.contains(id)) {
+                if (!except.includes(id)) {
                     sectionState.sellPrices.push({
                         id,
                         price,
@@ -1338,7 +1338,7 @@ export const mechanicsEngine = {
         }
 
         const ruleId = $(rule).attr("id");
-        if (!state.sectionStates.globalRulesIds.contains(ruleId)) {
+        if (!state.sectionStates.globalRulesIds.includes(ruleId)) {
             console.log("Registered global rule " + ruleId);
             state.sectionStates.globalRulesIds.push(ruleId);
         }

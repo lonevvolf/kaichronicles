@@ -183,7 +183,7 @@ export class ExpressionEvaluator {
 
         const keywords: string[] = [];
         for ( const keyword of repeatedKeywords ) {
-            if ( !keywords.contains(keyword) ) {
+            if ( !keywords.includes(keyword) ) {
                 keywords.push( keyword );
             }
         }

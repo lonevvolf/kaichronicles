@@ -34,7 +34,7 @@ export class EquipmentSectionMechanics {
         // Get the the number of picked objects
         const pickedObjects = EquipmentSectionMechanics.getPickedObjects( originalObjects );
 
-        if ( pickedObjects.length >= nPickableObjects && !pickedObjects.contains(pickedObjectId) ) {
+        if ( pickedObjects.length >= nPickableObjects && !pickedObjects.includes(pickedObjectId) ) {
             // D'oh!
             throw translations.text( "maximumPick" , [nPickableObjects] );
         }

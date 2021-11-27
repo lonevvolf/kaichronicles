@@ -26,7 +26,6 @@ declare function validateXML(parms: any): string;
 // commons.ts:
 interface Array<T> {
     removeValue( value: T ): boolean;
-    contains( value: T ): boolean;
 
     /**
      * Returns a shallow clone of this array
@@ -43,10 +42,7 @@ interface Array<T> {
 // commons.ts:
 interface String {
     replaceAll(find: string, replace: string): string;
-    padLeft(padLength: number, padChar: string): string;
-    endsWith(suffix: string);
     isValidFileName(): boolean;
-    startsWith( text: string ): boolean;
     escapeRegExp(): string;
     unescapeHtml(): string;
     getUrlParameter(sParam: string): string;

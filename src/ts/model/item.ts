@@ -236,7 +236,7 @@ export class Item {
             return true;
         }
         if (this.weaponType) {
-            return this.weaponType.split("|").contains(weaponType);
+            return this.weaponType.split("|").includes(weaponType);
         }
         return false;
     }
