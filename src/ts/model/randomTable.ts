@@ -8,7 +8,9 @@ export interface RandomTableCurrentChoose {
     /**
      * The jQuery Deferred object for the promise
      */
-    deferred: any;
+    deferred: JQuery.Deferred<number>;
+
+    value: number;
 }
 
 /**
@@ -36,8 +38,7 @@ export class RandomTable {
      */
     public getRandomValue(ignoreZero: boolean = false, zeroAsTen: boolean = false): number {
         let value: number;
-        while (true) {
-
+        do {
             if ( this.nextValueDebug >= 0 && this.nextValueDebug <= 9 ) {
                 // Debug value
                 value = this.nextValueDebug;
@@ -48,21 +49,16 @@ export class RandomTable {
                 // Get the number for that index on the book random table
                 value = state.book.bookRandomTable[index];
             }
+        } while (ignoreZero && value === 0);
 
-            if ( ignoreZero && value === 0 ) {
-                continue;
-            }
-
-            if ( zeroAsTen && value === 0 ) {
-                return 10;
-            }
-
-            return value;
+        if ( zeroAsTen && value === 0 ) {
+            return 10;
         }
+
+        return value;
     }
 
     public getRandomValueAsync(zeroAsTen: boolean = false): JQueryPromise<number> {
-
         if ( !state.actionChart.manualRandomTable ) {
             // Use computer generated random numbers:
             return jQuery.Deferred<number>().resolve( this.getRandomValue(zeroAsTen) ).promise();
@@ -71,7 +67,8 @@ export class RandomTable {
         // Store info about the current selection
         this.currentAsync = {
             zeroAsTen,
-            deferred: jQuery.Deferred()
+            deferred: jQuery.Deferred<number>(),
+            value: null
         };
 
         template.showRandomTable(true);
@@ -79,7 +76,6 @@ export class RandomTable {
     }
 
     public randomTableUIClicked(value: number) {
-
         if ( !this.currentAsync ) {
             return;
         }
@@ -88,9 +84,13 @@ export class RandomTable {
             value = 10;
         }
 
-        template.showRandomTable(false);
+        this.currentAsync.value = value;
 
-        this.currentAsync.deferred.resolve(value);
+        template.showRandomTable(false);
+    }
+
+    public randomTableClosed() {
+        this.currentAsync.deferred.resolve(this.currentAsync.value);
         this.currentAsync = null;
     }
 

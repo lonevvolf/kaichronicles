@@ -252,6 +252,10 @@ export const template = {
             e.preventDefault();
             randomTable.randomTableUIClicked( parseInt( $(this).attr("data-number"), 10 ) );
         });
+
+        $("#template-randomtable").on('hidden.bs.modal', () => {
+            randomTable.randomTableClosed();
+        });
     },
 
     /**
