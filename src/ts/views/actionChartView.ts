@@ -35,7 +35,7 @@ export const actionChartView = {
         actionChartView.bindRestore20EP();
 
         // Bind "Fight unarmed"
-        $("#achart-fightUnarmed").click( function(e: Event) {
+        $("#achart-fightUnarmed").on("click", function() {
             actionChartController.setFightUnarmed( $(this).prop("checked") ? true : false );
         });
 
@@ -43,7 +43,7 @@ export const actionChartView = {
         $("#achart-annotations").val( actionChart.annotations );
         $("#achart-annotations").off();
         $("#achart-annotations").on("input", function() {
-            state.actionChart.annotations = $(this).val();
+            state.actionChart.annotations = <string> $(this).val();
         });
     },
 
@@ -72,7 +72,7 @@ export const actionChartView = {
     bindRestore20EP() {
         const $restoreButton = $("#achart-restore20Ep");
         actionChartView.updateRestore20EPState();
-        $restoreButton.click( (e: Event) => {
+        $restoreButton.on("click", (e: JQuery.TriggeredEvent) => {
             e.preventDefault();
             const restoreDiscipline = state.actionChart.get20EPRestoreDiscipline();
             if ( !confirm( translations.text(restoreDiscipline === GndDiscipline.Deliverance ? "confirm20EPGrdMaster" : "confirm20EP") ) ) {
@@ -88,7 +88,7 @@ export const actionChartView = {
      */
     bindDropMoneyEvents() {
         // Bind drop money button event
-        $("#achart-dropmoneybutton").click( (e: Event) => {
+        $("#achart-dropmoneybutton").on("click", (e: JQuery.TriggeredEvent) => {
             e.preventDefault();
             MoneyDialog.show( true );
         });
@@ -157,7 +157,7 @@ export const actionChartView = {
                     "</small></i></td></tr>" );
             }
             // Bind help button events
-            $displines.find("button").click(function(e) {
+            $displines.find("button").on("click", function(e) {
                 $(this).parent().find("i").toggle();
             });
         }

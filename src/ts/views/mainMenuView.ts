@@ -8,27 +8,27 @@ export const mainMenuView = {
     setup( ) {
         document.title = translations.text("kaiChronicles");
 
-        $("#menu-continue").click((e) => {
+        $("#menu-continue").on("click", (e) => {
             e.preventDefault();
             routing.redirect("setup");
         });
-        $("#menu-new").click((e) => {
+        $("#menu-new").on("click", (e) => {
             e.preventDefault();
             routing.redirect("newGame");
         });
-        $("#menu-load").click((e) => {
+        $("#menu-load").on("click", (e) => {
             e.preventDefault();
             routing.redirect("loadGame");
         });
-        $("#menu-color-theme").click((e) => {
+        $("#menu-color-theme").on("click", (e) => {
             e.preventDefault();
             mainMenuController.changeColor();
         });
-        $("#menu-faq").click((e) => {
+        $("#menu-faq").on("click", (e) => {
             e.preventDefault();
             routing.redirect("faq");
         });
-        $("#menu-privacy").click((e) => {
+        $("#menu-privacy").on("click", (e) => {
             e.preventDefault();
             routing.redirect("privacy");
         });

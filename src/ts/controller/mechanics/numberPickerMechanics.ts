@@ -76,7 +76,7 @@ export const numberPickerMechanics = {
             $pickNumberButton = $("#mechanics-picknumber");
         }
 
-        $pickNumberButton.click((e) => {
+        $pickNumberButton.on("click", (e) => {
             e.preventDefault();
             callback();
         });

@@ -53,11 +53,11 @@ export const gameView = {
     setup() {
 
         // Section navigation events
-        $("#game-prevSection").click((e) => {
+        $("#game-prevSection").on("click", (e) => {
             e.preventDefault();
             gameController.onNavigatePrevNext(-1);
         });
-        $("#game-nextSection").click( function(e: Event) {
+        $("#game-nextSection").on("click", function(e: JQuery.TriggeredEvent) {
             e.preventDefault();
             if ($(this).hasClass("disabled")) {
                 return;
@@ -72,25 +72,25 @@ export const gameView = {
         if (App.debugMode === DebugMode.DEBUG) {
             $("#game-debugSection").show();
 
-            $("#game-debugJump").submit((e) => {
+            $("#game-debugJump").on("submit", (e) => {
                 e.preventDefault();
-                gameController.loadSection($("#game-debugNSection").val());
+                gameController.loadSection(<string> $("#game-debugNSection").val());
             });
 
-            $("#game-debugRandomTable").submit((e) => {
+            $("#game-debugRandomTable").on("submit", (e) => {
                 e.preventDefault();
-                randomTable.nextValueDebug = parseInt($("#game-debugRandomFix").val(), 10);
+                randomTable.nextValueDebug = parseInt(<string> $("#game-debugRandomFix").val(), 10);
                 console.log("Next random table value set to " + randomTable.nextValueDebug);
                 $("#game-debugRandomFix").val("");
             });
 
-            $("#game-resetSection").click((e) => {
+            $("#game-resetSection").on("click", (e) => {
                 e.preventDefault();
                 state.sectionStates.resetSectionState(state.sectionStates.currentSection);
                 gameController.loadSection(state.sectionStates.currentSection);
             });
 
-            $("#game-goDisciplines").click((e) => {
+            $("#game-goDisciplines").on("click", (e) => {
                 e.preventDefault();
                 if (state.sectionStates.currentSection === Book.DISCIPLINES_SECTION) {
                     return;
@@ -156,7 +156,7 @@ export const gameView = {
     },
 
     bindCombatTablesLinks() {
-        $(".crtable").click((e) => {
+        $(".crtable").on("click", (e) => {
             e.preventDefault();
             template.showCombatTables();
         });
@@ -166,7 +166,7 @@ export const gameView = {
      * Called when a choice link is clicked
      * @param {DOM} link The clicked link
      */
-    choiceLinkClicked(e: Event, link: any) {
+    choiceLinkClicked(e: JQuery.TriggeredEvent, link: any) {
         e.preventDefault();
 
         // Validate money picker, if there is. If its not valid, don't follow with this link
@@ -201,7 +201,7 @@ export const gameView = {
                 sectionId + '">' + sectionId + "</a>";
         }
         $("#game-sourceSections").html(linksHtml);
-        $("#game-sourceSections a").click(function(e) {
+        $("#game-sourceSections a").on("click", function(e) {
             gameView.choiceLinkClicked(e, this);
         });
     }

@@ -170,7 +170,7 @@ export class Book {
      * Start the download and fix a game book
      * @return Promise with the download / fix task
      */
-    public downloadBookXml(): JQueryPromise<void> {
+    public downloadBookXml(): JQueryXHR {
 
         const bookXmlUrl = this.getBookXmlURL();
         // console.log( 'Downloading book XML URL: ' + bookXmlUrl);
@@ -200,10 +200,10 @@ export class Book {
      * Added on v 1.8
      * @returns The download promises. The promises text is the author XML bio, fixed
      */
-    public downloadAuthorsBio(): Array<JQueryPromise<string>> {
+    public downloadAuthorsBio(): Array<JQueryXHR> {
 
         try {
-            const promises: Array<JQueryPromise<string>> = [];
+            const promises: Array<JQueryXHR> = [];
             for ( const authorId of projectAon.supportedBooks[this.bookNumber - 1].biographies ) {
                 promises.push( this.downloadAuthorInfo( authorId ) );
             }
@@ -220,7 +220,7 @@ export class Book {
      * @param authorId The author id (ex. "jdbiolw")
      * @returns The download promise. The promise text is the author XML bio, fixed
      */
-    private downloadAuthorInfo( authorId: string ): JQueryPromise<string> {
+    private downloadAuthorInfo( authorId: string ): JQueryXHR {
         const authorFileUrl = Book.getBaseUrl() + this.bookNumber + "/" + authorId + ".inc";
         return $.ajax({
             url: authorFileUrl,
@@ -342,7 +342,7 @@ export class Book {
      * @param sectionId The section id to get
      * @return The related section. An empty selection if the section id was not found
      */
-    public getSectionXml(sectionId: string): JQuery<Element> {
+    public getSectionXml(sectionId: string): JQuery<HTMLElement> {
         return $(this.bookXml).find("section[id=" + sectionId + "]");
     }
 

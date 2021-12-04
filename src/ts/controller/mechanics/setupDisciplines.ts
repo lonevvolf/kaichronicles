@@ -81,7 +81,7 @@ export class SetupDisciplines {
             })
             // Set events when checkboxes are clicked
             .find("input[type=checkbox]")
-            .click(function(e) {
+            .on("click", function(e) {
                 self.onDiscliplineCheckBoxClick(e, $(this));
             });
 
@@ -142,7 +142,7 @@ export class SetupDisciplines {
         // eslint-disable-next-line @typescript-eslint/no-this-alias
         const self = this;
         $well.find("input.weaponmastery-chk")
-        .click(function(e: Event) {
+        .on("click", function(e: JQuery.TriggeredEvent) {
             self.onWeaponmasteryWeaponClick(e, $(this));
             });
 
@@ -212,7 +212,7 @@ export class SetupDisciplines {
      * @param e The click event
      * @param  $checkBox The checkbox (jQuery)
      */
-    private onWeaponmasteryWeaponClick(e: Event, $checkBox: JQuery<HTMLElement>) {
+    private onWeaponmasteryWeaponClick(e: JQuery.TriggeredEvent, $checkBox: JQuery<HTMLElement>) {
 
         const selected: boolean = $checkBox.prop("checked");
         const weaponId: string = $checkBox.closest(".weaponmastery-weapon").attr("id");
@@ -266,7 +266,7 @@ export class SetupDisciplines {
      * @param e The click event
      * @param $checkBox The clicked checkbox (JQuery)
      */
-    private onDiscliplineCheckBoxClick(e: Event, $checkBox: JQuery<HTMLElement>) {
+    private onDiscliplineCheckBoxClick(e: JQuery.TriggeredEvent, $checkBox: JQuery<HTMLElement>) {
 
         // Limit the number of disciplines. Unlimited on debug mode
         const selected: boolean = $checkBox.prop("checked");
@@ -292,7 +292,7 @@ export class SetupDisciplines {
      * @param e The discipline check box click event
      * @param disciplineId The selected discipline
      */
-    private onDisciplineSelected(e: Event, disciplineId: string) {
+    private onDisciplineSelected(e: JQuery.TriggeredEvent, disciplineId: string) {
 
         if (disciplineId === KaiDiscipline.Weaponskill) {
             // Special case for kai series: Choose on the random table the weapon
@@ -340,7 +340,7 @@ export class SetupDisciplines {
      * Do the random choice for Weaponskill weapon.
      * Only applies to Kai series
      */
-    private chooseWeaponskillWeapon(e: Event) {
+    private chooseWeaponskillWeapon(e: JQuery.TriggeredEvent) {
 
         if (state.actionChart.getWeaponSkill().length > 0) {
             // Weapon already choosed

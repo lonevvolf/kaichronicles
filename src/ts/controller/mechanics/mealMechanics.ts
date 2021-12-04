@@ -90,10 +90,10 @@ export class MealMechanics {
         mechanicsEngine.setChoiceState("all", true);
 
         // Button event handler
-        $(mealSelector + " button").click((e) => {
+        $(mealSelector + " button").on("click", (e) => {
             e.preventDefault();
 
-            const option = $(mealSelector + " input[name=" + mealOptionId + "]:checked").val();
+            const option = <string> $(mealSelector + " input[name=" + mealOptionId + "]:checked").val();
             if (option === "meal") {
                 actionChartController.drop("meal", false);
             } else if (option === "doNotEat") {

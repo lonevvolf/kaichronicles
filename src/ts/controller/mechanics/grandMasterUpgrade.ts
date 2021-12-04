@@ -23,13 +23,13 @@ export class GrandMasterUpgrade {
         $("#mechanics-gmupgrade-button").prop("disabled", true);
 
         // Choice changed
-        $("#mechanics-gmupgrade input").click((e: Event) => {
+        $("#mechanics-gmupgrade input").on("click", (e: JQuery.TriggeredEvent) => {
             const disabled = $(e.currentTarget).attr("value") === "same";
             $("#mechanics-gmupgrade-button").prop("disabled", disabled);
         });
 
         // Upgrade button clicked
-        $("#mechanics-gmupgrade-button").click((e: Event) => { GrandMasterUpgrade.doUpgrade(rule); });
+        $("#mechanics-gmupgrade-button").on("click", () => { GrandMasterUpgrade.doUpgrade(rule); });
     }
 
     private static doUpgrade(rule: Element) {
@@ -37,7 +37,7 @@ export class GrandMasterUpgrade {
             return;
         }
 
-        const option: string = $("#mechanics-gmupgrade input[name=mechanics-gmupgrade-option]:checked").val();
+        const option = <string> $("#mechanics-gmupgrade input[name=mechanics-gmupgrade-option]:checked").val();
         if (option === "reroll-nobonus") {
             state.actionChart.combatSkill = 0;
             state.actionChart.endurance = 0;

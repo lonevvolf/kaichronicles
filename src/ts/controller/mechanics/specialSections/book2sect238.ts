@@ -31,7 +31,7 @@ export const book2sect238 = {
 
         book2sect238.updateUI(gameState, true);
 
-        $("#mechanics-play").click((e) => {
+        $("#mechanics-play").on("click", (e) => {
             e.preventDefault();
             book2sect238.click(gameState);
         });

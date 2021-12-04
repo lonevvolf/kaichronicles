@@ -18,18 +18,18 @@ export const newGameView = {
         $("#newgame-book").html(html);
 
         // Form submit
-        $("#newgame-form").submit((e) => {
+        $("#newgame-form").on("submit", (e) => {
             e.preventDefault();
             if (!$("#newgame-license").prop("checked")) {
                 alert(translations.text("youMustAgree"));
                 return;
             }
-            newGameController.startNewGame($("#newgame-book").val());
+            newGameController.startNewGame(<number> $("#newgame-book").val());
         });
 
         // Book change
-        $("#newgame-book").change(() => {
-            newGameController.selectedBookChanged($("#newgame-book").val());
+        $("#newgame-book").on("change", () => {
+            newGameController.selectedBookChanged(<number> $("#newgame-book").val());
         });
 
         // Set the first book as selected:

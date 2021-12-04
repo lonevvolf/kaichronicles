@@ -51,7 +51,7 @@ export class MoneyDialog {
         $("#mechanics-moneyamount").bindNumberEvents();
 
         // Bind drop money confirmation button
-        $("#mechanics-moneyapply").click((e: Event) => {
+        $("#mechanics-moneyapply").on("click", (e: JQuery.TriggeredEvent) => {
             e.preventDefault();
             MoneyDialog.onDialogConfirmed();
         });

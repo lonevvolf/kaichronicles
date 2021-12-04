@@ -17,10 +17,10 @@ export class Section {
     public mechanics: Mechanics;
 
     /** The jQuery handler for the section XML */
-    public $xmlSection: JQuery<Element>;
+    public $xmlSection: JQuery<HTMLElement>;
 
     /** The jQuery handler for the XML node for the "data" tag of the section */
-    public $data: JQuery<Element>;
+    public $data: JQuery<HTMLElement>;
 
     /**
      * Section constructor from the Book XML

@@ -331,7 +331,7 @@ export class BookValidator {
     /**
      * Download the XSD to validate the XML, if this has not been done yet
      */
-    public static downloadXsd(): JQueryPromise<void> {
+    public static downloadXsd(): JQueryXHR | JQueryPromise<void> {
 
         if ( BookValidator.xsdText ) {
             // Already downloaded

@@ -45,17 +45,17 @@ export const mapView = {
      */
     bindEvents() {
         // Bind clicks on image to resize it
-        $("#map-section div.illustration img").click(function() {
+        $("#map-section div.illustration img").on("click", function() {
             // Reset fixed width / height
             const $this = $(this);
             $this.removeAttr( "width" );
             $this.removeAttr( "height" );
             $this.toggleClass("originalsize");
         });
-        $("#map-increasezoom").click((e: Event) => {
+        $("#map-increasezoom").on("click", (e: JQuery.TriggeredEvent) => {
             mapView.changeZoom(true, e);
         });
-        $("#map-decreasezoom").click((e: Event) => {
+        $("#map-decreasezoom").on("click", (e: JQuery.TriggeredEvent) => {
             mapView.changeZoom(false, e);
         });
 
@@ -89,7 +89,7 @@ export const mapView = {
      * @param increase True to increase the zoom. False to decrease
      * @param e The click event on the zoom links
      */
-    changeZoom(increase: boolean, e: Event) {
+    changeZoom(increase: boolean, e: JQuery.TriggeredEvent) {
         e.preventDefault();
 
         const $image = $("#map-section img");

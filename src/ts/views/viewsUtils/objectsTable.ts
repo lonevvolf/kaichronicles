@@ -117,7 +117,7 @@ export class ObjectsTable {
         .find(".equipment-op")
         // Include the $element itself too
         .addBack(".equipment-op")
-        .click(function(e: Event) {
+        .on("click", function(e: JQuery.Event) {
             e.preventDefault();
             const $link = $(this);
 

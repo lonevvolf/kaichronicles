@@ -29,7 +29,7 @@ export class kaimonasteryController {
         views.loadView("kaimonastery.html")
         .then( () => {
             // Go back to the equipment section
-            $("#monastery-goback").click( (e: Event) => {
+            $("#monastery-goback").on("click", (e: JQuery.Event) => {
                 kaimonasteryController.onGoBackToEquipment(e);
             });
 
@@ -40,7 +40,7 @@ export class kaimonasteryController {
     }
 
     /** Go back to the Equipment section clicked */
-    private static onGoBackToEquipment(e: Event) {
+    private static onGoBackToEquipment(e: JQuery.Event) {
         e.preventDefault();
 
         // Save the Kai monastery inventory to the Action Chart

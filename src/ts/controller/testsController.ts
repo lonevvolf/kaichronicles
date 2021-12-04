@@ -23,19 +23,19 @@ export class testsController {
      * Setup view
      */
     private static setup() {
-        $("#tests-random").click((e: Event) => {
+        $("#tests-random").on("click", (e: JQuery.Event) => {
             e.preventDefault();
             testsController.testRandomTable();
         });
-        $("#tests-rendering").click((e: Event) => {
+        $("#tests-rendering").on("click", (e: JQuery.Event) => {
             e.preventDefault();
             testsController.testRendering();
         });
-        $("#tests-bookmechanics").click((e: Event) => {
+        $("#tests-bookmechanics").on("click", (e: JQuery.Event) => {
             e.preventDefault();
             testsController.testCurrentBookMechanics();
         });
-        $("#tests-allbooks").click((e: Event) => {
+        $("#tests-allbooks").on("click", (e: JQuery.Event) => {
             e.preventDefault();
             testsController.testAllBooks();
         });

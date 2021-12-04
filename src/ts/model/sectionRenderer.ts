@@ -82,7 +82,7 @@ export class SectionRenderer {
      * @param level The nesting level index of the tag
      * @return The HTML
      */
-    public renderNodeChildren($tag: JQuery<Element>, level: number ): string {
+    public renderNodeChildren($tag: JQuery<HTMLElement>, level: number ): string {
 
         // The HTML to return
         let sectionContent = "";
@@ -103,7 +103,7 @@ export class SectionRenderer {
             }
 
             // Get the tag name
-            let tagName = node.tagName.toLowerCase();
+            let tagName = node.nodeName.toLowerCase();
             // Replace '-' char by '_' (not valid char for javascript function names)
             tagName = tagName.replaceAll("-" , "_");
 
@@ -136,39 +136,39 @@ export class SectionRenderer {
     ////////////////////////////////////////////////////////
 
     /** Render nodes with the same meaning on book XML and HTML */
-    private renderHtmlNode($node: JQuery<Element>, level: number): string {
+    private renderHtmlNode($node: JQuery<HTMLElement>, level: number): string {
         const name = $node[0].nodeName;
         return "<" + name + ">" + this.renderNodeChildren( $node , level ) +
             "</" + name + ">";
     }
 
     /** Paragraph renderer  */
-    private p($node: JQuery<Element>, level: number): string { return this.renderHtmlNode( $node , level ); }
+    private p($node: JQuery<HTMLElement>, level: number): string { return this.renderHtmlNode( $node , level ); }
 
     /** List item renderer  */
-    private li($node: JQuery<Element>, level: number): string { return this.renderHtmlNode( $node , level ); }
+    private li($node: JQuery<HTMLElement>, level: number): string { return this.renderHtmlNode( $node , level ); }
 
     /** blockquote renderer */
-    private blockquote($node: JQuery<Element>, level: number): string { return this.renderHtmlNode( $node , level ); }
+    private blockquote($node: JQuery<HTMLElement>, level: number): string { return this.renderHtmlNode( $node , level ); }
 
     /** Line break renderer */
-    private br($node: JQuery<Element>, level: number): string { return this.renderHtmlNode( $node , level ); }
+    private br($node: JQuery<HTMLElement>, level: number): string { return this.renderHtmlNode( $node , level ); }
 
     /** Cite renderer */
-    private cite($node: JQuery<Element>, level: number): string { return this.renderHtmlNode( $node , level ); }
+    private cite($node: JQuery<HTMLElement>, level: number): string { return this.renderHtmlNode( $node , level ); }
 
     /** Emphasized renderer */
-    private em($node: JQuery<Element>, level: number): string { return this.renderHtmlNode( $node , level ); }
+    private em($node: JQuery<HTMLElement>, level: number): string { return this.renderHtmlNode( $node , level ); }
 
     /** Strong renderer */
-    private strong($node: JQuery<Element>, level: number): string { return this.renderHtmlNode( $node , level ); }
+    private strong($node: JQuery<HTMLElement>, level: number): string { return this.renderHtmlNode( $node , level ); }
 
     ////////////////////////////////////////////////////////
     // PLAIN TEXT RENDERING
     ////////////////////////////////////////////////////////
 
     /** Render node as plain text */
-    private renderPlainText = function($node: JQuery<Element>, level: number): string {
+    private renderPlainText = function($node: JQuery<HTMLElement>, level: number): string {
         return this.renderNodeChildren( $node , level );
     };
 
@@ -181,7 +181,7 @@ export class SectionRenderer {
      * @param $ul List to render
      * @return The HTML
      */
-    private ul($ul: JQuery<Element>, level: number): string {
+    private ul($ul: JQuery<HTMLElement>, level: number): string {
         return '<ul class="list-table">' + this.renderNodeChildren( $ul , level ) + "</ul>";
     }
 
@@ -190,7 +190,7 @@ export class SectionRenderer {
      * @param $ol List to render
      * @returns The HTML
      */
-    private ol($ol: JQuery<Element>, level: number): string {
+    private ol($ol: JQuery<HTMLElement>, level: number): string {
         return "<ol>" + this.renderNodeChildren( $ol , level ) + "</ol>";
     }
 
@@ -202,7 +202,7 @@ export class SectionRenderer {
      *  Store a foot note definition
      * @return Always an empty string (this function is for to collect, not for rendering)
      */
-    private footnote($footNote: JQuery<Element>, level: number): string {
+    private footnote($footNote: JQuery<HTMLElement>, level: number): string {
 
         // Note HTML
         let noteHtml = this.renderNodeChildren( $footNote , level );
@@ -220,7 +220,7 @@ export class SectionRenderer {
     }
 
     /** Foot reference rendering */
-    private footref($footRef: JQuery<Element>, level: number): string {
+    private footref($footRef: JQuery<HTMLElement>, level: number): string {
 
         // Get the foot note id:
         const id: string = $footRef.attr("idref");
@@ -248,11 +248,11 @@ export class SectionRenderer {
     // PUZZLES
     ////////////////////////////////////////////////////////
 
-    private puzzle( $puzzle: JQuery<Element> , level: number ): string {
+    private puzzle( $puzzle: JQuery<HTMLElement> , level: number ): string {
         return "<p>" + this.renderNodeChildren( $puzzle , level ) + "</p>";
     }
 
-    private choose( $choose: JQuery<Element> , level: number ): string {
+    private choose( $choose: JQuery<HTMLElement> , level: number ): string {
         // TODO: To be complete, we should evaluate the expression. Not needed on book 5,
         // TODO: just render the otherwise tag
         return this.renderNodeChildren( $choose.children("otherwise") , level ) ;
@@ -263,18 +263,18 @@ export class SectionRenderer {
     ////////////////////////////////////////////////////////
 
     /** Render line  */
-    private line($line: JQuery<Element> , level: number ): string {
+    private line($line: JQuery<HTMLElement> , level: number ): string {
         return this.renderNodeChildren( $line , level ) + "<br />";
     }
 
     /** Render book reference */
-    private bookref($bookref: JQuery<Element> , level: number ): string {
+    private bookref($bookref: JQuery<HTMLElement> , level: number ): string {
         return '<span class="bookref">' +
             this.renderNodeChildren( $bookref , level ) + "</span>";
     }
 
     /** Player property text */
-    private typ($typ: JQuery<Element> , level: number): string {
+    private typ($typ: JQuery<HTMLElement> , level: number): string {
 
         const html = this.renderNodeChildren( $typ , level );
         if ( $typ.attr("class") === "attribute" ) {
@@ -285,12 +285,12 @@ export class SectionRenderer {
     }
 
     /** Quote renderer */
-    private quote($quote: JQuery<Element>, level: number): string {
+    private quote($quote: JQuery<HTMLElement>, level: number): string {
         return "&ldquo;" + this.renderNodeChildren( $quote , level ) + "&rdquo;";
     }
 
     /** Links renderer */
-    private a($a: JQuery<Element>, level: number): string {
+    private a($a: JQuery<HTMLElement>, level: number): string {
 
         // Check if it's a anchor target id
         if ( $a.attr("id") ) {
@@ -377,7 +377,7 @@ export class SectionRenderer {
      * @param $dl List to render
      * @returns The HTML
      */
-    private dl($dl: JQuery<Element>, level: number): string {
+    private dl($dl: JQuery<HTMLElement>, level: number): string {
         let definitionContent = "";
 
         for ( const element of $dl.find("> dt, > dd").toArray() ) {
@@ -396,7 +396,7 @@ export class SectionRenderer {
     }
 
     /** Choice links renderer */
-    private link_text($linkText: JQuery<Element>, level: number): string {
+    private link_text($linkText: JQuery<HTMLElement>, level: number): string {
         const section = $linkText.parent().attr("idref");
         return '<a href="#" class="action choice-link" data-section="' + section +
             '">' + this.renderNodeChildren( $linkText , level ) + "</a>";
@@ -407,7 +407,7 @@ export class SectionRenderer {
      * @param $choice Choice to render
      * @returns The HTML
      */
-    private choice($choice: JQuery<Element>, level: number): string {
+    private choice($choice: JQuery<HTMLElement>, level: number): string {
 
         return '<p class="choice"><span class="glyphicon glyphicon-chevron-right"></span> ' +
             this.renderNodeChildren( $choice , level ) + "</p>";
@@ -429,7 +429,7 @@ export class SectionRenderer {
      * @param $illustration Illustration to render
      * @returns The HTML
      */
-    private illustration($illustration: JQuery<Element>, level: number): string {
+    private illustration($illustration: JQuery<HTMLElement>, level: number): string {
 
         const creator: string = $illustration.find("> meta > creator").text();
         if ( !SectionRenderer.toRenderIllAuthors.includes( creator ) ) {
@@ -468,28 +468,28 @@ export class SectionRenderer {
      * @param $deadend Dead end to render
      * @returns The HTML
      */
-    private deadend( $deadend: JQuery<Element>, level: number ): string {
+    private deadend( $deadend: JQuery<HTMLElement>, level: number ): string {
         /*return '<ul class="list-table deadend"><li class="title">' +
             this.renderNodeChildren( $deadend , level ) + '</li></ul>'*/
         return "<p>" + this.renderNodeChildren( $deadend , level ) + "</p>";
     }
 
     /** Onomatopoeia renderer */
-    private onomatopoeia( $onomatopoeia: JQuery<Element> , level: number ): string {
+    private onomatopoeia( $onomatopoeia: JQuery<HTMLElement> , level: number ): string {
         return "<i>" + this.renderNodeChildren( $onomatopoeia , level ) + "</i>";
     }
 
     /** Foreign language renderer */
-    private foreign( $foreign: JQuery<Element> , level: number ): string {
+    private foreign( $foreign: JQuery<HTMLElement> , level: number ): string {
         return "<i>" + this.renderNodeChildren( $foreign , level ) + "</i>";
     }
 
     /** Spell language renderer */
-    private spell( $spell: JQuery<Element> , level: number ): string {
+    private spell( $spell: JQuery<HTMLElement> , level: number ): string {
         return "<i>" + this.renderNodeChildren( $spell , level ) + "</i>";
     }
 
-    public static getEnemyEndurance( $combat: JQuery<Element> ): any {
+    public static getEnemyEndurance( $combat: JQuery<HTMLElement> ): any {
         let $enduranceAttr = $combat.find("enemy-attribute[class=endurance]");
         if ( $enduranceAttr.length === 0 ) {
             // Book 6 / sect26: The endurance attribute is "target"
@@ -502,7 +502,7 @@ export class SectionRenderer {
         return $enduranceAttr;
     }
 
-    public static getEnemyCombatSkill( $combat: JQuery<Element> ): any {
+    public static getEnemyCombatSkill( $combat: JQuery<HTMLElement> ): any {
         return $combat.find(".combatskill");
     }
 
@@ -511,7 +511,7 @@ export class SectionRenderer {
      * @param $combat Combat to render
      * @returns The HTML
      */
-    private combat( $combat: JQuery<Element> , level: number ): string {
+    private combat( $combat: JQuery<HTMLElement> , level: number ): string {
         const enemyHtml = this.renderNodeChildren( $combat.find("enemy") , level );
         const combatSkill = SectionRenderer.getEnemyCombatSkill( $combat ).text();
         const endurance = SectionRenderer.getEnemyEndurance( $combat ).text();
@@ -529,7 +529,7 @@ export class SectionRenderer {
      * @param $section Inner section to render
      * @returns The HTML
      */
-    private section( $section: JQuery<Element> , level: number ): string {
+    private section( $section: JQuery<HTMLElement> , level: number ): string {
         const sectionId = $section.attr("id");
         const innerSectionData = $section.find("data").first();
         const headingLevel = level + 1;
@@ -541,17 +541,17 @@ export class SectionRenderer {
         return sectionContent;
     }
 
-    private signpost( $signpost: JQuery<Element> , level: number ): string {
+    private signpost( $signpost: JQuery<HTMLElement> , level: number ): string {
         return '<div class="signpost">' +  this.renderNodeChildren( $signpost , level ) +
             "</div>";
     }
 
-    private poetry( $poetry: JQuery<Element> , level: number ): string {
+    private poetry( $poetry: JQuery<HTMLElement> , level: number ): string {
         return '<blockquote class="poetry">' + this.renderNodeChildren( $poetry , level ) +
             "</blockquote>";
     }
 
-    private thought( $thought: JQuery<Element> , level: number ): string {
+    private thought( $thought: JQuery<HTMLElement> , level: number ): string {
         return "<i>" + this.renderNodeChildren( $thought , level ) + "</i>";
     }
 
@@ -561,10 +561,10 @@ export class SectionRenderer {
     // See one in book 8, Spanish, sect13
     ////////////////////////////////////////////////////////
 
-    private table($node: JQuery<Element>, level: number): string {
+    private table($node: JQuery<HTMLElement>, level: number): string {
         return '<table class="table table-striped">' + this.renderNodeChildren( $node , level ) + "</table>";
     }
-    private tr($node: JQuery<Element>, level: number): string { return this.renderHtmlNode( $node , level ); }
-    private th($node: JQuery<Element>, level: number): string { return this.renderHtmlNode( $node , level ); }
-    private td($node: JQuery<Element>, level: number): string { return this.renderHtmlNode( $node , level ); }
+    private tr($node: JQuery<HTMLElement>, level: number): string { return this.renderHtmlNode( $node , level ); }
+    private th($node: JQuery<HTMLElement>, level: number): string { return this.renderHtmlNode( $node , level ); }
+    private td($node: JQuery<HTMLElement>, level: number): string { return this.renderHtmlNode( $node , level ); }
 }

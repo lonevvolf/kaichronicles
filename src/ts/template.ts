@@ -50,10 +50,10 @@ export const template = {
 
         // Hide the bootstrap menu when some menu option is clicked, or when
         // the content is clicked
-        $("#template-header a, #template-container").click(() => {
+        $("#template-header a, #template-container").on("click", () => {
             template.collapseMenu();
         });
-        $("#template-statistics").click(() => {
+        $("#template-statistics").on("click", () => {
             routing.redirect("actionChart");
         });
         template.updateStatistics(true);
@@ -248,7 +248,7 @@ export const template = {
         $("#template-randomcontent").html( html );
 
         // Add click event handlers:
-        $("#template-randomcontent td").mousedown(function(e) {
+        $("#template-randomcontent td").on("mousedown", function(e) {
             e.preventDefault();
             randomTable.randomTableUIClicked( parseInt( $(this).attr("data-number"), 10 ) );
         });

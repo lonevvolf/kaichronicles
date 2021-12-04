@@ -107,7 +107,7 @@ export class BookSectionStates {
         this.sectionStates = {};
         $.each( stateObject.sectionStates , ( sectionId , s ) => {
             const sectionState = $.extend( new SectionState() , s );
-            this.sectionStates[ sectionId ] = sectionState;
+            this.sectionStates[ <string> sectionId ] = sectionState;
 
             // Restore combats
             const combats = [];

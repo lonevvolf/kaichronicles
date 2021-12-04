@@ -12,7 +12,7 @@ export const book2sect308 = {
 
         book2sect308.updateUI(true);
 
-        $("#mechanics-play").click((e) => {
+        $("#mechanics-play").on("click", (e) => {
             e.preventDefault();
             book2sect308.click();
         });

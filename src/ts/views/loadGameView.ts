@@ -14,7 +14,7 @@ export const loadGameView = {
      * Bind web file uploader events
      */
     bindFileUploaderEvents() {
-        $("#loadGame-file").change(function() {
+        (<JQuery<HTMLInputElement>> $("#loadGame-file")).on("change", function(e) {
             if (!this.files || !this.files[0]) {
                 return;
             }

@@ -38,7 +38,7 @@ export function declareJqueryNumberFunctions() {
          * Bind number events
          */
         $.fn.bindNumberEvents = function() {
-            this.parent().find("button.add-number").click((e) => {
+            this.parent().find("button.add-number").on("click", (e) => {
                 e.preventDefault();
                 let n = this.getNumber();
                 if ( isNaN(n) ) {
@@ -49,7 +49,7 @@ export function declareJqueryNumberFunctions() {
                     this.setNumber(n);
                 }
             });
-            this.parent().find("button.sub-number").click((e) => {
+            this.parent().find("button.sub-number").on("click", (e) => {
                 e.preventDefault();
                 let n = this.getNumber();
                 if ( isNaN(n) ) {
@@ -60,7 +60,7 @@ export function declareJqueryNumberFunctions() {
                     this.setNumber(n);
                 }
             });
-            this.change(() => {
+            this.on("change", () => {
                 this.fireValueChanged();
             });
         };

@@ -124,7 +124,7 @@ export const randomMechanics = {
         // If the element is an span, replace it by a link
         $element = randomMechanics.setupRandomTableLink($element);
 
-        $element.click(function(e: Event) {
+        $element.on("click", function(e: Event) {
             e.preventDefault();
 
             if ($(this).hasClass("disabled")) {

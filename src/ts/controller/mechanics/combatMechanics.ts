@@ -1,4 +1,4 @@
-import { state, mechanicsEngine, Combat, template, SpecialObjectsUse, CombatTurn, GndDiscipline, translations, gameView } from "../..";
+import { state, mechanicsEngine, Combat, template, SpecialObjectsUse, CombatTurn, GndDiscipline, translations } from "../..";
 
 /**
  * Combats mechanics
@@ -48,7 +48,7 @@ export class CombatMechanics {
             const $combatOriginal = $(".combat:eq(" + index + ")");
 
             $combatOriginal.append( $combatUI )
-            .find(CombatMechanics.PLAY_TURN_BTN_SELECTOR).click(function(e) {
+            .find(CombatMechanics.PLAY_TURN_BTN_SELECTOR).on("click", function(e) {
                 // Play turn button click
                 e.preventDefault();
                 CombatMechanics.runCombatTurn( $(this).parents(".mechanics-combatUI").first(), false );
@@ -60,20 +60,20 @@ export class CombatMechanics {
             $combatOriginal.prepend( $btnCombatTables );
 
             // Bind the show combat tables button click
-            $btnCombatTables.click((e) => {
+            $btnCombatTables.on("click", (e) => {
                 e.preventDefault();
                 template.showCombatTables();
             });
 
             // Elude combat button click
-            $combatOriginal.find(CombatMechanics.ELUDE_BTN_SELECTOR).click(function(e) {
+            $combatOriginal.find(CombatMechanics.ELUDE_BTN_SELECTOR).on("click", function(e) {
                 e.preventDefault();
                 CombatMechanics.runCombatTurn( $(this).parents(".mechanics-combatUI").first() ,
                     true );
             });
 
             // Bind combat ratio link click
-            $combatUI.find(".crlink").click(function( e: Event ) {
+            $combatUI.find(".crlink").on("click", function( e: Event ) {
                 e.preventDefault();
                 CombatMechanics.showCombatRatioDetails( $(this).parents(".mechanics-combatUI").first() );
             });
@@ -316,8 +316,8 @@ export class CombatMechanics {
             CombatMechanics.disableSurge( $combatUI , combat );
         }
         // XXX surge selection
-        $psiSurgeCheck.click(function(e: Event) {
-            CombatMechanics.onSurgeClick(e , $(this) );
+        $psiSurgeCheck.on("click", (e: JQuery.Event) => {
+            CombatMechanics.onSurgeClick(e , $psiSurgeCheck );
         });
 
         // UI XXX-Surge texts
@@ -330,7 +330,7 @@ export class CombatMechanics {
     /**
      * XXX-Surge checkbox event handler
      */
-    private static onSurgeClick(e: Event, $psiSurgeCheck: JQuery<HTMLElement>) {
+    private static onSurgeClick(e: JQuery.Event, $psiSurgeCheck: JQuery<HTMLElement>) {
 
         const $combatUI = $psiSurgeCheck.parents(".mechanics-combatUI").first();
         const combatIndex = parseInt( $combatUI.attr( "data-combatIdx" ), 10 );

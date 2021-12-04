@@ -42,9 +42,9 @@ export class Mechanics {
      * Start the download of the mechanics XML
      * @return Promise with the download
      */
-    public downloadXml(): JQueryPromise<void> {
+    public downloadXml(): JQueryXHR {
 
-        return $.ajax({
+        return $.get({
             url: this.getXmlURL(),
             dataType: "text"
         })
@@ -73,11 +73,11 @@ export class Mechanics {
      * Start the download of the objects XML
      * @return Promise with the download
      */
-    public downloadObjectsXml(): JQueryPromise<void> {
+    public downloadObjectsXml(): JQueryXHR {
 
-        return $.ajax({
+        return $.get({
             url: this.getObjectsXmlURL(),
-            dataType: "xml"
+            dataType: "xml",
         })
         .done((xml) => {
             this.objectsXml = xml;
@@ -99,7 +99,7 @@ export class Mechanics {
     /**
      * Returns an jquery object with the section mechanics XML. null if there are no mechanics
      */
-    public getSection(sectionId: string): JQuery<Element> {
+    public getSection(sectionId: string): JQuery<HTMLElement> {
         const $section = $(this.mechanicsXml)
             .find("mechanics > sections > section[id=" + sectionId + "]");
         return $section.length === 0 ? null : $section;
