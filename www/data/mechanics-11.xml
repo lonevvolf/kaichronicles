@@ -30,8 +30,8 @@
             <!-- You can pick equipment only if it's your first book -->
             <test expression="[KAILEVEL] == 3">
                 <!-- There are two free meals -->
-                <pick objectId="meal" index="0"/>
-                <pick objectId="meal" index="1"/>
+                <pick objectId="meal" index="0" />
+                <pick objectId="meal" index="1" />
 
                 <randomTable>
                     <pick class="money" count="[RANDOM] + 10" />
@@ -49,13 +49,9 @@
                 <object objectId="meal" index="2" />
                 <object objectId="dagger" />
 
-                <chooseEquipment
-                    text="Click on the Random Table link to get money before continuing"
-                />
+                <chooseEquipment text="Click on the Random Table link to get money before continuing" />
 
-                <message
-                    text="You may take up to six of the following (all meals count as one object):"
-                />
+                <message text="You may take up to six of the following (all meals count as one object):" />
             </test>
         </section>
 
@@ -189,9 +185,7 @@
             <resetSectionState sectionId="sect344" />
             <resetSectionState sectionId="sect169" />
 
-            <displayIllustration section="sect131" 
-                text="Illustration on section 131"
-            />
+            <displayIllustration section="sect131" text="Illustration on section 131" />
         </section>
 
         <section id="sect26">
@@ -403,7 +397,7 @@
                 </test>
             </test>
         </section>
-        
+
         <section id="sect67">
             <test not="true" hasDiscipline="dvnation">
                 <choiceState section="sect347" set="disabled" />
@@ -413,7 +407,7 @@
         <section id="sect68">
             <choiceState section="all" set="disabled" />
 
-            <combat noMindblast="true"/>
+            <combat noMindblast="true" />
             <test not="true" hasDiscipline="hntmstry">
                 <combat combatSkillModifier="-3" />
                 <afterCombatTurn turn="2">
@@ -429,7 +423,7 @@
         <section id="sect72">
             <pick class="arrow" count="-1" />
             <choiceState section="all" set="disabled" />
-            <combat noMindblast="true"/>
+            <combat noMindblast="true" />
             <afterCombats>
                 <choiceState section="all" set="enabled" />
             </afterCombats>
@@ -484,7 +478,7 @@
 
             <choiceState section="all" set="disabled" />
 
-            <combat noMindblast="true"/>
+            <combat noMindblast="true" />
             <test not="true" hasDiscipline="hntmstry">
                 <combat combatSkillModifier="-3" />
                 <afterCombatTurn turn="2">
@@ -730,7 +724,7 @@
         <section id="sect121">
             <object objectId="khetuspores" />
         </section>
-        
+
         <section id="sect125">
             <choiceState section="sect223" set="disabled" />
             <test hasDiscipline="curing">
@@ -1201,7 +1195,13 @@
         </section>
 
         <section id="sect210">
+            <choiceState section="all" set="disabled" />
             <pick objectId="obsidianseal" />
+            <onInventoryEvent>
+                <test hasObject="obsidianseal">
+                    <choiceState section="all" set="enabled" />
+                </test>
+            </onInventoryEvent>
         </section>
 
         <section id="sect212">
@@ -1499,7 +1499,7 @@
 
             <!-- TODO: Any bonuses to ENDURANCE due to armour should likewise not be applied during this combat. HOW ??? -->
             <!-- Compute combat skills increment -->
-            <combat combatSkillModifier="0" /> 
+            <combat combatSkillModifier="0" />
             <test hasObject="psychicring">
                 <combat combatSkillModifierIncrement="+3" />
             </test>
@@ -1563,7 +1563,7 @@
                 </test>
             </test>
         </section>
-        
+
         <section id="sect276">
             <choiceState section="all" set="disabled" />
             <randomTable>
@@ -1645,10 +1645,10 @@
                 <combat eludeTurn="0" />
             </test>
 
-            <test not="true" hasDiscipline="curing" >
+            <test not="true" hasDiscipline="curing">
                 <combat turnLossIfWounded="-2" />
             </test>
-            <test hasDiscipline="curing" >
+            <test hasDiscipline="curing">
                 <test not="true" expression="[KAILEVEL] >= 7">
                     <combat turnLossIfWounded="-2" />
                 </test>
@@ -1714,9 +1714,7 @@
         </section>
 
         <section id="sect315">
-            <displayIllustration section="sect166" 
-                text="Illustration on section 166"
-            />
+            <displayIllustration section="sect166" text="Illustration on section 166" />
         </section>
 
         <section id="sect316">
@@ -1856,9 +1854,7 @@
 
         <section id="sect338">
             <drop backpackItemSlots="1|3" />
-            <message id="msg-drop-object" 
-                text="Drop one Special Item of your choice" 
-            />
+            <message id="msg-drop-object" text="Drop one Special Item of your choice" />
             <onInventoryEvent>
                 <test expression="[SPECIAL-ITEMS-ON-ACTIONCHART] == 0 || [SPECIAL-ITEMS-ON-SECTION] >= 1">
                     <message id="msg-drop-object" op="hide" />

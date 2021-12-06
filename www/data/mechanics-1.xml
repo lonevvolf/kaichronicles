@@ -59,9 +59,7 @@
             </randomTable>
 
             <!-- Choose equipment UI -->
-            <chooseEquipment 
-                text="Click on both Random Table links before continuing" 
-            />
+            <chooseEquipment text="Click on both Random Table links before continuing" />
 
         </section>
 
@@ -108,9 +106,9 @@
                 <choiceState section="sect236" set="disabled" />
             </test>
         </section>
-        
+
         <section id="sect12">
-            <test not="true" expression="[MONEY] >= 10" >
+            <test not="true" expression="[MONEY] >= 10">
                 <choiceState section="sect262" set="disabled" />
             </test>
         </section>
@@ -136,7 +134,7 @@
                 </randomTable>
             </afterCombats>
         </section>
-        
+
         <section id="sect18">
             <test not="true" hasDiscipline="camflage">
                 <choiceState section="sect114" set="disabled" />
@@ -269,7 +267,7 @@
             <test not="true" hasDiscipline="sixthsns">
                 <choiceState section="sect296" set="disabled" />
             </test>
-            <test not="true" expression="[MONEY] >= 2" >
+            <test not="true" expression="[MONEY] >= 2">
                 <choiceState section="sect246" set="disabled" />
             </test>
         </section>
@@ -401,7 +399,7 @@
                 <choiceState section="sect298" set="disabled" />
             </test>
         </section>
-        
+
         <section id="sect108">
             <death />
         </section>
@@ -418,7 +416,7 @@
             <object objectId="laumspurmeal" index="0" useOnSection="true" />
             <object objectId="laumspurmeal" index="1" useOnSection="true" />
         </section>
-        
+
         <section id="sect119">
             <endurance count="-2" />
         </section>
@@ -485,9 +483,7 @@
         </section>
 
         <section id="sect144">
-            <message id="msg-drop-object" 
-                text="Drop a Backpack item or weapon before continuing"
-            />
+            <message id="msg-drop-object" text="Drop a Backpack item or weapon before continuing" />
 
             <choiceState section="all" set="disabled" />
             <onInventoryEvent>
@@ -513,7 +509,7 @@
                  you should not eat here (2 sections after), but I keep it -->
             <meal />
         </section>
-        
+
         <section id="sect148">
             <object objectId="warhammer" />
         </section>
@@ -952,9 +948,7 @@
         </section>
 
         <section id="sect277">
-            <message id="msg-drop-weapon" 
-                text="Drop a weapon before continuing" 
-            />
+            <message id="msg-drop-weapon" text="Drop a weapon before continuing" />
             <choiceState section="all" set="disabled" />
             <onInventoryEvent>
                 <test expression="[WEAPON-ITEMS-CNT-ON-ACTIONCHART] == 0 || [WEAPON-ITEMS-CNT-ON-SECTION] > 0">
@@ -1025,7 +1019,7 @@
                 </case>
             </randomTable>
         </section>
-            
+
         <section id="sect300">
             <meal />
         </section>
@@ -1067,9 +1061,7 @@
         <section id="sect307">
             <pick objectId="meal" />
             <object objectId="warhammer" />
-            <message id="msg-drop-weapon" 
-                text="Drop a weapon before continuing" 
-            />
+            <message id="msg-drop-weapon" text="Drop a weapon before continuing" />
             <onInventoryEvent>
                 <test expression="[WEAPON-ITEMS-CNT-ON-SECTION] > 0">
                     <message id="msg-drop-weapon" op="hide" />

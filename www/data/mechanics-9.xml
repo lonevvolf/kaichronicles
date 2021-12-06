@@ -23,13 +23,13 @@
             <!-- Select the Kai disciplines UI -->
             <setDisciplines />
         </section>
-        
+
         <section id="equipmnt" pickMaximum="5">
             <!-- Do not pick 2 maps! -->
-            <test not="true" hasObject="map" >
+            <test not="true" hasObject="map">
                 <pick objectId="map" />
             </test>
-            <test not="true" hasObject="backpack" >
+            <test not="true" hasObject="backpack">
                 <pick objectId="backpack" />
             </test>
 
@@ -55,13 +55,9 @@
             <object objectId="fireseed" index="1" />
             <object objectId="fireseed" index="2" />
 
-            <chooseEquipment
-                text="Click on the Random Table link to get money before continuing" 
-            />
+            <chooseEquipment text="Click on the Random Table link to get money before continuing" />
 
-            <message
-                text="You may take up to five of the following (all meals and fireseeds count as one object):"  
-            />
+            <message text="You may take up to five of the following (all meals and fireseeds count as one object):" />
         </section>
 
         <section id="sect3">
@@ -110,11 +106,9 @@
         </section>
 
         <section id="sect10">
-            
+
             <currentWeapon objectId="daggerofvashna" />
-            <message id="msg-drop-weapon" 
-                text="You must use the Dagger of Vashna as current weapon on this combat" 
-            />
+            <message id="msg-drop-weapon" text="You must use the Dagger of Vashna as current weapon on this combat" />
             <onInventoryEvent>
                 <disableCombats />
                 <test currentWeapon="daggerofvashna">
@@ -209,9 +203,7 @@
         </section>
 
         <section id="sect24">
-            <message id="msg-drop-weapon" 
-                text="Drop a weapon before continuing" 
-            />
+            <message id="msg-drop-weapon" text="Drop a weapon before continuing" />
             <choiceState section="all" set="disabled" />
             <onInventoryEvent>
                 <test expression="[WEAPONLIKE-CNT-ON-ACTIONCHART] == 0 || [WEAPONLIKE-CNT-ON-SECTION] > 0">
@@ -234,11 +226,11 @@
                 <choiceState section="sect41" set="disabled" />
             </test>
         </section>
-        
+
         <section id="sect29">
             <object objectId="vialbluepills3" />
         </section>
-        
+
         <section id="sect32">
             <choiceState section="all" set="disabled" />
             <combat noMindblast="true" noPsiSurge="true" combatSkillModifier="-2" />
@@ -424,7 +416,7 @@
                 <choiceState section="sect290" set="disabled" />
             </test>
         </section>
-        
+
         <section id="sect82">
             <choiceState section="all" set="disabled" />
 
@@ -472,7 +464,7 @@
         <section id="sect87">
             <object objectId="psychicring" />
         </section>
-        
+
         <section id="sect88">
             <endurance count="+[MAXENDURANCE]" />
         </section>
@@ -591,7 +583,7 @@
                 <choiceState section="sect321" set="disabled" />
             </test>
         </section>
-        
+
         <section id="sect104">
             <choiceState section="all" set="disabled" />
 
@@ -623,7 +615,7 @@
                 <choiceState section="sect283" set="disabled" />
             </test>
         </section>
-        
+
         <section id="sect108">
             <test not="true" hasDiscipline="dvnation">
                 <choiceState section="sect272" set="disabled" />
@@ -658,18 +650,13 @@
         </section>
 
         <section id="sect115">
-            <numberPicker
-                text="Answer the riddle"
-                min="1" max="350"
-                actionButton="Choose"
-                />
+            <numberPicker text="Answer the riddle" min="1" max="350" actionButton="Choose" />
             <numberPickerChoosed>
                 <test expression="[NUMBERPICKER] == 5">
                     <goToSection section="sect5" />
                 </test>
                 <test expression="[NUMBERPICKER] != 5">
-                    <toast
-                        text="Wrong number!" />
+                    <toast text="Wrong number!" />
                 </test>
             </numberPickerChoosed>
         </section>
@@ -909,12 +896,7 @@
 
         <section id="sect163">
             <choiceState section="all" set="disabled" />
-            <numberPicker 
-                text="Choose the number of Gold Crowns you wish to give to the villagers"
-                min="1" 
-                money="true"
-                actionButton="Choose"
-            />
+            <numberPicker text="Choose the number of Gold Crowns you wish to give to the villagers" min="1" money="true" actionButton="Choose" />
             <numberPickerChoosed executeAtStart="true">
                 <numberPicker enabled="false" />
                 <pick class="money" count="-[NUMBERPICKER]" />
@@ -1159,24 +1141,17 @@
 
         <section id="sect204">
 
-            <numberPicker
-                text="Answer the riddle"
-                min="1" max="350"
-                actionButton="Choose"
-                />
+            <numberPicker text="Answer the riddle" min="1" max="350" actionButton="Choose" />
             <numberPickerChoosed>
                 <test expression="[NUMBERPICKER] == 50">
                     <goToSection section="sect50" />
                 </test>
                 <test expression="[NUMBERPICKER] != 50">
-                    <toast
-                        text="Wrong number!" />
+                    <toast text="Wrong number!" />
                 </test>
             </numberPickerChoosed>
 
-            <message id="msg-drop-objects" 
-                text="Drop one Special Item or three Backpack Items, if you want to go to the section 302" 
-            />
+            <message id="msg-drop-objects" text="Drop one Special Item or three Backpack Items, if you want to go to the section 302" />
             <onInventoryEvent>
                 <choiceState section="all" set="disabled" />
                 <message id="msg-drop-objects" op="show" />
@@ -1209,7 +1184,13 @@
         </section>
 
         <section id="sect209">
+            <choiceState section="sect274" set="disabled" />
             <pick objectId="invitation" />
+            <onInventoryEvent>
+                <test hasObject="invitation">
+                    <choiceState section="sect274" set="enabled" />
+                </test>
+            </onInventoryEvent>
         </section>
 
         <section id="sect210">
@@ -1451,11 +1432,7 @@
         </section>
 
         <section id="sect241">
-            <numberPicker
-                text="Choose the number"
-                min="1" max="350"
-                actionButton="Choose"
-                />
+            <numberPicker text="Choose the number" min="1" max="350" actionButton="Choose" />
             <!-- Numbers: sect320, sect6, sect326 -->
             <numberPickerChoosed>
                 <test expression="[NUMBERPICKER] == 6">
@@ -1468,8 +1445,7 @@
                     <goToSection section="sect326" />
                 </test>
                 <test not="true" expression="[NUMBERPICKER] == 6 || [NUMBERPICKER] == 320 || [NUMBERPICKER] == 326">
-                    <toast
-                        text="Wrong number!" />
+                    <toast text="Wrong number!" />
                 </test>
             </numberPickerChoosed>
         </section>
@@ -1539,7 +1515,7 @@
                 <choiceState section="sect19" set="disabled" />
             </test>
         </section>
-        
+
         <section id="sect254">
             <choiceState section="all" set="disabled" />
 
@@ -1583,9 +1559,7 @@
         <section id="sect261">
             <choiceState section="all" set="disabled" />
 
-            <message id="msg-drop-something" 
-                text="Drop a coin, Weapon, Backpack Item or Special Item before continuing" 
-            />
+            <message id="msg-drop-something" text="Drop a coin, Weapon, Backpack Item or Special Item before continuing" />
             <onInventoryEvent>
                 <choiceState section="all" set="disabled" />
                 <message id="msg-drop-something" op="show" />

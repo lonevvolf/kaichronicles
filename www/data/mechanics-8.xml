@@ -21,13 +21,13 @@
             <!-- Select the Kai disciplines UI -->
             <setDisciplines />
         </section>
-        
+
         <section id="equipmnt" pickMaximum="5">
             <!-- Do not pick 2 maps! -->
-            <test not="true" hasObject="map" >
+            <test not="true" hasObject="map">
                 <pick objectId="map" />
             </test>
-            <test not="true" hasObject="backpack" >
+            <test not="true" hasObject="backpack">
                 <pick objectId="backpack" />
             </test>
 
@@ -53,13 +53,9 @@
             <object objectId="fireseed" index="1" />
             <object objectId="fireseed" index="2" />
 
-            <chooseEquipment
-                text="Click on the Random Table link to get money before continuing" 
-            />
+            <chooseEquipment text="Click on the Random Table link to get money before continuing" />
 
-            <message
-                text="You may take up to five of the following (all meals and fireseeds count as one object):"  
-            />
+            <message text="You may take up to five of the following (all meals and fireseeds count as one object):" />
         </section>
 
         <section id="sect1">
@@ -185,7 +181,7 @@
                 <pick class="arrow" count="-1" />
             </choiceSelected>
         </section>
-        
+
         <section id="sect18">
             <choiceState section="all" set="disabled" />
             <endurance count="-2" />
@@ -353,9 +349,7 @@
 
             <pick objectId="paidosword" />
             <currentWeapon objectId="paidosword" />
-            <message id="msg-drop-weapon" 
-                text="You must use the Paido sword as current weapon on this combat" 
-            />
+            <message id="msg-drop-weapon" text="You must use the Paido sword as current weapon on this combat" />
             <onInventoryEvent>
                 <disableCombats />
                 <test currentWeapon="paidosword">
@@ -654,7 +648,7 @@
                 <endurance count="[MAXENDURANCE] - [ENDURANCE]" />
             </choiceSelected>
         </section>
-        
+
         <section id="sect101">
             <choiceState section="all" set="disabled" />
             <combat noMindblast="true" />
@@ -711,18 +705,13 @@
         </section>
 
         <section id="sect112">
-            <numberPicker
-                text="Answer the riddle"
-                min="1" max="350"
-                actionButton="Choose"
-                />
+            <numberPicker text="Answer the riddle" min="1" max="350" actionButton="Choose" />
             <numberPickerChoosed>
                 <test expression="[NUMBERPICKER] == 3">
                     <goToSection section="sect3" />
                 </test>
                 <test expression="[NUMBERPICKER] != 3">
-                    <toast
-                        text="Wrong number!" />
+                    <toast text="Wrong number!" />
                 </test>
             </numberPickerChoosed>
         </section>
@@ -745,7 +734,7 @@
                 <choiceState section="sect214" set="disabled" />
             </test>
         </section>
-        
+
         <section id="sect117">
             <choiceState section="all" set="disabled" />
             <randomTable>
@@ -807,18 +796,13 @@
         </section>
 
         <section id="sect126">
-            <numberPicker
-                text="Answer the riddle"
-                min="1" max="350"
-                actionButton="Choose"
-                />
+            <numberPicker text="Answer the riddle" min="1" max="350" actionButton="Choose" />
             <numberPickerChoosed>
                 <test expression="[NUMBERPICKER] == 16">
                     <goToSection section="sect16" />
                 </test>
                 <test expression="[NUMBERPICKER] != 16">
-                    <toast
-                        text="Wrong number!" />
+                    <toast text="Wrong number!" />
                 </test>
             </numberPickerChoosed>
         </section>
@@ -885,18 +869,13 @@
         </section>
 
         <section id="sect141">
-            <numberPicker
-                text="Answer the riddle"
-                min="1" max="350"
-                actionButton="Choose"
-                />
+            <numberPicker text="Answer the riddle" min="1" max="350" actionButton="Choose" />
             <numberPickerChoosed>
                 <test expression="[NUMBERPICKER] == 59">
                     <goToSection section="sect59" />
                 </test>
                 <test expression="[NUMBERPICKER] != 59">
-                    <toast
-                        text="Wrong number!" />
+                    <toast text="Wrong number!" />
                 </test>
             </numberPickerChoosed>
         </section>
@@ -926,7 +905,7 @@
         <section id="sect154">
             <death />
         </section>
-        
+
         <section id="sect155">
             <choiceState section="all" set="disabled" />
             <test not="true" hasDiscipline="curing">
@@ -951,8 +930,7 @@
                     -->
                     <!--resetSectionState sectionId="sect156" /-->
                     <unregisterGlobalRule id="book8sect156" />
-                    <toast
-                        text="Your wound has been healed!" />
+                    <toast text="Your wound has been healed!" />
                 </objectUsed>
             </registerGlobalRule>
         </section>
@@ -1051,7 +1029,7 @@
         </section>
 
         <section id="sect170">
-            <meal/>
+            <meal />
         </section>
 
         <section id="sect174">
@@ -1064,7 +1042,7 @@
         </section>
 
         <section id="sect175">
-            <meal/>
+            <meal />
         </section>
 
         <section id="sect176">
@@ -1085,15 +1063,13 @@
         <section id="sect178">
             <drop objectId="laumspurpotion3|laumspurmeal|laumspurpotion4|laumspurpotion|redpotionlaumspur|rendalimelixir|laumspurpotion8|oedeherb" />
         </section>
-        
+
         <section id="sect183">
             <choiceState section="all" set="disabled" />
 
             <pick objectId="paidosword" />
             <currentWeapon objectId="paidosword" />
-            <message id="msg-drop-weapon" 
-                text="You must use the Paido sword as current weapon on this combat" 
-            />
+            <message id="msg-drop-weapon" text="You must use the Paido sword as current weapon on this combat" />
             <onInventoryEvent>
                 <disableCombats />
                 <test currentWeapon="paidosword">
@@ -1121,9 +1097,7 @@
 
         <section id="sect187">
             <!-- Complex. Let the player choose (TODO: This could be improved, checking the dropped weapon type) -->
-            <message id="msg-drop-weapon" 
-                text="Drop a non-edged weapon before continuing (i.e. a Mace, Warhammer, Quarterstaff, or Bow)" 
-            />
+            <message id="msg-drop-weapon" text="Drop a non-edged weapon before continuing (i.e. a Mace, Warhammer, Quarterstaff, or Bow)" />
             <choiceState section="all" set="disabled" />
             <onInventoryEvent>
                 <test expression="[WEAPONLIKE-CNT-ON-ACTIONCHART] == 0 || [WEAPONLIKE-CNT-ON-SECTION] > 0">
@@ -1224,7 +1198,13 @@
         </section>
 
         <section id="sect202">
+            <choiceState section="all" set="disabled" />
             <pick objectId="lodestone" />
+            <onInventoryEvent>
+                <test hasObject="lodestone">
+                    <choiceState section="all" set="enabled" />
+                </test>
+            </onInventoryEvent>
         </section>
 
         <section id="sect204">
@@ -1319,7 +1299,7 @@
             <endurance count="-3" />
             <meal />
         </section>
-        
+
         <section id="sect228">
             <object objectId="larnumaliqueur2" />
         </section>
@@ -1364,9 +1344,7 @@
 
         <section id="sect242">
             <object objectId="greycrystalring" />
-            <message id="msg-drop-weapon" 
-                text="Drop a Lodestone, a Jewelled Mace, a Silver Helm or the Grey Crystal Ring before continuing" 
-            />
+            <message id="msg-drop-weapon" text="Drop a Lodestone, a Jewelled Mace, a Silver Helm or the Grey Crystal Ring before continuing" />
             <onInventoryEvent>
                 <test objectOnSection="greycrystalring|lodestone|jewelledmace|silverhelm">
                     <message id="msg-drop-weapon" op="hide" />
@@ -1378,7 +1356,7 @@
                 </test>
             </onInventoryEvent>
         </section>
-        
+
         <section id="sect244">
             <test not="true" expression="[MONEY] >= 20">
                 <choiceState section="sect20" set="disabled" />
@@ -1467,9 +1445,7 @@
 
         <section id="sect258">
             <endurance count="-8" />
-            <message id="msg-drop-weapon" 
-                text="Drop a weapon before continuing" 
-            />
+            <message id="msg-drop-weapon" text="Drop a weapon before continuing" />
             <onInventoryEvent>
                 <choiceState section="all" set="disabled" />
                 <test expression="[WEAPONLIKE-CNT-ON-ACTIONCHART] == 0 || [WEAPONLIKE-CNT-ON-SECTION] > 0">
@@ -1499,10 +1475,10 @@
         </section>
 
         <section id="sect261">
-            <test not="true" hasObject="laumspurpotion3|laumspurmeal|laumspurpotion4|laumspurpotion|redpotionlaumspur|rendalimelixir|laumspurpotion8|oedeherb" >
+            <test not="true" hasObject="laumspurpotion3|laumspurmeal|laumspurpotion4|laumspurpotion|redpotionlaumspur|rendalimelixir|laumspurpotion8|oedeherb">
                 <choiceState section="sect349" set="disabled" />
             </test>
-            <test hasObject="laumspurpotion3|laumspurmeal|laumspurpotion4|laumspurpotion|redpotionlaumspur|rendalimelixir|laumspurpotion8|oedeherb" >
+            <test hasObject="laumspurpotion3|laumspurmeal|laumspurpotion4|laumspurpotion|redpotionlaumspur|rendalimelixir|laumspurpotion8|oedeherb">
                 <choiceState section="sect121" set="disabled" />
             </test>
         </section>
@@ -1519,7 +1495,7 @@
         </section>
 
         <section id="sect268">
-        <!--
+            <!--
             laumspurmeal: 3
             laumspurpotion3: 3 + meal
             laumspurpotion4: 4
@@ -1530,10 +1506,10 @@
             oedeherb: 10
             sorted: laumspurpotion3|laumspurmeal|laumspurpotion4|laumspurpotion|redpotionlaumspur|rendalimelixir|laumspurpotion8|oedeherb
         -->
-            <test not="true" hasObject="laumspurpotion3|laumspurmeal|laumspurpotion4|laumspurpotion|redpotionlaumspur|rendalimelixir|laumspurpotion8|oedeherb" >
+            <test not="true" hasObject="laumspurpotion3|laumspurmeal|laumspurpotion4|laumspurpotion|redpotionlaumspur|rendalimelixir|laumspurpotion8|oedeherb">
                 <choiceState section="sect178" set="disabled" />
             </test>
-            <test hasObject="laumspurpotion3|laumspurmeal|laumspurpotion4|laumspurpotion|redpotionlaumspur|rendalimelixir|laumspurpotion8|oedeherb" >
+            <test hasObject="laumspurpotion3|laumspurmeal|laumspurpotion4|laumspurpotion|redpotionlaumspur|rendalimelixir|laumspurpotion8|oedeherb">
                 <choiceState section="sect281" set="disabled" />
             </test>
         </section>
@@ -1728,7 +1704,7 @@
                 <choiceState section="sect164" set="disabled" />
             </afterCombats>
         </section>
-        
+
         <section id="sect306">
             <object objectId="mapoftharro" />
             <object objectId="meal" />
@@ -1778,7 +1754,7 @@
         <section id="sect312">
             <object objectId="giakscroll2" />
         </section>
-        
+
         <section id="sect313">
             <choiceState section="all" set="disabled" />
             <test not="true" hasDiscipline="hntmstry">
@@ -1811,10 +1787,10 @@
         </section>
 
         <section id="sect317">
-            <test not="true" hasObject="laumspurpotion3|laumspurmeal|laumspurpotion4|laumspurpotion|redpotionlaumspur|rendalimelixir|laumspurpotion8|oedeherb" >
+            <test not="true" hasObject="laumspurpotion3|laumspurmeal|laumspurpotion4|laumspurpotion|redpotionlaumspur|rendalimelixir|laumspurpotion8|oedeherb">
                 <choiceState section="sect331" set="disabled" />
             </test>
-            <test hasObject="laumspurpotion3|laumspurmeal|laumspurpotion4|laumspurpotion|redpotionlaumspur|rendalimelixir|laumspurpotion8|oedeherb" >
+            <test hasObject="laumspurpotion3|laumspurmeal|laumspurpotion4|laumspurpotion|redpotionlaumspur|rendalimelixir|laumspurpotion8|oedeherb">
                 <choiceState section="sect295" set="disabled" />
             </test>
         </section>
@@ -1868,18 +1844,13 @@
         </section>
 
         <section id="sect338">
-            <numberPicker
-                text="Answer the riddle"
-                min="1" max="350"
-                actionButton="Choose"
-                />
+            <numberPicker text="Answer the riddle" min="1" max="350" actionButton="Choose" />
             <numberPickerChoosed>
                 <test expression="[NUMBERPICKER] == 7">
                     <goToSection section="sect7" />
                 </test>
                 <test expression="[NUMBERPICKER] != 7">
-                    <toast
-                        text="Wrong number!" />
+                    <toast text="Wrong number!" />
                 </test>
             </numberPickerChoosed>
         </section>
@@ -1887,7 +1858,7 @@
         <section id="sect339">
             <choiceState section="all" set="disabled" />
             <combat noMindblast="true" noPsiSurge="true" eludeTurn="3" />
-            
+
             <combat combatSkillModifier="-8" />
             <test hasDiscipline="nexus">
                 <test expression="[KAILEVEL] >= 4">

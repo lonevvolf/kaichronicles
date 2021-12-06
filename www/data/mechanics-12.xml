@@ -21,13 +21,13 @@
             <!-- Select the Kai disciplines UI -->
             <setDisciplines />
         </section>
-        
+
         <section id="equipmnt" pickMaximum="6">
             <!-- Do not pick 2 maps! -->
-            <test not="true" hasObject="map" >
+            <test not="true" hasObject="map">
                 <pick objectId="map" />
             </test>
-            <test not="true" hasObject="backpack" >
+            <test not="true" hasObject="backpack">
                 <pick objectId="backpack" />
             </test>
 
@@ -53,13 +53,9 @@
             <object objectId="quarterstaff" />
             <object objectId="axe" />
 
-            <chooseEquipment 
-                text="Click on the Random Table link to get money before continuing" 
-            />
+            <chooseEquipment text="Click on the Random Table link to get money before continuing" />
 
-            <message 
-                text="You may take up to six of the following (all meals count as one object):"  
-            />
+            <message text="You may take up to six of the following (all meals count as one object):" />
 
         </section>
 
@@ -194,10 +190,8 @@
 
         <section id="sect15">
             <choiceState section="all" set="disabled" />
-            <message id="msg-sommerswerd" 
-                text="You cannot use the Sommerswerd on this combat" 
-            />
-            <combat noMindblast="true" noPsiSurge="true" disabledObjects="sommerswerd"/>
+            <message id="msg-sommerswerd" text="You cannot use the Sommerswerd on this combat" />
+            <combat noMindblast="true" noPsiSurge="true" disabledObjects="sommerswerd" />
             <afterCombats>
                 <choiceState section="all" set="enabled" />
             </afterCombats>
@@ -246,9 +240,7 @@
             <choiceState section="all" set="disabled" />
 
             <!-- Sommerswerd stuff -->
-            <message id="msg-sommerswerd" 
-                text="If you don't want to go to section 247, change the current weapon to other than Sommerswerd" 
-            />
+            <message id="msg-sommerswerd" text="If you don't want to go to section 247, change the current weapon to other than Sommerswerd" />
             <onInventoryEvent>
                 <disableCombats disabled="false" />
                 <choiceState section="sect247" set="disabled" />
@@ -452,7 +444,7 @@
                 <choiceState section="sect320" set="disabled" />
             </test>
         </section>
-        
+
         <section id="sect55">
             <choiceState section="all" set="disabled" />
 
@@ -530,11 +522,7 @@
 
         <section id="sect61">
             <!-- TODO: We should keep the count of the different currencies (Lunes, Gold Crows,...). Unimplemented -->
-            <numberPicker 
-                text="Decide how many Gold Crowns you wish to bet"
-                min="1"
-                money="true"
-                />
+            <numberPicker text="Decide how many Gold Crowns you wish to bet" min="1" money="true" />
             <choiceSelected section="sect265">
                 <pick class="money" count="[NUMBERPICKER]*2" />
             </choiceSelected>
@@ -571,9 +559,7 @@
             <choiceState section="all" set="disabled" />
 
             <!-- Sommerswerd stuff -->
-            <message id="msg-sommerswerd" 
-                text="If you don't want to go to section 208, change the current weapon to other than Sommerswerd" 
-            />
+            <message id="msg-sommerswerd" text="If you don't want to go to section 208, change the current weapon to other than Sommerswerd" />
             <onInventoryEvent>
                 <disableCombats disabled="false" />
                 <choiceState section="sect208" set="disabled" />
@@ -651,7 +637,7 @@
 
         <section id="sect75">
             <choiceState section="all" set="disabled" />
-            
+
             <!-- Drop / recover Sommerswerd -->
             <drop objectId="sommerswerd" />
             <afterCombatTurn turn="3">
@@ -730,9 +716,7 @@
             <combat immuneTurns="2" />
 
             <!-- Sommerswerd stuff -->
-            <message id="msg-sommerswerd" 
-                text="If you don't want to go to section 208, change the current weapon to other than Sommerswerd" 
-            />
+            <message id="msg-sommerswerd" text="If you don't want to go to section 208, change the current weapon to other than Sommerswerd" />
             <onInventoryEvent>
                 <disableCombats disabled="false" />
                 <choiceState section="sect208" set="disabled" />
@@ -778,9 +762,7 @@
             </test>
 
             <!-- Dammage / CS modifiers -->
-            <message
-                text="You must use the Dagger of Vashna or the sword Helshezag as current weapon on this combat" 
-            />
+            <message text="You must use the Dagger of Vashna or the sword Helshezag as current weapon on this combat" />
             <onInventoryEvent>
                 <combat dammageMultiplier="1" />
                 <test not="true" currentWeapon="helshezag|daggerofvashna|sommerswerd">
@@ -797,7 +779,7 @@
                     <combat combatSkillModifier="+14" />
                 </test>
             </onInventoryEvent>
-            
+
             <choiceState section="all" set="disabled" />
             <combat noMindblast="true" />
             <afterCombats>
@@ -894,7 +876,7 @@
                 </test>
             </test>
         </section>
-        
+
         <section id="sect99">
             <choiceState section="all" set="disabled" />
             <randomTable>
@@ -935,7 +917,7 @@
                 <choiceState section="all" set="enabled" />
             </afterCombats>
         </section>
-        
+
         <section id="sect103">
             <choiceSelected section="all">
                 <pick class="arrow" count="-1" />
@@ -946,9 +928,7 @@
             <choiceState section="all" set="disabled" />
 
             <!-- Sommerswerd stuff -->
-            <message id="msg-sommerswerd" 
-                text="If you don't want to go to section 208, change the current weapon to other than Sommerswerd" 
-            />
+            <message id="msg-sommerswerd" text="If you don't want to go to section 208, change the current weapon to other than Sommerswerd" />
             <onInventoryEvent>
                 <disableCombats disabled="false" />
                 <choiceState section="sect208" set="disabled" />
@@ -988,9 +968,7 @@
         </section>
 
         <section id="sect109">
-            <message id="msg-sommerswerd" 
-                text="You cannot use Sommerswerd or Dagger of Vashna on this combat" 
-            />
+            <message id="msg-sommerswerd" text="You cannot use Sommerswerd or Dagger of Vashna on this combat" />
 
             <choiceState section="all" set="disabled" />
             <combat disabledObjects="sommerswerd|daggerofvashna" />
@@ -1152,9 +1130,7 @@
             <!-- Helshezag EP permanent loss is not applied on this section (see Combat.checkHelshezagPermanentLoss()) -->
             <pick objectId="helshezag" />
             <currentWeapon objectId="helshezag" />
-            <message
-                text="You must use the Helshezag as current weapon on this combat" 
-            />
+            <message text="You must use the Helshezag as current weapon on this combat" />
 
             <onInventoryEvent>
                 <disableCombats />
@@ -1245,7 +1221,7 @@
         <section id="sect145">
             <object objectId="pouchadgana" />
         </section>
-        
+
         <section id="sect146">
             <test canUseBow="false">
                 <choiceState section="sect99" set="disabled" />
@@ -1345,13 +1321,18 @@
         </section>
 
         <section id="sect166">
+            <choiceState section="all" set="disabled" />
             <pick objectId="crystalexplosive" />
-            <test not="true" hasObject="sommerswerd">
-                <choiceState section="sect282" set="disabled" />
-            </test>
-            <test hasObject="sommerswerd">
-                <choiceState section="sect229" set="disabled" />
-            </test>
+            <onInventoryEvent>
+                <test hasObject="crystalexplosive">
+                    <test not="true" hasObject="sommerswerd">
+                        <choiceState section="sect229" set="enabled" />
+                    </test>
+                    <test hasObject="sommerswerd">
+                        <choiceState section="sect282" set="enabled" />
+                    </test>
+                </test>
+            </onInventoryEvent>
         </section>
 
         <section id="sect168">
@@ -1378,9 +1359,7 @@
             <choiceState section="all" set="disabled" />
 
             <!-- Sommerswerd stuff -->
-            <message id="msg-sommerswerd" 
-                text="If you don't want to go to section 208, change the current weapon to other than Sommerswerd" 
-            />
+            <message id="msg-sommerswerd" text="If you don't want to go to section 208, change the current weapon to other than Sommerswerd" />
             <onInventoryEvent>
                 <disableCombats disabled="false" />
                 <choiceState section="sect208" set="disabled" />
@@ -1396,16 +1375,14 @@
             <afterCombats>
                 <choiceState section="sect280" set="enabled" />
             </afterCombats>
-            
+
         </section>
 
         <section id="sect171">
             <choiceState section="all" set="disabled" />
             <currentWeapon objectId="daggerofvashna" />
 
-            <message
-                text="You must use the Dagger of Vashna as current weapon on this combat" 
-            />
+            <message text="You must use the Dagger of Vashna as current weapon on this combat" />
             <onInventoryEvent>
                 <disableCombats />
                 <test currentWeapon="daggerofvashna">
@@ -1561,7 +1538,7 @@
             <object objectId="zejardulaga" />
         </section>
 
-        <section id="sect188">        
+        <section id="sect188">
             <choiceState section="sect145" set="disabled" />
             <test hasDiscipline="curing">
                 <choiceState section="sect145" set="enabled" />
@@ -1860,12 +1837,10 @@
         <section id="sect229">
             <pick objectId="goldenamulet" />
         </section>
-        
+
         <section id="sect230">
 
-            <message
-                text="You must use the Dagger of Vashna or the sword Helshezag as current weapon on this combat" 
-            />
+            <message text="You must use the Dagger of Vashna or the sword Helshezag as current weapon on this combat" />
             <test hasObject="daggerofvashna">
                 <currentWeapon objectId="daggerofvashna" />
             </test>
@@ -1918,7 +1893,7 @@
         <section id="sect235">
             <pick objectId="greenmask" />
         </section>
-        
+
         <section id="sect236">
             <pick class="arrow" count="-1" />
         </section>
@@ -2002,9 +1977,7 @@
 
         <section id="sect247">
             <choiceState section="all" set="disabled" />
-            <message id="msg-sommerswerd" 
-                text="You cannot use the Sommerswerd on this combat" 
-            />
+            <message id="msg-sommerswerd" text="You cannot use the Sommerswerd on this combat" />
             <combat disabledObjects="sommerswerd" noWeapon="2" eludeTurn="2" />
             <afterCombats>
                 <choiceState section="sect349" set="enabled" />
@@ -2242,7 +2215,7 @@
             </afterCombats>
         </section>
 
-         <section id="sect276">
+        <section id="sect276">
             <endurance count="-3" />
 
             <choiceState section="all" set="disabled" />
@@ -2287,9 +2260,7 @@
         </section>
 
         <section id="sect289">
-            <message id="msg-sommerswerd" 
-                text="You cannot use the Sommerswerd on this combat" 
-            />
+            <message id="msg-sommerswerd" text="You cannot use the Sommerswerd on this combat" />
 
             <choiceState section="all" set="disabled" />
             <combat noMindblast="true" noPsiSurge="true" disabledObjects="sommerswerd" />
@@ -2325,9 +2296,7 @@
             <combat noMindblast="true" />
 
             <!-- Sommerswerd stuff -->
-            <message id="msg-sommerswerd" 
-                text="If you don't want to go to section 208, change the current weapon to other than Sommerswerd" 
-            />
+            <message id="msg-sommerswerd" text="If you don't want to go to section 208, change the current weapon to other than Sommerswerd" />
             <onInventoryEvent>
                 <disableCombats disabled="false" />
                 <choiceState section="sect208" set="disabled" />
@@ -2610,9 +2579,7 @@
             <choiceState section="all" set="disabled" />
 
             <!-- Sommerswerd stuff -->
-            <message id="msg-sommerswerd" 
-                text="If you don't want to go to section 208, change the current weapon to other than Sommerswerd" 
-            />
+            <message id="msg-sommerswerd" text="If you don't want to go to section 208, change the current weapon to other than Sommerswerd" />
             <onInventoryEvent>
                 <disableCombats disabled="false" />
                 <choiceState section="sect208" set="disabled" />
@@ -2651,7 +2618,7 @@
         <section id="sect350">
             <drop objectId="crystalexplosive" />
         </section>
-        
+
     </sections>
 
 </mechanics>

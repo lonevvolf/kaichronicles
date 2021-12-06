@@ -21,23 +21,23 @@
             <!-- Select the Kai disciplines UI -->
             <setDisciplines />
         </section>
-        
+
         <section id="equipmnt" pickMaximum="5">
             <!-- Do not pick 2 maps! -->
-            <test not="true" hasObject="map" >
+            <test not="true" hasObject="map">
                 <pick objectId="map" />
             </test>
-            <test not="true" hasObject="backpack" >
+            <test not="true" hasObject="backpack">
                 <pick objectId="backpack" />
             </test>
-            
+
             <randomTable>
                 <pick class="money" count="[RANDOM] + 10" />
             </randomTable>
 
             <!-- Kai monastery safekeeping -->
             <kaiMonasteryStorage />
-            
+
             <object objectId="sword" />
             <object objectId="laumspurpotion4" />
             <object objectId="warhammer" />
@@ -54,13 +54,9 @@
             <object objectId="tinderbox" />
             <object objectId="axe" />
 
-            <chooseEquipment 
-                text="Click on the Random Table link to get money before continuing" 
-            />
+            <chooseEquipment text="Click on the Random Table link to get money before continuing" />
 
-            <message 
-                text="You may take up to five of the following (all meals count as one object):"  
-            />
+            <message text="You may take up to five of the following (all meals count as one object):" />
         </section>
 
         <section id="sect1">
@@ -82,9 +78,7 @@
         </section>
 
         <section id="sect4">
-            <message id="msg-drop-weapon" 
-                text="Drop a weapon before continuing" 
-            />
+            <message id="msg-drop-weapon" text="Drop a weapon before continuing" />
             <choiceState section="all" set="disabled" />
             <onInventoryEvent>
                 <test expression="[WEAPONLIKE-CNT-ON-ACTIONCHART] == 0 || [WEAPONLIKE-CNT-ON-SECTION] > 0">
@@ -172,9 +166,7 @@
 
             <test not="true" expression="[MONEY] >= 2">
                 <choiceState section="sect144" set="disabled" />
-                <message id="msg-drop-object" 
-                    text="Drop one Backpack Item or Weapon in lieu of payment for a night in the dormitory" 
-                />
+                <message id="msg-drop-object" text="Drop one Backpack Item or Weapon in lieu of payment for a night in the dormitory" />
                 <onInventoryEvent>
                     <test expression="( [WEAPON-ITEMS-CNT-ON-ACTIONCHART] + [BACKPACK-ITEMS-CNT-ON-ACTIONCHART] ) == 0 || ( [WEAPON-ITEMS-CNT-ON-SECTION] + [BACKPACK-ITEMS-CNT-ON-SECTION] ) > 0">
                         <message id="msg-drop-object" op="hide" />
@@ -206,7 +198,7 @@
                 <choiceState section="sect205" set="disabled" />
             </test>
         </section>
-        
+
         <section id="sect20">
             <pick class="arrow" count="-1" />
         </section>
@@ -227,7 +219,7 @@
         </section>
 
         <section id="sect26">
-            <textToChoice text="turn immediately to 335" section="sect335"/>
+            <textToChoice text="turn immediately to 335" section="sect335" />
             <choiceState section="all" set="disabled" />
             <combat bow="true" />
             <book6sect26 />
@@ -288,7 +280,7 @@
         <section id="sect35">
             <drop objectId="allmeals" />
         </section>
-        
+
         <section id="sect36">
             <death />
         </section>
@@ -527,7 +519,7 @@
         <section id="sect88">
             <pick class="money" count="5" />
         </section>
-        
+
         <section id="sect89">
             <test not="true" hasDiscipline="dvnation">
                 <choiceState section="sect7" set="disabled" />
@@ -679,7 +671,7 @@
         <section id="sect111">
             <object objectId="laumspurpotion4" useOnSection="true" />
         </section>
-        
+
         <section id="sect112">
             <object objectId="taunorwater" useOnSection="true" />
         </section>
@@ -752,9 +744,7 @@
         </section>
 
         <section id="sect132">
-            <message id="msg-drop-proposal" 
-                text="If you agree to his proposal, drop 2 Special Items or 20 Gold Crowns" 
-            />
+            <message id="msg-drop-proposal" text="If you agree to his proposal, drop 2 Special Items or 20 Gold Crowns" />
             <onInventoryEvent>
                 <choiceState section="all" set="disabled" />
                 <test expression="[SPECIAL-ITEMS-ON-SECTION] >= 2 || [MONEY-ON-SECTION] >= 20">
@@ -823,9 +813,7 @@
 
         <section id="sect144">
             <choiceState section="all" set="disabled" />
-            <message id="msg-drop-object" 
-                text="Drop one Backpack Item" 
-            />
+            <message id="msg-drop-object" text="Drop one Backpack Item" />
             <onInventoryEvent>
                 <test expression="[BACKPACK-ITEMS-CNT-ON-ACTIONCHART] == 0 || [BACKPACK-ITEMS-CNT-ON-SECTION] > 0">
                     <message id="msg-drop-object" op="hide" />
@@ -848,9 +836,7 @@
         </section>
 
         <section id="sect148">
-            <message id="msg-drop-proposal" 
-                text="If you agree to his proposal, drop 2 Special Items or 20 Gold Crowns" 
-            />
+            <message id="msg-drop-proposal" text="If you agree to his proposal, drop 2 Special Items or 20 Gold Crowns" />
             <onInventoryEvent>
                 <choiceState section="all" set="disabled" />
                 <test expression="[SPECIAL-ITEMS-ON-SECTION] >= 2 || [MONEY-ON-SECTION] >= 20">
@@ -981,9 +967,7 @@
 
         <section id="sect166">
             <choiceState section="all" set="disabled" />
-            <message id="msg-drop-object" 
-                text="Drop two Backpack Items" 
-            />
+            <message id="msg-drop-object" text="Drop two Backpack Items" />
             <onInventoryEvent>
                 <test expression="[BACKPACK-ITEMS-CNT-ON-ACTIONCHART] == 0 || [BACKPACK-ITEMS-CNT-ON-SECTION] >= 2">
                     <message id="msg-drop-object" op="hide" />
@@ -1183,11 +1167,7 @@
         </section>
 
         <section id="sect220">
-            <numberPicker 
-                text="Choose the number of Gold Crowns you want to donate"
-                min="0" 
-                money="true"
-                />
+            <numberPicker text="Choose the number of Gold Crowns you want to donate" min="0" money="true" />
             <choiceSelected section="all">
                 <pick class="money" count="-[NUMBERPICKER]" />
             </choiceSelected>
@@ -1257,11 +1237,7 @@
         </section>
 
         <section id="sect245">
-            <numberPicker 
-                text="Choose the number of Gold Crowns you want to bet"
-                min="1" 
-                money="true"
-                />
+            <numberPicker text="Choose the number of Gold Crowns you want to bet" min="1" money="true" />
             <choiceSelected section="sect50">
                 <pick class="money" count="-[NUMBERPICKER]" />
             </choiceSelected>
@@ -1427,7 +1403,7 @@
             <combat dammageMultiplier="1" />
             <test currentWeapon="sommerswerd">
                 <combat dammageMultiplier="2" />
-            </test> 
+            </test>
 
             <afterCombats>
                 <choiceState section="all" set="enabled" />
@@ -1516,12 +1492,7 @@
         </section>
 
         <section id="sect284">
-            <numberPicker 
-                text="Choose the number of Gold Crowns you want to bet"
-                min="1" max="10" 
-                money="true"
-                actionButton="Bet"
-            />
+            <numberPicker text="Choose the number of Gold Crowns you want to bet" min="1" max="10" money="true" actionButton="Bet" />
             <book6sect284 />
         </section>
 
@@ -1677,10 +1648,10 @@
         </section>
 
         <section id="sect325">
-            <test not="true" sectionVisited="sect252" >
+            <test not="true" sectionVisited="sect252">
                 <choiceState section="sect45" set="disabled" />
             </test>
-            <test sectionVisited="sect252" >
+            <test sectionVisited="sect252">
                 <choiceState section="sect132" set="disabled" />
             </test>
         </section>

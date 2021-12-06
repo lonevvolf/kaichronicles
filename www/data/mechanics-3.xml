@@ -26,13 +26,13 @@
 
         <section id="equipmnt" pickMaximum="2">
             <!-- Do not pick 2 maps! -->
-            <test not="true" hasObject="map" >
+            <test not="true" hasObject="map">
                 <pick objectId="map" />
             </test>
-            <test not="true" hasObject="backpack" >
+            <test not="true" hasObject="backpack">
                 <pick objectId="backpack" />
             </test>
-            
+
             <randomTable>
                 <pick class="money" count="[RANDOM] + 10" />
             </randomTable>
@@ -49,11 +49,9 @@
             <object objectId="meal" />
             <object objectId="broadsword" />
 
-            <chooseEquipment text="Click on the Random Table link to get money before continuing" 
-            />
+            <chooseEquipment text="Click on the Random Table link to get money before continuing" />
 
-            <message text="You may take any two of the following:"  
-            />
+            <message text="You may take any two of the following:" />
         </section>
 
         <section id="sect4">
@@ -115,8 +113,7 @@
         </section>
 
         <section id="sect16">
-            <message id="msg-drop-object" text="Drop two Backpack Items before continuing"  
-            />
+            <message id="msg-drop-object" text="Drop two Backpack Items before continuing" />
             <choiceState section="all" set="disabled" />
             <onInventoryEvent>
                 <test expression="[BACKPACK-ITEMS-CNT-ON-ACTIONCHART] == 0 || [BACKPACK-ITEMS-CNT-ON-SECTION] >= 2">
@@ -147,7 +144,7 @@
         <section id="sect25">
             <object objectId="trianglebluestone" />
         </section>
-        
+
         <section id="sect25">
             <object objectId="trianglebluestone" />
         </section>
@@ -249,7 +246,7 @@
             <object objectId="backpack" />
             <object objectId="largerope" />
         </section>
-        
+
         <section id="sect40">
             <test not="true" hasDiscipline="tracking">
                 <choiceState section="sect255" set="disabled" />
@@ -280,7 +277,7 @@
                 <choiceState section="sect15" set="disabled" />
             </test>
         </section>
-       
+
         <section id="sect49">
             <drop objectId="backpack" />
 
@@ -566,7 +563,7 @@
             <combat noMindblast="true" mindforceEP="-2" />
             <test currentWeapon="sommerswerd">
                 <combat dammageMultiplier="2" />
-            </test> 
+            </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
             </afterCombats>
@@ -575,7 +572,7 @@
         <section id="sect102">
             <object objectId="stoneeffigy" />
         </section>
-        
+
         <section id="sect103">
             <choiceState section="all" set="disabled" />
             <afterCombats>
@@ -687,7 +684,7 @@
             <test not="true" sectionVisited="sect295|sect309">
                 <meal />
             </test>
-                <test not="true" hasDiscipline="tracking|anmlknsp">
+            <test not="true" hasDiscipline="tracking|anmlknsp">
                 <choiceState section="sect229" set="disabled" />
             </test>
             <test hasDiscipline="tracking|anmlknsp">
@@ -859,10 +856,7 @@
 
         <section id="sect152">
             <choiceState section="all" set="disabled" />
-            <numberPicker text="Choose the number of Gold Crowns you are going to throw"
-                min="1" 
-                money="true"
-                />
+            <numberPicker text="Choose the number of Gold Crowns you are going to throw" min="1" money="true" />
             <randomTable zeroAsTen="true">
                 <numberPicker enabled="false" />
                 <pick class="money" count="-[NUMBERPICKER]" />
@@ -943,7 +937,7 @@
             <choiceState section="all" set="disabled" />
             <test currentWeapon="sommerswerd">
                 <combat dammageMultiplier="2" />
-            </test> 
+            </test>
             <afterCombats>
                 <test not="true" expression="[COMBATSDURATION] > 5">
                     <choiceState section="sect272" set="enabled" />
@@ -1327,7 +1321,7 @@
 
         <section id="sect258">
             <choiceState section="all" set="disabled" />
-            <randomTable zeroAsTen="true" >
+            <randomTable zeroAsTen="true">
                 <test expression="[RANDOM] > 0">
                     <endurance count="-[RANDOM]" />
                 </test>
@@ -1430,8 +1424,8 @@
             </afterCombats>
         </section>
 
-        <section id="sect272">            
-            <test hasObject="sommerswerd" >
+        <section id="sect272">
+            <test hasObject="sommerswerd">
                 <choiceState section="sect143" set="disabled" />
                 <choiceState section="sect58" set="disabled" />
             </test>
@@ -1578,9 +1572,9 @@
         </section>
 
         <section id="sect295">
-            <object objectId="firesphere"/>
+            <object objectId="firesphere" />
         </section>
-        
+
         <section id="sect296">
             <choiceState section="all" set="disabled" />
             <afterCombats>
@@ -1593,7 +1587,7 @@
         </section>
 
         <section id="sect298">
-            <object objectId="trianglebluestone"/>
+            <object objectId="trianglebluestone" />
         </section>
 
         <section id="sect299">
@@ -1647,7 +1641,7 @@
             <combat noMindblast="true" mindforceEP="-2" />
             <test currentWeapon="sommerswerd">
                 <combat dammageMultiplier="2" />
-            </test> 
+            </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
             </afterCombats>
@@ -1778,7 +1772,7 @@
         <section id="sect334">
             <object objectId="glowingcrystal" />
         </section>
-        
+
         <section id="sect339">
             <death />
         </section>

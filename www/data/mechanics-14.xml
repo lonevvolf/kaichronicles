@@ -23,13 +23,13 @@
             <!-- Select the Kai disciplines UI -->
             <setDisciplines />
         </section>
-        
+
         <section id="equipmnt" pickMaximum="5">
             <!-- Do not pick 2 maps! -->
-            <test not="true" hasObject="map" >
+            <test not="true" hasObject="map">
                 <pick objectId="map" />
             </test>
-            <test not="true" hasObject="backpack" >
+            <test not="true" hasObject="backpack">
                 <pick objectId="backpack" />
             </test>
 
@@ -53,13 +53,9 @@
             <object objectId="spear" />
             <object objectId="dagger" />
 
-            <chooseEquipment 
-                text="Click on the Random Table link to get money before continuing" 
-            />
+            <chooseEquipment text="Click on the Random Table link to get money before continuing" />
 
-            <message 
-                text="You may take up to five of the following (all meals count as one object):"  
-            />
+            <message text="You may take up to five of the following (all meals count as one object):" />
 
         </section>
 
@@ -367,7 +363,7 @@
             <pick class="arrow" count="-1" />
             <test not="true" sectionVisited="sect346">
                 <toast duration="10000" text="Because you possess the Discipline of Magi-magic and have reached the rank of Kai Grand Guardian, you have consider it appropriate to make use of the Flameshaft spell to set light to the 'inflammable liquid'." />
-            </test>                
+            </test>
         </section>
 
         <section id="sect53">
@@ -815,11 +811,7 @@
         </section>
 
         <section id="sect127">
-            <numberPicker 
-                text="Choose the number"
-                min="1" max="350" 
-                actionButton="Choose"
-                />
+            <numberPicker text="Choose the number" min="1" max="350" actionButton="Choose" />
             <numberPickerChoosed>
                 <test expression="[NUMBERPICKER] == 3">
                     <goToSection section="sect3" />
@@ -1025,7 +1017,7 @@
             </test>
         </section>
 
-        <section id="sect158">        
+        <section id="sect158">
             <pick class="arrow" count="-1" />
         </section>
 
@@ -1092,9 +1084,9 @@
 
         <section id="sect169">
             <choiceState section="all" set="disabled" />
-            <combat turnLoss="-2"/>
+            <combat turnLoss="-2" />
             <test hasDiscipline="kaiscrn">
-                <combat turnLoss="0"/>
+                <combat turnLoss="0" />
             </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
@@ -1161,11 +1153,7 @@
         </section>
 
         <section id="sect181">
-            <numberPicker 
-                text="Choose the number"
-                min="1" max="350" 
-                actionButton="Choose"
-                />
+            <numberPicker text="Choose the number" min="1" max="350" actionButton="Choose" />
             <numberPickerChoosed>
                 <test expression="[NUMBERPICKER] == 20">
                     <goToSection section="sect20" />
@@ -1328,9 +1316,9 @@
 
         <section id="sect211">
             <choiceState section="all" set="disabled" />
-            <combat turnLoss="-2"/>
+            <combat turnLoss="-2" />
             <test hasDiscipline="kaiscrn">
-                <combat turnLoss="0"/>
+                <combat turnLoss="0" />
             </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
@@ -1384,11 +1372,7 @@
         </section>
 
         <section id="sect220">
-            <numberPicker 
-                text="Choose the number"
-                min="1" max="350" 
-                actionButton="Choose"
-                />
+            <numberPicker text="Choose the number" min="1" max="350" actionButton="Choose" />
             <numberPickerChoosed>
                 <test expression="[NUMBERPICKER] == 8">
                     <goToSection section="sect8" />
@@ -1461,7 +1445,7 @@
 
         <section id="sect228">
             <choiceState section="sect93" set="disabled" />
-            <test hasDiscipline="gnosis">                
+            <test hasDiscipline="gnosis">
                 <test hasDiscipline="pthmnshp">
                     <choiceState section="sect93" set="enabled" />
                     <choiceState section="sect155" set="disabled" />
@@ -1491,7 +1475,7 @@
         <section id="sect231">
             <pick class="arrow" count="-1" />
             <choiceState section="sect333" set="disabled" />
-            <test hasDiscipline="nexus">        
+            <test hasDiscipline="nexus">
                 <choiceState section="sect333" set="enabled" />
                 <choiceState section="sect287" set="disabled" />
             </test>
@@ -1533,7 +1517,7 @@
 
         <section id="sect239">
             <choiceState section="sect61" set="disabled" />
-            <test hasObject="statuetteofslutar|daggerofvashna|helshezag">        
+            <test hasObject="statuetteofslutar|daggerofvashna|helshezag">
                 <choiceState section="sect61" set="enabled" />
                 <choiceState section="sect137" set="disabled" />
             </test>
@@ -1541,7 +1525,7 @@
 
         <section id="sect240">
             <choiceState section="sect184" set="disabled" />
-            <test hasDiscipline="kaiscrn">        
+            <test hasDiscipline="kaiscrn">
                 <choiceState section="sect184" set="enabled" />
                 <choiceState section="sect265" set="disabled" />
             </test>
@@ -1553,7 +1537,7 @@
 
         <section id="sect243">
             <choiceState section="sect346" set="disabled" />
-            <test hasDiscipline="alchemy">        
+            <test hasDiscipline="alchemy">
                 <choiceState section="sect346" set="enabled" />
                 <choiceState section="sect94" set="disabled" />
             </test>
@@ -1566,7 +1550,7 @@
 
         <section id="sect244">
             <choiceState section="sect96" set="disabled" />
-            <test hasDiscipline="anmlmstr">        
+            <test hasDiscipline="anmlmstr">
                 <choiceState section="sect96" set="enabled" />
                 <choiceState section="sect195" set="disabled" />
             </test>
@@ -2086,11 +2070,7 @@
         </section>
 
         <section id="sect319">
-            <numberPicker 
-                text="Choose the number"
-                min="1" max="350" 
-                actionButton="Choose"
-                />
+            <numberPicker text="Choose the number" min="1" max="350" actionButton="Choose" />
             <numberPickerChoosed>
                 <test expression="[NUMBERPICKER] == 3">
                     <goToSection section="sect3" />
@@ -2259,8 +2239,8 @@
             <endurance count="-1" />
         </section>
 
-        <section id="sect349">      
-            <choiceState section="sect84" set="disabled" />  
+        <section id="sect349">
+            <choiceState section="sect84" set="disabled" />
             <test hasDiscipline="kaiscrn">
                 <test expression="[KAILEVEL] >= 5 ">
                     <choiceState section="sect84" set="enabled" />

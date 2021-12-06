@@ -23,13 +23,13 @@
             <!-- Select the Kai disciplines UI -->
             <setDisciplines />
         </section>
-        
+
         <section id="equipmnt" pickMaximum="5">
             <!-- Do not pick 2 maps! -->
-            <test not="true" hasObject="map" >
+            <test not="true" hasObject="map">
                 <pick objectId="map" />
             </test>
-            <test not="true" hasObject="backpack" >
+            <test not="true" hasObject="backpack">
                 <pick objectId="backpack" />
             </test>
 
@@ -53,13 +53,9 @@
             <object objectId="spear" />
             <object objectId="dagger" />
 
-            <chooseEquipment 
-                text="Click on the Random Table link to get money before continuing" 
-            />
+            <chooseEquipment text="Click on the Random Table link to get money before continuing" />
 
-            <message 
-                text="You may take up to five of the following (all meals count as one object):"  
-            />
+            <message text="You may take up to five of the following (all meals count as one object):" />
 
         </section>
 
@@ -548,11 +544,7 @@
         </section>
 
         <section id="sect89">
-            <numberPicker 
-                text="Choose the number"
-                min="1" max="350" 
-                actionButton="Choose"
-                />
+            <numberPicker text="Choose the number" min="1" max="350" actionButton="Choose" />
             <numberPickerChoosed>
                 <test expression="[NUMBERPICKER] == 40">
                     <goToSection section="sect40" />
@@ -635,8 +627,7 @@
             </randomTable>
         </section>
 
-        <section id="sect106">
-        </section>
+        <section id="sect106"></section>
 
         <section id="sect107">
             <choiceState section="sect129" set="disabled" />
@@ -648,8 +639,7 @@
             </test>
         </section>
 
-        <section id="sect108">
-        </section>
+        <section id="sect108"></section>
 
         <section id="sect109">
             <choiceState section="sect304" set="disabled" />
@@ -1047,9 +1037,7 @@
 
         <section id="sect203">
             <drop backpackItemSlots="1|4" />
-            <message id="msg-drop-object" 
-                text="Drop one Special Item of your choice or your bow" 
-            />
+            <message id="msg-drop-object" text="Drop one Special Item of your choice or your bow" />
             <onInventoryEvent>
                 <test expression="([SPECIAL-ITEMS-ON-ACTIONCHART] == 0 &amp;&amp; [BOW-CNT-ON-ACTIONCHART] == 0) || [SPECIAL-ITEMS-ON-SECTION] >= 1 || [BOW-CNT-ON-SECTION] >= 1">
                     <message id="msg-drop-object" op="hide" />
@@ -1184,11 +1172,7 @@
         </section>
 
         <section id="sect221">
-            <numberPicker 
-                text="Choose the number"
-                min="1" max="350" 
-                actionButton="Choose"
-                />
+            <numberPicker text="Choose the number" min="1" max="350" actionButton="Choose" />
             <numberPickerChoosed>
                 <test expression="[NUMBERPICKER] == 5">
                     <goToSection section="sect5" />
@@ -1337,7 +1321,7 @@
             <endurance count="-3" />
         </section>
 
-        <section id="sect247">      
+        <section id="sect247">
             <object objectId="dagger" />
             <object objectId="sword" />
             <object objectId="emptybottle" />
@@ -1602,7 +1586,7 @@
             </afterCombats>
         </section>
 
-        <section id="sect299">  
+        <section id="sect299">
             <object objectId="bow" />
             <object objectId="arrow" count="2" />
             <object objectId="ballofstring" />

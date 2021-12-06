@@ -21,17 +21,17 @@
         </section>
 
         <section id="equipmnt" pickMaximum="2">
-        
+
             <!-- Do not pick 2 maps! -->
-            <test not="true" hasObject="map" >
+            <test not="true" hasObject="map">
                 <pick objectId="map" />
             </test>
-            <test not="true" hasObject="backpack" >
+            <test not="true" hasObject="backpack">
                 <pick objectId="backpack" />
             </test>
-            
+
             <pick objectId="sealofhammerdal" />
-            
+
             <randomTable>
                 <pick class="money" count="[RANDOM] + 10" />
             </randomTable>
@@ -47,15 +47,11 @@
             <object objectId="spear" />
             <object objectId="shield" />
             <object objectId="broadsword" />
-            
-            <!-- Choose equipment UI -->
-            <chooseEquipment 
-                text="Click on the Random Table link to get money before continuing" 
-            />
 
-            <message 
-                text="You may take any two of the following (both meals count as one object):"  
-            />
+            <!-- Choose equipment UI -->
+            <chooseEquipment text="Click on the Random Table link to get money before continuing" />
+
+            <message text="You may take any two of the following (both meals count as one object):" />
         </section>
 
         <section id="sect2">
@@ -72,7 +68,7 @@
             <combat noMindblast="true" />
             <test currentWeapon="sommerswerd">
                 <combat dammageMultiplier="2" />
-            </test> 
+            </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
             </afterCombats>
@@ -80,7 +76,7 @@
 
         <section id="sect7">
             <choiceState section="all" set="disabled" />
-            <combat noMindblast="true" combatSkillModifier="+2"/>
+            <combat noMindblast="true" combatSkillModifier="+2" />
             <afterCombatTurn turn="1">
                 <combat combatSkillModifier="0" />
             </afterCombatTurn>
@@ -109,7 +105,7 @@
                 </case>
             </randomTable>
         </section>
-        
+
         <section id="sect11">
             <death />
         </section>
@@ -150,7 +146,7 @@
             <combat noMindblast="true" />
             <test currentWeapon="sommerswerd">
                 <combat dammageMultiplier="2" />
-            </test> 
+            </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
             </afterCombats>
@@ -212,7 +208,7 @@
             <combat noMindblast="true" />
             <test currentWeapon="sommerswerd">
                 <combat dammageMultiplier="2" />
-            </test> 
+            </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
             </afterCombats>
@@ -253,7 +249,7 @@
 
         <section id="sect36">
             <choiceState section="all" set="disabled" />
-            <test hasObject="laumspurmeal" >
+            <test hasObject="laumspurmeal">
                 <choiceState section="sect145" set="enabled" />
             </test>
             <test hasDiscipline="healing">
@@ -269,10 +265,10 @@
         </section>
 
         <section id="sect39">
-            <test not="true" hasObject="portbaxticket" >
+            <test not="true" hasObject="portbaxticket">
                 <choiceState section="sect346" set="disabled" />
             </test>
-            <test hasObject="portbaxticket" >
+            <test hasObject="portbaxticket">
                 <choiceState section="sect156" set="disabled" />
             </test>
         </section>
@@ -404,7 +400,7 @@
             <combat noMindblast="true" />
             <test currentWeapon="sommerswerd">
                 <combat dammageMultiplier="2" />
-            </test> 
+            </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
             </afterCombats>
@@ -415,7 +411,7 @@
                 <endurance count="-2" />
             </test>
         </section>
-        
+
         <section id="sect70">
             <!-- If you have the crystalstar NOW -->
             <test not="true" hasObject="crystalstar">
@@ -524,24 +520,18 @@
             <object objectId="backpack" />
             <object objectId="dagger" />
             <object objectId="rope" />
-            <message text="Pick only two objects"  
-            />
+            <message text="Pick only two objects" />
         </section>
 
         <section id="sect93">
-            <numberPicker 
-                text="Choose how many Crowns you wish to give to the beggars"
-                min="1" 
-                money="true"
-                />
+            <numberPicker text="Choose how many Crowns you wish to give to the beggars" min="1" money="true" />
             <choiceSelected section="sect137">
                 <pick class="money" count="-[NUMBERPICKER]" />
             </choiceSelected>
         </section>
 
         <section id="sect95">
-            <test not="true" hasObject="healingpotion|laumspurmeal|healingpotion3|laumspurpotion"
-                hasDiscipline="healing">
+            <test not="true" hasObject="healingpotion|laumspurmeal|healingpotion3|laumspurpotion" hasDiscipline="healing">
                 <choiceState section="sect239" set="disabled" />
             </test>
         </section>
@@ -1094,7 +1084,7 @@
         <section id="sect220">
             <pick class="money" count="23" />
         </section>
-        
+
         <section id="sect226">
             <test not="true" expression="[MONEY] >= 2">
                 <choiceState section="sect56" set="disabled" />
@@ -1128,7 +1118,7 @@
             <test not="true" hasDiscipline="sixthsns">
                 <choiceState section="sect149" set="disabled" />
             </test>
-            <test not="true" hasObject="sealofhammerdal" >
+            <test not="true" hasObject="sealofhammerdal">
                 <choiceState section="sect223" set="disabled" />
             </test>
         </section>
@@ -1161,7 +1151,7 @@
             <combat noMindblast="true" />
             <test currentWeapon="sommerswerd">
                 <combat dammageMultiplier="2" />
-            </test> 
+            </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
             </afterCombats>
@@ -1216,13 +1206,13 @@
         </section>
 
         <section id="sect246">
-            <test not="true" hasObject="whitepass" >
+            <test not="true" hasObject="whitepass">
                 <choiceState section="sect170" set="disabled" />
             </test>
-            <test not="true" hasObject="redpass" >
+            <test not="true" hasObject="redpass">
                 <choiceState section="sect202" set="disabled" />
             </test>
-            <test hasObject="whitepass|redpass" >
+            <test hasObject="whitepass|redpass">
                 <choiceState section="sect327" set="disabled" />
             </test>
         </section>
@@ -1236,7 +1226,7 @@
         </section>
 
         <section id="sect250">
-            <test not="true" hasObject="sealofhammerdal" >
+            <test not="true" hasObject="sealofhammerdal">
                 <choiceState section="sect223" set="disabled" />
             </test>
         </section>
@@ -1312,7 +1302,7 @@
 
         <section id="sect270">
             <choiceState section="all" set="disabled" />
-            <combat noMindblast="true" combatSkillModifier="+2"/>
+            <combat noMindblast="true" combatSkillModifier="+2" />
             <afterCombatTurn turn="1">
                 <combat combatSkillModifier="0" />
             </afterCombatTurn>
@@ -1356,7 +1346,7 @@
                 <choiceState section="sect305" set="disabled" />
             </test>
         </section>
-        
+
         <section id="sect278">
             <choiceState section="all" set="disabled" />
             <randomTable>
@@ -1441,7 +1431,7 @@
         </section>
 
         <section id="sect299">
-            <test not="true" hasObject="magicspear" >
+            <test not="true" hasObject="magicspear">
                 <choiceState section="sect102" set="disabled" />
             </test>
 
@@ -1587,7 +1577,7 @@
         <section id="sect329">
             <pick class="money" count="10" />
         </section>
-        
+
         <section id="sect330">
             <endurance count="-5" />
         </section>
@@ -1696,7 +1686,7 @@
                 <choiceState section="sect125" set="enabled" />
             </afterElude>
         </section>
-        
+
     </sections>
 
 </mechanics>

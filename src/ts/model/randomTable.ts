@@ -90,8 +90,10 @@ export class RandomTable {
     }
 
     public randomTableClosed() {
-        this.currentAsync.deferred.resolve(this.currentAsync.value);
-        this.currentAsync = null;
+        if(this.currentAsync !== null) {
+            this.currentAsync.deferred.resolve(this.currentAsync.value);
+            this.currentAsync = null;
+        }
     }
 
     public module10( value: number): number {

@@ -1,9 +1,9 @@
 ## Kai Chronicles
 
-**November 2021: Kai Chronicles app is no longer published**
-
 Kai Chronicles is a game player for Lone Wolf game books. Only books 1 - 15 are
 playable. The game player can run as a website.
+
+This is a fork from the original "Kai Chronicles" as tonib stopped development in November 2021.
 
 This repository does not contain game books data. Data must be downloaded from the 
 [Project Aon web site](https://www.projectaon.org). 

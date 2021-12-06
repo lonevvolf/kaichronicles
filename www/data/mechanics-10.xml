@@ -21,13 +21,13 @@
             <!-- Select the Kai disciplines UI -->
             <setDisciplines />
         </section>
-        
+
         <section id="equipmnt" pickMaximum="5">
             <!-- Do not pick 2 maps! -->
-            <test not="true" hasObject="map" >
+            <test not="true" hasObject="map">
                 <pick objectId="map" />
             </test>
-            <test not="true" hasObject="backpack" >
+            <test not="true" hasObject="backpack">
                 <pick objectId="backpack" />
             </test>
 
@@ -51,13 +51,9 @@
             <object objectId="dagger" />
             <object objectId="potionofstrength" />
 
-            <chooseEquipment 
-                text="Click on the Random Table link to get money before continuing" 
-            />
+            <chooseEquipment text="Click on the Random Table link to get money before continuing" />
 
-            <message 
-                text="You may take up to five of the following (all meals count as one object):"  
-            />
+            <message text="You may take up to five of the following (all meals count as one object):" />
 
         </section>
 
@@ -125,9 +121,7 @@
         </section>
 
         <section id="sect11">
-            <message id="msg-drop-weapon" 
-                text="Drop a weapon before continuing" 
-            />
+            <message id="msg-drop-weapon" text="Drop a weapon before continuing" />
             <choiceState section="all" set="disabled" />
             <onInventoryEvent>
                 <test expression="[WEAPONLIKE-CNT-ON-ACTIONCHART] == 0 || [WEAPONLIKE-CNT-ON-SECTION] > 0">
@@ -314,7 +308,7 @@
                 <choiceState section="sect326" set="enabled" />
             </afterCombats>
         </section>
-        
+
         <section id="sect43">
             <drop backpackItemSlots="2" />
         </section>
@@ -540,7 +534,7 @@
                 <choiceState section="sect52" set="disabled" />
             </test>
         </section>
-        
+
         <section id="sect91">
             <death />
         </section>
@@ -582,10 +576,10 @@
             <choiceState section="all" set="disabled" />
             <randomTable>
                 <pick class="arrow" count="-1" />
-            
+
                 <case from="-99" to="7">
-                        <choiceState section="sect9" set="enabled" />
-                    </case>
+                    <choiceState section="sect9" set="enabled" />
+                </case>
                 <case from="8" to="99">
                     <choiceState section="sect272" set="enabled" />
                 </case>
@@ -793,7 +787,7 @@
             <afterElude>
                 <choiceState section="sect23" set="enabled" />
             </afterElude>
-        </section>        
+        </section>
 
         <section id="sect133">
             <choiceState section="all" set="disabled" />
@@ -1166,9 +1160,7 @@
         <section id="sect210">
             <endurance count="-2" />
             <!-- sect333, disable sect210 if no weapon ??? not sure -->
-            <message id="msg-drop-weapon" 
-                text="Drop a weapon before continuing" 
-            />
+            <message id="msg-drop-weapon" text="Drop a weapon before continuing" />
             <choiceState section="all" set="disabled" />
             <onInventoryEvent>
                 <test expression="[WEAPONLIKE-CNT-ON-ACTIONCHART] == 0 || [WEAPONLIKE-CNT-ON-SECTION] > 0">
@@ -1665,7 +1657,7 @@
             </randomTable>
             <randomTableIncrement increment="[BOWBONUS]" />
         </section>
-        
+
         <section id="sect295">
             <choiceState section="sect194" set="disabled" />
             <test hasDiscipline="invsblty|pthmnshp">
@@ -1847,9 +1839,7 @@
             <drop backpackItemSlots="2|3|5|7" />
             <pick class="money" count="-( [MONEY] / 2 )" />
 
-            <message id="msg-drop-special" 
-                text="Drop one Special Item of your choice" 
-            />
+            <message id="msg-drop-special" text="Drop one Special Item of your choice" />
             <onInventoryEvent>
                 <test expression="[SPECIAL-ITEMS-ON-ACTIONCHART] &lt; 1 || [SPECIAL-ITEMS-ON-SECTION] > 0">
                     <message id="msg-drop-special" op="hide" />
@@ -1904,7 +1894,7 @@
                 <choiceState section="sect202" set="enabled" />
             </afterCombats>
         </section>
-        
+
     </sections>
 
 </mechanics>

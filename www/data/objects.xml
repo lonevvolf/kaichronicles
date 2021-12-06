@@ -50,7 +50,7 @@
             <image book="1|9" name="bsword.png" />
         </weapon>
 
-        <!-- BOOOK 3 -->
+        <!-- BOOK 3 -->
 
         <weapon id="bonesword" weaponType="sword">
             <name>Bone Sword</name>
@@ -62,7 +62,7 @@
             <image book="3" name="small17.png" />
         </weapon>
 
-        <!-- BOOOK 4 -->
+        <!-- BOOK 4 -->
 
         <weapon id="captaindvalsword" weaponType="sword">
             <name>Captain D’Val’s Sword</name>
@@ -72,7 +72,7 @@
             <image book="1" name="sword.png" />
         </weapon>
 
-        <!-- BOOOK 5 -->
+        <!-- BOOK 5 -->
 
         <weapon id="jakan" weaponType="bow">
             <name>Jakan</name>
@@ -82,7 +82,7 @@
             <image book="6" name="bow.png" />
         </weapon>
 
-        <!-- BOOOK 6 -->
+        <!-- BOOK 6 -->
 
         <weapon id="bow">
             <name>Bow</name>
@@ -103,7 +103,7 @@
     <specials>
         <!-- SPECIAL OBJECTS -->
 
-        <!-- BOOOK 1 -->
+        <!-- BOOK 1 -->
 
         <special id="helmet" incompatibleWith="silverhelm">
             <name>Helmet</name>
@@ -135,25 +135,20 @@
             </description>
         </special>
 
-        <!-- BOOOK 2 -->
+        <!-- BOOK 2 -->
 
         <special id="shield" incompatibleWith="shield">
             <name>Shield</name>
             <description>This adds 2 points to your COMBAT SKILL</description>
-
-
-
-
             <image book="2" name="shield.png" />
             <effect class="combatSkill" increment="2" />
         </special>
 
         <special id="portbaxticket">
             <name>Ticket to Port Bax</name>
-
         </special>
 
-        <special id="sommerswerd" weaponType="sword|broadsword|shortsword" >
+        <special id="sommerswerd" weaponType="sword|broadsword|shortsword">
             <name>Sommerswerd</name>
             <description>
                 When used in combat, the Sommerswerd will add 8 points to your COMBAT SKILL 
@@ -169,7 +164,6 @@
 
         <special id="magicspear" weaponType="spear">
             <name>Magic Spear</name>
-
             <image book="1" name="spear.png" />
         </special>
 
@@ -180,7 +174,7 @@
             </description>
             <image book="2" name="seal.png" />
         </special>
-        
+
         <special id="portbaxpapers">
             <name>Papers</name>
             <description>
@@ -190,17 +184,15 @@
 
         <special id="whitepass">
             <name>White Pass</name>
-
         </special>
 
         <special id="redpass">
             <name>Red Pass</name>
-
         </special>
-        
+
         <!-- BOOK 3 -->
-        
-        <special id="leatherwaistcoat" incompatibleWith="leatherwaistcoat" >
+
+        <special id="leatherwaistcoat" incompatibleWith="leatherwaistcoat">
             <name>Padded Leather Waistcoat</name>
             <description>
                 This adds 2 ENDURANCE points to your total
@@ -208,7 +200,7 @@
             <image book="3" name="plw.png" />
             <effect class="endurance" increment="2" />
         </special>
-        
+
         <special id="baknaroil" droppable="false">
             <!-- On books this is not really an object, just an "annotation" on 
                 the action chart... -->
@@ -220,9 +212,8 @@
 
         <special id="diamond">
             <name>Diamond</name>
-
         </special>
-        
+
         <special id="trianglebluestone">
             <name>Triangle of Blue Stone</name>
             <description>
@@ -230,7 +221,7 @@
             </description>
             <image book="3" name="small25.png" />
         </special>
-        
+
         <special id="bracelet" droppable="false">
             <name>Bracelet</name>
             <description>
@@ -240,7 +231,6 @@
 
         <special id="silverkeybook3">
             <name>Silver Key (Book 3)</name>
-
             <image book="1" name="small15.png" />
         </special>
 
@@ -256,32 +246,29 @@
             </description>
             <image book="3" name="small10.png" />
         </special>
-        
+
         <special id="bluestonedisc">
             <name>Blue Stone Disc</name>
-
         </special>
 
         <special id="firesphere">
             <name>Firesphere</name>
-
             <image book="3" name="small7.png" />
         </special>
 
-        <special id="silverhelm" incompatibleWith="helmet" >
+        <special id="silverhelm" incompatibleWith="helmet">
             <name>Silver Helm</name>
             <description>
                 If worn during combat, it will increase your COMBAT SKILL by 2 points
             </description>
             <image book="3" name="small26.png" />
             <effect class="combatSkill" increment="2" />
-        </special>        
+        </special>
 
         <!-- BOOK 4 -->
 
         <special id="onyxmedallion">
             <name>Onyx Medallion</name>
-
             <image book="4" name="small3.png" />
         </special>
 
@@ -321,64 +308,51 @@
 
         <special id="copperkey">
             <name>Copper Key</name>
-
-
             <image book="1" name="small15.png" />
         </special>
 
         <special id="gaolerkeys">
             <name>Gaoler’s Keys</name>
-
-
             <image book="1" name="small15.png" />
         </special>
 
         <special id="herbpad">
             <name>Herb Pad</name>
-
         </special>
-        
+
         <special id="blacksash">
             <name>Black Sash</name>
-
         </special>
 
         <special id="brasswhistle">
             <name>Brass Whistle</name>
-
         </special>
 
         <special id="blackcrystalcube">
             <name>Black Crystal Cube</name>
-
         </special>
 
         <!-- BOOK 6 -->
 
         <special id="quiver">
             <name>Quiver</name>
-
             <image book="6|9" name="quiver.png" />
         </special>
 
         <special id="mapvaretta">
             <name>Map of Varetta</name>
-
         </special>
 
         <special id="luyenticket">
             <name>Ticket to Luyen</name>
-
         </special>
 
         <special id="rhemticket">
             <name>Ticket to Rhem</name>
-
         </special>
 
         <special id="eulaticket">
             <name>Ticket to Eula</name>
-
         </special>
 
         <special id="cess">
@@ -387,20 +361,17 @@
                 A blue card. It is stamped with today’s date and will allow you access to the town of Amory on this day only
             </description>
         </special>
-        
+
         <special id="rubyring">
             <name>Ruby Ring</name>
-
         </special>
-        
+
         <special id="silverbrooch">
             <name>Silver Brooch</name>
-
         </special>
 
         <special id="smallsilverkey">
             <name>Small Silver Key</name>
-
             <image book="1" name="small15.png" />
         </special>
 
@@ -430,19 +401,19 @@
                 When thrown against a hard surface, these Fireseeds explode and burn fiercely
             </description>
         </special>
-		
+
         <special id="kazanoudamulet">
             <name>Kazan-Oud Platinum Amulet</name>
             <description>
                 It will protect you from injury due to exposure to high temperatures
             </description>
         </special>
-		
+
         <special id="skeletonkey">
             <name>Skeleton Key</name>
             <image book="1" name="small15.png" />
         </special>
-		
+
         <special id="parchment">
             <name>Parchment</name>
         </special>
@@ -619,7 +590,7 @@
             <name>Crystal Explosive</name>
             <image book="10" name="small9.png" />
         </special>
-        
+
         <special id="zejardulaga" isArrow="true">
             <name>Zejar-dulaga</name>
             <description>
@@ -690,7 +661,7 @@
     <objects>
         <!-- BACKPACK ITEMS -->
 
-        <!-- BOOOK 1 -->
+        <!-- BOOK 1 -->
 
         <object id="healingpotion">
             <name>Healing Potion</name>
@@ -720,12 +691,12 @@
             <image book="1|9" name="food.png" />
             <usage class="endurance" increment="3" />
         </object>
-        
+
         <object id="silverkey">
             <name>Silver Key</name>
             <image book="1" name="small15.png" />
         </object>
-       
+
         <object id="potionofstrength">
             <name>Potion of Alether</name>
             <description>
@@ -734,7 +705,7 @@
             <image book="1|9" name="potion.png" />
             <usage class="combatSkill" increment="2" />
         </object>
-       
+
         <object id="torch">
             <name>Torch</name>
         </object>
@@ -760,7 +731,7 @@
             <name>Tablet of Perfumed Soap</name>
         </object>
 
-        <!-- BOOOK 2 -->
+        <!-- BOOK 2 -->
 
         <object id="healingpotion3">
             <name>Healing Potion</name>
@@ -797,7 +768,7 @@
             <name>Gold Ring</name>
         </object>
 
-        <!-- BOOOK 3 -->
+        <!-- BOOK 3 -->
 
         <object id="laumspurpotion4">
             <name>Potion of Laumspur</name>
@@ -808,7 +779,7 @@
             <image book="3|9" name="potion.png" />
             <usage class="endurance" increment="4" />
         </object>
-        
+
         <object id="sleepingfurs" itemCount="2">
             <name>Sleeping Furs</name>
         </object>
@@ -836,7 +807,7 @@
         <object id="tent" itemCount="3">
             <name>Tent</name>
         </object>
-        
+
         <object id="redpotionlaumspur">
             <name>Red Potion of Laumspur</name>
             <description>
@@ -886,7 +857,7 @@
         <object id="hourglass">
             <name>Hourglass</name>
         </object>
-        
+
         <!-- BOOK 5 -->
 
         <object id="oedeherb">
@@ -898,11 +869,11 @@
             </description>
             <usage class="endurance" increment="10" />
         </object>
-        
+
         <object id="blowpipe">
             <name>Blowpipe</name>
         </object>
-        
+
         <object id="sleepdart">
             <name>Sleep Dart</name>
         </object>
@@ -926,7 +897,7 @@
         <object id="towel" itemCount="2">
             <name>Towel</name>
         </object>
-        
+
         <object id="prism">
             <name>Prism</name>
         </object>
@@ -941,7 +912,7 @@
                 Induces sleep for 1–2 hours per dose
             </description>
         </object>
-        
+
         <object id="tincturegraveweed">
             <name>Tincture of Graveweed</name>
             <description>
@@ -964,7 +935,7 @@
             </description>
             <usage class="endurance" increment="4" />
         </object>
-        
+
         <object id="canteenwater">
             <name>Canteen of Water</name>
         </object>
@@ -1039,7 +1010,7 @@
             <usage class="endurance" increment="8" />
             <image book="3" name="potion.png" />
         </object>
-		
+
         <object id="vialbluepills">
             <name>Vial of Blue Pills</name>
             <description>
@@ -1050,11 +1021,11 @@
                 commonly found in the Boari Jungle, but rare in any other part of Magnamund. 
             </extraDescription>
         </object>
-		
+
         <object id="bottlewater">
             <name>Bottle of Water</name>
         </object>
-		
+
         <object id="pouchadgana">
             <name>Pouch of Adgana</name>
             <description>
@@ -1179,11 +1150,11 @@
         <object id="silvercandlestick">
             <name>Silver Candlestick</name>
         </object>
-        
+
         <object id="silvergoblet">
             <name>Silver Goblet</name>
         </object>
-        
+
         <object id="silkjacket">
             <name>Silk Jacket</name>
         </object>
@@ -1191,7 +1162,7 @@
         <object id="crystaldecanter">
             <name>Crystal Decanter</name>
         </object>
-        
+
         <object id="comb">
             <name>Comb</name>
         </object>
@@ -1199,7 +1170,7 @@
         <object id="flaskofboza">
             <name>Flask of Boza</name>
         </object>
-        
+
 
         <!-- BOOK 10 -->
 
@@ -1234,7 +1205,7 @@
             <name>Meal: +3 EP</name>
             <description>
                 Yoacor food. Restores 3 ENDURANCE points
-            </description>            
+            </description>
             <image book="1|9" name="food.png" />
             <usage class="endurance" increment="3" />
         </object>
@@ -1251,7 +1222,7 @@
         <object id="baylonboughfungi">
             <name>Baylon’s Bough Fungi</name>
         </object>
-        
+
         <object id="conchshell">
             <name>Conch Shell</name>
         </object>
@@ -1276,7 +1247,7 @@
         </object>
 
         <!-- BOOK 12 -->
-        
+
         <object id="blackcube">
             <name>Black Cube</name>
         </object>
@@ -1285,7 +1256,7 @@
             <name>Gnallia</name>
             <description>
                 A beneficial edible bacillus. Restores 2 ENDURANCE points.
-            </description>            
+            </description>
             <image book="1|9" name="food.png" />
             <usage class="endurance" increment="2" />
         </object>
@@ -1369,12 +1340,12 @@
         </object>
 
         <object id="brasskeybook14">
-            <name>Brass Key</name>            
+            <name>Brass Key</name>
             <image book="1" name="small15.png" />
         </object>
 
         <object id="greenkey">
-            <name>Green Key</name>            
+            <name>Green Key</name>
             <image book="1" name="small15.png" />
         </object>
 
@@ -1383,7 +1354,7 @@
         </object>
 
         <object id="blackkeybook14">
-            <name>Black Key</name>            
+            <name>Black Key</name>
             <image book="1" name="small15.png" />
         </object>
 
@@ -1404,15 +1375,15 @@
             </description>
             <usage class="endurance" increment="3" />
         </object>
-		
+
         <object id="emptybottle">
             <name>Bottle (Empty)</name>
         </object>
-		
+
         <object id="ballofstring">
             <name>Ball of String</name>
         </object>
-		
+
         <object id="boarwhip">
             <name>Boar Whip</name>
         </object>
@@ -1421,7 +1392,7 @@
 
         <!-- This not really an object, but needed for mechanics -->
         <object id="meal">
-            <name>Meal</name>            
+            <name>Meal</name>
             <image book="1|9" name="food.png" />
         </object>
 

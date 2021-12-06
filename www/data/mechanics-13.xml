@@ -27,13 +27,13 @@
             <!-- Select the Kai disciplines UI -->
             <setDisciplines />
         </section>
-        
+
         <section id="equipmnt" pickMaximum="5">
             <!-- Do not pick 2 maps! -->
-            <test not="true" hasObject="map" >
+            <test not="true" hasObject="map">
                 <pick objectId="map" />
             </test>
-            <test not="true" hasObject="backpack" >
+            <test not="true" hasObject="backpack">
                 <pick objectId="backpack" />
             </test>
 
@@ -57,13 +57,9 @@
             <object objectId="spear" />
             <object objectId="dagger" />
 
-            <chooseEquipment 
-                text="Click on the Random Table link to get money before continuing" 
-            />
+            <chooseEquipment text="Click on the Random Table link to get money before continuing" />
 
-            <message 
-                text="You may take up to five of the following (all meals count as one object):"  
-            />
+            <message text="You may take up to five of the following (all meals count as one object):" />
 
         </section>
 
@@ -99,7 +95,7 @@
             <endurance count="-3" />
         </section>
 
-        <section id="sect7">        
+        <section id="sect7">
             <choiceState section="sect257" set="disabled" />
             <test hasDiscipline="pthmnshp">
                 <choiceState section="sect257" set="enabled" />
@@ -147,7 +143,7 @@
             </afterCombats>
         </section>
 
-        <section id="sect13">      
+        <section id="sect13">
             <choiceState section="sect88" set="disabled" />
             <test hasDiscipline="nexus">
                 <choiceState section="sect88" set="enabled" />
@@ -182,7 +178,7 @@
                 <choiceState section="sect136" set="disabled" />
             </test>
         </section>
-        
+
         <section id="sect18">
             <object objectId="copperkeybook13" />
         </section>
@@ -194,7 +190,7 @@
                 <choiceState section="sect47" set="disabled" />
             </test>
         </section>
-        
+
         <section id="sect21">
             <object objectId="dagger" />
             <object objectId="sword" />
@@ -299,7 +295,7 @@
             <!-- TODO: Arrow here -->
             <pick class="arrow" count="-1" />
         </section>
-        
+
         <section id="sect42">
             <death />
         </section>
@@ -324,10 +320,10 @@
             <choiceState section="all" set="disabled" />
             <combat noMindblast="true" noPsiSurge="true" noKaiSurge="true" />
             <onInventoryEvent>
-                <combat combatSkillModifier="0"/>
+                <combat combatSkillModifier="0" />
                 <!-- TODO: What about no weapon? -->
                 <test currentWeapon="quarterstaff|mace|warhammer">
-                    <combat combatSkillModifier="-4"/>
+                    <combat combatSkillModifier="-4" />
                 </test>
             </onInventoryEvent>
             <afterCombats>
@@ -337,11 +333,7 @@
 
         <section id="sect48">
             <endurance count="-2" />
-            <numberPicker 
-                text="Choose the number"
-                min="1" max="350" 
-                actionButton="Choose"
-                />
+            <numberPicker text="Choose the number" min="1" max="350" actionButton="Choose" />
             <numberPickerChoosed>
                 <test expression="[NUMBERPICKER] == 26">
                     <goToSection section="sect26" />
@@ -351,8 +343,7 @@
                 </test>
                 <test expression="[NUMBERPICKER] != 26">
                     <test expression="[NUMBERPICKER] != 146">
-                        <toast 
-                            text="Wrong number!" />
+                        <toast text="Wrong number!" />
                     </test>
                 </test>
             </numberPickerChoosed>
@@ -370,7 +361,7 @@
             </randomTable>
             <randomTableIncrement increment="+1" />
         </section>
-        
+
         <section id="sect53">
             <object objectId="dagger" />
             <object objectId="cenerrobe" />
@@ -440,7 +431,7 @@
             <drop backpackItemSlots="3|4" />
         </section>
 
-        <section id="sect65">  
+        <section id="sect65">
             <endurance count="-12" />
             <choiceState section="sect80" set="disabled" />
             <test hasDiscipline="kaisurge">
@@ -454,7 +445,7 @@
             <object objectId="meal" />
             <object objectId="dagger" />
         </section>
-        
+
         <section id="sect68">
             <choiceState section="all" set="disabled" />
             <randomTable>
@@ -576,7 +567,7 @@
                 <randomTableIncrement increment="+3" />
             </test>
         </section>
-        
+
         <section id="sect83">
             <meal />
         </section>
@@ -659,7 +650,7 @@
                 <choiceState section="sect74" set="disabled" />
             </test>
         </section>
-        
+
         <section id="sect99">
             <death />
         </section>
@@ -677,7 +668,7 @@
             </afterCombats>
         </section>
 
-        <section id="sect103">            
+        <section id="sect103">
             <choiceState section="sect226" set="disabled" />
             <choiceState section="sect307" set="disabled" />
             <test hasDiscipline="nexus">
@@ -700,7 +691,7 @@
                 </case>
             </randomTable>
             <randomTableIncrement increment="[BOWBONUS]" />
-            
+
             <!-- In this book, bonus is only +3, not the default +5 -->
             <!-- Moved this, and all this book BOWBONUS issues to TS code. It seems a book errata? -->
             <!--test hasWeaponskillWith="bow">
@@ -751,7 +742,7 @@
         </section>
 
         <!-- START HERE -->
-        
+
         <section id="sect116">
             <choiceState section="all" set="disabled" />
             <randomTable>
@@ -976,7 +967,7 @@
                     <choiceState section="sect175" set="enabled" />
                 </case>
             </randomTable>
-            <test hasDiscipline="alchemy">                
+            <test hasDiscipline="alchemy">
                 <test hasDiscipline="kaisurge">
                     <randomTableIncrement increment="+3" />
                 </test>
@@ -1021,18 +1012,13 @@
         </section>
 
         <section id="sect158">
-            <numberPicker 
-                text="Choose the number"
-                min="1" max="350" 
-                actionButton="Choose"
-                />
+            <numberPicker text="Choose the number" min="1" max="350" actionButton="Choose" />
             <numberPickerChoosed>
                 <test expression="[NUMBERPICKER] == 15">
                     <goToSection section="sect15" />
                 </test>
                 <test expression="[NUMBERPICKER] != 15">
-                    <toast 
-                        text="Wrong number!" />
+                    <toast text="Wrong number!" />
                 </test>
             </numberPickerChoosed>
         </section>
@@ -1128,7 +1114,7 @@
                 <case from="4" to="11">
                     <choiceState section="sect263" set="enabled" />
                 </case>
-            </randomTable>              
+            </randomTable>
             <test expression="[ENDURANCE] > 20">
                 <randomTableIncrement increment="+2" />
             </test>
@@ -1180,8 +1166,8 @@
                 <case from="4" to="12">
                     <choiceState section="sect350" set="enabled" />
                 </case>
-            </randomTable>              
-            <test hasDiscipline="hntmstry">             
+            </randomTable>
+            <test hasDiscipline="hntmstry">
                 <test hasDiscipline="assimila">
                     <randomTableIncrement increment="+3" />
                 </test>
@@ -1336,10 +1322,10 @@
                 <case from="7" to="12">
                     <choiceState section="sect71" set="enabled" />
                 </case>
-            </randomTable>              
-            <test hasDiscipline="hntmstry"> 
+            </randomTable>
+            <test hasDiscipline="hntmstry">
                 <randomTableIncrement increment="+2" />
-            </test>          
+            </test>
             <test expression="[ENDURANCE] >= 28">
                 <randomTableIncrement increment="+1" />
             </test>
@@ -1403,18 +1389,13 @@
             <object objectId="sword" />
             <object objectId="mirror" />
             <object objectId="rope" />
-            <numberPicker 
-                text="Choose the number"
-                min="1" max="350" 
-                actionButton="Choose"
-                />
+            <numberPicker text="Choose the number" min="1" max="350" actionButton="Choose" />
             <numberPickerChoosed>
                 <test expression="[NUMBERPICKER] == 15">
                     <goToSection section="sect15" />
                 </test>
                 <test expression="[NUMBERPICKER] != 15">
-                    <toast 
-                        text="Wrong number!" />
+                    <toast text="Wrong number!" />
                 </test>
             </numberPickerChoosed>
         </section>
@@ -1489,9 +1470,9 @@
 
         <section id="sect243">
             <choiceState section="all" set="disabled" />
-            <combat noMindblast="true" noPsiSurge="true" combatSkillModifier="-6"/>
+            <combat noMindblast="true" noPsiSurge="true" combatSkillModifier="-6" />
             <test currentWeapon="broadsword|spear|quarterstaff">
-                <combat noMindblast="true" noPsiSurge="true" combatSkillModifier="-9"/>
+                <combat noMindblast="true" noPsiSurge="true" combatSkillModifier="-9" />
             </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
@@ -1514,7 +1495,7 @@
             <test hasDiscipline="alchemy">
                 <randomTableIncrement increment="+3" />
             </test>
-            <test hasDiscipline="magi">                
+            <test hasDiscipline="magi">
                 <test hasDiscipline="alchemy">
                     <randomTableIncrement increment="+1" />
                 </test>
@@ -1666,7 +1647,7 @@
         <section id="sect272">
             <endurance count="-5" />
             <choiceState section="all" set="disabled" />
-            <combat combatSkillModifier="-20"/>
+            <combat combatSkillModifier="-20" />
             <afterCombatTurn turn="1">
                 <combat combatSkillModifier="0" />
             </afterCombatTurn>
@@ -1691,7 +1672,7 @@
             </afterCombats>
         </section>
 
-        <section id="sect276">            
+        <section id="sect276">
             <choiceState section="sect187" set="disabled" />
             <test canUseBow="true">
                 <choiceState section="sect187" set="enabled" />
@@ -1799,9 +1780,9 @@
 
         <section id="sect295">
             <choiceState section="all" set="disabled" />
-            <combat noMindblast="true" combatSkillModifier="-5" eludeTurn="6"/>
+            <combat noMindblast="true" combatSkillModifier="-5" eludeTurn="6" />
             <test currentWeapon="broadsword|spear|quarterstaff">
-                <combat noMindblast="true" combatSkillModifier="-8" eludeTurn="6"/>
+                <combat noMindblast="true" combatSkillModifier="-8" eludeTurn="6" />
             </test>
             <afterElude>
                 <choiceState section="sect63" set="enabled" />
@@ -2122,7 +2103,7 @@
             <object objectId="cenermask" />
             <pick class="money" count="20" currency="lune" />
         </section>
-        
+
     </sections>
 
 </mechanics>

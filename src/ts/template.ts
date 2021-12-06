@@ -253,7 +253,8 @@ export const template = {
             randomTable.randomTableUIClicked( parseInt( $(this).attr("data-number"), 10 ) );
         });
 
-        $("#template-randomtable").on('hidden.bs.modal', () => {
+        $("#template-randomtable").on('hidden.bs.modal', (e) => {
+            e.preventDefault();
             randomTable.randomTableClosed();
         });
     },

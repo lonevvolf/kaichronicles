@@ -24,20 +24,20 @@
 
         <section id="equipmnt" pickMaximum="4">
             <!-- Do not pick 2 maps! -->
-            <test not="true" hasObject="map" >
+            <test not="true" hasObject="map">
                 <pick objectId="map" />
             </test>
-            <test not="true" hasObject="backpack" >
+            <test not="true" hasObject="backpack">
                 <pick objectId="backpack" />
             </test>
-            
+
             <randomTable>
                 <pick class="money" count="[RANDOM] + 10" />
             </randomTable>
 
             <!-- Kai monastery safekeeping -->
             <kaiMonasteryStorage />
-            
+
             <object objectId="dagger" />
             <object objectId="laumspurpotion4" />
             <object objectId="sword" />
@@ -47,18 +47,15 @@
             <object objectId="mace" />
             <object objectId="shield" />
 
-            <chooseEquipment text="Click on the Random Table link to get money before continuing" 
-            />
+            <chooseEquipment text="Click on the Random Table link to get money before continuing" />
 
-            <message text="You may take up to four of the following (both meals count as one object):"  
-            />
+            <message text="You may take up to four of the following (both meals count as one object):" />
         </section>
 
-        <section id="sect1" text="Part I" >
-        </section>
+        <section id="sect1" text="Part I"></section>
 
         <section id="sect2">
-        
+
             <test sectionVisited="sect166">
                 <!-- Restore temporal CS loss (Limbdeath) -->
                 <combatSkill count="+3" />
@@ -164,7 +161,7 @@
         </section>
 
         <section id="sect17">
-            <test not="true" hasDiscipline="sixthsns" >
+            <test not="true" hasDiscipline="sixthsns">
                 <choiceState section="sect47" set="disabled" />
             </test>
         </section>
@@ -175,8 +172,7 @@
 
         <section id="sect19">
             <!-- TODO: Meals right now are considered as backpack items. Wrong -->
-            <message id="msg-drop-objects" text="Drop the Backpack Items you want to give to the guards" 
-            />
+            <message id="msg-drop-objects" text="Drop the Backpack Items you want to give to the guards" />
             <onInventoryEvent>
                 <test expression="[BACKPACK-ITEMS-CNT-ON-SECTION] >= 2">
                     <message id="msg-drop-objects" op="hide" />
@@ -228,7 +224,7 @@
 
         <section id="sect23">
             <endurance count="-1" />
-            
+
             <choiceState section="all" set="disabled" />
             <randomTable>
                 <case from="-3" to="-1">
@@ -251,16 +247,16 @@
         </section>
 
         <section id="sect24">
-            <test not="true" hasDiscipline="sixthsns" >
+            <test not="true" hasDiscipline="sixthsns">
                 <choiceState section="sect147" set="disabled" />
             </test>
-            <test hasDiscipline="sixthsns" >
+            <test hasDiscipline="sixthsns">
                 <choiceState section="sect196" set="disabled" />
             </test>
         </section>
 
         <section id="sect26">
-            <test not="true" hasDiscipline="mindomtr" >
+            <test not="true" hasDiscipline="mindomtr">
                 <choiceState section="sect48" set="disabled" />
             </test>
         </section>
@@ -307,8 +303,7 @@
         <section id="sect40">
             <pick class="money" count="-[MONEY]" />
             <endurance count="-2" />
-            <message id="msg-drop-object" text="Drop one Backpack Item before continuing"  
-            />
+            <message id="msg-drop-object" text="Drop one Backpack Item before continuing" />
             <choiceState section="all" set="disabled" />
             <onInventoryEvent>
                 <test expression="[BACKPACK-ITEMS-CNT-ON-ACTIONCHART] == 0 || [BACKPACK-ITEMS-CNT-ON-SECTION] >= 1">
@@ -368,7 +363,7 @@
 
         <section id="sect51">
             <endurance count="-1" />
-            <test not="true" hasDiscipline="tracking" >
+            <test not="true" hasDiscipline="tracking">
                 <choiceState section="sect173" set="disabled" />
             </test>
         </section>
@@ -418,11 +413,7 @@
         <section id="sect58">
             <choiceState section="sect98" set="disabled" />
 
-            <numberPicker 
-                text="Choose the number for the Cloeasian combination lock"
-                min="1" max="200" 
-                actionButton="Choose"
-                />
+            <numberPicker text="Choose the number for the Cloeasian combination lock" min="1" max="200" actionButton="Choose" />
             <numberPickerChoosed>
                 <test expression="[NUMBERPICKER] == 67">
                     <goToSection section="sect67" />
@@ -473,7 +464,7 @@
         <section id="sect71">
             <object objectId="towel" />
         </section>
-        
+
         <section id="sect72">
             <endurance count="-1" />
         </section>
@@ -496,10 +487,10 @@
         </section>
 
         <section id="sect87">
-            <test not="true" hasDiscipline="sixthsns" >
+            <test not="true" hasDiscipline="sixthsns">
                 <choiceState section="sect105" set="disabled" />
             </test>
-            <test hasDiscipline="sixthsns" >
+            <test hasDiscipline="sixthsns">
                 <choiceState section="sect158" set="disabled" />
             </test>
         </section>
@@ -527,10 +518,10 @@
         </section>
 
         <section id="sect95">
-            <test not="true" hasDiscipline="mindomtr" >
+            <test not="true" hasDiscipline="mindomtr">
                 <choiceState section="sect184" set="disabled" />
             </test>
-            <test hasDiscipline="mindomtr" >
+            <test hasDiscipline="mindomtr">
                 <choiceState section="sect56" set="disabled" />
             </test>
         </section>
@@ -587,19 +578,19 @@
         <section id="sect111">
             <pick class="money" count="3" />
             <object objectId="copperkey" />
-            <test not="true" hasDiscipline="tracking" >
+            <test not="true" hasDiscipline="tracking">
                 <choiceState section="sect74" set="disabled" />
             </test>
         </section>
 
         <section id="sect112">
-            <test not="true" hasDiscipline="anmlknsp" >
+            <test not="true" hasDiscipline="anmlknsp">
                 <choiceState section="sect133" set="disabled" />
             </test>
         </section>
 
         <section id="sect113">
-            <test not="true" hasDiscipline="healing" >
+            <test not="true" hasDiscipline="healing">
                 <choiceState section="sect53" set="disabled" />
             </test>
         </section>
@@ -712,7 +703,7 @@
                 <choiceState section="sect15" set="disabled" />
             </test>
         </section>
-        
+
         <section id="sect131">
             <object objectId="silvercomb" />
             <object objectId="hourglass" />
@@ -813,14 +804,14 @@
         </section>
 
         <section id="sect156">
-            <test not="true" hasDiscipline="mindomtr" >
+            <test not="true" hasDiscipline="mindomtr">
                 <choiceState section="sect8" set="disabled" />
             </test>
-            <test not="true" hasDiscipline="sixthsns" >
+            <test not="true" hasDiscipline="sixthsns">
                 <choiceState section="sect8" set="disabled" />
             </test>
-            <test hasDiscipline="mindomtr" >
-                <test hasDiscipline="sixthsns" >
+            <test hasDiscipline="mindomtr">
+                <test hasDiscipline="sixthsns">
                     <choiceState section="sect98" set="disabled" />
                 </test>
             </test>
@@ -858,7 +849,7 @@
         </section>
 
         <section id="sect163">
-            <test not="true" hasDiscipline="sixthsns" >
+            <test not="true" hasDiscipline="sixthsns">
                 <choiceState section="sect144" set="disabled" />
             </test>
         </section>
@@ -866,7 +857,7 @@
         <section id="sect164">
             <endurance count="-1" />
         </section>
-        
+
         <section id="sect166">
             <!-- ARM Limbdeath HERE!!! -->
             <combatSkill count="-3" />
@@ -880,10 +871,10 @@
         </section>
 
         <section id="sect167">
-            <test not="true" hasDiscipline="sixthsns" >
+            <test not="true" hasDiscipline="sixthsns">
                 <choiceState section="sect105" set="disabled" />
             </test>
-            <test hasDiscipline="sixthsns" >
+            <test hasDiscipline="sixthsns">
                 <choiceState section="sect158" set="disabled" />
             </test>
         </section>
@@ -990,16 +981,15 @@
         </section>
 
         <section id="sect199">
-            <test not="true" hasDiscipline="sixthsns" >
+            <test not="true" hasDiscipline="sixthsns">
                 <choiceState section="sect39" set="disabled" />
             </test>
-            <test hasDiscipline="sixthsns" >
+            <test hasDiscipline="sixthsns">
                 <choiceState section="sect9" set="disabled" />
             </test>
         </section>
 
-        <section id="sect201" text="Part II" >
-        </section>
+        <section id="sect201" text="Part II"></section>
 
         <section id="sect205">
             <choiceState section="all" set="disabled" />
@@ -1025,10 +1015,10 @@
         </section>
 
         <section id="sect210">
-            <test not="true" hasDiscipline="healing" >
+            <test not="true" hasDiscipline="healing">
                 <choiceState section="sect377" set="disabled" />
             </test>
-            <test hasDiscipline="healing" >
+            <test hasDiscipline="healing">
                 <choiceState section="sect339" set="disabled" />
             </test>
         </section>
@@ -1057,10 +1047,10 @@
         </section>
 
         <section id="sect219">
-            <test not="true" hasDiscipline="mindshld" >
+            <test not="true" hasDiscipline="mindshld">
                 <choiceState section="sect253" set="disabled" />
             </test>
-            <test hasDiscipline="mindshld" >
+            <test hasDiscipline="mindshld">
                 <choiceState section="sect369" set="disabled" />
             </test>
         </section>
@@ -1099,7 +1089,7 @@
 
         <section id="sect224">
             <choiceState section="all" set="disabled" />
-            <test hasDiscipline="anmlknsp" >
+            <test hasDiscipline="anmlknsp">
                 <choiceState section="sect308" set="enabled" />
             </test>
             <test hasObject="onyxmedallion">
@@ -1175,16 +1165,16 @@
         </section>
 
         <section id="sect234">
-            <test not="true" hasDiscipline="tracking" >
+            <test not="true" hasDiscipline="tracking">
                 <choiceState section="sect220" set="disabled" />
             </test>
         </section>
 
         <section id="sect235">
-            <test not="true" hasDiscipline="healing" >
+            <test not="true" hasDiscipline="healing">
                 <choiceState section="sect344" set="disabled" />
             </test>
-            <test hasDiscipline="healing" >
+            <test hasDiscipline="healing">
                 <choiceState section="sect208" set="disabled" />
             </test>
         </section>
@@ -1233,7 +1223,7 @@
         </section>
 
         <section id="sect241">
-            <test not="true" hasDiscipline="sixthsns" >
+            <test not="true" hasDiscipline="sixthsns">
                 <choiceState section="sect365" set="disabled" />
             </test>
         </section>
@@ -1273,7 +1263,7 @@
         </section>
 
         <section id="sect246">
-            <test not="true" hasDiscipline="tracking" >
+            <test not="true" hasDiscipline="tracking">
                 <choiceState section="sect220" set="disabled" />
             </test>
         </section>
@@ -1349,7 +1339,7 @@
         </section>
 
         <section id="sect264">
-            <test not="true" hasDiscipline="mindshld" >
+            <test not="true" hasDiscipline="mindshld">
                 <endurance count="-2" />
             </test>
             <test hasObject="sommerswerd">
@@ -1378,7 +1368,7 @@
                 <test expression="[BACKPACK-ITEMS-CNT-ON-ACTIONCHART] == 0 || [BACKPACK-ITEMS-CNT-ON-SECTION] >= 2">
                     <message id="msg-drop-object" op="hide" />
                     <choiceState section="all" set="enabled" />
-                    <test expression="([BACKPACK-ITEMS-CNT-ON-ACTIONCHART] + [BACKPACK-ITEMS-CNT-ON-SECTION]) == 0" >
+                    <test expression="([BACKPACK-ITEMS-CNT-ON-ACTIONCHART] + [BACKPACK-ITEMS-CNT-ON-SECTION]) == 0">
                         <!-- Player has no backpack items. TODO: Unsupported -->
                         <message id="msg-drop-others" op="show" />
                     </test>
@@ -1428,10 +1418,10 @@
 
         <section id="sect278">
             <endurance count="-3" />
-            <test not="true" hasDiscipline="mindshld" >
+            <test not="true" hasDiscipline="mindshld">
                 <choiceState section="sect223" set="disabled" />
             </test>
-            <test hasDiscipline="mindshld" >
+            <test hasDiscipline="mindshld">
                 <choiceState section="sect379" set="disabled" />
             </test>
         </section>
@@ -1486,10 +1476,10 @@
         </section>
 
         <section id="sect286">
-            <test not="true" hasDiscipline="mindomtr" >
+            <test not="true" hasDiscipline="mindomtr">
                 <choiceState section="sect214" set="disabled" />
             </test>
-            <test hasDiscipline="mindomtr" >
+            <test hasDiscipline="mindomtr">
                 <choiceState section="sect239" set="disabled" />
             </test>
         </section>
@@ -1630,10 +1620,10 @@
         </section>
 
         <section id="sect314">
-            <test not="true" hasDiscipline="sixthsns" >
+            <test not="true" hasDiscipline="sixthsns">
                 <choiceState section="sect358" set="disabled" />
             </test>
-            <test hasDiscipline="sixthsns" >
+            <test hasDiscipline="sixthsns">
                 <choiceState section="sect263" set="disabled" />
             </test>
         </section>
@@ -1716,11 +1706,7 @@
         </section>
 
         <section id="sect331">
-            <numberPicker 
-                text="Choose the number for location of the Tomb of the Majhan"
-                min="1" max="400" 
-                actionButton="Choose"
-                />
+            <numberPicker text="Choose the number for location of the Tomb of the Majhan" min="1" max="400" actionButton="Choose" />
             <numberPickerChoosed>
                 <test expression="[NUMBERPICKER] == 373">
                     <goToSection section="sect373" />
@@ -1755,7 +1741,7 @@
         </section>
 
         <section id="sect335">
-            <test not="true" hasDiscipline="sixthsns" >
+            <test not="true" hasDiscipline="sixthsns">
                 <choiceState section="sect204" set="disabled" />
             </test>
         </section>
@@ -1776,7 +1762,7 @@
         </section>
 
         <section id="sect337">
-            <test not="true" hasDiscipline="sixthsns" >
+            <test not="true" hasDiscipline="sixthsns">
                 <choiceState section="sect365" set="disabled" />
             </test>
         </section>
@@ -1797,10 +1783,10 @@
             <!-- Sommerswerd will be restored at sect400 -->
             <endurance count="-3" />
             <drop objectId="sommerswerd" />
-            <test not="true" hasDiscipline="mindshld" >
+            <test not="true" hasDiscipline="mindshld">
                 <choiceState section="sect253" set="disabled" />
             </test>
-            <test hasDiscipline="mindshld" >
+            <test hasDiscipline="mindshld">
                 <choiceState section="sect369" set="disabled" />
             </test>
         </section>
@@ -1900,10 +1886,10 @@
         </section>
 
         <section id="sect363">
-            <test not="true" hasDiscipline="tracking" >
+            <test not="true" hasDiscipline="tracking">
                 <choiceState section="sect220" set="disabled" />
             </test>
-            <test hasDiscipline="tracking" >
+            <test hasDiscipline="tracking">
                 <choiceState section="sect352" set="disabled" />
             </test>
         </section>
@@ -1931,10 +1917,10 @@
 
         <section id="sect371">
             <endurance count="-4" />
-            <test not="true" hasDiscipline="healing" >
+            <test not="true" hasDiscipline="healing">
                 <choiceState section="sect377" set="disabled" />
             </test>
-            <test hasDiscipline="healing" >
+            <test hasDiscipline="healing">
                 <choiceState section="sect339" set="disabled" />
             </test>
         </section>
@@ -2015,7 +2001,7 @@
         </section>
 
         <section id="sect386">
-            <test not="true" hasDiscipline="tracking" >
+            <test not="true" hasDiscipline="tracking">
                 <choiceState section="sect292" set="disabled" />
             </test>
         </section>
@@ -2079,7 +2065,7 @@
         </section>
 
         <section id="sect393">
-            <test not="true" hasDiscipline="mindshld" >
+            <test not="true" hasDiscipline="mindshld">
                 <endurance count="-2" />
             </test>
             <choiceState section="all" set="disabled" />
@@ -2108,13 +2094,13 @@
         </section>
 
         <section id="sect396">
-            <test not="true" hasDiscipline="sixthsns" >
+            <test not="true" hasDiscipline="sixthsns">
                 <choiceState section="sect266" set="disabled" />
             </test>
         </section>
 
         <section id="sect400">
-            <test sectionVisited="sect350" >
+            <test sectionVisited="sect350">
                 <!-- Restore sommerswerd -->
                 <pick objectId="sommerswerd" />
             </test>

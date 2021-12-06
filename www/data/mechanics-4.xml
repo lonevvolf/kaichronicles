@@ -28,13 +28,13 @@
 
         <section id="equipmnt" pickMaximum="6">
             <!-- Do not pick 2 maps! -->
-            <test not="true" hasObject="map" >
+            <test not="true" hasObject="map">
                 <pick objectId="map" />
             </test>
-            <test not="true" hasObject="backpack" >
+            <test not="true" hasObject="backpack">
                 <pick objectId="backpack" />
             </test>
-            
+
             <randomTable>
                 <pick class="money" count="[RANDOM] + 10" />
             </randomTable>
@@ -54,11 +54,9 @@
             <object objectId="chainmail" />
             <object objectId="shield" />
 
-            <chooseEquipment text="Click on the Random Table link to get money before continuing" 
-            />
+            <chooseEquipment text="Click on the Random Table link to get money before continuing" />
 
-            <message text="You may take up to six of the following (all meals count as one object):"  
-            />
+            <message text="You may take up to six of the following (all meals count as one object):" />
         </section>
 
         <section id="sect2">
@@ -155,8 +153,7 @@
             <!-- TODO: Unsupported -->
             <!-- I dont want to force any rule here... What if the player has no 
                  other backpack / weapon? -->
-            <message text="Drop some object before continuing"  
-            />
+            <message text="Drop some object before continuing" />
         </section>
 
         <section id="sect23">
@@ -232,10 +229,10 @@
         </section>
 
         <section id="sect40">
-            <test not="true" hasDiscipline="tracking" >
+            <test not="true" hasDiscipline="tracking">
                 <choiceState section="sect349" set="disabled" />
             </test>
-            <test not="true" expression="[KAILEVEL] >= 6" >
+            <test not="true" expression="[KAILEVEL] >= 6">
                 <choiceState section="sect349" set="disabled" />
             </test>
         </section>
@@ -293,7 +290,7 @@
                 </test>
             </afterCombats>
         </section>
-        
+
         <section id="sect50">
             <choiceState section="all" set="disabled" />
             <randomTable>
@@ -372,7 +369,7 @@
 
         <section id="sect62">
             <choiceState section="all" set="disabled" />
-            <combat combatSkillModifier="-2"/>
+            <combat combatSkillModifier="-2" />
             <afterCombatTurn turn="3">
                 <combat combatSkillModifier="0" />
             </afterCombatTurn>
@@ -418,7 +415,7 @@
                         <choiceState section="sect278" set="enabled" />
                     </case>
                 </randomTable>
-                <test hasDiscipline="hunting|mindomtr" >
+                <test hasDiscipline="hunting|mindomtr">
                     <randomTableIncrement increment="+2" />
                 </test>
             </test>
@@ -470,7 +467,7 @@
                     <choiceState section="sect16" set="enabled" />
                 </case>
             </randomTable>
-            <test hasDiscipline="camflage" >
+            <test hasDiscipline="camflage">
                 <randomTableIncrement increment="+3" />
             </test>
         </section>
@@ -509,7 +506,7 @@
         </section>
 
         <section id="sect87">
-            <test not="true" hasDiscipline="sixthsns|tracking" >
+            <test not="true" hasDiscipline="sixthsns|tracking">
                 <choiceState section="sect60" set="disabled" />
             </test>
         </section>
@@ -537,7 +534,7 @@
         </section>
 
         <section id="sect92">
-            <test not="true" hasDiscipline="sixthsns" >
+            <test not="true" hasDiscipline="sixthsns">
                 <choiceState section="sect210" set="disabled" />
             </test>
         </section>
@@ -671,7 +668,7 @@
                 <choiceState section="sect308" set="disabled" />
             </test>
         </section>
-        
+
         <section id="sect120">
             <huntStatus enabled="true" />
         </section>
@@ -858,7 +855,7 @@
         </section>
 
         <section id="sect165">
-            <choiceSelected section="sect13">                
+            <choiceSelected section="sect13">
                 <!-- TODO: Meal rules does not work here, and this is not complete. 
                      You should drop any meal type object (laumpsur meal) -->
                 <test expression="[MEALS] == 0">
@@ -910,7 +907,7 @@
                         <choiceState section="sect179" set="enabled" />
                     </case>
                 </randomTable>
-                <test hasObject="shovel|pick" >
+                <test hasObject="shovel|pick">
                     <randomTableIncrement increment="+2" />
                 </test>
             </test>
@@ -951,7 +948,7 @@
                     <choiceState section="sect338" set="enabled" />
                 </case>
             </randomTable>
-            <test hasDiscipline="camflage" >
+            <test hasDiscipline="camflage">
                 <randomTableIncrement increment="+4" />
             </test>
         </section>
@@ -1012,7 +1009,7 @@
                     <combat turnLoss="-2" />
                 </afterCombatTurn>
             </randomTable>
-            <test hasDiscipline="mindomtr" >
+            <test hasDiscipline="mindomtr">
                 <randomTableIncrement increment="+2" />
             </test>
             <afterCombats>
@@ -1040,7 +1037,7 @@
                 Do the same here than in book 3 / sect268 (a TODO too)
             -->
         </section>
-        
+
         <section id="sect202">
             <choiceState section="all" set="disabled" />
             <combat eludeTurn="0" index="0" />
@@ -1071,7 +1068,7 @@
                     <choiceState section="sect218" set="enabled" />
                 </case>
             </randomTable>
-            <test hasDiscipline="wepnskll" >
+            <test hasDiscipline="wepnskll">
                 <randomTableIncrement increment="+2" />
             </test>
         </section>
@@ -1084,10 +1081,10 @@
         </section>
 
         <section id="sect209">
-            <test not="true" expression="[KAILEVEL] >= 6" >
+            <test not="true" expression="[KAILEVEL] >= 6">
                 <choiceState section="sect111" set="disabled" />
             </test>
-            <test expression="[KAILEVEL] >= 6" >
+            <test expression="[KAILEVEL] >= 6">
                 <choiceState section="sect43" set="disabled" />
             </test>
         </section>
@@ -1125,7 +1122,7 @@
         <section id="sect222">
             <object objectId="captaindvalsword" />
         </section>
-        
+
         <section id="sect224">
             <test not="true" hasDiscipline="sixthsns|tracking">
                 <choiceState section="sect60" set="disabled" />
@@ -1157,7 +1154,7 @@
 
         <section id="sect231">
             <pick class="money" count="3" />
-            <object objectId="sword" />            
+            <object objectId="sword" />
             <object objectId="meal" />
         </section>
 
@@ -1178,7 +1175,7 @@
                     <combat turnLoss="-2" />
                 </afterCombatTurn>
             </randomTable>
-            <test hasDiscipline="mindomtr" >
+            <test hasDiscipline="mindomtr">
                 <randomTableIncrement increment="+2" />
             </test>
             <afterCombats>
@@ -1207,7 +1204,7 @@
         </section>
 
         <section id="sect244">
-            <test not="true" hasDiscipline="sixthsns|tracking" >
+            <test not="true" hasDiscipline="sixthsns|tracking">
                 <choiceState section="sect250" set="disabled" />
             </test>
         </section>
@@ -1248,7 +1245,7 @@
                     <choiceState section="sect39" set="enabled" />
                 </case>
             </randomTable>
-            <test hasDiscipline="wepnskll" >
+            <test hasDiscipline="wepnskll">
                 <randomTableIncrement increment="+2" />
             </test>
         </section>
@@ -1263,7 +1260,7 @@
         </section>
 
         <section id="sect254">
-            <test not="true" hasDiscipline="tracking" >
+            <test not="true" hasDiscipline="tracking">
                 <choiceState section="sect326" set="disabled" />
             </test>
         </section>
@@ -1362,8 +1359,7 @@
 
         <section id="sect272">
             <endurance count="-5" />
-            <message id="msg-drop-weapon" text="Drop a weapon before continuing" 
-            />
+            <message id="msg-drop-weapon" text="Drop a weapon before continuing" />
             <choiceState section="all" set="disabled" />
             <onInventoryEvent>
                 <test expression="[WEAPON-ITEMS-CNT-ON-ACTIONCHART] == 0 || [WEAPON-ITEMS-CNT-ON-SECTION] > 0">
