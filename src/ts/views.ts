@@ -29,10 +29,7 @@ export const views = {
                 views.viewCache[viewName] = div;
             });
         })
-        .then(null, function( jqXHR, textStatus, errorThrown ) {
-            // TODO: "then"??? should not be this the "fail"???
-            // TODO: (edit) I think this is OK, as in a "then", the first parameter is for "done", and the second is for "fail"
-            // TODO: (edit) I cannot remember if there is a reason for this instead a direct "fail"
+        .fail(function( jqXHR, textStatus, errorThrown ) {
             // Format a error message as a reason
             const msg = "Error loading views.html, error: " +
                 ajaxErrorMsg(this, jqXHR, textStatus, errorThrown);

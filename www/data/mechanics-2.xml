@@ -352,7 +352,6 @@
 
         <section id="sect59">
             <test not="true" hasObject="magicspear">
-                <!-- TODO: Add "Esta criatura es inmune al Ataque Psíquico" on sect332 -->
                 <choiceState section="sect332" set="disabled" />
             </test>
             <test hasObject="magicspear">

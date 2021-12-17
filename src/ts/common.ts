@@ -113,8 +113,6 @@ export function declareCommonHelpers(declareJqueryPlugins: boolean = true) {
 
 /****************** AJAX UTILS ******************/
 
-// TODO: Add types to these
-
 /**
  * Get a human readable error for an AJAX error
  * @param {Object} context The "this" value for the error callback (oh javascript...)
@@ -125,7 +123,7 @@ export function declareCommonHelpers(declareJqueryPlugins: boolean = true) {
  * or "Internal Server Error."
  * @returns {String} The error message for an AJAX error
  */
-export function ajaxErrorMsg(context, jqXHR, textStatus, errorThrown) {
+export function ajaxErrorMsg(context, jqXHR:JQueryXHR, textStatus:string, errorThrown:string) {
     if ( !errorThrown ) {
         errorThrown = "Unknown error (Cross domain error?)";
     }
@@ -147,7 +145,7 @@ export function ajaxErrorMsg(context, jqXHR, textStatus, errorThrown) {
  * or "Internal Server Error."
  * @returns {Promise} The rejected promise
  */
-export function ajaxErrorPromise(context, jqXHR, textStatus, errorThrown) {
+export function ajaxErrorPromise(context, jqXHR:JQueryXHR, textStatus:string, errorThrown:string) {
     const dfd = jQuery.Deferred();
     dfd.reject( ajaxErrorMsg(context, jqXHR, textStatus, errorThrown) );
     return dfd.promise();

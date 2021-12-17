@@ -2,6 +2,22 @@ import { Book, Mechanics, BookSectionStates, ActionChart, projectAon, mechanicsE
 
 // Variabe "state" is declared at bottom of this file
 
+interface CurrentState {
+    actionChart: ActionChart,
+    bookNumber: number,
+    sectionStates: BookSectionStates
+}
+
+interface SaveGameObject {
+    currentState: CurrentState,
+    previousBooksState: string[]
+}
+
+export enum Color {
+    Light = "lignt",
+    Dark = "dark"
+}
+
 /**
  * The application state.
  */
@@ -27,12 +43,11 @@ export class State {
      */
     public actionChart = null as ActionChart;
 
-    // TODO: Declare enum for "color"
     /**
      * Color Theme ( 'light' or 'dark' ).
      * This is stored at localStorage['color'], not with the game state
      */
-    public color = "light";
+    public color = Color.Light;
 
     /**
      * Setup the default color or persist from local storage
@@ -40,12 +55,12 @@ export class State {
     public setupDefaultColorTheme() {
 
         try {
-            this.color = localStorage.getItem( "color" );
-            if ( !this.color ) {
-                this.color = "light";
+            this.color = Color[localStorage.getItem("color")];
+            if (!this.color) {
+                this.color = Color.Light;
             }
         } catch (e) {
-            this.color = "light";
+            this.color = Color.Light;
             mechanicsEngine.debugWarning(e);
         }
     }
@@ -55,7 +70,7 @@ export class State {
      */
     public setup(bookNumber: number, keepActionChart: boolean) {
 
-        if ( !bookNumber ) {
+        if (!bookNumber) {
             bookNumber = 1;
         }
 
@@ -63,7 +78,7 @@ export class State {
 
         // Action chart
         this.actionChart = null;
-        if ( keepActionChart ) {
+        if (keepActionChart) {
             // Try to get the previous book action chart, and set it as the current
             this.actionChart = this.getPreviousBookActionChart(bookNumber - 1);
 
@@ -74,7 +89,7 @@ export class State {
         this.book = new Book(bookNumber);
         this.mechanics = new Mechanics(this.book);
 
-        if ( !this.actionChart ) {
+        if (!this.actionChart) {
             this.actionChart = new ActionChart();
         }
     }
@@ -94,12 +109,12 @@ export class State {
         this.removeCachedState();
 
         // Remove current game state
-        localStorage.removeItem( "state" );
+        localStorage.removeItem("state");
 
-        if ( deleteBooksHistory ) {
+        if (deleteBooksHistory) {
             // Remove action charts from previous books
             for (let i = 1; i <= projectAon.getLastSupportedBook(); i++) {
-                localStorage.removeItem( "state-book-" + i.toString() );
+                localStorage.removeItem("state-book-" + i.toString());
             }
         }
     }
@@ -107,7 +122,7 @@ export class State {
     /**
      * Returns the current state object
      */
-    private getCurrentState(): object {
+    private getCurrentState(): CurrentState {
         return {
             actionChart: this.actionChart,
             bookNumber: this.book ? this.book.bookNumber : 0,
@@ -120,8 +135,8 @@ export class State {
      */
     public persistState() {
         try {
-            const json = JSON.stringify( this.getCurrentState() );
-            localStorage.setItem( "state" , json );
+            const json = JSON.stringify(this.getCurrentState());
+            localStorage.setItem("state", json);
         } catch (e) {
             mechanicsEngine.debugWarning(e);
             // throw new Error(e);
@@ -132,7 +147,7 @@ export class State {
      * Return true if there is an stored persisted state
      */
     public existsPersistedState() {
-        return localStorage.getItem( "state" );
+        return localStorage.getItem("state");
     }
 
     /**
@@ -140,15 +155,15 @@ export class State {
      */
     public restoreState() {
         try {
-            const json = localStorage.getItem( "state" );
-            if ( !json ) {
+            const json = localStorage.getItem("state");
+            if (!json) {
                 throw new Error("No state to restore found");
             }
-            const stateKeys = JSON.parse( json );
-            if ( !stateKeys ) {
+            const stateKeys = JSON.parse(json);
+            if (!stateKeys) {
                 throw new Error("Wrong JSON format");
             }
-            this.restoreStateFromObject( stateKeys );
+            this.restoreStateFromObject(stateKeys);
         } catch (e) {
             mechanicsEngine.debugWarning(e);
             this.setup(1, false);
@@ -163,23 +178,23 @@ export class State {
         this.mechanics = new Mechanics(this.book);
         this.actionChart = ActionChart.fromObject(stateKeys.actionChart, stateKeys.bookNumber);
         this.sectionStates = new BookSectionStates();
-        this.sectionStates.fromStateObject( stateKeys.sectionStates );
+        this.sectionStates.fromStateObject(stateKeys.sectionStates);
     }
 
     /**
      * Update state to change the site color
      * @param color 'light' or 'dark'
      */
-    public updateColorTheme(color: string) {
+    public updateColorTheme(color: Color) {
         this.color = color;
-        localStorage.setItem( "color" , this.color );
+        localStorage.setItem("color", this.color);
     }
 
     /**
      * Restore objects on the Kai Monastery section from the Action Chart
      */
     private restoreKaiMonasterySectionObjects() {
-        const kaiMonasterySection = this.sectionStates.getSectionState( Book.KAIMONASTERY_SECTION );
+        const kaiMonasterySection = this.sectionStates.getSectionState(Book.KAIMONASTERY_SECTION);
         kaiMonasterySection.objects = this.actionChart ? this.actionChart.kaiMonasterySafekeeping : [];
     }
 
@@ -190,7 +205,7 @@ export class State {
 
         // Save the action chart state on the current book ending
         const key = "state-book-" + this.book.bookNumber.toString();
-        localStorage.setItem( key , JSON.stringify( this.actionChart ) );
+        localStorage.setItem(key, JSON.stringify(this.actionChart));
 
         // Move to the next book
         this.book = new Book(this.book.bookNumber + 1);
@@ -211,8 +226,8 @@ export class State {
     public getPreviousBookActionChart(bookNumber: number): ActionChart {
         try {
             const key = "state-book-" + bookNumber.toString();
-            const json = localStorage.getItem( key );
-            if ( !json ) {
+            const json = localStorage.getItem(key);
+            if (!json) {
                 return null;
             }
             return ActionChart.fromObject(JSON.parse(json), bookNumber);
@@ -225,23 +240,23 @@ export class State {
     /**
      * Returns the object to save the game state
      */
-    public getSaveGameJson(): any {
+    public getSaveGameJson(): string {
 
         // Get the current state
-        const saveGameObject = {
+        const saveGameObject: SaveGameObject = {
             currentState: this.getCurrentState(),
-            previousBooksState: {}
+            previousBooksState: []
         };
 
         // Get the action charts at the end of each book
         for (let i = 1; i <= 30; i++) {
             const key = "state-book-" + i;
-            const previousBookState = localStorage.getItem( key );
-            if ( previousBookState ) {
+            const previousBookState = localStorage.getItem(key);
+            if (previousBookState) {
                 saveGameObject.previousBooksState[i] = previousBookState;
             }
         }
-        return JSON.stringify( saveGameObject );
+        return JSON.stringify(saveGameObject);
     }
 
     /**
@@ -254,20 +269,20 @@ export class State {
 
         // alert( json );
         // console.log( json );
-        const saveGameObject = JSON.parse( json );
+        const saveGameObject: SaveGameObject = JSON.parse(json);
 
         // Check errors
-        if ( !saveGameObject || !saveGameObject.currentState) {
+        if (!saveGameObject || !saveGameObject.currentState) {
             throw new Error("Wrong format");
         }
 
         // Restore previous books action chart
         for (let i = 1; i <= 30; i++) {
             const key = "state-book-" + i;
-            if ( saveGameObject.previousBooksState[i] ) {
-                localStorage.setItem( key , saveGameObject.previousBooksState[i] );
+            if (saveGameObject.previousBooksState[i]) {
+                localStorage.setItem(key, saveGameObject.previousBooksState[i]);
             } else {
-                localStorage.removeItem( key );
+                localStorage.removeItem(key);
             }
         }
 

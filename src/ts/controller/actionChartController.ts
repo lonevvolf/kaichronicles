@@ -29,9 +29,8 @@ export const actionChartController = {
      * @param fromUITable True if we are picking the object from the UI
      * @return True if the object has been get. False if the object cannot be get
      */
-    pick(objectId: string, showError: boolean = false, fromUITable: boolean = false): boolean {
-        // TODO: Check if fromUITable here should be always false...
-        return actionChartController.pickActionChartItem(new ActionChartItem(objectId), showError, fromUITable);
+    pick(objectId: string, showError: boolean = false): boolean {
+        return actionChartController.pickActionChartItem(new ActionChartItem(objectId), showError, false);
     },
 
     /**
@@ -112,10 +111,10 @@ export const actionChartController = {
     /**
      * Drop an object
      * @param objectId The object to drop,
-     * or "allweapons" to drop all weapons (it does not drop special items weapons),
+     * or "allweapons" to drop all weapons (it does not drop special items weapons)
      * or "allweaponlike" to drop all weapons and special items weapons
      * or "backpackcontent" to drop all backpack content, but not the backpack
-     * or "currentweapon" to drop the current weapon,
+     * or "currentweapon" to drop the current weapon
      * or "allspecial" to drop all the special items
      * or "allspecialgrdmaster" to drop all the special items except the ones allowed when beginning Grand Master serie
      * or "allmeals" to drop all meals
@@ -193,15 +192,11 @@ export const actionChartController = {
             return true;
         }
 
-        // TODO: o can be removed, and use droppedItem.getItem() as replacement
-        const o = state.mechanics.getObject(objectId);
-        if (!o) {
-            return false;
-        }
-
         const droppedItem = state.actionChart.drop(objectId, arrowsCount, objectIndex);
         if (droppedItem) {
-            actionChartView.showInventoryMsg("drop", o, translations.text("msgDropObject", [o.name]));
+            const item = droppedItem.getItem();
+
+            actionChartView.showInventoryMsg("drop", item, translations.text("msgDropObject", [item.name]));
 
             // Update the action chart view
             actionChartView.updateObjectsLists();
@@ -216,7 +211,7 @@ export const actionChartController = {
                 sectionState.addActionChartItemToSection(droppedItem, arrowsCount);
 
                 // Render available objects on this section (game view)
-                mechanicsEngine.fireInventoryEvents(fromUI, o);
+                mechanicsEngine.fireInventoryEvents(fromUI, item);
             }
             return droppedItem;
         } else {
@@ -518,7 +513,7 @@ export const actionChartController = {
     restoreInventoryState(inventoryState: InventoryState, recoverWeapons: boolean) {
 
         if (!state.actionChart.hasBackpack && inventoryState.hasBackpack) {
-            actionChartController.pick(Item.BACKPACK, false, false);
+            actionChartController.pick(Item.BACKPACK, false);
         }
         inventoryState.hasBackpack = false;
 

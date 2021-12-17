@@ -93,17 +93,10 @@ export const mapView = {
         e.preventDefault();
 
         const $image = $("#map-section img");
-        // const image = $image[0];
-        const image = $image[0] as any;
-
         const factor = ( increase ? 1.1 : 0.9 );
-        image.width *= factor;
-        image.height *= factor;
-        // TODO: This should work, but it doesn't... If you zoom-in with button several times, then click on map to return
-        // back the original size, height is not restored (tested with Linux Chrome 66.0.3359.139)
-        // I don't know why
-        /*$image.width($image.width() * factor);
-        $image.height($image.height() * factor);*/
+        
+        $image.attr("width", $image.width() * factor);
+        $image.attr("height", $image.height() * factor);
 
         // If originalsize class is not set, the width is fixed to 100%, and the image appears distorted
         $image.addClass("originalsize");

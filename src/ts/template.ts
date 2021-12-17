@@ -1,4 +1,4 @@
-import { routing, state, Item, translations, randomTable, mechanicsEngine, App, DebugMode } from ".";
+import { routing, state, Item, translations, randomTable, mechanicsEngine, App, DebugMode, Color } from ".";
 
 /**
  * The HTML template API
@@ -263,11 +263,11 @@ export const template = {
      * Change the color theme of the templates
      * @param theme 'light' or 'dark'
      */
-    changeColorTheme(theme: string) {
+    changeColorTheme(theme: Color) {
         state.updateColorTheme( theme );
 
         switch (theme) {
-            case "dark":
+            case Color.Dark:
                 $("body").addClass("dark");
                 break;
             default:

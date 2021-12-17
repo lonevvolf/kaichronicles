@@ -1,4 +1,4 @@
-import { template, translations, views, mainMenuView, state, settingsController } from "..";
+import { template, translations, views, mainMenuView, state, settingsController, Color } from "..";
 
 /**
  * The application menu controller
@@ -26,7 +26,7 @@ export const mainMenuController = {
      * Change the current color theme
      */
     changeColor() {
-        settingsController.changeColorTheme(state.color === "light" ? "dark" : "light");
+        settingsController.changeColorTheme(state.color === Color.Light ? Color.Dark : Color.Light);
         mainMenuController.index();
     },
 

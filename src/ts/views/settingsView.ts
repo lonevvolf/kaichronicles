@@ -1,4 +1,4 @@
-import { state, settingsController, translations, setupController, routing } from "..";
+import { state, settingsController, translations, setupController, routing, Color } from "..";
 
 /**
  * Settings view
@@ -10,7 +10,7 @@ export const settingsView = {
         // Color theme
         $("#settings-color-theme").val(state.color);
         $("#settings-color-theme").on("change", function() {
-            settingsController.changeColorTheme(<string> $(this).val());
+            settingsController.changeColorTheme(Color[<string> $(this).val()]);
         });
 
         // Random table type

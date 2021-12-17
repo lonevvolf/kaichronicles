@@ -826,9 +826,9 @@ export class ActionChart {
             }
         }
 
-        // Mindblast / XXX-surge
+        // Mindblast / Surge
         if (combat.psiSurge) {
-            // XXX-surge currently active
+            // Surge currently active
 
             const surgeDisciplineId = combat.getSurgeDiscipline();
             if (surgeDisciplineId === GndDiscipline.KaiSurge) {

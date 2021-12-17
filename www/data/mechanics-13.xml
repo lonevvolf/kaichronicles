@@ -82,8 +82,8 @@
         </section>
 
         <section id="sect4">
-            <!-- TODO: cenerrobe / cenermask are special or backpack items ???. Now they are backpack items -->
-            <!-- TODO: Later there is a cenerrobemask special item, countas=0, CHECK THIS -->
+            <!-- cenerrobe / cenermask are backpack items until they are worn and no more in backpack. -->
+            <!-- cenerrobemask is used as a flag. see sect77 / sect292 / sect304  -->
             <object objectId="dagger" />
             <object objectId="cenerrobe" />
             <object objectId="cenermask" />
@@ -213,7 +213,7 @@
         </section>
 
         <section id="sect26">
-            <!-- TODO: This section corresponds to an incorrect answer to the riddle in sect48 -->
+            <!-- This section corresponds to an incorrect answer to the riddle in sect48 -->
             <endurance count="-2" />
         </section>
 
@@ -251,7 +251,6 @@
         </section>
 
         <section id="sect31">
-            <!-- TODO: Arrow here -->
             <pick class="arrow" count="-1" />
             <choiceState section="all" set="disabled" />
             <combat noMindblast="true" noPsiSurge="true" />
@@ -292,7 +291,6 @@
         </section>
 
         <section id="sect39">
-            <!-- TODO: Arrow here -->
             <pick class="arrow" count="-1" />
         </section>
 
@@ -343,7 +341,7 @@
                 </test>
                 <test expression="[NUMBERPICKER] != 26">
                     <test expression="[NUMBERPICKER] != 146">
-                        <toast text="Wrong number!" />
+                        <goToSection section="sect311" />
                     </test>
                 </test>
             </numberPickerChoosed>
@@ -489,7 +487,6 @@
         </section>
 
         <section id="sect77">
-            <!-- TODO: Check this, and all related to cenerrobemask / cenerrobe / cenermask objects -->
             <drop objectId="cenerrobe" />
             <drop objectId="cenermask" />
             <pick objectId="cenerrobemask" />
