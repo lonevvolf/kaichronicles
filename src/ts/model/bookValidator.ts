@@ -18,7 +18,7 @@ export class BookValidator {
     private currentSection: Section;
 
     /** Special values allowed on "drop" rule */
-    private specialDropValues = [ "allweapons" , "allweaponlike" , "backpackcontent" ,
+    private specialDropValues = [ "allweapons" , "allhandtohand" , "allweaponlike" , "backpackcontent" ,
         "currentweapon" , "allspecial" , "allspecialgrdmaster", "allmeals" , "all" , "allobjects" ];
 
     /**

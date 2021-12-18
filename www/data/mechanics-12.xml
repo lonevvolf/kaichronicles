@@ -92,8 +92,8 @@
 
         <section id="sect5">
             <pick class="arrow" count="-1" />
-            <!-- TODO: Drop a bow. It should be the current bow, but it's not stored what is the current bow. Drop the worst -->
-            <drop objectId="jakan|tournamentbow|bow|silverbowduadon" />
+            <!-- Drop a bow. It should be the current bow, but it's not stored what is the current bow. Drop the worst -->
+            <drop objectId="jakan|bow|silverbowduadon" />
 
             <choiceState section="all" set="disabled" />
             <combat noWeapon="1" />
@@ -1967,8 +1967,8 @@
         </section>
 
         <section id="sect245">
-            <!-- TODO: Drop a bow. It should be the current bow, but it's not stored what is the current bow. Drop the worst -->
-            <drop objectId="jakan|tournamentbow|bow|silverbowduadon" />
+            <!-- Drop a bow. It should be the current bow, but it's not stored what is the current bow. Drop the worst -->
+            <drop objectId="jakan|bow|silverbowduadon" />
         </section>
 
         <section id="sect246">

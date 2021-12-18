@@ -112,6 +112,7 @@ export const actionChartController = {
      * Drop an object
      * @param objectId The object to drop,
      * or "allweapons" to drop all weapons (it does not drop special items weapons)
+     * or "allhandtohand" to drop all hand to hand weapons (it does not drop special items weapons)
      * or "allweaponlike" to drop all weapons and special items weapons
      * or "backpackcontent" to drop all backpack content, but not the backpack
      * or "currentweapon" to drop the current weapon
@@ -135,6 +136,16 @@ export const actionChartController = {
 
         if (objectId === "allweapons") {
             actionChartController.dropItemsList(state.actionChart.getWeaponsIds());
+            return true;
+        }
+
+        if (objectId === "allhandtohand") {
+            for(const w of state.actionChart.getWeaponsIds()) {
+                const i = state.actionChart.getActionChartItem(w);
+                if(i.getItem().isHandToHandWeapon()) {
+                    this.drop(i.getItem().id);
+                }
+            }
             return true;
         }
 

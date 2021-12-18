@@ -90,6 +90,11 @@ export class CombatTurn {
         if ( this.enemy !== COMBATTABLE_DEATH) {
             this.enemy -= combat.enemyTurnLoss;
         }
+        /** Enemy loss due to Kai-blast */
+        this.enemyExtra += combat.enemyKaiBlastLoss;
+        if ( this.enemy !== COMBATTABLE_DEATH) {
+            this.enemy -= combat.enemyKaiBlastLoss;
+        }
 
         /** The player base loss */
         this.loneWolfBase = ( ( combat.immuneTurns >= this.turnNumber ) ? 0 : tableResult[1] );
@@ -118,13 +123,21 @@ export class CombatTurn {
             this.loneWolfExtra += combat.turnLossIfWounded;
         }
 
-        // XXX-surge loss
+        // Surge loss
         if ( combat.psiSurge ) {
             const psiSurgeLoss = Combat.surgeTurnLoss(combat.getSurgeDiscipline());
             if ( this.loneWolf !== COMBATTABLE_DEATH ) {
                 this.loneWolf += psiSurgeLoss;
             }
             this.loneWolfExtra -= psiSurgeLoss;
+        }
+
+        // Kai-blast loss
+        if ( combat.kaiBlast ) {
+            if ( this.loneWolf !== COMBATTABLE_DEATH ) {
+                this.loneWolf += 4;
+            }
+            this.loneWolfExtra -= 4;
         }
 
         /** Text with the player loss */

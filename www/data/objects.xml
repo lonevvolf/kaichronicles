@@ -656,6 +656,31 @@
             </description>
         </special>
 
+        <!-- BOOK 16 -->
+        <special id="kadharianscroll">
+            <name>Scroll from President Kadharian</name>
+        </special>
+
+        <special id="deathstaff">
+            <name>Deathstaff</name>
+        </special>
+
+        <special id="platinumamulet" itemCount="0">
+            <name>Platinum Amulet</name>
+        </special>
+
+        <special id="runicdisc">
+            <name>Runic Disc</name>
+        </special>
+
+        <special id="blackamulet" itemCount="0">
+            <name>Black Amulet</name>
+        </special>
+        
+        <special id="blacktoken">
+            <name>Black Token</name>
+        </special>
+
     </specials>
 
     <objects>
@@ -1386,6 +1411,44 @@
 
         <object id="boarwhip">
             <name>Boar Whip</name>
+        </object>
+
+        <!-- BOOK 16 -->
+
+        <object id="spyglass">
+            <name>Spyglass</name>
+        </object>
+
+        <object id="coneyskinmitts">
+            <name>Coney-skin Mitts</name>
+        </object>
+
+        <object id="wolfskincloaks">
+            <name>Wolfskin Cloaks</name>
+        </object>
+
+        <object id="wildcatpelts">
+            <name>Wildcat Pelts</name>
+        </object>
+
+        <object id="bearskincloaks">
+            <name>Bearskin Cloaks</name>
+        </object>
+
+        <object id="whitewolfpelts">
+            <name>White Wolf Pelts</name>
+        </object>
+
+        <object id="kalkothhides">
+            <name>Kalkoth Hides</name>
+        </object>
+
+        <object id="blackcorvaylcloaks">
+            <name>Black Corvayl Cloaks</name>
+        </object>
+
+        <object id="smallsack">
+            <name>Small Sack</name>
         </object>
 
         <!-- OTHERS -->

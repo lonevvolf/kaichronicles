@@ -124,7 +124,6 @@
                 <xs:documentation>Required, for ugly reasons, when there are two or more pick rules with the same object id on a section.</xs:documentation>
             </xs:annotation>
         </xs:attribute>
-
         <xs:attribute name="currency" type="currency">
             <xs:annotation>
                 <xs:documentation>Optional, and only for class="money". Picked coins currency, default is "crown". Values can be "crown", "lune" or "kika".</xs:documentation>
@@ -203,6 +202,11 @@
             </xs:annotation>
         </xs:attribute>
         <xs:attribute name="hasObject" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>Do the player carry any of the objects?</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="hasCurrentWeapon" type="xs:boolean">
             <xs:annotation>
                 <xs:documentation>Do the player carry any of the objects?</xs:documentation>
             </xs:annotation>
@@ -579,7 +583,7 @@
         <xs:annotation>
             <xs:documentation>Increase / decrease the current player endurance.</xs:documentation>
         </xs:annotation>
-        <xs:attribute name="count" type="xs:string">
+        <xs:attribute name="count" type="xs:string" use="required">
             <xs:annotation>
                 <xs:documentation>The amount of endurance gained/lost</xs:documentation>
             </xs:annotation>
@@ -659,6 +663,7 @@
             <xs:annotation>
                 <xs:documentation>The "objectId" can be one or more object Id, or one of the following :</xs:documentation>
                 <xs:documentation>- allweapons: Drop all weapons (it does not drop special items weapons)</xs:documentation>
+                <xs:documentation>- allhandtohand: Drop all hand to hand weapons (it does not drop special items weapons)</xs:documentation>
                 <xs:documentation>- allweaponlike: Drop all weapons and special items weapons</xs:documentation>
                 <xs:documentation>- backpackcontent: Drop all backpack content, but not the backpack</xs:documentation>
                 <xs:documentation>- currentweapon: Drop the current hand-to-hand weapon</xs:documentation>

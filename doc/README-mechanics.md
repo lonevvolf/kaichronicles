@@ -252,6 +252,7 @@ will be executed.
 * **hasObject="objectId1|objectId2|...**: Do the player carry any of the objects?
 * **expression="Java expression"**: Is the expression true?
 * **sectionVisited="sectionId1|sectionId1|..."**: Has some of the sections been visited?
+* **hasCurrentWeapon="boolean"**: Do the player fight armed or not?
 * **currentWeapon="weaponId1|weaponId2|..."**: Is the current weapon (hand-to-hand) some of these kinds?
 * **combatsWon="boolean"**: Have been won all combats on this section (or not)?
 * **combatsActive="true"**: Do some combat still active (not won and not eluded)?

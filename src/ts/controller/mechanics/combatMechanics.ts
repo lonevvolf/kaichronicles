@@ -17,6 +17,9 @@ export class CombatMechanics {
     /** Selector for XXX surge checkbox */
     public static readonly SURGE_CHECK_SELECTOR = ".psisurgecheck input";
 
+    /** Selector for XXX surge checkbox */
+    public static readonly BLAST_CHECK_SELECTOR = ".kaiblastcheck input";
+
     /**
      * Render section combats
      */
@@ -106,6 +109,7 @@ export class CombatMechanics {
 
             // Setup XXX-Surge checkbox
             CombatMechanics.setupSurgeUI($combatUI, combat);
+            CombatMechanics.setupBlastUI($combatUI, combat);
 
         });
 
@@ -189,7 +193,7 @@ export class CombatMechanics {
         const sectionState = state.sectionStates.getSectionState();
         const combat = sectionState.combats[ combatIndex ];
 
-        combat.nextTurnAsync( elude )
+        combat.checkKaiBlast().then(() => combat.nextTurnAsync(elude))
         .then((turn) => {
 
             // Apply turn combat losses
@@ -292,35 +296,92 @@ export class CombatMechanics {
     }
 
     /**
-     * Setup the XXX-Surge checkbox for a given combat
+     * Setup the Kai-blast checkbox for a given combat
+     * @param $combatUI Combat UI main tag
+     * @param combat Related combat info
+     */
+    private static setupBlastUI($combatUI: JQuery<HTMLElement>, combat: Combat) {
+
+        // Check if player can use Kai-blast
+        const hasKaiSurge = state.actionChart.hasGndDiscipline(GndDiscipline.KaiSurge);
+        if (!hasKaiSurge || state.actionChart.getDisciplines().length < 7) {
+            // Hide Kai-blast check
+            $combatUI.find(".kaiblastcheck").hide();
+            return;
+        }
+
+        const $kaiBlastCheck = $combatUI.find(CombatMechanics.BLAST_CHECK_SELECTOR);
+        const $psiSurgeCheck = $combatUI.find(CombatMechanics.SURGE_CHECK_SELECTOR);
+
+        // Initialize Kai-blast :
+        if (combat.kaiBlast) {
+            $kaiBlastCheck.attr( "checked" , "true" );
+        }
+        // Check if the Kai-blast cannot be used (EP <= Limit)
+        if ( state.actionChart.currentEndurance <= Combat.minimumEPForSurge(GndDiscipline.KaiSurge) ) {
+            CombatMechanics.disableSurge( $combatUI , combat );
+        }
+        // Kai-blast selection
+        $kaiBlastCheck.on("click", (e: JQuery.Event) => CombatMechanics.onBlastClick(e, $kaiBlastCheck, $psiSurgeCheck));
+    }
+
+    /**
+     * XXX-Surge checkbox event handler
+     */
+    private static onBlastClick(e: JQuery.Event, $kaiBlastCheck: JQuery<HTMLElement>, $psiSurgeCheck: JQuery<HTMLElement>) {
+
+        const $combatUI = $kaiBlastCheck.parents(".mechanics-combatUI").first();
+        const combatIndex = parseInt( $combatUI.attr( "data-combatIdx" ), 10 );
+        const sectionState = state.sectionStates.getSectionState();
+        const combat = sectionState.combats[ combatIndex ];
+
+        const selected: boolean = $kaiBlastCheck.prop( "checked" ) ? true : false;
+        combat.kaiBlast = selected;
+
+        $psiSurgeCheck.prop("checked", false);
+        combat.psiSurge = false;
+
+        const surgeDisciplineId = combat.getSurgeDiscipline();
+        if ( !selected && state.actionChart.currentEndurance <= Combat.minimumEPForSurge(surgeDisciplineId) ) {
+            CombatMechanics.disableSurge( $combatUI , combat );
+        }
+
+        CombatMechanics.updateCombatRatio( $combatUI , combat);
+
+        template.addSectionReadyMarker();
+    }
+
+    /**
+     * Setup the Surge checkbox for a given combat
      * @param $combatUI Combat UI main tag
      * @param combat Related combat info
      */
     private static setupSurgeUI($combatUI: JQuery<HTMLElement>, combat: Combat) {
 
-        // Check what XXX-Surge discipline can player use
+        // Check what Surge discipline can player use
         const surgeDisciplineId = combat.getSurgeDiscipline();
         if (!surgeDisciplineId) {
-            // Hide XXX-surge check
+            // Hide surge check
             $combatUI.find(".psisurgecheck").hide();
             return;
         }
 
+        const $kaiBlastCheck = $combatUI.find(CombatMechanics.BLAST_CHECK_SELECTOR);
         const $psiSurgeCheck = $combatUI.find(CombatMechanics.SURGE_CHECK_SELECTOR);
-        // Initialice XXX surge:
+        // Initialize surge:
         if (combat.psiSurge) {
             $psiSurgeCheck.attr( "checked" , "true" );
         }
-        // Check if the XXX-surge cannot be used (EP <= Limit)
+        // Check if the surge cannot be used (EP <= Limit)
         if ( state.actionChart.currentEndurance <= Combat.minimumEPForSurge(surgeDisciplineId) ) {
             CombatMechanics.disableSurge( $combatUI , combat );
         }
-        // XXX surge selection
+        // surge selection
         $psiSurgeCheck.on("click", (e: JQuery.Event) => {
-            CombatMechanics.onSurgeClick(e , $psiSurgeCheck );
+            CombatMechanics.onSurgeClick(e , $psiSurgeCheck, $kaiBlastCheck );
         });
 
-        // UI XXX-Surge texts
+        // UI Surge texts
         const surgeTextId = surgeDisciplineId === GndDiscipline.KaiSurge ? "mechanics-combat-kaisurge" : "mechanics-combat-psisurge";
         const surgeText = translations.text(surgeTextId , [ combat.getFinalSurgeBonus(surgeDisciplineId) ,
             Combat.surgeTurnLoss(surgeDisciplineId) ] );
@@ -330,7 +391,7 @@ export class CombatMechanics {
     /**
      * XXX-Surge checkbox event handler
      */
-    private static onSurgeClick(e: JQuery.Event, $psiSurgeCheck: JQuery<HTMLElement>) {
+    private static onSurgeClick(e: JQuery.Event, $psiSurgeCheck: JQuery<HTMLElement>, $kaiBlastCheck: JQuery<HTMLElement>) {
 
         const $combatUI = $psiSurgeCheck.parents(".mechanics-combatUI").first();
         const combatIndex = parseInt( $combatUI.attr( "data-combatIdx" ), 10 );
@@ -339,6 +400,9 @@ export class CombatMechanics {
 
         const selected: boolean = $psiSurgeCheck.prop( "checked" ) ? true : false;
         combat.psiSurge = selected;
+
+        $kaiBlastCheck.prop("checked", false);
+        combat.kaiBlast = false;
 
         const surgeDisciplineId = combat.getSurgeDiscipline();
         if ( !selected && state.actionChart.currentEndurance <= Combat.minimumEPForSurge(surgeDisciplineId) ) {
@@ -388,9 +452,16 @@ export class CombatMechanics {
      */
     private static disableSurge( $combatUI: JQuery<HTMLElement> , combat: Combat ) {
         combat.psiSurge = false;
+        combat.kaiBlast = false;
+        
         const $psiSurgeCheck = $combatUI.find(CombatMechanics.SURGE_CHECK_SELECTOR);
         $psiSurgeCheck.prop("checked", false);
         $psiSurgeCheck.prop("disabled", true);
+        
+        const $kaiBlastCheck = $combatUI.find(CombatMechanics.BLAST_CHECK_SELECTOR);
+        $kaiBlastCheck.prop("checked", false);
+        $kaiBlastCheck.prop("disabled", true);
+
         CombatMechanics.updateCombatRatio( $combatUI , combat );
     }
 

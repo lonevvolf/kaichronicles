@@ -319,8 +319,7 @@
             <combat noMindblast="true" noPsiSurge="true" noKaiSurge="true" />
             <onInventoryEvent>
                 <combat combatSkillModifier="0" />
-                <!-- TODO: What about no weapon? -->
-                <test currentWeapon="quarterstaff|mace|warhammer">
+                <test hasCurrentWeapon="false" currentWeapon="quarterstaff|mace|warhammer">
                     <combat combatSkillModifier="-4" />
                 </test>
             </onInventoryEvent>

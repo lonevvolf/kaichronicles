@@ -113,6 +113,12 @@ export class Combat {
     /** Psi-surge / Kai-surge is activated on this combat? */
     public psiSurge = false;
 
+    /** Kai-blast is activated on this combat? */
+    public kaiBlast = false;
+
+    /** Extra E.P. lost by the enemy due to KaiBlast. */
+    public enemyKaiBlastLoss = 0;
+
     /** It's a bow combat? If false, it's a hand-to-hand combat */
     public bowCombat = false;
 
@@ -222,6 +228,41 @@ export class Combat {
                 this.turns.push(turn);
                 dfd.resolve(turn);
             });
+
+        return dfd.promise();
+    }
+
+    /**
+     * Get the next combat turn
+     * @param elude True if the player is eluding the combat
+     * @return Promise with the next CombatTurn
+     */
+    public checkKaiBlast(): JQueryPromise<CombatTurn> {
+        const dfd = jQuery.Deferred<CombatTurn>();
+        this.enemyKaiBlastLoss = 0;
+
+        if(!this.kaiBlast) {
+            // No Kai-blast selected
+            dfd.resolve();
+        } else {
+            // Get the first value
+            randomTable.getRandomValueAsync(false).then((value1) => {
+                if(value1 === null) {
+                    dfd.reject();
+                    return;
+                }
+                // Get the second value
+                randomTable.getRandomValueAsync(false).then((value2) => {
+                    if(value2 === null) {
+                        dfd.reject();
+                        return;
+                    }
+                    // Set the enemy loss
+                    this.enemyKaiBlastLoss = -(value1 + value2) * this.mindblastMultiplier;
+                    dfd.resolve();
+                })
+            });
+        }
 
         return dfd.promise();
     }
@@ -380,8 +421,8 @@ export class Combat {
     }
 
     /**
-     * The applicable XXX-Surge discipline in this combat
-     * @returns The applicable XXX-Surge discipline (GndDiscipline.KaiSurge or MgnDiscipline.PsiSurge). null if no XXX-surge is applicable
+     * The applicable Surge discipline in this combat
+     * @returns The applicable Surge discipline (GndDiscipline.KaiSurge or MgnDiscipline.PsiSurge). null if no Surge is applicable
      */
     public getSurgeDiscipline(): string {
         if (state.actionChart.hasGndDiscipline(GndDiscipline.KaiSurge) && !this.noKaiSurge) {

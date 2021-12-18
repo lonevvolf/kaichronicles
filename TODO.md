@@ -13,24 +13,19 @@ TODO
   * book 12, sect43
   * book 12, sect61
 - At new game, ask for the random table type
-- An extension of the above, consider saving a snapshot of the action chart when starting a book in section 1. Then add that option to restart the book at section 1 if you die. That way, you don't have to go through and re-do Disciplines and equipment. Keep the option to completely restart the book, though, in case you want to pick different Disciplines or equipment options  "General - You are erroneously allowed to use healing items (Laumspur, etc.) in combat sections before combat has started. Healing items are only to be used in combat sections after combat is over (and if you're still alive and not evading combat).
+- An extension of the above, consider saving a snapshot of the action chart when starting a book in section 1. Then add that option to restart the book at section 1 if you die. That way, you don't have to go through and re-do Disciplines and equipment. Keep the option to completely restart the book, though, in case you want to pick different Disciplines or equipment options
 - Add a "random discipline" button that will randomly select the proper number of initial disciplines, as well as your bonus discipline each book from the choices remaining
 - Add a Seventh-Sense-like achievement system
 - "Restart book" (at Settings / book death): Add the book number you will restart (ex. "Restart book 9"). On confirmation, explain
   you will restart with your previous book Action Chart status
 - Book 15, sect25: Find a way to save if book 10, sect148 was read
 - Allow to put/restore money at kai monestry when amount > 50 on equipmnt screen
+- Allow to add desc text in random number table (eg. for kai-blast)
 
 ## Bugs
 
 - Bugs reported on Google Play:
   * Finally, finally there's a proper LW game book app. The only problem I've noticed is that it only gives Silver Bow's bonus in the sections of book 6 that specifically mention it, and not at all 'rolls' as it is supposed to.
-  * Quiero informar un error. Antes que nada gracias a ustedes descubri esta saga y si alguien no lo hizo todavía lean(jueguen)la YA En el libro 5 
-  sección 163 dice:  "Si posees la disciplina de Sexto Sentido, pasa al 144  Si quieres atacar a los guardias, pasa al 174  Si posees la disciplina 
-  de Sexto Sentido, pasa al 18" La ultima opcion, la que lleva al 18, debería indicar que deseas permanecer como estás (o sea no atacar). 
-  En inglés segun Project Aon: If you wish to remain as you are, turn to 18
-  * Excelente..esperando los libros finales, por favor!!! Update: En el libro 12, pagina 133 no hay manera de continuar. La unica opcion disponible 
-  para avanzar de pagina esta deshabilitada
 - Save games is not working on Safari
 - You are erroneously allowed to apply multiple Alether effects per combat. You are always limited to one (the berries you can purchase in book 6 even explicitly say so).
 - You are erroneously allowed to use healing items (Laumspur, etc.) in combat sections before combat has started. Healing items are only to be used in combat sections after combat is over (and if you're still alive and not evading combat).
@@ -46,15 +41,13 @@ TODO
 - Test load previous savegame / state versions to v1.12 !!!
 - In Grand Master books, if you have Psi-surge, check the bonus for Mindblast
 - IMPROVE TESTING
-- Check if there is any VS code plugin to help XML edition with XSL support
 - Book 13, sect4, dark mode, sword object: Add margin to right of object images
-- webpack includes jquery and bootstrap stuff into the library. Remove it
 - Change documentation about save games file format (changes in 1.12)
 - Check if the "edit-config" tag in config.xml can be configured for debug build only
 - Loyalty bonus for hunting should be applied to Grand Master too?
 
 ## Books erratas to report
-- All book 13, EN and ES: Bow bonus should be +5 ???
+- All book 13: Bow bonus should be +5 ???
 ## Other
 - Allow to zoom illustrations?
 - Add images to disciplines in Action Chart
@@ -64,14 +57,8 @@ TODO
 - Use latest version on PAON data on SVN (a fixed commit number)
   * Review upgrades to book 7+
 - Warn about permanent losses (toastr)
-- Google play:
-  * Desde el punto 118 no puedo avanzar de ninguna manera en la primer historia. Por favor arreglen eso. Excelente libro gracias.
 - Object images on book 9+: Use the current book image, if available
 - When you cancel a saved games import, it say "error", and it is not
-- Check reported bugs on Google play:
-  * Saved games removed when adding new books
-  * Objects types
-  * Others?
 - Performance
 - "Okay okay. Didn't know about the lone wolf series and went through the 10 programmed books in 2 days. Turns out the rest are online !!! 
    So it won't be as fast to play but I'm definitely continuing. One remark. I'd like to be able to know what was in the Kai monastery at 
@@ -93,7 +80,6 @@ TODO
 - Remove the "Alert" text from the message dialog (same for confirms)
 - Allow to change the font size / family
   * See http://www.lalit.org/lab/javascript-css-font-detect/
-- Tests: Check spanish and english combats: Enemies should have the same statistics
 - Remove links to Lone Wolf Adventures
 - Add erratas section?
 - Add illustrations index?

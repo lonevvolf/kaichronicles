@@ -148,6 +148,14 @@ export const projectAon = {
             biographies: [ "jdbiolw" , "bwbiolw" ]
         },
 
+        // Book 16:
+        {
+            title: "The Legacy of Vashna",
+            code: "16tlov",
+            illustrators: [ "williams" ],
+            biographies: [ "jdbiolw" , "bwbiolw" ]
+        },
+
     ] as BookMetadata[],
 
     /**

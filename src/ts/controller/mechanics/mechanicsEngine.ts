@@ -458,7 +458,7 @@ export const mechanicsEngine = {
             }
 
             // Pick the object
-            if (!actionChartController.pick(objectId, false, false)) {
+            if (!actionChartController.pick(objectId, false)) {
                 // The object has not been picked (ex. full backpack)
                 // Add the object to the section
                 sectionState.addObjectToSection(objectId);
@@ -573,6 +573,15 @@ export const mechanicsEngine = {
             }
         }
 
+        // Test has current weapon
+        const hasCurrentWeapon = mechanicsEngine.getBooleanProperty($rule, "hasCurrentWeapon");
+        if (hasCurrentWeapon != null) {
+            const selectedWeapon: Item = state.actionChart.getSelectedWeaponItem(false);
+            if (hasCurrentWeapon === (selectedWeapon !== null)) {
+                conditionStatisfied = true;
+            }
+        }
+
         // Test current weapon:
         const currentWeaponList = mechanicsEngine.getArrayProperty($rule, "currentWeapon");
         if (currentWeaponList.length > 0) {
@@ -588,28 +597,26 @@ export const mechanicsEngine = {
         }
 
         // Test weaponskill with current weapon
-        if (mechanicsEngine.getBooleanProperty($rule, "weaponskillActive")) {
+        if (mechanicsEngine.getBooleanProperty($rule, "weaponskillActive", false)) {
             if (state.actionChart.isWeaponskillActive()) {
                 conditionStatisfied = true;
             }
         }
 
         // Test combats won:
-        // TODO: Use mechanicsEngine.getBooleanProperty here
-        const combatsWon = $rule.attr("combatsWon");
+        const combatsWon = mechanicsEngine.getBooleanProperty($rule, "combatsWon", false);
         if (combatsWon) {
             const allCombatsWon = state.sectionStates.getSectionState().areAllCombatsWon();
-            if (combatsWon === "true" && allCombatsWon) {
+            if (combatsWon && allCombatsWon) {
                 conditionStatisfied = true;
-            } else if (combatsWon === "false" && !allCombatsWon) {
+            } else if (!combatsWon && !allCombatsWon) {
                 conditionStatisfied = true;
             }
         }
 
         // Test some combat active:
-        // TODO: Use mechanicsEngine.getBooleanProperty here
-        const combatsActive = $rule.attr("combatsActive");
-        if (combatsActive === "true" &&
+        const combatsActive = mechanicsEngine.getBooleanProperty($rule, "combatsActive", false);
+        if (combatsActive &&
             state.sectionStates.getSectionState().someCombatActive()) {
             conditionStatisfied = true;
         }
@@ -941,11 +948,7 @@ export const mechanicsEngine = {
         }
 
         // Check if the combat is non-physical (disables most bonuses)
-        // TODO: Use mechanicsEngine.getBooleanProperty here
-        const txtMentalOnly = $rule.attr("mentalOnly");
-        if (txtMentalOnly) {
-            combat.mentalOnly = (txtMentalOnly === "true");
-        }
+        combat.mentalOnly = mechanicsEngine.getBooleanProperty($rule, "mentalOnly", false);
 
         // Initial turn to allow to elude the combat
         if ($rule.attr("eludeTurn")) {
@@ -1008,10 +1011,9 @@ export const mechanicsEngine = {
         }
 
         // It's a fake combat?
-        // TODO: Use mechanicsEngine.getBooleanProperty here
-        const txtFake = $rule.attr("fake");
-        if (txtFake) {
-            combat.fakeCombat = (txtFake === "true");
+        const isFake = mechanicsEngine.getBooleanProperty($rule, "fake");
+        if (isFake) {
+            combat.fakeCombat = isFake;
             // % of the E.P. lost to restore after the combat on fake combats.
             const txtFactor = $rule.attr("restoreFactor");
             if (txtFactor) {
@@ -1020,10 +1022,7 @@ export const mechanicsEngine = {
         }
 
         // It's a bow combat?
-        // TODO: Use mechanicsEngine.getBooleanProperty here
-        if ($rule.attr("bow") === "true") {
-            combat.bowCombat = true;
-        }
+        combat.bowCombat = mechanicsEngine.getBooleanProperty($rule, "bow", false);
 
         // LW loss is permament (applied to the original endurance)?
         const permanentDammage = mechanicsEngine.getBooleanProperty($rule, "permanentDammage");
