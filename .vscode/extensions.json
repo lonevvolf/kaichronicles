@@ -1,0 +1,7 @@
+{
+    "recommendations": [
+        "redhat.vscode-xml",
+        "dbaeumer.vscode-eslint",
+        "gruntfuggly.todo-tree"
+    ]
+}

@@ -5,9 +5,6 @@ www/data/projectAon
 www/js
 src/js
 
-# Visual Studio Code stuff
-.vscode
-
 # Distribution directory
 dist
 

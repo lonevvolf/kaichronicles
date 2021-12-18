@@ -1734,10 +1734,10 @@
         </section>
 
         <section id="sect289">
-            <choiceState section="sect324" set="disabled" />
+            <choiceState section="sect107" set="disabled" />
             <test hasDiscipline="kaiscrn">
-                <choiceState section="sect324" set="enabled" />
-                <choiceState section="sect22" set="disabled" />
+                <choiceState section="sect107" set="enabled" />
+                <choiceState section="sect272" set="disabled" />
             </test>
         </section>
 
@@ -1882,11 +1882,11 @@
         <section id="sect313">
             <choiceState section="all" set="disabled" />
             <randomTable>
-                <case from="0" to="5">
-                    <choiceState section="sect328" set="enabled" />
+                <case to="5">
+                    <choiceState section="sect192" set="enabled" />
                 </case>
-                <case from="6" to="12">
-                    <choiceState section="sect141" set="enabled" />
+                <case from="6">
+                    <choiceState section="sect346" set="enabled" />
                 </case>
             </randomTable>
             <test hasDiscipline="hntmstry">

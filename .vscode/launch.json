@@ -1,0 +1,16 @@
+{
+    "configurations": [
+        {
+            "type": "pwa-msedge",
+            "name": "Debug with Edge",
+            "request": "launch",
+            "url": "http://127.0.0.1:3000/?debug=true"
+        },
+        {
+            "type": "pwa-chrome",
+            "name": "Debug with Chrome",
+            "request": "launch",
+            "url": "http://127.0.0.1:3000/?debug=true"
+        }
+    ]
+}

@@ -511,14 +511,28 @@ export const mechanicsEngine = {
      * Test a condition
      */
     test(rule: Element) {
+        const $rule = $(rule);
+        let conditionStatisfied = this.isTestConditionStatisfied($rule);        
 
+        // Check if the test should be inversed
+        if ($rule.attr("not") === "true") {
+            conditionStatisfied = !conditionStatisfied;
+        }
+
+        if (conditionStatisfied) {
+            // Run child items
+            mechanicsEngine.runChildRules($rule);
+        }
+    },
+
+    /**
+     * Check test conditions.
+     * @param $rule the test element
+     * @returns return true if one of the conditions is true, else false.
+     */
+    isTestConditionStatisfied($rule: JQuery<Element>): boolean {
         // IF THERE IS MORE THAN ONE CONDITION ON THE RULE, THEY SHOULD WORK LIKE AN
         // "OR" OPERATOR
-
-        // Initially the condition is false
-        let conditionStatisfied = false;
-
-        const $rule = $(rule);
 
         // Check discipline
         const disciplineToTest = mechanicsEngine.getArrayProperty($rule, "hasDiscipline");
@@ -530,8 +544,7 @@ export const mechanicsEngine = {
                     mechanicsEngine.debugWarning("Unknown discipline: " + discipline);
                 }
                 if (state.actionChart.hasDiscipline(discipline)) {
-                    conditionStatisfied = true;
-                    break;
+                    return true
                 }
             }
         }
@@ -548,8 +561,7 @@ export const mechanicsEngine = {
                     mechanicsEngine.debugWarning("Unknown object: " + objects[i]);
                 }
                 if (state.actionChart.hasObject(objects[i])) {
-                    conditionStatisfied = true;
-                    break;
+                    return true;
                 }
             }
         }
@@ -557,7 +569,7 @@ export const mechanicsEngine = {
         // Check expression
         const expression = $rule.attr("expression");
         if (expression && ExpressionEvaluator.evalBoolean(expression)) {
-            conditionStatisfied = true;
+            return true;
         }
 
         // Check section visited:
@@ -567,8 +579,7 @@ export const mechanicsEngine = {
             const sectionIds = sectionIdsList.split("|");
             for (i = 0; i < sectionIds.length; i++) {
                 if (state.sectionStates.sectionIsVisited(sectionIds[i])) {
-                    conditionStatisfied = true;
-                    break;
+                    return true;
                 }
             }
         }
@@ -578,7 +589,7 @@ export const mechanicsEngine = {
         if (hasCurrentWeapon != null) {
             const selectedWeapon: Item = state.actionChart.getSelectedWeaponItem(false);
             if (hasCurrentWeapon === (selectedWeapon !== null)) {
-                conditionStatisfied = true;
+                return true;
             }
         }
 
@@ -589,8 +600,7 @@ export const mechanicsEngine = {
             if (selectedWeapon) {
                 for (const w of currentWeaponList) {
                     if (selectedWeapon.isWeaponType(w)) {
-                        conditionStatisfied = true;
-                        break;
+                        return true;
                     }
                 }
             }
@@ -599,7 +609,7 @@ export const mechanicsEngine = {
         // Test weaponskill with current weapon
         if (mechanicsEngine.getBooleanProperty($rule, "weaponskillActive", false)) {
             if (state.actionChart.isWeaponskillActive()) {
-                conditionStatisfied = true;
+                return true;
             }
         }
 
@@ -608,9 +618,9 @@ export const mechanicsEngine = {
         if (combatsWon) {
             const allCombatsWon = state.sectionStates.getSectionState().areAllCombatsWon();
             if (combatsWon && allCombatsWon) {
-                conditionStatisfied = true;
+                return true;
             } else if (!combatsWon && !allCombatsWon) {
-                conditionStatisfied = true;
+                return true;
             }
         }
 
@@ -618,19 +628,19 @@ export const mechanicsEngine = {
         const combatsActive = mechanicsEngine.getBooleanProperty($rule, "combatsActive", false);
         if (combatsActive &&
             state.sectionStates.getSectionState().someCombatActive()) {
-            conditionStatisfied = true;
+                return true;
         }
 
         // Test section choice is enabled:
         const sectionToCheck = $rule.attr("isChoiceEnabled");
         if (sectionToCheck && mechanicsEngine.isChoiceEnabled(sectionToCheck)) {
-            conditionStatisfied = true;
+            return true;
         }
 
         // Test if the player can use the bow
         const canUseBow = mechanicsEngine.getBooleanProperty($rule, "canUseBow");
         if (canUseBow !== null && canUseBow === state.actionChart.canUseBow()) {
-            conditionStatisfied = true;
+            return true;
         }
 
         // Test if the player has a kind of weapon
@@ -639,8 +649,7 @@ export const mechanicsEngine = {
         if (hasWeaponType) {
             for (const weaponType of hasWeaponType.split("|")) {
                 if (state.actionChart.getWeaponType(weaponType)) {
-                    conditionStatisfied = true;
-                    break;
+                    return true;
                 }
             }
         }
@@ -648,13 +657,13 @@ export const mechanicsEngine = {
         // Test if the player has a lore-circle
         const circleId: string = $rule.attr("hasCircle");
         if (circleId && LoreCircle.getCircle(circleId).matchCircle(state.actionChart.getDisciplines(BookSeriesId.Magnakai))) {
-            conditionStatisfied = true;
+            return true;
         }
 
         // Check if the player has weaponskill / weaponmastery with a given weapon
         const hasWeaponskillWith: string = $rule.attr("hasWeaponskillWith");
         if (hasWeaponskillWith && state.actionChart.hasWeaponskillWith(hasWeaponskillWith)) {
-            conditionStatisfied = true;
+            return true;
         }
 
         // Current hand-to-hand weapon is special?
@@ -663,14 +672,14 @@ export const mechanicsEngine = {
             const currentWeapon = state.actionChart.getSelectedWeaponItem(false);
             const currentIsSpecial = (currentWeapon && currentWeapon.type === Item.SPECIAL);
             if (currentIsSpecial === currentWeaponSpecial) {
-                conditionStatisfied = true;
+                return true;
             }
         }
 
         // A global rule id is registered?
         const globalRuleId: string = $rule.attr("isGlobalRuleRegistered");
         if (globalRuleId && state.sectionStates.globalRulesIds.includes(globalRuleId)) {
-            conditionStatisfied = true;
+            return true;
         }
 
         // There are some of these objects on the section?
@@ -679,8 +688,7 @@ export const mechanicsEngine = {
             const sectionState = state.sectionStates.getSectionState();
             for (const objectId of objectOnSection) {
                 if (sectionState.containsObject(objectId)) {
-                    conditionStatisfied = true;
-                    break;
+                    return true;
                 }
             }
         }
@@ -688,7 +696,7 @@ export const mechanicsEngine = {
         // Any object picked on a given section?
         const pickedSomethingOnSection: string = $rule.attr("pickedSomethingOnSection");
         if (pickedSomethingOnSection && EquipmentSectionMechanics.getNPickedObjects(pickedSomethingOnSection) > 0) {
-            conditionStatisfied = true;
+            return true;
         }
 
         // Section contains text?
@@ -696,20 +704,11 @@ export const mechanicsEngine = {
         if (sectionContainsText) {
             const section = new Section(state.book, state.sectionStates.currentSection, state.mechanics);
             if (section.containsText(sectionContainsText)) {
-                conditionStatisfied = true;
+                return true;
             }
         }
 
-        // Check if the test should be inversed
-        if ($rule.attr("not") === "true") {
-            conditionStatisfied = !conditionStatisfied;
-        }
-
-        if (conditionStatisfied) {
-            // Run child items
-            mechanicsEngine.runChildRules($rule);
-        }
-
+        return false;
     },
 
     /**

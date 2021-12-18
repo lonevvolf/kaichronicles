@@ -54,8 +54,6 @@ TODO
 - Add option to jump from one book to other (debugging, loyalty bonuses)
 - FAQ: Add info about change the Random Table
 - Add help for "LW club newsletter 29" setting
-- Use latest version on PAON data on SVN (a fixed commit number)
-  * Review upgrades to book 7+
 - Warn about permanent losses (toastr)
 - Object images on book 9+: Use the current book image, if available
 - When you cancel a saved games import, it say "error", and it is not
@@ -97,32 +95,6 @@ Reminders
 * DON'T BE RESTRICTIVE WITH CHOICES !!!!
 
 * JsDoc docs: http://usejsdoc.org/
-
-* Upload code to github:
-  git remote add origin https://github.com/tonib/kaichronicles.git
-  git push -u origin master
-
-* Update code from github:
-  git pull origin master
-  
-* Create new tag:
-  git tag <tagname>
-  git push origin --tags
-
-* node.js
-  Install dependencies: npm install
-  Run script: npm run lint
-
-* Verify Project AON patches:
-  - Verify XML changes:
-    svn diff | iconv -f ISO-8859-1 | dwdiff --diff-input -c | less -R
-  - Verify patch:
-    cat [**PATCHFILE**] | iconv -f ISO-8859-1 | dwdiff --diff-input -c | less -R
-
-* Script to check XML differences between PAON SVN versions (to upgrade XML versions):
-  TODO: Check differences between spaces options (see https://stackoverflow.com/questions/16423024/how-can-i-diff-2-files-while-ignoring-leading-white-space)
-  svn diff -x --ignore-all-space https://www.projectaon.org/data/tags/20151013/es/xml/01hdlo.xml https://www.projectaon.org/data/trunk/es/xml/01hdlo.xml | iconv -f ISO-8859-1 | colordiff | less -R
-  svn diff -x --ignore-all-space https://www.projectaon.org/data/tags/20151013/en/xml/01fftd.xml https://www.projectaon.org/data/trunk/en/xml/01fftd.xml | iconv -f ISO-8859-1 | colordiff | less -R
 
 * Set action chart for Kai series completed
 state.actionChart.kaiDisciplines.disciplines = [ KaiDiscipline.Camouflage, KaiDiscipline.Hunting , KaiDiscipline.SixthSense , 

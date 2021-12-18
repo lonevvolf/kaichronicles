@@ -141,7 +141,7 @@ export class testsController {
                 testsController.testBook(validator);
 
                 // Move to the next book:
-                const nextBookNumber = validator.book.bookNumber;
+                const nextBookNumber = validator.book.bookNumber + 1;
                 if (nextBookNumber > projectAon.supportedBooks.length) {
                     testsController.addLog("Finished");
                     return;

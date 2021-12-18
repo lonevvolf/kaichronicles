@@ -2212,7 +2212,8 @@
             <choiceState section="all" set="disabled" />
             <combat combatSkillModifier="0" />
             <afterCombats>
-                <choiceState section="sect210" set="enabled" />
+                <choiceState section="sect26" set="enabled" />
+                <choiceState section="sect324" set="enabled" />
             </afterCombats>
         </section>
 

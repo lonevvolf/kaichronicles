@@ -1069,10 +1069,10 @@
             <choiceState section="all" set="disabled" />
             <randomTable>
                 <case to="4">
-                    <choiceState section="sect198" set="enabled" />
+                    <choiceState section="sect27" set="enabled" />
                 </case>
                 <case from="5">
-                    <choiceState section="sect63" set="enabled" />
+                    <choiceState section="sect262" set="enabled" />
                 </case>
             </randomTable>
             <test hasDiscipline="hntmstry">

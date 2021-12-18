@@ -1,9 +1,9 @@
 ## Kai Chronicles
 
-Kai Chronicles is a game player for Lone Wolf game books. Only books 1 - 15 are
+Kai Chronicles is a game player for Lone Wolf game books. Only books 1 - 16 are
 playable. The game player can run as a website.
 
-This is a fork from the original "Kai Chronicles" as tonib stopped development in November 2021.
+This is a fork from the [original "Kai Chronicles"](https://github.com/tonib/kaichronicles) as tonib stopped development in November 2021.
 
 This repository does not contain game books data. Data must be downloaded from the 
 [Project Aon web site](https://www.projectaon.org). 
@@ -35,16 +35,6 @@ This will require Node.js (any recent version) and the git client on your path.
 npm run serve
 ```
 Open your browser on http://localhost:3000.
-
-### Setup a Docker image
-Optional method for running a local website only to play the game
- * Download and install [Docker](https://docs.docker.com/install/) and make sure it's is in your PATH environment variable
- * Using a terminal (Linux or iOS) or PowerShell (Windows 10) navigate to the project's directory
- * Type `docker build -t kai:1.0 .`
- * Type `docker run -p 8080:8080 kai:1.0`
- * Open http://localhost:8080
- 
- More information about this method [here](./doc/README-docker.md)
 
 ### Developing 
 
@@ -91,7 +81,7 @@ npm run test
 
 ### License
 
-MIT. This application uses the following third-party code / resources:
+GPLv3 (see LICENSE file). This application uses the following third-party code / resources:
 
 * The HTML rendering, books XML processing and Project Aon license HTML contains code
   taken from Lone Wolf Adventures, by Liquid State Limited

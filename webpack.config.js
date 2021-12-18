@@ -8,6 +8,7 @@ module.exports = {
   devServer: {
     static: './www',
     port: 3000,
+    hot: false,
   },
   module: {
     rules: [

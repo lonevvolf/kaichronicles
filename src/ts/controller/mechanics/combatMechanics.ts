@@ -326,7 +326,7 @@ export class CombatMechanics {
     }
 
     /**
-     * XXX-Surge checkbox event handler
+     * Kai-blast checkbox event handler
      */
     private static onBlastClick(e: JQuery.Event, $kaiBlastCheck: JQuery<HTMLElement>, $psiSurgeCheck: JQuery<HTMLElement>) {
 
