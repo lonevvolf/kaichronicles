@@ -18,7 +18,6 @@ TODO
 - Add a Seventh-Sense-like achievement system
 - "Restart book" (at Settings / book death): Add the book number you will restart (ex. "Restart book 9"). On confirmation, explain
   you will restart with your previous book Action Chart status
-- Book 15, sect25: Find a way to save if book 10, sect148 was read
 - Allow to put/restore money at kai monestry when amount > 50 on equipmnt screen
 - Allow to add desc text in random number table (eg. for kai-blast)
 

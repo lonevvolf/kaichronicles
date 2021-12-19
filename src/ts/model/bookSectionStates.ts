@@ -1,4 +1,4 @@
-import { SectionState, Section, Combat, CombatTurn } from "..";
+import { SectionState, Section, Combat, CombatTurn, state } from "..";
 
 /**
  * Class to store book sections states
@@ -138,7 +138,7 @@ export class BookSectionStates {
 
     }
 
-    public sectionIsVisited(sectionId): boolean {
+    public sectionIsVisited(sectionId: string): boolean {
         return this.sectionStates[sectionId] ? true : false;
     }
 

@@ -1,5 +1,11 @@
 import { mechanicsEngine, gameView, state, template, randomTable, actionChartController, translations } from "../../..";
 
+interface GameState {
+    moneyToBet: number,
+    moneyWon: number,
+    numberToBet: number
+}
+
 /**
  * Cartwheel game
  */
@@ -16,7 +22,7 @@ export const book2sect238 = {
 
         // Get the game state
         const sectionState = state.sectionStates.getSectionState();
-        let gameState = sectionState.ruleHasBeenExecuted(rule);
+        let gameState:GameState = sectionState.ruleHasBeenExecuted(rule);
         if (!gameState) {
             gameState = {
                 moneyToBet: 1,
@@ -37,7 +43,7 @@ export const book2sect238 = {
         });
     },
 
-    updateUI(gameState: any, doNotAnimate: boolean) {
+    updateUI(gameState: GameState, doNotAnimate: boolean) {
         template.animateValueChange($("#mechanics-moneyWon"), gameState.moneyWon,
             doNotAnimate);
         template.animateValueChange($("#mechanics-currentMoney"),
@@ -53,7 +59,7 @@ export const book2sect238 = {
         mechanicsEngine.setChoiceState("sect186", noMoney);
     },
 
-    click(gameState: any) {
+    click(gameState: GameState) {
         // Checks
         if (!$("#mechanics-moneyToBet").isValid() ||
             !$("#mechanics-numberToBet").isValid()) {

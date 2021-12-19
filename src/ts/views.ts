@@ -79,7 +79,7 @@ export const views = {
     /**
      * Returns a cached view. null if the view was not already loaded
      */
-    getCachedView(viewPath: string) {
+    getCachedView(viewPath: string): HTMLElement {
         return views.viewCache[viewPath];
     }
 

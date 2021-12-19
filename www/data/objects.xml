@@ -1465,12 +1465,6 @@
         </object>
 
         <!-- This not really an object, but needed for mechanics -->
-        <!-- TODO: Check this object, I think it can be removed -->
-        <object id="backpackcontent">
-            <name>Backpack Content</name>
-        </object>
-
-        <!-- This not really an object, but needed for mechanics -->
         <object id="money">
             <name>Money</name>
             <image book="1" name="pouch.png" />

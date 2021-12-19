@@ -282,15 +282,11 @@ export const mechanicsEngine = {
 
                 const $rule = $(rule);
 
-                // TODO: Use mechanicsEngine.getArrayProperty here
-                const objectsList = $rule.attr("hasObject");
-                if (objectsList) {
-                    const objects = objectsList.split("|");
-                    if (objects.includes(o.id)) {
-                        // Section should be re-rendered
-                        reRender = true;
-                        return "finish";
-                    }
+                const objectsList = mechanicsEngine.getArrayProperty($rule, "hasObject");
+                if (objectsList.includes(o.id)) {
+                    // Section should be re-rendered
+                    reRender = true;
+                    return "finish";
                 }
 
                 if ($rule.attr("canUseBow") && (o.id === Item.QUIVER || o.isWeaponType(Item.BOW))) {
@@ -384,8 +380,7 @@ export const mechanicsEngine = {
         }
 
         const $eventRule = $(mechanicsEngine.onObjectUsedRule);
-        // TODO: Use mechanicsEngine.getArrayProperty here
-        const objectIds = $eventRule.attr("objectId").split("|");
+        const objectIds = mechanicsEngine.getArrayProperty($eventRule, "objectId");
         if (objectIds.includes(objectId)) {
             mechanicsEngine.runChildRules($eventRule);
         }
@@ -491,7 +486,6 @@ export const mechanicsEngine = {
 
         // Mark the rule as exececuted
         sectionState.markRuleAsExecuted(rule);
-
     },
 
     /**
@@ -551,18 +545,13 @@ export const mechanicsEngine = {
 
         // Check objects
         let i: number;
-        const objectIdsToTest = $rule.attr("hasObject");
-        if (objectIdsToTest) {
-            // Check if the player has some of the objects
-            // TODO: Use mechanicsEngine.getArrayProperty here
-            const objects = objectIdsToTest.split("|");
-            for (i = 0; i < objects.length; i++) {
-                if (!state.mechanics.getObject(objects[i])) {
-                    mechanicsEngine.debugWarning("Unknown object: " + objects[i]);
-                }
-                if (state.actionChart.hasObject(objects[i])) {
-                    return true;
-                }
+        const objectIdsToTest = mechanicsEngine.getArrayProperty($rule, "hasObject");
+        for (const objectId of objectIdsToTest) {
+            if (!state.mechanics.getObject(objectId)) {
+                mechanicsEngine.debugWarning("Unknown object: " + objectId);
+            }
+            if (state.actionChart.hasObject(objectId)) {
+                return true;
             }
         }
 
@@ -573,14 +562,16 @@ export const mechanicsEngine = {
         }
 
         // Check section visited:
-        // TODO: Use mechanicsEngine.getArrayProperty here
-        const sectionIdsList = $rule.attr("sectionVisited");
-        if (sectionIdsList) {
-            const sectionIds = sectionIdsList.split("|");
-            for (i = 0; i < sectionIds.length; i++) {
-                if (state.sectionStates.sectionIsVisited(sectionIds[i])) {
-                    return true;
-                }
+        const sectionIdsList = mechanicsEngine.getArrayProperty($rule, "sectionVisited");
+        for (const sectionId of sectionIdsList) {
+            if(sectionId.startsWith("b")) {
+                // Check section visited in other book
+                const sectionInfo = sectionId.match(/b(\d+)(sect\d+)/);
+                const actionChart = state.getPreviousBookActionChart(parseInt(sectionInfo[1], 10));
+                return actionChart != null && actionChart.visitedSections.includes(sectionInfo[2]);
+            }
+            if (state.sectionStates.sectionIsVisited(sectionId)) {
+                return true;
             }
         }
 
@@ -644,13 +635,10 @@ export const mechanicsEngine = {
         }
 
         // Test if the player has a kind of weapon
-        // TODO: Use mechanicsEngine.getArrayProperty here
-        const hasWeaponType: string = $rule.attr("hasWeaponType");
-        if (hasWeaponType) {
-            for (const weaponType of hasWeaponType.split("|")) {
-                if (state.actionChart.getWeaponType(weaponType)) {
-                    return true;
-                }
+        const hasWeaponType = mechanicsEngine.getArrayProperty($rule, "hasWeaponType");
+        for (const weaponType of hasWeaponType) {
+            if (state.actionChart.getWeaponType(weaponType)) {
+                return true;
             }
         }
 
@@ -810,13 +798,7 @@ export const mechanicsEngine = {
         const cls = $rule.attr("class");
         if (cls) {
             let objectIds: string[] = [];
-            let except: string[] = [];
-
-            // TODO: Use mechanicsEngine.getArrayProperty here
-            const txtExcept = $rule.attr("except");
-            if (txtExcept) {
-                except = txtExcept.split("|");
-            }
+            let except: string[] = mechanicsEngine.getArrayProperty($rule, "except");
 
             if (cls === Item.SPECIAL) {
                 objectIds = state.actionChart.getSpecialItemsIds();
@@ -955,10 +937,9 @@ export const mechanicsEngine = {
         }
 
         // Max. turn to elude combat
-        // TODO: Use mechanicsEngine.getIntProperty here
-        const txtmaxEludeTurn: string = $rule.attr("maxEludeTurn");
-        if (txtmaxEludeTurn) {
-            combat.maxEludeTurn = parseInt(txtmaxEludeTurn, 10);
+        const maxEludeTurn: number = mechanicsEngine.getIntProperty($rule, "maxEludeTurn", false);
+        if (maxEludeTurn) {
+            combat.maxEludeTurn = maxEludeTurn;
         }
 
         // Enemy EP to allow to elude the combat
@@ -1121,9 +1102,7 @@ export const mechanicsEngine = {
 
         const increase = ExpressionEvaluator.evalInteger($rule.attr("count"));
 
-        // TODO: Use mechanicsEngine.getBooleanProperty here. Default value = "true"
-        const showToast = ($rule.attr("toast") !== "false");
-        actionChartController.increaseCombatSkill(increase, showToast);
+        actionChartController.increaseCombatSkill(increase, mechanicsEngine.getBooleanProperty($rule, "toast", true));
 
         state.sectionStates.markRuleAsExecuted(rule);
     },

@@ -251,7 +251,7 @@ will be executed.
 * **hasDiscipline="disciplineId1|disciplineId2|...**: Do the player has any of the disciplines?
 * **hasObject="objectId1|objectId2|...**: Do the player carry any of the objects?
 * **expression="Java expression"**: Is the expression true?
-* **sectionVisited="sectionId1|sectionId1|..."**: Has some of the sections been visited?
+* **sectionVisited="sectionId1|sectionId1|..."**: Has some of the sections been visited? For sections from another book, add "b&lt;book number&gt;" before sectionId (ie. b1sect349)
 * **hasCurrentWeapon="boolean"**: Do the player fight armed or not?
 * **currentWeapon="weaponId1|weaponId2|..."**: Is the current weapon (hand-to-hand) some of these kinds?
 * **combatsWon="boolean"**: Have been won all combats on this section (or not)?

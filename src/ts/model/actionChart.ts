@@ -69,17 +69,6 @@ export class ActionChart {
     /** The player has a backpack? */
     public hasBackpack = true;
 
-    /* Disciplines ids */
-    // Removed in v.12
-    // private disciplines: string[] = [];
-
-    /*
-     * The weapon codes for the "Weaponskill" discipline.
-     * On kai series, it's a single weapon. On magnakai, they are 3 or more
-     */
-    // // Removed in v.12
-    // private weaponSkill: string[] = [];
-
     /**
      * Kai disciplines (books 1-5).
      * This stores disciplines player had at end of book 5. So, it will NEVER contain the 10 disciplines.
@@ -125,6 +114,11 @@ export class ActionChart {
      * Objects in safekeeping at Kai monastery
      */
     public kaiMonasterySafekeeping: SectionItem[] = [];
+
+    /**
+     * List of visited sections in the current book (used for sectionVisited test)
+     */
+    public visitedSections: string[] = [];
 
     constructor() {
         // Debug fast setup:

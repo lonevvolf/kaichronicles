@@ -218,7 +218,7 @@
         </xs:attribute>
         <xs:attribute name="sectionVisited" type="xs:string">
             <xs:annotation>
-                <xs:documentation>Has some of the sections been visited?</xs:documentation>
+                <xs:documentation>Has some of the sections been visited? For sections from another book, add "b&lt;book number&gt;" before sectionId (ie. b1sect349)</xs:documentation>
             </xs:annotation>
         </xs:attribute>
         <xs:attribute name="currentWeapon" type="xs:string">

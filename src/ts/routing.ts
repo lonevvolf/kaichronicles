@@ -17,7 +17,7 @@ export const routing = {
      * @param {object} parameters Hash with parameters for the route. It can be null
      * @returns True if the redirection can be done. False otherwise
      */
-    redirect(route: string, parameters: object = null) {
+    redirect(route: string, parameters: object = null): boolean {
         try {
 
             // Remove hash
@@ -63,7 +63,7 @@ export const routing = {
     /**
      * Get the controller name from the current URL hash
      */
-    getControllerName() {
+    getControllerName(): string {
         try {
             let route = routing.normalizeHash( location.hash );
             const idxParms = route.indexOf("?");
@@ -79,7 +79,7 @@ export const routing = {
     },
 
     /** Get the the controller object by its name */
-    getController(controllerName) {
+    getController(controllerName: string) {
         try {
             if ( !controllerName ) {
                 return null;
@@ -103,10 +103,10 @@ export const routing = {
      * @param hash The hash to normalized
      * @returns The hash, without '#' and trimmed
      */
-    normalizeHash(hash) {
+    normalizeHash(hash: string) {
         hash = hash.trim();
         if ( hash.startsWith("#") ) {
-            hash = hash.substr(1);
+            hash = hash.substring(1);
         }
         return hash;
     },
@@ -173,7 +173,7 @@ export const routing = {
      * @param {string} paramName The hash parameter name
      * @returns {string} The parameter value. null it was not defined
      */
-    getHashParameter(paramName) {
+    getHashParameter(paramName: string): string {
 
         let hash = routing.normalizeHash(location.hash);
         const idx = hash.indexOf( "?" );

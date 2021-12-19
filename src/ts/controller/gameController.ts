@@ -73,6 +73,7 @@ export const gameController = {
         // Store the current section id (must to be done BEFORE execute mechanicsEngine.run,
         // there are references to this there)
         state.sectionStates.currentSection = sectionId;
+        state.actionChart.visitedSections.push(sectionId);
 
         // Show the section
         gameView.setSectionContent(gameController.currentSection);

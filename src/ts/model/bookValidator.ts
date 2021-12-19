@@ -221,7 +221,7 @@ export class BookValidator {
         const sectionIds = this.getPropertyValueAsArray( $rule , property , allowMultiple );
 
         for ( const sectionId of sectionIds ) {
-            if ( this.book.getSectionXml(sectionId).length === 0 ) {
+            if ( !sectionId.startsWith("b") && this.book.getSectionXml(sectionId).length === 0 ) {
                 this.addError( $rule , "Section does not exists: " + sectionId );
             }
         }
