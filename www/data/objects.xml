@@ -265,6 +265,14 @@
             <effect class="combatSkill" increment="2" />
         </special>
 
+        <special id="kalkothbonesword" weaponType="sword">
+            <name>Kalkoth Rib Blade</name>
+            <image book="3" name="sword.png" />
+            <description>
+                Adds 1 to your COMBAT SKILL when used in Kalte.
+            </description>
+        </special>
+
         <!-- BOOK 4 -->
 
         <special id="onyxmedallion">

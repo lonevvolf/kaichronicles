@@ -564,11 +564,13 @@ export const mechanicsEngine = {
         // Check section visited:
         const sectionIdsList = mechanicsEngine.getArrayProperty($rule, "sectionVisited");
         for (const sectionId of sectionIdsList) {
-            if(sectionId.startsWith("b")) {
+            const sectionInfo = sectionId.match(/b(\d+)(sect\d+)/);
+            if(sectionInfo !== null) {
                 // Check section visited in other book
-                const sectionInfo = sectionId.match(/b(\d+)(sect\d+)/);
                 const actionChart = state.getPreviousBookActionChart(parseInt(sectionInfo[1], 10));
-                return actionChart != null && actionChart.visitedSections.includes(sectionInfo[2]);
+                if(actionChart != null && actionChart.visitedSections.includes(sectionInfo[2])) {
+                    return true;
+                }
             }
             if (state.sectionStates.sectionIsVisited(sectionId)) {
                 return true;
@@ -590,7 +592,7 @@ export const mechanicsEngine = {
             const selectedWeapon: Item = state.actionChart.getSelectedWeaponItem(false);
             if (selectedWeapon) {
                 for (const w of currentWeaponList) {
-                    if (selectedWeapon.isWeaponType(w)) {
+                    if (selectedWeapon.isWeaponType(w) || selectedWeapon.id == w) {
                         return true;
                     }
                 }
