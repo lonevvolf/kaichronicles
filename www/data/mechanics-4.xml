@@ -1031,11 +1031,13 @@
             </afterCombats>
         </section>
 
-        <section id="sect200">
-            <!--
-                TODO: Gorn Cove / Cala Gorn is on book 2 / sect168.
-                Do the same here than in book 3 / sect268 (a TODO too)
-            -->
+        <section id="sect200">            
+            <choiceState section="sect45" set="disabled" />
+            <test sectionVisited="b2sect168" hasDiscipline="hunting">
+                <choiceState section="sect45" set="enabled" />
+                <choiceState section="sect133" set="disabled" />
+                <choiceState section="sect307" set="disabled" />
+            </test>
         </section>
 
         <section id="sect202">

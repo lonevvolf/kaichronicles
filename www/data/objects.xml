@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<object-mechanics>
+<object-mechanics  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/cracrayol/kaichronicles/master/www/data/objects.xsd">
 
     <weapons>
         <!-- WEAPONS ON KAI / MAGNAKAI SERIE BOOKS -->
@@ -94,8 +94,8 @@
             <description>
                 Wrought of a metal called bronin. When you use it in combat it will add 1 point to your COMBAT SKILL
             </description>
-            <effect class="combatSkill" increment="1" />
             <image book="1" name="warhammr.png" />
+            <effect class="combatSkill" increment="1" />
         </weapon>
 
     </weapons>
@@ -158,8 +158,8 @@
                 It has the ability to absorb any magic that is used against its bearer, and it doubles 
                 the total of all ENDURANCE points lost by undead enemies in combat
             </extraDescription>
-            <effect class="combatSkill" increment="8" />
             <image book="2" name="ill5.png" />
+            <effect class="combatSkill" increment="8" />
         </special>
 
         <special id="magicspear" weaponType="spear">
@@ -267,10 +267,10 @@
 
         <special id="kalkothbonesword" weaponType="sword">
             <name>Kalkoth Rib Blade</name>
-            <image book="3" name="sword.png" />
             <description>
                 Adds 1 to your COMBAT SKILL when used in Kalte.
             </description>
+            <image book="3" name="sword.png" />
         </special>
 
         <!-- BOOK 4 -->
@@ -390,8 +390,8 @@
                 This weapon will add 3 points to your total whenever you are using a Bow and are instructed to pick a 
                 number from the Random Number Table
             </description>
-            <effect class="combatSkill" increment="3" />
             <image book="6" name="bow.png" />
+            <effect class="combatSkill" increment="3" />
         </special>
 
         <special id="tournamentbow" weaponType="bow">
@@ -1040,8 +1040,8 @@
                 This restores 8 ENDURANCE points to your total when swallowed after combat. 
                 There is only enough for one dose
             </description>
-            <usage class="endurance" increment="8" />
             <image book="3" name="potion.png" />
+            <usage class="endurance" increment="8" />
         </object>
 
         <object id="vialbluepills">

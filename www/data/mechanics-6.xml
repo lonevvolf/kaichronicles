@@ -729,10 +729,11 @@
         </section>
 
         <section id="sect127">
-            <!--
-                TODO: Have you been at book 4, at the hut where you get the Scroll?
-                Do the same here than in book 3 / sect268 (a TODO too)
-            -->
+            <choiceState section="sect233" set="disabled" />
+            <test sectionVisited="b4sect160">
+                <choiceState section="sect233" set="enabled" />
+                <choiceState section="sect6" set="disabled" />
+            </test>
         </section>
 
         <section id="sect128">
@@ -849,10 +850,12 @@
         </section>
 
         <section id="sect151">
-            <!--
-                TODO: Have you been at book 4?
-                Do the same here than in book 3 / sect268 (a TODO too)
-            -->
+            <choiceState section="sect294" set="disabled" />
+            <test sectionVisited="b4sect142">
+                <choiceState section="sect294" set="enabled" />
+                <choiceState section="sect108" set="disabled" />
+                <choiceState section="sect67" set="disabled" />
+            </test>
         </section>
 
         <section id="sect153">

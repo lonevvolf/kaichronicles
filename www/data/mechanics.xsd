@@ -670,7 +670,7 @@
                 <xs:documentation>- allspecial: Drop all the special items</xs:documentation>
                 <xs:documentation>- allmeals: Drop all meals</xs:documentation>
                 <xs:documentation>- all: Drop all (weapons, backpack, special items, and money)</xs:documentation>
-                <xs:documentation>- allobjects Drop all objects (weapons, special items, and backpack content, but not the backpack itself)</xs:documentation>
+                <xs:documentation>- allobjects: Drop all objects (weapons, special items, and backpack content, but not the backpack itself)</xs:documentation>
                 <xs:documentation>If you set more than one object id, the first one owned by the player will be dropped</xs:documentation>
             </xs:annotation>
         </xs:attribute>

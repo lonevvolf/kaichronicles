@@ -1,0 +1,220 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:simpleType name="effectClass">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="endurance">
+                <xs:annotation>
+                    <xs:documentation>The endurance will be increased</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="combatSkill">
+                <xs:annotation>
+                    <xs:documentation>The combat skill will be increased</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="special">
+                <xs:annotation>
+                    <xs:documentation>Objects with complex behavior (only for effect). They are implemented on SpecialObjectsUse class, at specialObjectsUse.ts</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:element name="object-mechanics">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="weapons">
+                    <xs:annotation>
+                        <xs:documentation>The list of weapons items.</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="weapon" type="weapon" minOccurs="0" maxOccurs="unbounded" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+
+                <xs:element name="specials">
+                    <xs:annotation>
+                        <xs:documentation>The list of special items.</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="special" type="special" minOccurs="0" maxOccurs="unbounded" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+
+                <xs:element name="objects">
+                    <xs:annotation>
+                        <xs:documentation>The list of normal items.</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="object" type="object" minOccurs="0" maxOccurs="unbounded" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="weapon">
+        <xs:group ref="itemContent" />
+        <xs:attribute name="id" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>The weapon id.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="weaponType" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>Optional.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="special">
+        <xs:group ref="itemContent" />
+        <xs:attribute name="id" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>The special item id.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="incompatibleWith" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>Optional. If it's set, the player cannot pick the object if it already has some of the incompatible objects</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="itemCount" type="xs:decimal">
+            <xs:annotation>
+                <xs:documentation>Optional. If set, specify how many "slots" the item takes in your backpack.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="weaponType" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>Optional. If it's set, the object can be used as a weapon. In the property value is set the class of weapon as it can be used. If it can be more than one, each class is separated with a "|" character.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="droppable" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation>Optional. If it's false, the player will cannot drop the object</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="isArrow" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation>Optional. If true, the object it's an Arrow, and it occupies an slot on a Quiver as a normal Arrow</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="object">
+        <xs:group ref="itemContent" />
+        <xs:attribute name="id" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>The special item id.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="isMeal" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation>Optional. If true, the object can be eaten as a Meal.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="itemCount" type="xs:decimal">
+            <xs:annotation>
+                <xs:documentation>Optional. If set, specify how many "slots" the item takes in your backpack.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="usageCount" type="xs:integer">
+            <xs:annotation>
+                <xs:documentation>Optional. If set, specify how many times this item can be used.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="image">
+        <xs:annotation>
+            <xs:documentation>Optional. It references to some book image for the object. The image should be at /www/data/projectAon/[BOOKNUMBER]/ill_en/[IMAGENAME].</xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="book" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>Book number. If object image was drawed by different illustrators (Chalk / Williams), different books versions should be separated by a "|" character</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="name" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>The image file name.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="effect">
+        <xs:annotation>
+            <xs:documentation>Optional. If it's set, the object as some effect when it's carried.</xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="class" type="effectClass" use="required">
+            <xs:annotation>
+                <xs:documentation>It says what is the effect of the object.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="increment" type="xs:integer" use="required">
+            <xs:annotation>
+                <xs:documentation>Create a random table link on the given text.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="usage">
+        <xs:annotation>
+            <xs:documentation>If it's set, the player can "use" the object, and then it will be dropped from the inventory.</xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="class" type="effectClass" use="required">
+            <xs:annotation>
+                <xs:documentation>needed only if there is more than one random table link on the section. It will select the index (zero based) of the random table link to which it refers.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="increment" type="xs:integer">
+            <xs:annotation>
+                <xs:documentation>Create a random table link on the given text.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:group name="itemContent">
+        <xs:sequence>
+            <xs:element name="name" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        The object name.
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"></xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="description" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        Optional. A extended description for the object.
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"></xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="extraDescription" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        Optional. A more extended description for the object.
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"></xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="image" type="image" minOccurs="0" maxOccurs="1" />
+            <xs:element name="effect" type="effect" minOccurs="0" maxOccurs="unbounded" />
+            <xs:element name="usage" type="usage" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:group>
+</xs:schema>
