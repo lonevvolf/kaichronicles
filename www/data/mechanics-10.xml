@@ -84,10 +84,11 @@
         </section>
 
         <section id="sect6">
-            <!--
-                TODO: If you have ever visited the land of Talestria...
-                Do the same here than in book 3 / sect268 (a TODO too)
-            -->
+            <choiceState section="sect45" set="disabled" />
+            <test sectionVisited="b8sect1">
+                <choiceState section="sect45" set="enabled" />
+                <choiceState section="sect346" set="disabled" />
+            </test>
         </section>
 
         <section id="sect7">
@@ -504,19 +505,18 @@
         </section>
 
         <section id="sect80">
-            <!--
-                TODO: Have you visited the Danarg in a previous Lone Wolf adventure?
-                Do the same here than in book 3 / sect268 (a TODO too)
-            -->
+            <choiceState section="sect260" set="disabled" />
+            <test sectionVisited="b8sect138">
+                <choiceState section="sect260" set="enabled" />
+                <choiceState section="sect114" set="disabled" />
+            </test>
         </section>
 
         <section id="sect81">
             <choiceState section="all" set="disabled" />
-            <combat eludeTurn="0" />
-            <!-- TODO: Change this and use the new property "mindblastMultiplier" -->
-            <combat mindblastBonus="+4" psiSurgeBonus="+8" />
+            <combat eludeTurn="0" mindblastMultiplier="2" />
             <test hasCircle="circleSpirit">
-                <combat mindblastBonus="+6" psiSurgeBonus="+12" />
+                <combat mindblastMultiplier="3" />
             </test>
             <afterCombats>
                 <choiceState section="sect268" set="enabled" />
@@ -838,10 +838,11 @@
         <section id="sect142">
             <!-- Do not lose Dagger of Vashna -->
             <drop objectId="dagger" />
-            <!--
-                TODO: If you have visited the Danarg...
-                Do the same here than in book 3 / sect268 (a TODO too)
-            -->
+            <choiceState section="sect260" set="disabled" />
+            <test sectionVisited="b8sect138">
+                <choiceState section="sect260" set="enabled" />
+                <choiceState section="sect114" set="disabled" />
+            </test>
         </section>
 
         <section id="sect143">
@@ -1010,10 +1011,11 @@
         </section>
 
         <section id="sect179">
-            <!--
-                TODO: If you have ever visited the land of Talestria...
-                Do the same here than in book 3 / sect268 (a TODO too)
-            -->
+            <choiceState section="sect45" set="disabled" />
+            <test sectionVisited="b8sect1">
+                <choiceState section="sect45" set="enabled" />
+                <choiceState section="sect346" set="disabled" />
+            </test>
         </section>
 
         <section id="sect180">
@@ -1095,10 +1097,11 @@
         </section>
 
         <section id="sect200">
-            <!--
-                TODO: If you have travelled the Stornlands...
-                Do the same here than in book 3 / sect268 (a TODO too)
-            -->
+            <choiceState section="sect104" set="disabled" />
+            <test sectionVisited="b6sect219">
+                <choiceState section="sect104" set="enabled" />
+                <choiceState section="sect263" set="disabled" />
+            </test>
         </section>
 
         <section id="sect203">
@@ -1233,10 +1236,11 @@
         </section>
 
         <section id="sect219">
-            <!--
-                TODO: Have you visited the Danarg in a previous Lone Wolf adventure?
-                Do the same here than in book 3 / sect268 (a TODO too)
-            -->
+            <choiceState section="sect260" set="disabled" />
+            <test sectionVisited="b8sect138">
+                <choiceState section="sect260" set="enabled" />
+                <choiceState section="sect114" set="disabled" />
+            </test>
         </section>
 
         <section id="sect220">
@@ -1420,10 +1424,9 @@
         <section id="sect254">
             <endurance count="-6" />
             <choiceState section="all" set="disabled" />
-            <!-- TODO: Change this and use the new property "mindblastMultiplier" -->
-            <combat mindblastBonus="+4" psiSurgeBonus="+8" />
+            <combat mindblastMultiplier="2" />
             <test hasCircle="circleSpirit">
-                <combat mindblastBonus="+6" psiSurgeBonus="+12" />
+                <combat mindblastMultiplier="3" />
             </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
@@ -1697,10 +1700,11 @@
         </section>
 
         <section id="sect306">
-            <!--
-                TODO: If you have travelled the Stornlands of Central Magnamund...
-                Do the same here than in book 3 / sect268 (a TODO too)
-            -->
+            <choiceState section="sect65" set="disabled" />
+            <test sectionVisited="b6sect1">
+                <choiceState section="sect65" set="enabled" />
+                <choiceState section="sect222" set="disabled" />
+            </test>
         </section>
 
         <section id="sect309">
@@ -1762,10 +1766,11 @@
         </section>
 
         <section id="sect328">
-            <!--
-                TODO: If you have visited the Danarg in a previous Lone Wolf adventure...
-                Do the same here than in book 3 / sect268 (a TODO too)
-            -->
+            <choiceState section="sect260" set="disabled" />
+            <test sectionVisited="b8sect138">
+                <choiceState section="sect260" set="enabled" />
+                <choiceState section="sect114" set="disabled" />
+            </test>
         </section>
 
         <section id="sect329">

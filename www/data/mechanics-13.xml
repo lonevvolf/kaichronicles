@@ -1708,9 +1708,13 @@
             </test>
         </section>
 
-        <!-- <section id="sect285">
-            TODO Add special item when visiting Quarlen or Maaken ?? sect109 is only info
-        </section> -->
+        <section id="sect285">
+            <choiceState section="sect109" set="disabled" />
+            <test sectionVisited="b6sect1|b4sect142">
+                <choiceState section="sect109" set="enabled" />
+                <choiceState section="sect247" set="disabled" />
+            </test>
+        </section>
 
         <section id="sect286">
             <object objectId="copperkeybook13" />

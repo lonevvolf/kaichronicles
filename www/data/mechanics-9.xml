@@ -798,10 +798,11 @@
         </section>
 
         <section id="sect142">
-            <!--
-                TODO: If you have ever visited the city of Varetta or a hut on the Ruanon Pike in a previous Lone Wolf adventure...
-                Do the same here than in book 3 / sect268 (a TODO too)
-            -->
+            <choiceState section="sect294" set="disabled" />
+            <test sectionVisited="b4sect160|b6sect6">
+                <choiceState section="sect294" set="enabled" />
+                <choiceState section="sect54" set="disabled" />
+            </test>
         </section>
 
         <section id="sect144">
@@ -1825,10 +1826,11 @@
         </section>
 
         <section id="sect323">
-            <!--
-                TODO: If you have ever visited the city of Varetta or a hut on the Ruanon Pike in a previous Lone Wolf adventure...
-                Do the same here than in book 3 / sect268 (a TODO too)
-            -->
+            <choiceState section="sect304" set="disabled" />
+            <test sectionVisited="b4sect160|b6sect6">
+                <choiceState section="sect304" set="enabled" />
+                <choiceState section="sect263" set="disabled" />
+            </test>
         </section>
 
         <section id="sect324">
