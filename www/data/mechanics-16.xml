@@ -34,7 +34,7 @@
             </test>
 
             <randomTable>
-                <pick class="money" count="[RANDOM] + 20" />
+                <pick class="money" count="[RANDOM] + 20" excessToKaiMonastry="true" />
             </randomTable>
 
             <!-- Kai monastery safekeeping -->
@@ -842,7 +842,7 @@
         </section>
 
         <section id="sect139">
-            <pick class="arrow" count="-1"/>
+            <pick class="arrow" count="-1" />
         </section>
 
         <section id="sect140">
@@ -2071,7 +2071,7 @@
         </section>
 
         <section id="sect328">
-            <pick class="arrow" count="-1"/>
+            <pick class="arrow" count="-1" />
         </section>
 
         <section id="sect329">

@@ -479,7 +479,8 @@ export const mechanicsEngine = {
             // TODO: We should store the amount of each currency. Unsupported
             // Exchange to Gold Crows
             count = Currency.toGoldCrowns(count, $rule.attr("currency"));
-            actionChartController.increaseMoney(count);
+            const excessToKaiMonastry = mechanicsEngine.getBooleanProperty($rule, "excessToKaiMonastry", false);
+            actionChartController.increaseMoney(count, false, excessToKaiMonastry);
         } else {
             mechanicsEngine.debugWarning("Pick rule with no objectId / class");
         }

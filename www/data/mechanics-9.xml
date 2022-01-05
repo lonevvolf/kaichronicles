@@ -34,7 +34,7 @@
             </test>
 
             <randomTable>
-                <pick class="money" count="[RANDOM] + 10" />
+                <pick class="money" count="[RANDOM] + 10" excessToKaiMonastry="true" />
             </randomTable>
 
             <!-- Kai monastery safekeeping -->

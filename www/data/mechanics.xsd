@@ -129,6 +129,11 @@
                 <xs:documentation>Optional, and only for class="money". Picked coins currency, default is "crown". Values can be "crown", "lune" or "kika".</xs:documentation>
             </xs:annotation>
         </xs:attribute>
+        <xs:attribute name="excessToKaiMonastry" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation>Only if class is "money". If money exceed 50, the excess is store in kai monastry.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
     </xs:complexType>
 
     <xs:complexType name="randomTable">

@@ -96,10 +96,12 @@
  - Fixed bug with Curing +20EP button: You were allowed to use if you were dead
 
 1.13
- - Book 15 available
+ - Book 15/16 available
+ - Various fixes in previous books
  - Kai Chronicles is now English only
  - Remove all android related code
  - Various components updates
  - Based on latest git data (instead of no longer maintained SVN data)
- - IE is no more supported
+ - In equipment section of books 6 and above, automatically adds exceeding money to kai monastry if belt pouch exceed 50 when picking random number for money.
+ - Allows to checks if some sections in previous books was visited (not only on current book).
  

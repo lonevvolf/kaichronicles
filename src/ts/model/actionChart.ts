@@ -364,12 +364,19 @@ export class ActionChart {
     /**
      * Increase / decrease the money number
      * @param count Number to increase. Negative to decrease
+     * @param excessToKaiMonastry If true and if the belt pouch exceed 50, the excess is stored in the kaimonastry section
      * @returns Amount really picked.
      */
-    public increaseMoney(count: number): number {
+    public increaseMoney(count: number, excessToKaiMonastry = false): number {
         const oldBeltPouch = this.beltPouch;
         this.beltPouch += count;
         if (this.beltPouch > 50) {
+            if(excessToKaiMonastry) {
+                const kaimonastery = state.sectionStates.getSectionState("kaimonastery");
+                if(kaimonastery) {
+                    kaimonastery.addObjectToSection(Item.MONEY, 0, false, this.beltPouch - 50)
+                }
+            }
             this.beltPouch = 50;
         } else if (this.beltPouch < 0) {
             this.beltPouch = 0;

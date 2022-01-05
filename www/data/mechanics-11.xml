@@ -34,7 +34,7 @@
                 <pick objectId="meal" index="1" />
 
                 <randomTable>
-                    <pick class="money" count="[RANDOM] + 10" />
+                    <pick class="money" count="[RANDOM] + 10" excessToKaiMonastry="true" />
                 </randomTable>
 
                 <object objectId="sword" />

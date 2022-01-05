@@ -361,10 +361,11 @@ export const actionChartController = {
      * Increase / decrease the money counter
      * @param count Number to increase. Negative to decrease
      * @param availableOnSection The dropped money should be available on the current section? Only applies if count < 0
+     * @param excessToKaiMonastry If true and if the belt pouch exceed 50, the excess is stored in the kaimonastry section
      * @returns Amount really picked.
      */
-    increaseMoney(count: number, availableOnSection: boolean = false): number {
-        const amountPicked = state.actionChart.increaseMoney(count);
+    increaseMoney(count: number, availableOnSection: boolean = false, excessToKaiMonastry = false): number {
+        const amountPicked = state.actionChart.increaseMoney(count, excessToKaiMonastry);
         const o = state.mechanics.getObject("money");
         if (count > 0) {
             actionChartView.showInventoryMsg("pick", o,
