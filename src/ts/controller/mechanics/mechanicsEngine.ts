@@ -941,7 +941,7 @@ export const mechanicsEngine = {
 
         // Max. turn to elude combat
         const maxEludeTurn: number = mechanicsEngine.getIntProperty($rule, "maxEludeTurn", false);
-        if (maxEludeTurn) {
+        if (maxEludeTurn !== null) {
             combat.maxEludeTurn = maxEludeTurn;
         }
 

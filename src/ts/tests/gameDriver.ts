@@ -4,6 +4,15 @@ import { Type, Level } from "selenium-webdriver/lib/logging";
 import { readFileSync } from "fs-extra";
 import { ActionChart } from "../model/actionChart";
 
+declare global {
+    namespace NodeJS {
+        interface Global {
+            jQuery: typeof import("jquery"),
+            $: typeof import("jquery")
+        }
+    }
+}
+
 export class GameDriver {
 
     public static readonly RANDOM_SELECTOR = ".random.action";
@@ -17,7 +26,7 @@ export class GameDriver {
     private static readonly BASEPATH = "www/";
 
     public constructor() {
-        this.newGameUrl = "http://localhost/ls";
+        this.newGameUrl = "http://localhost:3000";
         if (process.env.KAIURL) {
             this.newGameUrl = process.env.KAIURL;
         }
