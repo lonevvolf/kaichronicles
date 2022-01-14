@@ -10,6 +10,9 @@ export interface ItemEffect {
 
     /** Attribute increment */
     increment: number;
+
+    /** Endurance only. True if can be used prior a combat. */
+    priorCombat: boolean;
 }
 
 /**
@@ -182,7 +185,8 @@ export class Item {
         if ($usage.length > 0) {
             this.usage = {
                 cls: $usage.attr("class"),
-                increment: parseInt($usage.attr("increment"), 10)
+                increment: parseInt($usage.attr("increment"), 10),
+                priorCombat: $usage.attr("priorCombat") === "true"
             };
         }
 

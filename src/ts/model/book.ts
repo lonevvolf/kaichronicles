@@ -102,20 +102,7 @@ export class Book {
         // Code taken from Lone Wolf Adventures, by Liquid State Limited.
 
         // remove general directives
-        // TODO: Handle all inclusions with a regex?
-        xmlText = xmlText.replaceAll("%general.links;", "");
-        xmlText = xmlText.replaceAll("%xhtml.links;", "");
-        xmlText = xmlText.replaceAll("%general.inclusions;", "");
-        xmlText = xmlText.replaceAll("%xhtml.characters;", "");
-
-        xmlText = xmlText.replaceAll("&inclusion.joe.dever.bio.lw;", "");
-        xmlText = xmlText.replaceAll("&inclusion.gary.chalk.bio.lw;", "");
-        xmlText = xmlText.replaceAll("&inclusion.project.aon.license;", "");
-        xmlText = xmlText.replaceAll("&inclusion.joe.dever.endowment;", "");
-        xmlText = xmlText.replaceAll("&inclusion.action.chart;", "");
-        xmlText = xmlText.replaceAll("&inclusion.combat.results.table;", "");
-        xmlText = xmlText.replaceAll("&inclusion.action.chart.magnakai;", "");
-        xmlText = xmlText.replaceAll("&inclusion.brian.williams.bio.lw;", "");
+        xmlText = xmlText.replace(/(?:\%general|\%xhtml|\&inclusion)[a-z\.]*;/g, "");
 
         // Link to readers handbook (Book 13)
         xmlText = xmlText.replaceAll("&link.rh;", "https://www.projectaon.org/en/ReadersHandbook/Home");
@@ -144,6 +131,8 @@ export class Book {
         xmlText = xmlText.replaceAll("<ch.ampersand/>", "&amp;amp;");
         xmlText = xmlText.replaceAll("<ch.thinspace/>", " ");
         xmlText = xmlText.replaceAll("<ch.percent/>", "&amp;percnt;");
+        xmlText = xmlText.replaceAll("<ch.lte/>", "&amp;le;");
+        xmlText = xmlText.replaceAll("<ch.gte/>", "&amp;ge;");
 
         // replace html special characters
         // 12-21 12:42:19.090: E/browser(1884): Console: Uncaught TypeError: Cannot supply flags when constructing one RegExp from another http://10.0.2.2/ls/statskeeper3/model/book.js:68
@@ -397,12 +386,12 @@ export class Book {
         // &mdash;You begin the Lone Wolf adventures with this level of Kai training
         let idx = title.indexOf( "&mdash;");
         if ( idx >= 0 ) {
-            title = title.substr(0, idx).trim();
+            title = title.substring(0, idx).trim();
         }
         // On book 6 (spanish), there is a parenthesis: Maestro Superior del Kai (con este...
         idx = title.indexOf( "(");
         if ( idx >= 0 ) {
-            title = title.substr(0, idx).trim();
+            title = title.substring(0, idx).trim();
         }
 
         return title;

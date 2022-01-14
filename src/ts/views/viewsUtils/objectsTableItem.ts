@@ -225,7 +225,8 @@ export class ObjectsTableItem {
             html += this.getOperationTag( "sell" , title , '<span class="glyphicon glyphicon-share"></span>' );
         } else if ( this.type === ObjectsTableType.INVENTORY ) {
 
-            if ( this.item.usage ) {
+            const currentSection = state.sectionStates.getSectionState();
+            if ( this.item.usage && (this.item.usage.cls !== Item.ENDURANCE || !currentSection.someCombatActive() || (this.item.usage.priorCombat && !currentSection.areCombatsStarted()))) {
                 // Use object operation
                 html += this.getUseOperation();
             }

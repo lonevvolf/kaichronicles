@@ -8,7 +8,7 @@ export const settingsView = {
     setup() {
 
         // Color theme
-        $("#settings-color-theme").val(state.color);
+        $("#settings-color-theme").val(Color[state.color]);
         $("#settings-color-theme").on("change", function() {
             settingsController.changeColorTheme(Color[<string> $(this).val()]);
         });
@@ -26,6 +26,7 @@ export const settingsView = {
         });
 
         // Restart book
+        $("#settings-restart-label").text(translations.text("restartBook", [state.book.bookNumber]));
         $("#settings-restart").on("click", (e) => {
             e.preventDefault();
             if (confirm(translations.text("confirmRestart"))) {

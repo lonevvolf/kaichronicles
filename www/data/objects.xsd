@@ -115,17 +115,17 @@
                 <xs:documentation>The special item id.</xs:documentation>
             </xs:annotation>
         </xs:attribute>
-        <xs:attribute name="isMeal" type="xs:boolean">
+        <xs:attribute name="isMeal" type="xs:boolean" default="false">
             <xs:annotation>
                 <xs:documentation>Optional. If true, the object can be eaten as a Meal.</xs:documentation>
             </xs:annotation>
         </xs:attribute>
-        <xs:attribute name="itemCount" type="xs:decimal">
+        <xs:attribute name="itemCount" type="xs:decimal" default="1">
             <xs:annotation>
                 <xs:documentation>Optional. If set, specify how many "slots" the item takes in your backpack.</xs:documentation>
             </xs:annotation>
         </xs:attribute>
-        <xs:attribute name="usageCount" type="xs:integer">
+        <xs:attribute name="usageCount" type="xs:integer" default="1">
             <xs:annotation>
                 <xs:documentation>Optional. If set, specify how many times this item can be used.</xs:documentation>
             </xs:annotation>
@@ -159,7 +159,12 @@
         </xs:attribute>
         <xs:attribute name="increment" type="xs:integer" use="required">
             <xs:annotation>
-                <xs:documentation>Create a random table link on the given text.</xs:documentation>
+                <xs:documentation>Add/remove points to the given class.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="priorCombat" type="xs:boolean" default="false">
+            <xs:annotation>
+                <xs:documentation>Optional. Endurance only. If true, allow use of the object prior a combat.</xs:documentation>
             </xs:annotation>
         </xs:attribute>
     </xs:complexType>

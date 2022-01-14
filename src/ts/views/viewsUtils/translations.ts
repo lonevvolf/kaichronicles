@@ -81,6 +81,7 @@ export class Translations {
         //////////////////////////////////////
 
         "randomTable" : "Random Number Table",
+        "pickKaiBlast" : "Pick a number for Kai-Blast ({0}/2).",
         "combatSkillUpper" : "COMBAT SKILL",
         "enduranceUpper" : "ENDURANCE",
         "loneWolf": "Lone Wolf",
@@ -146,7 +147,8 @@ export class Translations {
         "settings" : "Settings",
         "wrongFileName" : "The file name contains invalid characters",
         "gameSaved" : "Game saved",
-        "confirmRestart" : "Are you sure you want to restart the book?",
+        "restartBook" : "Restart book {0}",
+        "confirmRestart" : "Are you sure you want to restart the book?\r\nYou will restart with the Action Chart from the previous book.",
         "close" : "Close",
 
         //////////////////////////////////////
@@ -206,7 +208,8 @@ export class Translations {
         "bookNotDownloaded" : "Book {0} is not downloaded",
         "maximumPick" : "You can pick only {0} objects",
         "zeroIgnored" : "Zero ignored",
-        "gameRules" : "Game rules"
+        "gameRules" : "Game rules",
+        "deathRestartBook" : "Click here to restart the book {0}"
 
     };
 

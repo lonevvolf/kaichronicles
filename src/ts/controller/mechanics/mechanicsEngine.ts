@@ -1714,7 +1714,8 @@ export const mechanicsEngine = {
             $("a.random").addClass("disabled");
 
             // Bind restart book link
-            $("#mechanics-restart").click( (e) => {
+            $("#mechanics-restart").text(translations.text("deathRestartBook", [state.book.bookNumber]));
+            $("#mechanics-restart").on("click", (e) => {
                 e.preventDefault();
                 if (confirm(translations.text("confirmRestart"))) {
                     setupController.restartBook();
@@ -1771,7 +1772,7 @@ export const mechanicsEngine = {
 
         $nextBook.replaceWith('<a href="#" id="game-nextBook" class="action">' +
             $nextBook.html() + "</a>");
-        $("#game-nextBook").click( (e) => {
+        $("#game-nextBook").on("click", (e) => {
             e.preventDefault();
             // Move the scroll to the top: The scroll state will be stored when we leave
             // the controller, and we want to start the next book with a scroll y=0

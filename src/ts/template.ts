@@ -218,8 +218,10 @@ export const template = {
 
     /**
      * Show / hide the random table dialog
+     * @param show Show/hide the dialog
+     * @param subtitle Specify a subtitle shown in the dialog header
      */
-    showRandomTable(show: boolean) {
+    showRandomTable(show: boolean, subtitle = "") {
         const $randomModal = $("#template-randomtable");
         if ( show ) {
             // Hide toasts
@@ -228,6 +230,7 @@ export const template = {
             translations.translateTags( $randomModal );
         }
         $randomModal.modal( show ? "show" : "hide" );
+        $randomModal.find("#template-randomsubtitle").text(subtitle);
     },
 
     /**

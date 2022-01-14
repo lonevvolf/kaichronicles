@@ -1353,13 +1353,13 @@
         <object id="laumwortjar" usageCount="3">
             <name>Jar of Laumwort</name>
             <description>Restores 2 ENDURANCE points if swallowed before or after combat.</description>
-            <usage class="endurance" increment="+2" />
+            <usage class="endurance" increment="+2" priorCombat="true" />
         </object>
 
         <object id="oedejar" usageCount="1">
             <name>Jar of Oede</name>
             <description>Very rare and valuable. Many healing properties. Cures serious diseases. Restores 10 ENDURANCE points if swallowed before or after combat.</description>
-            <usage class="endurance" increment="+10" />
+            <usage class="endurance" increment="+10" priorCombat="true" />
         </object>
 
         <object id="copperbowl">

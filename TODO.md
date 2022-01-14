@@ -16,9 +16,6 @@ TODO
 - An extension of the above, consider saving a snapshot of the action chart when starting a book in section 1. Then add that option to restart the book at section 1 if you die. That way, you don't have to go through and re-do Disciplines and equipment. Keep the option to completely restart the book, though, in case you want to pick different Disciplines or equipment options
 - Add a "random discipline" button that will randomly select the proper number of initial disciplines, as well as your bonus discipline each book from the choices remaining
 - Add a Seventh-Sense-like achievement system
-- "Restart book" (at Settings / book death): Add the book number you will restart (ex. "Restart book 9"). On confirmation, explain
-  you will restart with your previous book Action Chart status
-- Allow to add desc text in random number table (eg. for kai-blast)
 
 ## Bugs
 
@@ -26,9 +23,7 @@ TODO
   * Finally, finally there's a proper LW game book app. The only problem I've noticed is that it only gives Silver Bow's bonus in the sections of book 6 that specifically mention it, and not at all 'rolls' as it is supposed to.
 - Save games is not working on Safari
 - You are erroneously allowed to apply multiple Alether effects per combat. You are always limited to one (the berries you can purchase in book 6 even explicitly say so).
-- You are erroneously allowed to use healing items (Laumspur, etc.) in combat sections before combat has started. Healing items are only to be used in combat sections after combat is over (and if you're still alive and not evading combat).
 - Action chart buttons don't work on iPad Safari
-
 - ERROR: Book 8, sect139: 
   ```actionChartController.pick('quiver'); actionChartController.pick('quiver'); actionChartController.increaseArrows(10);```
   Sell Quiver: OBJECTS TABLE TO SELL IS NOT UPDATED !!!!
@@ -41,7 +36,6 @@ TODO
 - IMPROVE TESTING
 - Book 13, sect4, dark mode, sword object: Add margin to right of object images
 - Change documentation about save games file format (changes in 1.12)
-- Check if the "edit-config" tag in config.xml can be configured for debug build only
 - Loyalty bonus for hunting should be applied to Grand Master too?
 
 ## Books erratas to report
@@ -54,14 +48,11 @@ TODO
 - Add help for "LW club newsletter 29" setting
 - Warn about permanent losses (toastr)
 - Object images on book 9+: Use the current book image, if available
-- When you cancel a saved games import, it say "error", and it is not
 - Performance
 - "Okay okay. Didn't know about the lone wolf series and went through the 10 programmed books in 2 days. Turns out the rest are online !!! 
    So it won't be as fast to play but I'm definitely continuing. One remark. I'd like to be able to know what was in the Kai monastery at 
    the end so I can continue with that too !"
 - Suggestions and bugs on http://projectaon.proboards.com/post/43740
-- Keep version number of current downloaded books, and check for book errata fixes
-- On "About the book", display the book number
 - Allow to select the current bow
 - Toasts with images: align text when the text is multiline
 - Combats should be sequential: First finish the first one, then the second, etc
@@ -76,7 +67,6 @@ TODO
 - Remove the "Alert" text from the message dialog (same for confirms)
 - Allow to change the font size / family
   * See http://www.lalit.org/lab/javascript-css-font-detect/
-- Remove links to Lone Wolf Adventures
 - Add erratas section?
 - Add illustrations index?
 - Mechanics: Allow to declare a set of rules that can be runned on multiple sections. See book 12, references to sect208 

@@ -58,7 +58,7 @@ export class RandomTable {
         return value;
     }
 
-    public getRandomValueAsync(zeroAsTen: boolean = false): JQueryPromise<number> {
+    public getRandomValueAsync(zeroAsTen: boolean = false, subtitle = ""): JQueryPromise<number> {
         if ( !state.actionChart.manualRandomTable ) {
             // Use computer generated random numbers:
             return jQuery.Deferred<number>().resolve( this.getRandomValue(zeroAsTen) ).promise();
@@ -71,7 +71,7 @@ export class RandomTable {
             value: null
         };
 
-        template.showRandomTable(true);
+        template.showRandomTable(true, subtitle);
         return this.currentAsync.deferred.promise();
     }
 

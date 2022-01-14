@@ -14,8 +14,8 @@ interface SaveGameObject {
 }
 
 export enum Color {
-    Light = "lignt",
-    Dark = "dark"
+    Light,
+    Dark
 }
 
 /**
@@ -187,7 +187,7 @@ export class State {
      */
     public updateColorTheme(color: Color) {
         this.color = color;
-        localStorage.setItem("color", this.color);
+        localStorage.setItem("color", Color[this.color]);
     }
 
     /**

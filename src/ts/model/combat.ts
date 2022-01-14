@@ -246,13 +246,13 @@ export class Combat {
             dfd.resolve();
         } else {
             // Get the first value
-            randomTable.getRandomValueAsync(false).then((value1) => {
+            randomTable.getRandomValueAsync(false, translations.text("pickKaiBlast", [1])).then((value1) => {
                 if(value1 === null) {
                     dfd.reject();
                     return;
                 }
                 // Get the second value
-                randomTable.getRandomValueAsync(false).then((value2) => {
+                randomTable.getRandomValueAsync(false, translations.text("pickKaiBlast", [2])).then((value2) => {
                     if(value2 === null) {
                         dfd.reject();
                         return;

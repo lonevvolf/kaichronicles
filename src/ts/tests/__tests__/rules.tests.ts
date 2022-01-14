@@ -1,12 +1,6 @@
 import { GameDriver } from "../gameDriver";
-import { Dir } from "fs-extra";
 import { KaiDiscipline, MgnDiscipline, GndDiscipline } from "../../model/disciplinesDefinitions";
-import { BookSeriesId, BookSeries } from "../../model/bookSeries";
-import { Disciplines } from "../../model/disciplines";
-import { CombatMechanics, Book, SetupDisciplines, Item } from "../..";
-import { Driver } from "selenium-webdriver/chrome";
-import { projectAon } from "../../model/projectAon";
-import { WebElement, Alert } from "selenium-webdriver";
+import { Book, Item } from "../..";
 
 // Selenium web driver
 const driver: GameDriver = new GameDriver();

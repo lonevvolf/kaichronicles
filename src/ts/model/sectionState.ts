@@ -199,6 +199,18 @@ export class SectionState {
     }
 
     /**
+     * Return true if any of the combats has, at least, one turn made.
+     */
+    public areCombatsStarted(): Boolean {
+        for (const combat of this.combats) {
+            if ( combat.turns.length > 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * Returns the number on endurance points lost by somebody on section combats
      * @param {string} who If is 'enemy' we will calculate the enemy loss. Otherwise, we will
      * calculate the player loss
