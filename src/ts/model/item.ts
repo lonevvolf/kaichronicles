@@ -146,10 +146,18 @@ export class Item {
         /** Number of items the object it occupies on the backpack */
         const txtItemCount: string = $o.attr("itemCount");
         this.itemCount = txtItemCount ? parseFloat(txtItemCount) : 1;
+        if(this.itemCount < 0) {
+            // Cannot be negative
+            this.itemCount = 0;
+        }
 
         /** Number of usage of the object */
         const txtUsageCount: string = $o.attr("usageCount");
         this.usageCount = txtUsageCount ? parseInt(txtUsageCount, 10) : 1;
+        if(this.usageCount <= 0) {
+            // Cannot be negative or zero
+            this.usageCount = 1;
+        }
 
         // The translated object description
         this.description = $o.find("description").text()

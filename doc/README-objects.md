@@ -78,9 +78,7 @@ Optional. A more extended description for the object
     ...
 </weapon>
 ```
-Optional. It references to some book image for the object. The image should be at 
-/www/data/projectAon/[BOOKNUMBER]/ill_en/[IMAGENAME]. If object image was drawed by different
-illustrators (Chalk / Williams), different books versions should be separated by a "|" character
+Optional. It references to some book image for the object. The image should be at /www/data/projectAon/[BOOKNUMBER]/ill_en/[IMAGENAME]. If object image was drawed by different illustrators (Chalk / Williams), different books versions should be separated by a "|" character
 
 ### "droppable" property
 ```xml
@@ -113,15 +111,11 @@ Optional. If it's set, the object as some effect when it's carried:
     ...
 </special>
 ```
-Optional. If it's set, the player cannot pick the object if it already has some of the
-incompatible objects
+Optional. If it's set, the player cannot pick the object if it already has some of the incompatible objects
 
 ## Weapons
 
-There are standard weapons on 1-5 books: axe, dagger, sword, etc. Also, there are weapons
-based on these standard weapons, but they must to be differentiated. In this case, set
-the property "weaponType" to set the class of standard weapon (used for Weapon Skill
-discipline). If it can be more than one, each class is separated with a "|" character:
+There are standard weapons on 1-5 books: axe, dagger, sword, etc. Also, there are weapons based on these standard weapons, but they must to be differentiated. In this case, set the property "weaponType" to set the class of standard weapon (used for Weapon Skill discipline). If it can be more than one, each class is separated with a "|" character:
 
 ```xml
 <!-- This is a standard weapon -->
@@ -144,9 +138,7 @@ discipline). If it can be more than one, each class is separated with a "|" char
     ...
 </special>
 ```
-If it's set, the object can be used as a weapon. In the property value is set the 
-class of weapon as it can be used. If it can be more than one, each class is separated
-with a "|" character.
+If it's set, the object can be used as a weapon. In the property value is set the class of weapon as it can be used. If it can be more than one, each class is separated with a "|" character.
 
 ## Objects and Special Items
 
@@ -165,17 +157,23 @@ They can have some optional tags / properties:
 </object>
 ```
 
-If it's set, the player can "use" the object, and then it will be dropped from the 
-inventory. 
+If it's set, the player can "use" the object, and then it will be dropped from the inventory if necessary. 
 
 * **"class" property**: It says what is the effect of the object:
     * "endurance": The endurance will be increased
     * "combatSkill": The combat skill will be increased. This will apply only for the 
       current section
 * **"increment" property**: Amount to increment
+* **"priorCombat" property**: If true and class is endurance, than can be used prior a combat (false by default)
 
 ### "isMeal" property
 If true, the object can be eaten as a Meal.
 
-### "isArrow" property
-If true, the object it's an Arrow, and it occupies an slot on a Quiver as a normal Arrow
+### "usageCount" property
+If it's set, specify how many times the item can be used (1 by default).
+
+### "itemCount" property
+If it's set, specify how many slots the item takes (1 by default, can be >= 0).
+
+### "isArrow" property (Special item only)
+If true, the object it's an Arrow, and it occupies an slot on a Quiver as a normal Arrow.

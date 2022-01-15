@@ -138,14 +138,12 @@ export class Translations {
         //////////////////////////////////////
 
         "youMustAgree" : "You must agree the licence to continue",
-        "noDownloadedBooks" : 'There are no downloaded books. Go to "Download books" on the main menu',
 
         //////////////////////////////////////
         // Settings
         //////////////////////////////////////
 
         "settings" : "Settings",
-        "wrongFileName" : "The file name contains invalid characters",
         "gameSaved" : "Game saved",
         "restartBook" : "Restart book {0}",
         "confirmRestart" : "Are you sure you want to restart the book?\r\nYou will restart with the Action Chart from the previous book.",
@@ -160,43 +158,6 @@ export class Translations {
         "map" : "Map",
 
         //////////////////////////////////////
-        // Download books
-        //////////////////////////////////////
-
-        "noChangesSelected" : "No changes selected",
-        "confirmChanges" : "Are you sure you want to do the selected changes?",
-        "deletingBook" : "Deleting book {0}",
-        "bookDeleted" : "Book {0} deleted",
-        "deletionFailed" : "Book {0} deletion failed: {1}",
-        "downloadingBook" : "Downloading book {0}",
-        "bookDownloaded" : "Book {0} downloaded",
-        "downloadFailed" : "Book {0} download failed: {1}",
-        "processFinishedErrors" : "Process finished with errors!",
-        "noInternet" : "There is no Internet connection",
-        "cancel" : "Cancel",
-        "processCancelled" : "Process cancelled",
-        "confirmCancel" : "Are you sure you want to cancel?",
-
-        //////////////////////////////////////
-        // Load game
-        //////////////////////////////////////
-
-        "noSavedGames" : "No saved games found",
-        "confirmDeleteSave" : "Are you sure you want to delete the save game {0} ?",
-        "fileDeleted" : "{0} deleted",
-        "exportedDownloads" : "Saved games exported to Downloads",
-        "importedGames" : "{0} games imported",
-        "importExtensionsError" : 'Only files with extension "zip" or "json" can be imported',
-        "confirmSavedOverwrite" : "Following saved games will be overwritten. Are you sure you want to continue?:\n{0}",
-        "confirmExport" : 'This will create a Zip file with all your saved games at "Downloads". ' +
-            "This can be useful to copy your saved games to other device, or as a backup. Continue?",
-        "infoImport" : "With this function you can import saved games to the application. " +
-            "This can be useful to copy your saved games from other device. You can select files with " +
-            'extension "json" (single saved games) or "zip" (multiple saved games)',
-        "errorExporting" : "Error exporting saved games",
-        "noGamesToExport" : "There is no saved game to export",
-
-        //////////////////////////////////////
         // Others
         //////////////////////////////////////
 
@@ -205,12 +166,10 @@ export class Translations {
         "projectAonLicense" : "Project Aon license",
         "combatTables" : "Combat Tables",
         "mainMenu" : "Main Menu",
-        "bookNotDownloaded" : "Book {0} is not downloaded",
         "maximumPick" : "You can pick only {0} objects",
         "zeroIgnored" : "Zero ignored",
         "gameRules" : "Game rules",
         "deathRestartBook" : "Click here to restart the book {0}"
-
     };
 
     /**

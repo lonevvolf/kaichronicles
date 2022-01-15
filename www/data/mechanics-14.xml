@@ -1173,7 +1173,11 @@
         </section>
 
         <section id="sect186">
-            <!-- TODO Detect if LW was already benn in Mogaruith -->
+            <choiceState section="sect116" set="disabled" />
+            <test sectionVisited="b13sect98">
+                <choiceState section="sect116" set="enabled" />
+                <choiceState section="sect86" set="disabled" />
+            </test>
             <test not="true" hasDiscipline="kaiscrn">
                 <endurance count="-3" />
             </test>

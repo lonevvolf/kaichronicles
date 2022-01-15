@@ -50,6 +50,11 @@ export class ExpressionEvaluator {
             return state.actionChart.getNBackpackItems();
         },
 
+        // Backpack items on section (includes meals)
+        "[BACKPACK-ITEMS-ON-ACTIONCHART]"() {
+            return state.actionChart.getNBackpackItems(true, false);
+        },
+
         // This does NOT include special items:
         "[WEAPON-ITEMS-CNT-ON-SECTION]"() {
             const sectionState = state.sectionStates.getSectionState();

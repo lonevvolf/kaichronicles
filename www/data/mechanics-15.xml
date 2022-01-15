@@ -170,7 +170,13 @@
             <object objectId="spear" />
         </section>
 
-        <!-- TODO sect25 : detect if you met Captain Prarg at the Battle of Cetza / Book 10 - not an important choice -->
+        <section id="sect25">
+            <choiceState section="sect315" set="disabled" />
+            <test sectionVisited="b10sect148">
+                <choiceState section="sect315" set="enabled" />
+                <choiceState section="sect123" set="disabled" />
+            </test>
+        </section>
 
         <section id="sect27">
             <drop objectId="silverrod" />

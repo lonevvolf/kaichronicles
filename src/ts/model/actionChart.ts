@@ -294,15 +294,16 @@ export class ActionChart {
 
     /**
      * Returns the total number of backpack items, according to the number of slots each item consum
-     * @param roundToInteger If true, the total number of objects will be rounded up to a integer (Item.itemCount can have decimals)
+     * @param roundToInteger If true (default), the total number of objects will be rounded up to a integer (Item.itemCount can have decimals)
+     * @param useItemCount If true (default), use the valur of itemCount, otherwise each item count as 1.
      * @returns The number of objects on the backpack
      */
-    public getNBackpackItems(roundToInteger: boolean = true): number {
+    public getNBackpackItems(roundToInteger = true, useItemCount = true): number {
         let count = this.meals;
         for (const item of this.backpackItems) {
             const o = item.getItem();
             if (o) {
-                count += o.itemCount;
+                count += useItemCount ? o.itemCount : 1;
             }
         }
         if (roundToInteger) {

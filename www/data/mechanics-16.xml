@@ -148,7 +148,13 @@
             </afterCombats>
         </section>
 
-        <!-- TODO sect12 : detect if you met Gwynian / b6sect6, b9sect323, b9sect142 - not an important choice -->
+        <section id="sect12">
+            <choiceState section="sect220" set="disabled" />
+            <test sectionVisited="b6sect6|b9sect323|b9sect142">
+                <choiceState section="sect220" set="enabled" />
+                <choiceState section="sect53" set="disabled" />
+            </test>
+        </section>
 
         <section id="sect14">
             <choiceState section="all" set="disabled" />
@@ -197,11 +203,10 @@
 
         <section id="sect18">
             <executeOnce>
-                <!-- TODO Fix when item at position 1/2 has a count != 1 -->
-                <test expression="[BACKPACK-ITEMS-CNT-ON-ACTIONCHART] == [MEALS] + 1 ">
+                <test expression="[BACKPACK-ITEMS-ON-ACTIONCHART] == [MEALS] + 1 ">
                     <drop backpackItemSlots="1" />
                 </test>
-                <test expression="[BACKPACK-ITEMS-CNT-ON-ACTIONCHART] >= [MEALS] + 2 ">
+                <test expression="[BACKPACK-ITEMS-ON-ACTIONCHART] >= [MEALS] + 2 ">
                     <drop backpackItemSlots="2" />
                 </test>
             </executeOnce>
@@ -677,7 +682,13 @@
             <endurance count="-2" />
         </section>
 
-        <!-- TODO sect105 : detect if you visited the city of Aarnak / b12s81 - not an important choice -->
+        <section id="sect105">
+            <choiceState section="sect315" set="disabled" />
+            <test sectionVisited="b12s81">
+                <choiceState section="sect315" set="enabled" />
+                <choiceState section="sect202" set="disabled" />
+            </test>
+        </section>
 
         <section id="sect106">
             <choiceState section="sect254" set="disabled" />
@@ -1366,11 +1377,10 @@
 
         <section id="sect210">
             <executeOnce>
-                <!-- TODO Fix when item at position 1/2 has a count != 1 -->
-                <test expression="[BACKPACK-ITEMS-CNT-ON-ACTIONCHART] == [MEALS] + 1 ">
+                <test expression="[BACKPACK-ITEMS-ON-ACTIONCHART] == [MEALS] + 1 ">
                     <drop backpackItemSlots="1" />
                 </test>
-                <test expression="[BACKPACK-ITEMS-CNT-ON-ACTIONCHART] >= [MEALS] + 2 ">
+                <test expression="[BACKPACK-ITEMS-ON-ACTIONCHART] >= [MEALS] + 2 ">
                     <drop backpackItemSlots="2" />
                 </test>
             </executeOnce>
@@ -1595,7 +1605,13 @@
             </test>
         </section>
 
-        <!-- TODO sect250 : detect if you have ever been to Kaag or Mogaruith / ***** - not an important choice -->
+        <section id="sect250">
+            <choiceState section="sect224" set="disabled" />
+            <test sectionVisited="b13sect98|b14sect309">
+                <choiceState section="sect224" set="enabled" />
+                <choiceState section="sect295" set="disabled" />
+            </test>
+        </section>
 
         <section id="sect251">
             <pick class="arrow" count="-1" />
@@ -1750,11 +1766,10 @@
         <section id="sect272">
             <pick class="arrow" count="-1" />
             <executeOnce>
-                <!-- TODO Fix when item at position 1/2 has a count != 1 -->
-                <test expression="[BACKPACK-ITEMS-CNT-ON-ACTIONCHART] == [MEALS] + 1 ">
+                <test expression="[BACKPACK-ITEMS-ON-ACTIONCHART] == [MEALS] + 1 ">
                     <drop backpackItemSlots="1" />
                 </test>
-                <test expression="[BACKPACK-ITEMS-CNT-ON-ACTIONCHART] >= [MEALS] + 2 ">
+                <test expression="[BACKPACK-ITEMS-ON-ACTIONCHART] >= [MEALS] + 2 ">
                     <drop backpackItemSlots="2" />
                 </test>
             </executeOnce>
@@ -1774,7 +1789,13 @@
             </test>
         </section>
 
-        <!-- TODO sect279 : detect if you met Gwynian / b6sect6, b9sect323, b9sect142 - not an important choice -->
+        <section id="sect279">
+            <choiceState section="sect220" set="disabled" />
+            <test sectionVisited="b6sect6|b9sect323|b9sect142">
+                <choiceState section="sect220" set="enabled" />
+                <choiceState section="sect53" set="disabled" />
+            </test>
+        </section>
 
         <section id="sect282">
             <choiceState section="all" set="disabled" />

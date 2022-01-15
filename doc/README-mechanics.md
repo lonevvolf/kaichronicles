@@ -42,42 +42,31 @@ syntax. Example:
 There are some keywords that can be used on expressions. They have the following meanings:
 
 * **[RANDOM]**: The value of the last random table value picked (not for combat random values)
-* **[RANDOMxxx]**: Ex. "[RANDOM2], The value of the xxx-th random table value picked 
-  (not for combat random values), where xxx is the random table index (0=first, 1=second,...)
+* **[RANDOMxxx]**: Ex. "[RANDOM2], The value of the xxx-th random table value picked (not for combat random values), where xxx is the random table index (0=first, 1=second,...)
 * **[COMBATRANDOM]**: The value of the last random table value picked on combats in this section
 * **[MONEY]**: The current amount of money on the action chart (Belt pouch)
 * **[MONEY-ON-SECTION]**: The current amount of money available on the section
-* **[BACKPACK-ITEMS-CNT-ON-SECTION]**: The current count of available backpack items 
-  on the section
-* **[BACKPACK-ITEMS-CNT-ON-ACTIONCHART]**: The current count of backpack items on the
-  action chart
-* **[WEAPON-ITEMS-CNT-ON-SECTION]**: The current count of available weapons on the section.
-  Special items that are weapons too are ignored
-* **[WEAPON-ITEMS-CNT-ON-ACTIONCHART]**: The current count of weapons on the action chart.
-  Special items that are weapons too are ignored
-* **[WEAPONLIKE-CNT-ON-SECTION]**: The current count of weapons on the action chart.
-  Special items that are weapons too are included
-* **[WEAPONLIKE-CNT-ON-ACTIONCHART]**: The current count of weapons on the action chart.
-  Special items that are weapons too are included
-* **[BOW-CNT-ON-SECTION]**: The current count of bows on the action chart.
-  Special items that are bows too are included
-* **[BOW-CNT-ON-ACTIONCHART]**: The current count of bows on the action chart.
-  Special items that are bows too are included
+* **[BACKPACK-ITEMS-CNT-ON-SECTION]**: The current count of available backpack items on the section (each item count as 1)
+* **[BACKPACK-ITEMS-CNT-ON-ACTIONCHART]**: The current count of backpack items on the action chart (use itemCount of each item)
+* **[BACKPACK-ITEMS-ON-ACTIONCHART]**: The current count of backpack items on the action chart (each item count as 1)
+* **[WEAPON-ITEMS-CNT-ON-SECTION]**: The current count of available weapons on the section. Special items that are weapons too are ignored
+* **[WEAPON-ITEMS-CNT-ON-ACTIONCHART]**: The current count of weapons on the action chart. Special items that are weapons too are ignored
+* **[WEAPONLIKE-CNT-ON-SECTION]**: The current count of weapons on the action chart. Special items that are weapons too are included
+* **[WEAPONLIKE-CNT-ON-ACTIONCHART]**: The current count of weapons on the action chart. Special items that are weapons too are included
+* **[BOW-CNT-ON-SECTION]**: The current count of bows on the action chart. Special items that are bows too are included
+* **[BOW-CNT-ON-ACTIONCHART]**: The current count of bows on the action chart. Special items that are bows too are included
 * **[SPECIAL-ITEMS-ON-SECTION]**: The current count of special items on the action chart.
 * **[SPECIAL-ITEMS-ON-ACTIONCHART]**: The current count of special items on the action chart.
 * **[ENDURANCE]**: The current endurance points
 * **[MAXENDURANCE]**: The maximum endurance points
-* **[COMBATSENDURANCELOST]**: The number of endurance points lost by Lone Wolf on combats on 
-the current section
-* **[COMBATSENEMYLOST]**: The number of endurance points lost by the enemies on combats on 
-the current section
+* **[COMBATSENDURANCELOST]**: The number of endurance points lost by Lone Wolf on combats on the current section
+* **[COMBATSENEMYLOST]**: The number of endurance points lost by the enemies on combats on the current section
 * **[COMBATSDURATION]**: The sum of number of turns of all combats on the section (combat duration)
 * **[MEALS]**: Number of meals on the action chart
 * **[KAILEVEL]**: Current number of Kai disciplines of the player
 * **[ORIGINALCOMBATSKILL]**: The original combat skill (without modifiers)
 * **[ARROWS]**: Current number of arrows on the quiver
-* **[BOWBONUS]** : Bonus for bow usage: It's Weaponmastery bonus + bow object bonus (see 
-"silverbowduadon" object). It will be -4 if the player has no bow
+* **[BOWBONUS]** : Bonus for bow usage: It's Weaponmastery bonus + bow object bonus (see "silverbowduadon" object). It will be -4 if the player has no bow
 * **[NUMBERPICKER]**: The selected number on the "numberPicker" UI
 
 ## Codes for Magnakai disciplines
@@ -258,8 +247,7 @@ will be executed.
 * **combatsActive="true"**: Do some combat still active (not won and not eluded)?
 * **sectionContainsText="text"**: Does the current section contain this text?
 * **weaponskillActive="true"**: Has the player "Weaponskill" (current book discipline, no loyalty bonus) with the current weapon?
-* **not="true"**: This will negate the current test. So if all of these conditions are false,
-  the inner rules will be executed
+* **not="true"**: This will negate the current test. So if all of these conditions are false, the inner rules will be executed
 * **isChoiceEnabled="sectionId"**: Is the choice for the given section enabled?
 * **hasWeaponType="weaponType1|weaponType2|..."**: The player has some weapon of some of the given types?
 * **hasCircle="loreCircleId"**: The player has this Lore Circle (see loreCircle.ts for codes)
@@ -358,18 +346,15 @@ the following properties:
 * **index="number"**: Index (zero based) of the combat to which it refers
 * **combatSkillModifier="bonus"**: Absolute bonus (positive or negative) for Lone Wolf combat skill on this combat
 * **combatSkillModifierIncrement="bonus"**: Bonus increment (positive or negative) for Lone Wolf combat skill on this combat
-* **mindforceCS="-number"**: Bonus (negative) to the Lone Wolf combat skill due to the enemy
-  Mindblast. It will not be applied if the player has Mindshield / Psi-screen
-* **mindforceEP="-number"**: Endurance points lost by LW each turn, due to the enemy Mindblast.
-  It will not be applied if the player has Mindshield / Psi-screen
+* **mindforceCS="-number"**: Bonus (negative) to the Lone Wolf combat skill due to the enemy Mindblast. It will not be applied if the player has Mindshield / Psi-screen
+* **mindforceEP="-number"**: Endurance points lost by LW each turn, due to the enemy Mindblast. It will not be applied if the player has Mindshield / Psi-screen
 * **noMindblast="true"**: The enemy is immune to Mindblast
 * **noPsiSurge="true"**: The enemy is immune to Psi-Surge
 * **mindblastBonus="number"**: Special CS bonus to apply for Mindblast discipline on this combat
 * **mindblastMultiplier="float"**: CS multiplier to apply to Mindblast/Psi-Surge/Kai-Surge attacks this combat
 * **psiSurgeBonus="number"**: Special CS bonus to apply for Psi-Surge discipline on this combat
 * **kaiSurgeBonus="number"**: Special CS bonus to apply for Kai-Surge discipline on this combat
-* **noWeapon="boolean|number"**: If true, Lone Wolf cannot use any weapon on this combat. If a number, LW cannot use any weapon for 
-  that many turns
+* **noWeapon="boolean|number"**: If true, Lone Wolf cannot use any weapon on this combat. If a number, LW cannot use any weapon for that many turns
 * **mentalOnly="true"**: Lone Wolf cannot use any physical bonuses on this combat (any object bonus)
 * **eludeTurn="number"**: Turn number after which LW can elude the combat
 * **maxEludeTurn="number"**: Turn number after which LW cannot elude the combat anymore
@@ -379,14 +364,12 @@ the following properties:
 * **dammageMultiplier="number"**: LW dammage multiplier. Can have decimals (ex. "0.5")
 * **enemyMultiplier="number"**: Enemy dammage multiplier. Can have decimals (ex. "0.5")
 * **fake="true"**: This is a fake combat. When it's finished, LW endurance points lost will be restored
-* **restoreFactor="floatNumber"**: Only applies if fake="true". Factor of the EP lost to restore after the combat.
-  Default is 1.0 (100% of the EP lost)
+* **restoreFactor="floatNumber"**: Only applies if fake="true". Factor of the EP lost to restore after the combat. Default is 1.0 (100% of the EP lost)
 * **enemyTurnLoss="-number"** Extra E.P. lost by the enemy each turn. Should be negative or zero
 * **turnLoss="-number"** Extra E.P. lost by LW each turn. Should be negative or zero
 * **turnLossIfWounded="-number"** Extra E.P. lost by LW, if the player has been wounded on that turn. Should be negative or zero
 * **bow="true"** It's a combat with bow? (false = hand-to-hand)
-* **disabledObjects="objectId1|objectId2|..."** Set objects that cannot be used on this combat. "none" to enable all objects previously
-  disabled.
+* **disabledObjects="objectId1|objectId2|..."** Set objects that cannot be used on this combat. "none" to enable all objects previously disabled.
 * **permanentDammage="boolean"** EP lost by LW on this combat will be permanent?
 
 Different combat tags with different attributes are cumulative. Different combat tags with the same attribute will
