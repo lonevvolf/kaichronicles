@@ -1,5 +1,5 @@
 import * as fs from "fs-extra";
-import { BookMetadata, projectAon } from "..";
+import { BookMetadata, projectAon } from "../model/projectAon";
 
 /** Tool to download book data from the Project Aon SVN */
 export class BookData {
@@ -138,7 +138,7 @@ export class BookData {
         fs.copyFileSync(coverPath, targetPath);
     }
 
-    public async downloadBookData() {
+    public downloadBookData() {
         const bookDir = BookData.TARGET_ROOT + "/" + this.bookNumber;
         console.log("Re-creating directory " + bookDir);
         fs.removeSync( bookDir );

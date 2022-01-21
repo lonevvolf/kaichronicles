@@ -642,7 +642,6 @@
 
         <special id="cenerrobemask" itemCount="0">
             <name>Cener Robe &amp; Mask (dress on)</name>
-
         </special>
 
         <!-- BOOK 14 -->
@@ -665,28 +664,45 @@
         </special>
 
         <!-- BOOK 16 -->
-        <special id="kadharianscroll">
+        <special id="kadharianscroll" itemCount="0">
             <name>Scroll from President Kadharian</name>
         </special>
 
-        <special id="deathstaff">
+        <special id="deathstaff" weaponType="quarterstaff|spear">
             <name>Deathstaff</name>
+            <description>
+                A device forged by the Dark God Naar himself and imbued with the power to
+                resurrect the spirit of his long-lost champion, Lord Vashna.
+            </description>
         </special>
 
         <special id="platinumamulet" itemCount="0">
             <name>Platinum Amulet</name>
+            <description>
+                Will keep you safe from some of the perils that may await you at the Maakengorge.
+            </description>
         </special>
 
         <special id="runicdisc">
             <name>Runic Disc</name>
+            <description>
+                A palm-sized coin of black metal engraved with runes.
+            </description>
         </special>
 
         <special id="blackamulet" itemCount="0">
             <name>Black Amulet</name>
+            <description>
+                It has been carved from coal-black stone, flecked with grains of metal,which sparkle in the firelight.
+            </description>
         </special>
         
         <special id="blacktoken">
             <name>Black Token</name>
+            <description>
+                It is a hexagonal token engraved with strange symbols, and made from the same black,
+                metallic substance as the Black Amulet.
+            </description>
         </special>
 
     </specials>

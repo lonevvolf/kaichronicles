@@ -1,6 +1,6 @@
 import * as fs from "fs-extra";
 import * as fsn from "fs";
-import { projectAon } from "..";
+import { projectAon } from "../model/projectAon";
 import { BookData } from "./bookData";
 import simpleGit, {SimpleGit, SimpleGitProgressEvent} from 'simple-git';
 

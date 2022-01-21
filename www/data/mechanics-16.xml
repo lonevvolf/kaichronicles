@@ -272,6 +272,7 @@
             <choiceState section="sect109" set="disabled" />
             <test hasObject="sommerswerd">
                 <choiceState section="sect135" set="enabled" />
+                <choiceState section="sect252" set="disabled" />
             </test>
             <test hasObject="deathstaff">
                 <choiceState section="sect213" set="enabled" />
@@ -2229,12 +2230,15 @@
         </section>
 
         <section id="sect345">
-            <!-- TODO How to use deathstaff ? -->
+            <unregisterGlobalRule id="planeofdarkness" />
             <choiceState section="all" set="disabled" />
             <combat combatSkillModifier="0" />
             <afterCombats>
-                <choiceState section="sect26" set="enabled" />
                 <choiceState section="sect324" set="enabled" />
+                <test currentWeapon="deathstaff">
+                    <choiceState section="sect26" set="enabled" />
+                    <choiceState section="sect324" set="disabled" />
+                </test>
             </afterCombats>
         </section>
 

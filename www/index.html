@@ -195,28 +195,17 @@
     <script src="lib/bootstrap-3.4.1-dist/js/bootstrap.min.js"></script>
     <script src="lib/toastr/toastr.min.js"></script>
     <script src="lib/filesaver.js"></script>
-    
-    <!-- @ifndef PRODUCTION -->
-        <!-- xmllint.js is 2.2 MB and only used for tests, so don't include it on production -->
-        <script src="lib/xmllint.js"></script>
-    <!-- @endif -->
 
-    <!-- Production scripts -->
-    <!-- @ifdef PRODUCTION !>
+    <!-- @ifdef PRODUCTION !>      
       <script>
-          var ENVIRONMENT = 'PRODUCTION';
+        var ENVIRONMENT = 'PRODUCTION';
       </script>
-
-      <script src="kai.min.js"></script>
     <!-- @endif -->
-
-    <!-- Development scripts -->
     <!-- @ifndef PRODUCTION -->
-      
+      <script src="lib/xmllint.js"></script>
       <script>
-          var ENVIRONMENT = 'DEVELOPMENT';
+        var ENVIRONMENT = 'DEVELOPMENT';
       </script>
-
     <!-- @endif -->
 
     <script src="js/kai.js"></script>
