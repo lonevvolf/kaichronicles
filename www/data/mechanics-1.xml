@@ -392,6 +392,10 @@
             <pick class="money" count="16" />
         </section>
 
+        <section id="sect102">
+            <tag id="graveyardancients" />
+        </section>
+
         <section id="sect105">
             <test not="true" hasDiscipline="anmlknsp">
                 <choiceState section="sect298" set="disabled" />
@@ -1128,6 +1132,10 @@
             <death />
         </section>
 
+        <section id="sect329">            
+            <tag id="graveyardancients" />
+        </section>
+
         <section id="sect334">
             <test not="true" hasDiscipline="sixthsns">
                 <choiceState section="sect48" set="disabled" />
@@ -1210,6 +1218,7 @@
 
         <section id="sect349">
             <pick objectId="crystalstar" />
+            <tag id="crystalstar" />
         </section>
 
     </sections>

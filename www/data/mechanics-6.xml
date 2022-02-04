@@ -60,6 +60,7 @@
         </section>
 
         <section id="sect1">
+            <tag id="stornlands" />
             <test not="true" hasDiscipline="pthmnshp">
                 <choiceState section="sect308" set="disabled" />
             </test>
@@ -99,6 +100,10 @@
             <choiceSelected section="sect141">
                 <pick class="money" count="-2" />
             </choiceSelected>
+        </section>
+
+        <section id="sect6">
+            <tag id="varetta" />
         </section>
 
         <section id="sect8">
@@ -730,7 +735,7 @@
 
         <section id="sect127">
             <choiceState section="sect233" set="disabled" />
-            <test sectionVisited="b4sect160">
+            <test hasTag="raiderroadhut">
                 <choiceState section="sect233" set="enabled" />
                 <choiceState section="sect6" set="disabled" />
             </test>
@@ -851,7 +856,7 @@
 
         <section id="sect151">
             <choiceState section="sect294" set="disabled" />
-            <test sectionVisited="b4sect142">
+            <test hasTag="maakentemple">
                 <choiceState section="sect294" set="enabled" />
                 <choiceState section="sect108" set="disabled" />
                 <choiceState section="sect67" set="disabled" />

@@ -784,6 +784,10 @@
             <meal />
         </section>
 
+        <section id="sect142">
+            <tag id="maakentemple" />
+        </section>
+
         <section id="sect143">
             <choiceState section="all" set="disabled" />
             <combat eludeTurn="0" index="1" />
@@ -852,6 +856,10 @@
 
         <section id="sect159">
             <endurance count="-2" />
+        </section>
+
+        <section id="sect160">
+            <tag id="raiderroadhut" />
         </section>
 
         <section id="sect165">
@@ -1033,7 +1041,7 @@
 
         <section id="sect200">            
             <choiceState section="sect45" set="disabled" />
-            <test sectionVisited="b2sect168" hasDiscipline="hunting">
+            <test hasTag="gorncove" hasDiscipline="hunting">
                 <choiceState section="sect45" set="enabled" />
                 <choiceState section="sect133" set="disabled" />
                 <choiceState section="sect307" set="disabled" />
@@ -1514,6 +1522,7 @@
         </section>
 
         <section id="sect308">
+            <tag id="elix" />
             <choiceState section="all" set="disabled" />
             <afterCombats>
                 <choiceState section="all" set="enabled" />

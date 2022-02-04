@@ -403,7 +403,7 @@
 
         <section id="sect57">
             <combat combatSkillModifier="0" />
-            <test sectionVisited="b4sect308">
+            <test hasTag="elix">
                 <combat combatSkillModifier="2" />
             </test>
             <choiceState section="all" set="disabled" />
@@ -1058,10 +1058,10 @@
         </section>
 
         <section id="sect221">
-            <test sectionVisited="b1sect349">
+            <test hasTag="crystalstar">
                 <choiceState section="sect275" set="disabled" />
             </test>
-            <test not="true" sectionVisited="b1sect349">
+            <test not="true" hasTag="crystalstar">
                 <choiceState section="sect336" set="disabled" />
             </test>
         </section>
@@ -1487,10 +1487,10 @@
         </section>
 
         <section id="sect288">
-            <test not="true" sectionVisited="b1sect349">
+            <test not="true" hasTag="crystalstar">
                 <choiceState section="sect399" set="disabled" />
             </test>
-            <test sectionVisited="b1sect349">
+            <test hasTag="crystalstar">
                 <choiceState section="sect294" set="disabled" />
             </test>
         </section>
@@ -1978,10 +1978,10 @@
         </section>
 
         <section id="sect382">
-            <test sectionVisited="b1sect349">
+            <test hasTag="crystalstar">
                 <choiceState section="sect294" set="disabled" />
             </test>
-            <test not="true" sectionVisited="b1sect349">
+            <test not="true" hasTag="crystalstar">
                 <choiceState section="sect399" set="disabled" />
             </test>
         </section>

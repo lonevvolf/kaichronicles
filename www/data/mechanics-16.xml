@@ -150,7 +150,7 @@
 
         <section id="sect12">
             <choiceState section="sect220" set="disabled" />
-            <test sectionVisited="b6sect6|b9sect323|b9sect142">
+            <test hasTag="varetta|tahou|raiderroadhut">
                 <choiceState section="sect220" set="enabled" />
                 <choiceState section="sect53" set="disabled" />
             </test>
@@ -685,7 +685,7 @@
 
         <section id="sect105">
             <choiceState section="sect315" set="disabled" />
-            <test sectionVisited="b12s81">
+            <test hasTag="aarnak">
                 <choiceState section="sect315" set="enabled" />
                 <choiceState section="sect202" set="disabled" />
             </test>
@@ -1608,7 +1608,7 @@
 
         <section id="sect250">
             <choiceState section="sect224" set="disabled" />
-            <test sectionVisited="b13sect98|b14sect309">
+            <test hasTag="mogaruith|kaag">
                 <choiceState section="sect224" set="enabled" />
                 <choiceState section="sect295" set="disabled" />
             </test>
@@ -1792,7 +1792,7 @@
 
         <section id="sect279">
             <choiceState section="sect220" set="disabled" />
-            <test sectionVisited="b6sect6|b9sect323|b9sect142">
+            <test hasTag="varetta|tahou|raiderroadhut">
                 <choiceState section="sect220" set="enabled" />
                 <choiceState section="sect53" set="disabled" />
             </test>

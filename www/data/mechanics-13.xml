@@ -647,6 +647,10 @@
             </test>
         </section>
 
+        <section id="sect98">
+            <tag id="mogaruith" />
+        </section>
+
         <section id="sect99">
             <death />
         </section>
@@ -1710,7 +1714,7 @@
 
         <section id="sect285">
             <choiceState section="sect109" set="disabled" />
-            <test sectionVisited="b6sect1|b4sect142">
+            <test hasTag="stornlands|maakentemple">
                 <choiceState section="sect109" set="enabled" />
                 <choiceState section="sect247" set="disabled" />
             </test>

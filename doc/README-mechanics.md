@@ -240,7 +240,8 @@ will be executed.
 * **hasDiscipline="disciplineId1|disciplineId2|...**: Do the player has any of the disciplines?
 * **hasObject="objectId1|objectId2|...**: Do the player carry any of the objects?
 * **expression="Java expression"**: Is the expression true?
-* **sectionVisited="sectionId1|sectionId1|..."**: Has some of the sections been visited? For sections from another book, add "b&lt;book number&gt;" before sectionId (ie. b1sect349)
+* **sectionVisited="sectionId1|sectionId1|..."**: Has some of the sections been visited for the current book?
+* **hasTag="tag1|tag2"**: Do the player has one of the given tags?
 * **hasCurrentWeapon="boolean"**: Do the player fight armed or not?
 * **currentWeapon="weaponId1|weaponId2|..."**: Is the current weapon (hand-to-hand) some of these kinds?
 * **combatsWon="boolean"**: Have been won all combats on this section (or not)?
@@ -300,6 +301,13 @@ Make an object available on the section. The player will can pick / buy it.
 * **unlimited="true"**: There is an unlimited number of objects of this class on the section
 * **index="number"** Required, for ugly reasons, when there are two o more objects with the same object id on a section
 * **useOnSection="true"**: If true, the player will can use the object without picking it
+
+### tag
+```xml
+<tag id="crystalstar" />
+```
+Store a tag to the player action chart. Useful to check if the player has visited some sections in previous books.
+* **id**: The tag identifier 
 
 ### sell
 ```xml

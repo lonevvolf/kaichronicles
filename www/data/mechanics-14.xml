@@ -1174,7 +1174,7 @@
 
         <section id="sect186">
             <choiceState section="sect116" set="disabled" />
-            <test sectionVisited="b13sect98">
+            <test hasTag="mogaruith">
                 <choiceState section="sect116" set="enabled" />
                 <choiceState section="sect86" set="disabled" />
             </test>
@@ -2021,6 +2021,10 @@
 
         <section id="sect308">
             <object objectId="statuetteofzagarna" />
+        </section>
+
+        <section id="sect309">
+            <tag id="kaag" />
         </section>
 
         <section id="sect311">

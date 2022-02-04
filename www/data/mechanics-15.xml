@@ -172,7 +172,7 @@
 
         <section id="sect25">
             <choiceState section="sect315" set="disabled" />
-            <test sectionVisited="b10sect148">
+            <test hasTag="cetzabattle">
                 <choiceState section="sect315" set="enabled" />
                 <choiceState section="sect123" set="disabled" />
             </test>

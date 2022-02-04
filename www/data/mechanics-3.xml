@@ -904,6 +904,7 @@
         </section>
 
         <section id="sect157">
+            <drop objectId="potiongreengallowbrush" />
             <endurance count="+6" />
         </section>
 
@@ -1315,7 +1316,7 @@
 
         <section id="sect250">
             <choiceState section="sect77" set="disabled" />
-            <test sectionVisited="b1sect102|b1sect329">
+            <test hasTag="graveyardancients">
                 <choiceState section="sect77" set="enabled" />
                 <choiceState section="sect10" set="disabled" />
             </test>
@@ -1424,7 +1425,7 @@
 
         <section id="sect268">
             <choiceState section="sect177" set="disabled" />
-            <test sectionVisited="b1sect102|b1sect329">
+            <test hasTag="graveyardancients">
                 <choiceState section="sect177" set="enabled" />
                 <choiceState section="sect10" set="disabled" />
             </test>

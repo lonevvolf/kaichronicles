@@ -707,6 +707,10 @@
             </test>
         </section>
 
+        <section id="sect81">
+            <tag id="aarnak" />
+        </section>
+
         <section id="sect82">
             <pick class="arrow" count="-1" />
         </section>

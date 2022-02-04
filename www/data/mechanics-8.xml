@@ -59,6 +59,7 @@
         </section>
 
         <section id="sect1">
+            <tag id="talestria" />
             <pick objectId="pass" />
         </section>
 
@@ -855,6 +856,7 @@
         </section>
 
         <section id="sect138">
+            <tag id="danarg" />
             <test not="true" hasDiscipline="pthmnshp">
                 <choiceState section="sect203" set="disabled" />
             </test>

@@ -103,8 +103,8 @@ The structure:
                     "useOnSection": false
                 }
             ],
-            // List of visited sections for the current book
-            "visitedSections": ["sect1"]
+            // List of player tags
+            "tags": ["crystalstar"]
         },
         // Current book number
         "bookNumber": 12,
@@ -152,7 +152,7 @@ The structure:
     // State for previous played books. Only the Action Chart is stored. Key is the book number, and the value is 
     // the Action Chart object JSON (full documentation at actionChart.ts)
     "previousBooksState": {
-        "11": "{\"combatSkill\":18,\"endurance\":26,\"currentEndurance\":28,\"weapons\":[\"sword\",\"bow\"],\"fightUnarmed\":false,\"selectedWeapon\":\"sword\",\"beltPouch\":14,\"meals\":3,\"backpackItems\":[\"rope\",\"lantern\",\"khetuspores\",\"baylonboughfungi\",\"silverflask\",\"silverflask\"],\"specialItems\":[\"quiver\",\"map\",\"quiver\"],\"hasBackpack\":true,\"disciplines\":[\"wpnmstry\",\"curing\",\"hntmstry\"],\"weaponSkill\":[\"bow\",\"sword\",\"dagger\",\"broadsword\"],\"annotations\":\"\",\"manualRandomTable\":true,\"extendedCRT\":false,\"yScrollPosition\":323.6363525390625,\"arrows\":9,\"adganaUsed\":false,\"restore20EPUsed\":false,\"kaiMonasterySafekeeping\":[],\"visitedSections\": []}"
+        "11": "{\"combatSkill\":18,\"endurance\":26,\"currentEndurance\":28,\"weapons\":[\"sword\",\"bow\"],\"fightUnarmed\":false,\"selectedWeapon\":\"sword\",\"beltPouch\":14,\"meals\":3,\"backpackItems\":[\"rope\",\"lantern\",\"khetuspores\",\"baylonboughfungi\",\"silverflask\",\"silverflask\"],\"specialItems\":[\"quiver\",\"map\",\"quiver\"],\"hasBackpack\":true,\"disciplines\":[\"wpnmstry\",\"curing\",\"hntmstry\"],\"weaponSkill\":[\"bow\",\"sword\",\"dagger\",\"broadsword\"],\"annotations\":\"\",\"manualRandomTable\":true,\"extendedCRT\":false,\"yScrollPosition\":323.6363525390625,\"arrows\":9,\"adganaUsed\":false,\"restore20EPUsed\":false,\"kaiMonasterySafekeeping\":[],\"tags\": []}"
     }
 }
 

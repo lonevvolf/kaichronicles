@@ -136,6 +136,17 @@
         </xs:attribute>
     </xs:complexType>
 
+    <xs:complexType name="tag">
+        <xs:annotation>
+            <xs:documentation>Add a tag stored in the action chart.</xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="id" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>The identifier of the tag.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
     <xs:complexType name="randomTable">
         <xs:annotation>
             <xs:documentation>Explains what to do when a random table link is clicked. When the link is clicked, the inner rules to this tag will be execute. When the link is clicked, the number got will be saved as state of the rule.</xs:documentation>
@@ -223,7 +234,7 @@
         </xs:attribute>
         <xs:attribute name="sectionVisited" type="xs:string">
             <xs:annotation>
-                <xs:documentation>Has some of the sections been visited? For sections from another book, add "b&lt;book number&gt;" before sectionId (ie. b1sect349)</xs:documentation>
+                <xs:documentation>Has some of the sections been visited in the current book?</xs:documentation>
             </xs:annotation>
         </xs:attribute>
         <xs:attribute name="currentWeapon" type="xs:string">
@@ -294,6 +305,11 @@
         <xs:attribute name="sectionContainsText" type="xs:string">
             <xs:annotation>
                 <xs:documentation>Does the current section contain this text?</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="hasTag" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>Does the player has one of the given tags?</xs:documentation>
             </xs:annotation>
         </xs:attribute>
         <xs:attribute name="not" type="trueOnly">
@@ -997,6 +1013,7 @@
 
     <xs:group name="any_rule">
         <xs:choice>
+            <xs:element name="tag" type="tag" />
             <xs:element name="setSkills" type="setSkills" />
             <xs:element name="restoreDeliveranceUse" type="restoreDeliveranceUse" />
             <xs:element name="setDisciplines" type="setDisciplines" />

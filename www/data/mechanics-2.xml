@@ -865,6 +865,7 @@
         </section>
 
         <section id="sect168">
+            <tag id="gorncove" />
             <test not="true" expression="[MONEY] >= 1">
                 <choiceState section="sect314" set="disabled" />
             </test>
@@ -1551,11 +1552,16 @@
         </section>
 
         <section id="sect328">
-            <test not="true" sectionVisited="b1sect349">
-                <choiceState section="sect113" set="disabled" />
-            </test>
-            <test not="true" hasDiscipline="tracking">
+            <test hasTag="crystalstar">
                 <choiceState section="sect204" set="disabled" />
+                <choiceState section="sect73" set="disabled" />
+                <choiceState section="sect267" set="disabled" />
+            </test>
+            <test not="true" hasTag="crystalstar">
+                <choiceState section="sect113" set="disabled" />
+                <test not="true" hasDiscipline="tracking">
+                    <choiceState section="sect204" set="disabled" />
+                </test>
             </test>
         </section>
 

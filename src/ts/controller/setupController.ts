@@ -71,9 +71,9 @@ export const setupController = {
             download.promise.url = download.url;
             download.promise
                 .fail(function(jqXHR: JQueryXHR, textStatus: string, errorThrown: string) {
-                    setupView.log(ajaxErrorMsg(this, jqXHR, textStatus, errorThrown), "error");
+                    setupView.log(ajaxErrorMsg(download, jqXHR, textStatus, errorThrown), "error");
                 })
-                .done(function() { setupView.log(this.url + " OK!", "ok"); });
+                .done(function() { setupView.log(download.url + " OK!", "ok"); });
             promises.push(download.promise);
         }
 

@@ -69,6 +69,9 @@
                     "count": 0,
                     "useOnSection": false
                 }
+            ],
+            "tags": [
+                "crystalstar"
             ]
         },
         "bookNumber": 12,
@@ -393,6 +396,6 @@
         }
     },
     "previousBooksState": {
-        "11": "{\"combatSkill\":18,\"endurance\":26,\"currentEndurance\":28,\"weapons\":[\"sword\",\"bow\"],\"fightUnarmed\":false,\"selectedWeapon\":\"sword\",\"beltPouch\":14,\"meals\":3,\"backpackItems\":[\"rope\",\"lantern\",\"khetuspores\",\"baylonboughfungi\",\"silverflask\",\"silverflask\"],\"specialItems\":[\"quiver\",\"map\",\"quiver\"],\"hasBackpack\":true,\"disciplines\":[\"wpnmstry\",\"curing\",\"hntmstry\"],\"weaponSkill\":[\"bow\",\"sword\",\"dagger\",\"broadsword\"],\"annotations\":\"\",\"manualRandomTable\":true,\"extendedCRT\":false,\"yScrollPosition\":323.6363525390625,\"arrows\":9,\"adganaUsed\":false,\"restore20EPUsed\":false,\"kaiMonasterySafekeeping\":[]}"
+        "11": "{\"combatSkill\":18,\"endurance\":26,\"currentEndurance\":28,\"weapons\":[\"sword\",\"bow\"],\"fightUnarmed\":false,\"selectedWeapon\":\"sword\",\"beltPouch\":14,\"meals\":3,\"backpackItems\":[\"rope\",\"lantern\",\"khetuspores\",\"baylonboughfungi\",\"silverflask\",\"silverflask\"],\"specialItems\":[\"quiver\",\"map\",\"quiver\"],\"hasBackpack\":true,\"disciplines\":[\"wpnmstry\",\"curing\",\"hntmstry\"],\"weaponSkill\":[\"bow\",\"sword\",\"dagger\",\"broadsword\"],\"annotations\":\"\",\"manualRandomTable\":true,\"extendedCRT\":false,\"yScrollPosition\":323.6363525390625,\"arrows\":9,\"adganaUsed\":false,\"restore20EPUsed\":false,\"kaiMonasterySafekeeping\":[],\"tags\": [\"crystalstar\"]}"
     }
 }

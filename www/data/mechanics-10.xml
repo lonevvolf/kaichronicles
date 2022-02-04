@@ -85,7 +85,7 @@
 
         <section id="sect6">
             <choiceState section="sect45" set="disabled" />
-            <test sectionVisited="b8sect1">
+            <test hasTag="talestria">
                 <choiceState section="sect45" set="enabled" />
                 <choiceState section="sect346" set="disabled" />
             </test>
@@ -506,7 +506,7 @@
 
         <section id="sect80">
             <choiceState section="sect260" set="disabled" />
-            <test sectionVisited="b8sect138">
+            <test hasTag="danarg">
                 <choiceState section="sect260" set="enabled" />
                 <choiceState section="sect114" set="disabled" />
             </test>
@@ -839,7 +839,7 @@
             <!-- Do not lose Dagger of Vashna -->
             <drop objectId="dagger" />
             <choiceState section="sect260" set="disabled" />
-            <test sectionVisited="b8sect138">
+            <test hasTag="danarg">
                 <choiceState section="sect260" set="enabled" />
                 <choiceState section="sect114" set="disabled" />
             </test>
@@ -891,6 +891,7 @@
         </section>
 
         <section id="sect148">
+            <tag id="cetzabattle" />
             <choiceState section="all" set="disabled" />
             <combat noMindblast="true" />
             <afterCombats>
@@ -1012,7 +1013,7 @@
 
         <section id="sect179">
             <choiceState section="sect45" set="disabled" />
-            <test sectionVisited="b8sect1">
+            <test hasTag="talestria">
                 <choiceState section="sect45" set="enabled" />
                 <choiceState section="sect346" set="disabled" />
             </test>
@@ -1098,7 +1099,7 @@
 
         <section id="sect200">
             <choiceState section="sect104" set="disabled" />
-            <test sectionVisited="b6sect219">
+            <test hasTag="stornlands">
                 <choiceState section="sect104" set="enabled" />
                 <choiceState section="sect263" set="disabled" />
             </test>
@@ -1237,7 +1238,7 @@
 
         <section id="sect219">
             <choiceState section="sect260" set="disabled" />
-            <test sectionVisited="b8sect138">
+            <test hasTag="danarg">
                 <choiceState section="sect260" set="enabled" />
                 <choiceState section="sect114" set="disabled" />
             </test>
@@ -1701,7 +1702,7 @@
 
         <section id="sect306">
             <choiceState section="sect65" set="disabled" />
-            <test sectionVisited="b6sect1">
+            <test hasTag="stornlands">
                 <choiceState section="sect65" set="enabled" />
                 <choiceState section="sect222" set="disabled" />
             </test>
@@ -1767,7 +1768,7 @@
 
         <section id="sect328">
             <choiceState section="sect260" set="disabled" />
-            <test sectionVisited="b8sect138">
+            <test hasTag="danarg">
                 <choiceState section="sect260" set="enabled" />
                 <choiceState section="sect114" set="disabled" />
             </test>

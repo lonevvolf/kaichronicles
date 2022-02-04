@@ -101,7 +101,8 @@
  - Various fixes in previous books
  - Various components updates
  - Based on latest git data (instead of no longer maintained SVN data)
- - In equipment section of books 6 and above, automatically adds exceeding money to kai monastry if belt pouch exceed 50 when picking random number for money.
- - Allows to checks if some sections in previous books was visited (not only on current book).
+ - In equipment section of books 6 and above, automatically adds exceeding money to kai monastry if belt pouch exceed 50 when picking random number for money
+ - Add new tag rule. Allows to check if player has see some sections in previous books
  - Disable use of object restoring endurance prior/during combat (except is specified)
+ - Apply healing only on story sections
  

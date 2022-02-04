@@ -116,9 +116,9 @@ export class ActionChart {
     public kaiMonasterySafekeeping: SectionItem[] = [];
 
     /**
-     * List of visited sections in the current book (used for sectionVisited test)
+     * List of tags
      */
-    public visitedSections: string[] = [];
+    public tags: string[] = [];
 
     constructor() {
         // Debug fast setup:

@@ -211,8 +211,6 @@ export class State {
         this.book = new Book(this.book.bookNumber + 1);
         this.mechanics = new Mechanics(this.book);
         this.sectionStates = new BookSectionStates();
-        // Reset list of visited sections
-        this.actionChart.visitedSections = [];
 
         // Restore Kai monastery objects
         this.restoreKaiMonasterySectionObjects();

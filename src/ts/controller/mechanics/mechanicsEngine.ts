@@ -565,15 +565,15 @@ export const mechanicsEngine = {
         // Check section visited:
         const sectionIdsList = mechanicsEngine.getArrayProperty($rule, "sectionVisited");
         for (const sectionId of sectionIdsList) {
-            const sectionInfo = sectionId.match(/b(\d+)(sect\d+)/);
-            if(sectionInfo !== null) {
-                // Check section visited in other book
-                const actionChart = state.getPreviousBookActionChart(parseInt(sectionInfo[1], 10));
-                if(actionChart != null && actionChart.visitedSections.includes(sectionInfo[2])) {
-                    return true;
-                }
-            }
             if (state.sectionStates.sectionIsVisited(sectionId)) {
+                return true;
+            }
+        }
+
+        // Check tags:
+        const tagsIdList = mechanicsEngine.getArrayProperty($rule, "hasTag");
+        for (const tagId of tagsIdList) {
+            if (state.actionChart.tags.includes(tagId)) {
                 return true;
             }
         }
@@ -767,6 +767,30 @@ export const mechanicsEngine = {
         sectionState.addObjectToSection(objectId, price, unlimited, count, useOnSection);
 
         sectionState.markRuleAsExecuted(rule);
+    },
+
+    /**
+     * Add a tag to actionChart
+     */
+    tag(rule: Element) {
+
+        const sectionState = state.sectionStates.getSectionState();
+
+        // Do not execute the rule twice:
+        if (sectionState.ruleHasBeenExecuted(rule)) {
+            return;
+        }
+
+        const tagId: string = $(rule).attr("id");
+        if (!tagId) {
+            mechanicsEngine.debugWarning("Rule object without tagId");
+            return;
+        }
+
+        if(state.actionChart.tags.indexOf(tagId) < 0) {
+            state.actionChart.tags.push(tagId);
+        }
+        state.sectionStates.markRuleAsExecuted(rule);
     },
 
     /**
@@ -1735,6 +1759,10 @@ export const mechanicsEngine = {
             !state.actionChart.hasMgnDiscipline(MgnDiscipline.Curing) &&
             !state.actionChart.hasGndDiscipline(GndDiscipline.Deliverance)) {
             // Only if having healing discipline or loyalty bonus
+            return;
+        }
+        if (!state.sectionStates.currentSection.startsWith("sect")) {
+            // Execute healing only in story sections
             return;
         }
         const sectionState = state.sectionStates.getSectionState();
