@@ -144,8 +144,11 @@
         </section>
 
         <section id="sect21">
-            <test not="true" hasDiscipline="tracking">
-                <choiceState section="sect264" set="disabled" />
+            <choiceState section="sect264" set="disabled" />
+            <test hasDiscipline="tracking">
+                <choiceState section="sect264" set="enabled" />
+                <choiceState section="sect134" set="disabled" />
+                <choiceState section="sect191" set="disabled" />
             </test>
         </section>
 
@@ -184,8 +187,11 @@
         </section>
 
         <section id="sect29">
-            <test not="true" hasObject="firesphere">
-                <choiceState section="sect168" set="disabled" />
+            <choiceState section="sect168" set="disabled" />
+            <test hasObject="firesphere">
+                <choiceState section="sect168" set="enabled" />
+                <choiceState section="sect246" set="disabled" />
+                <choiceState section="sect183" set="disabled" />
             </test>
         </section>
 
@@ -229,11 +235,13 @@
         </section>
 
         <section id="sect40">
-            <test not="true" hasDiscipline="tracking">
-                <choiceState section="sect349" set="disabled" />
-            </test>
-            <test not="true" expression="[KAILEVEL] >= 6">
-                <choiceState section="sect349" set="disabled" />
+            <choiceState section="sect349" set="disabled" />
+            <test hasDiscipline="tracking">
+                <test expression="[KAILEVEL] >= 6">
+                    <choiceState section="sect349" set="enabled" />
+                    <choiceState section="sect55" set="disabled" />
+                    <choiceState section="sect291" set="disabled" />
+                </test>
             </test>
         </section>
 
@@ -304,8 +312,11 @@
         </section>
 
         <section id="sect51">
-            <test not="true" hasDiscipline="anmlknsp">
-                <choiceState section="sect227" set="disabled" />
+            <choiceState section="sect227" set="disabled" />
+            <test hasDiscipline="anmlknsp">
+                <choiceState section="sect227" set="enabled" />
+                <choiceState section="sect328" set="disabled" />
+                <choiceState section="sect120" set="disabled" />
             </test>
         </section>
 
@@ -321,15 +332,12 @@
         </section>
 
         <section id="sect54">
-            <test not="true" hasDiscipline="healing">
-                <choiceState section="sect4" set="disabled" />
-            </test>
-            <test not="true" expression="[KAILEVEL] >= 8">
-                <choiceState section="sect4" set="disabled" />
-            </test>
-            <test hasDiscipline="healing">
-                <test expression="[KAILEVEL] >= 8">
+            <choiceState section="sect4" set="disabled" />
+            <test hasDiscipline="tracking">
+                <test expression="[KAILEVEL] >= 6">
+                    <choiceState section="sect4" set="enabled" />
                     <choiceState section="sect65" set="disabled" />
+                    <choiceState section="sect201" set="disabled" />
                 </test>
             </test>
         </section>
@@ -422,23 +430,19 @@
         </section>
 
         <section id="sect70">
-            <test not="true" hasObject="onyxmedallion">
-                <choiceState section="sect305" set="disabled" />
-            </test>
-
-            <test not="true" hasDiscipline="camflage">
-                <choiceState section="sect49" set="disabled" />
-            </test>
-            <test not="true" expression="[KAILEVEL] >= 7">
-                <choiceState section="sect49" set="disabled" />
-            </test>
+            <choiceState section="all" set="disabled" />
 
             <test hasObject="onyxmedallion">
-                <choiceState section="sect159" set="disabled" />
+                <choiceState section="sect305" set="enabled" />
             </test>
-            <test hasDiscipline="camflage">
-                <test expression="[KAILEVEL] >= 7">
-                    <choiceState section="sect159" set="disabled" />
+
+            <test not="true" hasObject="onyxmedallion">
+                <choiceState section="sect159" set="enabled" />
+                <test hasDiscipline="camflage">
+                    <test expression="[KAILEVEL] >= 7">
+                        <choiceState section="sect159" set="disabled" />
+                        <choiceState section="sect49" set="enabled" />
+                    </test>
                 </test>
             </test>
         </section>
@@ -506,8 +510,11 @@
         </section>
 
         <section id="sect87">
-            <test not="true" hasDiscipline="sixthsns|tracking">
-                <choiceState section="sect60" set="disabled" />
+            <choiceState section="sect60" set="disabled" />
+            <test hasDiscipline="sixthsns|tracking">
+                <choiceState section="sect60" set="enabled" />
+                <choiceState section="sect199" set="disabled" />
+                <choiceState section="sect208" set="disabled" />
             </test>
         </section>
 
@@ -534,8 +541,11 @@
         </section>
 
         <section id="sect92">
-            <test not="true" hasDiscipline="sixthsns">
-                <choiceState section="sect210" set="disabled" />
+            <choiceState section="sect210" set="disabled" />
+            <test hasDiscipline="sixthsns">
+                <choiceState section="sect210" set="enabled" />
+                <choiceState section="sect132" set="disabled" />
+                <choiceState section="sect301" set="disabled" />
             </test>
         </section>
 
@@ -621,11 +631,12 @@
         </section>
 
         <section id="sect113">
-            <test not="true" expression="[KAILEVEL] >= 8">
-                <choiceState section="sect166" set="disabled" />
-            </test>
+            <choiceState section="sect166" set="disabled" />
             <test expression="[KAILEVEL] >= 8">
+                <choiceState section="sect166" set="enabled" />
                 <choiceState section="sect14" set="disabled" />
+                <choiceState section="sect316" set="disabled" />
+                <choiceState section="sect232" set="disabled" />
             </test>
         </section>
 
@@ -1039,7 +1050,7 @@
             </afterCombats>
         </section>
 
-        <section id="sect200">            
+        <section id="sect200">
             <choiceState section="sect45" set="disabled" />
             <test hasTag="gorncove" hasDiscipline="hunting">
                 <choiceState section="sect45" set="enabled" />
@@ -1134,8 +1145,11 @@
         </section>
 
         <section id="sect224">
-            <test not="true" hasDiscipline="sixthsns|tracking">
-                <choiceState section="sect60" set="disabled" />
+            <choiceState section="sect60" set="disabled" />
+            <test hasDiscipline="sixthsns|tracking">
+                <choiceState section="sect60" set="enabled" />
+                <choiceState section="sect199" set="disabled" />
+                <choiceState section="sect208" set="disabled" />
             </test>
         </section>
 
@@ -1214,8 +1228,11 @@
         </section>
 
         <section id="sect244">
-            <test not="true" hasDiscipline="sixthsns|tracking">
-                <choiceState section="sect250" set="disabled" />
+            <choiceState section="sect250" set="disabled" />
+            <test hasDiscipline="sixthsns|tracking">
+                <choiceState section="sect250" set="enabled" />
+                <choiceState section="sect335" set="disabled" />
+                <choiceState section="sect11" set="disabled" />
             </test>
         </section>
 
@@ -1270,21 +1287,28 @@
         </section>
 
         <section id="sect254">
-            <test not="true" hasDiscipline="tracking">
-                <choiceState section="sect326" set="disabled" />
+            <choiceState section="sect326" set="disabled" />
+            <test hasDiscipline="tracking">
+                <choiceState section="sect326" set="enabled" />
+                <choiceState section="sect156" set="disabled" />
+                <choiceState section="sect101" set="disabled" />
             </test>
         </section>
 
         <section id="sect258">
-            <test not="true" hasObject="onyxmedallion">
-                <choiceState section="sect305" set="disabled" />
+            <choiceState section="sect305" set="disabled" />
+            <choiceState section="sect49" set="disabled" />
+
+            <test hasObject="onyxmedallion">
+                <choiceState section="sect305" set="enabled" />
+                <choiceState section="sect159" set="disabled" />
             </test>
 
-            <test not="true" hasDiscipline="camflage">
-                <choiceState section="sect49" set="disabled" />
-            </test>
-            <test not="true" expression="[KAILEVEL] >= 7">
-                <choiceState section="sect49" set="disabled" />
+            <test not="true" hasObject="onyxmedallion">
+                <test hasDiscipline="camflage">
+                    <choiceState section="sect49" set="enabled" />
+                    <choiceState section="sect159" set="disabled" />
+                </test>
             </test>
         </section>
 
@@ -1333,22 +1357,26 @@
         </section>
 
         <section id="sect270">
-
             <choiceState section="sect29" set="disabled" />
+            <choiceState section="sect168" set="disabled" />
+
             <test hasObject="tinderbox">
                 <test hasObject="torch">
                     <choiceState section="sect29" set="enabled" />
+                    <choiceState section="sect246" set="disabled" />
                 </test>
             </test>
-
-            <test not="true" hasObject="firesphere">
-                <choiceState section="sect168" set="disabled" />
+            <test not="true" hasObject="tinderbox">
+                <test hasObject="firesphere">
+                    <choiceState section="sect168" set="enabled" />
+                    <choiceState section="sect246" set="disabled" />
+                </test>
             </test>
-            <test hasObject="torch">
-                <choiceState section="sect246" set="disabled" />
-            </test>
-            <test hasObject="firesphere">
-                <choiceState section="sect246" set="disabled" />
+            <test not="true" hasObject="torch">
+                <test hasObject="firesphere">
+                    <choiceState section="sect168" set="enabled" />
+                    <choiceState section="sect246" set="disabled" />
+                </test>
             </test>
         </section>
 
@@ -1450,8 +1478,11 @@
         </section>
 
         <section id="sect289">
-            <test not="true" expression="[KAILEVEL] >= 8">
-                <choiceState section="sect255" set="disabled" />
+            <choiceState section="sect255" set="disabled" />
+            <test expression="[KAILEVEL] >= 8">
+                <choiceState section="sect255" set="enabled" />
+                <choiceState section="sect5" set="disabled" />
+                <choiceState section="sect86" set="disabled" />
             </test>
         </section>
 
@@ -1564,8 +1595,11 @@
         </section>
 
         <section id="sect315">
-            <test not="true" hasDiscipline="tracking">
-                <choiceState section="sect48" set="disabled" />
+            <choiceState section="sect48" set="disabled" />
+            <test hasDiscipline="tracking">
+                <choiceState section="sect48" set="enabled" />
+                <choiceState section="sect269" set="disabled" />
+                <choiceState section="sect145" set="disabled" />
             </test>
         </section>
 

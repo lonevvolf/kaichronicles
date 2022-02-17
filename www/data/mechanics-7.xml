@@ -210,32 +210,6 @@
         </section>
 
         <section id="sect34">
-            <!-- Lets try the inverse (primate is KAILEVEL >= 4)
-            <test not="true" hasDiscipline="invsblty">
-                <choiceState section="sect86" set="disabled" />
-            </test>
-            <test hasDiscipline="invsblty">
-                <choiceState section="sect130" set="disabled" />
-                <choiceState section="sect347" set="disabled" />
-                <choiceState section="sect233" set="disabled" />
-            </test>
-            <test not="true" expression="[KAILEVEL] >= 2">
-                <test not="true" hasDiscipline="anmlctrl">
-                    <CHECK: If you have the Magnakai Discipline of Animal Control and have reached the Kai rank of Primate, turn to 130.>
-                    <choiceState section="sect130" set="disabled" />
-                </test>
-            </test>
-            <test hasDiscipline="anmlctrl" >
-                <test expression="[KAILEVEL] >= 2">
-                    <choiceState section="sect347" set="disabled" />
-                    <choiceState section="sect233" set="disabled" />
-                </test>
-            </test>
-            <test not="true" hasObject="silverwhistle">
-                <choiceState section="sect233" set="disabled" />
-            </test>
-            -->
-
             <choiceState section="all" set="disabled" />
             <choiceState section="sect233" set="enabled" />
             <test hasDiscipline="invsblty">
@@ -244,7 +218,6 @@
             </test>
             <test expression="[KAILEVEL] >= 4">
                 <test hasDiscipline="anmlctrl">
-                    <!--CHECK: If you have the Magnakai Discipline of Animal Control and have reached the Kai rank of Primate, turn to 130.-->
                     <choiceState section="sect130" set="enabled" />
                     <choiceState section="sect233" set="disabled" />
                 </test>
@@ -327,13 +300,9 @@
         </section>
 
         <section id="sect46">
-            <!-- Dont be restrictive with the choices -->
-            <!--test hasDiscipline="invsblty|pthmnshp|dvnation">
+            <test hasDiscipline="invsblty|pthmnshp|dvnation">
                 <choiceState section="sect349" set="disabled" />
                 <choiceState section="sect163" set="disabled" />
-            </test-->
-            <test not="true" hasDiscipline="invsblty|pthmnshp|dvnation">
-                <choiceState section="sect2" set="disabled" />
             </test>
         </section>
 
@@ -450,19 +419,6 @@
         </section>
 
         <section id="sect68">
-            <!-- CHECK: complex -->
-            <!-- Dont be restrictive with choices -->
-            <!--choiceState section="all" set="disabled" />
-            <test hasDiscipline="nexus">
-                <choiceState section="sect124" set="enabled" />
-            </test>
-            <test not="true" hasDiscipline="nexus">
-                <test hasObject="rope">
-                    <choiceState section="sect182" set="enabled" />
-                </test>
-                <choiceState section="sect298" set="enabled" />
-                <choiceState section="sect322" set="enabled" />
-            </test-->
             <test not="true" hasDiscipline="nexus">
                 <choiceState section="sect124" set="disabled" />
             </test>
@@ -478,7 +434,6 @@
         </section>
 
         <section id="sect73">
-            <!-- A snake with one large eye is drawn in red ink on the parchment. It is coiled around the number 123 -->
             <object objectId="diamond" />
         </section>
 
@@ -496,8 +451,6 @@
 
         <section id="sect76">
             <choiceState section="all" set="disabled" />
-            <!-- you cannot make use of a shield or any two-handed weapon (i.e. Broadsword, Spear, Quarterstaff) 
-                 during the combat -->
             <combat enemyMultiplier="3" disabledObjects="shield|broadsword|spear|quarterstaff" />
             <afterCombats>
                 <choiceState section="all" set="enabled" />
@@ -542,14 +495,12 @@
         </section>
 
         <section id="sect82">
-            <test not="true" hasDiscipline="pthmnshp">
-                <choiceState section="sect65" set="disabled" />
-            </test>
-            <!-- Dont be restrictive with the choices -->
-            <!--test hasDiscipline="pthmnshp">
+            <choiceState section="sect65" set="disabled" />
+            <test hasDiscipline="pthmnshp">
+                <choiceState section="sect65" set="enabled" />
                 <choiceState section="sect277" set="disabled" />
                 <choiceState section="sect30" set="disabled" />
-            </test-->
+            </test>
         </section>
 
         <section id="sect84">
@@ -588,12 +539,6 @@
             <test not="true" hasDiscipline="nexus">
                 <choiceState section="sect72" set="disabled" />
             </test>
-            <!-- Dont be restrictive with the choices -->
-            <!--test hasDiscipline="nexus">
-                <choiceState section="sect126" set="disabled" />
-                <choiceState section="sect204" set="disabled" />
-                <choiceState section="sect320" set="disabled" />
-            </test-->
         </section>
 
         <section id="sect90">
@@ -630,10 +575,7 @@
             <test not="true" hasObject="sommerswerd">
                 <choiceState section="sect317" set="disabled" />
             </test>
-            <test hasObject="fireseed">
-                <choiceState section="sect331" set="disabled" />
-            </test>
-            <test hasObject="sommerswerd">
+            <test hasObject="fireseed|sommerswerd">
                 <choiceState section="sect331" set="disabled" />
             </test>
         </section>
@@ -715,8 +657,12 @@
         </section>
 
         <section id="sect111">
-            <test not="true" hasDiscipline="dvnation|psiscrn">
-                <choiceState section="sect68" set="disabled" />
+            <choiceState section="sect68" set="disabled" />
+            <test hasDiscipline="dvnation|psiscrn">
+                <choiceState section="sect68" set="enabled" />
+                <choiceState section="sect224" set="disabled" />
+                <choiceState section="sect298" set="disabled" />
+                <choiceState section="sect322" set="disabled" />
             </test>
         </section>
 
@@ -774,11 +720,6 @@
             <test not="true" hasDiscipline="nexus">
                 <choiceState section="sect72" set="disabled" />
             </test>
-            <!-- Dont be restrictive with the choices -->
-            <!--test hasDiscipline="nexus">
-                <choiceState section="sect126" set="disabled" />
-                <choiceState section="sect204" set="disabled" />
-            </test-->
         </section>
 
         <section id="sect121">
@@ -787,8 +728,6 @@
 
         <section id="sect122">
             <drop objectId="backpack" />
-            <!-- Only backpack, no weapons -->
-            <!--drop objectId="allweapons" /-->
         </section>
 
         <section id="sect124">
@@ -852,14 +791,12 @@
         </section>
 
         <section id="sect135">
-            <test not="true" hasDiscipline="dvnation">
-                <choiceState section="sect57" set="disabled" />
-            </test>
-            <!-- Dont be restrictive with the choices -->
-            <!--test hasDiscipline="dvnation">
+            <choiceState section="sect57" set="disabled" />
+            <test hasDiscipline="dvnation">
+                <choiceState section="sect57" set="enabled" />
                 <choiceState section="sect203" set="disabled" />
                 <choiceState section="sect325" set="disabled" />
-            </test-->
+            </test>
         </section>
 
         <section id="sect137">
@@ -867,15 +804,12 @@
         </section>
 
         <section id="sect141">
-            <test not="true" hasCircle="circleSpirit">
-                <choiceState section="sect25" set="disabled" />
+            <choiceState section="sect25" set="disabled" />
+            <test hasCircle="circleSpirit">
+                <choiceState section="sect25" set="enabled" />
+                <choiceState section="sect223" set="disabled" />
+                <choiceState section="sect308" set="disabled" />
             </test>
-            <!-- else: disable -->
-            <!-- Dont be restrictive with the choices -->
-            <!--
-                <choiceState section="sect223" set="enabled" />
-                <choiceState section="sect308" set="enabled" />
-            -->
         </section>
 
         <section id="sect142">
@@ -969,14 +903,12 @@
         </section>
 
         <section id="sect153">
-            <test not="true" hasDiscipline="dvnation">
-                <choiceState section="sect307" set="disabled" />
-            </test>
-            <!-- Dont be restrictive with the choices -->
-            <!--test hasDiscipline="dvnation">
+            <choiceState section="sect307" set="disabled" />
+            <test hasDiscipline="dvnation">
+                <choiceState section="sect307" set="enabled" />
                 <choiceState section="sect60" set="disabled" />
                 <choiceState section="sect168" set="disabled" />
-            </test-->
+            </test>
         </section>
 
         <section id="sect154">
@@ -1020,25 +952,21 @@
         <section id="sect161">
             <object objectId="spear" />
             <object objectId="broadsword" />
-            <test not="true" hasDiscipline="pthmnshp">
-                <choiceState section="sect139" set="disabled" />
-            </test>
-            <!-- Dont be restrictive with the choices -->
-            <!--test hasDiscipline="pthmnshp">
+            <choiceState section="sect139" set="disabled" />
+            <test hasDiscipline="pthmnshp">
+                <choiceState section="sect139" set="enabled" />
                 <choiceState section="sect187" set="disabled" />
                 <choiceState section="sect101" set="disabled" />
-            </test-->
+            </test>
         </section>
 
         <section id="sect162">
-            <test not="true" hasDiscipline="pthmnshp|dvnation">
-                <choiceState section="sect171" set="disabled" />
-            </test>
-            <!-- Dont be restrictive with the choices -->
-            <!--test hasDiscipline="pthmnshp|dvnation">
+            <choiceState section="sect171" set="disabled" />
+            <test hasDiscipline="pthmnshp|dvnation">
+                <choiceState section="sect171" set="enabled" />
                 <choiceState section="sect29" set="disabled" />
                 <choiceState section="sect272" set="disabled" />
-            </test-->
+            </test>
         </section>
 
         <section id="sect163">
@@ -1054,13 +982,6 @@
                     <choiceState section="sect301" set="disabled" />
                 </test>
             </test>
-            <!-- Dont be restrictive with the choices -->
-            <!--test not="true" hasDiscipline="anmlctrl" expression="[KAILEVEL] >= 2">
-				<test canUseBow="true">
-					<choiceState section="sect7" set="enabled" />
-					<choiceState section="sect301" set="disabled" />
-				</test>
-			</test-->
             <test canUseBow="true">
                 <choiceState section="sect7" set="enabled" />
                 <choiceState section="sect301" set="disabled" />
@@ -1123,32 +1044,6 @@
         </section>
 
         <section id="sect172">
-            <!-- CHECK: complex -->
-            <!-- Let's try the inverse (dont be restrictive with the choices -->
-            <!--choiceState section="sect86" set="disabled" />
-            <choiceState section="sect130" set="disabled" />
-            <choiceState section="sect347" set="disabled" />
-            <test hasDiscipline="invsblty">
-                <choiceState section="sect86" set="enabled" />
-                <choiceState section="sect233" set="disabled" />
-            </test>
-            <test not="true" hasDiscipline="invsblty">
-                <test hasDiscipline="anmlctrl" expression="[KAILEVEL] >= 2">
-                    <choiceState section="sect130" set="enabled" />
-                    <choiceState section="sect233" set="disabled" />
-                </test>
-                <test hasObject="silverwhistle">
-                    <test not="true" hasDiscipline="anmlctrl">
-                        <choiceState section="sect347" set="enabled" />
-                        <choiceState section="sect233" set="disabled" />
-                    </test>
-                    <test not="true" expression="[KAILEVEL] >= 2">
-                        <choiceState section="sect347" set="enabled" />
-                        <choiceState section="sect233" set="disabled" />
-                    </test>
-                </test>
-            </test-->
-
             <choiceState section="all" set="disabled" />
             <choiceState section="sect233" set="enabled" />
             <test hasDiscipline="invsblty">
@@ -1168,14 +1063,12 @@
         </section>
 
         <section id="sect173">
-            <test not="true" hasDiscipline="dvnation">
-                <choiceState section="sect89" set="disabled" />
-            </test>
-            <!-- Dont be restrictive with the choices -->
-            <!--test hasDiscipline="dvnation">
+            <choiceState section="sect89" set="disabled" />
+            <test hasDiscipline="dvnation">
+                <choiceState section="sect89" set="enabled" />
                 <choiceState section="sect243" set="disabled" />
                 <choiceState section="sect108" set="disabled" />
-            </test-->
+            </test>
         </section>
 
         <section id="sect174">
@@ -1197,13 +1090,6 @@
                 </case>
                 <pick class="arrow" count="-1" />
             </randomTable>
-            <!-- If you have the Magnakai Discipline of Weaponmastery WITH bow -->
-            <!-- OK: [BOWBONUS] is a bonus for Weaponmastery WITH bow PLUS objects bonuses (silverbowduadon object) -->
-            <!--test not="true" hasDiscipline="wpnmstry">
-                <test not="true" hasDiscipline="nexus">
-                    <randomTableIncrement increment="-3" />
-                </test>
-            </test-->
             <test hasWeaponskillWith="bow">
                 <!-- [BOWBONUS] will be +3 or more (bow object bonus) -->
                 <randomTableIncrement increment="[BOWBONUS] - 3" />
@@ -1226,12 +1112,7 @@
             <test hasObject="fireseed">
                 <choiceState section="sect191" set="enabled" />
             </test>
-            <!-- Why disable mindblast? -->
-            <!--test hasDiscipline="curing">
-                <combat noMindblast="true" />
-            </test-->
             <test not="true" hasDiscipline="curing">
-                <!--combat noMindblast="true" enemyMultiplier="2" /-->
                 <combat enemyMultiplier="2" />
             </test>
             <afterCombats>
@@ -1283,14 +1164,12 @@
         </section>
 
         <section id="sect187">
-            <test not="true" hasDiscipline="dvnation">
-                <choiceState section="sect205" set="disabled" />
-            </test>
-            <!-- Dont be restrictive with the choices -->
-            <!--test hasDiscipline="dvnation">
+            <choiceState section="sect205" set="disabled" />
+            <test hasDiscipline="dvnation">
+                <choiceState section="sect205" set="enabled" />
                 <choiceState section="sect79" set="disabled" />
                 <choiceState section="sect95" set="disabled" />
-            </test-->
+            </test>
             <test not="true" canUseBow="true">
                 <choiceState section="sect79" set="disabled" />
             </test>
@@ -1377,21 +1256,6 @@
 
         <section id="sect214">
             <choiceState section="sect114" set="disabled" />
-            <!-- Why Psi-Surge ? -->
-            <!--test hasDiscipline="psisurge">
-                <choiceState section="sect114" set="enabled" />
-            </test>
-            <test not="true" hasDiscipline="psisurge">
-                <test hasDiscipline="nexus">
-                    <combat eludeTurn="0" />
-                </test>
-                <test not="true" hasDiscipline="nexus">
-                    <combat noWeapon="true" eludeTurn="0" />
-                </test>
-                <afterCombats>
-                    <choiceState section="sect277" set="enabled" />
-                </afterCombats>
-            </test-->
             <!-- It is unclear, but you may be able to use the Magnakai Discipline of Psi-surge to aid you in this fight 
                 (cf. The Kingdoms of Terror Section 259): On this game, Psi-surge was disabled on that section, so here too -->
             <!-- TODO: No object bonus should be added on this combat -->
@@ -1405,26 +1269,22 @@
         </section>
 
         <section id="sect216">
-            <test not="true" hasCircle="circleSolaris">
-                <choiceState section="sect244" set="disabled" />
+            <choiceState section="sect244" set="disabled" />
+            <test hasCircle="circleSolaris">
+                <choiceState section="sect244" set="enabled" />
+                <choiceState section="sect295" set="disabled" />
+                <choiceState section="sect343" set="disabled" />
             </test>
-            <!-- Dont be restrictive with choices -->
-            <!-- else: disable -->
-            <!--choiceState section="sect295" set="enabled" />
-                <choiceState section="sect343" set="enabled" /-->
         </section>
 
         <section id="sect219">
             <endurance count="-6" />
-
             <choiceState section="all" set="disabled" />
             <test not="true" hasDiscipline="curing">
                 <combat enemyMultiplier="2" />
             </test>
-            <!-- Combat tag modifiers with different attributtes are cummulative -->
             <combat noWeapon="true" />
             <afterCombatTurn turn="2">
-                <!-- Combat tag modifiers with the same attributte are replaced -->
                 <combat noWeapon="false" />
             </afterCombatTurn>
             <afterCombats>
@@ -1489,14 +1349,12 @@
         </section>
 
         <section id="sect228">
-            <test not="true" hasDiscipline="pthmnshp">
-                <choiceState section="sect330" set="disabled" />
-            </test>
-            <!-- Dont be restrictive with the choices -->
-            <!--test hasDiscipline="pthmnshp">
+            <choiceState section="sect330" set="disabled" />
+            <test hasDiscipline="pthmnshp">
+                <choiceState section="sect330" set="enabled" />
                 <choiceState section="sect20" set="disabled" />
                 <choiceState section="sect92" set="disabled" />
-            </test-->
+            </test>
         </section>
 
         <section id="sect230">
@@ -1536,14 +1394,12 @@
         <section id="sect236">
             <object objectId="spear" />
             <object objectId="broadsword" />
-            <test not="true" hasDiscipline="pthmnshp">
-                <choiceState section="sect139" set="disabled" />
-            </test>
-            <!-- Dont be restrictive with the choices -->
-            <!--test hasDiscipline="pthmnshp">
+            <choiceState section="sect139" set="disabled" />
+            <test hasDiscipline="pthmnshp">
+                <choiceState section="sect139" set="enabled" />
                 <choiceState section="sect187" set="disabled" />
                 <choiceState section="sect101" set="disabled" />
-            </test-->
+            </test>
         </section>
 
         <section id="sect237">
@@ -1558,28 +1414,28 @@
         </section>
 
         <section id="sect239">
-            <test not="true" hasDiscipline="pthmnshp">
-                <choiceState section="sect251" set="disabled" />
-            </test>
-            <!-- Dont be restrictive with the choices -->
-            <!--test hasDiscipline="pthmnshp">
+            <choiceState section="sect251" set="disabled" />
+            <test hasDiscipline="pthmnshp">
+                <choiceState section="sect251" set="enabled" />
                 <choiceState section="sect82" set="disabled" />
                 <choiceState section="sect30" set="disabled" />
-            </test-->
+            </test>
         </section>
 
         <section id="sect241">
             <choiceState section="all" set="disabled" />
-            <!-- This -1 could be a randomTableIncrement tag. Sure 0 == 10 ? -->
-            <randomTable zeroAsTen="true">
-                <test hasDiscipline="curing">
-                    <endurance count="-[RANDOM] + 1" />
-                </test>
-                <test not="true" hasDiscipline="curing">
+            <randomTable>
+                <case to="0">
+                    <!-- Do nothing -->
+                </case>
+                <case from="1">
                     <endurance count="-[RANDOM]" />
-                </test>
+                </case>
                 <choiceState section="all" set="enabled" />
             </randomTable>
+            <test hasDiscipline="curing">
+                <randomTableIncrement increment="-1" />
+            </test>
         </section>
 
         <section id="sect242">
@@ -1600,14 +1456,12 @@
         </section>
 
         <section id="sect248">
-            <test not="true" hasDiscipline="dvnation|pthmnshp">
-                <choiceState section="sect171" set="disabled" />
-            </test>
-            <!-- Dont be restrictive with the choices -->
-            <!--test hasDiscipline="dvnation|pthmnshp" >
+            <choiceState section="sect171" set="disabled" />
+            <test hasDiscipline="dvnation|pthmnshp">
+                <choiceState section="sect171" set="enabled" />
                 <choiceState section="sect29" set="disabled" />
                 <choiceState section="sect272" set="disabled" />
-            </test-->
+            </test>
         </section>
 
         <section id="sect249">
@@ -1623,14 +1477,12 @@
 
         <section id="sect250">
             <endurance count="+[MAXENDURANCE]" />
-            <test not="true" hasDiscipline="dvnation|pthmnshp">
-                <choiceState section="sect338" set="disabled" />
-            </test>
-            <!-- Dont be restrictive with the choices -->
-            <!--test hasDiscipline="dvnation|pthmnshp">
+            <choiceState section="sect338" set="disabled" />
+            <test hasDiscipline="dvnation|pthmnshp">
+                <choiceState section="sect338" set="enabled" />
                 <choiceState section="sect300" set="disabled" />
                 <choiceState section="sect315" set="disabled" />
-            </test-->
+            </test>
         </section>
 
         <section id="sect253">
@@ -1696,27 +1548,6 @@
         </section>
 
         <section id="sect258">
-            <!-- This will enable 289 if you have only a torch, or only a tinderbox (you must to have both) -->
-            <!-- (and dont be restrictive with choices, 30, always enabled) -->
-            <!--test not="true" hasObject="firesphere|lantern">
-                <test not="true" hasObject="torch">
-                    <test not="true" hasObject="tinderbox">
-                        <choiceState section="sect289" set="disabled" />
-                    </test>
-                </test>
-            </test>
-            <test hasObject="firesphere|lantern">
-                <choiceState section="sect277" set="disabled" />
-                <choiceState section="sect30" set="disabled" />
-            </test>
-            <test hasObject="torch">
-                <test hasObject="tinderbox">
-                    <choiceState section="sect277" set="disabled" />
-                    <choiceState section="sect30" set="disabled" />
-                </test>
-            </test-->
-
-            <!-- by default, assume you dont have any required object -->
             <choiceState section="sect289" set="disabled" />
             <test hasObject="firesphere|lantern">
                 <choiceState section="sect289" set="enabled" />
@@ -1728,7 +1559,6 @@
                     <choiceState section="sect277" set="disabled" />
                 </test>
             </test>
-
         </section>
 
         <section id="sect261">
@@ -1750,7 +1580,6 @@
         </section>
 
         <section id="sect264">
-            <!-- Save only weapons -->
             <saveInventoryState restorePoint="book7nventoryLost" objectsType="weaponlike" />
             <drop objectId="allweaponlike" />
         </section>
@@ -1879,14 +1708,12 @@
         </section>
 
         <section id="sect294">
-            <test not="true" hasDiscipline="pthmnshp">
-                <choiceState section="sect330" set="disabled" />
-            </test>
-            <!-- Dont be restrictive with the choices -->
-            <!--test hasDiscipline="pthmnshp">
-                <choiceState section="sect20" set="disabled" />
+            <choiceState section="sect330" set="disabled" />
+            <test hasDiscipline="pthmnshp">
+                <choiceState section="sect330" set="enabled" />
                 <choiceState section="sect92" set="disabled" />
-            </test-->
+                <choiceState section="sect20" set="disabled" />
+            </test>
         </section>
 
         <section id="sect295">
@@ -1969,14 +1796,12 @@
         </section>
 
         <section id="sect308">
-            <test not="true" hasDiscipline="nexus">
-                <choiceState section="sect99" set="disabled" />
-            </test>
-            <!-- Dont be restrictive with the choices -->
-            <!--test hasDiscipline="nexus">
+            <choiceState section="sect99" set="disabled" />
+            <test hasDiscipline="nexus">
+                <choiceState section="sect99" set="enabled" />
                 <choiceState section="sect59" set="disabled" />
                 <choiceState section="sect323" set="disabled" />
-            </test-->
+            </test>
         </section>
 
         <section id="sect311">
@@ -2077,14 +1902,12 @@
             <drop objectId="goldkey" />
             <object objectId="spear" />
             <object objectId="quarterstaff" />
-            <test not="true" hasDiscipline="pthmnshp">
-                <choiceState section="sect139" set="disabled" />
-            </test>
-            <!-- Dont be restrictive with the choices -->
-            <!--test hasDiscipline="pthmnshp">
+            <choiceState section="sect139" set="disabled" />
+            <test hasDiscipline="pthmnshp">
+                <choiceState section="sect139" set="enabled" />
                 <choiceState section="sect187" set="disabled" />
                 <choiceState section="sect101" set="disabled" />
-            </test-->
+            </test>
         </section>
 
         <section id="sect335">
@@ -2113,15 +1936,10 @@
             <test not="true" hasDiscipline="psiscrn">
                 <choiceState section="sect217" set="disabled" />
             </test>
-            <test hasDiscipline="psiscrn">
-                <!-- Dont be restrictive with the choices -->
-                <!--choiceState section="sect35" set="disabled" /-->
-                <choiceState section="sect143" set="disabled" />
-            </test>
             <test not="true" hasDiscipline="anmlctrl">
                 <choiceState section="sect35" set="disabled" />
             </test>
-            <test hasDiscipline="anmlctrl">
+            <test hasDiscipline="anmlctrl|psiscrn">
                 <choiceState section="sect143" set="disabled" />
             </test>
         </section>
@@ -2146,14 +1964,6 @@
         </section>
 
         <section id="sect348">
-            <!--test not="true" hasObject="firesphere|lantern">
-                <test not="true" hasObject="torch">
-                    <test not="true" hasObject="tinderbox">
-                        <choiceState section="sect49" set="disabled" />
-                    </test>
-                </test>
-            </test-->
-
             <choiceState section="sect49" set="disabled" />
             <test hasObject="firesphere|lantern">
                 <choiceState section="sect49" set="enabled" />

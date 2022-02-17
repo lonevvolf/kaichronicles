@@ -1,4 +1,4 @@
-import { projectAon, translations, newGameController } from "..";
+import { projectAon, translations, newGameController, state } from "..";
 
 /**
  * The new game view API
@@ -30,6 +30,12 @@ export const newGameView = {
         // Book change
         $("#newgame-book").on("change", () => {
             newGameController.selectedBookChanged(<number> $("#newgame-book").val());
+        });
+        
+        // Random table change
+        $("#newgame-randomtable").val((state.manualRandomTable) ? "manual" : "computer");
+        $("#newgame-randomtable").on("change", () => {
+            state.manualRandomTable = ($("#newgame-randomtable").val() === "manual");
         });
 
         // Set the first book as selected:

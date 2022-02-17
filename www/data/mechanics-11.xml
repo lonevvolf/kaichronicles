@@ -232,6 +232,7 @@
             <test hasDiscipline="anmlctrl">
                 <choiceState section="sect85" set="enabled" />
                 <choiceState section="sect299" set="disabled" />
+                <choiceState section="sect243" set="disabled" />
             </test>
         </section>
 
@@ -496,6 +497,7 @@
                 <choiceState section="sect231" set="disabled" />
             </test>
             <choiceSelected section="sect231">
+                <!-- TODO: Do the same as choice in sect170 ???-->
                 <pick class="meal" count="-1" />
             </choiceSelected>
         </section>
@@ -514,7 +516,6 @@
             <choiceState section="sect270" set="disabled" />
             <test hasDiscipline="psisurge">
                 <choiceState section="sect270" set="enabled" />
-                <choiceState section="sect41" set="disabled" />
             </test>
         </section>
 
@@ -798,6 +799,7 @@
             <test hasDiscipline="anmlctrl">
                 <choiceState section="sect85" set="enabled" />
                 <choiceState section="sect332" set="disabled" />
+                <choiceState section="sect243" set="disabled" />
             </test>
         </section>
 
@@ -937,8 +939,11 @@
         </section>
 
         <section id="sect170">
-            <test not="true" hasDiscipline="curing">
-                <choiceState section="sect78" set="disabled" />
+            <choiceState section="sect78" set="disabled" />
+            <test hasDiscipline="curing">
+                <choiceState section="sect78" set="enabled" />
+                <choiceState section="sect119" set="disabled" />
+                <choiceState section="sect231" set="disabled" />
             </test>
             <choiceSelected section="sect231">
                 <!-- TODO: What about isMeal="true" objects ??? -->
@@ -1373,6 +1378,7 @@
             <test hasDiscipline="dvnation|hntmstry|pthmnshp">
                 <choiceState section="sect213" set="enabled" />
                 <choiceState section="sect298" set="disabled" />
+                <choiceState section="sect55" set="disabled" />
             </test>
         </section>
 
@@ -1463,8 +1469,11 @@
         </section>
 
         <section id="sect266">
-            <test not="true" hasDiscipline="anmlctrl">
-                <choiceState section="sect85" set="disabled" />
+            <choiceState section="sect85" set="disabled" />
+            <test hasDiscipline="anmlctrl">
+                <choiceState section="sect85" set="enabled" />
+                <choiceState section="sect243" set="disabled" />
+                <choiceState section="sect332" set="disabled" />
             </test>
         </section>
 

@@ -1026,6 +1026,7 @@
                 <test expression="[KAILEVEL] >= 9">
                     <choiceState section="sect34" set="enabled" />
                     <choiceState section="sect143" set="disabled" />
+                    <choiceState section="sect86" set="disabled" />
                 </test>
             </test>
         </section>
@@ -1742,6 +1743,7 @@
                 <test expression="[KAILEVEL] >= 6">
                     <choiceState section="sect31" set="enabled" />
                     <choiceState section="sect345" set="disabled" />
+                    <choiceState section="sect223" set="disabled" />
                 </test>
             </test>
         </section>
@@ -1958,10 +1960,10 @@
         </section>
 
         <section id="sect243">
-            <test not="true" hasDiscipline="dvnation">
-                <choiceState section="sect26" set="disabled" />
-            </test>
+            <choiceState section="sect26" set="disabled" />
             <test hasDiscipline="dvnation">
+                <choiceState section="sect26" set="enabled" />
+                <choiceState section="sect169" set="disabled" />
                 <choiceState section="sect266" set="disabled" />
             </test>
         </section>
@@ -2348,6 +2350,8 @@
             <test hasCircle="circleSolaris">
                 <test hasCircle="circleSpirit">
                     <choiceState section="sect315" set="enabled" />
+                    <choiceState section="sect44" set="disabled" />
+                    <choiceState section="sect206" set="disabled" />
                 </test>
             </test>
         </section>
@@ -2509,13 +2513,15 @@
 
         <section id="sect327">
             <choiceState section="sect207" set="disabled" />
+            <choiceState section="sect49" set="disabled" />
+
             <test hasDiscipline="anmlctrl">
                 <test expression="[KAILEVEL] >= 4">
                     <choiceState section="sect207" set="enabled" />
+                    <choiceState section="sect337" set="disabled" />
                 </test>
             </test>
 
-            <choiceState section="sect49" set="disabled" />
             <test not="true" isChoiceEnabled="sect207">
                 <test canUseBow="true">
                     <choiceState section="sect49" set="enabled" />

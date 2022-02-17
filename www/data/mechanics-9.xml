@@ -179,8 +179,11 @@
         </section>
 
         <section id="sect18">
-            <test not="true" hasDiscipline="dvnation">
-                <choiceState section="sect143" set="disabled" />
+            <choiceState section="sect143" set="disabled" />
+            <test hasDiscipline="dvnation">
+                <choiceState section="sect143" set="enabled" />
+                <choiceState section="sect265" set="disabled" />
+                <choiceState section="sect123" set="disabled" />
             </test>
         </section>
 
@@ -285,6 +288,8 @@
             <test hasDiscipline="dvnation">
                 <test expression="[KAILEVEL] >= 4">
                     <choiceState section="sect199" set="enabled" />
+                    <choiceState section="sect103" set="disabled" />
+                    <choiceState section="sect111" set="disabled" />
                 </test>
             </test>
         </section>
@@ -323,8 +328,12 @@
         </section>
 
         <section id="sect52">
-            <test not="true" hasDiscipline="pthmnshp">
-                <choiceState section="sect96" set="disabled" />
+            <choiceState section="sect96" set="disabled" />
+            <test hasDiscipline="pthmnshp">
+                <choiceState section="sect96" set="enabled" />
+                <choiceState section="sect187" set="disabled" />
+                <choiceState section="sect252" set="disabled" />
+                <choiceState section="sect318" set="disabled" />
             </test>
         </section>
 
@@ -618,8 +627,11 @@
         </section>
 
         <section id="sect108">
-            <test not="true" hasDiscipline="dvnation">
-                <choiceState section="sect272" set="disabled" />
+            <choiceState section="sect272" set="disabled" />
+            <test hasDiscipline="dvnation">
+                <choiceState section="sect272" set="enabled" />
+                <choiceState section="sect230" set="disabled" />
+                <choiceState section="sect340" set="disabled" />
             </test>
         </section>
 
@@ -629,6 +641,8 @@
             <test hasDiscipline="dvnation">
                 <test expression="[KAILEVEL] >= 4">
                     <choiceState section="sect262" set="enabled" />
+                    <choiceState section="sect45" set="disabled" />
+                    <choiceState section="sect63" set="disabled" />
                 </test>
             </test>
         </section>
@@ -983,11 +997,11 @@
 
         <section id="sect175">
             <meal huntDisabled="true" />
-            <test not="true" hasCircle="circleSpirit">
-                <choiceState section="sect281" set="disabled" />
-            </test>
+            <choiceState section="sect281" set="disabled" />
             <test hasCircle="circleSpirit">
+                <choiceState section="sect281" set="enabled" />
                 <choiceState section="sect122" set="disabled" />
+                <choiceState section="sect61" set="disabled" />
             </test>
         </section>
 
@@ -1494,6 +1508,8 @@
             <test hasDiscipline="psisurge">
                 <test expression="[KAILEVEL] >= 6">
                     <choiceState section="sect84" set="enabled" />
+                    <choiceState section="sect3" set="disabled" />
+                    <choiceState section="sect215" set="disabled" />
                 </test>
             </test>
         </section>

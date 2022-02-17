@@ -141,8 +141,11 @@
         </section>
 
         <section id="sect19">
-            <test not="true" hasDiscipline="tracking">
-                <choiceState section="sect69" set="disabled" />
+            <choiceState section="sect69" set="disabled" />
+            <test hasDiscipline="tracking">
+                <choiceState section="sect69" set="enabled" />
+                <choiceState section="sect272" set="disabled" />
+                <choiceState section="sect119" set="disabled" />
             </test>
         </section>
 
@@ -192,11 +195,13 @@
         </section>
 
         <section id="sect23">
+            <choiceState section="sect151" set="disabled" />
             <test not="true" hasObject="goldenkey">
                 <choiceState section="sect326" set="disabled" />
             </test>
-            <test not="true" hasDiscipline="mindomtr">
-                <choiceState section="sect151" set="disabled" />
+            <test hasDiscipline="mindomtr">
+                <choiceState section="sect151" set="enabled" />
+                <choiceState section="sect337" set="disabled" />
             </test>
         </section>
 
@@ -263,11 +268,15 @@
         </section>
 
         <section id="sect46">
+            <choiceState section="sect246" set="disabled" />
+            <choiceState section="sect90" set="disabled" />
+
             <test not="true" hasDiscipline="sixthsns">
                 <choiceState section="sect296" set="disabled" />
-            </test>
-            <test not="true" expression="[MONEY] >= 2">
-                <choiceState section="sect246" set="disabled" />
+                <choiceState section="sect90" set="enabled" />
+                <test expression="[MONEY] >= 2">
+                    <choiceState section="sect246" set="enabled" />
+                </test>
             </test>
         </section>
 
@@ -356,8 +365,12 @@
         </section>
 
         <section id="sect83">
-            <test not="true" hasDiscipline="sixthsns">
-                <choiceState section="sect45" set="disabled" />
+            <choiceState section="sect45" set="disabled" />
+            <test hasDiscipline="sixthsns">
+                <choiceState section="sect45" set="enabled" />
+                <choiceState section="sect205" set="disabled" />
+                <choiceState section="sect180" set="disabled" />
+                <choiceState section="sect232" set="disabled" />
             </test>
         </section>
 
@@ -383,8 +396,11 @@
         </section>
 
         <section id="sect91">
-            <test not="true" hasDiscipline="sixthsns">
-                <choiceState section="sect198" set="disabled" />
+            <choiceState section="sect198" set="disabled" />
+            <test hasDiscipline="sixthsns">
+                <choiceState section="sect198" set="enabled" />
+                <choiceState section="sect152" set="disabled" />
+                <choiceState section="sect7" set="disabled" />
             </test>
         </section>
 
@@ -429,8 +445,11 @@
         </section>
 
         <section id="sect125">
-            <test not="true" hasDiscipline="tracking">
-                <choiceState section="sect301" set="disabled" />
+            <choiceState section="sect301" set="disabled" />
+            <test hasDiscipline="tracking">
+                <choiceState section="sect301" set="enabled" />
+                <choiceState section="sect27" set="disabled" />
+                <choiceState section="sect214" set="disabled" />
             </test>
         </section>
 
@@ -623,9 +642,6 @@
             <test not="true" hasObject="silverkey">
                 <choiceState section="sect158" set="disabled" />
             </test>
-            <test hasObject="silverkey">
-                <choiceState section="sect259" set="disabled" />
-            </test>
         </section>
 
         <section id="sect174">
@@ -634,8 +650,11 @@
         </section>
 
         <section id="sect175">
-            <test not="true" hasDiscipline="camflage">
-                <choiceState section="sect182" set="disabled" />
+            <choiceState section="sect182" set="disabled" />
+            <test hasDiscipline="camflage">
+                <choiceState section="sect182" set="enabled" />
+                <choiceState section="sect41" set="disabled" />
+                <choiceState section="sect116" set="disabled" />
             </test>
         </section>
 
@@ -741,9 +760,11 @@
         </section>
 
         <section id="sect211">
-            <!-- If no 6th sense, disable choice to sect141 -->
-            <test not="true" hasDiscipline="sixthsns">
-                <choiceState section="sect244" set="disabled" />
+            <choiceState section="sect244" set="disabled" />
+            <test hasDiscipline="sixthsns">
+                <choiceState section="sect244" set="enabled" />
+                <choiceState section="sect173" set="disabled" />
+                <choiceState section="sect106" set="disabled" />
             </test>
         </section>
 
@@ -1089,8 +1110,11 @@
         </section>
 
         <section id="sect311">
-            <test not="true" hasDiscipline="camflage">
-                <choiceState section="sect324" set="disabled" />
+            <choiceState section="sect324" set="disabled" />
+            <test hasDiscipline="camflage">
+                <choiceState section="sect324" set="enabled" />
+                <choiceState section="sect279" set="disabled" />
+                <choiceState section="sect47" set="disabled" />
             </test>
         </section>
 
@@ -1132,7 +1156,7 @@
             <death />
         </section>
 
-        <section id="sect329">            
+        <section id="sect329">
             <tag id="graveyardancients" />
         </section>
 

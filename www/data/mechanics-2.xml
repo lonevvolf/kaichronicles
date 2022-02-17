@@ -237,8 +237,11 @@
         </section>
 
         <section id="sect35">
-            <test not="true" hasDiscipline="tracking">
-                <choiceState section="sect13" set="disabled" />
+            <choiceState section="sect13" set="disabled" />
+            <test hasDiscipline="tracking">
+                <choiceState section="sect13" set="enabled" />
+                <choiceState section="sect155" set="disabled" />
+                <choiceState section="sect293" set="disabled" />
             </test>
         </section>
 
@@ -257,6 +260,7 @@
 
         <section id="sect37">
             <meal />
+            <tag id="ragadorn" />
         </section>
 
         <section id="sect39">
@@ -372,14 +376,20 @@
         </section>
 
         <section id="sect63">
-            <test not="true" hasDiscipline="anmlknsp">
-                <choiceState section="sect264" set="disabled" />
+            <choiceState section="sect264" set="disabled" />
+            <test hasDiscipline="anmlknsp">
+                <choiceState section="sect264" set="enabled" />
+                <choiceState section="sect188" set="disabled" />
+                <choiceState section="sect201" set="disabled" />
             </test>
         </section>
 
         <section id="sect64">
-            <test not="true" hasDiscipline="sixthsns">
-                <choiceState section="sect229" set="disabled" />
+            <choiceState section="sect229" set="disabled" />
+            <test hasDiscipline="sixthsns">
+                <choiceState section="sect229" set="enabled" />
+                <choiceState section="sect134" set="disabled" />
+                <choiceState section="sect208" set="disabled" />
             </test>
         </section>
 
@@ -480,8 +490,11 @@
         </section>
 
         <section id="sect88">
-            <test not="true" hasDiscipline="camflage">
-                <choiceState section="sect179" set="disabled" />
+            <choiceState section="sect179" set="disabled" />
+            <test hasDiscipline="camflage">
+                <choiceState section="sect179" set="enabled" />
+                <choiceState section="sect150" set="disabled" />
+                <choiceState section="sect71" set="disabled" />
             </test>
         </section>
 
@@ -537,10 +550,9 @@
         </section>
 
         <section id="sect102">
-            <test not="true" hasDiscipline="tracking">
-                <choiceState section="sect325" set="disabled" />
-            </test>
+            <choiceState section="sect325" set="disabled" />
             <test hasDiscipline="tracking">
+                <choiceState section="sect325" set="enabled" />
                 <choiceState section="sect64" set="disabled" />
                 <choiceState section="sect164" set="disabled" />
             </test>
@@ -649,8 +661,11 @@
         </section>
 
         <section id="sect118">
-            <test not="true" hasDiscipline="anmlknsp">
-                <choiceState section="sect279" set="disabled" />
+            <choiceState section="sect279" set="disabled" />
+            <test hasDiscipline="anmlknsp">
+                <choiceState section="sect279" set="enabled" />
+                <choiceState section="sect23" set="disabled" />
+                <choiceState section="sect340" set="disabled" />
             </test>
         </section>
 
@@ -758,6 +773,7 @@
 
         <section id="sect148">
             <meal />
+            <tag id="ragadorn" />
         </section>
 
         <section id="sect149">
@@ -854,8 +870,11 @@
         </section>
 
         <section id="sect164">
-            <test not="true" hasDiscipline="sixthsns">
-                <choiceState section="sect172" set="disabled" />
+            <choiceState section="sect172" set="disabled" />
+            <test hasDiscipline="sixthsns">
+                <choiceState section="sect172" set="enabled" />
+                <choiceState section="sect52" set="disabled" />
+                <choiceState section="sect256" set="disabled" />
             </test>
         </section>
 
@@ -905,8 +924,11 @@
         </section>
 
         <section id="sect176">
-            <test not="true" hasDiscipline="sixthsns">
-                <choiceState section="sect322" set="disabled" />
+            <choiceState section="sect322" set="disabled" />
+            <test hasDiscipline="sixthsns">
+                <choiceState section="sect322" set="enabled" />
+                <choiceState section="sect45" set="disabled" />
+                <choiceState section="sect277" set="disabled" />
             </test>
         </section>
 
@@ -973,6 +995,7 @@
             <!-- In the Collector’s Edition, you do not lose any of your Special Items except 
                  for the Seal of Hammerdal. You may choose to follow these instructions instead: -->
             <drop objectId="sealofhammerdal" />
+            <tag id="ragadorn" />
             <pick class="money" count="-[MONEY]" />
         </section>
 
@@ -1093,14 +1116,23 @@
             <pick class="money" count="5" />
             <object objectId="dagger" />
             <object objectId="sealofhammerdal" />
-            <test not="true" hasDiscipline="tracking">
-                <choiceState section="sect182" set="disabled" />
+            <choiceState section="sect182" set="disabled" />
+            <test hasDiscipline="tracking">
+                <choiceState section="sect182" set="enabled" />
+                <choiceState section="sect177" set="disabled" />
+                <choiceState section="sect24" set="disabled" />
+                <choiceState section="sect253" set="disabled" />
+                <choiceState section="sect319" set="disabled" />
             </test>
         </section>
 
         <section id="sect232">
-            <test not="true" hasDiscipline="sixthsns">
-                <choiceState section="sect149" set="disabled" />
+            <choiceState section="sect149" set="disabled" />
+            <test hasDiscipline="sixthsns">
+                <choiceState section="sect149" set="enabled" />
+                <choiceState section="sect250" set="disabled" />
+                <choiceState section="sect68" set="disabled" />
+                <choiceState section="sect223" set="disabled" />
             </test>
             <test not="true" hasObject="sealofhammerdal">
                 <choiceState section="sect223" set="disabled" />
@@ -1184,8 +1216,11 @@
         </section>
 
         <section id="sect244">
-            <test not="true" hasDiscipline="tracking">
-                <choiceState section="sect147" set="disabled" />
+            <choiceState section="sect147" set="disabled" />
+            <test hasDiscipline="tracking">
+                <choiceState section="sect147" set="enabled" />
+                <choiceState section="sect47" set="disabled" />
+                <choiceState section="sect207" set="disabled" />
             </test>
         </section>
 
@@ -1216,15 +1251,21 @@
         </section>
 
         <section id="sect254">
-            <test not="true" hasDiscipline="sixthsns">
-                <choiceState section="sect344" set="disabled" />
+            <choiceState section="sect344" set="disabled" />
+            <test hasDiscipline="sixthsns">
+                <choiceState section="sect344" set="enabled" />
+                <choiceState section="sect69" set="disabled" />
+                <choiceState section="sect183" set="disabled" />
             </test>
         </section>
 
         <section id="sect258">
             <endurance count="-1" />
-            <test not="true" hasDiscipline="sixthsns">
-                <choiceState section="sect272" set="disabled" />
+            <choiceState section="sect272" set="disabled" />
+            <test hasDiscipline="sixthsns">
+                <choiceState section="sect272" set="enabled" />
+                <choiceState section="sect17" set="disabled" />
+                <choiceState section="sect5" set="disabled" />
             </test>
         </section>
 
@@ -1246,8 +1287,11 @@
         </section>
 
         <section id="sect265">
-            <test not="true" hasDiscipline="tracking">
-                <choiceState section="sect252" set="disabled" />
+            <choiceState section="sect252" set="disabled" />
+            <test hasDiscipline="tracking">
+                <choiceState section="sect252" set="enabled" />
+                <choiceState section="sect84" set="disabled" />
+                <choiceState section="sect191" set="disabled" />
             </test>
         </section>
 
@@ -1296,8 +1340,11 @@
         </section>
 
         <section id="sect271">
-            <test not="true" hasDiscipline="camflage">
-                <choiceState section="sect151" set="disabled" />
+            <choiceState section="sect151" set="disabled" />
+            <test hasDiscipline="camflage">
+                <choiceState section="sect151" set="enabled" />
+                <choiceState section="sect157" set="disabled" />
+                <choiceState section="sect65" set="disabled" />
             </test>
         </section>
 
@@ -1504,8 +1551,11 @@
         </section>
 
         <section id="sect314">
-            <test not="true" hasDiscipline="hunting">
-                <choiceState section="sect290" set="disabled" />
+            <choiceState section="sect290" set="disabled" />
+            <test hasDiscipline="hunting">
+                <choiceState section="sect290" set="enabled" />
+                <choiceState section="sect36" set="disabled" />
+                <choiceState section="sect178" set="disabled" />
             </test>
             <choiceSelected section="sect178">
                 <endurance count="-3" />
@@ -1513,8 +1563,11 @@
         </section>
 
         <section id="sect315">
-            <test not="true" hasDiscipline="mindomtr">
-                <choiceState section="sect287" set="disabled" />
+            <choiceState section="sect287" set="disabled" />
+            <test hasDiscipline="mindomtr">
+                <choiceState section="sect287" set="enabled" />
+                <choiceState section="sect190" set="disabled" />
+                <choiceState section="sect175" set="disabled" />
             </test>
         </section>
 
@@ -1552,15 +1605,17 @@
         </section>
 
         <section id="sect328">
+            <choiceState section="sect204" set="disabled" />
             <test hasTag="crystalstar">
-                <choiceState section="sect204" set="disabled" />
                 <choiceState section="sect73" set="disabled" />
                 <choiceState section="sect267" set="disabled" />
             </test>
             <test not="true" hasTag="crystalstar">
                 <choiceState section="sect113" set="disabled" />
-                <test not="true" hasDiscipline="tracking">
-                    <choiceState section="sect204" set="disabled" />
+                <test hasDiscipline="tracking">
+                    <choiceState section="sect204" set="enabled" />
+                    <choiceState section="sect73" set="disabled" />
+                    <choiceState section="sect267" set="disabled" />
                 </test>
             </test>
         </section>
@@ -1591,8 +1646,11 @@
         </section>
 
         <section id="sect334">
-            <test not="true" hasDiscipline="tracking">
-                <choiceState section="sect98" set="disabled" />
+            <choiceState section="sect98" set="disabled" />
+            <test hasDiscipline="tracking">
+                <choiceState section="sect98" set="enabled" />
+                <choiceState section="sect115" set="disabled" />
+                <choiceState section="sect291" set="disabled" />
             </test>
         </section>
 
@@ -1600,8 +1658,11 @@
             <drop objectId="backpackcontent" />
             <drop objectId="allweapons" />
             <drop objectId="chainmail" />
-            <test not="true" hasDiscipline="hunting">
-                <choiceState section="sect139" set="disabled" />
+            <choiceState section="sect139" set="disabled" />
+            <test hasDiscipline="hunting">
+                <choiceState section="sect139" set="enabled" />
+                <choiceState section="sect228" set="disabled" />
+                <choiceState section="sect171" set="disabled" />
             </test>
             <choiceSelected section="sect171">
                 <endurance count="-3" />

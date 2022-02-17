@@ -97,12 +97,11 @@
 
 1.13
  - Kai Chronicles is now an English webapp only (no more APK or Spanish language)
+ - Based on latest git data (instead of no longer maintained SVN data)
  - Book 15 and 16 available
  - Various fixes in previous books
- - Various components updates
- - Based on latest git data (instead of no longer maintained SVN data)
+ - When starting a new game, you can choose the random table type
  - In equipment section of books 6 and above, automatically adds exceeding money to kai monastry if belt pouch exceed 50 when picking random number for money
  - Add new tag rule. Allows to check if player has see some sections in previous books
  - Disable use of object restoring endurance prior/during combat (except is specified)
  - Apply healing only on story sections
- 

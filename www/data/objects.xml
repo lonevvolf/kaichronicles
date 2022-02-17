@@ -319,7 +319,7 @@
             <image book="1" name="small15.png" />
         </special>
 
-        <special id="gaolerkeys">
+        <special id="gaolerkeys" incompatibleWith="gaolerkeys">
             <name>Gaoler’s Keys</name>
             <image book="1" name="small15.png" />
         </special>

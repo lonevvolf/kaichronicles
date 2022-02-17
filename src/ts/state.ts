@@ -50,6 +50,11 @@ export class State {
     public color = Color.Light;
 
     /**
+     * Random table type for new game.
+     */
+    public manualRandomTable = false;
+
+    /**
      * Setup the default color or persist from local storage
      */
     public setupDefaultColorTheme() {
@@ -91,6 +96,7 @@ export class State {
 
         if (!this.actionChart) {
             this.actionChart = new ActionChart();
+            this.actionChart.manualRandomTable = this.manualRandomTable;
         }
     }
 

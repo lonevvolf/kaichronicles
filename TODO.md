@@ -12,7 +12,6 @@ TODO
 - Book 9, sect189: We should keep the count of the different currencies (Lunes, Gold Crows,...). Also on:
   * book 12, sect43
   * book 12, sect61
-- At new game, ask for the random table type
 - An extension of the above, consider saving a snapshot of the action chart when starting a book in section 1. Then add that option to restart the book at section 1 if you die. That way, you don't have to go through and re-do Disciplines and equipment. Keep the option to completely restart the book, though, in case you want to pick different Disciplines or equipment options
 - Add a "random discipline" button that will randomly select the proper number of initial disciplines, as well as your bonus discipline each book from the choices remaining
 - Add a Seventh-Sense-like achievement system
@@ -40,6 +39,7 @@ TODO
 
 ## Books erratas to report
 - All book 13: Bow bonus should be +5 ???
+
 ## Other
 - Allow to zoom illustrations?
 - Add images to disciplines in Action Chart
@@ -76,75 +76,6 @@ TODO
 - Display book 11 map ("Northern magnamund") somewhere?
 - Add music?
 
-
-Reminders
-=========
-
-* DON'T BE RESTRICTIVE WITH CHOICES !!!!
-
-* JsDoc docs: http://usejsdoc.org/
-
-* Set action chart for Kai series completed
-state.actionChart.kaiDisciplines.disciplines = [ KaiDiscipline.Camouflage, KaiDiscipline.Hunting , KaiDiscipline.SixthSense , 
-KaiDiscipline.Tracking , KaiDiscipline.Healing , KaiDiscipline.Weaponskill , KaiDiscipline.Mindshield , KaiDiscipline.Mindblast , KaiDiscipline.AnimalKinship ];
-state.actionChart.kaiDisciplines.weaponSkill = [ "axe" ];
-
-* Set action chart for Magnakai series completed
-state.actionChart.magnakaiDisciplines.disciplines = [ MgnDiscipline.Weaponmastery, MgnDiscipline.AnimalControl, MgnDiscipline.Curing, MgnDiscipline.Invisibility, MgnDiscipline.Huntmastery, MgnDiscipline.Pathsmanship, MgnDiscipline.PsiSurge, MgnDiscipline.PsiScreen, MgnDiscipline.Nexus ];
-state.actionChart.kaiDisciplines.weaponSkill = [ "dagger", "spear", "mace", "shortsword", "warhammer", "bow",
-        "axe", "sword", "quarterstaff" ];
-
-* Create a default inventory (Magnakai books)
-```
-kai.actionChartController.drop('all')
-kai.actionChartController.pick('backpack')
-
-kai.actionChartController.pick('sword')
-kai.actionChartController.pick('bow')
-
-kai.actionChartController.increaseMoney(15)
-
-kai.actionChartController.pick('meal')
-kai.actionChartController.pick('meal')
-
-kai.actionChartController.pick('rope')
-kai.actionChartController.pick('comb')
-kai.actionChartController.pick('brasskey')
-kai.actionChartController.pick('whip')
-kai.actionChartController.pick('laumspurmeal')
-kai.actionChartController.pick('larnumaliqueur2')
-
-kai.actionChartController.pick('sommerswerd')
-kai.actionChartController.pick('quiver')
-kai.actionChartController.pick('shield')
-kai.actionChartController.pick('map')
-kai.actionChartController.pick('helmet')
-kai.actionChartController.pick('chainmail')
-kai.actionChartController.pick('leatherwaistcoat')
-kai.actionChartController.pick('daggerofvashna')
-
-kai.actionChartController.increaseArrows(5)
-```
-
-* Test book images:
-```
-state.sectionStates.getSectionState().addObjectToSection('axe')
-state.sectionStates.getSectionState().addObjectToSection('dagger')
-state.sectionStates.getSectionState().addObjectToSection('sword')
-state.sectionStates.getSectionState().addObjectToSection('spear')
-state.sectionStates.getSectionState().addObjectToSection('mace')
-state.sectionStates.getSectionState().addObjectToSection('shortsword')
-state.sectionStates.getSectionState().addObjectToSection('quarterstaff')
-state.sectionStates.getSectionState().addObjectToSection('warhammer')
-state.sectionStates.getSectionState().addObjectToSection('broadsword')
-state.sectionStates.getSectionState().addObjectToSection('bow')
-state.sectionStates.getSectionState().addObjectToSection('quiver')
-state.sectionStates.getSectionState().addObjectToSection('rope')
-state.sectionStates.getSectionState().addObjectToSection('largerope')
-state.sectionStates.getSectionState().addObjectToSection('taunorwater')
-state.sectionStates.getSectionState().addObjectToSection('meal')
-state.sectionStates.getSectionState().addObjectToSection('arrow')
-```
 
 * Save tests results to file
 No format:

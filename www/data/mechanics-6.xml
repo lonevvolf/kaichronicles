@@ -61,8 +61,11 @@
 
         <section id="sect1">
             <tag id="stornlands" />
-            <test not="true" hasDiscipline="pthmnshp">
-                <choiceState section="sect308" set="disabled" />
+            <choiceState section="sect308" set="disabled" />
+            <test hasDiscipline="pthmnshp">
+                <choiceState section="sect308" set="enabled" />
+                <choiceState section="sect137" set="disabled" />
+                <choiceState section="sect225" set="disabled" />
             </test>
         </section>
 
@@ -122,15 +125,17 @@
         </section>
 
         <section id="sect10">
-            <object objectId="luyenticket" price="10" />
-            <object objectId="rhemticket" price="15" />
-            <object objectId="eulaticket" price="20" />
+            <test not="true" hasObject="luyenticket|rhemticket|eulaticket">
+                <choiceState section="all" set="disabled" />
+                <object objectId="luyenticket" price="10" />
+                <object objectId="rhemticket" price="15" />
+                <object objectId="eulaticket" price="20" />
+            </test>
             <onInventoryEvent>
                 <test hasObject="luyenticket|rhemticket|eulaticket">
-                    <choiceState section="all" set="enabled" />
-                </test>
-                <test not="true" hasObject="luyenticket|rhemticket|eulaticket">
-                    <choiceState section="all" set="disabled" />
+                    <!-- reset in order to hide the other tickets -->
+                    <resetSectionState sectionId="sect10" />
+                    <choiceState section="all" set="enabled" />                    
                 </test>
             </onInventoryEvent>
         </section>
@@ -199,8 +204,12 @@
         </section>
 
         <section id="sect18">
-            <test not="true" hasDiscipline="hntmstry">
-                <choiceState section="sect205" set="disabled" />
+            <choiceState section="sect205" set="disabled" />
+            <test hasDiscipline="hntmstry">
+                <choiceState section="sect205" set="enabled" />
+                <choiceState section="sect298" set="disabled" />
+                <choiceState section="sect214" set="disabled" />
+                <choiceState section="sect60" set="disabled" />
             </test>
         </section>
 
@@ -209,14 +218,20 @@
         </section>
 
         <section id="sect22">
-            <test not="true" hasDiscipline="dvnation">
-                <choiceState section="sect41" set="disabled" />
+            <choiceState section="sect41" set="disabled" />
+            <test hasDiscipline="dvnation">
+                <choiceState section="sect41" set="enabled" />
+                <choiceState section="sect151" set="disabled" />
+                <choiceState section="sect289" set="disabled" />
             </test>
         </section>
 
         <section id="sect24">
-            <test not="true" hasDiscipline="nexus">
-                <choiceState section="sect276" set="disabled" />
+            <choiceState section="sect276" set="disabled" />
+            <test hasDiscipline="nexus">
+                <choiceState section="sect276" set="enabled" />
+                <choiceState section="sect101" set="disabled" />
+                <choiceState section="sect338" set="disabled" />
             </test>
             <test not="true" hasObject="rope|largerope">
                 <choiceState section="sect101" set="disabled" />
@@ -303,8 +318,11 @@
         </section>
 
         <section id="sect39">
-            <test not="true" hasDiscipline="pthmnshp">
-                <choiceState section="sect117" set="disabled" />
+            <choiceState section="sect117" set="disabled" />
+            <test hasDiscipline="pthmnshp">
+                <choiceState section="sect117" set="enabled" />
+                <choiceState section="sect143" set="disabled" />
+                <choiceState section="sect241" set="disabled" />
             </test>
         </section>
 
@@ -450,8 +468,11 @@
         </section>
 
         <section id="sect73">
-            <test not="true" hasDiscipline="curing">
-                <choiceState section="sect173" set="disabled" />
+            <choiceState section="sect173" set="disabled" />
+            <test hasDiscipline="curing">
+                <choiceState section="sect173" set="enabled" />
+                <choiceState section="sect337" set="disabled" />
+                <choiceState section="sect191" set="disabled" />
             </test>
         </section>
 
@@ -989,8 +1010,11 @@
         </section>
 
         <section id="sect169">
-            <test not="true" hasCircle="circleFire">
-                <choiceState section="sect65" set="disabled" />
+            <choiceState section="sect65" set="disabled" />
+            <test hasCircle="circleFire">
+                <choiceState section="sect65" set="enabled" />
+                <choiceState section="sect222" set="disabled" />
+                <choiceState section="sect285" set="disabled" />
             </test>
         </section>
 
@@ -1265,8 +1289,11 @@
         </section>
 
         <section id="sect247">
-            <test not="true" hasDiscipline="dvnation">
-                <choiceState section="sect206" set="disabled" />
+            <choiceState section="sect206" set="disabled" />
+            <test hasDiscipline="dvnation">
+                <choiceState section="sect206" set="enabled" />
+                <choiceState section="sect13" set="disabled" />
+                <choiceState section="sect102" set="disabled" />
             </test>
         </section>
 
@@ -1301,9 +1328,6 @@
             <meal price="1" />
             <test not="true" expression="[MONEY] >= 3">
                 <choiceState section="sect35" set="disabled" />
-            </test>
-            <test expression="[MONEY] >= 3">
-                <choiceState section="sect54" set="disabled" />
             </test>
             <choiceSelected section="sect35">
                 <pick class="money" count="-3" />
@@ -1434,8 +1458,11 @@
         </section>
 
         <section id="sect272">
-            <test not="true" hasDiscipline="curing">
-                <choiceState section="sect250" set="disabled" />
+            <choiceState section="sect250" set="disabled" />
+            <test hasDiscipline="curing">
+                <choiceState section="sect250" set="enabled" />
+                <choiceState section="sect342" set="disabled" />
+                <choiceState section="sect100" set="disabled" />
             </test>
         </section>
 
@@ -1539,11 +1566,11 @@
         </section>
 
         <section id="sect295">
-            <test not="true" hasObject="sommerswerd">
-                <choiceState section="sect321" set="disabled" />
-            </test>
+            <choiceState section="sect321" set="disabled" />
             <test hasObject="sommerswerd">
+                <choiceState section="sect321" set="enabled" />
                 <choiceState section="sect257" set="disabled" />
+                <choiceState section="sect182" set="disabled" />
             </test>
         </section>
 
@@ -1552,8 +1579,11 @@
         </section>
 
         <section id="sect299">
-            <test not="true" hasDiscipline="hntmstry">
-                <choiceState section="sect114" set="disabled" />
+            <choiceState section="sect114" set="disabled" />
+            <test hasDiscipline="hntmstry">
+                <choiceState section="sect114" set="enabled" />
+                <choiceState section="sect161" set="disabled" />
+                <choiceState section="sect282" set="disabled" />
             </test>
             <test not="true" expression="[MONEY] >= 1">
                 <choiceState section="sect161" set="disabled" />
@@ -1565,8 +1595,11 @@
         </section>
 
         <section id="sect305">
-            <test not="true" hasDiscipline="dvnation">
-                <choiceState section="sect122" set="disabled" />
+            <choiceState section="sect122" set="disabled" />
+            <test hasDiscipline="dvnation">
+                <choiceState section="sect122" set="enabled" />
+                <choiceState section="sect217" set="disabled" />
+                <choiceState section="sect169" set="disabled" />
             </test>
         </section>
 
@@ -1598,8 +1631,11 @@
         </section>
 
         <section id="sect316">
-            <test not="true" hasDiscipline="hntmstry">
-                <choiceState section="sect114" set="disabled" />
+            <choiceState section="sect114" set="disabled" />
+            <test hasDiscipline="hntmstry">
+                <choiceState section="sect114" set="enabled" />
+                <choiceState section="sect282" set="disabled" />
+                <choiceState section="sect161" set="disabled" />
             </test>
             <test not="true" expression="[MONEY] >= 1">
                 <choiceState section="sect161" set="disabled" />
@@ -1622,14 +1658,20 @@
         </section>
 
         <section id="sect318">
-            <test not="true" hasDiscipline="anmlctrl">
-                <choiceState section="sect32" set="disabled" />
+            <choiceState section="sect32" set="disabled" />
+            <test hasDiscipline="anmlctrl">
+                <choiceState section="sect32" set="enabled" />
+                <choiceState section="sect4" set="disabled" />
+                <choiceState section="sect349" set="disabled" />
             </test>
         </section>
 
         <section id="sect320">
-            <test not="true" hasDiscipline="pthmnshp|dvnation">
-                <choiceState section="sect195" set="disabled" />
+            <choiceState section="sect195" set="disabled" />
+            <test hasDiscipline="pthmnshp|dvnation">
+                <choiceState section="sect195" set="enabled" />
+                <choiceState section="sect226" set="disabled" />
+                <choiceState section="sect127" set="disabled" />
             </test>
         </section>
 
@@ -1688,15 +1730,20 @@
         </section>
 
         <section id="sect332">
-            <test expression="[MONEY] >= 1">
-                <choiceState section="sect91" set="disabled" />
-            </test>
-            <test not="true" hasDiscipline="pthmnshp|dvnation">
+            <choiceState section="sect91" set="disabled" />
+            <choiceState section="sect346" set="disabled" />
+            <test expression="[MONEY] == 0">
+                <choiceState section="sect91" set="enabled" />
                 <choiceState section="sect346" set="disabled" />
-            </test>
-            <test not="true" expression="[MONEY] >= 1">
                 <choiceState section="sect172" set="disabled" />
                 <choiceState section="sect232" set="disabled" />
+            </test>
+            <test expression="[MONEY] > 0">
+                <test hasDiscipline="pthmnshp|dvnation">
+                    <choiceState section="sect346" set="enabled" />
+                    <choiceState section="sect172" set="disabled" />
+                    <choiceState section="sect232" set="disabled" />
+                </test>
             </test>
         </section>
 
