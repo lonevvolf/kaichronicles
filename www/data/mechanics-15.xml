@@ -1436,9 +1436,7 @@
                     <choiceState section="sect201" set="enabled" />
                 </case>
             </randomTable>
-            <test hasWeaponskillWith="bow">
-                <randomTableIncrement increment="+5" />
-            </test>
+            <randomTableIncrement increment="[BOWBONUS]" />
         </section>
 
         <section id="sect272">

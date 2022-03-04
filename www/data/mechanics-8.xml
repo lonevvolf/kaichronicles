@@ -60,7 +60,13 @@
 
         <section id="sect1">
             <tag id="talestria" />
+            <choiceState section="all" set="disabled" />
             <pick objectId="pass" />
+            <onInventoryEvent>
+                <test hasObject="pass">
+                    <choiceState section="all" set="enabled" />
+                </test>
+            </onInventoryEvent>
         </section>
 
         <section id="sect2">
@@ -872,6 +878,13 @@
         <section id="sect139">
             <pick objectId="greycrystalring" />
             <sell class="special" except="greycrystalring" price="8" />
+
+            <choiceState section="all" set="disabled" />
+            <onInventoryEvent>
+                <test hasObject="greycrystalring">
+                    <choiceState section="all" set="enabled" />
+                </test>
+            </onInventoryEvent>
         </section>
 
         <section id="sect141">
@@ -1143,12 +1156,18 @@
 
         <section id="sect191">
             <pick objectId="vialofclearliquid" />
-            <choiceState section="sect114" set="disabled" />
-            <test hasDiscipline="dvnation|pthmnshp">
-                <choiceState section="sect114" set="enabled" />
-                <choiceState section="sect340" set="disabled" />
-                <choiceState section="sect157" set="disabled" />
-            </test>
+            <choiceState section="all" set="disabled" />
+            <onInventoryEvent>
+                <test hasObject="vialofclearliquid">
+                    <test hasDiscipline="dvnation|pthmnshp">
+                        <choiceState section="sect114" set="enabled" />
+                    </test>
+                    <test not="true" hasDiscipline="dvnation|pthmnshp">
+                        <choiceState section="sect340" set="enabled" />
+                        <choiceState section="sect157" set="enabled" />
+                    </test>
+                </test>
+            </onInventoryEvent>
         </section>
 
         <section id="sect194">

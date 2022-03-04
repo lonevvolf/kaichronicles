@@ -1,4 +1,3 @@
-
 TODO
 ====
 
@@ -57,7 +56,6 @@ TODO
 - Toasts with images: align text when the text is multiline
 - Combats should be sequential: First finish the first one, then the second, etc
 - If the hunting is disabled on the current section, show it on some place (Action Chart?)
-- Document all rules
 - Common performance (web):
   * Rendering performance on book 2 / sect equimpnt
 - Test all books / all sections rendering. It should be valid HTML5

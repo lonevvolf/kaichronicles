@@ -751,9 +751,7 @@
                     <choiceState section="sect328" set="enabled" />
                 </case>
             </randomTable>
-            <test hasWeaponskillWith="bow">
-                <randomTableIncrement increment="5" />
-            </test>
+            <randomTableIncrement increment="[BOWBONUS]" />
         </section>
 
         <section id="sect121">
@@ -1284,9 +1282,7 @@
                     <choiceState section="sect272" set="enabled" />
                 </case>
             </randomTable>
-            <test hasWeaponskillWith="bow">
-                <randomTableIncrement increment="5" />
-            </test>
+            <randomTableIncrement increment="[BOWBONUS]" />
         </section>
 
         <section id="sect199">
@@ -1942,9 +1938,7 @@
                     <choiceState section="sect251" set="enabled" />
                 </case>
             </randomTable>
-            <test hasWeaponskillWith="bow">
-                <randomTableIncrement increment="5" />
-            </test>
+            <randomTableIncrement increment="[BOWBONUS]" />
         </section>
 
         <section id="sect304">

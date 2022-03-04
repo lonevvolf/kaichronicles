@@ -317,7 +317,12 @@
         </section>
 
         <section id="sect36">
-            <meal />
+            <test hasDiscipline="hntmstry">
+                <meal />
+            </test>
+            <test not="true" hasDiscipline="hntmstry">
+                <meal huntDisabled="true" />
+            </test>
         </section>
 
         <section id="sect37">
@@ -1220,7 +1225,12 @@
                     <choiceState section="sect98" set="disabled" />
                 </test>
             </test>
-            <meal />
+            <test hasDiscipline="hntmstry">
+                <meal />
+            </test>
+            <test not="true" hasDiscipline="hntmstry">
+                <meal huntDisabled="true" />
+            </test>
         </section>
 
         <section id="sect145">
@@ -2574,7 +2584,12 @@
                     <choiceState section="sect98" set="disabled" />
                 </test>
             </test>
-            <meal />
+            <test hasDiscipline="hntmstry">
+                <meal />
+            </test>
+            <test not="true" hasDiscipline="hntmstry">
+                <meal huntDisabled="true" />
+            </test>
         </section>
 
         <section id="sect340">

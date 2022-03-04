@@ -446,6 +446,9 @@
 
         <special id="pass">
             <name>Pass</name>
+            <description>
+                An order of safe conduct from Lord Adamas
+            </description>
         </special>
 
         <!-- This is more appropriately a normal weapon, but its use is mandatory and by making it a special object, 
@@ -599,7 +602,7 @@
             <image book="10" name="small9.png" />
         </special>
 
-        <special id="zejardulaga" isArrow="true">
+        <special id="zejardulaga" isArrow="true" itemCount="0">
             <name>Zejar-dulaga</name>
             <description>
                 A poisonous arrow imbued with magical accuracy. It occupies the same space in your Quiver as a normal Arrow
