@@ -286,14 +286,14 @@ export const actionChartController = {
      * or < 0, the first owned object will be used
      * @param displayToast True if a message must to be displayed
      */
-    use(objectId: string, dropObject: boolean = true, index: number = -1, displayToast = false) {
+    use(objectId: string, dropObject: boolean = true, index: number = -1, displayToast = false, applyEffect = true) {
         // Get the object
         const o = state.mechanics.getObject(objectId);
         if (!o) {
             return;
         }
 
-        if (o.usage) {
+        if (o.usage && applyEffect) {
             // Do the usage action:
             if (o.usage.cls === Item.ENDURANCE) {
                 actionChartController.increaseEndurance(o.usage.increment);

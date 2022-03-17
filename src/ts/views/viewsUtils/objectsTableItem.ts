@@ -226,7 +226,8 @@ export class ObjectsTableItem {
         } else if ( this.type === ObjectsTableType.INVENTORY ) {
 
             const currentSection = state.sectionStates.getSectionState();
-            if ( this.item.usage && (this.item.usage.cls !== Item.ENDURANCE || !currentSection.someCombatActive() || (this.item.usage.priorCombat && !currentSection.areCombatsStarted()))) {
+            if (this.item.usage && (this.item.usage.cls !== Item.ENDURANCE || !currentSection.someCombatActive() ||
+                (this.item.usage.priorCombat && !currentSection.areCombatsStarted() && currentSection.areCombatsPotionsAllowed()))) {
                 // Use object operation
                 html += this.getUseOperation();
             }

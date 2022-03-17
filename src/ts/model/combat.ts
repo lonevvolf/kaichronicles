@@ -77,6 +77,9 @@ export class Combat {
     /** Mindforce negative bonus by enemy mindforce attack */
     public mindforceCS = 0;
 
+    /** Allows (of not) usage of potions prior the combat*/
+    public allowPotions = true;
+
     /**
      * Player extra endurance points lost each turn by enemy mindforce attack.
      * It must to be negative.
@@ -258,7 +261,7 @@ export class Combat {
                         return;
                     }
                     // Set the enemy loss
-                    this.enemyKaiBlastLoss = -(value1 + value2) * this.mindblastMultiplier;
+                    this.enemyKaiBlastLoss = -((value1 == 0 ? 1 : value1) + (value2 == 0 ? 1 : value2)) * this.mindblastMultiplier;
                     dfd.resolve();
                 })
             });

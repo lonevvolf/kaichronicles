@@ -860,8 +860,6 @@ export const mechanicsEngine = {
      * the rule will be applied to this combat
      */
     combat(rule: Element, combatToApply: Combat = null) {
-
-        // TODO: Reuse this selector, performance:
         const $rule = $(rule);
 
         // Combat index
@@ -1047,6 +1045,8 @@ export const mechanicsEngine = {
             }
         }
 
+        // Allow usage of potions prior the combat
+        combat.allowPotions = mechanicsEngine.getBooleanProperty($rule, "allowPotions", true);
     },
 
     /**
@@ -1188,16 +1188,32 @@ export const mechanicsEngine = {
 
         // Track dropped arrows
         const originalArrows = state.actionChart.arrows;
+        const count = mechanicsEngine.getIntProperty($rule, "count", false);
 
         // Drop the first one of the specified
+        dropLoop:
         for (const objectId of mechanicsEngine.getArrayProperty($rule, "objectId")) {
-            const droppedItem = actionChartController.drop(objectId);
-            if (droppedItem) {
-                if (droppedItem instanceof ActionChartItem) {
-                    droppedObjects.push(droppedItem);
+            let countDrop = 0;
+            do {
+                const droppedItem = actionChartController.drop(objectId);
+                if (droppedItem) {
+                    if (droppedItem instanceof ActionChartItem) {
+                        droppedObjects.push(droppedItem);
+                    }
+                    countDrop++;
+                    if(!count || countDrop >= count) {
+                        // Stop if number of item dropped = count
+                        break dropLoop;
+                    }
+                } else {
+                    // Stop if at least one item has been dropped but no more availlable
+                    if(countDrop > 0) {
+                        break dropLoop;
+                    }
+                    // If no item dropped at all, check the next item
+                    break;
                 }
-                break;
-            }
+            } while(true);
         }
 
         // Drop backpack item slots by its index (1-based index)
@@ -1502,10 +1518,12 @@ export const mechanicsEngine = {
             return;
         }
 
+        const $rule = $(rule);
+        const applyEffect = mechanicsEngine.getBooleanProperty($rule, "applyEffect", true);
         // Use only the first one
-        for (const objectId of mechanicsEngine.getArrayProperty($(rule) , "objectId")) {
+        for (const objectId of mechanicsEngine.getArrayProperty($rule , "objectId")) {
             if (state.actionChart.hasObject(objectId)) {
-                actionChartController.use(objectId, true, -1, true);
+                actionChartController.use(objectId, true, -1, true, applyEffect);
                 break;
             }
         }

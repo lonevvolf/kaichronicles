@@ -68,6 +68,11 @@
                         <xs:documentation>Optional. If it's set, the object can be used as a weapon of the given types.</xs:documentation>
                     </xs:annotation>
                 </xs:attribute>
+                <xs:attribute name="grdWpnmstryBonus" type="xs:boolean" default="true">
+                    <xs:annotation>
+                        <xs:documentation>Optional (true by default). If it's set, allows (or not) the weapon to inflict an additional 1 ENDURANCE point loss upon an enemy in every successful round of combat, if player have the rank of Sun Lord and have Grand Weaponmastery for this type of weapon (from book 16).</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
             </xs:extension>
         </xs:complexContent>
     </xs:complexType>
@@ -78,6 +83,11 @@
                 <xs:attribute name="weaponType" type="xs:string">
                     <xs:annotation>
                         <xs:documentation>Optional. If it's set, the object can be used as a weapon. In the property value is set the class of weapon as it can be used. If it can be more than one, each class is separated with a "|" character.</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="grdWpnmstryBonus" type="xs:boolean" default="true">
+                    <xs:annotation>
+                        <xs:documentation>Optional (true by default). If it's set, allows (or not) the weapon to inflict an additional 1 ENDURANCE point loss upon an enemy in every successful round of combat, if player have the rank of Sun Lord and have Grand Weaponmastery for this type of weapon (from book 16).</xs:documentation>
                     </xs:annotation>
                 </xs:attribute>
                 <xs:attribute name="isArrow" type="xs:boolean">

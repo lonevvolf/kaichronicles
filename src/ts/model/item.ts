@@ -119,6 +119,11 @@ export class Item {
     public incompatibleWith: string[] = [];
 
     /**
+     * True if the weapon is affected by Sun Lord Grand Weaponmastery bonus
+     */
+    public grdWpnmstryBonus: boolean = true;
+
+    /**
      * Game object information
      * @param book The owner book
      * @param $o The XML tag with the object info
@@ -216,6 +221,8 @@ export class Item {
         // Incompatibilities
         this.incompatibleWith = mechanicsEngine.getArrayProperty($o, "incompatibleWith");
 
+        // Grand Weaponmastery Bonus
+        this.grdWpnmstryBonus = mechanicsEngine.getBooleanProperty($o, "grdWpnmstryBonus", true);
     }
 
     private assignMapDescription(book: Book) {
@@ -244,24 +251,12 @@ export class Item {
      * @return True if the object is a weapon of the given type
      */
     public isWeaponType(weaponType: string): boolean {
-        if (this.id === weaponType) {
-            return true;
-        }
-        if (this.weaponType) {
-            return this.weaponType.split("|").includes(weaponType);
-        }
-        return false;
+        return this.id === weaponType || (this.weaponType && this.weaponType.split("|").includes(weaponType));
     }
 
     /** Returns true if this is a hand-to-hand weapon (not a bow) */
     public isHandToHandWeapon(): boolean {
-        if (!this.isWeapon()) {
-            return false;
-        }
-        if (this.id === "bow" || this.weaponType === "bow") {
-            return false;
-        }
-        return true;
+        return this.isWeapon() && !this.isWeaponType("bow");
     }
 
     /**

@@ -35,7 +35,7 @@
             <image book="1|9" name="ssword.png" />
         </weapon>
 
-        <weapon id="quarterstaff">
+        <weapon id="quarterstaff" grdWpnmstryBonus="false">
             <name>Quarterstaff</name>
             <image book="1|9" name="qstaff.png" />
         </weapon>
@@ -74,7 +74,7 @@
 
         <!-- BOOK 5 -->
 
-        <weapon id="jakan" weaponType="bow">
+        <weapon id="jakan" weaponType="bow" grdWpnmstryBonus="false">
             <name>Jakan</name>
             <description>
                 A hunting bow used by the coastal fishermen of Vassagonia
@@ -84,7 +84,7 @@
 
         <!-- BOOK 6 -->
 
-        <weapon id="bow">
+        <weapon id="bow" grdWpnmstryBonus="false">
             <name>Bow</name>
             <image book="6|9" name="bow.png" />
         </weapon>
@@ -148,7 +148,7 @@
             <name>Ticket to Port Bax</name>
         </special>
 
-        <special id="sommerswerd" weaponType="sword|broadsword|shortsword">
+        <special id="sommerswerd" weaponType="sword|broadsword|shortsword" grdWpnmstryBonus="false">
             <name>Sommerswerd</name>
             <description>
                 When used in combat, the Sommerswerd will add 8 points to your COMBAT SKILL 
@@ -162,7 +162,7 @@
             <effect class="combatSkill" increment="8" />
         </special>
 
-        <special id="magicspear" weaponType="spear">
+        <special id="magicspear" weaponType="spear" grdWpnmstryBonus="false">
             <name>Magic Spear</name>
             <image book="1" name="spear.png" />
         </special>
@@ -295,7 +295,7 @@
             </extraDescription>
         </special>
 
-        <special id="daggerofvashna" weaponType="dagger">
+        <special id="daggerofvashna" weaponType="dagger" grdWpnmstryBonus="false">
             <name>Dagger of Vashna</name>
             <description>
                 A twisted black dagger
@@ -383,7 +383,7 @@
             <image book="1" name="small15.png" />
         </special>
 
-        <special id="silverbowduadon" weaponType="bow">
+        <special id="silverbowduadon" weaponType="bow" grdWpnmstryBonus="false">
             <name>Silver Bow of Duadon</name>
             <description>
                 A magnificent Bow made from the wood of a silver oak tree. 
@@ -568,7 +568,7 @@
             <effect class="endurance" increment="+1" />
         </special>
 
-        <special id="helshezag" weaponType="sword">
+        <special id="helshezag" weaponType="sword" grdWpnmstryBonus="false">
             <name>Helshezag</name>
             <description>
                 It will add 5 points to your COMBAT SKILL, and 7 when used against a Darklord. In the second and subsequent rounds 
@@ -671,7 +671,7 @@
             <name>Scroll from President Kadharian</name>
         </special>
 
-        <special id="deathstaff" weaponType="quarterstaff|spear">
+        <special id="deathstaff" weaponType="quarterstaff|spear" grdWpnmstryBonus="false">
             <name>Deathstaff</name>
             <description>
                 A device forged by the Dark God Naar himself and imbued with the power to
@@ -1366,7 +1366,6 @@
         <object id="sabitojar" usageCount="2">
             <name>Jar of Sabito</name>
             <description>Enables user to breathe underwater.</description>
-            <usage class="endurance" increment="-2" />
         </object>
 
         <object id="laumwortjar" usageCount="3">

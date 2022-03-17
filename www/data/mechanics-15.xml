@@ -456,6 +456,7 @@
         </section>
 
         <section id="sect75">
+            <endurance count="-2" />
             <choiceState section="all" set="disabled" />
             <combat />
             <afterCombats>
@@ -824,7 +825,17 @@
                 <endurance count="-([ENDURANCE] - 15)" />
             </test>
             <drop objectId="allmeals" />
-            <!-- TODO Drop potions -->
+            <drop objectId="laumspurmeal" count="99" />
+            <drop objectId="laumspurpotion" count="99" />
+            <drop objectId="laumspurpotion4" count="99" />
+            <drop objectId="redpotionlaumspur" count="99" />
+            <drop objectId="laumspurpotion3" count="99" />
+            <drop objectId="laumspurpotion8" count="99" />
+            <drop objectId="laumspurjar" count="99" />
+            <drop objectId="potionofstrength" count="99" />
+            <drop objectId="potionofstrength4" count="99" />
+            <drop objectId="aletherberries" count="99" />
+            <drop objectId="aletherjar" count="99" />
         </section>
 
         <section id="sect158">
@@ -954,7 +965,7 @@
         </section>
 
         <section id="sect186">
-            <endurance count="-3" />
+            <endurance count="-2" />
         </section>
 
         <section id="sect187">
@@ -1121,8 +1132,7 @@
         </section>
 
         <section id="sect212">
-            <!-- TODO only remove 1 use for sabitojar -->
-            <drop objectId="oedeherb|oedejar|sabitojar" />
+            <use objectId="sabitojar|oedeherb|oedejar" applyEffect="false"/>
             <choiceState section="sect304" set="disabled" />
             <test hasObject="greenkey">
                 <choiceState section="sect304" set="enabled" />
@@ -1312,9 +1322,8 @@
         </section>
 
         <section id="sect244">
-            <!-- TODO unable to use any potions prior to combat -->
             <choiceState section="all" set="disabled" />
-            <combat combatSkillModifier="-10" />
+            <combat combatSkillModifier="-10" allowPotions="false" />
             <afterCombatTurn turn="2">
                 <combat combatSkillModifier="0" />
             </afterCombatTurn>

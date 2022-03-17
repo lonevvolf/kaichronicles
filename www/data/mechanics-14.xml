@@ -1467,6 +1467,7 @@
         </section>
 
         <section id="sect230">
+            <object objectId="brasskeybook14" />
             <object objectId="sword" index="0" />
             <object objectId="sword" index="1" />
             <object objectId="dagger" />
@@ -1892,6 +1893,7 @@
         </section>
 
         <section id="sect288">
+            <endurance count="-10" />
             <choiceState section="all" set="disabled" />
             <combat />
             <afterCombats>
@@ -1966,7 +1968,7 @@
         </section>
 
         <section id="sect299">
-            <endurance count="-5" />
+            <endurance count="-8" />
             <choiceState section="all" set="disabled" />
             <combat />
             <afterCombats>

@@ -526,6 +526,11 @@
                 <xs:documentation>If true, EP lost by LW on this combat will be permanent</xs:documentation>
             </xs:annotation>
         </xs:attribute>
+        <xs:attribute name="allowPotions" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation>If false (true by default), don't allows usage of potions prior the combat</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
     </xs:complexType>
 
     <xs:complexType name="afterCombats">
@@ -708,6 +713,11 @@
         <xs:attribute name="restorePoint" type="xs:string">
             <xs:annotation>
                 <xs:documentation>If specified, the dropped item will can be restored with the rule "restoreInventoryState", with the given restore point id.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>        
+        <xs:attribute name="count" type="xs:nonNegativeInteger">
+            <xs:annotation>
+                <xs:documentation>If specified (1 by default), drop the specified number of items.</xs:documentation>
             </xs:annotation>
         </xs:attribute>
     </xs:complexType>
@@ -975,6 +985,11 @@
         <xs:attribute name="objectId" type="xs:string" use="required">
             <xs:annotation>
                 <xs:documentation>The object to use. If more than one object is specified, only the first one owned will be used.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="applyEffect" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation>Optional. If false, the effect of the object is not applyed (true by default).</xs:documentation>
             </xs:annotation>
         </xs:attribute>
     </xs:complexType>

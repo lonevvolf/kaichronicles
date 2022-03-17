@@ -274,11 +274,13 @@
                 <choiceState section="sect135" set="enabled" />
                 <choiceState section="sect252" set="disabled" />
             </test>
-            <test hasObject="deathstaff">
-                <choiceState section="sect213" set="enabled" />
-            </test>
-            <test canUseBow="true">
-                <choiceState section="sect109" set="enabled" />
+            <test not="true" hasObject="sommerswerd">
+                <test hasObject="deathstaff">
+                    <choiceState section="sect213" set="enabled" />
+                </test>
+                <test canUseBow="true">
+                    <choiceState section="sect109" set="enabled" />
+                </test>
             </test>
         </section>
 
@@ -313,6 +315,22 @@
             <test expression="[KAILEVEL] > 5">
                 <combat combatSkillModifier="([KAILEVEL] - 5) * 2" />
             </test>
+        </section>
+
+        <section id="sect38">
+            <choiceState section="all" set="disabled" />
+            <randomTable zeroAsTen="true">
+                <endurance count="-[RANDOM]" />
+                <pick class="money" count="-[RANDOM]" />
+                <onInventoryEvent>
+                    <test expression="[BACKPACK-ITEMS-CNT-ON-SECTION] >= [RANDOM] || [BACKPACK-ITEMS-CNT-ON-ACTIONCHART] == 0">
+                        <choiceState section="all" set="enabled" />
+                    </test>
+                    <test not="true" expression="[BACKPACK-ITEMS-CNT-ON-SECTION] >= [RANDOM] || [BACKPACK-ITEMS-CNT-ON-ACTIONCHART] == 0">
+                        <choiceState section="all" set="disabled" />
+                    </test>
+                </onInventoryEvent>
+            </randomTable>
         </section>
 
         <section id="sect39">
@@ -463,10 +481,10 @@
                 <test expression="[RANDOM] > [MONEY]">
                     <pick class="money" count="-[MONEY]" />
                     <onInventoryEvent>
-                        <test expression="[BACKPACK-ITEMS-CNT-ON-SECTION] == 0">
+                        <test not="true" expression="[BACKPACK-ITEMS-CNT-ON-SECTION] > 0 || [BACKPACK-ITEMS-CNT-ON-ACTIONCHART] == 0">
                             <choiceState section="all" set="disabled" />
                         </test>
-                        <test expression="[BACKPACK-ITEMS-CNT-ON-SECTION] > 0">
+                        <test expression="[BACKPACK-ITEMS-CNT-ON-SECTION] > 0 || [BACKPACK-ITEMS-CNT-ON-ACTIONCHART] == 0">
                             <choiceState section="all" set="enabled" />
                         </test>
                     </onInventoryEvent>

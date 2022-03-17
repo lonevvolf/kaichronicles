@@ -1,4 +1,5 @@
 import { Combat, combatTable, COMBATTABLE_DEATH, state, translations } from "..";
+import { BookSeriesId } from "./bookSeries";
 
 export class CombatTurn {
 
@@ -94,6 +95,15 @@ export class CombatTurn {
         this.enemyExtra += combat.enemyKaiBlastLoss;
         if ( this.enemy !== COMBATTABLE_DEATH) {
             this.enemy -= combat.enemyKaiBlastLoss;
+        }
+
+        // Remove 1 Endurance if GrandMaster + Weaponmastery + Non-magical metal edged weapon
+        if (state.book.bookNumber >= 16 && state.actionChart.isWeaponskillActive(combat.bowCombat, BookSeriesId.GrandMaster)
+            && state.actionChart.getSelectedWeaponItem().grdWpnmstryBonus) { 
+            this.enemyExtra += -1;
+            if ( this.enemy !== COMBATTABLE_DEATH) {
+                this.enemy -= -1;
+            }
         }
 
         /** The player base loss */

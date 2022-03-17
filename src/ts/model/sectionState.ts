@@ -211,6 +211,18 @@ export class SectionState {
     }
 
     /**
+     * Return false if any of the combats don't allows prior usage of potions.
+     */
+    public areCombatsPotionsAllowed(): Boolean {
+        for (const combat of this.combats) {
+            if ( !combat.allowPotions) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
      * Returns the number on endurance points lost by somebody on section combats
      * @param {string} who If is 'enemy' we will calculate the enemy loss. Otherwise, we will
      * calculate the player loss
