@@ -608,8 +608,8 @@ export const mechanicsEngine = {
         }
 
         // Test combats won:
-        const combatsWon = mechanicsEngine.getBooleanProperty($rule, "combatsWon", false);
-        if (combatsWon) {
+        const combatsWon = mechanicsEngine.getBooleanProperty($rule, "combatsWon");
+        if (combatsWon !== null) {
             const allCombatsWon = state.sectionStates.getSectionState().areAllCombatsWon();
             if (combatsWon && allCombatsWon) {
                 return true;

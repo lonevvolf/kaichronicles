@@ -105,3 +105,6 @@
  - Add new tag rule. Allows to check if player has see some sections in previous books
  - Disable use of object restoring endurance prior/during combat (except is specified)
  - Apply healing only on story sections
+
+ 1.13.1
+ - Fix combatsWon test not checked if set to false (can stuck the player in multiples books)
