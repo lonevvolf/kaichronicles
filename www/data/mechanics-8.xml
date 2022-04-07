@@ -79,13 +79,13 @@
         </section>
 
         <section id="sect4">
-            <test not="true" canUseBow="true">
+            <test canUseBow="false">
                 <choiceState section="sect310" set="disabled" />
             </test>
         </section>
 
         <section id="sect5">
-            <test not="true" canUseBow="true">
+            <test canUseBow="false">
                 <choiceState section="sect324" set="disabled" />
             </test>
             <choiceSelected section="sect324">
@@ -280,7 +280,7 @@
         </section>
 
         <section id="sect36">
-            <test not="true" canUseBow="true">
+            <test canUseBow="false">
                 <choiceState section="sect182" set="disabled" />
             </test>
             <test not="true" hasObject="fireseed">
@@ -622,7 +622,7 @@
         </section>
 
         <section id="sect93">
-            <test not="true" canUseBow="true">
+            <test canUseBow="false">
                 <choiceState section="sect161" set="disabled" />
             </test>
             <choiceSelected section="sect161">
@@ -631,7 +631,7 @@
         </section>
 
         <section id="sect95">
-            <test not="true" canUseBow="true">
+            <test canUseBow="false">
                 <choiceState section="sect196" set="disabled" />
             </test>
             <choiceSelected section="sect196">
@@ -796,7 +796,7 @@
         </section>
 
         <section id="sect125">
-            <test not="true" canUseBow="true">
+            <test canUseBow="false">
                 <choiceState section="sect90" set="disabled" />
             </test>
             <choiceSelected section="sect90">
@@ -817,7 +817,7 @@
         </section>
 
         <section id="sect127">
-            <test not="true" canUseBow="true">
+            <test canUseBow="false">
                 <choiceState section="sect209" set="disabled" />
             </test>
         </section>
@@ -980,7 +980,7 @@
         </section>
 
         <section id="sect161">
-            <test not="true" canUseBow="true">
+            <test canUseBow="false">
                 <choiceState section="sect208" set="disabled" />
             </test>
             <choiceSelected section="sect208">
@@ -1185,7 +1185,7 @@
         </section>
 
         <section id="sect195">
-            <test not="true" canUseBow="true">
+            <test canUseBow="false">
                 <choiceState section="sect323" set="disabled" />
             </test>
             <choiceSelected section="sect323">
@@ -1256,7 +1256,7 @@
         </section>
 
         <section id="sect206">
-            <test not="true" canUseBow="true">
+            <test canUseBow="false">
                 <choiceState section="sect246" set="disabled" />
             </test>
         </section>
@@ -1281,7 +1281,7 @@
         </section>
 
         <section id="sect212">
-            <test not="true" canUseBow="true">
+            <test canUseBow="false">
                 <choiceState section="sect17" set="disabled" />
             </test>
         </section>
@@ -1417,7 +1417,7 @@
         </section>
 
         <section id="sect248">
-            <test not="true" canUseBow="true">
+            <test canUseBow="false">
                 <choiceState section="sect39" set="disabled" />
             </test>
             <choiceSelected section="sect39">
@@ -1561,7 +1561,7 @@
         </section>
 
         <section id="sect272">
-            <test not="true" canUseBow="true">
+            <test canUseBow="false">
                 <choiceState section="sect28" set="disabled" />
             </test>
             <test not="true" hasObject="fireseed">
@@ -1920,7 +1920,7 @@
         </section>
 
         <section id="sect341">
-            <test not="true" canUseBow="true">
+            <test canUseBow="false">
                 <choiceState section="sect215" set="disabled" />
             </test>
             <choiceSelected section="sect215">

@@ -708,6 +708,25 @@
             </description>
         </special>
 
+        <!-- BOOK 17 -->
+        
+        <special id="onyxkey" itemCount="0">
+            <name>Onyx Key</name>
+            <description>
+                A key with a jade-green stem.
+            </description>
+        </special>
+
+        <special id="powerspike" grdWpnmstryBonus="false" weaponType="dagger">
+            <name>Power Spike</name>
+            <description>Taken from a spiked helm, forged and fashioned by Naar, the Dark God.</description>
+        </special>
+
+        <special id="greengem">
+            <name>Green Gem</name>
+            <description>A small green gemstone on a platinum chain.</description>
+        </special>
+
     </specials>
 
     <objects>
@@ -1475,6 +1494,20 @@
 
         <object id="smallsack">
             <name>Small Sack</name>
+        </object>
+
+        <!-- BOOK 17 -->
+
+        <object id="stonebowl">
+            <name>Stone Bowl</name>
+        </object>
+
+        <object id="crystaltiara">
+            <name>Crystal Tiata</name>
+        </object>
+
+        <object id="oiledrope">
+            <name>Coil of Oiled Rope</name>
         </object>
 
         <!-- OTHERS -->

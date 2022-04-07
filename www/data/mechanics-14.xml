@@ -1052,7 +1052,7 @@
                     <choiceState section="sect63" set="enabled" />
                 </case>
             </randomTable>
-            <test hasObject="rope">
+            <test hasObject="rope|largerope">
                 <randomTableIncrement increment="+1" />
             </test>
             <test hasDiscipline="hntmstry">
@@ -1795,7 +1795,7 @@
                     <choiceState section="sect63" set="enabled" />
                 </case>
             </randomTable>
-            <test hasObject="rope">
+            <test hasObject="rope|largerope">
                 <randomTableIncrement increment="+1" />
             </test>
             <test hasDiscipline="hntmstry">

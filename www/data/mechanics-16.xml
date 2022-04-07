@@ -455,6 +455,7 @@
         </section>
 
         <section id="sect60">
+            <tag id="planeofdarkness" />
             <choiceState section="sect158" set="disabled" />
             <test hasDiscipline="hntmstry">
                 <test expression="[KAILEVEL] >= 7">

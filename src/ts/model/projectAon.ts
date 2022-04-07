@@ -156,6 +156,14 @@ export const projectAon = {
             biographies: [ "jdbiolw" , "bwbiolw" ]
         },
 
+        // Book 17:
+        {
+            title: "The Deathlord of Ixia",
+            code: "17tdoi",
+            illustrators: [ "williams" ],
+            biographies: [ "jdbiolw" , "bwbiolw" ]
+        },
+
     ] as BookMetadata[],
 
     /**

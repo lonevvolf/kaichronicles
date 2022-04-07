@@ -466,9 +466,9 @@
                 <xs:documentation>Enemy dammage multiplier. Can have decimals (ex. "0.5")</xs:documentation>
             </xs:annotation>
         </xs:attribute>
-        <xs:attribute name="enemyTurnLoss" type="xs:nonPositiveInteger">
+        <xs:attribute name="enemyTurnLoss" type="xs:string">
             <xs:annotation>
-                <xs:documentation>Extra E.P. lost by the enemy each turn. Should be negative or zero</xs:documentation>
+                <xs:documentation>Extra E.P. lost by the enemy each turn. Should be negative or zero. Can be an expression.</xs:documentation>
             </xs:annotation>
         </xs:attribute>
         <xs:attribute name="turnLoss" type="xs:nonPositiveInteger">

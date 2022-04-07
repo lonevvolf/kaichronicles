@@ -226,10 +226,14 @@ export class Combat {
         // Calculate the turn
         randomTable.getRandomValueAsync()
             .then((randomValue) => {
-                const helshezagUsed = (state.actionChart.getSelectedWeapon() === Item.HELSHEZAG);
-                const turn = new CombatTurn(this, randomValue, elude, helshezagUsed);
-                this.turns.push(turn);
-                dfd.resolve(turn);
+                if(randomValue !== null) {
+                    const helshezagUsed = (state.actionChart.getSelectedWeapon() === Item.HELSHEZAG);
+                    const turn = new CombatTurn(this, randomValue, elude, helshezagUsed);
+                    this.turns.push(turn);
+                    dfd.resolve(turn);
+                } else {
+                    dfd.reject();
+                }
             });
 
         return dfd.promise();

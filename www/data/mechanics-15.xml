@@ -245,7 +245,7 @@
 
         <section id="sect37">
             <choiceState section="sect211" set="disabled" />
-            <test hasObject="rope">
+            <test hasObject="rope|largerope">
                 <choiceState section="sect211" set="enabled" />
                 <choiceState section="sect346" set="disabled" />
             </test>
@@ -731,6 +731,10 @@
                 <choiceState section="all" set="enabled" />
             </afterCombats>
         </section>
+        
+        <section id="sect123">            
+            <tag id="darke" />
+        </section>
 
         <section id="sect128">
             <death />
@@ -1028,7 +1032,7 @@
             <test hasDiscipline="hntmstry">
                 <randomTableIncrement increment="+2" />
             </test>
-            <test hasObject="rope">
+            <test hasObject="rope|largerope">
                 <randomTableIncrement increment="+1" />
             </test>
             <test expression="[KAILEVEL] >= 5">

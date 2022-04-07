@@ -998,9 +998,9 @@ export const mechanicsEngine = {
         }
 
         // Enemy extra loss per turn
-        const txtEnemyTurnLoss = $rule.attr("enemyTurnLoss");
-        if (txtEnemyTurnLoss) {
-            combat.enemyTurnLoss = parseInt(txtEnemyTurnLoss, 10);
+        const enemyTurnLoss = mechanicsEngine.getIntProperty($rule, "enemyTurnLoss", true);
+        if (enemyTurnLoss !== null) {
+            combat.enemyTurnLoss = enemyTurnLoss;
         }
 
         // Player extra loss per turn

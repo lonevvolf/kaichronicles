@@ -155,7 +155,7 @@
         </section>
 
         <section id="sect13">
-            <test not="true" canUseBow="true">
+            <test canUseBow="false">
                 <choiceState section="sect56" set="disabled" />
             </test>
         </section>
@@ -477,7 +477,7 @@
         </section>
 
         <section id="sect74">
-            <test not="true" canUseBow="true">
+            <test canUseBow="false">
                 <choiceState section="sect20" set="disabled" />
             </test>
         </section>
@@ -534,7 +534,7 @@
 
         <section id="sect85">
             <endurance count="-2" />
-            <test not="true" canUseBow="true">
+            <test canUseBow="false">
                 <choiceState section="sect178" set="disabled" />
             </test>
             <test canUseBow="true">
@@ -886,7 +886,7 @@
 
         <section id="sect153">
             <endurance count="-5" />
-            <test not="true" canUseBow="true">
+            <test canUseBow="false">
                 <choiceState section="sect178" set="disabled" />
             </test>
             <test canUseBow="true">
@@ -950,7 +950,7 @@
         </section>
 
         <section id="sect162">
-            <test not="true" canUseBow="true">
+            <test canUseBow="false">
                 <choiceState section="sect198" set="disabled" />
             </test>
             <test canUseBow="true">
@@ -1111,7 +1111,7 @@
         </section>
 
         <section id="sect196">
-            <test not="true" canUseBow="true">
+            <test canUseBow="false">
                 <choiceState section="sect20" set="disabled" />
             </test>
         </section>
@@ -1210,13 +1210,13 @@
         </section>
 
         <section id="sect224">
-            <test not="true" canUseBow="true">
+            <test canUseBow="false">
                 <choiceState section="sect170" set="disabled" />
             </test>
         </section>
 
         <section id="sect227">
-            <test not="true" canUseBow="true">
+            <test canUseBow="false">
                 <choiceState section="sect20" set="disabled" />
             </test>
         </section>
@@ -1488,7 +1488,7 @@
 
         <section id="sect278">
             <endurance count="-3" />
-            <test not="true" canUseBow="true">
+            <test canUseBow="false">
                 <choiceState section="sect198" set="disabled" />
             </test>
             <test canUseBow="true">
@@ -1724,7 +1724,7 @@
         </section>
 
         <section id="sect330">
-            <test not="true" canUseBow="true">
+            <test canUseBow="false">
                 <choiceState section="sect20" set="disabled" />
             </test>
         </section>
@@ -1748,7 +1748,7 @@
         </section>
 
         <section id="sect334">
-            <test not="true" canUseBow="true">
+            <test canUseBow="false">
                 <choiceState section="sect209" set="disabled" />
             </test>
         </section>
