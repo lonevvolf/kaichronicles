@@ -40,13 +40,15 @@ if ( bookNumber ) {
 const progress = ({method, stage, progress}: SimpleGitProgressEvent) => {
     console.log(`git.${method} ${stage} stage ${progress}% complete`);
  }
-const git: SimpleGit = simpleGit({progress});
+
 let gitPromise;
 if(fsn.existsSync("project-aon")) {
     console.log("Updating Project Aon local repository");
+    const git: SimpleGit = simpleGit('./project-aon', {progress});
     gitPromise = git.pull();
 } else {
     console.log("Cloning Project Aon git repository. Could take time (~500MB to download).");
+    const git: SimpleGit = simpleGit({progress});
     gitPromise = git.clone("https://git.projectaon.org/project-aon.git");
 }
 
