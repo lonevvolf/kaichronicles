@@ -600,6 +600,17 @@ export const mechanicsEngine = {
             }
         }
 
+        //Test Dessi Stone
+        if(mechanicsEngine.getBooleanProperty($rule, "hasDessiStone", false)) {
+            const currentWeaponId = state.actionChart.getSelectedWeapon();
+            if(currentWeaponId !== "") {
+                const selectedWeapon: ActionChartItem = state.actionChart.getActionChartItem(currentWeaponId);
+                if (selectedWeapon && selectedWeapon.dessiStoneBonus) {
+                    return true;
+                }
+            }
+        }
+
         // Test weaponskill with current weapon
         if (mechanicsEngine.getBooleanProperty($rule, "weaponskillActive", false)) {
             if (state.actionChart.isWeaponskillActive()) {
@@ -817,7 +828,8 @@ export const mechanicsEngine = {
                 count: parseInt($rule.attr("count"), 10),
                 unlimited: false,
                 useOnSection: false,
-                usageCount: item && item.usageCount ? item.usageCount : 1
+                usageCount: item && item.usageCount ? item.usageCount : 1,
+                dessiStoneBonus: false
             });
         }
 
@@ -843,7 +855,8 @@ export const mechanicsEngine = {
                         count: 0,
                         unlimited: false,
                         useOnSection: false,
-                        usageCount: item && item.usageCount ? item.usageCount : 1
+                        usageCount: item && item.usageCount ? item.usageCount : 1,
+                        dessiStoneBonus: false
                     });
                     except.push(id); // Avoid duplicates
                 }
@@ -1139,6 +1152,17 @@ export const mechanicsEngine = {
      */
     death(rule: Element) {
         actionChartController.increaseEndurance(-state.actionChart.currentEndurance, true);
+    },
+
+    /**
+     * Player death rule
+     */
+    applyDessiStone(rule: Element) {
+        const currentWeaponId = state.actionChart.getSelectedWeapon();
+        if(currentWeaponId !== "") {
+            const selectedWeapon: ActionChartItem = state.actionChart.getActionChartItem(currentWeaponId);
+            selectedWeapon.dessiStoneBonus = true;
+        }
     },
 
     /** Have a meal rule */

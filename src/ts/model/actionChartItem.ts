@@ -16,6 +16,11 @@ export class ActionChartItem {
     public usageCount: number;
 
     /**
+     * For weapons : True if has the dessi stone (damage x2 if undead)
+     */
+    public dessiStoneBonus = false;
+
+    /**
      * Returns the Item info. null if it was not found
      */
     public getItem(): Item {

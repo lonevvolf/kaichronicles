@@ -29,6 +29,11 @@ export interface SectionItem {
      * Added in v1.12. It can be null after installation of this version. In this case, asume is 1
      */
     usageCount: number;
+
+    /**
+     * For weapons : True if has the dessi stone (damage x2 if undead)
+     */
+    dessiStoneBonus: boolean;
 }
 
 /**
@@ -309,7 +314,8 @@ export class SectionState {
             unlimited,
             count: (objectId === Item.QUIVER || objectId === Item.ARROW || objectId === Item.MONEY || price > 0 ? count : 0 ),
             useOnSection,
-            usageCount
+            usageCount,
+            dessiStoneBonus: false
         });
     }
 

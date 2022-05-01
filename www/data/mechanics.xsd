@@ -317,6 +317,11 @@
                 <xs:documentation>This will negate the current test. So if all of these conditions are false, the inner rules will be executed</xs:documentation>
             </xs:annotation>
         </xs:attribute>
+        <xs:attribute name="hasDessiStone" type="trueOnly">
+            <xs:annotation>
+                <xs:documentation>Test if the current weapon has the dessi stone (book 17)</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
     </xs:complexType>
 
     <xs:complexType name="choiceState">
@@ -966,6 +971,12 @@
         <xs:group ref="any_rule" minOccurs="0" maxOccurs="unbounded" />
     </xs:complexType>
 
+    <xs:complexType name="applyDessiStone">
+        <xs:annotation>
+            <xs:documentation>Apply the effect of the Dessi Stone on the current weapon (book 17).</xs:documentation>
+        </xs:annotation>
+    </xs:complexType>
+
     <xs:complexType name="displayIllustration">
         <xs:annotation>
             <xs:documentation>Displays the first illustration on the "section" attribute section. "text" is an option title to display with the illustration.</xs:documentation>
@@ -1073,6 +1084,7 @@
             <xs:element name="use" type="use" />
             <xs:element name="grandMasterUpgrade" type="grandMasterUpgrade" />
             <xs:element name="removeSpecialGrandMaster" type="removeSpecialGrandMaster" />
+            <xs:element name="applyDessiStone" type="applyDessiStone" />
 
             <xs:element name="book2Sect238" type="specialsection_type" />
             <xs:element name="book2sect308" type="specialsection_type" />

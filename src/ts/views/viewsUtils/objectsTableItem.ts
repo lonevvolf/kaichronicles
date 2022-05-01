@@ -117,6 +117,10 @@ export class ObjectsTableItem {
             this.item.id + '">' + name + "</a>";
         }
 
+        if( this.objectInfo.dessiStoneBonus ) {
+            name += " (" + translations.text( "dessiStone" ) + ")";
+        }
+
         html += "<span><b>" + name + "</b></span>";
 
         // Usage count
@@ -263,7 +267,8 @@ export class ObjectsTableItem {
             unlimited : false,
             count : 0,
             useOnSection : false,
-            usageCount: 1
+            usageCount: 1,
+            dessiStoneBonus: false
         };
 
         objectInfo.id = $link.attr("data-objectId");

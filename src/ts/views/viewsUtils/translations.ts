@@ -75,6 +75,7 @@ export class Translations {
         "usageCount" : "(can be used {0} times)",
         "objectUsed" : "{0} has been used",
         "mentora": "Mentora",
+        "dessiStone": "with Dessi Stone",
 
         //////////////////////////////////////
         // Combats

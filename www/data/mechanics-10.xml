@@ -673,7 +673,7 @@
         </section>
 
         <section id="sect116">
-            <tag id="isleofghosts" >
+            <tag id="isleofghosts" />
             <test not="true" hasDiscipline="psiscrn">
                 <choiceState section="sect26" set="disabled" />
             </test>

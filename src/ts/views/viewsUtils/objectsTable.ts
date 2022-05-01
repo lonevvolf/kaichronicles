@@ -73,7 +73,8 @@ export class ObjectsTable {
                     unlimited : false,
                     count,
                     useOnSection : false,
-                    usageCount: aChartItem.usageCount ? aChartItem.usageCount : 1
+                    usageCount: aChartItem.usageCount ? aChartItem.usageCount : 1,
+                    dessiStoneBonus: aChartItem.dessiStoneBonus
                 };
             } else {
                 // Its a SectionItem
