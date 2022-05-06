@@ -98,6 +98,12 @@
             <effect class="combatSkill" increment="1" />
         </weapon>
 
+        <!-- BOOK 18 -->
+        <weapon id="luthadagger" weaponType="dagger">
+            <name>Prince Lutha's Dagger</name>
+            <image book="1|9" name="dagger.png" />
+        </weapon>
+
     </weapons>
 
     <specials>
@@ -725,6 +731,23 @@
         <special id="greengem">
             <name>Green Gem</name>
             <description>A small green gemstone on a platinum chain.</description>
+        </special>
+
+        <!-- BOOK 18 -->
+        
+        <special id="silverseal">
+            <name>Silver Seal</name>
+            <description>A soot-blackened silver seal which bears the star emblem of Eldenora.</description>
+        </special>
+        
+        <special id="ishirtalisman">
+            <name>Talisman of Ishir</name>
+        </special>
+
+        <special id="suncrystal">
+            <name>Sun-crystal</name>
+            <description>Its multi-faceted surface radiates a myriad of tiny beams.</description>
+            <extraDescription>It contains power sufficient to destroy the Shadow Gate and prevent its return.</extraDescription>
         </special>
 
     </specials>
@@ -1503,12 +1526,18 @@
         </object>
 
         <object id="crystaltiara">
-            <name>Crystal Tiata</name>
+            <name>Crystal Tiara</name>
         </object>
 
         <object id="oiledrope">
             <name>Coil of Oiled Rope</name>
             <image book="6|9" name="rope.png" />
+        </object>
+
+        <!-- BOOK 18 -->
+
+        <object id="mathopotion">
+            <name>Matho's Potion</name>
         </object>
 
         <!-- OTHERS -->

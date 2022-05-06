@@ -369,6 +369,7 @@
         </section>
 
         <section id="sect50">
+            <endurance count="-4" />
             <choiceState section="all" set="disabled" />
             <combat disabledObjects="sommerswerd" combatSkillModifier="-8" />
             <afterCombats>

@@ -110,5 +110,5 @@
  - Fix combatsWon test not checked if set to false (can stuck the player in multiples books)
 
  1.14
- - Book 17 available
+ - Book 17 and 18 available
  - Book 14/15: Fix test that only check rope instead of rope/largerope

@@ -164,6 +164,14 @@ export const projectAon = {
             biographies: [ "jdbiolw" , "bwbiolw" ]
         },
 
+        // Book 18:
+        {
+            title: "Dawn of the Dragons",
+            code: "18dotd",
+            illustrators: [ "williams" ],
+            biographies: [ "jdbiolw" , "bwbiolw" ]
+        },
+
     ] as BookMetadata[],
 
     /**

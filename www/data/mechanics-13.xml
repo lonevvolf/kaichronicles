@@ -1580,6 +1580,10 @@
             <endurance count="+8" />
         </section>
 
+        <section id="sect260">
+            <tag id="cearmaine" />
+        </section>
+
         <section id="sect261">
             <choiceState section="sect330" set="disabled" />
             <test hasDiscipline="alchemy">
