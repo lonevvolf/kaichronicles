@@ -746,6 +746,13 @@
             <extraDescription>It contains power sufficient to destroy the Shadow Gate and prevent its return.</extraDescription>
         </special>
 
+        <special id="breastplate" incompatibleWith="chainmail|broninvest">
+            <name>Breastplate</name>
+            <description>This adds 4 ENDURANCE points to your total.</description>
+            <image book="1" name="mail.png" />
+            <effect class="endurance" increment="4" />
+        </special>
+
     </specials>
 
     <objects>
@@ -1542,6 +1549,18 @@
         
         <object id="ishirtalisman">
             <name>Talisman of Ishir</name>
+        </object>
+        
+        <object id="scroll18">
+            <name>Scroll</name>
+        </object>
+        
+        <object id="militarypass">
+            <name>Military Pass</name>
+        </object>
+        
+        <object id="palmyrionmap">
+            <name>Map of Palmyrion</name>
         </object>
 
         <!-- OTHERS -->
