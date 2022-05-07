@@ -1872,6 +1872,7 @@
         </section>
 
         <section id="sect346">
+            <tag id="torgar" />
             <choiceState section="sect86" set="disabled" />
             <test hasDiscipline="dvnation">
                 <choiceState section="sect86" set="enabled" />

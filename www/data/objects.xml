@@ -739,10 +739,6 @@
             <name>Silver Seal</name>
             <description>A soot-blackened silver seal which bears the star emblem of Eldenora.</description>
         </special>
-        
-        <special id="ishirtalisman">
-            <name>Talisman of Ishir</name>
-        </special>
 
         <special id="suncrystal">
             <name>Sun-crystal</name>
@@ -1538,6 +1534,14 @@
 
         <object id="mathopotion">
             <name>Matho's Potion</name>
+        </object>
+        
+        <object id="flaskaquas">
+            <name>Flask of Aquas</name>
+        </object>
+        
+        <object id="ishirtalisman">
+            <name>Talisman of Ishir</name>
         </object>
 
         <!-- OTHERS -->
