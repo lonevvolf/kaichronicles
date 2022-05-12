@@ -1656,6 +1656,9 @@
         <section id="sect264">
             <choiceState section="all" set="disabled" />
             <combat noMindblast="true" noPsiSurge="true" noKaiSurge="true" eludeTurn="3" />
+            <test currentWeapon="sommerswerd" hasDessiStone="true">
+                <combat noMindblast="true" noPsiSurge="true" noKaiSurge="true" eludeTurn="3" dammageMultiplier="2" />
+            </test>
             <afterElude>
                 <choiceState section="sect76" set="enabled" />
             </afterElude>
@@ -1782,6 +1785,7 @@
 
         <section id="sect281">
             <endurance count="-2" />
+            <pick class="arrow" count="-1" />
             <choiceState section="all" set="disabled" />
             <combat noMindblast="true" noPsiSurge="true" noKaiSurge="true" eludeTurn="4" dammageMultiplier="1" />
             <test currentWeapon="sommerswerd" hasDessiStone="true">

@@ -121,9 +121,9 @@ export class testsController {
         validator.validateBook();
         const title = "Book " + validator.book.bookNumber;
         if (validator.errors.length === 0) {
-            testsController.addLog(title + "OK!");
+            testsController.addLog(title + " OK!");
         } else {
-            testsController.addLog(title + "with errors:");
+            testsController.addLog(title + " with errors:");
         }
         for (const error of validator.errors) {
             testsController.addError(error);

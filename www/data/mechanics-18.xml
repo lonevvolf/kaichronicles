@@ -378,11 +378,11 @@
                 <choiceState section="sect131" set="disabled" />
             </test>
             <test hasObject="platinumamulet">
-                <choiceState section="sect321" set="enabled" />
+                <choiceState section="sect208" set="enabled" />
                 <choiceState section="sect131" set="disabled" />
             </test>
             <test hasObject="ishirtalisman">
-                <choiceState section="sect321" set="enabled" />
+                <choiceState section="sect18" set="enabled" />
                 <choiceState section="sect131" set="disabled" />
             </test>
         </section>
@@ -406,7 +406,7 @@
         </section>
 
         <section id="sect69">
-            <choiceState section="sect305" set="disabled" />
+            <choiceState section="sect187" set="disabled" />
             <test hasDiscipline="nexus">
                 <test expression="[KAILEVEL] >= 9">
                     <choiceState section="sect187" set="enabled" />
@@ -1092,6 +1092,7 @@
         </section>
 
         <section id="sect192">
+            <pick class="arrow" count="-1" />
             <choiceState section="all" set="disabled" />
             <combat />
             <afterCombats>
@@ -1163,7 +1164,8 @@
             <pick objectId="meal" index="2" />
             <pick objectId="sword" />
             <pick objectId="bow" />
-            <pick objectId="quiver" count="3" />
+            <pick objectId="quiver" />
+            <pick class="arrow" count="3" />
             <pick class="money" count="3" />
         </section>
 
@@ -1342,6 +1344,7 @@
             <endurance count="-3" />
             <drop objectId="allweapons" />
             <drop objectId="backpack" />
+            <drop objectId="quiver" count="12" />
             <pick class="money" count="-50" />
         </section>
 
@@ -1595,6 +1598,7 @@
             <endurance count="-3" />
             <drop objectId="allweapons" />
             <drop objectId="backpack" />
+            <drop objectId="quiver" count="12" />
             <pick class="money" count="-50" />
         </section>
 
@@ -1910,6 +1914,7 @@
             <endurance count="-3" />
             <drop objectId="allweapons" />
             <drop objectId="backpack" />
+            <drop objectId="quiver" count="12" />
             <pick class="money" count="-50" />
         </section>
 
