@@ -4,6 +4,7 @@ import { Book, Mechanics, BookSectionStates, ActionChart, projectAon, mechanicsE
 
 interface CurrentState {
     actionChart: ActionChart,
+    actionChartSect1: string;
     bookNumber: number,
     sectionStates: BookSectionStates
 }
@@ -44,6 +45,11 @@ export class State {
     public actionChart = null as ActionChart;
 
     /**
+     * The action chart at the first section
+     */
+    public actionChartSect1 = null as string;
+
+    /**
      * Color Theme ( 'light' or 'dark' ).
      * This is stored at localStorage['color'], not with the game state
      */
@@ -80,9 +86,11 @@ export class State {
         }
 
         this.sectionStates = new BookSectionStates();
+        this.book = new Book(bookNumber);
 
         // Action chart
         this.actionChart = null;
+        this.actionChartSect1 = null;
         if (keepActionChart) {
             // Try to get the previous book action chart, and set it as the current
             this.actionChart = this.getPreviousBookActionChart(bookNumber - 1);
@@ -91,7 +99,6 @@ export class State {
             this.restoreKaiMonasterySectionObjects();
         }
 
-        this.book = new Book(bookNumber);
         this.mechanics = new Mechanics(this.book);
 
         if (!this.actionChart) {
@@ -105,6 +112,7 @@ export class State {
         this.mechanics = null;
         this.sectionStates = null;
         this.actionChart = null;
+        this.actionChartSect1 = null;
     }
 
     /**
@@ -131,6 +139,7 @@ export class State {
     private getCurrentState(): CurrentState {
         return {
             actionChart: this.actionChart,
+            actionChartSect1: this.actionChartSect1,
             bookNumber: this.book ? this.book.bookNumber : 0,
             sectionStates: this.sectionStates
         };
@@ -183,6 +192,7 @@ export class State {
         this.book = new Book(stateKeys.bookNumber);
         this.mechanics = new Mechanics(this.book);
         this.actionChart = ActionChart.fromObject(stateKeys.actionChart, stateKeys.bookNumber);
+        this.actionChartSect1 = stateKeys.actionChartSect1;
         this.sectionStates = new BookSectionStates();
         this.sectionStates.fromStateObject(stateKeys.sectionStates);
     }
@@ -217,6 +227,7 @@ export class State {
         this.book = new Book(this.book.bookNumber + 1);
         this.mechanics = new Mechanics(this.book);
         this.sectionStates = new BookSectionStates();
+        this.actionChartSect1 = null;
 
         // Restore Kai monastery objects
         this.restoreKaiMonasterySectionObjects();

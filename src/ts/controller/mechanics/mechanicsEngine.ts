@@ -1788,6 +1788,18 @@ export const mechanicsEngine = {
                 }
             });
 
+            // Bind restart book from sect1 link
+            $("#mechanics-restart-sect1").toggle(state.actionChartSect1 !== null);
+            if(state.actionChartSect1 !== null) {
+                $("#mechanics-restart-sect1").on("click", (e) => {
+                    e.preventDefault();
+                    if (confirm(translations.text("confirmRestartSection1"))) {
+                        state.loadSaveGameJson(state.actionChartSect1);
+                        routing.redirect("setup");
+                    }
+                });
+            }
+
             // If there are pending combats, disable them
             CombatMechanics.hideCombatButtons(null);
         }

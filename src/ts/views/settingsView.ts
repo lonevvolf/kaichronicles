@@ -34,6 +34,19 @@ export const settingsView = {
             }
         });
 
+        // Restart book
+        $("#settings-restart-sect1").toggle(state.actionChartSect1 !== null);
+        if(state.actionChartSect1 !== null) {
+            $("#settings-restart-sect1-label").text(translations.text("restartBookSection1", [state.book.bookNumber]));
+            $("#settings-restart-sect1").on("click", (e) => {
+                e.preventDefault();
+                if (confirm(translations.text("confirmRestartSection1"))) {
+                    state.loadSaveGameJson(state.actionChartSect1);
+                    routing.redirect("setup");
+                }
+            });
+        }
+
         // Start new game
         $("#settings-new").on("click", (e) => {
             e.preventDefault();

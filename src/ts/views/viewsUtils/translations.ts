@@ -146,8 +146,10 @@ export class Translations {
 
         "settings" : "Settings",
         "gameSaved" : "Game saved",
-        "restartBook" : "Restart book {0}",
+        "restartBook" : "Restart book {0} from scratch",
+        "restartBookSection1" : "Restart book {0} from section 1",
         "confirmRestart" : "Are you sure you want to restart the book?\r\nYou will restart with the Action Chart from the previous book.",
+        "confirmRestartSection1" : "Are you sure you want to restart the book?\r\nYou will restart from the section 1.",
         "close" : "Close",
 
         //////////////////////////////////////
@@ -170,7 +172,7 @@ export class Translations {
         "maximumPick" : "You can pick only {0} objects",
         "zeroIgnored" : "Zero ignored",
         "gameRules" : "Game rules",
-        "deathRestartBook" : "Click here to restart the book {0}"
+        "deathRestartBook" : "Click here to restart the book {0} from scratch"
     };
 
     /**

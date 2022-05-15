@@ -11,7 +11,6 @@ TODO
 - Book 9, sect189: We should keep the count of the different currencies (Lunes, Gold Crows,...). Also on:
   * book 12, sect43
   * book 12, sect61
-- An extension of the above, consider saving a snapshot of the action chart when starting a book in section 1. Then add that option to restart the book at section 1 if you die. That way, you don't have to go through and re-do Disciplines and equipment. Keep the option to completely restart the book, though, in case you want to pick different Disciplines or equipment options
 - Add a "random discipline" button that will randomly select the proper number of initial disciplines, as well as your bonus discipline each book from the choices remaining
 - Add a Seventh-Sense-like achievement system
 

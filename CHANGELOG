@@ -112,3 +112,5 @@
  1.14
  - Book 17 and 18 available
  - Book 14/15: Fix test that only check rope instead of rope/largerope
+ - Added possibility to restart the book from section 1
+ - Reset zoom button added for the map

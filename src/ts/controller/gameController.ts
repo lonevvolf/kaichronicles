@@ -53,7 +53,7 @@ export const gameController = {
      * @param yScroll y coord. where to scroll initially
      */
     loadSection(sectionId: string, choiceLinkClicked: boolean = false, yScroll: number = 0) {
-
+        
         // Load and display the section
         const newSection = new Section(state.book, sectionId, state.mechanics);
         if (!newSection.exists()) {
@@ -91,6 +91,10 @@ export const gameController = {
             yScroll = 0;
         }
         window.scrollTo(0, yScroll);
+
+        if(sectionId === "sect1" && state.actionChartSect1 == null) {
+            state.actionChartSect1 = state.getSaveGameJson();
+        }
 
         // Persist state
         state.persistState();
