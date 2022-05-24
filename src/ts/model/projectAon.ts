@@ -172,6 +172,22 @@ export const projectAon = {
             biographies: [ "jdbiolw" , "bwbiolw" ]
         },
 
+        // Book 19:
+        {
+            title: "Wolf's Bane",
+            code: "19wb",
+            illustrators: [ "williams" ],
+            biographies: [ "jdbiolw" , "bwbiolw" ]
+        },
+
+        // Book 20:
+        {
+            title: "The Curse of Naar",
+            code: "20tcon",
+            illustrators: [ "williams" ],
+            biographies: [ "jdbiolw" , "bwbiolw" ]
+        },
+
     ] as BookMetadata[],
 
     /**

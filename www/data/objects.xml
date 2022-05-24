@@ -753,6 +753,12 @@
             <effect class="endurance" increment="4" />
         </special>
 
+        <!-- BOOK 19 -->
+        
+        <special id="irondisc" itemCount="0">
+            <name>Iron Disc</name>
+        </special>
+
     </specials>
 
     <objects>

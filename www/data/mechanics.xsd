@@ -426,6 +426,11 @@
                 <xs:documentation>If true, the enemy is immune to Kai-Surge</xs:documentation>
             </xs:annotation>
         </xs:attribute>
+        <xs:attribute name="noKaiBlast" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation>If true, the enemy is immune to Kai-Blast</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
         <xs:attribute name="mindblastBonus" type="xs:integer">
             <xs:annotation>
                 <xs:documentation>Special CS bonus to apply for Mindblast discipline on this combat</xs:documentation>

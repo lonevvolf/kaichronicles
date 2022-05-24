@@ -128,6 +128,7 @@ export class Book {
         xmlText = xmlText.replaceAll("<ch.apos/>", "&amp;rsquo;");
         xmlText = xmlText.replaceAll("<ch.blankline/>", "<br />");
         xmlText = xmlText.replaceAll("<ch.minus/>", "-");
+        xmlText = xmlText.replaceAll("<ch.minus></ch.minus>", "-");
         xmlText = xmlText.replaceAll("<ch.ampersand/>", "&amp;amp;");
         xmlText = xmlText.replaceAll("<ch.thinspace/>", " ");
         xmlText = xmlText.replaceAll("<ch.percent/>", "&amp;percnt;");
@@ -273,6 +274,14 @@ export class Book {
         if ( !this.bookTitle ) {
             this.bookTitle = $( this.bookXml ).find( "gamebook > meta > title").first().text();
         }
+
+        // Trick for book 19 title
+        if(this.bookNumber === 19) {
+            var txt = document.createElement("textarea");
+            txt.innerHTML = this.bookTitle;
+            this.bookTitle = txt.value;
+        }
+
         return this.bookTitle;
     }
 

@@ -304,7 +304,7 @@ export class CombatMechanics {
 
         // Check if player can use Kai-blast
         const hasKaiSurge = state.actionChart.hasGndDiscipline(GndDiscipline.KaiSurge);
-        if (!hasKaiSurge || state.actionChart.getDisciplines().length < 7) {
+        if (!hasKaiSurge || state.actionChart.getDisciplines().length < 7 || combat.noKaiBlast) {
             // Hide Kai-blast check
             $combatUI.find(".kaiblastcheck").hide();
             return;

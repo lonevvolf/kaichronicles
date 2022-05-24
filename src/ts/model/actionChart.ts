@@ -698,8 +698,13 @@ export class ActionChart {
             let bonus;
 
             if (state.book.getBookSeries().id >= BookSeriesId.GrandMaster) {
-                // Grand Master series: No loss
-                bonus = 0;
+                if(this.hasMgnDiscipline(MgnDiscipline.Weaponmastery) && this.getDisciplines(BookSeriesId.GrandMaster).length >= 10) {
+                    // Grand Master series + Grand Crown level
+                    bonus = +3;
+                } else {
+                    // Grand Master series: No loss
+                    bonus = 0;
+                }
             } else if (this.hasMgnDiscipline(MgnDiscipline.Weaponmastery) && this.getDisciplines(BookSeriesId.Magnakai).length >= 8) {
                 /*  Exception (Magnakai books):
                     Kai level "Scion-kai" with "Weaponmastery": ...Also, when in combat without a weapon they lose only 1 point
@@ -718,7 +723,7 @@ export class ActionChart {
                 bonus = -4;
             }
 
-            if (bonus < 0) {
+            if (bonus != 0) {
                 bonuses.push({
                     concept: translations.text("noWeapon"),
                     increment: bonus

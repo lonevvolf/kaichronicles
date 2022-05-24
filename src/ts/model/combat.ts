@@ -32,6 +32,9 @@ export class Combat {
     /** The enemy is immune to Kai-Surge? */
     public noKaiSurge = false;
 
+    /** The enemy is immune to Kai-Blast? */
+    public noKaiBlast = false;
+
     /** The CS bonus to apply if the player has Mindblast discipline */
     public mindblastBonus;
 

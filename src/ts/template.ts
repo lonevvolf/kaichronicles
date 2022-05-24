@@ -14,11 +14,12 @@ export const template = {
      */
     setNavTitle(title: string, url: string, showTitleOnSmallDevs: boolean ) {
         // Update the title
-        $("#template-title").text(title);
-        $("#template-title").attr("href", url);
+        const $title = $("#template-title");
+        
+        $title.text(title);
+        $title.attr("href", url);
         $("#template-img-logo").attr("href", url);
 
-        const $title = $("#template-title");
         if ( showTitleOnSmallDevs ) {
             $title.removeClass("hidden-xs hidden-sm");
         } else {

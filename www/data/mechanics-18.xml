@@ -2045,9 +2045,5 @@
             <endurance count="+[MAXENDURANCE]" />
         </section>
 
-        <section id="sect350">
-            <drop objectId="suncrystal" />
-        </section>
-
     </sections>
 </mechanics>

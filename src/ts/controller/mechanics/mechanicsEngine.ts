@@ -927,6 +927,9 @@ export const mechanicsEngine = {
         // Check if the enemy is immune to Kai-Surge
         combat.noKaiSurge = mechanicsEngine.getBooleanProperty($rule, "noKaiSurge", combat.noKaiSurge);
 
+        // Check if the enemy is immune to Kai-Blast
+        combat.noKaiBlast = mechanicsEngine.getBooleanProperty($rule, "noKaiBlast", combat.noKaiBlast);
+
         // Special mindblast bonus?
         const txtMindblastBonus = $rule.attr("mindblastBonus");
         if (txtMindblastBonus) {
