@@ -212,10 +212,32 @@
             <xs:documentation>To make AND conditions, embed test tags.</xs:documentation>
         </xs:annotation>
         <xs:group ref="any_rule" minOccurs="0" maxOccurs="unbounded" />
-        <xs:attribute name="hasDiscipline" type="xs:string">
+        <xs:attribute name="hasDiscipline">
             <xs:annotation>
                 <xs:documentation>Do the player has any of the disciplines?</xs:documentation>
             </xs:annotation>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="wpnmstry" />
+                    <xs:enumeration value="anmlctrl" />
+                    <xs:enumeration value="curing" />
+                    <xs:enumeration value="invsblty" />
+                    <xs:enumeration value="hntmstry" />
+                    <xs:enumeration value="pthmnshp" />
+                    <xs:enumeration value="psisurge" />
+                    <xs:enumeration value="psiscrn" />
+                    <xs:enumeration value="nexus" />
+                    <xs:enumeration value="dvnation" />
+                    <xs:enumeration value="anmlmstr" />
+                    <xs:enumeration value="deliver" />
+                    <xs:enumeration value="assimila" />
+                    <xs:enumeration value="kaisurge" />
+                    <xs:enumeration value="kaiscrn" />
+                    <xs:enumeration value="gnosis" />
+                    <xs:enumeration value="magi" />
+                    <xs:enumeration value="alchemy" />
+                </xs:restriction>
+            </xs:simpleType>
         </xs:attribute>
         <xs:attribute name="hasObject" type="xs:string">
             <xs:annotation>

@@ -758,6 +758,20 @@
         <special id="irondisc" itemCount="0">
             <name>Iron Disc</name>
         </special>
+        
+        <special id="goldcup">
+            <name>Gold Cup</name>
+        </special>
+
+        <special id="wolfbaneamulet">
+            <name>Wolf’s Bane’s Amulet</name>
+            <description>An amulet given by Alyss.</description>
+        </special>
+
+        <special id="rubyring19">
+            <name>Ruby Ring</name>
+            <description>A ring encrusted with crimson gemstones.</description>
+        </special>
 
     </specials>
 
@@ -1567,6 +1581,20 @@
         
         <object id="palmyrionmap">
             <name>Map of Palmyrion</name>
+        </object>
+
+        <!-- BOOK 19 -->
+        
+        <object id="naphthabomb">
+            <name>Naphtha Bomb</name>
+        </object>
+        
+        <object id="blackpotion">
+            <name>Black Potion</name>
+        </object>
+
+        <object id="platinumingot" itemCount="2">
+            <name>Platinum Ingot</name>
         </object>
 
         <!-- OTHERS -->
