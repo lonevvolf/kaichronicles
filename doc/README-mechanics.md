@@ -62,6 +62,7 @@ There are some keywords that can be used on expressions. They have the following
 * **[COMBATSENDURANCELOST]**: The number of endurance points lost by Lone Wolf on combats on the current section
 * **[COMBATSENEMYLOST]**: The number of endurance points lost by the enemies on combats on the current section
 * **[COMBATSDURATION]**: The sum of number of turns of all combats on the section (combat duration)
+* **[ENEMYENDURANCE]**: The enemy current endurance of the first combat on the section. It returns zero if there are no combats on the section
 * **[MEALS]**: Number of meals on the action chart
 * **[KAILEVEL]**: Current number of Kai disciplines of the player
 * **[ORIGINALCOMBATSKILL]**: The original combat skill (without modifiers)

@@ -755,7 +755,7 @@
 
         <!-- BOOK 19 -->
         
-        <special id="irondisc" itemCount="0">
+        <special id="irondisc">
             <name>Iron Disc</name>
         </special>
         
@@ -771,6 +771,15 @@
         <special id="rubyring19">
             <name>Ruby Ring</name>
             <description>A ring encrusted with crimson gemstones.</description>
+        </special>
+
+        <special id="bronzedisc" >
+            <name>Bronze Disc</name>
+            <description>A small disc of bronze that is engraved with alien symbols.</description>
+        </special>
+
+        <special id="blackclasp">
+            <name>Black Clasp</name>
         </special>
 
     </specials>

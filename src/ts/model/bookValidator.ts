@@ -262,8 +262,8 @@ export class BookValidator {
             return;
         }
 
-        // Check there are combats on this section
-        if ( this.currentSection.getCombats().length === 0 ) {
+        // Check there are combats on this section (excetion for b19s304 because it's dynamically generated)
+        if (this.currentSection.sectionId !== 'sect304' && this.currentSection.book.bookNumber !== 19 && this.currentSection.getCombats().length === 0 ) {
             this.addError( $rule , "There are no combats on this section");
         }
     }

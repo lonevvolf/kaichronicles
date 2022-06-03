@@ -350,7 +350,7 @@
             </test>
             <afterCombatTurn turn="1">
                 <combat noMindblast="true" noPsiSurge="true" enemyTurnLoss="0" />
-                <test expression="60 - [COMBATSENEMYLOST] &lt;=25">
+                <test expression="[ENEMYENDURANCE] &lt;=25">
                     <disableCombats />
                     <choiceState section="all" set="enabled" />
                 </test>
@@ -1434,7 +1434,7 @@
             <choiceState section="all" set="disabled" />
             <combat noMindblast="true" noPsiSurge="true" />
             <afterCombatTurn turn="1">
-                <test expression="54 - [COMBATSENEMYLOST] &lt;= 25">
+                <test expression="[ENEMYENDURANCE] &lt;= 25">
                     <disableCombats />
                     <choiceState section="all" set="enabled" />
                 </test>
@@ -1488,7 +1488,7 @@
             <choiceState section="all" set="disabled" />
             <combat noMindblast="true" noPsiSurge="true" />
             <afterCombatTurn turn="1">
-                <test expression="45 - [COMBATSENEMYLOST] > 0">
+                <test expression="[ENEMYENDURANCE] > 0">
                     <disableCombats />
                     <choiceState section="sect301" set="enabled" />
                 </test>
@@ -2094,7 +2094,7 @@
             <choiceState section="all" set="disabled" />
             <combat noMindblast="true" noPsiSurge="true" />
             <afterCombatTurn turn="1">
-                <test expression="60 - [COMBATSENEMYLOST] &lt;= 25">
+                <test expression="[ENEMYENDURANCE] &lt;= 25">
                     <disableCombats />
                     <choiceState section="all" set="enabled" />
                 </test>
