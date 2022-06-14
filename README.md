@@ -17,6 +17,18 @@ This repository does not contain game books data. Data must be downloaded from t
 
 ## Setup
 
+### Docker
+You can run the server within a docker container if you wish. First, pull the image:
+```
+docker pull samtebbs33/kaichronicles:latest
+```
+Then run it, substituting the host port (the port before the colon) for a one of your choice.
+```
+docker run -p 3000:3000 samtebbs33/kaichronicles:latest
+```
+The server will then be accessible at http://localhost:3000 (replace with the chosen host port, if necessary).
+
+### Manual
 Download dependencies
 ```bash
 npm install
