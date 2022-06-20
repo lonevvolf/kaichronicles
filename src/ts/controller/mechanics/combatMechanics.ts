@@ -20,6 +20,9 @@ export class CombatMechanics {
     /** Selector for XXX surge checkbox */
     public static readonly BLAST_CHECK_SELECTOR = ".kaiblastcheck input";
 
+    /** Selector for XXX surge checkbox */
+    public static readonly RAY_CHECK_SELECTOR = ".kairaycheck input";
+
     /**
      * Render section combats
      */
@@ -110,6 +113,7 @@ export class CombatMechanics {
             // Setup XXX-Surge checkbox
             CombatMechanics.setupSurgeUI($combatUI, combat);
             CombatMechanics.setupBlastUI($combatUI, combat);
+            CombatMechanics.setupRayUI($combatUI, combat);
 
         });
 
@@ -296,6 +300,61 @@ export class CombatMechanics {
     }
 
     /**
+     * Setup the Kai-ray checkbox for a given combat
+     * @param $combatUI Combat UI main tag
+     * @param combat Related combat info
+     */
+    private static setupRayUI($combatUI: JQuery<HTMLElement>, combat: Combat) {
+
+        // Check if player can use Kai-blast
+        const hasKaiSurge = state.actionChart.hasGndDiscipline(GndDiscipline.KaiSurge);
+        if (!hasKaiSurge || state.actionChart.getDisciplines().length < 11 || state.actionChart.currentEndurance < 11 || combat.noKaiRay) {
+            // Hide Kai-ray check
+            $combatUI.find(".kairaycheck").hide();
+            return;
+        }
+
+        const $kaiRayCheck = $combatUI.find(CombatMechanics.RAY_CHECK_SELECTOR);
+        
+        // Check if the Kai-blast cannot be used (already used or EP <= 10)
+        if ( combat.kaiRayUse === 2 || state.actionChart.currentEndurance <= 10 ) {
+            CombatMechanics.disableRay( $combatUI , combat );
+        }
+        // Kai-blast selection
+        $kaiRayCheck.on("click", (e: JQuery.Event) => CombatMechanics.onRayClick(e, $kaiRayCheck));
+    }
+
+    /**
+     * Kai-blast checkbox event handler
+     */
+    private static onRayClick(e: JQuery.Event, $kaiRayCheck: JQuery<HTMLElement>) {
+
+        const $combatUI = $kaiRayCheck.parents(".mechanics-combatUI").first();
+        const combatIndex = parseInt( $combatUI.attr( "data-combatIdx" ), 10 );
+        const sectionState = state.sectionStates.getSectionState();
+        const combat = sectionState.combats[ combatIndex ];
+
+        const selected: boolean = $kaiRayCheck.prop( "checked" ) ? true : false;
+        combat.kaiRayUse = selected ? 1 : 0;
+
+        const $psiSurgeCheck = $combatUI.find(CombatMechanics.SURGE_CHECK_SELECTOR);
+        $psiSurgeCheck.prop("checked", false);
+        combat.psiSurge = false;
+
+        const $kaiBlastCheck = $combatUI.find(CombatMechanics.BLAST_CHECK_SELECTOR);
+        $kaiBlastCheck.prop("checked", false);
+        combat.kaiBlast = false;
+
+        if ( !selected && state.actionChart.currentEndurance <= 10 ) {
+            CombatMechanics.disableRay( $combatUI , combat );
+        }
+
+        CombatMechanics.updateCombatRatio( $combatUI , combat);
+
+        template.addSectionReadyMarker();
+    }
+
+    /**
      * Setup the Kai-blast checkbox for a given combat
      * @param $combatUI Combat UI main tag
      * @param combat Related combat info
@@ -311,7 +370,6 @@ export class CombatMechanics {
         }
 
         const $kaiBlastCheck = $combatUI.find(CombatMechanics.BLAST_CHECK_SELECTOR);
-        const $psiSurgeCheck = $combatUI.find(CombatMechanics.SURGE_CHECK_SELECTOR);
 
         // Initialize Kai-blast :
         if (combat.kaiBlast) {
@@ -322,13 +380,13 @@ export class CombatMechanics {
             CombatMechanics.disableSurge( $combatUI , combat );
         }
         // Kai-blast selection
-        $kaiBlastCheck.on("click", (e: JQuery.Event) => CombatMechanics.onBlastClick(e, $kaiBlastCheck, $psiSurgeCheck));
+        $kaiBlastCheck.on("click", (e: JQuery.Event) => CombatMechanics.onBlastClick(e, $kaiBlastCheck));
     }
 
     /**
      * Kai-blast checkbox event handler
      */
-    private static onBlastClick(e: JQuery.Event, $kaiBlastCheck: JQuery<HTMLElement>, $psiSurgeCheck: JQuery<HTMLElement>) {
+    private static onBlastClick(e: JQuery.Event, $kaiBlastCheck: JQuery<HTMLElement>) {
 
         const $combatUI = $kaiBlastCheck.parents(".mechanics-combatUI").first();
         const combatIndex = parseInt( $combatUI.attr( "data-combatIdx" ), 10 );
@@ -338,8 +396,13 @@ export class CombatMechanics {
         const selected: boolean = $kaiBlastCheck.prop( "checked" ) ? true : false;
         combat.kaiBlast = selected;
 
+        const $psiSurgeCheck = $combatUI.find(CombatMechanics.SURGE_CHECK_SELECTOR);
         $psiSurgeCheck.prop("checked", false);
         combat.psiSurge = false;
+
+        const $kaiRayCheck = $combatUI.find(CombatMechanics.RAY_CHECK_SELECTOR);
+        $kaiRayCheck.prop("checked", false);
+        combat.kaiRayUse = combat.kaiRayUse === 2 ? 2 : 0;
 
         const surgeDisciplineId = combat.getSurgeDiscipline();
         if ( !selected && state.actionChart.currentEndurance <= Combat.minimumEPForSurge(surgeDisciplineId) ) {
@@ -366,7 +429,6 @@ export class CombatMechanics {
             return;
         }
 
-        const $kaiBlastCheck = $combatUI.find(CombatMechanics.BLAST_CHECK_SELECTOR);
         const $psiSurgeCheck = $combatUI.find(CombatMechanics.SURGE_CHECK_SELECTOR);
         // Initialize surge:
         if (combat.psiSurge) {
@@ -378,7 +440,7 @@ export class CombatMechanics {
         }
         // surge selection
         $psiSurgeCheck.on("click", (e: JQuery.Event) => {
-            CombatMechanics.onSurgeClick(e , $psiSurgeCheck, $kaiBlastCheck );
+            CombatMechanics.onSurgeClick(e , $psiSurgeCheck );
         });
 
         // UI Surge texts
@@ -391,7 +453,7 @@ export class CombatMechanics {
     /**
      * XXX-Surge checkbox event handler
      */
-    private static onSurgeClick(e: JQuery.Event, $psiSurgeCheck: JQuery<HTMLElement>, $kaiBlastCheck: JQuery<HTMLElement>) {
+    private static onSurgeClick(e: JQuery.Event, $psiSurgeCheck: JQuery<HTMLElement>) {
 
         const $combatUI = $psiSurgeCheck.parents(".mechanics-combatUI").first();
         const combatIndex = parseInt( $combatUI.attr( "data-combatIdx" ), 10 );
@@ -401,8 +463,13 @@ export class CombatMechanics {
         const selected: boolean = $psiSurgeCheck.prop( "checked" ) ? true : false;
         combat.psiSurge = selected;
 
+        const $kaiBlastCheck = $combatUI.find(CombatMechanics.BLAST_CHECK_SELECTOR);
         $kaiBlastCheck.prop("checked", false);
         combat.kaiBlast = false;
+
+        const $kaiRayCheck = $combatUI.find(CombatMechanics.RAY_CHECK_SELECTOR);
+        $kaiRayCheck.prop("checked", false);
+        combat.kaiRayUse = combat.kaiRayUse === 2 ? 2 : 0;
 
         const surgeDisciplineId = combat.getSurgeDiscipline();
         if ( !selected && state.actionChart.currentEndurance <= Combat.minimumEPForSurge(surgeDisciplineId) ) {
@@ -436,15 +503,14 @@ export class CombatMechanics {
         if (!surgeDisciplineId) {
             return;
         }
-        if ( state.actionChart.currentEndurance > Combat.minimumEPForSurge(surgeDisciplineId) ) {
-            return;
+
+        if ( state.actionChart.currentEndurance <= Combat.minimumEPForSurge(surgeDisciplineId) ) {
+            CombatMechanics.disableSurge($combatUI , combat);
         }
-        // TODO: This check is really needed ??? I suspect no
-        const sectionState = state.sectionStates.getSectionState();
-        if ( sectionState.combats.length === 0 ) {
-            return;
+
+        if ( combat.kaiRayUse === 2 || state.actionChart.currentEndurance <= 10 ) {
+            CombatMechanics.disableRay($combatUI , combat);
         }
-        CombatMechanics.disableSurge($combatUI , combat);
     }
 
     /**
@@ -461,6 +527,17 @@ export class CombatMechanics {
         const $kaiBlastCheck = $combatUI.find(CombatMechanics.BLAST_CHECK_SELECTOR);
         $kaiBlastCheck.prop("checked", false);
         $kaiBlastCheck.prop("disabled", true);
+
+        CombatMechanics.updateCombatRatio( $combatUI , combat );
+    }
+
+    /**
+     * Disable Kai-Ray on a combat
+     */
+    private static disableRay( $combatUI: JQuery<HTMLElement> , combat: Combat ) {        
+        const $kaiSurgeCheck = $combatUI.find(CombatMechanics.RAY_CHECK_SELECTOR);
+        $kaiSurgeCheck.prop("checked", false);
+        $kaiSurgeCheck.prop("disabled", true);
 
         CombatMechanics.updateCombatRatio( $combatUI , combat );
     }

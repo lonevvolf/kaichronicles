@@ -1950,6 +1950,18 @@
             </afterCombatTurn>
         </section>
 
+        <section id="sect305">
+            <choiceState section="sect103" set="disabled" />
+            <onInventoryEvent>
+                <test expression="[BACKPACK-ITEMS-CNT-ON-SECTION] == 3 || [BACKPACK-ITEMS-ON-ACTIONCHART] == 0">
+                    <choiceState section="sect103" set="enabled" />
+                </test>
+                <test not="true" expression="[BACKPACK-ITEMS-CNT-ON-SECTION] == 3 || [BACKPACK-ITEMS-ON-ACTIONCHART] == 0">
+                    <choiceState section="sect103" set="disabled" />
+                </test>
+            </onInventoryEvent>
+        </section>
+
         <section id="sect306">
             <choiceState section="all" set="disabled" />
             <combat noMindblast="true" noPsiSurge="true" />

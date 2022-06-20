@@ -634,7 +634,7 @@
         <special id="korliniumscabbard" itemCount="0">
             <name>Korlinium Scabbard</name>
             <description>
-                It will contain and keep hidden the powers of the Sommerswerd
+                It will contain and keep hidden the powers of magical swords
             </description>
             <image book="12" name="small4.png" />
         </special>
@@ -780,6 +780,36 @@
 
         <special id="blackclasp">
             <name>Black Clasp</name>
+        </special>
+
+        <!-- BOOK 20 -->
+
+        <special id="skarnska" weaponType="sword">
+            <name>Skarn-Ska</name>
+            <description>When used in combat, it will add 5 points to your COMBAT SKILL (+ Weaponskill with swords). </description>
+            <image book="20" name="small6.png" />
+            <effect class="combatSkill" increment="5" />
+        </special>
+
+        <special id="tomeofdarkness" itemCount="0">
+            <name>Tome of Darkness</name>
+            <description>It was buried in the ruins of Kazan-Oud.</description>
+        </special>
+
+        <special id="nzapokamulet" itemCount="0">
+            <name>Nza’pok Amulet</name>
+        </special>
+
+        <special id="kunaering" itemCount="0">
+            <name>Künae Ring</name>
+        </special>
+
+        <special id="scarabwinglessdragon" itemCount="0">
+            <name>Scarab of the Wingless Dragon</name>
+        </special>
+
+        <special id="shamathpotion">
+            <name>Shamath’s potion</name>
         </special>
 
     </specials>

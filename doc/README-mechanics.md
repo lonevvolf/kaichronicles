@@ -130,6 +130,9 @@ Kai Monastery
 ### restoreDeliveranceUse (execute once only)
 Magnakai and later: Action Chart button to restore +X EP after Y days will available again
 
+### useDeliverance
+Magnakai and later: Use the "Restore +X EP" action from Action Chart
+
 ### setDisciplines
 Game setup: The player selects the Kai disciplines
 
@@ -359,6 +362,9 @@ the following properties:
 * **mindforceEP="-number"**: Endurance points lost by LW each turn, due to the enemy Mindblast. It will not be applied if the player has Mindshield / Psi-screen
 * **noMindblast="true"**: The enemy is immune to Mindblast
 * **noPsiSurge="true"**: The enemy is immune to Psi-Surge
+* **noKaiSurge="true"**: The enemy is immune to Kai-Surge
+* **noKaiBlast="true"**: The enemy is immune to Kai-Blast
+* **noKaiRay="true"**: The enemy is immune to Kai-Ray
 * **mindblastBonus="number"**: Special CS bonus to apply for Mindblast discipline on this combat
 * **mindblastMultiplier="float"**: CS multiplier to apply to Mindblast/Psi-Surge/Kai-Surge attacks this combat
 * **psiSurgeBonus="number"**: Special CS bonus to apply for Psi-Surge discipline on this combat

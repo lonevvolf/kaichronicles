@@ -35,6 +35,9 @@ export class Combat {
     /** The enemy is immune to Kai-Blast? */
     public noKaiBlast = false;
 
+    /** The enemy is immune to Kai-Ray? */
+    public noKaiRay = false;
+
     /** The CS bonus to apply if the player has Mindblast discipline */
     public mindblastBonus;
 
@@ -43,6 +46,9 @@ export class Combat {
 
     /** The CS bonus to apply if the player has Kai-Surge discipline */
     public kaiSurgeBonus;
+
+    /** The state of the kai-ray usage (0: not used, 1: selected, 2: used) */
+    public kaiRayUse = 0;
 
     /** The CS multiplier to apply to Mindblast/Psi-Surge attacks. It can have decimals (ex. 0.5) */
     public mindblastMultiplier = 1;

@@ -95,6 +95,10 @@
             </test>
         </section>
 
+        <section id="sect11">
+            <tag id="scade" />
+        </section>
+
         <section id="sect13">
             <endurance count="-1" />
         </section>

@@ -19,6 +19,6 @@ export const book19sect304 = {
 
         // Add combat to the section
         let currentState = state.sectionStates.getSectionState();
-        currentState.combats.push(new Combat("Wolf's Bane", combatSkill, state.actionChart.currentEndurance));
+        currentState.combats.push(new Combat("Wolf's Bane", combatSkill, endurance));
     }
 };

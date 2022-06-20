@@ -140,7 +140,7 @@
         <xs:annotation>
             <xs:documentation>Add a tag stored in the action chart.</xs:documentation>
         </xs:annotation>
-        <xs:attribute name="id" type="xs:string">
+        <xs:attribute name="id" type="xs:string" use="required">
             <xs:annotation>
                 <xs:documentation>The identifier of the tag.</xs:documentation>
             </xs:annotation>
@@ -218,7 +218,8 @@
             </xs:annotation>
             <xs:simpleType>
                 <xs:restriction base="xs:string">
-                    <xs:enumeration value="wpnmstry" />
+                    <xs:pattern value = "(wpnmstry|anmlctrl|curing|invsblty|psisurge|psiscrn|nexus|dvnation|anmlmstr|deliver|assimila|kaisurge|kaiscrn|gnosis|magi|alchemy|hntmstry|pthmnshp|\|)*"/>
+                    <!--<xs:enumeration value="wpnmstry" />
                     <xs:enumeration value="anmlctrl" />
                     <xs:enumeration value="curing" />
                     <xs:enumeration value="invsblty" />
@@ -235,7 +236,7 @@
                     <xs:enumeration value="kaiscrn" />
                     <xs:enumeration value="gnosis" />
                     <xs:enumeration value="magi" />
-                    <xs:enumeration value="alchemy" />
+                    <xs:enumeration value="alchemy" />-->
                 </xs:restriction>
             </xs:simpleType>
         </xs:attribute>
@@ -453,6 +454,11 @@
                 <xs:documentation>If true, the enemy is immune to Kai-Blast</xs:documentation>
             </xs:annotation>
         </xs:attribute>
+        <xs:attribute name="noKaiRay" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation>If true, the enemy is immune to Kai-Ray</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
         <xs:attribute name="mindblastBonus" type="xs:integer">
             <xs:annotation>
                 <xs:documentation>Special CS bonus to apply for Mindblast discipline on this combat</xs:documentation>
@@ -634,6 +640,12 @@
     <xs:complexType name="death">
         <xs:annotation>
             <xs:documentation>Game over. Kill the player.</xs:documentation>
+        </xs:annotation>
+    </xs:complexType>
+
+    <xs:complexType name="useDeliverance">
+        <xs:annotation>
+            <xs:documentation>Manually use the Deliverance +20 EP action.</xs:documentation>
         </xs:annotation>
     </xs:complexType>
 
@@ -1082,6 +1094,7 @@
             <xs:element name="afterCombatTurn" type="afterCombatTurn" />
             <xs:element name="onInventoryEvent" type="onInventoryEvent" />
             <xs:element name="death" type="death" />
+            <xs:element name="useDeliverance" type="useDeliverance" />
             <xs:element name="endurance" type="endurance" />
             <xs:element name="meal" type="meal" />
             <xs:element name="resetSectionState" type="resetSectionState" />

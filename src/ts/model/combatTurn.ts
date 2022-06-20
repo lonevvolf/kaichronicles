@@ -96,6 +96,13 @@ export class CombatTurn {
         if ( this.enemy !== COMBATTABLE_DEATH) {
             this.enemy -= combat.enemyKaiBlastLoss;
         }
+        /** Enemy loss due to Kai-ray */
+        if(combat.kaiRayUse === 1) {
+            this.enemyExtra += -15;
+            if ( this.enemy !== COMBATTABLE_DEATH ) {
+                this.enemy -= -15;
+            }
+        }
 
         // Remove 1 Endurance if GrandMaster + Weaponmastery + Non-magical metal edged weapon
         if (state.book.bookNumber >= 16 && state.actionChart.isWeaponskillActive(combat.bowCombat, BookSeriesId.GrandMaster)
@@ -148,6 +155,15 @@ export class CombatTurn {
                 this.loneWolf += 4;
             }
             this.loneWolfExtra -= 4;
+        }
+
+        // Kai-ray loss
+        if ( combat.kaiRayUse === 1 ) {
+            if ( this.loneWolf !== COMBATTABLE_DEATH ) {
+                this.loneWolf += 4;
+            }
+            this.loneWolfExtra -= 4;
+            combat.kaiRayUse = 2;
         }
 
         /** Text with the player loss */

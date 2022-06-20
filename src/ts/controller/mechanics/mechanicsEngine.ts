@@ -507,7 +507,7 @@ export const mechanicsEngine = {
      */
     test(rule: Element) {
         const $rule = $(rule);
-        let conditionStatisfied = this.isTestConditionStatisfied($rule);        
+        let conditionStatisfied = mechanicsEngine.isTestConditionStatisfied($rule);        
 
         // Check if the test should be inversed
         if ($rule.attr("not") === "true") {
@@ -711,6 +711,13 @@ export const mechanicsEngine = {
         }
 
         return false;
+    },
+
+    /**
+     * Use Deliverance
+     */
+    useDeliverance(rule: Element) {
+        actionChartController.use20EPRestore();
     },
 
     /**
@@ -929,6 +936,9 @@ export const mechanicsEngine = {
 
         // Check if the enemy is immune to Kai-Blast
         combat.noKaiBlast = mechanicsEngine.getBooleanProperty($rule, "noKaiBlast", combat.noKaiBlast);
+
+        // Check if the enemy is immune to Kai-Ray
+        combat.noKaiRay = mechanicsEngine.getBooleanProperty($rule, "noKaiRay", combat.noKaiRay);
 
         // Special mindblast bonus?
         const txtMindblastBonus = $rule.attr("mindblastBonus");
