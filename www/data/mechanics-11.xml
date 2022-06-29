@@ -339,6 +339,10 @@
             </test>
         </section>
 
+        <section id="sect50">
+            <tag id="yanis" />
+        </section>
+
         <section id="sect54">
             <choiceState section="sect107" set="disabled" />
             <test hasObject="sommerswerd">

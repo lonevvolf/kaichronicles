@@ -306,7 +306,7 @@ export class CombatMechanics {
      */
     private static setupRayUI($combatUI: JQuery<HTMLElement>, combat: Combat) {
 
-        // Check if player can use Kai-blast
+        // Check if player can use Kai-ray
         const hasKaiSurge = state.actionChart.hasGndDiscipline(GndDiscipline.KaiSurge);
         if (!hasKaiSurge || state.actionChart.getDisciplines().length < 11 || state.actionChart.currentEndurance < 11 || combat.noKaiRay) {
             // Hide Kai-ray check
@@ -316,16 +316,18 @@ export class CombatMechanics {
 
         const $kaiRayCheck = $combatUI.find(CombatMechanics.RAY_CHECK_SELECTOR);
         
-        // Check if the Kai-blast cannot be used (already used or EP <= 10)
+        // Check if the Kai-ray cannot be used (already used or EP <= 10)
         if ( combat.kaiRayUse === 2 || state.actionChart.currentEndurance <= 10 ) {
             CombatMechanics.disableRay( $combatUI , combat );
         }
-        // Kai-blast selection
+        // Kai-ray selection
+        const rayText = translations.text("mechanics-combat-kairay" , [ 15 * combat.mindblastMultiplier ] );
+        $combatUI.find(".mechanics-combat-kairay").text( rayText );
         $kaiRayCheck.on("click", (e: JQuery.Event) => CombatMechanics.onRayClick(e, $kaiRayCheck));
     }
 
     /**
-     * Kai-blast checkbox event handler
+     * Kai-ray checkbox event handler
      */
     private static onRayClick(e: JQuery.Event, $kaiRayCheck: JQuery<HTMLElement>) {
 
@@ -379,6 +381,10 @@ export class CombatMechanics {
         if ( state.actionChart.currentEndurance <= Combat.minimumEPForSurge(GndDiscipline.KaiSurge) ) {
             CombatMechanics.disableSurge( $combatUI , combat );
         }
+
+        const rayText = translations.text("mechanics-combat-kaiblast" , [ combat.mindblastMultiplier > 1 ? " (x" + combat.mindblastMultiplier + ")" : "" ] );
+        $combatUI.find(".mechanics-combat-kaiblast").text( rayText );
+
         // Kai-blast selection
         $kaiBlastCheck.on("click", (e: JQuery.Event) => CombatMechanics.onBlastClick(e, $kaiBlastCheck));
     }

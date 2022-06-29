@@ -98,9 +98,9 @@ export class CombatTurn {
         }
         /** Enemy loss due to Kai-ray */
         if(combat.kaiRayUse === 1) {
-            this.enemyExtra += -15;
+            this.enemyExtra += -15 * combat.mindblastMultiplier;
             if ( this.enemy !== COMBATTABLE_DEATH ) {
-                this.enemy -= -15;
+                this.enemy -= -15 * combat.mindblastMultiplier;
             }
         }
 

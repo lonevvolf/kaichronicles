@@ -798,18 +798,25 @@
 
         <special id="nzapokamulet" itemCount="0">
             <name>Nza’pok Amulet</name>
+            <description>The facing side is engraved Nza’pok’s name. The runic number on the reverse side is a six.</description>
         </special>
 
         <special id="kunaering" itemCount="0">
             <name>Künae Ring</name>
+            <description>It radiates its own dim light and have the runic number 20 carved on the inside of the band.</description>
         </special>
 
         <special id="scarabwinglessdragon" itemCount="0">
             <name>Scarab of the Wingless Dragon</name>
+            <description>You notice two runic numerals (31) on the back of the wingless dragon, engraved on its surface.</description>
         </special>
 
         <special id="shamathpotion">
             <name>Shamath’s potion</name>
+        </special>
+
+        <special id="bluediamond">
+            <name>Blue Diamond</name>
         </special>
 
     </specials>
@@ -1634,6 +1641,12 @@
 
         <object id="platinumingot" itemCount="2">
             <name>Platinum Ingot</name>
+        </object>
+
+        <!-- BOOK 20 -->
+
+        <object id="muntaaghoney">
+            <name>Muntaag Honey</name>
         </object>
 
         <!-- OTHERS -->

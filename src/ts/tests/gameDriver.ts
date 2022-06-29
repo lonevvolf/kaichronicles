@@ -1,4 +1,4 @@
-import { WebDriver, Builder, WebElement, By, until, Alert } from "selenium-webdriver";
+import { WebDriver, Builder, WebElement, By, until, Alert, Browser } from "selenium-webdriver";
 import { state, Mechanics, BookSectionStates, Book, declareCommonHelpers, BookSeriesId, CombatMechanics } from "..";
 import { Type, Level } from "selenium-webdriver/lib/logging";
 import { readFileSync } from "fs-extra";
@@ -36,7 +36,7 @@ export class GameDriver {
     public async setupBrowser() {
         // Setup Selenium
         // console.log("Setup Selenium");
-        this.driver = await new Builder().forBrowser("chrome").build();
+        this.driver = await new Builder().forBrowser(Browser.EDGE).build();
         // Maximize to avoid links get shadows by toastr
         await this.driver.manage().window().maximize();
     }
@@ -294,8 +294,8 @@ export class GameDriver {
 
         // Setup jQuery
         // tslint:disable-next-line: no-var-requires
-        global.jQuery = require("jquery");
-        global.$ = global.jQuery;
+        (global as any).jQuery = require("jquery");
+        (global as any).$ = (global as any).jQuery;
     }
 
 }

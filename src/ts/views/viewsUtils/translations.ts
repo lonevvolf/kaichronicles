@@ -89,6 +89,8 @@ export class Translations {
         "deathLetter" : "K",
         "mechanics-combat-psisurge" : "Psi-surge: +{0} CS, -{1} EP per round",
         "mechanics-combat-kaisurge" : "Kai-surge: +{0} CS, -{1} EP per round",
+        "mechanics-combat-kaiblast" : "Kai-blast: -4EP, ennemy lose a Random Number{0} of EP 2 times",
+        "mechanics-combat-kairay" : "Kai-ray: -4EP, ennemy lose {0}EP (one time per combat)",
         "sectionModifier" : "Section modifier",
         "objectsUse" : "Objects use",
         "enemyMindblast" : "Enemy mindblast",

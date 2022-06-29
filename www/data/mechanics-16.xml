@@ -707,6 +707,7 @@
         </section>
 
         <section id="sect105">
+            <tag id="helgor" />
             <choiceState section="sect315" set="disabled" />
             <test hasTag="aarnak">
                 <choiceState section="sect315" set="enabled" />
