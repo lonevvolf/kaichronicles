@@ -1168,7 +1168,7 @@ export const mechanicsEngine = {
     },
 
     /**
-     * Player death rule
+     * Dessi-stone rule
      */
     applyDessiStone(rule: Element) {
         const currentWeaponId = state.actionChart.getSelectedWeapon();

@@ -662,7 +662,7 @@ export class BookValidator {
 
         const html = this.currentSection.getHtml();
         const linkText: string = $rule.attr("text");
-        if ( $(html).find(':contains("' + linkText + '")').length === 0 ) {
+        if ( html.search(linkText) === -1 ) {
             this.addError( $rule , 'Text to replace "' + linkText + '" not found');
         }
     }

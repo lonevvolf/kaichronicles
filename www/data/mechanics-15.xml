@@ -731,8 +731,8 @@
                 <choiceState section="all" set="enabled" />
             </afterCombats>
         </section>
-        
-        <section id="sect123">            
+
+        <section id="sect123">
             <tag id="darke" />
         </section>
 
@@ -1136,7 +1136,7 @@
         </section>
 
         <section id="sect212">
-            <use objectId="sabitojar|oedeherb|oedejar" applyEffect="false"/>
+            <use objectId="sabitojar|oedeherb|oedejar" applyEffect="false" />
             <choiceState section="sect304" set="disabled" />
             <test hasObject="greenkey">
                 <choiceState section="sect304" set="enabled" />

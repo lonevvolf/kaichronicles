@@ -534,8 +534,7 @@ Display a "toast" message. "duration" is the toast duration in milliseconds. It'
 ### textToChoice
 ```xml
 <textToChoice 
-    text-en="turn immediately to 335"
-    text-es="pasa inmediatamente al 335"
+    text="turn immediately to 335"
     section="sect335"
 />
 ```

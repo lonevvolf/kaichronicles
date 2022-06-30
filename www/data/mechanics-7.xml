@@ -61,6 +61,7 @@
 
         <section id="sect1">
             <pick objectId="powerkey" />
+            <tag id="isleofkhor" />
         </section>
 
         <section id="sect5">

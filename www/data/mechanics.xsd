@@ -219,24 +219,6 @@
             <xs:simpleType>
                 <xs:restriction base="xs:string">
                     <xs:pattern value = "(wpnmstry|anmlctrl|curing|invsblty|psisurge|psiscrn|nexus|dvnation|anmlmstr|deliver|assimila|kaisurge|kaiscrn|gnosis|magi|alchemy|hntmstry|pthmnshp|\|)*"/>
-                    <!--<xs:enumeration value="wpnmstry" />
-                    <xs:enumeration value="anmlctrl" />
-                    <xs:enumeration value="curing" />
-                    <xs:enumeration value="invsblty" />
-                    <xs:enumeration value="hntmstry" />
-                    <xs:enumeration value="pthmnshp" />
-                    <xs:enumeration value="psisurge" />
-                    <xs:enumeration value="psiscrn" />
-                    <xs:enumeration value="nexus" />
-                    <xs:enumeration value="dvnation" />
-                    <xs:enumeration value="anmlmstr" />
-                    <xs:enumeration value="deliver" />
-                    <xs:enumeration value="assimila" />
-                    <xs:enumeration value="kaisurge" />
-                    <xs:enumeration value="kaiscrn" />
-                    <xs:enumeration value="gnosis" />
-                    <xs:enumeration value="magi" />
-                    <xs:enumeration value="alchemy" />-->
                 </xs:restriction>
             </xs:simpleType>
         </xs:attribute>
