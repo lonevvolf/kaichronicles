@@ -218,7 +218,7 @@
             </xs:annotation>
             <xs:simpleType>
                 <xs:restriction base="xs:string">
-                    <xs:pattern value = "(wpnmstry|anmlctrl|curing|invsblty|psisurge|psiscrn|nexus|dvnation|anmlmstr|deliver|assimila|kaisurge|kaiscrn|gnosis|magi|alchemy|hntmstry|pthmnshp|\|)*"/>
+                    <xs:pattern value = "(sixthsns|camflage|tracking|mindomtr|anmlknsp|healing|hunting|mindshld|mndblst|wepnskll|wpnmstry|anmlctrl|curing|invsblty|psisurge|psiscrn|nexus|dvnation|anmlmstr|deliver|assimila|kaisurge|kaiscrn|gnosis|magi|alchemy|hntmstry|pthmnshp|\|)*"/>
                 </xs:restriction>
             </xs:simpleType>
         </xs:attribute>
