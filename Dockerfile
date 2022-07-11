@@ -1,6 +1,8 @@
-FROM node
-WORKDIR /app
+FROM node:18.5.0-slim
+RUN apt-get update && apt-get install -y zip && apt-get install -y git
+WORKDIR /srv/kai
 COPY . .
-RUN npm install
-RUN npm install webpack typescript jquery
-ENTRYPOINT ["./start.sh"]
+EXPOSE 8080
+RUN npm install && npm run downloaddata
+RUN npm install http-server -g && cat LICENSE
+CMD ["http-server", "./www"]

@@ -14,18 +14,6 @@ This repository does not contain game books data. Data must be downloaded from t
 
 ## Setup
 
-### Docker
-You can run the server within a docker container if you wish. First, pull the image:
-```
-docker pull samtebbs33/kaichronicles:latest
-```
-Then run it, substituting the host port (the port before the colon) for a one of your choice.
-```
-docker run -p 3000:3000 samtebbs33/kaichronicles:latest
-```
-The server will then be accessible at http://localhost:3000 (replace with the chosen host port, if necessary).
-
-### Manual
 Download dependencies
 ```bash
 npm install
@@ -44,6 +32,16 @@ This will require Node.js (any recent version) and the git client on your path.
 npm run serve
 ```
 Open your browser on http://localhost:3000.
+
+### Setup a Docker image
+Optional method for running a local website only to play the game
+ * Download and install [Docker](https://docs.docker.com/install/) and make sure it's is in your PATH environment variable
+ * Using a terminal (Linux or iOS) or PowerShell (Windows 10) navigate to the project's directory
+ * Type `docker build -t kai:1.15 .`
+ * Type `docker run -p 8080:8080 kai:1.15`
+ * Open http://localhost:8080
+ 
+ More information about this method [here](./doc/README-docker.md)
 
 ### Developing 
 

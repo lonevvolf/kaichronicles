@@ -811,10 +811,6 @@
             <description>You notice two runic numerals (31) on the back of the wingless dragon, engraved on its surface.</description>
         </special>
 
-        <special id="shamathpotion">
-            <name>Shamath’s potion</name>
-        </special>
-
         <special id="bluediamond">
             <name>Blue Diamond</name>
             <description>A radiant gem the size of a walnut.</description>
@@ -1648,6 +1644,10 @@
 
         <object id="muntaaghoney">
             <name>Muntaag Honey</name>
+        </object>
+
+        <object id="shamathpotion">
+            <name>Shamath’s potion</name>
         </object>
 
         <!-- OTHERS -->

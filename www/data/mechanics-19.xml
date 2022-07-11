@@ -1542,7 +1542,7 @@
         </section>
 
         <section id="sect225">
-            <choiceState section="sect184" set="enabled" />
+            <choiceState section="sect184" set="disabled" />
             <test hasDiscipline="kaiscrn">
                 <test expression="[KAILEVEL] >= 10">
                     <choiceState section="sect184" set="enabled" />
@@ -1621,7 +1621,7 @@
         </section>
 
         <section id="sect235">
-            <choiceState section="sect164" set="enabled" />
+            <choiceState section="sect164" set="disabled" />
             <test hasDiscipline="alchemy">
                 <choiceState section="sect164" set="enabled" />
                 <choiceState section="sect48" set="disabled" />
@@ -1659,7 +1659,7 @@
         </section>
 
         <section id="sect243">
-            <choiceState section="sect73" set="enabled" />
+            <choiceState section="sect73" set="disabled" />
             <test hasDiscipline="gnosis">
                 <test expression="[KAILEVEL] >= 9">
                     <choiceState section="sect73" set="enabled" />
@@ -1725,7 +1725,7 @@
                 <choiceState section="sect138" set="disabled" />
             </test>
             <test not="true" expression="[KAILEVEL] >= 5">
-                <choiceState section="sect138" set="enabled" />
+                <choiceState section="sect138" set="disabled" />
             </test>
             <test not="true" hasDiscipline="alchemy">
                 <choiceState section="sect26" set="disabled" />
@@ -1736,7 +1736,7 @@
         </section>
 
         <section id="sect258">
-            <choiceState section="sect68" set="enabled" />
+            <choiceState section="sect68" set="disabled" />
             <test hasDiscipline="pthmnshp">
                 <test hasDiscipline="hntmstry">
                     <choiceState section="sect68" set="enabled" />
@@ -1754,7 +1754,7 @@
         </section>
 
         <section id="sect262">
-            <choiceState section="sect94" set="enabled" />
+            <choiceState section="sect94" set="disabled" />
             <test hasDiscipline="assimila">
                 <test expression="[KAILEVEL] >= 5">
                     <choiceState section="sect94" set="enabled" />
@@ -1785,7 +1785,7 @@
         </section>
 
         <section id="sect272">
-            <choiceState section="sect94" set="enabled" />
+            <choiceState section="sect94" set="disabled" />
             <test hasDiscipline="assimila">
                 <test expression="[KAILEVEL] >= 5">
                     <choiceState section="sect94" set="enabled" />
@@ -1803,7 +1803,7 @@
         </section>
 
         <section id="sect275">
-            <choiceState section="sect66" set="enabled" />
+            <choiceState section="sect66" set="disabled" />
             <test hasDiscipline="alchemy">
                 <choiceState section="sect66" set="enabled" />
                 <choiceState section="sect247" set="disabled" />
@@ -1850,7 +1850,7 @@
         </section>
 
         <section id="sect282">
-            <choiceState section="sect3" set="enabled" />
+            <choiceState section="sect3" set="disabled" />
             <test hasObject="sommerswerd">
                 <choiceState section="sect3" set="enabled" />
                 <choiceState section="sect123" set="disabled" />

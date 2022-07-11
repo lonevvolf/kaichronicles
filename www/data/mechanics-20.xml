@@ -401,6 +401,11 @@
         <section id="sect50">
             <pick objectId="skarnska" />
             <pick objectId="korliniumscabbard" />
+            <choiceState section="sect180" set="disabled" />
+            <test hasObject="platinumamulet">
+                <choiceState section="sect180" set="enabled" />
+                <choiceState section="sect296" set="disabled" />
+            </test>
         </section>
 
         <section id="sect51">
@@ -821,7 +826,7 @@
             <endurance count="-4" />
         </section>
 
-        <section id="sect117">
+        <section id="sect118">
             <endurance count="-8" />
         </section>
 
@@ -1040,7 +1045,7 @@
         </section>
 
         <section id="sect146">
-            <choiceState section="sect225" set="enabled" />
+            <choiceState section="sect225" set="disabled" />
             <test hasDiscipline="nexus">
                 <test expression="[KAILEVEL] >= 11">
                     <choiceState section="sect225" set="enabled" />
@@ -1649,17 +1654,21 @@
         </section>
 
         <section id="sect228">
-            <test not="true" hasDiscipline="assimila">
-                <choiceState section="sect273" set="disabled" />
-            </test>
-            <test not="true" expression="[KAILEVEL] >= 11">
-                <choiceState section="sect273" set="disabled" />
-            </test>
+            <choiceState section="sect273" set="disabled" />
             <test not="true" hasObject="sommerswerd">
                 <choiceState section="sect188" set="disabled" />
             </test>
             <test not="true" hasObject="skarnska">
                 <choiceState section="sect347" set="disabled" />
+            </test>
+
+            <test hasDiscipline="assimila">
+                <test expression="[KAILEVEL] >= 11">
+                    <choiceState section="sect273" set="enabled" />
+                    <choiceState section="sect188" set="disabled" />
+                    <choiceState section="sect347" set="disabled" />
+                    <choiceState section="sect306" set="disabled" />
+                </test>
             </test>
         </section>
 
@@ -1834,10 +1843,8 @@
         </section>
 
         <section id="sect255">
-            <choiceState section="sect304" set="disabled" />
-            <test hasWeaponType="sword|shortsword|broadsword|dagger|axe">
-                <choiceState section="sect304" set="enabled" />
-                <choiceState section="sect24" set="disabled" />
+            <test not="true" hasWeaponType="sword|shortsword|broadsword|dagger|axe">
+                <choiceState section="sect304" set="disabled" />
             </test>
         </section>
 
@@ -2562,7 +2569,7 @@
 
         <section id="sect350">
             <unregisterGlobalRule id="planeofdarknessb20" />
-            <message text="Congratulation! You have finished all the books of Kai Chronicles!" />
+            <message text="Congratulation! You have finished the last book of Kai Chronicles!" />
         </section>
     </sections>
 </mechanics>
