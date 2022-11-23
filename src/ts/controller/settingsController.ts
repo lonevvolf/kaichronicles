@@ -61,7 +61,7 @@ export const settingsController = {
     saveGame(fileName: string) {
         try {
             const stateJson = state.getSaveGameJson();
-            const blob = new Blob( [ stateJson ], {type: "text/plain;charset=utf-8"});
+            const blob = new Blob( [ stateJson ], {type: "application/json;charset=utf-8"});
 
             // Check file name
             fileName = fileName.trim();
