@@ -213,7 +213,7 @@ export class ObjectsTableItem {
         let html = "";
 
         if ( this.type === ObjectsTableType.AVAILABLE ) {
-            // Avaiable object (free) / buy object:
+            // Available object (free) / buy object:
 
             if ( this.objectInfo.price === 0 && this.objectInfo.useOnSection ) {
                 // Allow to use the object from the section, without picking it

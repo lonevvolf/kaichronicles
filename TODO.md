@@ -18,7 +18,6 @@ TODO
 
 - Bugs reported on Google Play:
   * Finally, finally there's a proper LW game book app. The only problem I've noticed is that it only gives Silver Bow's bonus in the sections of book 6 that specifically mention it, and not at all 'rolls' as it is supposed to.
-- Save games is not working on Safari
 - You are erroneously allowed to apply multiple Alether effects per combat. You are always limited to one (the berries you can purchase in book 6 even explicitly say so).
 - Action chart buttons don't work on iPad Safari
 - ERROR: Book 8, sect139: 
