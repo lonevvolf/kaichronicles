@@ -119,3 +119,6 @@
  - Book 19 and 20 available. Grand Master is now complete!
  - Restore the possibility to run Kai Chronicles inside Docker
  
+ 1.15.1
+ - Fixed MIME type of the savegame to JSON
+ - Allows to create homescreen app icon, on mobile devices, using Safari or Chrome.

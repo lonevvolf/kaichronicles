@@ -1,0 +1,17 @@
+{
+    "$schema": "https://json.schemastore.org/web-manifest-combined.json",
+    "name": "Kai Chronicles",
+    "short_name": "Kai Chronicles",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#fff",
+    "description": "A player for Lone Wolf game books.",
+    "orientation": "portrait",
+    "icons": [{
+      "src": "images/icon.png",
+      "sizes": "100x100",
+      "type": "image/png"
+    }],
+    "categories": ["games","kids","books"]
+  }
+  
