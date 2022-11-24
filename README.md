@@ -48,7 +48,7 @@ Optional method for running a local website only to play the game
 Game rules for each book are located at [www/data](www/data). "mechanics-X" are the game rules
 for the book X. "objects.xml" are the game objects
 
-There is (unfished) documentation for [rules](doc/README-mechanics.md), [object formats](doc/README-objects.md) and
+There is (unfinished) documentation for [rules](doc/README-mechanics.md), [object formats](doc/README-objects.md) and
 [save game file format](doc/README-savegames.md).
 
 The game rules implementation are at src/ts/controller/mechanics and www/controller/mechanics.

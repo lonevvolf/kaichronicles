@@ -87,7 +87,7 @@ Optional. It references to some book image for the object. The image should be a
     ...
 </special>
 ```
-Optional. If it's false, the player will cannot drop the object
+Optional. If it's false, the player cannot drop the object
 
 ### "effect" tag
 ```xml
@@ -98,7 +98,7 @@ Optional. If it's false, the player will cannot drop the object
     ...
 </special>
 ```
-Optional. If it's set, the object as some effect when it's carried:
+Optional. If it's set, the object has some effect when it's carried:
 * **"class" property**: It says what is the effect of the object:
     * "endurance": The endurance will be increased
     * "combatSkill": The combat skill will be increased
@@ -115,7 +115,7 @@ Optional. If it's set, the player cannot pick the object if it already has some 
 
 ## Weapons
 
-There are standard weapons on 1-5 books: axe, dagger, sword, etc. Also, there are weapons based on these standard weapons, but they must to be differentiated. In this case, set the property "weaponType" to set the class of standard weapon (used for Weapon Skill discipline). If it can be more than one, each class is separated with a "|" character:
+There are standard weapons on books 1-5: axe, dagger, sword, etc. Also, there are weapons based on these standard weapons, but they must to be differentiated. In this case, set the property "weaponType" to set the class of standard weapon (used for Weapon Skill discipline). If it can be more than one, each class is separated with a "|" character:
 
 ```xml
 <!-- This is a standard weapon -->
@@ -176,4 +176,4 @@ If it's set, specify how many times the item can be used (1 by default).
 If it's set, specify how many slots the item takes (1 by default, can be >= 0).
 
 ### "isArrow" property (Special item only)
-If true, the object it's an Arrow, and it occupies an slot on a Quiver as a normal Arrow.
+If true, the object is an Arrow, and it occupies an slot on a Quiver as a normal Arrow.
