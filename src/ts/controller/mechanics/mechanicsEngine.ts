@@ -980,7 +980,7 @@ export const mechanicsEngine = {
         }
 
         // Check if the combat is non-physical (disables most bonuses)
-        combat.mentalOnly = mechanicsEngine.getBooleanProperty($rule, "mentalOnly", false);
+        combat.mentalOnly = mechanicsEngine.getBooleanProperty($rule, "mentalOnly", combat.mentalOnly);
 
         // Initial turn to allow to elude the combat
         if ($rule.attr("eludeTurn")) {
