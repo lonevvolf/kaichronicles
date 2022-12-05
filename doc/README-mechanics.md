@@ -153,13 +153,13 @@ will be available on the section.
 * **class**: This for counters. If you are going to pick meals (="meal") money (="money") or "arrow"
 * **count**: Only if class is "meal", "money" or "arrow". Expression with the number of coins / meals
   to pick
-* **index="number"** Required, for ugly reasons, when there are two o more pick rules with the same object id on a section
+* **index="number"** Required, for ugly reasons, when there are two or more pick rules with the same object id on a section
 * **currency="currencyId"** Optional, and only for class="money". Picked coins currency, default is "crown". 
   Values can be "crown", "lune" or "kika".
 
 ### drop (execute once only)
 ```xml
-<drop objectId="fireseed" />
+<drop objectId="fireseed" count="1"/>
 <drop objectId="allmeals" />
 <!-- Drop largerope OR rope -->
 <drop objectId="largerope|rope" />

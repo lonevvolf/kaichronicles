@@ -2352,7 +2352,7 @@
         </section>
 
         <section id="sect302">
-            <drop objectId="fireseed" />
+            <drop objectId="fireseed" count="1" />
         </section>
 
         <section id="sect303">

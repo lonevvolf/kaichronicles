@@ -84,6 +84,11 @@ export class ObjectsTableItem {
             name = this.objectInfo.count + " " + name;
         }
 
+        // Fireseed amount
+        if ( this.objectInfo.id === Item.FIRESEED ) {
+            name += " (" + this.objectInfo.count + ")";
+        }
+        
         // Money amount
         if ( this.objectInfo.id === Item.MONEY && this.objectInfo.count ) {
             name += " (" + this.objectInfo.count + " " + translations.text("goldCrowns") + ")";
@@ -153,7 +158,7 @@ export class ObjectsTableItem {
 
         let link = `<a href="#" data-objectId="${this.item.id}" data-index="${this.index}" class="equipment-op btn btn-default" `;
 
-        if ( this.item.id === Item.QUIVER || this.item.id === Item.ARROW || this.item.id === Item.MONEY ||
+        if ( this.item.id === Item.QUIVER || this.item.id === Item.ARROW || this.item.id === Item.MONEY || this.item.id === Item.FIRESEED ||
             ( this.objectInfo.price > 0 && this.objectInfo.count > 0 ) ) {
             // Store the number of arrows on the quiver / gold crowns / number of items to buy by the given price
             link += 'data-count="' + this.objectInfo.count + '" ';
@@ -172,7 +177,7 @@ export class ObjectsTableItem {
         }
 
         if ( this.objectInfo.usageCount ) {
-            link += `data-usagecount="${this.objectInfo.usageCount}"`;
+            link += `data-usagecount="${this.objectInfo.usageCount}" `;
         }
 
         if ( title ) {
@@ -353,7 +358,6 @@ export class ObjectsTableItem {
             // Not really an object
             objectPicked = true;
         } else {
-
             // A count === 0 means one object
             // "Count" for quivers means "count of arrows", not "count of quivers"
             let nItems = this.objectInfo.count;

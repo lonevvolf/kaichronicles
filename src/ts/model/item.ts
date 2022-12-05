@@ -36,6 +36,7 @@ export class Item {
     public static readonly MONEY = "money";
     public static readonly QUIVER = "quiver";
     public static readonly ARROW = "arrow";
+    public static readonly FIRESEED = "fireseed";
     public static readonly MAP = "map";
     public static readonly BOW = "bow";
     public static readonly MEAL = "meal";
