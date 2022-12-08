@@ -16,6 +16,7 @@ export interface SectionItem {
     /**
      * Only applies if id = 'quiver' (number of arrows on the quiver)
      * or id = 'money' (number of Gold Crowns)
+     * or id = 'fireseed'
      */
     count: number;
 
@@ -312,7 +313,7 @@ export class SectionState {
             id: objectId,
             price,
             unlimited,
-            count: (objectId === Item.QUIVER || objectId === Item.ARROW || objectId === Item.MONEY || price > 0 ? count : 0 ),
+            count: (objectId === Item.QUIVER || objectId === Item.ARROW || objectId === Item.MONEY || objectId === Item.FIRESEED || price > 0 ? count : 0),
             useOnSection,
             usageCount,
             dessiStoneBonus: false
@@ -339,8 +340,8 @@ export class SectionState {
 
         if (index >= 0 && index < this.objects.length) {
             let removeObject = true;
-            if ( ( objectId === Item.MONEY || objectId === Item.ARROW ) && count >= 0 && this.objects[index].count > count ) {
-                // Still money / arrows available:
+            if ( ( objectId === Item.MONEY || objectId === Item.ARROW || objectId === Item.FIRESEED) && count >= 0 && this.objects[index].count > count ) {
+                // Still money / arrows / fireseeds available:
                 this.objects[index].count -= count;
                 removeObject = false;
             }
