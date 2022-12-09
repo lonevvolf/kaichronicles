@@ -124,14 +124,14 @@ export const actionChartController = {
      * @param availableOnSection Only applies if objectId is really an object id. True if the object should be available on
      * the current section
      * @param fromUI True if the action is fired from the UI
-     * @param arrowsCount Object count (only for quivers. count === n. arrows to drop)
+     * @param dropCount Object count to drop (only for quivers/fireseeds. count === n. arrows/fireseeds to drop)
      * @param objectIndex Only applies if objectId is an object id. If specified, object index in the Action Chart object
      * array to drop. If it's not specified the first object with the given objectId will be dropped (there can be more than one
      * item with the same id)
      * @returns If objectId was an really object id and the object was deleted, it returns the delete object info.
      * Otherwise, it returns true if something was deleted, or false if not
      */
-    drop(objectId: string, availableOnSection: boolean = false, fromUI: boolean = false, arrowsCount: number = 0,
+    drop(objectId: string, availableOnSection: boolean = false, fromUI: boolean = false, dropCount: number = 1,
          objectIndex: number = -1): boolean|ActionChartItem {
 
         if (objectId === "allweapons") {
@@ -203,7 +203,7 @@ export const actionChartController = {
             return true;
         }
 
-        const droppedItem = state.actionChart.drop(objectId, arrowsCount, objectIndex);
+        const droppedItem = state.actionChart.drop(objectId, dropCount, objectIndex);
         if (droppedItem) {
             const item = droppedItem.getItem();
 
@@ -219,7 +219,7 @@ export const actionChartController = {
             if (availableOnSection) {
                 // Add the droped object as available on the current section
                 const sectionState = state.sectionStates.getSectionState();
-                sectionState.addActionChartItemToSection(droppedItem, arrowsCount);
+                sectionState.addActionChartItemToSection(droppedItem, dropCount);
 
                 // Render available objects on this section (game view)
                 mechanicsEngine.fireInventoryEvents(fromUI, item);
@@ -271,7 +271,17 @@ export const actionChartController = {
                 continue;
             }
             const item = arrayOfItems[index];
-            if (actionChartController.drop(item.id, false, false, 0, index)) {
+            let count = 0;
+
+            if(item.id === Item.FIRESEED) {
+                // Erase all fireseeds
+                count = state.actionChart.fireseeds;
+            } else if(item.id === Item.QUIVER) {
+                // Erase one quiver
+                count = state.actionChart.arrows % 6;
+            }
+
+            if (actionChartController.drop(item.id, false, false, count, index)) {
                 droppedItems.push(item);
             }
         }

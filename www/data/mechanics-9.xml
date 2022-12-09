@@ -51,9 +51,7 @@
             <object objectId="meal" index="1" />
             <object objectId="meal" index="2" />
             <object objectId="dagger" />
-            <object objectId="fireseed" index="0" />
-            <object objectId="fireseed" index="1" />
-            <object objectId="fireseed" index="2" />
+            <object objectId="fireseed" count="3"/>
 
             <chooseEquipment text="Click on the Random Table link to get money before continuing" />
 
@@ -124,8 +122,8 @@
         </section>
 
         <section id="sect11">
-            <meal index="0" huntDisabled="true" />
-            <meal index="1" huntDisabled="true" />
+            <meal index="0" />
+            <meal index="1" />
             <test canUseBow="false">
                 <choiceState section="sect171" set="disabled" />
             </test>
@@ -174,7 +172,7 @@
         </section>
 
         <section id="sect16">
-            <drop objectId="fireseed" />
+            <drop objectId="fireseed"/>
             <endurance count="-2" />
         </section>
 
@@ -616,7 +614,7 @@
         </section>
 
         <section id="sect106">
-            <drop objectId="fireseed" />
+            <drop objectId="fireseed"/>
             <!-- If you have seen and examined one of these hexagonal tokens previously in your adventure... -->
             <test not="true" sectionVisited="sect43">
                 <choiceState section="sect161" set="disabled" />
@@ -996,7 +994,7 @@
         </section>
 
         <section id="sect175">
-            <meal huntDisabled="true" />
+            <meal />
             <choiceState section="sect281" set="disabled" />
             <test hasCircle="circleSpirit">
                 <choiceState section="sect281" set="enabled" />
@@ -1301,7 +1299,7 @@
         </section>
 
         <section id="sect218">
-            <meal huntDisabled="true" />
+            <meal />
         </section>
 
         <section id="sect219">

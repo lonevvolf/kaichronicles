@@ -60,6 +60,9 @@ export class ActionChart {
     /** Number of meals (they count as backpack items) */
     public meals = 0;
 
+    /** Number of fireseeds (they count as 1 special item) */
+    public fireseeds = 0;
+
     /** Backpack items */
     public backpackItems: ActionChartItem[] = [];
 
@@ -192,7 +195,7 @@ export class ActionChart {
 
     /**
      * Pick an object
-     * TODO: It's a nosense: It returns false ONLY if o is null. On all other cases, it throws an exception.
+     * TODO: It's nonsense: It returns false ONLY if o is null. On all other cases, it throws an exception.
      * TODO: If o is null, throw an exception too, and do not return any value
      * @param aChartItem Object to pick
      * @return True if the object was really picked
@@ -240,7 +243,15 @@ export class ActionChart {
                     throw translations.text("noQuiversEnough");
                 }
 
-                this.specialItems.push(aChartItem);
+                if (item.id === Item.FIRESEED) {
+                    this.increaseFireseeds(1);
+                    if (!this.hasObject(item.id)) {
+                        this.specialItems.push(aChartItem);
+                    }
+                }
+                else {
+                    this.specialItems.push(aChartItem);
+                }             
 
                 if (item.isWeapon()) {
                     this.checkCurrentWeapon();
@@ -363,6 +374,28 @@ export class ActionChart {
     }
 
     /**
+     * Increase / decrease the fireseeds number
+     * @param count Number to increase. Negative to decrease
+     * @return The number of really picked fireseeds
+     */
+     public increaseFireseeds(count: number): number {
+        const nMax = ActionChart.getMaxSpecials();
+        if (count && nMax && !this.hasObject(Item.FIRESEED)) {
+            if ( this.getNSpecialItems(false) + count > nMax)
+                throw translations.text("msgNoMoreSpecialItems");
+        }
+
+        this.fireseeds += count;
+
+        // Sanitize for negative count values
+        if (this.fireseeds < 0) {
+            this.fireseeds = 0;
+        }
+
+        return count;
+    }
+
+    /**
      * Increase / decrease the money number
      * @param count Number to increase. Negative to decrease
      * @param excessToKaiMonastry If true and if the belt pouch exceed 50, the excess is stored in the kaimonastry section
@@ -403,12 +436,12 @@ export class ActionChart {
      * Drop an object
      * @param objectId Object id to drop, or 'meal' to drop one meal, or 'backpack' to drop the
      * backpack.
-     * @param arrowsCount Only for quivers. count === n. arrows to drop. It must to be >= 0
+     * @param dropCount Only for quivers/fireseeds. count === n. arrows/fireseeds to drop. It must to be >= 0
      * @param objectIndex If specified, object index in the Action Chart object array to drop. If it's not specified
      * the first object with the given objectId will be dropped
      * @returns The dropped item. null if no item was dropped
      */
-    public drop(objectId: string, arrowsCount: number = 0, objectIndex: number = -1): ActionChartItem {
+    public drop(objectId: string, dropCount: number = 1, objectIndex: number = -1): ActionChartItem {
 
         if (objectId === Item.MEAL) {
             // Special
@@ -427,6 +460,14 @@ export class ActionChart {
             this.backpackItems = [];
             this.checkCurrentWeapon();
             return new ActionChartItem(Item.BACKPACK);
+        }
+
+        if (objectId === Item.FIRESEED) {
+            this.increaseFireseeds(-dropCount);
+
+            if (this.fireseeds > 0) {
+                return new ActionChartItem(Item.FIRESEED);
+            }
         }
 
         // Drop the object (find its position, and drop that position)
@@ -449,35 +490,18 @@ export class ActionChart {
             return null;
         }
 
-        return this.dropByIndex(item.type, index, arrowsCount);
-    }
-
-    /**
-     * Drops an object by its position on the action chart
-     * TODO: No need for a different functions for this. Put this code inside drop() function
-     * @param objectType The object type to drop (Item.WEAPON, Item.SPECIAL or Item.OBJECT)
-     * @param index Object position on the objects array (this.weapons, this.specialItems or this.backpackItems)
-     * @param arrowsCount Only for quivers. n. arrows to drop. It must to be >= 0
-     * @returns The dropped item. null if no object was dropped
-     */
-    private dropByIndex(objectType: string, index: number, arrowsCount: number = 0): ActionChartItem {
-        const objectsArray = this.getObjectsByType(objectType);
-        if (!objectsArray) {
-            return null;
-        }
-        if (index < 0 || index >= objectsArray.length) {
-            return null;
-        }
         const aChartItem = objectsArray[index];
         objectsArray.splice(index, 1);
 
         this.checkMaxEndurance();
         this.checkCurrentWeapon();
+
         if (aChartItem.id === Item.QUIVER) {
             // Decrease arrows count
-            this.arrows -= arrowsCount;
+            this.arrows -= dropCount;
             this.sanitizeArrowCount();
         }
+
         return aChartItem;
     }
 

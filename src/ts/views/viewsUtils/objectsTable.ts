@@ -49,6 +49,7 @@ export class ObjectsTable {
 
         // Number of arrows to distribute across quivers. Only applies if this is a Action Chart table
         let arrows = ( this.type === ObjectsTableType.INVENTORY ) ? state.actionChart.arrows : 0;
+        let fireseeds = ( this.type === ObjectsTableType.INVENTORY ) ? state.actionChart.fireseeds : 0;
 
         for (let i = 0; i < objects.length; i++) {
 
@@ -64,6 +65,11 @@ export class ObjectsTable {
                 if ( aChartItem.id === Item.QUIVER ) {
                     count = Math.min( 6, arrows );
                     arrows -= count;
+                }
+
+                // Copy the global fireseed count into the item stack
+                if (aChartItem.id === Item.FIRESEED) {
+                    count = fireseeds;
                 }
 
                 // Do the conversion from ActionChartItem to SectionItem
