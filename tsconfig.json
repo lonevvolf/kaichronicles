@@ -3,7 +3,8 @@
         "outDir" : "src/js",
         "sourceMap": true,
         "rootDir" : "src/ts",
-        "target": "es5"
+        "target": "es5",
+        "lib": ["dom"]
     },
 
     "include": [

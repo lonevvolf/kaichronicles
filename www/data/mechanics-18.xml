@@ -1348,8 +1348,7 @@
             <endurance count="-3" />
             <drop objectId="allweapons" />
             <drop objectId="backpack" />
-            <drop objectId="quiver" count="12" />
-            <pick class="money" count="-50" />
+            <pick class="money" count="-[MONEY]" />
         </section>
 
         <section id="sect239">
@@ -1602,8 +1601,7 @@
             <endurance count="-3" />
             <drop objectId="allweapons" />
             <drop objectId="backpack" />
-            <drop objectId="quiver" count="12" />
-            <pick class="money" count="-50" />
+            <pick class="money" count="-[MONEY]" />
         </section>
 
         <section id="sect291">
@@ -1918,8 +1916,7 @@
             <endurance count="-3" />
             <drop objectId="allweapons" />
             <drop objectId="backpack" />
-            <drop objectId="quiver" count="12" />
-            <pick class="money" count="-50" />
+            <pick class="money" count="-[MONEY]" />
         </section>
 
         <section id="sect336">

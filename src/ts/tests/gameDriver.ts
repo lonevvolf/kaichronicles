@@ -36,7 +36,7 @@ export class GameDriver {
     public async setupBrowser() {
         // Setup Selenium
         // console.log("Setup Selenium");
-        this.driver = await new Builder().forBrowser(Browser.EDGE).build();
+        this.driver = await new Builder().forBrowser(Browser.CHROME).build();
         // Maximize to avoid links get shadows by toastr
         await this.driver.manage().window().maximize();
     }
