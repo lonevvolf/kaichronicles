@@ -122,3 +122,4 @@
  1.15.1
  - Fixed MIME type of the savegame to JSON
  - Allows to create homescreen app icon, on mobile devices, using Safari or Chrome.
+ - Fireseeds are now stacked.
