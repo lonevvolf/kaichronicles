@@ -64,7 +64,7 @@
         </section>
 
         <section id="sect2">
-            <drop objectId="fireseed" count="1" />
+            <drop objectId="fireseed" />
         </section>
 
         <section id="sect5">

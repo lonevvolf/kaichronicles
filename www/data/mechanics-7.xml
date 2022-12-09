@@ -79,7 +79,7 @@
         </section>
 
         <section id="sect10">
-            <drop objectId="fireseed" count="1" />
+            <drop objectId="fireseed"/>
         </section>
 
         <section id="sect11">
@@ -925,7 +925,7 @@
         </section>
 
         <section id="sect157">
-            <drop objectId="fireseed" count="1" />
+            <drop objectId="fireseed"/>
         </section>
 
         <section id="sect158">
@@ -1183,7 +1183,7 @@
         </section>
 
         <section id="sect191">
-            <drop objectId="fireseed" count="1" />
+            <drop objectId="fireseed"/>
         </section>
 
         <section id="sect197">

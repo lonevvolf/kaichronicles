@@ -441,7 +441,7 @@ export class ActionChart {
      * the first object with the given objectId will be dropped
      * @returns The dropped item. null if no item was dropped
      */
-    public drop(objectId: string, dropCount: number = 0, objectIndex: number = -1): ActionChartItem {
+    public drop(objectId: string, dropCount: number = 1, objectIndex: number = -1): ActionChartItem {
 
         if (objectId === Item.MEAL) {
             // Special
@@ -463,14 +463,8 @@ export class ActionChart {
         }
 
         if (objectId === Item.FIRESEED) {
-            // When instructed to drop a Special Item by slot, we should lose all fireseeds in the slot
-            if (dropCount === 0) {
-                this.increaseFireseeds(-this.fireseeds);
-            }
-            // When actually using a fireseed, dropCount will usually be 1
-            else {
-                this.increaseFireseeds(-dropCount);
-            }
+            this.increaseFireseeds(-dropCount);
+
             if (this.fireseeds > 0) {
                 return new ActionChartItem(Item.FIRESEED);
             }
@@ -496,35 +490,18 @@ export class ActionChart {
             return null;
         }
 
-        return this.dropByIndex(item.type, index, dropCount);
-    }
-
-    /**
-     * Drops an object by its position on the action chart
-     * TODO: No need for a different functions for this. Put this code inside drop() function
-     * @param objectType The object type to drop (Item.WEAPON, Item.SPECIAL or Item.OBJECT)
-     * @param index Object position on the objects array (this.weapons, this.specialItems or this.backpackItems)
-     * @param dropCount Only for quivers/fireseeds. n. arrows/fireseeds to drop. It must to be >= 0
-     * @returns The dropped item. null if no object was dropped
-     */
-    private dropByIndex(objectType: string, index: number, dropCount: number = 0): ActionChartItem {
-        const objectsArray = this.getObjectsByType(objectType);
-        if (!objectsArray) {
-            return null;
-        }
-        if (index < 0 || index >= objectsArray.length) {
-            return null;
-        }
         const aChartItem = objectsArray[index];
         objectsArray.splice(index, 1);
 
         this.checkMaxEndurance();
         this.checkCurrentWeapon();
+
         if (aChartItem.id === Item.QUIVER) {
             // Decrease arrows count
             this.arrows -= dropCount;
             this.sanitizeArrowCount();
         }
+
         return aChartItem;
     }
 

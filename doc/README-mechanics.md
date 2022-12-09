@@ -159,7 +159,6 @@ will be available on the section.
 
 ### drop (execute once only)
 ```xml
-<drop objectId="fireseed" count="1"/>
 <drop objectId="allmeals" />
 <!-- Drop largerope OR rope -->
 <drop objectId="largerope|rope" />

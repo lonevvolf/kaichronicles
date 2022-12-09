@@ -172,7 +172,7 @@
         </section>
 
         <section id="sect16">
-            <drop objectId="fireseed" count="1" />
+            <drop objectId="fireseed"/>
             <endurance count="-2" />
         </section>
 
@@ -614,7 +614,7 @@
         </section>
 
         <section id="sect106">
-            <drop objectId="fireseed" count="1" />
+            <drop objectId="fireseed"/>
             <!-- If you have seen and examined one of these hexagonal tokens previously in your adventure... -->
             <test not="true" sectionVisited="sect43">
                 <choiceState section="sect161" set="disabled" />

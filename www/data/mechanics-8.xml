@@ -114,7 +114,7 @@
                 <choiceState section="sect207" set="disabled" />
             </test>
             <choiceSelected section="sect207">
-                <drop objectId="fireseed" count="1" />
+                <drop objectId="fireseed"/>
             </choiceSelected>
         </section>
 
@@ -288,7 +288,7 @@
                 <pick class="arrow" count="-1" />
             </choiceSelected>
             <choiceSelected section="sect225">
-                <drop objectId="fireseed" count="1" />
+                <drop objectId="fireseed"/>
             </choiceSelected>
         </section>
 
@@ -789,7 +789,7 @@
                 <choiceState section="sect81" set="disabled" />
             </test>
             <choiceSelected section="sect81">
-                <drop objectId="fireseed" count="1" />
+                <drop objectId="fireseed"/>
             </choiceSelected>
         </section>
 
@@ -838,7 +838,7 @@
                 <choiceState section="sect15" set="disabled" />
             </test>
             <choiceSelected section="sect15">
-                <drop objectId="fireseed" count="1" />
+                <drop objectId="fireseed"/>
             </choiceSelected>
         </section>
 
@@ -1566,7 +1566,7 @@
                 <choiceState section="sect207" set="disabled" />
             </test>
             <choiceSelected section="sect207">
-                <drop objectId="fireseed" count="1" />
+                <drop objectId="fireseed"/>
             </choiceSelected>
         </section>
 
@@ -1929,7 +1929,7 @@
                 <choiceState section="sect33" set="disabled" />
             </test>
             <choiceSelected section="sect33">
-                <drop objectId="fireseed" count="1" />
+                <drop objectId="fireseed"/>
             </choiceSelected>
         </section>
 

@@ -131,7 +131,7 @@ export const actionChartController = {
      * @returns If objectId was an really object id and the object was deleted, it returns the delete object info.
      * Otherwise, it returns true if something was deleted, or false if not
      */
-    drop(objectId: string, availableOnSection: boolean = false, fromUI: boolean = false, dropCount: number = 0,
+    drop(objectId: string, availableOnSection: boolean = false, fromUI: boolean = false, dropCount: number = 1,
          objectIndex: number = -1): boolean|ActionChartItem {
 
         if (objectId === "allweapons") {
@@ -271,7 +271,17 @@ export const actionChartController = {
                 continue;
             }
             const item = arrayOfItems[index];
-            if (actionChartController.drop(item.id, false, false, 0, index)) {
+            let count = 0;
+
+            if(item.id === Item.FIRESEED) {
+                // Erase all fireseeds
+                count = state.actionChart.fireseeds;
+            } else if(item.id === Item.QUIVER) {
+                // Erase one quiver
+                count = state.actionChart.arrows % 6;
+            }
+
+            if (actionChartController.drop(item.id, false, false, count, index)) {
                 droppedItems.push(item);
             }
         }
