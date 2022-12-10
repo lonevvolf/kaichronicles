@@ -30,7 +30,6 @@ TODO
 - Test load previous savegame / state versions to v1.12 !!!
 - In Grand Master books, if you have Psi-surge, check the bonus for Mindblast
 - IMPROVE TESTING
-- Book 13, sect4, dark mode, sword object: Add margin to right of object images
 - Change documentation about save games file format (changes in 1.12)
 - Loyalty bonus for hunting should be applied to Grand Master too?
 
