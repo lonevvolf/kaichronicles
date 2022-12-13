@@ -2,7 +2,7 @@ import { views, translations, Section, gameView, state, CombatMechanics, randomM
     App, ExpressionEvaluator, numberPickerMechanics, SkillsSetup, SetupDisciplines, EquipmentSectionMechanics, actionChartController,
     Currency, LoreCircle, BookSeriesId, MealMechanics, ActionChartItem, InventoryState, actionChartView, template, Book,
     GrandMasterUpgrade, kaimonasteryController, book2sect238, book2sect308, book3sect88, book6sect26, book6sect284,
-    book6sect340, book9sect91, book19sect304, ObjectsTable, ObjectsTableType, setupController, KaiDiscipline, MgnDiscipline,
+    book6sect340, book9sect91, book19sect304, ObjectsTable, ObjectsTableType, setupController, BookSeries, Disciplines, KaiDiscipline, MgnDiscipline,
     GndDiscipline, projectAon, DebugMode } from "../..";
 
 /**
@@ -533,13 +533,13 @@ export const mechanicsEngine = {
         const disciplineToTest = mechanicsEngine.getArrayProperty($rule, "hasDiscipline");
         if (disciplineToTest.length > 0) {
             // Check if the player has some of the disciplines
-            const allDisciplines = Object.keys(state.book.getDisciplinesTable());
+            const allDisciplines = Disciplines.getAllPossibleDisciplines(BookSeries.getBookNumberSeries(state.book.bookNumber).id);
             for (const discipline of disciplineToTest) {
                 if (!allDisciplines.includes(discipline)) {
                     mechanicsEngine.debugWarning("Unknown discipline: " + discipline);
                 }
                 if (state.actionChart.hasDiscipline(discipline)) {
-                    return true
+                    return true;
                 }
             }
         }

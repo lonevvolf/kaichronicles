@@ -1215,10 +1215,14 @@ export class ActionChart {
     /**
      * Player has a given discipline on a given book series?
      * @param disciplineId Displine to check
-     * @param seriesId Book series to check. If null or not specified, the current book series
+     * @param seriesId Book series to check. If null or not specified, the book series of the discipline.
      * @returns true if player has the discipline
      */
     public hasDiscipline(disciplineId: string, seriesId: BookSeriesId = null): boolean {
+        if (seriesId === null) {
+            seriesId = this.getDisciplineSeriesId(disciplineId);
+        }
+        
         if (App.debugMode === DebugMode.DEBUG || App.debugMode === DebugMode.TEST) {
             const possibleDisciplines = Disciplines.getSeriesDisciplines(seriesId !== null ? seriesId : state.book.getBookSeries().id);
             if (!possibleDisciplines.includes(disciplineId)) {
@@ -1254,6 +1258,23 @@ export class ActionChart {
             default:
                 mechanicsEngine.debugWarning("ActionChart.getSeriesDisciplines: Wrong book series");
                 return { disciplines: [], weaponSkill: [] };
+        }
+    }
+
+    /**
+     * Get the series id of a given disciplineId
+     * @param disciplineId Displine to check
+     * @returns BookSeriesid of the given disciplineId
+     */
+    private getDisciplineSeriesId(disciplineId: string): BookSeriesId {
+        if (Object.values(KaiDiscipline).some((v) => v === disciplineId)) {
+            return 0;
+        }
+        if (Object.values(MgnDiscipline).some((v) => v === disciplineId)) {
+            return 1;
+        }
+        if (Object.values(GndDiscipline).some((v) => v === disciplineId)) {
+            return 2;
         }
     }
 

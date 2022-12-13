@@ -86,7 +86,7 @@ export class BookValidator {
         this.validateSectionInternal(sectionId);
     }
 
-    /** Check book disciplines ids and applicacion disciplines ids match */
+    /** Check that book disciplines ids and application disciplines ids match */
     private validateDisciplines() {
         const bookIds = Object.keys( this.book.getDisciplinesTable() );
         const enumIds = Disciplines.getSeriesDisciplines(this.book.getBookSeries().id);
@@ -203,15 +203,14 @@ export class BookValidator {
     }
 
     private validateDisciplinesAttribute( $rule: JQuery<Element> , property: string , allowMultiple: boolean ) {
-
         const disciplinesIds = this.getPropertyValueAsArray( $rule , property , allowMultiple );
         if ( disciplinesIds.length === 0 ) {
             return;
         }
 
-        const disciplinesTable = this.book.getDisciplinesTable();
+        const disciplinesTable = Disciplines.getAllPossibleDisciplines(this.book.getBookSeries().id);
         for ( const disciplineId of disciplinesIds ) {
-            if ( !disciplinesTable[disciplineId] ) {
+            if ( !disciplinesTable.includes(disciplineId) ) {
                 this.addError( $rule , "Wrong discipline id: " + disciplineId );
             }
         }
