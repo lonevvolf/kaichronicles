@@ -119,7 +119,11 @@
  - Book 19 and 20 available. Grand Master is now complete!
  - Restore the possibility to run Kai Chronicles inside Docker
  
- 1.15.1
+ 1.15.1 (*Thanks to lonevvolf for the fixes*)
  - Fixed MIME type of the savegame to JSON
  - Allows to create homescreen app icon, on mobile devices, using Safari or Chrome.
  - Fireseeds are now stacked.
+ - Book 8/11: Fix mental only battle
+ - Book 9: Fix meal sections where only huntmastery is allowed (can't hunt if only kai hunting discipline)
+ - Book 18: Don't remove quivers when loosing backpack (sect236/290/335)
+
