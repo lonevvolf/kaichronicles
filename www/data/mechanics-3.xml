@@ -196,14 +196,14 @@
             <test not="true" hasObject="sommerswerd" hasDiscipline="mindomtr">
                 <choiceState section="all" set="disabled" />
                 <randomTable>
+                    <case to="0">
+                        <choiceState section="sect312" set="enabled" />
+                    </case>
                     <case from="1" to="4">
                         <choiceState section="sect226" set="enabled" />
                     </case>
                     <case from="5">
                         <choiceState section="sect266" set="enabled" />
-                    </case>
-                    <case value="0">
-                        <choiceState section="sect312" set="enabled" />
                     </case>
                 </randomTable>
             </test>
@@ -832,14 +832,14 @@
             </test>
             <test not="true" hasObject="sommerswerd" hasDiscipline="mindomtr">
                 <randomTable>
+                    <case to="0">
+                        <choiceState section="sect312" set="enabled" />
+                    </case>
                     <case from="1" to="4">
                         <choiceState section="sect226" set="enabled" />
                     </case>
                     <case from="5">
                         <choiceState section="sect266" set="enabled" />
-                    </case>
-                    <case value="0">
-                        <choiceState section="sect312" set="enabled" />
                     </case>
                 </randomTable>
             </test>
@@ -1804,7 +1804,7 @@
                 <case to="8">
                     <choiceState section="sect105" set="enabled" />
                 </case>
-                <case value="9">
+                <case from="9">
                     <choiceState section="sect144" set="enabled" />
                 </case>
             </randomTable>

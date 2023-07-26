@@ -1857,9 +1857,7 @@
         <section id="sect284">
             <choiceState section="all" set="disabled" />
             <randomTable>
-                <case from="0" to="9">
-                    <endurance count="-[RANDOM] - 1" />
-                </case>
+                <endurance count="-[RANDOM] - 1" />
                 <choiceState section="all" set="enabled" />
             </randomTable>
         </section>

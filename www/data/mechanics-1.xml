@@ -121,7 +121,7 @@
             <combat combatSkillModifier="-1" />
             <afterCombats>
                 <randomTable>
-                    <case value="0">
+                    <case to="0">
                         <choiceState section="sect53" set="enabled" />
                     </case>
                     <case from="1" to="2">
@@ -166,7 +166,7 @@
                                 <case to="8">
                                     <death />
                                 </case>
-                                <case value="9">
+                                <case from="9">
                                     <choiceState section="sect312" set="enabled" />
                                 </case>
                             </randomTable>

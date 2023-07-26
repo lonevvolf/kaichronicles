@@ -75,10 +75,10 @@
             <object objectId="meal" index="2" />
 
             <randomTable>
-                <case from="0" to="6">
+                <case to="6">
                     <choiceState section="sect202" set="enabled" />
                 </case>
-                <case from="7" to="9">
+                <case from="7">
                     <choiceState section="sect318" set="enabled" />
                 </case>
             </randomTable>
@@ -113,10 +113,10 @@
             <choiceState section="all" set="disabled" />
 
             <randomTable>
-                <case from="0" to="8">
+                <case to="8">
                     <choiceState section="sect271" set="enabled" />
                 </case>
-                <case from="9" to="99">
+                <case from="9">
                     <choiceState section="sect199" set="enabled" />
                 </case>
             </randomTable>
@@ -167,13 +167,13 @@
         <section id="sect24">
             <choiceState section="all" set="disabled" />
             <randomTable>
-                <case from="0" to="3">
+                <case to="3">
                     <choiceState section="sect172" set="enabled" />
                 </case>
                 <case from="4" to="6">
                     <choiceState section="sect307" set="enabled" />
                 </case>
-                <case from="7" to="9">
+                <case from="7">
                     <choiceState section="sect224" set="enabled" />
                 </case>
             </randomTable>
@@ -282,10 +282,10 @@
             <choiceState section="all" set="disabled" />
 
             <randomTable>
-                <case from="0" to="2">
+                <case to="2">
                     <choiceState section="sect328" set="enabled" />
                 </case>
-                <case from="3" to="99">
+                <case from="3">
                     <choiceState section="sect191" set="enabled" />
                 </case>
             </randomTable>
@@ -366,13 +366,13 @@
 
             <choiceState section="all" set="disabled" />
             <randomTable>
-                <case from="0" to="2">
+                <case to="2">
                     <choiceState section="sect73" set="enabled" />
                 </case>
                 <case from="3" to="6">
                     <choiceState section="sect179" set="enabled" />
                 </case>
-                <case from="7" to="9">
+                <case from="7">
                     <choiceState section="sect338" set="enabled" />
                 </case>
             </randomTable>
@@ -381,10 +381,10 @@
         <section id="sect62">
             <choiceState section="all" set="disabled" />
             <randomTable>
-                <case from="0" to="5">
+                <case to="5">
                     <choiceState section="sect310" set="enabled" />
                 </case>
-                <case from="6" to="99">
+                <case from="6">
                     <choiceState section="sect49" set="enabled" />
                 </case>
             </randomTable>
@@ -451,10 +451,10 @@
             </test>
             <test not="true" hasDiscipline="invsblty">
                 <randomTable>
-                    <case from="0" to="4">
+                    <case to="4">
                         <choiceState section="sect142" set="enabled" />
                     </case>
-                    <case from="5" to="9">
+                    <case from="5">
                         <choiceState section="sect240" set="enabled" />
                     </case>
                 </randomTable>
@@ -465,13 +465,13 @@
             <pick class="arrow" count="-1" />
             <choiceState section="all" set="disabled" />
             <randomTable>
-                <case from="-99" to="4">
+                <case to="4">
                     <choiceState section="sect249" set="enabled" />
                 </case>
                 <case from="5" to="8">
                     <choiceState section="sect171" set="enabled" />
                 </case>
-                <case from="9" to="99">
+                <case from="9">
                     <choiceState section="sect113" set="enabled" />
                 </case>
             </randomTable>
@@ -577,10 +577,10 @@
         <section id="sect95">
             <choiceState section="all" set="disabled" />
             <randomTable>
-                <case from="0" to="5">
+                <case to="5">
                     <choiceState section="sect310" set="enabled" />
                 </case>
-                <case from="6" to="99">
+                <case from="6">
                     <choiceState section="sect49" set="enabled" />
                 </case>
             </randomTable>
@@ -654,10 +654,10 @@
         <section id="sect109">
             <choiceState section="all" set="disabled" />
             <randomTable>
-                <case from="-99" to="6">
+                <case to="6">
                     <choiceState section="sect130" set="enabled" />
                 </case>
-                <case from="7" to="99">
+                <case from="7">
                     <choiceState section="sect295" set="enabled" />
                 </case>
             </randomTable>
@@ -810,10 +810,10 @@
         <section id="sect138">
             <choiceState section="all" set="disabled" />
             <randomTable>
-                <case from="0" to="2">
+                <case to="2">
                     <choiceState section="sect318" set="enabled" />
                 </case>
-                <case from="3" to="9">
+                <case from="3">
                     <choiceState section="sect202" set="enabled" />
                 </case>
             </randomTable>
@@ -851,13 +851,13 @@
             <pick class="arrow" count="-1" />
             <choiceState section="all" set="disabled" />
             <randomTable>
-                <case from="-99" to="4">
+                <case to="4">
                     <choiceState section="sect147" set="enabled" />
                 </case>
                 <case from="5" to="8">
                     <choiceState section="sect326" set="enabled" />
                 </case>
-                <case from="9" to="99">
+                <case from="9">
                     <choiceState section="sect17" set="enabled" />
                 </case>
             </randomTable>
@@ -875,10 +875,10 @@
         <section id="sect157">
             <choiceState section="all" set="disabled" />
             <randomTable>
-                <case from="0" to="8">
+                <case to="8">
                     <choiceState section="sect349" set="enabled" />
                 </case>
-                <case from="9" to="99">
+                <case from="9">
                     <choiceState section="sect230" set="enabled" />
                 </case>
             </randomTable>
@@ -1008,13 +1008,13 @@
         <section id="sect189">
             <choiceState section="all" set="disabled" />
             <randomTable>
-                <case from="0" to="2">
+                <case to="2">
                     <choiceState section="sect104" set="enabled" />
                 </case>
                 <case from="3" to="7">
                     <choiceState section="sect269" set="enabled" />
                 </case>
-                <case from="8" to="99">
+                <case from="8">
                     <choiceState section="sect342" set="enabled" />
                 </case>
             </randomTable>
@@ -1039,13 +1039,13 @@
         <section id="sect192">
             <choiceState section="all" set="disabled" />
             <randomTable>
-                <case from="0" to="3">
+                <case to="3">
                     <choiceState section="sect65" set="enabled" />
                 </case>
                 <case from="4" to="7">
                     <choiceState section="sect146" set="enabled" />
                 </case>
-                <case from="8" to="99">
+                <case from="8">
                     <choiceState section="sect304" set="enabled" />
                 </case>
             </randomTable>
@@ -1058,13 +1058,13 @@
             <choiceState section="all" set="disabled" />
             <randomTable>
                 <pick class="arrow" count="-1" />
-                <case from="-99" to="4">
+                <case to="4">
                     <choiceState section="sect95" set="enabled" />
                 </case>
                 <case from="5" to="8">
                     <choiceState section="sect19" set="enabled" />
                 </case>
-                <case from="9" to="99">
+                <case from="9">
                     <choiceState section="sect241" set="enabled" />
                 </case>
             </randomTable>
@@ -1082,10 +1082,10 @@
             <drop objectId="backpack" />
             <choiceState section="all" set="disabled" />
             <randomTable>
-                <case from="0" to="3">
+                <case to="3">
                     <choiceState section="sect214" set="enabled" />
                 </case>
-                <case from="4" to="99">
+                <case from="4">
                     <choiceState section="sect128" set="enabled" />
                 </case>
             </randomTable>
@@ -1341,10 +1341,10 @@
         <section id="sect243">
             <choiceState section="all" set="disabled" />
             <randomTable>
-                <case from="0" to="3">
+                <case to="3">
                     <choiceState section="sect57" set="enabled" />
                 </case>
-                <case from="4" to="99">
+                <case from="4">
                     <choiceState section="sect110" set="enabled" />
                 </case>
             </randomTable>
@@ -1356,10 +1356,10 @@
         <section id="sect244">
             <choiceState section="all" set="disabled" />
             <randomTable>
-                <case from="0" to="4">
+                <case to="4">
                     <choiceState section="sect239" set="enabled" />
                 </case>
-                <case from="5" to="99">
+                <case from="5">
                     <choiceState section="sect279" set="enabled" />
                 </case>
             </randomTable>
@@ -1580,10 +1580,10 @@
         <section id="sect276">
             <choiceState section="all" set="disabled" />
             <randomTable>
-                <case from="0" to="2">
+                <case to="2">
                     <choiceState section="sect318" set="enabled" />
                 </case>
-                <case from="3" to="9">
+                <case from="3">
                     <choiceState section="sect202" set="enabled" />
                 </case>
             </randomTable>
@@ -1611,13 +1611,13 @@
         <section id="sect284">
             <choiceState section="all" set="disabled" />
             <randomTable>
-                <case from="-99" to="4">
+                <case to="4">
                     <choiceState section="sect220" set="enabled" />
                 </case>
                 <case from="5" to="8">
                     <choiceState section="sect127" set="enabled" />
                 </case>
-                <case from="9" to="99">
+                <case from="9">
                     <choiceState section="sect21" set="enabled" />
                 </case>
                 <pick class="arrow" count="-1" />
@@ -1678,13 +1678,13 @@
         <section id="sect299">
             <choiceState section="all" set="disabled" />
             <randomTable>
-                <case from="-99" to="3">
+                <case to="3">
                     <endurance count="-2" />
                 </case>
                 <case from="4" to="6">
                     <endurance count="-3" />
                 </case>
-                <case from="7" to="9">
+                <case from="7">
                     <endurance count="-4" />
                 </case>
                 <choiceState section="all" set="enabled" />
@@ -1733,10 +1733,10 @@
         <section id="sect316">
             <choiceState section="all" set="disabled" />
             <randomTable>
-                <case from="0" to="3">
+                <case to="3">
                     <choiceState section="sect214" set="enabled" />
                 </case>
-                <case from="4" to="99">
+                <case from="4">
                     <choiceState section="sect128" set="enabled" />
                 </case>
             </randomTable>
@@ -1772,10 +1772,10 @@
         <section id="sect322">
             <choiceState section="all" set="disabled" />
             <randomTable>
-                <case from="-99" to="8">
+                <case to="8">
                     <choiceState section="sect105" set="enabled" />
                 </case>
-                <case from="9" to="99">
+                <case from="9">
                     <choiceState section="sect286" set="enabled" />
                 </case>
                 <pick class="arrow" count="-1" />
@@ -1822,13 +1822,13 @@
         <section id="sect332">
             <choiceState section="all" set="disabled" />
             <randomTable>
-                <case from="-99" to="3">
+                <case to="3">
                     <endurance count="-1" />
                 </case>
                 <case from="4" to="6">
                     <endurance count="-2" />
                 </case>
-                <case from="7" to="9">
+                <case from="7">
                     <endurance count="-3" />
                 </case>
                 <choiceState section="all" set="enabled" />
@@ -1842,13 +1842,13 @@
             <pick class="arrow" count="-1" />
             <choiceState section="all" set="disabled" />
             <randomTable>
-                <case from="-99" to="4">
+                <case to="4">
                     <choiceState section="sect45" set="enabled" />
                 </case>
                 <case from="5" to="8">
                     <choiceState section="sect263" set="enabled" />
                 </case>
-                <case from="9" to="99">
+                <case from="9">
                     <choiceState section="sect287" set="enabled" />
                 </case>
             </randomTable>
@@ -1943,10 +1943,10 @@
         <section id="sect349">
             <choiceState section="all" set="disabled" />
             <randomTable>
-                <case from="0" to="5">
+                <case to="5">
                     <choiceState section="sect310" set="enabled" />
                 </case>
-                <case from="6" to="99">
+                <case from="6">
                     <choiceState section="sect49" set="enabled" />
                 </case>
             </randomTable>

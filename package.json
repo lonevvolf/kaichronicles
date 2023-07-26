@@ -1,7 +1,7 @@
 {
     "name": "kaichronicles",
     "displayName": "Kai Chronicles",
-    "version": "1.15.0",
+    "version": "1.15.2",
     "repository": {
         "type": "git",
         "url": "https://github.com/tonib/kaichronicles.git"

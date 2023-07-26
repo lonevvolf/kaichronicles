@@ -949,7 +949,7 @@
                 <case to="8">
                     <choiceState section="sect311" set="enabled" />
                 </case>
-                <case value="9">
+                <case from="9">
                     <choiceState section="sect159" set="enabled" />
                 </case>
             </randomTable>

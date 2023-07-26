@@ -1143,17 +1143,17 @@
             </test>
             <test not="true" hasDiscipline="anmlknsp" hasObject="onyxmedallion">
                 <randomTable>
-                    <case from="8">
-                        <choiceState section="sect287" set="enabled" />
-                    </case>
-                    <case from="4" to="7">
-                        <choiceState section="sect240" set="enabled" />
+                    <case to="0">
+                        <choiceState section="sect257" set="enabled" />
                     </case>
                     <case from="1" to="3">
                         <choiceState section="sect370" set="enabled" />
                     </case>
-                    <case value="0">
-                        <choiceState section="sect257" set="enabled" />
+                    <case from="4" to="7">
+                        <choiceState section="sect240" set="enabled" />
+                    </case>
+                    <case from="8">
+                        <choiceState section="sect287" set="enabled" />
                     </case>
                 </randomTable>
                 <test expression="[KAILEVEL] >= 6">
@@ -1456,7 +1456,7 @@
                 <case from="5" to="8">
                     <choiceState section="sect254" set="enabled" />
                 </case>
-                <case value="9">
+                <case from="9">
                     <choiceState section="sect261" set="enabled" />
                 </case>
             </randomTable>
@@ -1649,7 +1649,7 @@
                     <case from="5" to="8">
                         <choiceState section="sect371" set="enabled" />
                     </case>
-                    <case value="9">
+                    <case from="9">
                         <choiceState section="sect232" set="enabled" />
                     </case>
                 </randomTable>
@@ -1809,7 +1809,7 @@
                 <case from="5" to="8">
                     <choiceState section="sect254" set="enabled" />
                 </case>
-                <case value="9">
+                <case from="9">
                     <choiceState section="sect261" set="enabled" />
                 </case>
             </randomTable>

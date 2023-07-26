@@ -127,3 +127,5 @@
  - Book 9: Fix meal sections where only huntmastery is allowed (can't hunt if only kai hunting discipline)
  - Book 18: Don't remove quivers when loosing backpack (sect236/290/335)
 
+ 1.15.2
+ - Refactor case tags in xml files in order to avoid lower/upper limits that can stuck the player (ex. b13 sect176).
