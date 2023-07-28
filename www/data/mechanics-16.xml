@@ -1447,6 +1447,16 @@
             <meal />
         </section>
 
+        <section id="sect225">
+            <choiceState section="sect270" set="disabled" />
+            <pick objectId="deathstaff" />
+            <onInventoryEvent>
+                <test hasObject="deathstaff">
+                    <choiceState section="sect270" set="enabled" />
+                </test>
+            </onInventoryEvent>
+        </section>
+
         <section id="sect226">
             <choiceState section="sect174" set="disabled" />
             <object objectId="coneyskinmitts" price="5" />
@@ -2066,6 +2076,16 @@
                 <choiceState section="sect102" set="enabled" />
                 <choiceState section="sect260" set="disabled" />
             </test>
+        </section>
+
+        <section id="sect318">
+            <choiceState section="sect270" set="disabled" />
+            <pick objectId="deathstaff" />
+            <onInventoryEvent>
+                <test hasObject="deathstaff">
+                    <choiceState section="sect270" set="enabled" />
+                </test>
+            </onInventoryEvent>
         </section>
 
         <section id="sect319">
