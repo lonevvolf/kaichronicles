@@ -19,6 +19,11 @@ export enum Color {
     Dark
 }
 
+export enum TextSize {
+    Normal,
+    Large
+}
+
 /**
  * The application state.
  */
@@ -61,10 +66,15 @@ export class State {
     public manualRandomTable = false;
 
     /**
+     * Text Size ( 'normal' or 'large' ).
+     * This is stored at localStorage['textSize'], not with the game state
+     */
+    public textSize = TextSize.Normal;
+
+    /**
      * Setup the default color or persist from local storage
      */
     public setupDefaultColorTheme() {
-
         try {
             this.color = Color[localStorage.getItem("color")];
             if (!this.color) {
@@ -72,6 +82,21 @@ export class State {
             }
         } catch (e) {
             this.color = Color.Light;
+            mechanicsEngine.debugWarning(e);
+        }
+    }
+
+    /**
+     * Setup the default text size or persist from local storage
+     */
+    public setupDefaultTextSize() {
+        try {
+            this.textSize = TextSize[localStorage.getItem("textSize")];
+            if (!this.textSize) {
+                this.textSize = TextSize.Normal;
+            }
+        } catch (e) {
+            this.textSize = TextSize.Normal;
             mechanicsEngine.debugWarning(e);
         }
     }
@@ -204,6 +229,15 @@ export class State {
     public updateColorTheme(color: Color) {
         this.color = color;
         localStorage.setItem("color", Color[this.color]);
+    }
+
+    /**
+     * Update state to change the text size
+     * @param textSize 'normal' or 'large'
+     */
+    public updateTextSize(textSize: TextSize) {
+        this.textSize = textSize;
+        localStorage.setItem("textSize", TextSize[this.textSize]);
     }
 
     /**

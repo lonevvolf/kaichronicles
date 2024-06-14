@@ -1,4 +1,4 @@
-import { setupController, translations, views, settingsView, state, template, mechanicsEngine, Color } from "..";
+import { setupController, translations, views, settingsView, state, template, mechanicsEngine, Color, TextSize } from "..";
 
 /**
  * Game settings controller
@@ -27,6 +27,15 @@ export const settingsController = {
     changeColorTheme(color: Color): void {
         template.changeColorTheme( color );
         state.updateColorTheme( color );
+    },
+
+    /**
+     * Change the current color theme
+     * @param color 'light' or 'dark'
+     */
+    changeTextSize(textSize: TextSize): void {
+        template.changeTextSize( textSize );
+        state.updateTextSize( textSize );
     },
 
     /**

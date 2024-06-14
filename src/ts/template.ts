@@ -1,4 +1,4 @@
-import { routing, state, Item, translations, randomTable, mechanicsEngine, App, DebugMode, Color } from ".";
+import { routing, state, Item, translations, randomTable, mechanicsEngine, App, DebugMode, Color, TextSize } from ".";
 
 /**
  * The HTML template API
@@ -60,6 +60,7 @@ export const template = {
         template.updateStatistics(true);
         template.translateMainMenu();
         template.changeColorTheme(state.color);
+        template.changeTextSize(state.textSize);
     },
 
     /**
@@ -277,6 +278,24 @@ export const template = {
             default:
                 // we will default to "light" theme, or no class
                 $("body").removeClass("dark");
+                break;
+        }
+    },
+
+    /**
+     * Change the text size of the templates
+     * @param textSize 'normal' or 'large'
+     */
+    changeTextSize(textSize: TextSize) {
+        state.updateTextSize( textSize );
+
+        switch (textSize) {
+            case TextSize.Large:
+                $("body").addClass("largeText");
+                break;
+            default:
+                // we will default to "normal" text size, or no class
+                $("body").removeClass("largeText");
                 break;
         }
     },
