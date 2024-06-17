@@ -17,9 +17,13 @@ body.modal-open {
     padding: 40px 15px;
 }
 
-#content , .modal-dialog , blockquote {
+#content, .modal-dialog, blockquote {
     font-family: Souvenir, Georgia, "Times New Roman", Times, serif;
     font-size: 16px;
+}
+
+.largeText #content {
+    font-size: 23px;
 }
 
 blockquote {

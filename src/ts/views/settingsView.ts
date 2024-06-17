@@ -1,4 +1,4 @@
-import { state, settingsController, translations, setupController, routing, Color } from "..";
+import { state, settingsController, translations, setupController, routing, Color, TextSize } from "..";
 
 /**
  * Settings view
@@ -23,6 +23,12 @@ export const settingsView = {
         $("#settings-extendedcrt").val(state.actionChart.extendedCRT ? "yes" : "no");
         $("#settings-extendedcrt").on("change", function() {
             state.actionChart.extendedCRT = ($(this).val() === "yes");
+        });
+
+        // Text Size
+        $("#settings-textsize").val(TextSize[state.textSize]);
+        $("#settings-textsize").on("change", function() {
+            settingsController.changeTextSize(TextSize[<string> $(this).val()]);
         });
 
         // Restart book
