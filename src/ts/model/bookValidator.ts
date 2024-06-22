@@ -276,7 +276,7 @@ export class BookValidator {
         try {
             for ( const keyword of ExpressionEvaluator.getKeywords( expression ) ) {
                 if ( !ExpressionEvaluator.isValidKeyword( keyword ) ) {
-                    this.addError( $rule , "Unkwown keyword " + keyword );
+                    this.addError( $rule , "Unknown keyword " + keyword );
                 }
                 expression = expression.replaceAll( keyword , "0" );
             }
@@ -634,7 +634,7 @@ export class BookValidator {
         }
 
         const cls = $rule.attr("class");
-        if ( cls && cls !== "special" ) {
+        if ( cls && cls !== "special" && cls !== "weapon" && cls !== "object") {
             this.addError( $rule , 'Wrong "class" property value' );
         }
 
@@ -644,8 +644,8 @@ export class BookValidator {
         this.validateObjectIdsAttribute( $rule , "except" , true , false );
 
         // "objectId" or "class" are mandatory, and exclusive
-        if ( ( !objectId && !cls ) || ( objectId && cls ) ) {
-            this.addError( $rule , 'One and only one of "objectId" and "class" are mandatory' );
+        if ( ( !objectId && !cls )) {
+            this.addError( $rule , 'One of "objectId" and "class" are mandatory' );
         }
     }
 

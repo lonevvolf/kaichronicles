@@ -855,6 +855,8 @@
         <xs:attribute name="class" type="xs:string">
             <xs:annotation>
                 <xs:documentation>special : You can sell any Special Item object</xs:documentation>
+                <xs:documentation>weapon : You can sell any Weapon object</xs:documentation>
+                <xs:documentation>object : You can sell any Backpack Item object</xs:documentation>
             </xs:annotation>
         </xs:attribute>
         <xs:attribute name="except" type="xs:string">

@@ -825,6 +825,18 @@
             <name>Iron Skull</name>
         </special>
 
+        <special id="temujunsring">
+            <name>Temujun’s Ring</name>
+        </special>
+
+        <special id="siyencrown">
+            <name>Siyen Crown</name>
+        </special>
+
+        <special id="kutyanemerald">
+            <name>Kutyan Emerald</name>
+        </special>
+
     </specials>
 
     <objects>
@@ -1664,9 +1676,47 @@
             <name>Flute</name>
             <image book="21" name="flute.png" />
         </object>
+        
+        <object id="mustowpotion">
+            <name>Mustow Potion</name>
+            <description>
+                Creates a foul choking gas when released into the air
+            </description>
+        </object>
+
+        <object id="sebarispotion">
+            <name>Sebaris Potion</name>
+            <description>
+                Purifies contaminated water
+            </description>
+        </object>
 
         <object id="cowana">
             <name>Cowana Herb</name>
+        </object>
+
+        <object id="scentedoil">
+            <name>Scented Oil</name>
+        </object>
+
+        <object id="candle">
+            <name>Candle</name>
+        </object>
+
+        <object id="slippers">
+            <name>Slippers</name>
+        </object>
+
+        <object id="coppercup">
+            <name>Copper Cup</name>
+        </object>
+
+        <object id="lyre">
+            <name>Lyre</name>
+        </object>
+
+        <object id="ballofchalk">
+            <name>Ball of Chalk</name>
         </object>
 
         <!-- OTHERS -->

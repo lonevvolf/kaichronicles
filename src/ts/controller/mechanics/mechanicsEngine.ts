@@ -834,6 +834,8 @@ export const mechanicsEngine = {
 
         // Sell a specific item
         const objectId = $rule.attr("objectId");
+        const cls = $rule.attr("class");
+
         if (objectId) {
             const item = state.mechanics.getObject(objectId);
             sectionState.sellPrices.push({
@@ -846,17 +848,22 @@ export const mechanicsEngine = {
                 dessiStoneBonus: false
             });
         }
-
         // Other things (money / meals / special items ...)
-        const cls = $rule.attr("class");
-        if (cls) {
+        else if (cls) {
             let objectIds: string[] = [];
             let except: string[] = mechanicsEngine.getArrayProperty($rule, "except");
 
             if (cls === Item.SPECIAL) {
                 objectIds = state.actionChart.getSpecialItemsIds();
                 except.push(Item.MAP); // don't sell this, come on!
-            } else {
+            }
+            else if (cls == Item.WEAPON) {
+                objectIds = state.actionChart.getWeaponsIds();
+            }
+            else if (cls == Item.OBJECT) {
+                objectIds = state.actionChart.getBackpackItemsIds();
+            }
+            else {
                 mechanicsEngine.debugWarning("Sell rule with invalid class");
             }
 
