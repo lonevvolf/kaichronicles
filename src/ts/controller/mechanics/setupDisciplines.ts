@@ -75,7 +75,7 @@ export class SetupDisciplines {
         // Add checkbox for each discipline:
         // eslint-disable-next-line @typescript-eslint/no-this-alias
         const self = this;
-        $('.subsection[id!="mksumary"]').append(mechanicsEngine.getMechanicsUI("mechanics-setDisciplines"))
+        $('.subsection').not('#mksumary').not('#nodispln').append(mechanicsEngine.getMechanicsUI("mechanics-setDisciplines"))
             .each((index, disciplineSection) => {
                 self.setupDisciplineCheckBox($(disciplineSection));
             })

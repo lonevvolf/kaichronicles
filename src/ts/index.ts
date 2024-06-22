@@ -28,6 +28,7 @@ export * from "./controller/mechanics/mealMechanics";
 export * from "./controller/mechanics/mechanicsEngine";
 export * from "./controller/mechanics/setupDisciplines";
 export * from "./controller/mechanics/skillsSetup";
+export * from "./controller/mechanics/kaiNameSetup";
 export * from "./controller/mechanics/specialSections/book2sect308";
 export * from "./controller/mechanics/specialSections/book3sect88";
 export * from "./controller/mechanics/specialSections/book6sect284";

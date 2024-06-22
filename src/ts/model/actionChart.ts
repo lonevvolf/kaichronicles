@@ -1,4 +1,4 @@
-import { ActionChartItem, SectionItem, App, state, BookSeriesId, GndDiscipline, MgnDiscipline, KaiDiscipline, Item, translations, Combat, BookSeries, mechanicsEngine, LoreCircle, SetupDisciplines, randomTable, Disciplines, DebugMode } from "..";
+import { ActionChartItem, SectionItem, App, state, BookSeriesId, GndDiscipline, MgnDiscipline, KaiDiscipline, Item, translations, Combat, BookSeries, mechanicsEngine, LoreCircle, SetupDisciplines, randomTable, Disciplines, DebugMode, NewOrderDiscipline } from "..";
 
 /**
  * Bonus for CS/EP definition
@@ -117,6 +117,11 @@ export class ActionChart {
      * Objects in safekeeping at Kai monastery
      */
     public kaiMonasterySafekeeping: SectionItem[] = [];
+
+    /**
+     * New Order Kai Name
+     */
+    public kaiName: string = "";
 
     /**
      * List of tags
@@ -1243,6 +1248,11 @@ export class ActionChart {
         return this.hasDiscipline(disciplineId, BookSeriesId.GrandMaster);
     }
 
+    /** Player has a given New Order discipline */
+    public hasNewOrderDiscipline(disciplineId: NewOrderDiscipline): boolean {
+        return this.hasDiscipline(disciplineId, BookSeriesId.NewOrder);
+    }
+
     private getRealDisciplines(seriesId: BookSeriesId): SeriesDisciplines {
         switch (seriesId) {
             case BookSeriesId.Kai:
@@ -1250,6 +1260,7 @@ export class ActionChart {
             case BookSeriesId.Magnakai:
                 return this.magnakaiDisciplines;
             case BookSeriesId.GrandMaster:
+            case BookSeriesId.NewOrder:
                 return this.grandMasterDisciplines;
             default:
                 mechanicsEngine.debugWarning("ActionChart.getSeriesDisciplines: Wrong book series");
@@ -1369,6 +1380,9 @@ export class ActionChart {
                     o.magnakaiDisciplines = { disciplines: o.disciplines, weaponSkill: o.weaponSkill };
                     break;
                 case BookSeriesId.GrandMaster:
+                    o.grandMasterDisciplines = { disciplines: o.disciplines, weaponSkill: o.weaponSkill };
+                    break;
+                case BookSeriesId.NewOrder:
                     o.grandMasterDisciplines = { disciplines: o.disciplines, weaponSkill: o.weaponSkill };
                     break;
             }

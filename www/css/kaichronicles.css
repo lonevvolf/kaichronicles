@@ -215,7 +215,7 @@ div.signpost {
 }
 
 /* The statistics on header is like a link */
-#template-statistics {
+#template-statistics, #template-kaiNameHeader {
     cursor: pointer;
 }
 

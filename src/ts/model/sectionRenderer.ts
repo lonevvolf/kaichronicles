@@ -15,7 +15,7 @@ export class SectionRenderer {
      * Only illustrations of following authors are rendered (Others are not included on PAON).
      * This covers up to book 9. There are illustrations of authors that are not distributed (ex. JC Alvarez)
      */
-    private static toRenderIllAuthors = [ "Gary Chalk" , "Brian Williams" ];
+    private static toRenderIllAuthors = [ "Gary Chalk" , "Brian Williams", "Trevor Newton" ];
 
     /** The section to render */
     public sectionToRender: Section;
@@ -116,7 +116,7 @@ export class SectionRenderer {
 
             // Call the function renderer (this class method with the tag name)
             if ( !this[tagName] ) {
-                const msg = this.sectionToRender.sectionId + ": Unkown tag: " + tagName;
+                const msg = this.sectionToRender.sectionId + ": Unknown tag: " + tagName;
                 mechanicsEngine.debugWarning(msg);
                 throw msg;
             } else {
@@ -565,6 +565,14 @@ export class SectionRenderer {
         return '<table class="table table-striped">' + this.renderNodeChildren( $node , level ) + "</table>";
     }
     private tr($node: JQuery<HTMLElement>, level: number): string { return this.renderHtmlNode( $node , level ); }
-    private th($node: JQuery<HTMLElement>, level: number): string { return this.renderHtmlNode( $node , level ); }
+    private th($node: JQuery<HTMLElement>, level: number): string {
+         //return this.renderHtmlNode( $node , level ); 
+         if ($node.attr("colspan") !== undefined) {
+            return '<th colspan=' + $node.attr("colspan") + '>' + this.renderNodeChildren( $node , level ) + "</th>";
+         }
+         else {
+            return this.renderHtmlNode( $node , level );
+         }
+    }
     private td($node: JQuery<HTMLElement>, level: number): string { return this.renderHtmlNode( $node , level ); }
 }

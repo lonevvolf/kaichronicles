@@ -81,6 +81,12 @@
         </xs:annotation>
     </xs:complexType>
 
+    <xs:complexType name="setKaiName">
+        <xs:annotation>
+            <xs:documentation>Game setup: The player selects their Kai Name.</xs:documentation>
+        </xs:annotation>
+    </xs:complexType>
+    
     <xs:complexType name="restoreDeliveranceUse">
         <xs:annotation>
             <xs:documentation>Execute once only. Magnakai and later: Action Chart button to restore +X EP after Y days will available again.</xs:documentation>
@@ -218,7 +224,7 @@
             </xs:annotation>
             <xs:simpleType>
                 <xs:restriction base="xs:string">
-                    <xs:pattern value = "(sixthsns|camflage|tracking|mindomtr|anmlknsp|healing|hunting|mindshld|mndblst|wepnskll|wpnmstry|anmlctrl|curing|invsblty|psisurge|psiscrn|nexus|dvnation|anmlmstr|deliver|assimila|kaisurge|kaiscrn|gnosis|magi|alchemy|hntmstry|pthmnshp|\|)*"/>
+                    <xs:pattern value = "(sixthsns|camflage|tracking|mindomtr|anmlknsp|healing|hunting|mindshld|mndblst|wepnskll|wpnmstry|anmlctrl|curing|invsblty|psisurge|psiscrn|nexus|dvnation|anmlmstr|deliver|assimila|kaisurge|kaiscrn|gnosis|magi|alchemy|hntmstry|pthmnshp|astrolgy|herbmst|element|bardsman|\|)*"/>
                 </xs:restriction>
             </xs:simpleType>
         </xs:attribute>
@@ -1062,6 +1068,7 @@
         <xs:choice>
             <xs:element name="tag" type="tag" />
             <xs:element name="setSkills" type="setSkills" />
+            <xs:element name="setKaiName" type="setKaiName" />
             <xs:element name="restoreDeliveranceUse" type="restoreDeliveranceUse" />
             <xs:element name="setDisciplines" type="setDisciplines" />
             <xs:element name="pick" type="pick" />

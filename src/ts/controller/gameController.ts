@@ -43,6 +43,7 @@ export const gameController = {
     /** Setup the HTML main page template for the game view */
     gameTemplateSetup() {
         template.showStatistics(true);
+        template.showKaiName(state.actionChart.kaiName !== "");
         template.setNavTitle(state.book.getBookTitle(), "#game", false);
     },
 

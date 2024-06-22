@@ -1,5 +1,5 @@
 import { views, translations, Section, gameView, state, CombatMechanics, randomMechanics, Combat, Item, routing, gameController,
-    App, ExpressionEvaluator, numberPickerMechanics, SkillsSetup, SetupDisciplines, EquipmentSectionMechanics, actionChartController,
+    App, ExpressionEvaluator, numberPickerMechanics, SkillsSetup, KaiNameSetup, SetupDisciplines, EquipmentSectionMechanics, actionChartController,
     Currency, LoreCircle, BookSeriesId, MealMechanics, ActionChartItem, InventoryState, actionChartView, template, Book,
     GrandMasterUpgrade, kaimonasteryController, book2sect238, book2sect308, book3sect88, book6sect26, book6sect284,
     book6sect340, book9sect91, book19sect304, ObjectsTable, ObjectsTableType, setupController, KaiDiscipline, MgnDiscipline,
@@ -412,6 +412,13 @@ export const mechanicsEngine = {
      */
     setSkills() {
         SkillsSetup.setSkills();
+    },
+
+    /**
+     * Choose player Kai name UI
+     */
+    setKaiName() {
+        KaiNameSetup.setKaiName();
     },
 
     /**

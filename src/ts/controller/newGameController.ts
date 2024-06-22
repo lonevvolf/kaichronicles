@@ -13,6 +13,7 @@ export const newGameController = {
         // Get available books
         template.setNavTitle( translations.text("kaiChronicles") , "#mainMenu", true);
         template.showStatistics(false);
+        template.showKaiName(false);
         
         state.manualRandomTable = state.actionChart && state.actionChart.manualRandomTable;
 

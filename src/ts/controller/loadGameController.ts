@@ -13,6 +13,7 @@ export class loadGameController {
     public static index() {
         template.setNavTitle( translations.text("kaiChronicles"), "#mainMenu", true);
         template.showStatistics(false);
+        template.showKaiName(false);
         views.loadView("loadGame.html").then(() => {
             // Web page environment:
             loadGameView.bindFileUploaderEvents();

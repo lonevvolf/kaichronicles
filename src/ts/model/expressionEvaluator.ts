@@ -46,6 +46,12 @@ export class ExpressionEvaluator {
             return sectionState.getCntSectionObjects("object");
         },
 
+        // Meal items on section
+        "[MEALS-CNT-ON-SECTION]"() {
+            const sectionState = state.sectionStates.getSectionState();
+            return sectionState.getSectionObjects("object").filter((item) => item.id === "meal").length;
+        },
+
         // Backpack items on section (includes meals)
         "[BACKPACK-ITEMS-CNT-ON-ACTIONCHART]"() {
             return state.actionChart.getNBackpackItems();

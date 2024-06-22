@@ -3,8 +3,7 @@
 <object-mechanics  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/cracrayol/kaichronicles/master/www/data/objects.xsd">
 
     <weapons>
-        <!-- WEAPONS ON KAI / MAGNAKAI SERIE BOOKS -->
-
+        <!-- WEAPONS ON KAI / MAGNAKAI SERIES BOOKS -->
         <weapon id="axe">
             <name>Axe</name>
             <image book="1|9" name="axe.png" />
@@ -814,6 +813,16 @@
         <special id="bluediamond">
             <name>Blue Diamond</name>
             <description>A radiant gem the size of a walnut.</description>
+        </special>
+
+        <!-- BOOK 21 -->
+
+        <special id="moonstone">
+            <name>Moonstone</name>
+        </special>
+
+        <special id="ironskull">
+            <name>Iron Skull</name>
         </special>
 
     </specials>
@@ -1648,6 +1657,16 @@
 
         <object id="shamathpotion">
             <name>Shamath’s potion</name>
+        </object>
+
+        <!-- BOOK 21 -->
+        <object id="flute">
+            <name>Flute</name>
+            <image book="21" name="flute.png" />
+        </object>
+
+        <object id="cowana">
+            <name>Cowana Herb</name>
         </object>
 
         <!-- OTHERS -->
