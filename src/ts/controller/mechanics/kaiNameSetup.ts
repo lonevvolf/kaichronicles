@@ -6,65 +6,72 @@ import { state, template, gameView, mechanicsEngine, BookSeriesId, randomMechani
 export class KaiNameSetup {
 
     /**
-     * Weapons table for Weaponskill discipline in Kai books (IT DOES NOT CONTAIN BOW!!!)
+     * First names
      */
     public static readonly firstNames = ["Swift", "Sun", "True", "Bold", "Moon", "Sword",
             "Wise", "Storm", "Rune", "Brave"];
 
     /**
-     * Weapons table for Weaponskill discipline in Kai books (IT DOES NOT CONTAIN BOW!!!)
+     * Last names
      */
     public static readonly lastNames = ["Blade", "Fire", "Hawk", "Heart", "Friend", "Star",
         "Dancer", "Helm", "Strider", "Shield"];
 
     /**
-     * Choose player skills UI
+     * Choose Kai name UI
      */
     public static setKaiName() {
-        // If the name is already set or not a New Order book, do nothing
-        if (state.book.getBookSeries().id != BookSeriesId.NewOrder || state.actionChart.kaiName !== "") {
+        // Add HTML to do the choice
+        gameView.appendToSection(mechanicsEngine.getMechanicsUI("mechanics-setKaiName"));
+
+        // Prefill the text area with the existing name
+        $("#mechanics-customKaiName").val(state.actionChart.kaiName);
+        
+        // If the name is already set show the name
+        if (state.actionChart.kaiName !== "") {
+            $("#kaiName").append("<b>" + state.actionChart.kaiName + "</b>");
+            $("#mechanics-setNames").hide();
             return;
         }
-
-        // Add HTML to do the choose
-        gameView.appendToSection(mechanicsEngine.getMechanicsUI("mechanics-setKaiName"));
+        else {
+            $("#mechanics-existingKaiName").hide();
+        }
 
         // Disable next link
         gameView.enableNextLink(false);
 
         // Kai Name
-        if (state.actionChart.kaiName !== "") {
-            $("#mechanics-detFirstName").hide();
-            $("#mechanics-detLastName").hide();
-        } else {
+        if (state.actionChart.kaiName === "") {
+            $("#mechanics-customKaiName").on("input", (e) => {
+                state.actionChart.kaiName = $("#mechanics-customKaiName").val().toString();
+                gameView.enableNextLink($("#mechanics-customKaiName").val() !== "");
+                template.updateKaiName();
+            });
+
             const $f = $("#mechanics-chooseFirstName");
             randomMechanics.bindTableRandomLink($f, (value) => {
-                if (state.actionChart.kaiName !== "") {
-                    state.actionChart.kaiName = this.firstNames[value] + " " + state.actionChart.kaiName;
+                if ($("#mechanics-customKaiName").prop('readonly')) {
+                    $("#mechanics-customKaiName").val(this.firstNames[value] + " " + $("#mechanics-customKaiName").val());
                 }
                 else {
-                    state.actionChart.kaiName = this.firstNames[value];
+                    $("#mechanics-customKaiName").val(this.firstNames[value]);
+                    $("#mechanics-customKaiName").prop('readonly', true);
                 }
-                $f.parent().append("<b>" + translations.text("firstNameSet", [this.firstNames[value]]) + ".</b>");
-                template.updateKaiName();
-                if (state.actionChart.kaiName.includes(" ")) {
-                    gameView.enableNextLink(true);
-                }
+
+                $("#mechanics-customKaiName").trigger("input");
             }, false);
 
             const $l = $("#mechanics-chooseLastName");
             randomMechanics.bindTableRandomLink($l, (value) => {
-                if (state.actionChart.kaiName !== "") {
-                    state.actionChart.kaiName = state.actionChart.kaiName + " " + this.lastNames[value];
+                if ($("#mechanics-customKaiName").prop('readonly')) {
+                    $("#mechanics-customKaiName").val($("#mechanics-customKaiName").val() + " " + this.lastNames[value]);
                 }
                 else {
-                    state.actionChart.kaiName = this.lastNames[value];
+                    $("#mechanics-customKaiName").val(this.lastNames[value]);
+                    $("#mechanics-customKaiName").prop('readonly', true);
                 }
-                $l.parent().append("<b>" + translations.text("lastNameSet", [this.lastNames[value]]) + ".</b>");
-                template.updateKaiName();
-                if (state.actionChart.kaiName.includes(" ")) {
-                    gameView.enableNextLink(true);
-                }
+
+                $("#mechanics-customKaiName").trigger("input");
             }, false);
         }
     }

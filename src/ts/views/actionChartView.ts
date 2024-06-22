@@ -121,6 +121,10 @@ export const actionChartView = {
             $("#achart-circles").hide();
         }
 
+        if (state.book.getBookSeries().id !== BookSeriesId.NewOrder) {
+            $("#kaiWeapon").hide();
+        }
+
         // TODO: Display the discipline "quote" tag instead the name
         const $displines = $("#achart-disciplines > tbody");
         if ( actionChart.getDisciplines().length === 0 ) {

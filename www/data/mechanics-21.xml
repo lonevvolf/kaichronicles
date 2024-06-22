@@ -301,6 +301,10 @@
             </test>
         </section>
 
+        <section id="sect49">
+            <pick class="arrow" count="-1" />
+        </section>
+
         <section id="sect50">
             <combat noMindblast="true" noKaiSurge="true" noPsiSurge="true" noKaiBlast="true" noKaiRay="true" />
         </section>
@@ -442,6 +446,10 @@
             <endurance count="-10" />
         </section>
 
+        <section id="sect71">
+            <pick class="arrow" count="-1" />
+        </section>
+
         <section id="sect72">
             <choiceState section="sect345" set="disabled" />
             <test canUseBow="true">
@@ -490,6 +498,10 @@
                 <choiceState section="sect243" set="disabled" />
                 <choiceState section="sect225" set="enabled" />
             </test>
+        </section>
+
+        <section id="sect81">
+            <pick class="arrow" count="-1" />
         </section>
 
         <section id="sect82">
@@ -764,6 +776,7 @@
         </section>
 
         <section id="sect136">
+            <pick class="arrow" count="-1" />
             <choiceState section="all" set="disabled" />
 
             <randomTable>

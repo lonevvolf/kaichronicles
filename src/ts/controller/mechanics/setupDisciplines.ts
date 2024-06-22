@@ -44,7 +44,7 @@ export class SetupDisciplines {
 
         // Get info about the last played book
         const previousBookNumber = state.book.bookNumber - 1;
-        if (previousBookNumber >= 1) {
+        if (previousBookNumber >= 1 && state.book.bookNumber !== 21) {
             this.previousActionChart = state.getPreviousBookActionChart(previousBookNumber);
 
             // When a series start, by default, keep Weaponmastery with the same weapons from previous series

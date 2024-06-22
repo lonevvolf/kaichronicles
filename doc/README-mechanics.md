@@ -327,7 +327,7 @@ This will allow to the player to sell a class of objects by a given price
 ```xml
 <resetSectionState sectionId="sect152" />
 ```
-This will clear the state of the given section. Usefull if the player can return to that
+This will clear the state of the given section. Useful if the player can return to that
 section, and there are rules with state there that must to be reexecuted
 
 ### meal
