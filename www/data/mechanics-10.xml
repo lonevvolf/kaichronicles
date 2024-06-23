@@ -1550,6 +1550,7 @@
         </section>
 
         <section id="sect273">
+            <tag id="torgar" />
             <choiceState section="sect22" set="disabled" />
             <test hasDiscipline="dvnation">
                 <test expression="[KAILEVEL] >= 5">
@@ -1872,7 +1873,6 @@
         </section>
 
         <section id="sect346">
-            <tag id="torgar" />
             <choiceState section="sect86" set="disabled" />
             <test hasDiscipline="dvnation">
                 <choiceState section="sect86" set="enabled" />

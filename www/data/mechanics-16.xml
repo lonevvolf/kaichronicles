@@ -421,10 +421,6 @@
             </afterCombats>
         </section>
 
-        <section id="sect53">
-            <tag id="vorndarol" />
-        </section>
-
         <section id="sect54">
             <choiceState section="all" set="disabled" />
             <combat noMindblast="true" noPsiSurge="true" />
@@ -1282,6 +1278,10 @@
                 <choiceState section="sect57" set="enabled" />
                 <choiceState section="sect282" set="disabled" />
             </test>
+        </section>
+
+        <section id="sect195">
+            <tag id="vorndarol" />
         </section>
 
         <section id="sect196">
