@@ -49,7 +49,7 @@ if(fsn.existsSync("project-aon")) {
 } else {
     console.log("Cloning Project Aon git repository. Could take time (~500MB to download).");
     const git: SimpleGit = simpleGit({progress});
-    gitPromise = git.clone("https://git.projectaon.org/project-aon.git");
+    gitPromise = git.clone("https://github.com/lonevvolf/project-aon.git");
 }
 
 gitPromise.then(result => {
