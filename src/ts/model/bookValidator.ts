@@ -539,8 +539,8 @@ export class BookValidator {
             this.addError($rule, "If noKaiSurge attr. is true, noMindblast and noPsiSurge attributes should be true too");
         }
 
-        if ($rule.attr("noKaiBlast") === "true" && ( $rule.attr("noMindblast") !== "true" || $rule.attr("noPsiSurge") !== "true" || $rule.attr("noKaiSurge") !== "true" ) ) {
-            this.addError($rule, "If noKaiBlast attr. is true, noMindblast, noPsiSurge and noKaiSurge attributes should be true too");
+        if ($rule.attr("noKaiBlast") === "true" && ( $rule.attr("noMindblast") !== "true" || $rule.attr("noPsiSurge") !== "true" ) ) {
+            this.addError($rule, "If noKaiBlast attr. is true, noMindblast, and noPsiSurge attributes should be true too");
         }
 
         // TODO: Check attr "noWeapon" is boolean or number

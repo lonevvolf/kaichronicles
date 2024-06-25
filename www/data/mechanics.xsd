@@ -890,6 +890,7 @@
                 <xs:documentation>Identifies the objects to lose / restore (all by default) :</xs:documentation>
                 <xs:documentation>- all: The backpack content, the backpack itself, special items, meals and money</xs:documentation>
                 <xs:documentation>- weaponlike: Weapons and weapon-like special items</xs:documentation>
+                <xs:documentation>- bow: Bow weapons</xs:documentation>
                 <xs:documentation>- allobjects: The backpack content, special items and meals</xs:documentation>
             </xs:annotation>
             <xs:simpleType>
