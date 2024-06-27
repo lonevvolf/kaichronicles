@@ -1693,6 +1693,8 @@
 
         <object id="cowana">
             <name>Cowana Herb</name>
+            <description>Each dose of Cowana will restore 4 ENDURANCE points to your total when swallowed after combat.</description>
+            <usage class="endurance" increment="4" />
         </object>
 
         <object id="scentedoil">
