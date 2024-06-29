@@ -782,9 +782,7 @@
                     <choiceState section="sect296" set="enabled" />
                 </case>
             </randomTable>
-            <test hasWeaponskillWith="bow">
-                <randomTableIncrement increment="5" />
-            </test>
+            <randomTableIncrement increment="[BOWBONUS]" />
             <test expression="[ENDURANCE] &lt;= 15">
                 <randomTableIncrement increment="-1" />
             </test>
@@ -1022,9 +1020,7 @@
                     <choiceState section="sect59" set="enabled" />
                 </case>
             </randomTable>
-            <test hasWeaponskillWith="bow">
-                <randomTableIncrement increment="5" />
-            </test>
+            <randomTableIncrement increment="[BOWBONUS]" />
         </section>
 
         <section id="sect172">
@@ -1441,9 +1437,7 @@
                     <choiceState section="sect49" set="enabled" />
                 </case>
             </randomTable>
-            <test hasWeaponskillWith="bow">
-                <randomTableIncrement increment="5" />
-            </test>
+            <randomTableIncrement increment="[BOWBONUS]" />
         </section>
 
         <section id="sect246">
@@ -1836,9 +1830,7 @@
                     <choiceState section="sect222" set="enabled" />
                 </case>
             </randomTable>
-            <test hasWeaponskillWith="bow">
-                <randomTableIncrement increment="5" />
-            </test>
+            <randomTableIncrement increment="[BOWBONUS]" />
         </section>
 
         <section id="sect324">
@@ -1970,9 +1962,7 @@
                     <choiceState section="sect279" set="enabled" />
                 </case>
             </randomTable>
-            <test hasWeaponskillWith="bow">
-                <randomTableIncrement increment="5" />
-            </test>
+            <randomTableIncrement increment="[BOWBONUS]" />
             <test expression="[ENDURANCE] &lt;= 10">
                 <randomTableIncrement increment="-2" />
             </test>
