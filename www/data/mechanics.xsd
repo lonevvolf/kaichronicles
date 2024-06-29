@@ -92,7 +92,7 @@
             <xs:documentation>Execute once only. Magnakai and later: Action Chart button to restore +X EP after Y days will available again.</xs:documentation>
         </xs:annotation>
     </xs:complexType>
-
+    
     <xs:complexType name="setDisciplines">
         <xs:annotation>
             <xs:documentation>Game setup: The player selects the Kai disciplines.</xs:documentation>
@@ -556,6 +556,16 @@
             <xs:annotation>
                 <xs:documentation>If false (true by default), don't allows usage of potions prior the combat</xs:documentation>
             </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="properties">
+            <xs:annotation>
+                <xs:documentation>Combat properties used by Kai Weapons to determine CS bonus</xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:pattern value = "(repitilian|undead|rock|day|night|magic|underwater|winged|underground|fire|\|)*"/>
+                </xs:restriction>
+            </xs:simpleType>
         </xs:attribute>
     </xs:complexType>
 

@@ -140,7 +140,7 @@
 
         <section id="sect21">
             <choiceState section="all" set="disabled" />
-            <combat eludeTurn="3" />
+            <combat eludeTurn="3" properties="day" />
             <afterCombats>
                 <choiceState section="sect97" set="enabled" />
             </afterCombats>
@@ -191,6 +191,7 @@
         </section>
 
         <section id="sect31">
+            <combat properties="day" />
             <choiceState section="all" set="disabled" />
             <afterCombats>
                 <test not="true" expression="[COMBATSDURATION] > 4">
@@ -267,11 +268,11 @@
         </section>
 
         <section id="sect43">
-            <combat noMindblast="true" />
+            <combat noMindblast="true" properties="night" />
         </section>
 
         <section id="sect44">
-            <combat combatSkillModifier="+3" />
+            <combat combatSkillModifier="+3" properties="day" />
             <afterCombatTurn turn="2">
                 <combat combatSkillModifier="+0" />
             </afterCombatTurn>
@@ -305,7 +306,7 @@
         </section>
 
         <section id="sect50">
-            <combat noMindblast="true" noKaiSurge="true" noPsiSurge="true" noKaiBlast="true" noKaiRay="true" />
+            <combat properties="day" noMindblast="true" noKaiSurge="true" noPsiSurge="true" noKaiBlast="true" noKaiRay="true" />
         </section>
 
         <section id="sect51">
@@ -389,7 +390,7 @@
         </section>
 
         <section id="sect60">
-            <combat noMindblast="true" />
+            <combat noMindblast="true" properties="night" />
         </section>
 
         <section id="sect62">
@@ -574,7 +575,7 @@
         <section id="sect94">
             <choiceState section="all" set="disabled" />
 
-            <combat immuneTurns="1" noMindblast="true" />
+            <combat properties="day" immuneTurns="1" noMindblast="true" />
             <afterCombats>
                 <choiceState section="sect41" set="enabled" />
             </afterCombats>
@@ -691,7 +692,11 @@
         </section>
 
         <section id="sect120">
-            <combat noMindblast="true" />
+            <choiceState section="all" set="disabled" />
+            <combat noMindblast="true" properties="night" />
+            <afterCombats>
+                <choiceState section="all" set="enabled" />
+            </afterCombats>
         </section>
 
         <section id="sect121">
@@ -954,7 +959,7 @@
         <section id="sect162">
             <choiceState section="all" set="disabled" />
 
-            <combat noMindblast="true" noKaiSurge="false" noPsiSurge="true" noKaiBlast="true" noKaiRay="true" combatSkillModifier="-3"/>
+            <combat properties="day" noMindblast="true" noKaiSurge="false" noPsiSurge="true" noKaiBlast="true" noKaiRay="true" combatSkillModifier="-3"/>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
             </afterCombats>
@@ -1158,7 +1163,7 @@
         <section id="sect192">
             <choiceState section="all" set="disabled" />
 
-            <combat combatSkillModifier="+2" />
+            <combat combatSkillModifier="+2" properties="day" />
             <afterCombatTurn turn="1">
                 <combat combatSkillModifier="+0" />
             </afterCombatTurn>
@@ -1228,7 +1233,7 @@
             <choiceState section="all" set="disabled" />
 
             <endurance count="-2" />
-            <combat noMindblast="true" />
+            <combat properties="day" noMindblast="true" />
 
             <afterCombats>
                 <choiceState section="all" set="enabled" />
@@ -1265,7 +1270,7 @@
 
         <section id="sect210">
             <choiceState section="all" set="disabled" />
-            <combat noWeapon="true" noMindblast="true" noKaiBlast="true" noKaiRay="true" noPsiSurge="true" />
+            <combat properties="day" noWeapon="true" noMindblast="true" noKaiBlast="true" noKaiRay="true" noPsiSurge="true" />
 
             <afterCombats>
                 <choiceState section="all" set="enabled" />
@@ -1373,7 +1378,7 @@
 
         <section id="sect230">
             <choiceState section="all" set="disabled" />
-            <combat noWeapon="1" />
+            <combat properties="day" noWeapon="1" />
             <afterCombats>
                 <choiceState section="all" set="enabled" />
             </afterCombats>
@@ -1448,7 +1453,7 @@
             <endurance count="-2" />
 
             <choiceState section="all" set="disabled" />
-            <combat noMindblast="true" />
+            <combat properties="day" noMindblast="true" />
             <afterCombats>
                 <choiceState section="all" set="enabled" />
             </afterCombats>
@@ -1490,7 +1495,7 @@
         <section id="sect257">
             <choiceState section="all" set="disabled" />
 
-            <combat combatSkillModifier="2" />
+            <combat properties="day" combatSkillModifier="2" />
             <afterCombatTurn turn="1">
                 <combat combatSkillModifier="+0" />
             </afterCombatTurn>
