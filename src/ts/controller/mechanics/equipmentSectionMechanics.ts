@@ -104,7 +104,6 @@ export class EquipmentSectionMechanics {
             $("#mechanics-chooseEquipment").hide();
             gameView.enableNextLink(true);
         }
-
     }
 
     /**

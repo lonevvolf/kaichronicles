@@ -263,10 +263,16 @@ export class State {
         this.sectionStates = new BookSectionStates();
         this.actionChartSect1 = null;
 
-        // Restore Kai monastery objects
-        this.restoreKaiMonasterySectionObjects();
+        if (this.book.bookNumber !== 21) {
+            // Restore Kai monastery objects
+            this.restoreKaiMonasterySectionObjects();
 
-        this.persistState();
+            this.persistState();
+        }
+        // Start a new character for the New Order series
+        else {
+            this.setup(this.book.bookNumber, false);
+        }
     }
 
     /**

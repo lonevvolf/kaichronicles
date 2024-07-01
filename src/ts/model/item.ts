@@ -1,3 +1,4 @@
+import { INTERNAL_COMPUTE_OFFSET_SCRIPT } from "selenium-webdriver/lib/input";
 import { Book, translations, mechanicsEngine, Section, state } from "..";
 
 /**

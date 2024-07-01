@@ -303,7 +303,7 @@ Make an object available on the section. The player will can pick / buy it.
 * **price**: If it's set, the price to buy the object (not free)
 * **unlimited="true"**: There is an unlimited number of objects of this class on the section
 * **index="number"** Required, for ugly reasons, when there are two o more objects with the same object id on a section
-* **useOnSection="true"**: If true, the player will can use the object without picking it
+* **useOnSection="true"**: If true, the player will use the object without picking it
 
 ### tag
 ```xml

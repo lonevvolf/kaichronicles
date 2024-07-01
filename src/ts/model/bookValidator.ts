@@ -544,12 +544,6 @@ export class BookValidator {
             this.addError($rule, "If noKaiBlast attr. is true, noMindblast, and noPsiSurge attributes should be true too");
         }
 
-        for (const c of combats) {
-            if (this.book.bookNumber >= 21 && c.properties) {
-                this.addError($rule, "Combats in New Order should have at least day or night property")
-            }
-        }
-
         // TODO: Check attr "noWeapon" is boolean or number
     }
 

@@ -566,7 +566,6 @@ export class SectionRenderer {
     }
     private tr($node: JQuery<HTMLElement>, level: number): string { return this.renderHtmlNode( $node , level ); }
     private th($node: JQuery<HTMLElement>, level: number): string {
-         //return this.renderHtmlNode( $node , level ); 
          if ($node.attr("colspan") !== undefined) {
             return '<th colspan=' + $node.attr("colspan") + '>' + this.renderNodeChildren( $node , level ) + "</th>";
          }
@@ -574,5 +573,12 @@ export class SectionRenderer {
             return this.renderHtmlNode( $node , level );
          }
     }
-    private td($node: JQuery<HTMLElement>, level: number): string { return this.renderHtmlNode( $node , level ); }
+    private td($node: JQuery<HTMLElement>, level: number): string { 
+        if ($node.attr("colspan") !== undefined) {
+            return '<td colspan=' + $node.attr("colspan") + '>' + this.renderNodeChildren( $node , level ) + "</td>";
+         }
+         else {
+            return this.renderHtmlNode( $node , level );
+         }
+    }
 }

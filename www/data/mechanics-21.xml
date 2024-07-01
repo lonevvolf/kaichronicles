@@ -53,7 +53,41 @@
             <object objectId="laumspurpotion4" />
             <object objectId="axe" />
 
-            <chooseEquipment text="Click on the Random Table link to get money before continuing" />
+            <randomTable index="1">
+                <case value="0">
+                    <pick objectId="spawnsmite"/>
+                </case>
+                <case value="1">
+                    <pick objectId="alema"/>
+                </case>
+                <case value="2">
+                    <pick objectId="magnara"/>
+                </case>
+                <case value="3">
+                    <pick objectId="sunstrike"/>
+                </case>
+                <case value="4">
+                    <pick objectId="kaistar"/>
+                </case>
+                <case value="5">
+                    <pick objectId="valiance"/>
+                </case>
+                <case value="6">
+                    <pick objectId="ulnarias"/>
+                </case>
+                <case value="7">
+                    <pick objectId="raumas"/>
+                </case>
+                <case value="8">
+                    <pick objectId="illuminatus"/>
+                </case>
+                <case value="9">
+                    <pick objectId="firefall"/>
+                </case>
+            </randomTable>
+
+            <chooseEquipment text="Click on the Random Table links to get money and a Kai Weapon before continuing" />
+
             <message text="You may take up to five of the following (all meals count as one object):" />
         </section>
 
@@ -65,6 +99,9 @@
             <choiceState section="all" set="disabled" />
 
             <combat noWeapon="true" />
+            <test currentWeapon="sunstrike">
+                <combat combatSkillModifier="+1"/>
+            </test>
             <afterCombatTurn turn="1">
                 <combat noWeapon="false" />
             </afterCombatTurn>
@@ -140,7 +177,10 @@
 
         <section id="sect21">
             <choiceState section="all" set="disabled" />
-            <combat eludeTurn="3" properties="day" />
+            <combat eludeTurn="3" />
+            <test currentWeapon="sunstrike">
+                <combat combatSkillModifier="+1"/>
+            </test>
             <afterCombats>
                 <choiceState section="sect97" set="enabled" />
             </afterCombats>
@@ -191,7 +231,10 @@
         </section>
 
         <section id="sect31">
-            <combat properties="day" />
+            <combat />
+            <test currentWeapon="sunstrike">
+                <combat combatSkillModifier="+1"/>
+            </test>
             <choiceState section="all" set="disabled" />
             <afterCombats>
                 <test not="true" expression="[COMBATSDURATION] > 4">
@@ -268,11 +311,17 @@
         </section>
 
         <section id="sect43">
-            <combat noMindblast="true" properties="night" />
+            <combat noMindblast="true" />
+            <test currentWeapon="kaistar">
+                <combat combatSkillModifier="+2"/>
+            </test>
         </section>
 
         <section id="sect44">
-            <combat combatSkillModifier="+3" properties="day" />
+            <combat combatSkillModifier="+3" />
+            <test currentWeapon="sunstrike">
+                <combat combatSkillModifier="+1"/>
+            </test>
             <afterCombatTurn turn="2">
                 <combat combatSkillModifier="+0" />
             </afterCombatTurn>
@@ -306,7 +355,7 @@
         </section>
 
         <section id="sect50">
-            <combat properties="day" noMindblast="true" noKaiSurge="true" noPsiSurge="true" noKaiBlast="true" noKaiRay="true" />
+            <combat noMindblast="true" noKaiSurge="true" noPsiSurge="true" noKaiBlast="true" noKaiRay="true" />
         </section>
 
         <section id="sect51">
@@ -390,7 +439,10 @@
         </section>
 
         <section id="sect60">
-            <combat noMindblast="true" properties="night" />
+            <combat noMindblast="true" />
+            <test currentWeapon="kaistar">
+                <combat combatSkillModifier="+2"/>
+            </test>
         </section>
 
         <section id="sect62">
@@ -575,7 +627,10 @@
         <section id="sect94">
             <choiceState section="all" set="disabled" />
 
-            <combat properties="day" immuneTurns="1" noMindblast="true" />
+            <combat immuneTurns="1" noMindblast="true" />
+            <test currentWeapon="kaistar">
+                <combat combatSkillModifier="+2"/>
+            </test>
             <afterCombats>
                 <choiceState section="sect41" set="enabled" />
             </afterCombats>
@@ -693,7 +748,10 @@
 
         <section id="sect120">
             <choiceState section="all" set="disabled" />
-            <combat noMindblast="true" properties="night" />
+            <combat noMindblast="true" />
+            <test currentWeapon="kaistar">
+                <combat combatSkillModifier="+2"/>
+            </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
             </afterCombats>
@@ -959,7 +1017,10 @@
         <section id="sect162">
             <choiceState section="all" set="disabled" />
 
-            <combat properties="day" noMindblast="true" noKaiSurge="false" noPsiSurge="true" noKaiBlast="true" noKaiRay="true" combatSkillModifier="-3"/>
+            <combat noMindblast="true" noKaiSurge="false" noPsiSurge="true" noKaiBlast="true" noKaiRay="true" combatSkillModifier="-3"/>
+            <test currentWeapon="sunstrike">
+                <combat combatSkillModifier="+1"/>
+            </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
             </afterCombats>
@@ -1163,7 +1224,10 @@
         <section id="sect192">
             <choiceState section="all" set="disabled" />
 
-            <combat combatSkillModifier="+2" properties="day" />
+            <combat combatSkillModifier="+2" />
+            <test currentWeapon="sunstrike">
+                <combat combatSkillModifier="+1"/>
+            </test>
             <afterCombatTurn turn="1">
                 <combat combatSkillModifier="+0" />
             </afterCombatTurn>
@@ -1233,7 +1297,10 @@
             <choiceState section="all" set="disabled" />
 
             <endurance count="-2" />
-            <combat properties="day" noMindblast="true" />
+            <combat noMindblast="true" />
+            <test currentWeapon="kaistar">
+                <combat combatSkillModifier="+2"/>
+            </test>
 
             <afterCombats>
                 <choiceState section="all" set="enabled" />
@@ -1270,8 +1337,10 @@
 
         <section id="sect210">
             <choiceState section="all" set="disabled" />
-            <combat properties="day" noWeapon="true" noMindblast="true" noKaiBlast="true" noKaiRay="true" noPsiSurge="true" />
-
+            <combat noMindblast="true" noKaiBlast="true" noKaiRay="true" noPsiSurge="true" />
+            <test currentWeapon="sunstrike">
+                <combat combatSkillModifier="+1"/>
+            </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
             </afterCombats>
@@ -1378,7 +1447,10 @@
 
         <section id="sect230">
             <choiceState section="all" set="disabled" />
-            <combat properties="day" noWeapon="1" />
+            <combat noWeapon="1" />
+            <test currentWeapon="sunstrike">
+                <combat combatSkillModifier="+1"/>
+            </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
             </afterCombats>
@@ -1453,7 +1525,10 @@
             <endurance count="-2" />
 
             <choiceState section="all" set="disabled" />
-            <combat properties="day" noMindblast="true" />
+            <combat noMindblast="true" />
+            <test currentWeapon="kaistar">
+                <combat combatSkillModifier="+2"/>
+            </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
             </afterCombats>
@@ -1495,7 +1570,10 @@
         <section id="sect257">
             <choiceState section="all" set="disabled" />
 
-            <combat properties="day" combatSkillModifier="2" />
+            <combat combatSkillModifier="2" />
+            <test currentWeapon="sunstrike">
+                <combat combatSkillModifier="+1"/>
+            </test>
             <afterCombatTurn turn="1">
                 <combat combatSkillModifier="+0" />
             </afterCombatTurn>
@@ -1531,6 +1609,9 @@
         <section id="sect261">
             <choiceState section="all" set="disabled" />
             <combat combatSkillModifier="2"/>
+            <test currentWeapon="sunstrike">
+                <combat combatSkillModifier="+1"/>
+            </test>
             <afterCombatTurn turn="1">
                 <combat combatSkillModifier="0"/>
             </afterCombatTurn>
@@ -1561,7 +1642,10 @@
         <section id="sect266">
             <endurance count="-2" />
             <choiceState section="all" set="disabled" />
-            <combat noMindblast="true "/>
+            <combat noMindblast="true"/>
+            <test currentWeapon="kaistar">
+                <combat combatSkillModifier="+2"/>
+            </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
             </afterCombats>
@@ -1624,7 +1708,10 @@
         <section id="sect279">
             <endurance count="-2" />
             <choiceState section="all" set="disabled" />
-            <combat noMindblast="true "/>
+            <combat noMindblast="true"/>
+            <test currentWeapon="kaistar">
+                <combat combatSkillModifier="+2"/>
+            </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
             </afterCombats>
@@ -1729,6 +1816,9 @@
         <section id="sect300">
             <choiceState section="all" set="disabled" />
             <combat noMindblast="true" />
+            <test currentWeapon="kaistar">
+                <combat combatSkillModifier="+2"/>
+            </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
             </afterCombats>
@@ -1746,6 +1836,9 @@
         <section id="sect303">
             <choiceState section="all" set="disabled" />
             <combat noKaiBlast="true" noKaiRay="true" noMindblast="true" noPsiSurge="true" />
+            <test currentWeapon="sunstrike">
+                <combat combatSkillModifier="+1"/>
+            </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
             </afterCombats>
@@ -1876,6 +1969,9 @@
         <section id="sect331">
             <choiceState section="all" set="disabled" />
             <combat eludeTurn="3" />
+            <test currentWeapon="sunstrike">
+                <combat combatSkillModifier="+1"/>
+            </test>
             <afterElude>
                 <choiceState section="sect13" set="enabled" />
             </afterElude>

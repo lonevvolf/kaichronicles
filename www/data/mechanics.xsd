@@ -359,7 +359,7 @@
 
     <xs:complexType name="object">
         <xs:annotation>
-            <xs:documentation>Make an object available on the section. The player will can pick / buy it.</xs:documentation>
+            <xs:documentation>Make an object available on the section. The player can pick / buy it.</xs:documentation>
         </xs:annotation>
         <xs:attribute name="objectId" type="xs:string" use="required">
             <xs:annotation>
@@ -1136,7 +1136,6 @@
             <xs:element name="book6sect340" type="specialsection_type" />
             <xs:element name="book9sect91" type="specialsection_type" />
             <xs:element name="book19sect304" type="specialsection_type" />
-
         </xs:choice>
     </xs:group>
 

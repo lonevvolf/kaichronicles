@@ -588,7 +588,7 @@ export class ActionChart {
     public getMaxEndurance(): number {
 
         if (this.endurance <= 0) {
-            // If the original endurance is zero, the player is death
+            // If the original endurance is zero, the player is dead
             return 0;
         }
 
@@ -898,7 +898,7 @@ export class ActionChart {
                     bonuses.push({
                         concept: o.name,
                         increment: o.combatSkillEffect
-                    });
+                            });
                 }
             });
         }

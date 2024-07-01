@@ -497,7 +497,7 @@ export const mechanicsEngine = {
     },
 
     /**
-     * Assing an action to a random table link.
+     * Assign an action to a random table link.
      */
     randomTable(rule: Element) {
         // console.log( 'randomTable rule' );
@@ -753,7 +753,6 @@ export const mechanicsEngine = {
      * There is an available object on the section
      */
     object(rule: Element) {
-
         const sectionState = state.sectionStates.getSectionState();
 
         // Do not execute the rule twice:
@@ -1704,7 +1703,6 @@ export const mechanicsEngine = {
      * a empty objects table will be rendered. If it's empty, no table will be rendered
      */
     showAvailableObjects(renderEmptyTable = false) {
-
         const sectionState = state.sectionStates.getSectionState();
         const thereAreObjects = (sectionState.objects.length >= 1);
 
