@@ -1,4 +1,4 @@
-import { MgnDiscipline, translations, Bonus } from "..";
+import { MgnDiscipline, translations, Bonus, state, BookSeries, BookSeriesId } from "..";
 
 /**
  * Lore-circles for Magnakai disciplines
@@ -97,16 +97,18 @@ export class LoreCircle {
      * @param type Type of bonuses to return: 'EP' for endurance points. 'CS' for combat skill
      */
     public static getCirclesBonuses( disciplines: string[] , type: string ): Bonus[] {
-
-        const circles = LoreCircle.getCircles( disciplines );
         const bonuses: Bonus[] = [];
-        for ( const c of circles ) {
-            const bonusValue = ( type === "CS" ? c.bonusCS : c.bonusEP );
-            if ( bonusValue > 0 ) {
-                bonuses.push({
-                    concept: c.getDescription(),
-                    increment: bonusValue
-                });
+        
+        if (state.book.getBookSeries().id !== BookSeriesId.NewOrder) {
+            const circles = LoreCircle.getCircles( disciplines );
+            for ( const c of circles ) {
+                const bonusValue = ( type === "CS" ? c.bonusCS : c.bonusEP );
+                if ( bonusValue > 0 ) {
+                    bonuses.push({
+                        concept: c.getDescription(),
+                        increment: bonusValue
+                    });
+                }
             }
         }
         return bonuses;

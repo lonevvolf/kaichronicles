@@ -174,6 +174,22 @@ export class ActionChart {
     }
 
     /**
+     * Returns the Kai Weapon in inventory, if any
+     */
+    public getKaiWeapon(): string {
+        if (this.hasObject("spawnsmite")) return "spawnsmite";
+        if (this.hasObject("alema")) return "alema";
+        if (this.hasObject("magnara")) return "magnara";
+        if (this.hasObject("sunstrike")) return "sunstrike";
+        if (this.hasObject("kaistar")) return "kaistar";
+        if (this.hasObject("valiance")) return "valiance";
+        if (this.hasObject("ulnarias")) return "ulnarias";
+        if (this.hasObject("raumas")) return "raumas";
+        if (this.hasObject("illuminatus")) return "illuminatus";
+        if (this.hasObject("firefall")) return "firefall";
+    }
+
+    /**
      * Set the selected hand-to-hand weapon id.
      * This will set the fightUnarmed flag to false.
      * @param weaponId The new selected weapon id. No tests are done over this weapon id!
@@ -915,11 +931,13 @@ export class ActionChart {
         }
 
         // Grand Master level bonus
+        const startingSkillsCount = state.book.getBookSeries().id === BookSeriesId.NewOrder ? 5 : 4;
+        
         const nGndDisciplines = this.getDisciplines(BookSeriesId.GrandMaster).length;
-        if (nGndDisciplines > 4) {
+        if (nGndDisciplines > startingSkillsCount) {
             bonuses.push({
                 concept: translations.text("kaiLevel"),
-                increment: (nGndDisciplines - 4),
+                increment: (nGndDisciplines - startingSkillsCount),
             });
         }
 
@@ -979,12 +997,14 @@ export class ActionChart {
         }
 
         // Grand Master level bonus
-        const nGndDisciplines = this.getDisciplines(BookSeriesId.GrandMaster).length;
-        if (nGndDisciplines > 4) {
-            bonuses.push({
-                concept: translations.text("kaiLevel"),
-                increment: (nGndDisciplines - 4) * 2,
-            });
+        if (state.book.getBookSeries().id !== BookSeriesId.NewOrder) {
+            const nGndDisciplines = this.getDisciplines(BookSeriesId.GrandMaster).length;
+            if (nGndDisciplines > 4) {
+                bonuses.push({
+                    concept: translations.text("kaiLevel"),
+                    increment: (nGndDisciplines - 4) * 2,
+                });
+            }
         }
 
         return bonuses;
@@ -1257,10 +1277,10 @@ export class ActionChart {
         switch (seriesId) {
             case BookSeriesId.Kai:
                 return this.kaiDisciplines;
+            case BookSeriesId.NewOrder:
             case BookSeriesId.Magnakai:
                 return this.magnakaiDisciplines;
             case BookSeriesId.GrandMaster:
-            case BookSeriesId.NewOrder:
                 return this.grandMasterDisciplines;
             default:
                 mechanicsEngine.debugWarning("ActionChart.getSeriesDisciplines: Wrong book series");
@@ -1271,7 +1291,7 @@ export class ActionChart {
     /**
      * Returns player disciplines and weaponskill for a given book series
      * @param series Book series which get disciplines. If null or not specified, we get current book series disciplines
-     * @returns Disciplines for that serie to apply. They can be different of the real disciplines which the played finished the series
+     * @returns Disciplines for that series to apply. They can be different of the real disciplines which the played finished the series
      */
     private getSeriesDisciplines(seriesId: BookSeriesId = null): SeriesDisciplines {
 
@@ -1288,18 +1308,20 @@ export class ActionChart {
         // If the player has played SOME book of a previous series, player has ALL disciplines of that series
         // and can benefit of loyalty bonuses
         if (seriesId < currentSeriesId && seriesDisciplines.disciplines.length > 0 ) {
+            // New Order starts over with all Magnakai skills, but not Grandmaster
+            if (!(seriesId === BookSeriesId.GrandMaster && currentSeriesId === BookSeriesId.NewOrder)) {
+                if (seriesId === BookSeriesId.Kai && this.kaiDisciplines.weaponSkill.length === 0) {
+                    // If some book of Kai series has been played, now you should have Weaponskill with one weapon. But you can
+                    // end the series without chosing Weaponskill... So add a random weapon
+                    this.kaiDisciplines.weaponSkill.push( SetupDisciplines.kaiWeapons[randomTable.getRandomValue()] );
+                }
 
-            if (seriesId === BookSeriesId.Kai && this.kaiDisciplines.weaponSkill.length === 0) {
-                // If some book of Kai series has been played, now you should have Weaponskill with one weapon. But you can
-                // end the series without chosing Weaponskill... So add a random weapon
-                this.kaiDisciplines.weaponSkill.push( SetupDisciplines.kaiWeapons[randomTable.getRandomValue()] );
+                // In Kai series, you end with Weaponskill with one weapon. In later series, you end with Weaponskill with all weapons
+                const weaponskill = ( seriesId === BookSeriesId.Kai ? this.kaiDisciplines.weaponSkill : SetupDisciplines.magnakaiWeapons );
+
+                // Player has all disciplines
+                seriesDisciplines = { disciplines: Disciplines.getSeriesDisciplines(seriesId), weaponSkill: weaponskill };
             }
-
-            // In Kai series, you end with Weaponskill with one weapon. In later series, you end with Weaponskill with all weapons
-            const weaponskill = ( seriesId === BookSeriesId.Kai ? this.kaiDisciplines.weaponSkill : SetupDisciplines.magnakaiWeapons );
-
-            // Player has all disciplines
-            seriesDisciplines = { disciplines: Disciplines.getSeriesDisciplines(seriesId), weaponSkill: weaponskill };
         }
 
         return seriesDisciplines;

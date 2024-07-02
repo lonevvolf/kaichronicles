@@ -819,51 +819,61 @@
 
         <special id="spawnsmite" weaponType="axe" incompatibleWith="alema|magnara|sunstrike|kaistar|valiance|ulnarias|raumas|illuminatus|firefall">
             <name>Spawnsmite</name>
+            <description>+6CS versus reptilian enemies</description>
             <effect class="combatSkill" increment="5" />
         </special>
 
         <special id="alema" weaponType="axe" incompatibleWith="spawnsmite|magnara|sunstrike|kaistar|valiance|ulnarias|raumas|illuminatus|firefall">
             <name>Alema</name>
+            <description>+7CS versus undead enemies</description>
             <effect class="combatSkill" increment="5" />
         </special>
 
         <special id="magnara" weaponType="axe" incompatibleWith="spawnsmite|alema|sunstrike|kaistar|valiance|ulnarias|raumas|illuminatus|firefall">
             <name>Magnara</name>
+            <description>+8CS versus rock or stone</description>
             <effect class="combatSkill" increment="5" />
         </special>
 
         <special id="sunstrike" weaponType="sword" incompatibleWith="spawnsmite|magnara|alema|kaistar|valiance|ulnarias|raumas|illuminatus|firefall">
             <name>Sunstrike</name>
+            <description>+6CS when used in daylight</description>
             <effect class="combatSkill" increment="5" />
         </special>
 
         <special id="kaistar" weaponType="sword" incompatibleWith="spawnsmite|magnara|sunstrike|alema|valiance|ulnarias|raumas|illuminatus|firefall">
             <name>Kaistar</name>
+            <description>+7CS when used at night</description>
             <effect class="combatSkill" increment="5" />
         </special>
 
         <special id="valiance" weaponType="sword" incompatibleWith="spawnsmite|magnara|sunstrike|kaistar|alema|ulnarias|raumas|illuminatus|firefall">
             <name>Valiance</name>
+            <description>+8CS when used against magicians or creatures born of magic</description>
             <effect class="combatSkill" increment="5" />
         </special>
 
         <special id="ulnarias" weaponType="sword" incompatibleWith="spawnsmite|magnara|sunstrike|kaistar|valiance|alema|raumas|illuminatus|firefall">
             <name>Ulnarias</name>
+            <description>+9CS when used underwater</description>
             <effect class="combatSkill" increment="5" />
         </special>
 
         <special id="raumas" weaponType="broadsword" incompatibleWith="spawnsmite|magnara|sunstrike|kaistar|valiance|ulnarias|alema|illuminatus|firefall">
             <name>Raumas</name>
+            <description>+6CS versus winged enemies</description>
             <effect class="combatSkill" increment="5" />
         </special>
 
         <special id="illuminatus" weaponType="broadsword" incompatibleWith="spawnsmite|magnara|sunstrike|kaistar|valiance|ulnarias|raumas|alema|firefall">
             <name>Illuminatus</name>
+            <description>+7CS when used underground</description>
             <effect class="combatSkill" increment="5" />
         </special>
 
         <special id="firefall" weaponType="broadsword" incompatibleWith="spawnsmite|magnara|sunstrike|kaistar|valiance|ulnarias|raumas|illuminatus|alema">
             <name>Firefall</name>
+            <description>+8CS versus fire-emitting enemies</description>
             <effect class="combatSkill" increment="5" />
         </special>
 

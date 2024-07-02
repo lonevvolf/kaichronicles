@@ -110,6 +110,7 @@ export class Translations {
         "combatSkillSet" : "Your Combat Skill is {0}",
         "enduranceSet" : "Your Endurance Points are {0}",
         "maxDisciplines" : "You can choose only {0} disciplines",
+        "onlyNWeapon" : "You can select only {0} weapon",
         "onlyNWeapons" : "You can select only {0} weapons",
         "firstNameSet" : "Your first name is {0}",
         "lastNameSet" : "Your last name is {0}",

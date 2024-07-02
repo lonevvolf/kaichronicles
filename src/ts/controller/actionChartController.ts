@@ -211,6 +211,7 @@ export const actionChartController = {
 
             // Update the action chart view
             actionChartView.updateObjectsLists();
+            actionChartView.fillKaiWeapon(state.actionChart);
 
             // Update player statistics (for objects with effects)
             actionChartView.updateStatistics();

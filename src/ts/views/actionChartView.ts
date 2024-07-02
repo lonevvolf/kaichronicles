@@ -28,6 +28,9 @@ export const actionChartView = {
         // Fill the chart objects lists
         actionChartView.updateObjectsLists();
 
+        // Full the Kai Weapon area
+        actionChartView.fillKaiWeapon(actionChart);
+
         // Bind event for drop meals
         ObjectsTable.bindTableEquipmentEvents( $("#achart-dropmeal") , ObjectsTableType.INVENTORY );
 
@@ -105,7 +108,8 @@ export const actionChartView = {
             .text( state.book.getKaiTitle( actionChart.getDisciplines().length ) );
 
         // Lore circles:
-        if (state.book.getBookSeries().id === BookSeriesId.Magnakai || state.actionChart.getDisciplines(BookSeriesId.Magnakai).length > 0) {
+        if (state.book.getBookSeries().id !== BookSeriesId.NewOrder 
+        && (state.book.getBookSeries().id === BookSeriesId.Magnakai || state.actionChart.getDisciplines(BookSeriesId.Magnakai).length > 0)) {
             // Only for Magnakai books, or if player has played some Magnakai books
             const circles = actionChart.getLoreCircles();
             if ( circles.length === 0 ) {
@@ -164,6 +168,29 @@ export const actionChartView = {
             $displines.find("button").on("click", function(e) {
                 $(this).parent().find("i").toggle();
             });
+        }
+    },
+
+    /**
+     * Render the Kai Weapon table
+     * @param {ActionChart} actionChart The action chart
+     */
+    fillKaiWeapon(actionChart: ActionChart) {
+        if (state.book.getBookSeries().id === BookSeriesId.NewOrder) {
+            const kaiWeapon = actionChart.getKaiWeapon();
+            if (kaiWeapon) {
+                var item = state.mechanics.getObject(kaiWeapon);
+                $("#kaiWeaponName").text(item.name.charAt(0).toUpperCase() + item.name.slice(1));
+                $("#kaiWeaponProperties").text(item.description);
+                $("#kaiWeaponType").text(item.weaponType.charAt(0).toUpperCase() + item.weaponType.slice(1));
+                $("#kaiWeaponBonus").text("+" + item.combatSkillEffect + "CS");
+            }
+            else {
+                $("#kaiWeaponName").text("");
+                $("#kaiWeaponProperties").text("");
+                $("#kaiWeaponType").text("");
+                $("#kaiWeaponBonus").text("");
+            }
         }
     },
 

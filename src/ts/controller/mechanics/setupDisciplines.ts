@@ -222,7 +222,12 @@ export class SetupDisciplines {
             const nExpectedWeapons = this.getExpectedNWeaponsWeaponmastery();
             if (App.debugMode !== DebugMode.DEBUG && state.actionChart.getWeaponSkill().length >= nExpectedWeapons) {
                 e.preventDefault();
-                alert(translations.text("onlyNWeapons", [nExpectedWeapons]));
+                if (nExpectedWeapons === 1) {
+                    alert(translations.text("onlyNWeapon", [nExpectedWeapons]));
+                }
+                else {
+                    alert(translations.text("onlyNWeapons", [nExpectedWeapons]));
+                }
                 return;
             }
             state.actionChart.getWeaponSkill().push(weaponId);
