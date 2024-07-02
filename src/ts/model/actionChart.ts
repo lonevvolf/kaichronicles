@@ -775,6 +775,12 @@ export class ActionChart {
                 });
             }
 
+        } else if (this.isWeaponskillActive(bowCombat, BookSeriesId.NewOrder)) {
+            // Grand Master / Grand Weaponmastery bonuses
+            bonuses.push({
+                concept: translations.text("grdweaponmastery"),
+                increment: 5
+            });
         } else if (this.isWeaponskillActive(bowCombat, BookSeriesId.GrandMaster)) {
             // Grand Master / Grand Weaponmastery bonuses
             // Exception: Book 13. It seems an errata, but it says EVERYWHERE it's +3 for bow bonus:
@@ -783,8 +789,8 @@ export class ActionChart {
                 concept: translations.text("grdweaponmastery"),
                 increment: inc
             });
-
-        } else if (this.isWeaponskillActive(bowCombat, BookSeriesId.Magnakai)) {
+        } else if (this.isWeaponskillActive(bowCombat, BookSeriesId.Magnakai) 
+            && state.book.getBookSeries().id !== BookSeriesId.NewOrder) {
             // Magnakai / Weaponmastery bonuses
 
             let bonus = +3;
@@ -830,7 +836,8 @@ export class ActionChart {
                     weapons, whether fired (e.g. a bow) or thrown (e.g. a dagger). When using a bow or thrown weapon and instructed to pick a
                     number from the Random Number Table, add 2 to the number picked if you are a Mentora with the Magnakai Discipline
                     of Weaponmastery */
-                if (this.hasMgnDiscipline(MgnDiscipline.Weaponmastery) && this.getDisciplines(BookSeriesId.Magnakai).length >= 7) {
+                if (state.book.getBookSeries().id !== BookSeriesId.NewOrder
+                && this.hasMgnDiscipline(MgnDiscipline.Weaponmastery) && this.getDisciplines(BookSeriesId.Magnakai).length >= 7) {
                     bonuses.push({
                         concept: translations.text("mentora"),
                         increment: +2
