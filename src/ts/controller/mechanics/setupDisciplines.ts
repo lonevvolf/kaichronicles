@@ -82,7 +82,7 @@ export class SetupDisciplines {
             // Set events when checkboxes are clicked
             .find("input[type=checkbox]")
             .on("click", function(e) {
-                self.onDiscliplineCheckBoxClick(e, $(this));
+                self.onDisciplineCheckBoxClick(e, $(this));
             });
 
         // If we are on a magnakai book, add the weapons checkboxes
@@ -271,7 +271,7 @@ export class SetupDisciplines {
      * @param e The click event
      * @param $checkBox The clicked checkbox (JQuery)
      */
-    private onDiscliplineCheckBoxClick(e: JQuery.TriggeredEvent, $checkBox: JQuery<HTMLElement>) {
+    private onDisciplineCheckBoxClick(e: JQuery.TriggeredEvent, $checkBox: JQuery<HTMLElement>) {
 
         // Limit the number of disciplines. Unlimited on debug mode
         const selected: boolean = $checkBox.prop("checked");

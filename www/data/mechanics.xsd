@@ -92,6 +92,12 @@
             <xs:documentation>Execute once only. Magnakai and later: Action Chart button to restore +X EP after Y days will available again.</xs:documentation>
         </xs:annotation>
     </xs:complexType>
+
+    <xs:complexType name="resetNewOrderCuringEPRestoredUse">
+        <xs:annotation>
+            <xs:documentation>Execute once only. New Order: Reset counter of EP restore by Curing, limited to 10 per book.</xs:documentation>
+        </xs:annotation>
+    </xs:complexType>
     
     <xs:complexType name="setDisciplines">
         <xs:annotation>
@@ -1083,6 +1089,7 @@
             <xs:element name="setSkills" type="setSkills" />
             <xs:element name="setKaiName" type="setKaiName" />
             <xs:element name="restoreDeliveranceUse" type="restoreDeliveranceUse" />
+            <xs:element name="resetNewOrderCuringEPRestoredUse" type="resetNewOrderCuringEPRestoredUse" />
             <xs:element name="setDisciplines" type="setDisciplines" />
             <xs:element name="pick" type="pick" />
             <xs:element name="randomTable" type="randomTable" />

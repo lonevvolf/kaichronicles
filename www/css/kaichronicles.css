@@ -215,8 +215,12 @@ div.signpost {
 }
 
 /* The statistics on header is like a link */
-#template-statistics, #template-kaiNameHeader {
+#template-statistics {
     cursor: pointer;
+}
+
+#template-kaiName {
+    margin-right: 10px;
 }
 
 /* Style to force to hide the toggle menu button */

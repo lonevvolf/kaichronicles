@@ -440,6 +440,21 @@ export const actionChartController = {
 
     },
 
+    /**
+     * Increase / decrease the current endurance restored in the book
+     * @param count Number to increase. Negative to decrease
+     */
+    increaseNewOrderCuringEPRestored(count: number) {
+        this.newOrderCuringEPRestored += count;
+    },
+
+    /**
+     * Get the current endurance restored in the book
+     */
+    getNewOrderCuringEPRestored() : number {
+        return this.newOrderCuringEPRestored;
+    },
+
     /** Set the current endurance, just for debug */
     setEndurance(endurance: number) {
         actionChartController.increaseEndurance(endurance - state.actionChart.currentEndurance);

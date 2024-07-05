@@ -1515,6 +1515,19 @@ export const mechanicsEngine = {
     },
 
     /**
+     * New Order: Reset counter of Curing EP restored in the current book
+     */
+    resetNewOrderCuringEPRestoredUse(rule: Element) {
+        if ( state.sectionStates.ruleHasBeenExecuted(rule) ) {
+            // Execute only once
+            return;
+        }
+
+        state.actionChart.resetNewOrderCuringEPRestoredUsed();
+        state.sectionStates.markRuleAsExecuted(rule);
+    },
+
+    /**
      * Set of rules that should be executed only once
      */
     executeOnce(rule: Element) {
@@ -1857,9 +1870,13 @@ export const mechanicsEngine = {
             // Already executed
             return;
         }
+        if (state.book.getBookSeries().id === BookSeriesId.NewOrder && actionChartController.getNewOrderCuringEPRestored() >= 10) {
+            return;
+        }
         sectionState.healingExecuted = true;
         if (state.actionChart.currentEndurance < state.actionChart.getMaxEndurance()) {
             actionChartController.increaseEndurance(+1, true);
+            actionChartController.increaseNewOrderCuringEPRestored(+1);
         }
     },
 

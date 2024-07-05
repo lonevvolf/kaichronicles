@@ -85,6 +85,9 @@ export class ActionChart {
     /** Grand Master disciplines (books 13+). See kaiDisciplines comments */
     private grandMasterDisciplines: SeriesDisciplines = { disciplines: [], weaponSkill: [] };
 
+    /** Grand Master disciplines (books 21+). See kaiDisciplines comments */
+    private newOrderDisciplines: SeriesDisciplines = { disciplines: [], weaponSkill: [] };
+
     /** Player annotations */
     public annotations = "";
 
@@ -114,6 +117,11 @@ export class ActionChart {
     private restore20EPUsed = false;
 
     /**
+     * New Order limits per section Curing to a total of 20 EP per book
+     */
+    private newOrderCuringEPRestored = 0;
+
+    /**
      * Objects in safekeeping at Kai monastery
      */
     public kaiMonasterySafekeeping: SectionItem[] = [];
@@ -136,6 +144,14 @@ export class ActionChart {
             this.manualRandomTable = (App.debugMode !== DebugMode.TEST);
             this.extendedCRT = false;
             switch (state.book.getBookSeries().id) {
+                case BookSeriesId.NewOrder:
+                    this.endurance = this.currentEndurance = 35;
+                    this.combatSkill = 30;
+                    // debug data for New Order
+                    this.setDisciplines( [ NewOrderDiscipline.GrandWeaponmastery , NewOrderDiscipline.Deliverance, NewOrderDiscipline.GrandHuntmastery,
+                        NewOrderDiscipline.Assimilance, NewOrderDiscipline.AnimalMastery ] );
+                    this.setWeaponSkill( ["sword"] );
+                    break;
                 case BookSeriesId.GrandMaster:
                     this.endurance = this.currentEndurance = 35;
                     this.combatSkill = 30;
@@ -940,7 +956,7 @@ export class ActionChart {
         // Grand Master level bonus
         const startingSkillsCount = state.book.getBookSeries().id === BookSeriesId.NewOrder ? 5 : 4;
         
-        const nGndDisciplines = this.getDisciplines(BookSeriesId.GrandMaster).length;
+        const nGndDisciplines = this.getDisciplines(state.book.getBookSeries().id).length;
         if (nGndDisciplines > startingSkillsCount) {
             bonuses.push({
                 concept: translations.text("kaiLevel"),
@@ -1004,14 +1020,14 @@ export class ActionChart {
         }
 
         // Grand Master level bonus
-        if (state.book.getBookSeries().id !== BookSeriesId.NewOrder) {
-            const nGndDisciplines = this.getDisciplines(BookSeriesId.GrandMaster).length;
-            if (nGndDisciplines > 4) {
-                bonuses.push({
-                    concept: translations.text("kaiLevel"),
-                    increment: (nGndDisciplines - 4) * 2,
-                });
-            }
+        const startingSkillsCount = state.book.getBookSeries().id === BookSeriesId.NewOrder ? 5 : 4;
+
+        const nGndDisciplines = this.getDisciplines(state.book.getBookSeries().id).length;
+        if (nGndDisciplines > startingSkillsCount) {
+            bonuses.push({
+                concept: translations.text("kaiLevel"),
+                increment: (nGndDisciplines - startingSkillsCount) * 2,
+            });
         }
 
         return bonuses;
@@ -1162,10 +1178,16 @@ export class ActionChart {
      * @returns The discipline id that will be used. null if the +20EP cannot be used
      */
     public get20EPRestoreDiscipline(): string {
-        if (this.hasGndDiscipline(GndDiscipline.Deliverance)) {
+        if (this.hasNewOrderDiscipline(NewOrderDiscipline.Deliverance)) {
+            return NewOrderDiscipline.Deliverance;
+        }
+        else if (this.hasGndDiscipline(GndDiscipline.Deliverance)) {
             return GndDiscipline.Deliverance;
         }
-        if ( this.hasMgnDiscipline(MgnDiscipline.Curing) && this.getDisciplines(BookSeriesId.Magnakai).length >= 9 ) {
+        else if ( this.hasMgnDiscipline(MgnDiscipline.Curing) 
+            && this.getDisciplines(BookSeriesId.Magnakai).length >= 9
+            //New Order does not allow the 20EP restore from Curing
+            && state.book.getBookSeries().id !== BookSeriesId.NewOrder ) {
             return MgnDiscipline.Curing;
         }
         return null;
@@ -1186,7 +1208,7 @@ export class ActionChart {
         }
 
         let minEndurance: number;
-        if (disciplineId === GndDiscipline.Deliverance) {
+        if (disciplineId === GndDiscipline.Deliverance || disciplineId === NewOrderDiscipline.Deliverance) {
             minEndurance = 8;
         } else {
             minEndurance = 6;
@@ -1215,6 +1237,13 @@ export class ActionChart {
     }
 
     /**
+     * Reset the New Order Curing EP Restored Counter
+     */
+    public resetNewOrderCuringEPRestoredUsed() {
+        this.newOrderCuringEPRestored = 0;
+    }
+
+    /**
      * Return identifiers of backpack items
      */
     public getBackpackItemsIds(): string[] {
@@ -1238,7 +1267,7 @@ export class ActionChart {
     /**
      * Returns player disciplines for a given book series
      * @param series Book series which get disciplines. If null or not specified, we get current book disciplines
-     * @returns Disciplines for that serie
+     * @returns Disciplines for that series
      */
     public getDisciplines(series: BookSeriesId = null): string[] {
         return this.getSeriesDisciplines(series).disciplines;
@@ -1284,11 +1313,12 @@ export class ActionChart {
         switch (seriesId) {
             case BookSeriesId.Kai:
                 return this.kaiDisciplines;
-            case BookSeriesId.NewOrder:
             case BookSeriesId.Magnakai:
                 return this.magnakaiDisciplines;
             case BookSeriesId.GrandMaster:
                 return this.grandMasterDisciplines;
+            case BookSeriesId.NewOrder:
+                return this.newOrderDisciplines;
             default:
                 mechanicsEngine.debugWarning("ActionChart.getSeriesDisciplines: Wrong book series");
                 return { disciplines: [], weaponSkill: [] };
@@ -1298,7 +1328,7 @@ export class ActionChart {
     /**
      * Returns player disciplines and weaponskill for a given book series
      * @param series Book series which get disciplines. If null or not specified, we get current book series disciplines
-     * @returns Disciplines for that series to apply. They can be different of the real disciplines which the played finished the series
+     * @returns Disciplines for that series to apply. They can be different of the real disciplines with which the player finished the series
      */
     private getSeriesDisciplines(seriesId: BookSeriesId = null): SeriesDisciplines {
 
@@ -1314,21 +1344,20 @@ export class ActionChart {
 
         // If the player has played SOME book of a previous series, player has ALL disciplines of that series
         // and can benefit of loyalty bonuses
-        if (seriesId < currentSeriesId && seriesDisciplines.disciplines.length > 0 ) {
-            // New Order starts over with all Magnakai skills, but not Grandmaster
-            if (!(seriesId === BookSeriesId.GrandMaster && currentSeriesId === BookSeriesId.NewOrder)) {
-                if (seriesId === BookSeriesId.Kai && this.kaiDisciplines.weaponSkill.length === 0) {
-                    // If some book of Kai series has been played, now you should have Weaponskill with one weapon. But you can
-                    // end the series without chosing Weaponskill... So add a random weapon
-                    this.kaiDisciplines.weaponSkill.push( SetupDisciplines.kaiWeapons[randomTable.getRandomValue()] );
-                }
-
-                // In Kai series, you end with Weaponskill with one weapon. In later series, you end with Weaponskill with all weapons
-                const weaponskill = ( seriesId === BookSeriesId.Kai ? this.kaiDisciplines.weaponSkill : SetupDisciplines.magnakaiWeapons );
-
-                // Player has all disciplines
-                seriesDisciplines = { disciplines: Disciplines.getSeriesDisciplines(seriesId), weaponSkill: weaponskill };
+        if (seriesId < currentSeriesId && (seriesDisciplines.disciplines.length > 0 
+            // New Order starts over with all Kai/Magnakai skills, but not Grandmaster - treat a check of GrandMaster as a check of New Order
+            || currentSeriesId === BookSeriesId.NewOrder) && !(seriesId === BookSeriesId.GrandMaster && currentSeriesId === BookSeriesId.NewOrder)) { 
+            if (seriesId === BookSeriesId.Kai && this.kaiDisciplines.weaponSkill.length === 0) {
+                // If some book of Kai series has been played, now you should have Weaponskill with one weapon. But you can
+                // end the series without chosing Weaponskill... So add a random weapon
+                this.kaiDisciplines.weaponSkill.push( SetupDisciplines.kaiWeapons[randomTable.getRandomValue()] );
             }
+
+            // In Kai series, you end with Weaponskill with one weapon. In later series, you end with Weaponskill with all weapons
+            const weaponskill = ( seriesId === BookSeriesId.Kai ? this.kaiDisciplines.weaponSkill : SetupDisciplines.magnakaiWeapons );
+
+            // Player has all disciplines
+            seriesDisciplines = { disciplines: Disciplines.getSeriesDisciplines(seriesId), weaponSkill: weaponskill };
         }
 
         return seriesDisciplines;
@@ -1412,7 +1441,7 @@ export class ActionChart {
                     o.grandMasterDisciplines = { disciplines: o.disciplines, weaponSkill: o.weaponSkill };
                     break;
                 case BookSeriesId.NewOrder:
-                    o.grandMasterDisciplines = { disciplines: o.disciplines, weaponSkill: o.weaponSkill };
+                    o.newOrderDisciplines = { disciplines: o.disciplines, weaponSkill: o.weaponSkill };
                     break;
             }
             delete o.disciplines;
@@ -1431,6 +1460,7 @@ export class ActionChart {
                     o.magnakaiDisciplines = aChartEndMagnakai.magnakaiDisciplines;
                 }
             }
+            // New Order starts fresh, don't load here
 
             // Setup uninitialiced properties
             if (!o.kaiDisciplines) {
@@ -1441,6 +1471,9 @@ export class ActionChart {
             }
             if (!o.grandMasterDisciplines) {
                 o.grandMasterDisciplines = { disciplines: [], weaponSkill: [] };
+            }
+            if (!o.newOrderDisciplines) {
+                o.newOrderDisciplines = { disciplines: [], weaponSkill: [] };
             }
         }
 

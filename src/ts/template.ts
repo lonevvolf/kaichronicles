@@ -85,7 +85,7 @@ export const template = {
         if ( show ) {
             template.updateKaiName();
         } else {
-            $("#template-kaiNameHeader").hide();
+            $("#template-kaiName").hide();
         }
     },
 
@@ -122,9 +122,9 @@ export const template = {
         // Update Kai name
         if ( !state.actionChart ||
             ( state.actionChart.kaiName === "" ) ) {
-            $("#template-kaiNameHeader").hide();
+            $("#template-kaiName").hide();
         } else {
-            $("#template-kaiNameHeader").show();
+            $("#template-kaiName").show();
             $("#template-kaiName").text( state.actionChart.kaiName );
         }
     },

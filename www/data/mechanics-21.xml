@@ -11,6 +11,8 @@
             <drop objectId="map" />
             <!-- Restore Deliverance use each X days -->
             <restoreDeliveranceUse />
+            <!-- Reset Curing EP Used counter-->
+            <resetNewOrderCuringEPRestoredUse />
         </section>
 
         <section id="gamerulz">

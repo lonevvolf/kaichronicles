@@ -99,6 +99,7 @@ export class LoreCircle {
     public static getCirclesBonuses( disciplines: string[] , type: string ): Bonus[] {
         const bonuses: Bonus[] = [];
         
+        // No Lore Circle bonuses in New Order
         if (state.book.getBookSeries().id !== BookSeriesId.NewOrder) {
             const circles = LoreCircle.getCircles( disciplines );
             for ( const c of circles ) {
