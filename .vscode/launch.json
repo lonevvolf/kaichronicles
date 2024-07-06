@@ -11,6 +11,12 @@
             "name": "Debug with Chrome",
             "request": "launch",
             "url": "http://127.0.0.1:3000/?debug=true"
+        },
+        {
+            "type": "firefox",
+            "name": "Debug with Firefox",
+            "request": "launch",
+            "url": "http://127.0.0.1:3000/?debug=true"
         }
     ]
 }
