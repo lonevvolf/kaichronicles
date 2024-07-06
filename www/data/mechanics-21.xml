@@ -296,6 +296,7 @@
         </section>
 
         <section id="sect40">
+            <!-- TODO: Would be cool to add a timer here for the player to start the countdown -->
             <numberPicker text="Answer the riddle" min="1" max="350" actionButton="Choose" />
             <numberPickerChoosed>
                 <test expression="[NUMBERPICKER] == 23">
@@ -410,6 +411,19 @@
                 <choiceState section="sect115" set="disabled" />
             </test>
         </section>
+
+        <section id="sect54">
+            <choiceState section="all" set="disabled" />
+            <test hasObject="ironskull">
+                <choiceState section="sect201" set="enabled" />
+            </test>
+            <test hasObject="siyencrown">
+                <choiceState section="sect134" set="enabled" />
+            </test>
+            <test hasObject="kutyanemerald">
+                <choiceState section="sect298" set="enabled" />
+            </test>
+       </section>
 
         <section id="sect55">
             <choiceState section="all" set="disabled" />
@@ -573,7 +587,6 @@
         </section>
 
         <section id="sect83">
-            <drop backpackItemSlots="1" />
             <choiceState section="all" set="disabled" />
             <test hasDiscipline="alchemy">
                 <choiceState section="sect30" set="enabled" />
@@ -1896,6 +1909,10 @@
             <object objectId="cowana" index="0" />
             <object objectId="cowana" index="1" />
             <object objectId="cowana" index="2" />
+        </section>
+
+        <section id="sect318">
+            <drop backpackItemSlots="1" />
         </section>
 
         <section id="sect319">
