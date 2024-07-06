@@ -1857,6 +1857,9 @@ export const mechanicsEngine = {
             // Only if having healing discipline or loyalty bonus
             return;
         }
+        if (state.book.getBookSeries().id === BookSeriesId.NewOrder && actionChartController.getNewOrderCuringEPRestored() >= 10) {
+            return;
+        }
         if (!state.sectionStates.currentSection.startsWith("sect")) {
             // Execute healing only in story sections
             return;
@@ -1870,9 +1873,7 @@ export const mechanicsEngine = {
             // Already executed
             return;
         }
-        if (state.book.getBookSeries().id === BookSeriesId.NewOrder && actionChartController.getNewOrderCuringEPRestored() >= 10) {
-            return;
-        }
+
         sectionState.healingExecuted = true;
         if (state.actionChart.currentEndurance < state.actionChart.getMaxEndurance()) {
             actionChartController.increaseEndurance(+1, true);

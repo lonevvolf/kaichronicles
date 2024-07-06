@@ -370,7 +370,21 @@
 
         <section id="sect51">
             <choiceState section="all" set="disabled" />
+            <randomTable>
+                <case to="1">
+                    <choiceState section="sect342" set="enabled" />
+                </case>
+                <case from="2" to="7">
+                    <choiceState section="sect15" set="enabled" />
+                </case>
+                <case from="8">
+                    <choiceState section="sect203" set="enabled" />
+                </case>
+            </randomTable>
 
+            <test hasDiscipline="hntmstry">
+                <randomTableIncrement increment="3" />
+            </test>
             <choiceState section="all" set="disabled" />
             <numberPicker 
             text="Choose the number of Endurance Points you are prepared to deduct"
@@ -380,23 +394,18 @@
             <numberPickerChoosed executeAtStart="true">
                 <numberPicker enabled="false" />
                 <endurance count="-[NUMBERPICKER]" />
+                <choiceState section="all" set="disabled" />
 
-                <randomTable>
-                    <case to="1">
-                        <choiceState section="sect342" set="enabled" />
-                    </case>
-                    <case from="2" to="7">
-                        <choiceState section="sect15" set="enabled" />
-                    </case>
-                    <case from="8">
-                        <choiceState section="sect203" set="enabled" />
-                    </case>
-                </randomTable>
-
-                <test hasDiscipline="hntmstry">
-                    <randomTableIncrement increment="3" />
-                </test>
                 <randomTableIncrement increment="[NUMBERPICKER]" />
+                <test expression="[RANDOM] + [NUMBERPICKER] &lt;= 1">
+                    <choiceState section="sect342" set="enabled" />
+                </test>
+                <test expression="[RANDOM] + [NUMBERPICKER] >= 2 &amp;&amp; [RANDOM] + [NUMBERPICKER] &lt;= 7">
+                    <choiceState section="sect15" set="enabled" />
+                </test>
+                <test expression="[RANDOM] + [NUMBERPICKER] >= 8">
+                    <choiceState section="sect203" set="enabled" />
+                </test>           
             </numberPickerChoosed>
         </section>
 
@@ -843,8 +852,8 @@
             <object objectId="dagger" />
             <pick class="money" count="20" />
             <endurance count="3" />
-            <object objectId="meal" />
-            <object objectId="meal" />
+            <object objectId="meal" index="0" />
+            <object objectId="meal" index="1" />
         </section>
 
         <section id="sect134">

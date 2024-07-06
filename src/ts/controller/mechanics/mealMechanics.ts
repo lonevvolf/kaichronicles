@@ -1,4 +1,4 @@
-import { state, mechanicsEngine, gameView, KaiDiscipline, MgnDiscipline, GndDiscipline, actionChartController, translations, template } from "../..";
+import { state, mechanicsEngine, gameView, KaiDiscipline, MgnDiscipline, GndDiscipline, actionChartController, translations, template, NewOrderDiscipline, BookSeries, BookSeriesId } from "../..";
 
 /**
  * Meal mechanics
@@ -47,10 +47,12 @@ export class MealMechanics {
         // Check if hunting disciplines, of any book serie, is available
         const huntDisabled = mechanicsEngine.getBooleanProperty($rule, "huntDisabled", false);
 
-        const hasHuntingDiscipline = state.actionChart.hasKaiDiscipline(KaiDiscipline.Hunting) ||
-            state.actionChart.hasMgnDiscipline(MgnDiscipline.Huntmastery) ||
-            state.actionChart.hasGndDiscipline(GndDiscipline.GrandHuntmastery);
-
+        const hasHuntingDiscipline = 
+            state.book.getBookSeries().id === BookSeriesId.NewOrder ? state.actionChart.hasNewOrderDiscipline(NewOrderDiscipline.GrandHuntmastery) :
+            (state.actionChart.hasKaiDiscipline(KaiDiscipline.Hunting) ||
+                state.actionChart.hasMgnDiscipline(MgnDiscipline.Huntmastery) ||
+                state.actionChart.hasGndDiscipline(GndDiscipline.GrandHuntmastery))
+        
         if ( !hasHuntingDiscipline || !state.sectionStates.huntEnabled || huntDisabled ) {
             $(mealSelector + " .mechanics-eatHunt").hide();
         }
