@@ -114,6 +114,7 @@
         </section>
 
         <section id="sect7">
+            <choiceState section="sect221" set="disabled" />
             <test not="true" sectionVisited="sect79">
                 <object objectId="laumspurpotion4" price="3" />
                 <object objectId="potionofstrength" price="3" />
@@ -126,6 +127,12 @@
                 <object objectId="mustowpotion" price="2" />
                 <object objectId="sebarispotion" price="2" />
             </test>
+            <onInventoryEvent>
+                <test pickedSomethingOnSection="sect7">
+                    <choiceState section="sect221" set="enabled" />
+                    <choiceState section="sect79" set="disabled" />
+                </test>
+            </onInventoryEvent>
         </section>
 
         <section id="sect8">
@@ -984,7 +991,7 @@
                 </case>
             </randomTable>
             <test hasDiscipline="anmlmstr">
-                <randomTableIncrement increment="5" />
+                <randomTableIncrement increment="3" />
             </test>
         </section>
 

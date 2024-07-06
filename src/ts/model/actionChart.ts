@@ -119,7 +119,7 @@ export class ActionChart {
     /**
      * New Order limits per section Curing to a total of 20 EP per book
      */
-    private newOrderCuringEPRestored = 0;
+    public newOrderCuringEPRestored = 0;
 
     /**
      * Objects in safekeeping at Kai monastery
