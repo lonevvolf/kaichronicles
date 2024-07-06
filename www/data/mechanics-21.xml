@@ -548,6 +548,10 @@
             <choiceState section="sect292" set="enabled" />
         </section>
 
+        <section id="sect79">
+            <resetSectionState sectionId="sect7" />
+        </section>
+
         <section id="sect80">
             <test hasObject="cowana">
                 <choiceState section="sect243" set="enabled" />
