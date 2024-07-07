@@ -81,12 +81,24 @@
         </xs:annotation>
     </xs:complexType>
 
+    <xs:complexType name="setKaiName">
+        <xs:annotation>
+            <xs:documentation>Game setup: The player selects their Kai Name.</xs:documentation>
+        </xs:annotation>
+    </xs:complexType>
+    
     <xs:complexType name="restoreDeliveranceUse">
         <xs:annotation>
             <xs:documentation>Execute once only. Magnakai and later: Action Chart button to restore +X EP after Y days will available again.</xs:documentation>
         </xs:annotation>
     </xs:complexType>
 
+    <xs:complexType name="resetNewOrderCuringEPRestoredUse">
+        <xs:annotation>
+            <xs:documentation>Execute once only. New Order: Reset counter of EP restore by Curing, limited to 10 per book.</xs:documentation>
+        </xs:annotation>
+    </xs:complexType>
+    
     <xs:complexType name="setDisciplines">
         <xs:annotation>
             <xs:documentation>Game setup: The player selects the Kai disciplines.</xs:documentation>
@@ -218,7 +230,7 @@
             </xs:annotation>
             <xs:simpleType>
                 <xs:restriction base="xs:string">
-                    <xs:pattern value = "(sixthsns|camflage|tracking|mindomtr|anmlknsp|healing|hunting|mindshld|mndblst|wepnskll|wpnmstry|anmlctrl|curing|invsblty|psisurge|psiscrn|nexus|dvnation|anmlmstr|deliver|assimila|kaisurge|kaiscrn|gnosis|magi|alchemy|hntmstry|pthmnshp|\|)*"/>
+                    <xs:pattern value = "(sixthsns|camflage|tracking|mindomtr|anmlknsp|healing|hunting|mindshld|mndblst|wepnskll|wpnmstry|anmlctrl|curing|invsblty|psisurge|psiscrn|nexus|dvnation|anmlmstr|deliver|assimila|kaisurge|kaiscrn|gnosis|magi|alchemy|hntmstry|pthmnshp|astrolgy|herbmst|element|bardsman|\|)*"/>
                 </xs:restriction>
             </xs:simpleType>
         </xs:attribute>
@@ -353,7 +365,7 @@
 
     <xs:complexType name="object">
         <xs:annotation>
-            <xs:documentation>Make an object available on the section. The player will can pick / buy it.</xs:documentation>
+            <xs:documentation>Make an object available on the section. The player can pick / buy it.</xs:documentation>
         </xs:annotation>
         <xs:attribute name="objectId" type="xs:string" use="required">
             <xs:annotation>
@@ -550,6 +562,16 @@
             <xs:annotation>
                 <xs:documentation>If false (true by default), don't allows usage of potions prior the combat</xs:documentation>
             </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="properties">
+            <xs:annotation>
+                <xs:documentation>Combat properties used by Kai Weapons to determine CS bonus</xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:pattern value = "(repitilian|undead|rock|day|night|magic|underwater|winged|underground|fire|\|)*"/>
+                </xs:restriction>
+            </xs:simpleType>
         </xs:attribute>
     </xs:complexType>
 
@@ -849,6 +871,8 @@
         <xs:attribute name="class" type="xs:string">
             <xs:annotation>
                 <xs:documentation>special : You can sell any Special Item object</xs:documentation>
+                <xs:documentation>weapon : You can sell any Weapon object</xs:documentation>
+                <xs:documentation>object : You can sell any Backpack Item object</xs:documentation>
             </xs:annotation>
         </xs:attribute>
         <xs:attribute name="except" type="xs:string">
@@ -882,6 +906,7 @@
                 <xs:documentation>Identifies the objects to lose / restore (all by default) :</xs:documentation>
                 <xs:documentation>- all: The backpack content, the backpack itself, special items, meals and money</xs:documentation>
                 <xs:documentation>- weaponlike: Weapons and weapon-like special items</xs:documentation>
+                <xs:documentation>- bow: Bow weapons</xs:documentation>
                 <xs:documentation>- allobjects: The backpack content, special items and meals</xs:documentation>
             </xs:annotation>
             <xs:simpleType>
@@ -1062,7 +1087,9 @@
         <xs:choice>
             <xs:element name="tag" type="tag" />
             <xs:element name="setSkills" type="setSkills" />
+            <xs:element name="setKaiName" type="setKaiName" />
             <xs:element name="restoreDeliveranceUse" type="restoreDeliveranceUse" />
+            <xs:element name="resetNewOrderCuringEPRestoredUse" type="resetNewOrderCuringEPRestoredUse" />
             <xs:element name="setDisciplines" type="setDisciplines" />
             <xs:element name="pick" type="pick" />
             <xs:element name="randomTable" type="randomTable" />
@@ -1116,7 +1143,6 @@
             <xs:element name="book6sect340" type="specialsection_type" />
             <xs:element name="book9sect91" type="specialsection_type" />
             <xs:element name="book19sect304" type="specialsection_type" />
-
         </xs:choice>
     </xs:group>
 

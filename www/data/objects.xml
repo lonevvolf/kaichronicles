@@ -3,8 +3,7 @@
 <object-mechanics  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/cracrayol/kaichronicles/master/www/data/objects.xsd">
 
     <weapons>
-        <!-- WEAPONS ON KAI / MAGNAKAI SERIE BOOKS -->
-
+        <!-- WEAPONS ON KAI / MAGNAKAI SERIES BOOKS -->
         <weapon id="axe">
             <name>Axe</name>
             <image book="1|9" name="axe.png" />
@@ -814,6 +813,88 @@
         <special id="bluediamond">
             <name>Blue Diamond</name>
             <description>A radiant gem the size of a walnut.</description>
+        </special>
+
+        <!-- BOOK 21 -->
+
+        <special id="spawnsmite" weaponType="axe" incompatibleWith="alema|magnara|sunstrike|kaistar|valiance|ulnarias|raumas|illuminatus|firefall">
+            <name>Spawnsmite</name>
+            <description>+6CS versus reptilian enemies</description>
+            <effect class="combatSkill" increment="5" />
+        </special>
+
+        <special id="alema" weaponType="axe" incompatibleWith="spawnsmite|magnara|sunstrike|kaistar|valiance|ulnarias|raumas|illuminatus|firefall">
+            <name>Alema</name>
+            <description>+7CS versus undead enemies</description>
+            <effect class="combatSkill" increment="5" />
+        </special>
+
+        <special id="magnara" weaponType="axe" incompatibleWith="spawnsmite|alema|sunstrike|kaistar|valiance|ulnarias|raumas|illuminatus|firefall">
+            <name>Magnara</name>
+            <description>+8CS versus rock or stone</description>
+            <effect class="combatSkill" increment="5" />
+        </special>
+
+        <special id="sunstrike" weaponType="sword" incompatibleWith="spawnsmite|magnara|alema|kaistar|valiance|ulnarias|raumas|illuminatus|firefall">
+            <name>Sunstrike</name>
+            <description>+6CS when used in daylight</description>
+            <effect class="combatSkill" increment="5" />
+        </special>
+
+        <special id="kaistar" weaponType="sword" incompatibleWith="spawnsmite|magnara|sunstrike|alema|valiance|ulnarias|raumas|illuminatus|firefall">
+            <name>Kaistar</name>
+            <description>+7CS when used at night</description>
+            <effect class="combatSkill" increment="5" />
+        </special>
+
+        <special id="valiance" weaponType="sword" incompatibleWith="spawnsmite|magnara|sunstrike|kaistar|alema|ulnarias|raumas|illuminatus|firefall">
+            <name>Valiance</name>
+            <description>+8CS when used against magicians or creatures born of magic</description>
+            <effect class="combatSkill" increment="5" />
+        </special>
+
+        <special id="ulnarias" weaponType="sword" incompatibleWith="spawnsmite|magnara|sunstrike|kaistar|valiance|alema|raumas|illuminatus|firefall">
+            <name>Ulnarias</name>
+            <description>+9CS when used underwater</description>
+            <effect class="combatSkill" increment="5" />
+        </special>
+
+        <special id="raumas" weaponType="broadsword" incompatibleWith="spawnsmite|magnara|sunstrike|kaistar|valiance|ulnarias|alema|illuminatus|firefall">
+            <name>Raumas</name>
+            <description>+6CS versus winged enemies</description>
+            <effect class="combatSkill" increment="5" />
+        </special>
+
+        <special id="illuminatus" weaponType="broadsword" incompatibleWith="spawnsmite|magnara|sunstrike|kaistar|valiance|ulnarias|raumas|alema|firefall">
+            <name>Illuminatus</name>
+            <description>+7CS when used underground</description>
+            <effect class="combatSkill" increment="5" />
+        </special>
+
+        <special id="firefall" weaponType="broadsword" incompatibleWith="spawnsmite|magnara|sunstrike|kaistar|valiance|ulnarias|raumas|illuminatus|alema">
+            <name>Firefall</name>
+            <description>+8CS versus fire-emitting enemies</description>
+            <effect class="combatSkill" increment="5" />
+        </special>
+
+        <special id="moonstone">
+            <name>Moonstone</name>
+        </special>
+
+        <special id="ironskull">
+            <name>Iron Skull</name>
+        </special>
+
+        <special id="temujunsring">
+            <name>Temujun’s Ring</name>
+        </special>
+
+        <special id="siyencrown">
+            <name>Siyen Crown</name>
+        </special>
+
+        <special id="kutyanemerald">
+            <name>Kutyan Emerald</name>
         </special>
 
     </specials>
@@ -1648,6 +1729,56 @@
 
         <object id="shamathpotion">
             <name>Shamath’s potion</name>
+        </object>
+
+        <!-- BOOK 21 -->
+        <object id="flute">
+            <name>Flute</name>
+            <image book="21" name="flute.png" />
+        </object>
+        
+        <object id="mustowpotion">
+            <name>Mustow Potion</name>
+            <description>
+                Creates a foul choking gas when released into the air
+            </description>
+        </object>
+
+        <object id="sebarispotion">
+            <name>Sebaris Potion</name>
+            <description>
+                Purifies contaminated water
+            </description>
+        </object>
+
+        <object id="cowana">
+            <name>Cowana Herb</name>
+            <description>Each dose of Cowana will restore 4 ENDURANCE points to your total when swallowed after combat.</description>
+            <usage class="endurance" increment="4" />
+        </object>
+
+        <object id="scentedoil">
+            <name>Scented Oil</name>
+        </object>
+
+        <object id="candle">
+            <name>Candle</name>
+        </object>
+
+        <object id="slippers">
+            <name>Slippers</name>
+        </object>
+
+        <object id="coppercup">
+            <name>Copper Cup</name>
+        </object>
+
+        <object id="lyre">
+            <name>Lyre</name>
+        </object>
+
+        <object id="ballofchalk">
+            <name>Ball of Chalk</name>
         </object>
 
         <!-- OTHERS -->

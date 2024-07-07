@@ -26,7 +26,6 @@ export class InventoryState {
      * 'allobjects' = weapons, special items and backpack items
      */
     public static fromActionChart(objectTypes: string, actionChart: ActionChart): InventoryState {
-
         const objects = new InventoryState();
 
         if (objectTypes === "all" || objectTypes === "allobjects") {
@@ -43,6 +42,13 @@ export class InventoryState {
         } else if (objectTypes === "weaponlike") {
             for (const w of actionChart.getWeaponAChartItems(false)) {
                 objects.addItem(w.clone());
+            }
+        //Following rule currently only used in New Order Book 1, so there is no Special Item bow (yet) type 
+        } else if (objectTypes === "bow") { 
+            for (const w of actionChart.getWeaponAChartItems(false)) {
+                if (w.getItem().isWeaponType(Item.BOW)) {
+                    objects.addItem(w.clone());
+                }
             }
         } else {
             const msg = "Wrong objectTypes: " + objectTypes;

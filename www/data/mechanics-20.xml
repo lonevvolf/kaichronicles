@@ -2569,7 +2569,6 @@
 
         <section id="sect350">
             <unregisterGlobalRule id="planeofdarknessb20" />
-            <message text="Congratulation! You have finished the last book of Kai Chronicles!" />
         </section>
     </sections>
 </mechanics>

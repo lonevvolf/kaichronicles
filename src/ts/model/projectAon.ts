@@ -188,6 +188,14 @@ export const projectAon = {
             biographies: [ "jdbiolw" , "bwbiolw" ]
         },
 
+        /////////// NEW ORDER ///////////
+        // Book 21:
+        {
+            title: "Voyage of the Moonstone",
+            code: "21votm",
+            illustrators: [ "newton", "williams" ],
+            biographies: [ "jdbiolw" , "bwbiolw" ]
+        },
     ] as BookMetadata[],
 
     /**

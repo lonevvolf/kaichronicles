@@ -11,6 +11,7 @@ export const mainMenuController = {
     index() {
         template.setNavTitle( translations.text("kaiChronicles") , "#mainMenu", true);
         template.showStatistics(false);
+        template.showKaiName(false);
         views.loadView("mainMenu.html").then(() => {
             mainMenuView.setup();
 

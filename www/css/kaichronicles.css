@@ -219,6 +219,10 @@ div.signpost {
     cursor: pointer;
 }
 
+#template-kaiName {
+    margin-right: 10px;
+}
+
 /* Style to force to hide the toggle menu button */
 .hideImportant {
     display: none!important;

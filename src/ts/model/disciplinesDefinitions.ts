@@ -42,3 +42,23 @@ export enum GndDiscipline {
     MagiMagic = "magi",
     KaiAlchemy = "alchemy"
 }
+
+/** New Order series disciplines codes */
+export enum NewOrderDiscipline {
+    GrandWeaponmastery = "wpnmstry", // Duplicate!
+    AnimalMastery = "anmlmstr", // Duplicate!
+    Deliverance = "deliver", // Duplicate!
+    Assimilance = "assimila", // Duplicate!
+    GrandHuntmastery = "hntmstry", // Duplicate!
+    GrandPathsmanship = "pthmnshp", // Duplicate!
+    KaiSurge = "kaisurge", // Duplicate!
+    KaiScreen = "kaiscrn", // Duplicate!
+    GrandNexus = "nexus", // Duplicate!
+    Telegnosis = "gnosis", // Duplicate!
+    MagiMagic = "magi", // Duplicate!
+    KaiAlchemy = "alchemy", // Duplicate!
+    Astrology = "astrolgy",
+    Herbmastery = "herbmst",
+    Elementalism = "element",
+    Bardsmanship = "bardsman"
+}

@@ -20,6 +20,35 @@
         </p>
     </div>
 
+    <!-- Set Kai name -->
+    <div class="well" id="mechanics-setKaiName">
+        <div id="mechanics-existingKaiName">
+            <span data-translation="yourKaiName">Your Kai Name:</span>
+            <span id="kaiName"></span>
+        </div>
+        <div id="mechanics-setNames">
+            <p>
+                <span data-translation="enterKaiNameHere">Enter your Kai name here:</span>
+                <input class="form-control" id="mechanics-customKaiName" title="Custom Kai Name" type="text" />
+                <span>or</span>
+            </p>
+            <p id="mechanics-detFirstName">
+                <span data-translation="chooseNumberOn">Choose a number on the</span> 
+                <a href="#" class="random action" id="mechanics-chooseFirstName" data-translation="randomTable">
+                    Random number table
+                </a>
+                <span data-translation="determineFirstName">to determine your First Name</span>.
+            </p>
+            <p id="mechanics-detLastName">
+                <span data-translation="chooseNumberOn">Choose a number on the</span> 
+                <a href="#" class="random action" id="mechanics-chooseLastName" data-translation="randomTable">
+                    Random number table
+                </a> 
+                <span data-translation="determineLastName">to determine your Last Name</span>.
+            </p>
+        </div>
+    </div>
+
     <!-- Select kai disciplines -->
     <div class="well" id="mechanics-setDisciplines">
         <div class="checkbox">
@@ -56,6 +85,7 @@
                 Message goes here
             </b>
         </div>
+
         <!-- Max. Special Items, starting from book 8 -->
         <div class="well" id="mechanics-chooseEquipment-maxSpecials">
             <b data-translation="maxSpecialItems">
@@ -436,26 +466,26 @@
     <!-- Show info about writting in Action Chart -->
     <div class="well" id="mechanics-actionChartInfo" data-translation="actionchartinfo">
         <p>
-            Following sections explain how to play with the printed books. This application is an adaptation of the game books, 
+            The following sections explain how to play with the printed books. This application is an adaptation of the game books, 
             and you will not need to write by hand on the Action Chart (except on the "Annotations" field). The
             application tries to do all the game accounting.
         </p>
         <p>
             On the Action Chart there are functions to check your stats and to handle your inventory (use or drop 
-            objects, change current weapon, ...).
+            objects, change current weapon, etc.).
         </p>
         <p>
-            Each time you see a blue bold text like this "<a class="random action">Some text</a>" into the book text, 
+            Each time you see a blue bold text like this "<a class="random action">Some text</a>" in the book text, 
             it's an action. Usually this action will be get a number from the Random Number Table. 
-            Click on it to do that action.
+            Click on it to perform that action.
         </p>
         <p>
-            Non bold blue text like this "<a>Some text</a>" are links to other places (to the Action Chart, or the map,...).
+            Non-bold blue text like this "<a>Some text</a>" are links to other places (to the Action Chart, or the map, etc.).
             If you click on it you will go there.
         </p>
         <p>
-            At this page bottom there are two links to choose your Combat Skill and Endurance Points. Click on them 
-            before continue to the next section.
+            If you have not played a previous book, at the bottom of this page there are two links to choose your Combat Skill and Endurance Points.
+            Click on them before continuing to the next section.
         </p>
     </div>
 

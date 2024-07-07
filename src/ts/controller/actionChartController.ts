@@ -211,6 +211,7 @@ export const actionChartController = {
 
             // Update the action chart view
             actionChartView.updateObjectsLists();
+            actionChartView.fillKaiWeapon(state.actionChart);
 
             // Update player statistics (for objects with effects)
             actionChartView.updateStatistics();
@@ -437,6 +438,21 @@ export const actionChartController = {
 
         template.updateStatistics();
 
+    },
+
+    /**
+     * Increase / decrease the current endurance restored in the book
+     * @param count Number to increase. Negative to decrease
+     */
+    increaseNewOrderCuringEPRestored(count: number) {
+        state.actionChart.newOrderCuringEPRestored += count;
+    },
+
+    /**
+     * Get the current endurance restored in the book
+     */
+    getNewOrderCuringEPRestored() : number {
+        return state.actionChart.newOrderCuringEPRestored;
     },
 
     /** Set the current endurance, just for debug */

@@ -1,5 +1,5 @@
 import { views, translations, Section, gameView, state, CombatMechanics, randomMechanics, Combat, Item, routing, gameController,
-    App, ExpressionEvaluator, numberPickerMechanics, SkillsSetup, SetupDisciplines, EquipmentSectionMechanics, actionChartController,
+    App, ExpressionEvaluator, numberPickerMechanics, SkillsSetup, KaiNameSetup, SetupDisciplines, EquipmentSectionMechanics, actionChartController,
     Currency, LoreCircle, BookSeriesId, MealMechanics, ActionChartItem, InventoryState, actionChartView, template, Book,
     GrandMasterUpgrade, kaimonasteryController, book2sect238, book2sect308, book3sect88, book6sect26, book6sect284,
     book6sect340, book9sect91, book19sect304, ObjectsTable, ObjectsTableType, setupController, KaiDiscipline, MgnDiscipline,
@@ -415,6 +415,13 @@ export const mechanicsEngine = {
     },
 
     /**
+     * Choose player Kai name UI
+     */
+    setKaiName() {
+        KaiNameSetup.setKaiName();
+    },
+
+    /**
      * Choose the kai disciplines UI
      */
     setDisciplines() {
@@ -490,7 +497,7 @@ export const mechanicsEngine = {
     },
 
     /**
-     * Assing an action to a random table link.
+     * Assign an action to a random table link.
      */
     randomTable(rule: Element) {
         // console.log( 'randomTable rule' );
@@ -746,7 +753,6 @@ export const mechanicsEngine = {
      * There is an available object on the section
      */
     object(rule: Element) {
-
         const sectionState = state.sectionStates.getSectionState();
 
         // Do not execute the rule twice:
@@ -827,6 +833,8 @@ export const mechanicsEngine = {
 
         // Sell a specific item
         const objectId = $rule.attr("objectId");
+        const cls = $rule.attr("class");
+
         if (objectId) {
             const item = state.mechanics.getObject(objectId);
             sectionState.sellPrices.push({
@@ -839,17 +847,22 @@ export const mechanicsEngine = {
                 dessiStoneBonus: false
             });
         }
-
         // Other things (money / meals / special items ...)
-        const cls = $rule.attr("class");
-        if (cls) {
+        else if (cls) {
             let objectIds: string[] = [];
             let except: string[] = mechanicsEngine.getArrayProperty($rule, "except");
 
             if (cls === Item.SPECIAL) {
                 objectIds = state.actionChart.getSpecialItemsIds();
                 except.push(Item.MAP); // don't sell this, come on!
-            } else {
+            }
+            else if (cls == Item.WEAPON) {
+                objectIds = state.actionChart.getWeaponsIds();
+            }
+            else if (cls == Item.OBJECT) {
+                objectIds = state.actionChart.getBackpackItemsIds();
+            }
+            else {
                 mechanicsEngine.debugWarning("Sell rule with invalid class");
             }
 
@@ -1502,6 +1515,19 @@ export const mechanicsEngine = {
     },
 
     /**
+     * New Order: Reset counter of Curing EP restored in the current book
+     */
+    resetNewOrderCuringEPRestoredUse(rule: Element) {
+        if ( state.sectionStates.ruleHasBeenExecuted(rule) ) {
+            // Execute only once
+            return;
+        }
+
+        state.actionChart.resetNewOrderCuringEPRestoredUsed();
+        state.sectionStates.markRuleAsExecuted(rule);
+    },
+
+    /**
      * Set of rules that should be executed only once
      */
     executeOnce(rule: Element) {
@@ -1690,7 +1716,6 @@ export const mechanicsEngine = {
      * a empty objects table will be rendered. If it's empty, no table will be rendered
      */
     showAvailableObjects(renderEmptyTable = false) {
-
         const sectionState = state.sectionStates.getSectionState();
         const thereAreObjects = (sectionState.objects.length >= 1);
 
@@ -1832,6 +1857,9 @@ export const mechanicsEngine = {
             // Only if having healing discipline or loyalty bonus
             return;
         }
+        if (state.book.getBookSeries().id === BookSeriesId.NewOrder && actionChartController.getNewOrderCuringEPRestored() >= 10) {
+            return;
+        }
         if (!state.sectionStates.currentSection.startsWith("sect")) {
             // Execute healing only in story sections
             return;
@@ -1845,9 +1873,11 @@ export const mechanicsEngine = {
             // Already executed
             return;
         }
+
         sectionState.healingExecuted = true;
         if (state.actionChart.currentEndurance < state.actionChart.getMaxEndurance()) {
             actionChartController.increaseEndurance(+1, true);
+            actionChartController.increaseNewOrderCuringEPRestored(+1);
         }
     },
 

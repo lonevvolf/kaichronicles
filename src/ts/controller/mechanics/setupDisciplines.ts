@@ -44,7 +44,7 @@ export class SetupDisciplines {
 
         // Get info about the last played book
         const previousBookNumber = state.book.bookNumber - 1;
-        if (previousBookNumber >= 1) {
+        if (previousBookNumber >= 1 && state.book.bookNumber !== 21) {
             this.previousActionChart = state.getPreviousBookActionChart(previousBookNumber);
 
             // When a series start, by default, keep Weaponmastery with the same weapons from previous series
@@ -75,14 +75,14 @@ export class SetupDisciplines {
         // Add checkbox for each discipline:
         // eslint-disable-next-line @typescript-eslint/no-this-alias
         const self = this;
-        $('.subsection[id!="mksumary"]').append(mechanicsEngine.getMechanicsUI("mechanics-setDisciplines"))
+        $('.subsection').not('#mksumary').not('#nodispln').append(mechanicsEngine.getMechanicsUI("mechanics-setDisciplines"))
             .each((index, disciplineSection) => {
                 self.setupDisciplineCheckBox($(disciplineSection));
             })
             // Set events when checkboxes are clicked
             .find("input[type=checkbox]")
             .on("click", function(e) {
-                self.onDiscliplineCheckBoxClick(e, $(this));
+                self.onDisciplineCheckBoxClick(e, $(this));
             });
 
         // If we are on a magnakai book, add the weapons checkboxes
@@ -222,7 +222,12 @@ export class SetupDisciplines {
             const nExpectedWeapons = this.getExpectedNWeaponsWeaponmastery();
             if (App.debugMode !== DebugMode.DEBUG && state.actionChart.getWeaponSkill().length >= nExpectedWeapons) {
                 e.preventDefault();
-                alert(translations.text("onlyNWeapons", [nExpectedWeapons]));
+                if (nExpectedWeapons === 1) {
+                    alert(translations.text("onlyNWeapon", [nExpectedWeapons]));
+                }
+                else {
+                    alert(translations.text("onlyNWeapons", [nExpectedWeapons]));
+                }
                 return;
             }
             state.actionChart.getWeaponSkill().push(weaponId);
@@ -266,7 +271,7 @@ export class SetupDisciplines {
      * @param e The click event
      * @param $checkBox The clicked checkbox (JQuery)
      */
-    private onDiscliplineCheckBoxClick(e: JQuery.TriggeredEvent, $checkBox: JQuery<HTMLElement>) {
+    private onDisciplineCheckBoxClick(e: JQuery.TriggeredEvent, $checkBox: JQuery<HTMLElement>) {
 
         // Limit the number of disciplines. Unlimited on debug mode
         const selected: boolean = $checkBox.prop("checked");

@@ -93,7 +93,9 @@ export class BookData {
 
         const sourceDir = this.getSvnIllustrationsDir(author);
         const targetDir = this.getBookDir() + "/ill";
-        fs.mkdirSync( targetDir );
+        if (!fs.existsSync(targetDir)) {
+            fs.mkdirSync(targetDir);
+        }
         fs.copySync(sourceDir, targetDir);
 
         if ( this.bookNumber === 9) {

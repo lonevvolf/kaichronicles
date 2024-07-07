@@ -1,4 +1,4 @@
-import { BookSeriesId, KaiDiscipline, MgnDiscipline, GndDiscipline } from "..";
+import { BookSeriesId, KaiDiscipline, MgnDiscipline, GndDiscipline, NewOrderDiscipline } from "..";
 
 /**
  * Disciplines helpers
@@ -22,6 +22,8 @@ export class Disciplines {
                 return Disciplines.getDisciplinesIds(MgnDiscipline);
             case BookSeriesId.GrandMaster:
                 return Disciplines.getDisciplinesIds(GndDiscipline);
+            case BookSeriesId.NewOrder:
+                return Disciplines.getDisciplinesIds(NewOrderDiscipline);
             default:
                 return [];
         }

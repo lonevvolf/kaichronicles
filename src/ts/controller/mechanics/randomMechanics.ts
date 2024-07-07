@@ -12,11 +12,11 @@ export const randomMechanics = {
     lastValue: null as number,
 
     /**
-     * Assing an action to a random table link.
+     * Assign an action to a random table link.
      */
     randomTable(rule) {
 
-        // Do not enable anything if the player is death:
+        // Do not enable anything if the player is dead:
         if (state.actionChart.currentEndurance <= 0) {
             return;
         }

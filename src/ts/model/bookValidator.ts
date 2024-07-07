@@ -276,7 +276,7 @@ export class BookValidator {
         try {
             for ( const keyword of ExpressionEvaluator.getKeywords( expression ) ) {
                 if ( !ExpressionEvaluator.isValidKeyword( keyword ) ) {
-                    this.addError( $rule , "Unkwown keyword " + keyword );
+                    this.addError( $rule , "Unknown keyword " + keyword );
                 }
                 expression = expression.replaceAll( keyword , "0" );
             }
@@ -400,10 +400,10 @@ export class BookValidator {
         const classFound = $rule.attr("class");
         const onlyOne = ( ( objectIdFound && !classFound ) || ( !objectIdFound && classFound ) );
         if ( !onlyOne ) {
-            this.addError( $rule , 'Must to have a "objectId" or "class" attribute, and only one' );
+            this.addError( $rule , 'Must have a "objectId" or "class" attribute, and only one' );
         }
         if ( classFound && !$rule.attr("count") ) {
-            this.addError( $rule , 'Must to have a "count" attribute' );
+            this.addError( $rule , 'Must have a "count" attribute' );
         }
         this.validateNumericExpression( $rule , "count" );
     }
@@ -519,9 +519,10 @@ export class BookValidator {
 
         this.checkThereAreCombats( $rule );
 
+        const combats = this.currentSection.getCombats();
         const combatIndex = parseInt( $rule.attr("index"), 10 );
         if ( combatIndex ) {
-            const nCombats = this.currentSection.getCombats().length;
+            const nCombats = combats.length;
             if ( nCombats <= combatIndex ) {
                 this.addError( $rule , "There is no combat with index " + combatIndex );
             }
@@ -539,8 +540,8 @@ export class BookValidator {
             this.addError($rule, "If noKaiSurge attr. is true, noMindblast and noPsiSurge attributes should be true too");
         }
 
-        if ($rule.attr("noKaiBlast") === "true" && ( $rule.attr("noMindblast") !== "true" || $rule.attr("noPsiSurge") !== "true" || $rule.attr("noKaiSurge") !== "true" ) ) {
-            this.addError($rule, "If noKaiBlast attr. is true, noMindblast, noPsiSurge and noKaiSurge attributes should be true too");
+        if ($rule.attr("noKaiBlast") === "true" && ( $rule.attr("noMindblast") !== "true" || $rule.attr("noPsiSurge") !== "true" ) ) {
+            this.addError($rule, "If noKaiBlast attr. is true, noMindblast, and noPsiSurge attributes should be true too");
         }
 
         // TODO: Check attr "noWeapon" is boolean or number
@@ -634,7 +635,7 @@ export class BookValidator {
         }
 
         const cls = $rule.attr("class");
-        if ( cls && cls !== "special" ) {
+        if ( cls && cls !== "special" && cls !== "weapon" && cls !== "object") {
             this.addError( $rule , 'Wrong "class" property value' );
         }
 
@@ -644,8 +645,8 @@ export class BookValidator {
         this.validateObjectIdsAttribute( $rule , "except" , true , false );
 
         // "objectId" or "class" are mandatory, and exclusive
-        if ( ( !objectId && !cls ) || ( objectId && cls ) ) {
-            this.addError( $rule , 'One and only one of "objectId" and "class" are mandatory' );
+        if ( ( !objectId && !cls )) {
+            this.addError( $rule , 'One of "objectId" and "class" are mandatory' );
         }
     }
 

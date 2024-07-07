@@ -79,6 +79,17 @@ export const template = {
     },
 
     /**
+     * Show / hide Kai Name on navigation bar
+     */
+    showKaiName(show: boolean) {
+        if ( show ) {
+            template.updateKaiName();
+        } else {
+            $("#template-kaiName").hide();
+        }
+    },
+
+    /**
      * Update player statistics
      */
     updateStatistics(doNotAnimate: boolean = false) {
@@ -101,6 +112,20 @@ export const template = {
             } else {
                 $("#template-map").hide();
             }
+        }
+    },
+
+    /**
+     * Update Kai Name
+     */
+    updateKaiName(doNotAnimate: boolean = false) {
+        // Update Kai name
+        if ( !state.actionChart ||
+            ( state.actionChart.kaiName === "" ) ) {
+            $("#template-kaiName").hide();
+        } else {
+            $("#template-kaiName").show();
+            $("#template-kaiName").text( state.actionChart.kaiName );
         }
     },
 

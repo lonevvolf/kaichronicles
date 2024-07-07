@@ -112,11 +112,29 @@ export class EquipmentSectionMechanics {
      * @returns An object. Key is the object id and the value is the number of objects
      */
     private static getOriginalObjects( $sectionMechanics: JQuery<Element> ): { [objectId: string ]: number } {
-
         // Get the original objects on the section:
         const childrenRules = $sectionMechanics.children();
         const originalObjects = {};
         for (const rule of childrenRules.toArray()) {
+            // Also process test tag for sectionVisited - if other tests are needed this should be rewritten to share existing logic
+            if ( rule.nodeName === "test" ) {
+                // Check section visited:
+                const sectionIdsList = mechanicsEngine.getArrayProperty($(rule), "sectionVisited");
+                const invertCondition = mechanicsEngine.getArrayProperty($(rule), "not")[0] === "true";
+                for (const sectionId of sectionIdsList) {
+                    if ((state.sectionStates.sectionIsVisited(sectionId) && !invertCondition)
+                        || (!state.sectionStates.sectionIsVisited(sectionId) && invertCondition)) {
+                        const subItemObjects = this.getOriginalObjects($(rule));
+                        for(const objectid in subItemObjects) {
+                            if ( !originalObjects[objectid] ) {
+                                originalObjects[objectid] = 1;
+                            } else {
+                                originalObjects[objectid] += 1;
+                            }
+                        }
+                    }
+                }
+            }
             if ( rule.nodeName === "object" ) {
                 const objectid = $(rule).attr("objectId");
                 if ( !originalObjects[objectid] ) {

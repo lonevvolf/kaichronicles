@@ -302,8 +302,8 @@ Make an object available on the section. The player will can pick / buy it.
 * **objectId**: The available object id 
 * **price**: If it's set, the price to buy the object (not free)
 * **unlimited="true"**: There is an unlimited number of objects of this class on the section
-* **index="number"** Required, for ugly reasons, when there are two o more objects with the same object id on a section
-* **useOnSection="true"**: If true, the player will can use the object without picking it
+* **index="number"** Required, for ugly reasons, when there are two or more objects with the same object id on a section
+* **useOnSection="true"**: If true, the player will use the object without picking it
 
 ### tag
 ```xml
@@ -327,7 +327,7 @@ This will allow to the player to sell a class of objects by a given price
 ```xml
 <resetSectionState sectionId="sect152" />
 ```
-This will clear the state of the given section. Usefull if the player can return to that
+This will clear the state of the given section. Useful if the player can return to that
 section, and there are rules with state there that must to be reexecuted
 
 ### meal

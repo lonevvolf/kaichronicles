@@ -299,7 +299,7 @@ export class Book {
             // Parse the disciplines section
             // eslint-disable-next-line @typescript-eslint/no-this-alias
             const self = this;
-            $(this.bookXml).find('section[id=discplnz] > data > section[id!="mksumary"]')
+            $(this.bookXml).find('section[id=discplnz] > data section').not('#mksumary').not('#nodispln')
             .each( function(disciplineSection) {
 
                 const $node = $(this);
