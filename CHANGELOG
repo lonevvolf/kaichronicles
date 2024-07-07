@@ -127,10 +127,12 @@
  - Book 9: Fix meal sections where only huntmastery is allowed (can't hunt if only kai hunting discipline)
  - Book 18: Don't remove quivers when loosing backpack (sect236/290/335)
 
- 1.15.2 (*Thanks to lonevvolf for the reports/fixes*)
+ 1.16 (*Thanks to lonevvolf for the reports/fixes/book 21*)
+ - Book 21 available.
  - Add "Text size" (normal/large) setting
  - Fix type error (ennemy instead of enemy)
  - Refactor case tags in xml files in order to avoid lower/upper limits that can stuck the player (ex. sect176 in book 13 ).
+ - Book 6 sect340: Fix negative bonus if no weapon at all
  - Book 10: Fix location of "torgar" tag (sect346 -> sect273)
  - Book 16: Fix location of "vorndarol" tag (sect53 -> sect195)
  - Book 16: Fix sect225/sect318 where picking the Deathstaff was missing

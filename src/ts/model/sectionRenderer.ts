@@ -13,7 +13,6 @@ export class SectionRenderer {
 
     /**
      * Only illustrations of following authors are rendered (Others are not included on PAON).
-     * This covers up to book 9. There are illustrations of authors that are not distributed (ex. JC Alvarez)
      */
     private static toRenderIllAuthors = [ "Gary Chalk" , "Brian Williams", "Trevor Newton" ];
 
