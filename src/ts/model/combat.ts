@@ -42,10 +42,10 @@ export class Combat {
     public mindblastBonus;
 
     /** The CS bonus to apply if the player has Psi-Surge discipline */
-    public psiSurgeBonus;
+    public psiSurgeBonus: number;
 
     /** The CS bonus to apply if the player has Kai-Surge discipline */
-    public kaiSurgeBonus;
+    public kaiSurgeBonus: number;
 
     /** The state of the kai-ray usage (0: not used, 1: selected, 2: used) */
     public kaiRayUse = 0;
@@ -243,7 +243,7 @@ export class Combat {
                 } else {
                     dfd.reject();
                 }
-            });
+            }, null);
 
         return dfd.promise();
     }
@@ -276,8 +276,8 @@ export class Combat {
                     // Set the enemy loss
                     this.enemyKaiBlastLoss = -((value1 == 0 ? 1 : value1) + (value2 == 0 ? 1 : value2)) * this.mindblastMultiplier;
                     dfd.resolve();
-                })
-            });
+                }, null)
+            }, null);
         }
 
         return dfd.promise();

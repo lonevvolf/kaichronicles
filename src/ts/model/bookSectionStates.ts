@@ -1,4 +1,4 @@
-import { SectionState, Section, Combat, CombatTurn, state } from "..";
+import { SectionState, Section, Combat, CombatTurn } from "..";
 
 /**
  * Class to store book sections states

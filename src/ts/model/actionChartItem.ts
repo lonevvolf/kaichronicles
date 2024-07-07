@@ -82,7 +82,7 @@ export class ActionChartItem {
     }
 
     public static fromObjectsArray(array: object[]): ActionChartItem[] {
-        const result = [];
+        const result: ActionChartItem[] = [];
         for ( const o of array) {
             // On versions <= 1.11, the arrays elements in Action Chart (weapons, special and backpack items)
             // were a string with the item id. Starting from v. 1.12 they are an ActionChart, to store

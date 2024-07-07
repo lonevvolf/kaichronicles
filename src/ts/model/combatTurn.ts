@@ -195,20 +195,20 @@ export class CombatTurn {
      * Translate the loss
      * @param {string|number} loss It can be a number with the loss, or COMBATTABLE_DEATH
      */
-    public static translateLoss(loss: any): string {
+    public static translateLoss(loss: string|number): string {
         return loss === COMBATTABLE_DEATH ? translations.text( "deathLetter" ) : loss.toString();
     }
 
     /**
      * Get a text for a turn result
      */
-    public static lossText( base: any , multiplier: number, extra: number, finalLoss: any ): string {
+    public static lossText( base: string|number , multiplier: number, extra: number, finalLoss: string|number ): string {
         let loss = CombatTurn.translateLoss( base );
         if ( multiplier !== 1 ) {
-            loss = loss + " x " + multiplier;
+            loss = `${loss} x ${multiplier}`;
         }
         if ( extra !== 0 ) {
-            loss += " + " + ( - extra );
+            loss += ` + ${( - extra )}`;
         }
         if ( multiplier !== 1 || extra !== 0 ) {
             loss += " = " + CombatTurn.translateLoss( finalLoss );

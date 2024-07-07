@@ -1,4 +1,4 @@
-import { MgnDiscipline, translations, Bonus, state, BookSeries, BookSeriesId } from "..";
+import { MgnDiscipline, translations, Bonus, state, BookSeriesId } from "..";
 
 /**
  * Lore-circles for Magnakai disciplines

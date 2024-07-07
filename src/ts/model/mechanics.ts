@@ -61,7 +61,7 @@ export class Mechanics {
      * Returns the book XML URL
      */
     public getXmlURL(): string {
-        return "data/mechanics-" + this.book.bookNumber + ".xml";
+        return `data/mechanics-${this.book.bookNumber}.xml`;
     }
 
     /** Set mechanics XML */
@@ -199,7 +199,7 @@ export class Mechanics {
      * Return the id of the book last section
      */
     public getLastSectionId(): string {
-        return "sect" + this.getSectionsCount();
+        return `sect${this.getSectionsCount()}`;
     }
 
 }

@@ -6,7 +6,7 @@ import { BookSeriesId, KaiDiscipline, MgnDiscipline, GndDiscipline, NewOrderDisc
 export class Disciplines {
 
     private static getDisciplinesIds(disciplinesEnum: any): string[] {
-        const result = [];
+        const result: string[] = [];
         for (const disciplineKey of Object.keys(disciplinesEnum)) {
             result.push(disciplinesEnum[disciplineKey]);
         }

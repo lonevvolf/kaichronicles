@@ -117,6 +117,12 @@ Property "pickMaximum" is optional. It's the maximum number of object you can pi
 Objects are grouped by it's id. So if there are 2 meals, if you pick them both, it counts as a one object 
 picked. This is for "Equipment" sections, where meals and fireseeds are grouped.
 
+### setKaiName
+Game setup: The player selects their Kai Name. (New Order only)
+
+### resetNewOrderCuringEPRestoredUse
+Execute once only. New Order: Reset counter of EP restore by Curing, limited to 10 EP per book.
+
 ### setSkills
 Game setup: The player selects the initial Endurance and Combat Skill
 
@@ -319,7 +325,7 @@ Store a tag to the player action chart. Useful to check if the player has visite
 ```
 This will allow to the player to sell a class of objects by a given price
 * **objectId**: The object id you can sell
-* **class="special"** You can sell any Special Item object
+* **class="special|weapon|object"** You can sell any Special Item/Weapon/Backpack Item object
 * **except="objectId1|objectId2|..."** Only applies if "class" was specified. Objects id that you cannot sell
 * **price**: The money got by selling the object
 
@@ -385,6 +391,7 @@ the following properties:
 * **bow="true"** It's a combat with bow? (false = hand-to-hand)
 * **disabledObjects="objectId1|objectId2|..."** Set objects that cannot be used on this combat. "none" to enable all objects previously disabled.
 * **permanentDammage="boolean"** EP lost by LW on this combat will be permanent?
+* **properties="id"** Combat properties used by Kai Weapons to determine CS bonus (New Order)
 
 Different combat tags with different attributes are cumulative. Different combat tags with the same attribute will
 replace that value. Ex:
@@ -421,6 +428,7 @@ than one).
 The saveInventoryState optional property "objectsType" identifies the objects to lose / restore:
 * **all**: The backpack content, the backpack itself, special items, meals and money (This is the default value)
 * **weaponlike**: Weapons and weapon-like special items
+* **bow**: Bow weapons
 * **allobjects**: The backpack content, special items and meals
 
 The restoreInventoryState optional property "restoreWeapons" identifies if the Weapons, and weapon Special Items

@@ -102,7 +102,7 @@ export class Section {
 
         const sNumber = this.getSectionNumber();
         if ( sNumber ) {
-            return "sect" + ( sNumber + 1 );
+            return `sect${( sNumber + 1 )}`;
         }
 
         return null;
@@ -128,7 +128,7 @@ export class Section {
             if ( sNumber === 1 ) {
                 return "kaiwisdm";
             } else {
-                return "sect" + ( sNumber - 1 );
+                return `sect${( sNumber - 1 )}`;
             }
         }
 
@@ -151,7 +151,7 @@ export class Section {
      * @return Combats on this section
      */
     public getCombats(): Combat[] {
-        const result = [];
+        const result: Combat[] = [];
         this.$xmlSection.find("combat").each((index, combat) => {
             const $combat = $(combat);
             result.push( new Combat(
@@ -198,16 +198,16 @@ export class Section {
     /**
      * Returns the foot notes XML node for this section. null if it was not found
      */
-    public getFootNotesXml(): any {
+    public getFootNotesXml(): JQuery<HTMLElement> {
         return this.$xmlSection.find("footnotes").first();
     }
 
     /**
      * Returns the URL of this section on the project aon web site
      */
-    public getSectionAonPage = function(): string {
-        return this.book.getBookProjectAonHtmlDir() + this.sectionId + ".htm";
-    };
+    public getSectionAonPage(): string {
+        return `${this.book.getBookProjectAonHtmlDir()}${this.sectionId}.htm`;
+    }
 
     /**
      * Returns true if the section text contains the given text
