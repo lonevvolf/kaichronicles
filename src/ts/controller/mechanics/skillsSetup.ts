@@ -1,4 +1,4 @@
-import { state, template, gameView, mechanicsEngine, BookSeriesId, randomMechanics, translations } from "../..";
+import { state, template, gameView, mechanicsEngine, randomMechanics, translations } from "../..";
 
 /**
  * Player characteristics setup

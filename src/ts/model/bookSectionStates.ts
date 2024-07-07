@@ -28,7 +28,7 @@ export class BookSectionStates {
     public otherStates = {
         book6sect26TargetPoints: null,
         book6sect284: null,
-        book6sect340: null,
+        book6sect340: [-1 , -1 , -1],
         book9sect91: null,
     };
 

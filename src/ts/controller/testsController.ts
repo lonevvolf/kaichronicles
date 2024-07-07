@@ -148,7 +148,7 @@ export class testsController {
                 }
 
                 testsController.downloadAndTestBook(nextBookNumber);
-            });
+            }, null);
     }
 
     private static testAllBooks() {

@@ -568,16 +568,14 @@ export class SectionRenderer {
     private th($node: JQuery<HTMLElement>, level: number): string {
          if ($node.attr("colspan") !== undefined) {
             return '<th colspan=' + $node.attr("colspan") + '>' + this.renderNodeChildren( $node , level ) + "</th>";
-         }
-         else {
+         } else {
             return this.renderHtmlNode( $node , level );
          }
     }
     private td($node: JQuery<HTMLElement>, level: number): string { 
         if ($node.attr("colspan") !== undefined) {
             return '<td colspan=' + $node.attr("colspan") + '>' + this.renderNodeChildren( $node , level ) + "</td>";
-         }
-         else {
+         } else {
             return this.renderHtmlNode( $node , level );
          }
     }

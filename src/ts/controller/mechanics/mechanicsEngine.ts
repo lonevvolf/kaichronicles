@@ -78,7 +78,7 @@ export const mechanicsEngine = {
      * @param tagId The tag id to get
      * @returns {jQuery} The translated tag
      */
-    getMechanicsUI(tagId: string): any {
+    getMechanicsUI(tagId: string): JQuery<HTMLElement> {
         const $tag = mechanicsEngine.$mechanicsUI.find("#" + tagId).clone();
         if ($tag.length === 0) {
             mechanicsEngine.debugWarning(tagId + " tag not found");
@@ -861,8 +861,7 @@ export const mechanicsEngine = {
             }
             else if (cls == Item.OBJECT) {
                 objectIds = state.actionChart.getBackpackItemsIds();
-            }
-            else {
+            } else {
                 mechanicsEngine.debugWarning("Sell rule with invalid class");
             }
 
@@ -1491,7 +1490,7 @@ export const mechanicsEngine = {
     kaiMonasteryStorage(rule: Element) {
         const $tag = mechanicsEngine.getMechanicsUI("mechanics-kaimonasterystorage");
         gameView.appendToSection($tag, "afterChoices");
-        $tag.find("button").click( (e: Event) => {
+        $tag.find("button").on("click", (e: JQuery.Event) => {
             e.preventDefault();
             // Move to the fake section for Kai monastery
             state.sectionStates.currentSection = Book.KAIMONASTERY_SECTION;

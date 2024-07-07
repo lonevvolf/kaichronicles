@@ -1,5 +1,12 @@
 import { mechanicsEngine, gameView, template, state, translations, actionChartController, randomTable } from "../../..";
 
+interface GameResult {
+    dice1: number,
+    dice2: number,
+    total: number,
+    status: string
+}
+
 /**
  * Portholes game
  */
@@ -32,8 +39,7 @@ export const book2sect308 = {
         const player1 = book2sect308.playerResult( translations.text("playerNumber" , [1]) );
         const player2 = book2sect308.playerResult( translations.text("playerNumber" , [2]) );
         const lw = book2sect308.playerResult( translations.text("loneWolf") );
-        let status = player1.status + "<br/>" +
-            player2.status + "<br/>" + lw.status + "<br/>";
+        let status = `${player1.status}<br/>${player2.status}<br/>${lw.status}<br/>`;
         if ( lw.total > player1.total && lw.total > player2.total ) {
             status += translations.text("msgGetMoney" , [6]);
             actionChartController.increaseMoney(6);
@@ -46,15 +52,14 @@ export const book2sect308 = {
         book2sect308.updateUI(false);
     },
 
-    playerResult(playerName) {
-        const result = {
+    playerResult(playerName): GameResult {
+        const result:GameResult = {
             dice1: randomTable.getRandomValue(),
             dice2: randomTable.getRandomValue(),
             status: null,
             total: null,
         };
-        result.status = translations.text( "playerDices" , [playerName] )  + ": " +
-            result.dice1 + " + " + result.dice2 + " = ";
+        result.status = `${translations.text( "playerDices" , [playerName] )}: ${result.dice1} + ${result.dice2} = `;
         if ( result.dice1 === 0 && result.dice2 === 0 ) {
             result.total = 100;
             result.status += " Portholes!";

@@ -9,7 +9,7 @@ export class faqController {
 
     public static index() {
         template.setNavTitle( translations.text("kaiChronicles"), "#mainMenu", true);
-        views.loadView("faq.html");
+        void views.loadView("faq.html");
     }
 
     /** Return page */

@@ -14,7 +14,7 @@ export const randomMechanics = {
     /**
      * Assign an action to a random table link.
      */
-    randomTable(rule) {
+    randomTable(rule: Element) {
 
         // Do not enable anything if the player is dead:
         if (state.actionChart.currentEndurance <= 0) {
@@ -22,7 +22,7 @@ export const randomMechanics = {
         }
 
         // The DOM link:
-        let $link;
+        let $link:JQuery<HTMLElement>;
 
         // Check if the link is selected by plain text:
         const linkText = $(rule).attr("text");
@@ -56,11 +56,11 @@ export const randomMechanics = {
         }
     },
 
-    getRandomTableRefByIndex(index: number): any {
+    getRandomTableRefByIndex(index: number): JQuery<HTMLElement> {
         if (!index) {
             index = 0;
         }
-        return $(".random:eq( " + index + ")");
+        return $(`.random:eq(${index})`);
     },
 
     getRandomTableRefByRule(rule: any) {
@@ -118,13 +118,13 @@ export const randomMechanics = {
      * @param onLinkPressed Callback to call when the link is pressed
      * @param {boolean} zeroAsTen true if the zero must to be returned as ten
      */
-    bindTableRandomLink($element: any, onLinkPressed: (value: number, increment: number) => void,
+    bindTableRandomLink($element: JQuery<HTMLElement>, onLinkPressed: (value: number, increment: number) => void,
                         zeroAsTen: boolean) {
 
         // If the element is an span, replace it by a link
         $element = randomMechanics.setupRandomTableLink($element);
 
-        $element.on("click", function(e: Event) {
+        $element.on("click", function(e: JQuery.Event) {
             e.preventDefault();
 
             if ($(this).hasClass("disabled")) {
@@ -160,7 +160,7 @@ export const randomMechanics = {
                     onLinkPressed(value, increment);
 
                     template.addSectionReadyMarker();
-                });
+                }, null);
         });
     },
 
@@ -173,8 +173,8 @@ export const randomMechanics = {
      * @param increment The increment to the choose value, due to game rules
      * @return {jquery} The link tag already processed
      */
-    setupRandomTableLink($element: any, alreadyChoose: boolean = false, valueAlreadyChoose: number = 0,
-                         increment: number = 0): any {
+    setupRandomTableLink($element: JQuery<HTMLElement>, alreadyChoose: boolean = false, valueAlreadyChoose: number = 0,
+                         increment: number = 0): JQuery<HTMLElement> {
 
         if (!$element || $element.length === 0) {
             mechanicsEngine.debugWarning("Random table link not found");
@@ -199,7 +199,7 @@ export const randomMechanics = {
     /**
      * Change a random table link to clicked
      */
-    linkAddChooseValue($link: any, valueChoose: number, increment: number) {
+    linkAddChooseValue($link: JQuery<HTMLElement>, valueChoose: number, increment: number) {
 
         if ($link.hasClass("picked")) {
             // The link text / format has been already assigned
@@ -208,9 +208,9 @@ export const randomMechanics = {
 
         let html = valueChoose.toString();
         if (increment > 0) {
-            html += " + " + increment;
+            html += ` + ${increment}`;
         } else if (increment < 0) {
-            html += " - " + (-increment);
+            html += ` - ${-increment}`;
         }
         $link.append(" (" + html + ")");
         // Disable the link:
@@ -224,7 +224,7 @@ export const randomMechanics = {
      * @param rule The "randomTable" rule
      * @param randomValue The random value result from the table
      */
-    onRandomTableMechanicsClicked(rule: any, randomValue: number, increment: number) {
+    onRandomTableMechanicsClicked(rule: Element, randomValue: number, increment: number) {
 
         // Set the last choosed value
         randomMechanics.lastValue = randomValue + increment;
@@ -261,14 +261,14 @@ export const randomMechanics = {
         }
 
         // Test from / to value
-        let fromValue = null;
+        let fromValue: number = null;
         const txtFromValue: string = $rule.attr("from");
         if (txtFromValue) {
             fromValue = parseInt(txtFromValue, 10);
         }
 
         // Test from / to value
-        let toValue = null;
+        let toValue: number = null;
         const txtToValue: string = $rule.attr("to");
         if (txtToValue) {
             toValue = parseInt(txtToValue, 10);

@@ -20,7 +20,7 @@ export const mainMenuController = {
                 mainMenuView.hideContinueGame();
             }
 
-        });
+        }, null);
     },
 
     /**

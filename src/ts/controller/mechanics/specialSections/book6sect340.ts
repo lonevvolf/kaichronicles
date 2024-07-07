@@ -10,7 +10,7 @@ export const book6sect340 = {
         mechanicsEngine.setChoiceState("all" , true );
 
         // Bow bonus:
-        $("#mechanics-book6sect340-bonus").text( ExpressionEvaluator.evalInteger("[BOWBONUS]") );
+        $("#mechanics-book6sect340-bonus").text( Math.max(0, ExpressionEvaluator.evalInteger("[BOWBONUS]")) );
 
         for ( let i = 0; i < 3; i++) {
             book6sect340.bindRandomLink(i);
@@ -20,12 +20,7 @@ export const book6sect340 = {
     },
 
     getState(): number[] {
-        let tournmentState = state.sectionStates.otherStates.book6sect340;
-        if ( !tournmentState ) {
-            tournmentState = [ -1 , -1 , -1 ];
-            state.sectionStates.otherStates.book6sect340 = tournmentState;
-        }
-        return tournmentState;
+        return state.sectionStates.otherStates.book6sect340;
     },
 
     bindRandomLink( i: number ) {
@@ -36,7 +31,7 @@ export const book6sect340 = {
             randomMechanics.linkAddChooseValue( $link , tournmentState[i] , 0);
         } else {
             randomMechanics.bindTableRandomLink( $link ,
-                (value: number, increment: number) => {
+                (value: number) => {
                     tournmentState[i] = value;
                     book6sect340.updateUI();
                 },

@@ -11,7 +11,7 @@ export class privacyController {
      * Render the page
      */
     public static index() {
-        views.loadView( "privacy.html" );
+        void views.loadView( "privacy.html" );
     }
 
 }

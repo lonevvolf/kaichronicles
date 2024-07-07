@@ -48,15 +48,15 @@ export const book6sect26 = {
         book6sect26.updatePlayerTargetPointsUI(false);
     },
 
-    getPlayerTargetPoints(): any {
-        const targetPoints = state.sectionStates.otherStates.book6sect26TargetPoints;
+    getPlayerTargetPoints(): number {
+        const targetPoints:number = state.sectionStates.otherStates.book6sect26TargetPoints;
         if ( targetPoints === undefined || targetPoints === null ) {
             return 50;
         }
         return targetPoints;
     },
 
-    setPlayerTargetPoints( targetPoints: any ) {
+    setPlayerTargetPoints( targetPoints: number ) {
         state.sectionStates.otherStates.book6sect26TargetPoints = targetPoints;
     },
 

@@ -179,13 +179,12 @@ export const actionChartView = {
         if (state.book.getBookSeries().id === BookSeriesId.NewOrder) {
             const kaiWeapon = actionChart.getKaiWeapon();
             if (kaiWeapon) {
-                var item = state.mechanics.getObject(kaiWeapon);
+                const item = state.mechanics.getObject(kaiWeapon);
                 $("#kaiWeaponName").text(item.name.charAt(0).toUpperCase() + item.name.slice(1));
                 $("#kaiWeaponProperties").text(item.description);
                 $("#kaiWeaponType").text(item.weaponType.charAt(0).toUpperCase() + item.weaponType.slice(1));
-                $("#kaiWeaponBonus").text("+" + item.combatSkillEffect + "CS");
-            }
-            else {
+                $("#kaiWeaponBonus").text(`+ ${item.combatSkillEffect} CS`);
+            } else {
                 $("#kaiWeaponName").text("");
                 $("#kaiWeaponProperties").text("");
                 $("#kaiWeaponType").text("");
@@ -195,7 +194,7 @@ export const actionChartView = {
     },
 
     updateMoney() {
-        $("#achart-beltPouch").val( state.actionChart.beltPouch + " " + translations.text("goldCrowns") );
+        $("#achart-beltPouch").val( `${state.actionChart.beltPouch} ${translations.text("goldCrowns")}` );
         // Disable if the player has no money or it's death
         $("#achart-dropmoneybutton").prop( "disabled", state.actionChart.beltPouch <= 0 || state.actionChart.currentEndurance <= 0 );
     },
@@ -216,12 +215,8 @@ export const actionChartView = {
 
         const txtCurrent = translations.text("current") + ": ";
         // Combat skill
-        $("#achart-combatSkills").val(
-            txtCurrent +
-            state.actionChart.getCurrentCombatSkill() +
-            " / Original: " + state.actionChart.combatSkill );
-        $("#achart-cs-bonuses").text(
-            actionChartController.getBonusesText( state.actionChart.getCurrentCombatSkillBonuses() ) );
+        $("#achart-combatSkills").val(`${txtCurrent}${state.actionChart.getCurrentCombatSkill()} / Original: ${state.actionChart.combatSkill}`);
+        $("#achart-cs-bonuses").text(actionChartController.getBonusesText( state.actionChart.getCurrentCombatSkillBonuses()));
 
         // Endurance
         let txtEndurance = txtCurrent + state.actionChart.currentEndurance;
@@ -231,9 +226,8 @@ export const actionChartView = {
         }
         txtEndurance += " / Original: " + state.actionChart.endurance;
 
-        $("#achart-endurance").val( txtEndurance );
-        $("#achart-endurance-bonuses").text(
-            actionChartController.getBonusesText( state.actionChart.getEnduranceBonuses() ) );
+        $("#achart-endurance").val(txtEndurance);
+        $("#achart-endurance-bonuses").text(actionChartController.getBonusesText( state.actionChart.getEnduranceBonuses()));
     },
 
     /**
@@ -285,8 +279,8 @@ export const actionChartView = {
         actionChartView.updateMeals();
 
         // Total number of backpack / special objects
-        $("#achart-backpacktotal").text("(" + state.actionChart.getNBackpackItems() + ")");
-        $("#achart-specialtotal").text("(" + state.actionChart.getNSpecialItems() + ")");
+        $("#achart-backpacktotal").text(`(${state.actionChart.getNBackpackItems()})`);
+        $("#achart-specialtotal").text(`(${state.actionChart.getNSpecialItems()})`);
     },
 
     showInventoryMsg(action: string, object: Item, msg: string) {

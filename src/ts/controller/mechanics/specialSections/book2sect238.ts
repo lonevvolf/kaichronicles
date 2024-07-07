@@ -92,7 +92,7 @@ export const book2sect238 = {
             gameState.moneyToBet = money;
             gameState.numberToBet = num;
             gameState.moneyWon += moneyInc;
-            let msg = translations.text("randomTable") + ": " + random + ". ";
+            let msg = `${translations.text("randomTable")}: ${random}.`;
             if (moneyInc >= 0) {
                 msg += translations.text("msgGetMoney", [moneyInc]);
             } else {
@@ -101,6 +101,6 @@ export const book2sect238 = {
             $("#mechanics-gameStatus").text(msg);
 
             book2sect238.updateUI(gameState, false);
-        });
+        }, null);
     },
 };

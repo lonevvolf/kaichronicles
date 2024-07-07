@@ -17,7 +17,7 @@ export class loadGameController {
         views.loadView("loadGame.html").then(() => {
             // Web page environment:
             loadGameView.bindFileUploaderEvents();
-        });
+        }, null);
     }
 
     /**

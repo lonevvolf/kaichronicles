@@ -20,7 +20,7 @@ export const newGameController = {
         views.loadView("newGame.html")
         .then(() => {
             newGameView.setup();
-        });
+        }, null);
 
     },
 

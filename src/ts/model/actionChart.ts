@@ -285,8 +285,7 @@ export class ActionChart {
                     if (!this.hasObject(item.id)) {
                         this.specialItems.push(aChartItem);
                     }
-                }
-                else {
+                } else {
                     this.specialItems.push(aChartItem);
                 }             
 

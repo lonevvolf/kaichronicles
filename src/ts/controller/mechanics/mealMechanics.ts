@@ -1,4 +1,4 @@
-import { state, mechanicsEngine, gameView, KaiDiscipline, MgnDiscipline, GndDiscipline, actionChartController, translations, template, NewOrderDiscipline, BookSeries, BookSeriesId } from "../..";
+import { state, mechanicsEngine, gameView, KaiDiscipline, MgnDiscipline, GndDiscipline, actionChartController, translations, template, NewOrderDiscipline, BookSeriesId } from "../..";
 
 /**
  * Meal mechanics

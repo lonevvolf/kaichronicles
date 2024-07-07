@@ -8,7 +8,7 @@ export const numberPickerMechanics = {
     /**
      * numberPicker rule execution
      */
-    numberPicker(rule: any) {
+    numberPicker(rule: Element) {
 
         if ($(rule).attr("enabled") === "false") {
             // Disable the money picker
@@ -70,13 +70,13 @@ export const numberPickerMechanics = {
         return sectionState.numberPickersState.actionFired === true;
     },
 
-    bindButtonActionEvent($pickNumberButton: any, callback: () => void) {
+    bindButtonActionEvent($pickNumberButton: JQuery<HTMLElement>, callback: () => void) {
 
         if (!$pickNumberButton) {
             $pickNumberButton = $("#mechanics-picknumber");
         }
 
-        $pickNumberButton.on("click", (e) => {
+        $pickNumberButton.on("click", (e:JQuery.Event) => {
             e.preventDefault();
             callback();
         });

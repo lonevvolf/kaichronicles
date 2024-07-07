@@ -34,12 +34,12 @@ export const aboutController = {
                         xml = Book.fixXml(xml);
                         xml = "<div><p>" + xml + "</p></div>";
                         this.authorInfoDownloaded(xml);
-                    });
+                    }, null);
                 }
             } catch (ex) {
                 mechanicsEngine.debugWarning(ex);
             }
-        });
+        }, null);
     },
 
     /**

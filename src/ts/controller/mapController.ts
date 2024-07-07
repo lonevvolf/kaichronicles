@@ -29,7 +29,7 @@ export const mapController = {
                 mapView.setSectionContent( mapSection );
             }
             mapView.bindEvents();
-        });
+        }, null);
 
     },
 

@@ -16,7 +16,7 @@ export const book3sect88 = {
                 if ( turn.loneWolf > 0 && turn.loneWolf !== COMBATTABLE_DEATH ) {
                     const biteRandomValue = randomTable.getRandomValue();
                     turn.playerLossText = "(" + turn.playerLossText + ")";
-                    turn.playerLossText += " Random: " + biteRandomValue;
+                    turn.playerLossText += `Random: ${biteRandomValue}`;
                     if ( biteRandomValue === 9 ) {
                         turn.loneWolf = COMBATTABLE_DEATH;
                     } else {

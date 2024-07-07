@@ -35,7 +35,7 @@ export class kaimonasteryController {
 
             // Render available objects on the Kai monastery
             mechanicsEngine.showAvailableObjects( true );
-        });
+        }, null);
 
     }
 

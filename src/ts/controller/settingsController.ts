@@ -16,7 +16,7 @@ export const settingsController = {
         views.loadView("settings.html")
         .then(() => {
             settingsView.setup();
-        });
+        }, null);
 
     },
 

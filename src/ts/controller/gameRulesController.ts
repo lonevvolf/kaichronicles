@@ -44,7 +44,7 @@ export const gameRulesController = {
             } catch (e) {
                 mechanicsEngine.debugWarning(e);
             }
-        });
+        }, null);
     },
 
     appendSection( sectionId: string ) {

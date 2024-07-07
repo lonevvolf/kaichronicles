@@ -13,7 +13,7 @@ export class EquipmentSectionMechanics {
     public static checkMoreObjectsCanBePicked( pickedObjectId: string ) {
 
         // Check if the section has restrictions about the number of pickable objects:
-        const $sectionMechanics: any = state.mechanics.getSection( state.sectionStates.currentSection );
+        const $sectionMechanics = state.mechanics.getSection( state.sectionStates.currentSection );
         if ( !$sectionMechanics ) {
             return;
         }
@@ -47,7 +47,7 @@ export class EquipmentSectionMechanics {
      */
     public static getNPickedObjects( sectionId: string ): number {
 
-        const $sectionMechanics: any = state.mechanics.getSection( sectionId );
+        const $sectionMechanics = state.mechanics.getSection( sectionId );
         if ( !$sectionMechanics ) {
             return 0;
         }

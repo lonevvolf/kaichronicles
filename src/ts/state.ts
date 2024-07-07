@@ -254,7 +254,7 @@ export class State {
     public nextBook() {
 
         // Save the action chart state on the current book ending
-        const key = "state-book-" + this.book.bookNumber.toString();
+        const key = `state-book-${this.book.bookNumber}`;
         localStorage.setItem(key, JSON.stringify(this.actionChart));
 
         // Move to the next book
@@ -268,9 +268,8 @@ export class State {
             this.restoreKaiMonasterySectionObjects();
 
             this.persistState();
-        }
-        // Start a new character for the New Order series
-        else {
+        } else {
+            // Start a new character for the New Order series
             this.setup(this.book.bookNumber, false);
         }
     }
@@ -282,7 +281,7 @@ export class State {
      */
     public getPreviousBookActionChart(bookNumber: number): ActionChart {
         try {
-            const key = "state-book-" + bookNumber.toString();
+            const key = `state-book-${bookNumber}`;
             const json = localStorage.getItem(key);
             if (!json) {
                 return null;
@@ -307,7 +306,7 @@ export class State {
 
         // Get the action charts at the end of each book
         for (let i = 1; i <= 30; i++) {
-            const key = "state-book-" + i;
+            const key = `state-book-${i}`;
             const previousBookState = localStorage.getItem(key);
             if (previousBookState) {
                 saveGameObject.previousBooksState[i] = previousBookState;
@@ -326,7 +325,7 @@ export class State {
 
         // alert( json );
         // console.log( json );
-        const saveGameObject: SaveGameObject = JSON.parse(json);
+        const saveGameObject: SaveGameObject = <SaveGameObject>JSON.parse(json);
 
         // Check errors
         if (!saveGameObject || !saveGameObject.currentState) {
@@ -335,7 +334,7 @@ export class State {
 
         // Restore previous books action chart
         for (let i = 1; i <= 30; i++) {
-            const key = "state-book-" + i;
+            const key = `state-book-${i}`;
             if (saveGameObject.previousBooksState[i]) {
                 localStorage.setItem(key, saveGameObject.previousBooksState[i]);
             } else {

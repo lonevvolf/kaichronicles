@@ -1,4 +1,4 @@
-import { state, template, gameView, mechanicsEngine, BookSeriesId, randomMechanics, translations, BookSeries } from "../..";
+import { state, template, gameView, mechanicsEngine, randomMechanics } from "../..";
 
 /**
  * Kai name setup
@@ -32,8 +32,7 @@ export class KaiNameSetup {
             $("#kaiName").append("<b>" + state.actionChart.kaiName + "</b>");
             $("#mechanics-setNames").hide();
             return;
-        }
-        else {
+        } else {
             $("#mechanics-existingKaiName").hide();
         }
 
@@ -42,7 +41,7 @@ export class KaiNameSetup {
 
         // Kai Name
         if (state.actionChart.kaiName === "") {
-            $("#mechanics-customKaiName").on("input", (e) => {
+            $("#mechanics-customKaiName").on("input", () => {
                 state.actionChart.kaiName = $("#mechanics-customKaiName").val().toString();
                 gameView.enableNextLink($("#mechanics-customKaiName").val() !== "");
                 template.updateKaiName();
@@ -52,8 +51,7 @@ export class KaiNameSetup {
             randomMechanics.bindTableRandomLink($f, (value) => {
                 if ($("#mechanics-customKaiName").prop('readonly')) {
                     $("#mechanics-customKaiName").val(this.firstNames[value] + " " + $("#mechanics-customKaiName").val());
-                }
-                else {
+                } else {
                     $("#mechanics-customKaiName").val(this.firstNames[value]);
                     $("#mechanics-customKaiName").prop('readonly', true);
                 }
@@ -65,8 +63,7 @@ export class KaiNameSetup {
             randomMechanics.bindTableRandomLink($l, (value) => {
                 if ($("#mechanics-customKaiName").prop('readonly')) {
                     $("#mechanics-customKaiName").val($("#mechanics-customKaiName").val() + " " + this.lastNames[value]);
-                }
-                else {
+                } else {
                     $("#mechanics-customKaiName").val(this.lastNames[value]);
                     $("#mechanics-customKaiName").prop('readonly', true);
                 }

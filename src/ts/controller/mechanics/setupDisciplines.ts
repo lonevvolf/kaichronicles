@@ -127,7 +127,9 @@ export class SetupDisciplines {
             const selected: boolean = state.actionChart.getWeaponSkill().includes(weaponsTable[i]);
             const $chk = $checkboxDiv.find("input");
             $chk.attr("id", SetupDisciplines.WEAPON_CHECKBOX_ID + weaponItem.id);
-            $chk.attr("checked", selected);
+            if(selected) {
+                $chk.attr("checked", "checked");
+            }
 
             html += $checkboxDiv[0].outerHTML;
 
@@ -161,8 +163,6 @@ export class SetupDisciplines {
         if (bookSeries.id < BookSeriesId.Magnakai) {
             return;
         }
-
-        const disable: boolean = false;
 
         // If Weaponmastery is not selected, disable all weapons
         if (!state.actionChart.hasDiscipline(bookSeries.weaponskillDiscipline)) {
@@ -224,8 +224,7 @@ export class SetupDisciplines {
                 e.preventDefault();
                 if (nExpectedWeapons === 1) {
                     alert(translations.text("onlyNWeapon", [nExpectedWeapons]));
-                }
-                else {
+                } else {
                     alert(translations.text("onlyNWeapons", [nExpectedWeapons]));
                 }
                 return;
@@ -369,13 +368,13 @@ export class SetupDisciplines {
                 // Show on UI the selected weapon
                 this.setWeaponSkillWeaponNameOnUI();
                 const $well = $("#wepnskll .well");
-                $well.append("<div><i><small>" + translations.text("randomTable") + ": " + value + "</small></i></div>");
+                $well.append(`<div><i><small>${translations.text("randomTable")}: ${value}</small></i></div>`);
 
                 // Mark the checkbox
                 $well.find("input[type=checkbox]").prop("checked", true);
 
                 this.afterDisciplineSelection();
-            });
+            }, null);
     }
 
     /**

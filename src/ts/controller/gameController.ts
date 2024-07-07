@@ -36,7 +36,7 @@ export const gameController = {
                     sec = Book.INITIAL_SECTION;
                 }
                 gameController.loadSection(sec, false, state.actionChart.yScrollPosition);
-            });
+            }, null);
 
     },
 

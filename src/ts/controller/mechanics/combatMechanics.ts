@@ -51,7 +51,7 @@ export class CombatMechanics {
             $combatUI.attr("data-combatIdx", index);
 
             // Add combats UI
-            const $combatOriginal = $(".combat:eq(" + index + ")");
+            const $combatOriginal = $(`.combat:eq(${index})`);
 
             $combatOriginal.append( $combatUI )
             .find(CombatMechanics.PLAY_TURN_BTN_SELECTOR).on("click", function(e) {
@@ -139,7 +139,7 @@ export class CombatMechanics {
             return;
         }
         $.each(sectionState.combats, (index, combat) => {
-            const $combatUI = $(".mechanics-combatUI:eq(" + index + ")");
+            const $combatUI = $(`.mechanics-combatUI:eq(${index})`);
             CombatMechanics.updateCombatRatio( $combatUI , combat);
         });
     }
@@ -268,7 +268,7 @@ export class CombatMechanics {
 
             // For testing, add marker to notify to the test we are ready
             template.addSectionReadyMarker();
-        });
+        }, null);
 
     }
 
@@ -292,11 +292,7 @@ export class CombatMechanics {
      * @param turn The turn to render
      */
     private static renderCombatTurn( $combatTableBody: JQuery<HTMLElement> , turn: CombatTurn ) {
-        $combatTableBody.append(
-            '<tr><td class="hidden-xs">' + turn.turnNumber + "</td><td>" + turn.randomValue +
-            "</td><td>" + turn.getPlayerLossText() + "</td><td>" +
-            turn.getEnemyLossText() + "</td></tr>"
-        );
+        $combatTableBody.append(`<tr><td class="hidden-xs">${turn.turnNumber}</td><td>${turn.randomValue}</td><td>${turn.getPlayerLossText()}</td><td>${turn.getEnemyLossText()}</td></tr>`);
     }
 
     /**
@@ -382,7 +378,7 @@ export class CombatMechanics {
             CombatMechanics.disableSurge( $combatUI , combat );
         }
 
-        const rayText = translations.text("mechanics-combat-kaiblast" , [ combat.mindblastMultiplier > 1 ? " (x" + combat.mindblastMultiplier + ")" : "" ] );
+        const rayText = translations.text("mechanics-combat-kaiblast" , [ combat.mindblastMultiplier > 1 ? ` (x${combat.mindblastMultiplier})` : "" ] );
         $combatUI.find(".mechanics-combat-kaiblast").text( rayText );
 
         // Kai-blast selection
@@ -494,7 +490,7 @@ export class CombatMechanics {
     public static checkSurgeEnabled() {
         const sectionState = state.sectionStates.getSectionState();
         for ( let i = 0; i < sectionState.combats.length; i++ ) {
-            const $combatUI = $(".mechanics-combatUI:eq(" + i + ")");
+            const $combatUI = $(`.mechanics-combatUI:eq(${i})`);
             CombatMechanics.checkSurgeEnabledInCombat( $combatUI , sectionState.combats[i]);
         }
     }
@@ -580,7 +576,7 @@ export class CombatMechanics {
         $("#game-ratioenemy").text( combat.combatSkill );
 
         // Combat ratio result:
-        $("#game-ratioresult").text( finalCSPlayer + " - " + combat.combatSkill + " =  " + ( finalCSPlayer - combat.combatSkill ) );
+        $("#game-ratioresult").text( `${finalCSPlayer} - ${combat.combatSkill} =  ${( finalCSPlayer - combat.combatSkill )}` );
 
         // Show dialog
         $("#game-ratiodetails").modal();
