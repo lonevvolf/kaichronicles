@@ -15,7 +15,7 @@ jobs:
         run: |
           git config --global pack.threads "1"
           npm install
-          npm run downloaddata --url=${{ vars.$REPO_URL }}
+          npm run downloaddata --url=${{ vars.REPO_URL }}
           npm run dist
       - name: Archive dist folder
         uses: actions/upload-pages-artifact@v3
