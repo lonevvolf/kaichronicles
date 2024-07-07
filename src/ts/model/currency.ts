@@ -14,6 +14,9 @@ export class Currency {
     /** Kikas id (Darklands) */
     public static readonly KIKA = "kika";
 
+    /** Nobles id (Southeastern Magnamund) */
+    public static readonly NOBLE = "noble";
+
     /**
      * Currencies exchange.
      * How many coins per 1 Gold Crown?
@@ -21,7 +24,8 @@ export class Currency {
     private static readonly EXCHANGES = {
         "crown" : 1,
         "lune" : 4,
-        "kika" : 10
+        "kika" : 10,
+        "noble" : 1
     };
 
     /**

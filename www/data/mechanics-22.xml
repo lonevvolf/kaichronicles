@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<mechanics book="22" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/cracrayol/kaichronicles/master/www/data/mechanics.xsd">
+
+    <!-- GAME RULES -->
+    <sections>
+        <section id="tssf">
+            <!-- Restore the endurance to the maximum -->
+            <endurance count="+[MAXENDURANCE]" />
+            <!-- Drop the previous books map -->
+            <drop objectId="map" />
+            <!-- Restore Deliverance use each X days -->
+            <restoreDeliveranceUse />
+            <!-- Reset Curing EP Used counter-->
+            <resetNewOrderCuringEPRestoredUse />
+        </section>
+
+        <section id="gamerulz">
+            <!-- Select the player skills (weapons skill and endurance) UI -->
+            <setSkills />
+        </section>
+
+        <section id="kainame">
+            <!-- Select the player Kai name UI -->
+            <setKaiName />
+        </section>
+        
+        <section id="discplnz">
+            <!-- Select the Kai disciplines UI -->
+            <setDisciplines />
+        </section>
+
+        <section id="equipmnt" pickMaximum="5">
+            <!-- Do not pick 2 maps! -->
+            <test not="true" hasObject="map">
+                <pick objectId="map" />
+            </test>
+            <test not="true" hasObject="backpack">
+                <pick objectId="backpack" />
+            </test>
+
+            <randomTable>
+                <pick class="money" count="[RANDOM] + 20" excessToKaiMonastry="true" />
+            </randomTable>
+
+            <object objectId="quarterstaff" />
+            <object objectId="bow" />
+            <object objectId="quiver" count="6" />
+            <object objectId="flute" />
+            <object objectId="dagger" />
+            <object objectId="sword" />
+            <object objectId="meal" index="0" />
+            <object objectId="meal" index="1" />
+            <object objectId="rope" />
+            <object objectId="laumspurpotion4" />
+            <object objectId="axe" />
+
+            <randomTable index="1">
+                <case value="0">
+                    <pick objectId="spawnsmite"/>
+                </case>
+                <case value="1">
+                    <pick objectId="alema"/>
+                </case>
+                <case value="2">
+                    <pick objectId="magnara"/>
+                </case>
+                <case value="3">
+                    <pick objectId="sunstrike"/>
+                </case>
+                <case value="4">
+                    <pick objectId="kaistar"/>
+                </case>
+                <case value="5">
+                    <pick objectId="valiance"/>
+                </case>
+                <case value="6">
+                    <pick objectId="ulnarias"/>
+                </case>
+                <case value="7">
+                    <pick objectId="raumas"/>
+                </case>
+                <case value="8">
+                    <pick objectId="illuminatus"/>
+                </case>
+                <case value="9">
+                    <pick objectId="firefall"/>
+                </case>
+            </randomTable>
+
+            <chooseEquipment text="Click on the Random Table links to get money and a Kai Weapon before continuing" />
+
+            <message text="You may take up to five of the following (all meals count as one object):" />
+        </section>
+
+        <section id="sect2">
+            <numberPicker text="Answer the riddle" min="1" max="350" actionButton="Choose" />
+            <numberPickerChoosed>
+                <!-- TODO: Setup correct number-->
+                <test expression="[NUMBERPICKER] == 23">
+                </test>
+                <test expression="[NUMBERPICKER] != 23">
+                    <toast text="Wrong number!" />
+                </test>
+            </numberPickerChoosed>
+        </section>
+
+        <section id="sect4">
+            <meal />
+        </section>
+
+        <section id="sect7">
+            <object objectId="dagger" count="6" />
+            <object objectId="sword" count="2" />
+            <pick class="money" count="3" />
+            <pick class="money" count="6" currency="noble"/>
+        </section>
+
+        <section id="sect8">
+            <choiceState section="all" set="disabled" />
+            <randomTable>
+                <test expression="[RANDOM] % 2 == 0">
+                    <pick class="money" currency="noble" count="6" />
+                </test>
+                <test expression="[RANDOM] % 2 == 1">
+                    <pick class="money" currency="noble" count="4" />
+                </test>
+            </randomTable>
+            <choiceState section="all" set="enabled" />
+        </section>
+
+        <section id="sect9">
+            <death />
+        </section>
+
+        <section id="sect10">
+            <endurance count="-2" />
+        </section>
+
+        <section id="sect350">
+            <message text="Congratulations! You have finished the last book of Kai Chronicles!" />
+        </section>
+    </sections>
+</mechanics>

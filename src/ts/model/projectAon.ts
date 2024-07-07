@@ -194,6 +194,14 @@ export const projectAon = {
             title: "Voyage of the Moonstone",
             code: "21votm",
             illustrators: [ "newton", "williams" ],
+            biographies: [ "jdbiolw" , "tnbiolw", "bwbiolw" ]
+        },
+
+        // Book 22:
+        {
+            title: "The Buccaneers of Shadaki",
+            code: "22tbos",
+            illustrators: [ "williams" ],
             biographies: [ "jdbiolw" , "bwbiolw" ]
         },
     ] as BookMetadata[],
