@@ -47,13 +47,14 @@ if(fsn.existsSync("project-aon")) {
     const git: SimpleGit = simpleGit('./project-aon', {progress});
     gitPromise = git.pull();
 } else {
-    console.log("Cloning Project Aon git repository. Could take time (~500MB to download).");
+    const url:string = process.env.npm_config_url || "https://git.projectaon.org/project-aon.git";
+    console.log(`Cloning Project Aon git repository (${url}). Could take time (~500MB to download).`);
     const git: SimpleGit = simpleGit({progress});
-    gitPromise = git.clone("https://git.projectaon.org/project-aon.git");
+    gitPromise = git.clone(url);
 }
 
-gitPromise.then(result => {
+gitPromise.then(() => {
     for (let i = from; i <= to; i++) {
         new BookData(i).downloadBookData();
     }
-});
+}, null);
