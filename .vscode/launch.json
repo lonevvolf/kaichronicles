@@ -16,7 +16,13 @@
             "type": "firefox",
             "name": "Debug with Firefox",
             "request": "launch",
-            "url": "http://127.0.0.1:3000/?debug=true"
+            "url": "http://127.0.0.1:3000/?debug=true",
+            "pathMappings": [
+                {
+                    "url": "webpack://kai/src",
+                    "path": "${workspaceFolder}/src"
+                }
+            ]
         }
     ]
 }
