@@ -21,7 +21,7 @@ export class Currency {
      * Currencies exchange.
      * How many coins per 1 Gold Crown?
      */
-    private static readonly EXCHANGES = {
+    private static readonly EXCHANGES : { [currency: string]: number } = {
         "crown" : 1,
         "lune" : 4,
         "kika" : 10,
@@ -29,21 +29,31 @@ export class Currency {
     };
 
     /**
-     * Make a currency exchange to Gold Crowns
+     * Make a currency exchange - currently one of the currencies should be Crowns
      * @param nCoins Number of coins
-     * @param currencyId Coins currency id. If null, Gold Crowns will be assumed
-     * @returns Gold Crowns number, floor rounded
+     * @param fromCurrencyId Currency to exchange from
+     * @param toCurrencyId Currency to exchange to
+     * @returns To currency number, floor rounded
      */
-    public static toGoldCrowns( nCoins: number , currencyId: string = null ): number {
-
-        if ( !currencyId ) {
-            currencyId = Currency.CROWN;
+    public static toCurrency( nCoins: number, fromCurrencyId: Currency, toCurrencyId: Currency = Currency.CROWN) : number {
+        if (fromCurrencyId !== Currency.CROWN && toCurrencyId !== Currency.CROWN) {
+            mechanicsEngine.debugWarning( "One currency must be Crowns");
         }
 
-        let exchange = Currency.EXCHANGES[ currencyId ];
-        if ( !exchange ) {
-            mechanicsEngine.debugWarning( "Wrong currency: " + currencyId );
-            exchange = 1;
+        let exchange = 1;
+        if (toCurrencyId === Currency.CROWN) {
+            exchange = Currency.EXCHANGES[ fromCurrencyId.toString() ];
+            if ( !exchange ) {
+                mechanicsEngine.debugWarning( "Wrong currency: " + fromCurrencyId.toString() );
+                exchange = 1;
+            }
+        }
+        else {
+            exchange = (1 / Currency.EXCHANGES[ toCurrencyId.toString() ]);
+            if ( !exchange ) {
+                mechanicsEngine.debugWarning( "Wrong currency: " + fromCurrencyId.toString() );
+                exchange = 1;
+            }
         }
 
         return Math.floor( nCoins / exchange );

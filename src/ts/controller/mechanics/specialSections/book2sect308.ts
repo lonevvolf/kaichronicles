@@ -41,10 +41,10 @@ export const book2sect308 = {
         const lw = book2sect308.playerResult( translations.text("loneWolf") );
         let status = `${player1.status}<br/>${player2.status}<br/>${lw.status}<br/>`;
         if ( lw.total > player1.total && lw.total > player2.total ) {
-            status += translations.text("msgGetMoney" , [6]);
+            status += translations.text("msgGetCrowns" , [6]);
             actionChartController.increaseMoney(6);
         } else {
-            status += translations.text("msgDropMoney" , [3]);
+            status += translations.text("msgDropCrowns" , [3]);
             actionChartController.increaseMoney(-3);
         }
 

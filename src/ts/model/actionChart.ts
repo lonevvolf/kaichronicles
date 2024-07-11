@@ -1,4 +1,4 @@
-import { ActionChartItem, SectionItem, App, state, BookSeriesId, GndDiscipline, MgnDiscipline, KaiDiscipline, Item, translations, Combat, BookSeries, mechanicsEngine, LoreCircle, SetupDisciplines, randomTable, Disciplines, DebugMode, NewOrderDiscipline } from "..";
+import { ActionChartItem, SectionItem, App, state, BookSeriesId, GndDiscipline, MgnDiscipline, KaiDiscipline, Item, translations, Combat, BookSeries, mechanicsEngine, LoreCircle, SetupDisciplines, randomTable, Disciplines, DebugMode, NewOrderDiscipline, Currency } from "..";
 
 /**
  * Bonus for CS/EP definition
@@ -54,8 +54,11 @@ export class ActionChart {
     /** The currently hand-to-hand selected weapon id. Empty string if the player has no weapon  */
     private selectedWeapon = "";
 
-    /** Money amount */
+    /** Crowns amount */
     public beltPouch = 0;
+
+    /** Nobles amount */
+    public beltPouchNobles = 0;
 
     /** Number of meals (they count as backpack items) */
     public meals = 0;
@@ -435,23 +438,68 @@ export class ActionChart {
      * Increase / decrease the money number
      * @param count Number to increase. Negative to decrease
      * @param excessToKaiMonastry If true and if the belt pouch exceed 50, the excess is stored in the kaimonastry section
+     * @param currencyId The currency to add - defaults to Crowns
      * @returns Amount really picked.
      */
-    public increaseMoney(count: number, excessToKaiMonastry = false): number {
-        const oldBeltPouch = this.beltPouch;
-        this.beltPouch += count;
-        if (this.beltPouch > 50) {
+    public increaseMoney(count: number, excessToKaiMonastry = false, currencyId : Currency = Currency.CROWN): number {        
+        let oldBeltPouch: number = 0;
+        switch (currencyId) {
+            case Currency.NOBLE: {
+                oldBeltPouch = this.beltPouchNobles;
+                this.beltPouchNobles += count;
+                break;
+            }
+            default: {
+                oldBeltPouch = this.beltPouch;
+                this.beltPouch += Currency.toCurrency(count, currencyId);
+                break;
+            }
+        }
+
+        const excess = this.getBeltPouchUsedAmount() - 50;
+        if (excess > 0) {
             if(excessToKaiMonastry) {
                 const kaimonastery = state.sectionStates.getSectionState("kaimonastery");
+                // TODO: Store individual currencies in the Kai Monastery
                 if(kaimonastery) {
-                    kaimonastery.addObjectToSection(Item.MONEY, 0, false, this.beltPouch - 50)
+                    switch (currencyId) {
+                        case Currency.NOBLE: {
+                            kaimonastery.addObjectToSection(Item.MONEY, 0, false, excess);
+                        }
+                    }
                 }
             }
-            this.beltPouch = 50;
+
+            switch (currencyId) {
+                case Currency.NOBLE: {
+                    this.beltPouchNobles = 50 - this.beltPouch;
+                    break;
+                }
+                default: {
+                    this.beltPouch = 50 - Currency.toCurrency(this.beltPouchNobles, Currency.NOBLE, Currency.CROWN);
+                    break;
+                }
+            }
         } else if (this.beltPouch < 0) {
             this.beltPouch = 0;
+        } else if (this.beltPouchNobles < 0) {
+            this.beltPouchNobles = 0;
         }
-        return this.beltPouch - oldBeltPouch;
+
+        switch (currencyId) {
+            case Currency.NOBLE: {
+                return this.beltPouchNobles - oldBeltPouch;
+            }
+            default: {
+                return this.beltPouch - oldBeltPouch;
+            }
+        }
+    }
+
+    /** Returns total used size of Belt Pouch across all currencies (uses exchange rate) */
+    public getBeltPouchUsedAmount() : number {
+        return this.beltPouch 
+                + Currency.toCurrency(this.beltPouchNobles, Currency.NOBLE);
     }
 
     /**

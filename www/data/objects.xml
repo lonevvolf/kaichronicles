@@ -897,6 +897,12 @@
             <name>Kutyan Emerald</name>
         </special>
 
+        <!-- BOOK 22 -->
+        <special id="ironkey22" itemCount="0">
+            <name>Iron Key</name>
+            <image book="1" name="small15.png" />
+        </special>
+
     </specials>
 
     <objects>
@@ -1781,6 +1787,24 @@
             <name>Ball of Chalk</name>
         </object>
 
+        <!-- BOOK 22 -->
+
+        <object id="nhangdoll">
+            <name>Nhang Doll</name>
+        </object>
+
+        <object id="silvermirror">
+            <name>Silver Mirror</name>
+        </object>
+
+        <object id="steelflask">
+            <name>Steel Flash</name>
+        </object>
+
+        <object id="pewtergoblet">
+            <name>Pewter Goblet</name>
+        </object>
+
         <!-- OTHERS -->
 
         <!-- This not really an object, but needed for mechanics -->
@@ -1797,6 +1821,12 @@
         <!-- This not really an object, but needed for mechanics -->
         <object id="money">
             <name>Money</name>
+            <image book="1" name="pouch.png" />
+        </object>
+
+        <!-- This not really an object, but needed for mechanics -->
+        <object id="noble">
+            <name>Nobles</name>
             <image book="1" name="pouch.png" />
         </object>
 

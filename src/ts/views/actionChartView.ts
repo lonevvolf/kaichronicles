@@ -1,4 +1,4 @@
-import { ActionChart, translations, ObjectsTable, ObjectsTableType, actionChartController, state, GndDiscipline, MoneyDialog, BookSeriesId, Item } from "..";
+import { ActionChart, translations, ObjectsTable, ObjectsTableType, actionChartController, state, GndDiscipline, MoneyDialog, BookSeriesId, Item, Currency } from "..";
 
 /**
  * The action chart view API
@@ -94,6 +94,10 @@ export const actionChartView = {
         $("#achart-dropmoneybutton").on("click", (e: JQuery.TriggeredEvent) => {
             e.preventDefault();
             MoneyDialog.show( true );
+        });
+        $("#achart-dropnoblesbutton").on("click", (e: JQuery.TriggeredEvent) => {
+            e.preventDefault();
+            MoneyDialog.show( true, Currency.NOBLE );
         });
     },
 
@@ -197,6 +201,15 @@ export const actionChartView = {
         $("#achart-beltPouch").val( `${state.actionChart.beltPouch} ${translations.text("goldCrowns")}` );
         // Disable if the player has no money or it's death
         $("#achart-dropmoneybutton").prop( "disabled", state.actionChart.beltPouch <= 0 || state.actionChart.currentEndurance <= 0 );
+    
+        if (state.actionChart.beltPouchNobles === 0) {
+            $("#achart-noblesInput").hide();
+        } else {
+            $("#achart-noblesInput").show();
+            $("#achart-beltPouchNobles").val( `${state.actionChart.beltPouchNobles} ${translations.text("nobles")}` );
+            // Disable if the player has no money or it's death
+            $("#achart-dropnoblesbutton").prop( "disabled", state.actionChart.beltPouchNobles <= 0 || state.actionChart.currentEndurance <= 0 );
+        }
     },
 
     /**

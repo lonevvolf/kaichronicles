@@ -155,7 +155,7 @@ will be available on the section.
   to pick
 * **index="number"** Required, for ugly reasons, when there are two or more pick rules with the same object id on a section
 * **currency="currencyId"** Optional, and only for class="money". Picked coins currency, default is "crown". 
-  Values can be "crown", "lune" or "kika".
+  Values can be "crown", "lune", "kika", or "noble".
 
 ### drop (execute once only)
 ```xml
@@ -301,6 +301,7 @@ Enable or disable section choices
 Make an object available on the section. The player will can pick / buy it.
 * **objectId**: The available object id 
 * **price**: If it's set, the price to buy the object (not free)
+* **currency**: If it's set, the currency of the price to buy the object. If not, Crowns is assumed. Setting currency will limit the buyer to that currency (ie. Crowns not accepted if Nobles set)
 * **unlimited="true"**: There is an unlimited number of objects of this class on the section
 * **index="number"** Required, for ugly reasons, when there are two or more objects with the same object id on a section
 * **useOnSection="true"**: If true, the player will use the object without picking it
@@ -423,9 +424,7 @@ The saveInventoryState optional property "objectsType" identifies the objects to
 * **weaponlike**: Weapons and weapon-like special items
 * **allobjects**: The backpack content, special items and meals
 
-The restoreInventoryState optional property "restoreWeapons" identifies if the Weapons, and weapon Special Items
-should be recovered. Default value is true. If it's false, weapons are not lost, and they can be recovered after
-with the same restore point.
+The restoreInventoryState optional property "restoreWeapons" identifies if the Weapons, and weapon Special Items should be recovered. Default value is true. If it's false, weapons are not returned, and they can be recovered later with the same restore point.
 
 ### choiceSelected
 ```xml

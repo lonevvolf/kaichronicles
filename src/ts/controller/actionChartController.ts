@@ -1,4 +1,4 @@
-import { setupController, views, actionChartView, state, ActionChartItem, SectionItem, EquipmentSectionMechanics, translations, template, mechanicsEngine, Item, SpecialObjectsUse, CombatMechanics, Bonus, InventoryState } from "..";
+import { setupController, views, actionChartView, state, ActionChartItem, SectionItem, EquipmentSectionMechanics, translations, template, mechanicsEngine, Item, SpecialObjectsUse, CombatMechanics, Bonus, InventoryState, Currency } from "..";
 
 /**
  * The action chart controller
@@ -373,20 +373,31 @@ export const actionChartController = {
      * @param count Number to increase. Negative to decrease
      * @param availableOnSection The dropped money should be available on the current section? Only applies if count < 0
      * @param excessToKaiMonastry If true and if the belt pouch exceed 50, the excess is stored in the kaimonastry section
+     * @param currencyId The currency to increase or decrease (defaults to Crowns)
      * @returns Amount really picked.
      */
-    increaseMoney(count: number, availableOnSection: boolean = false, excessToKaiMonastry = false): number {
-        const amountPicked = state.actionChart.increaseMoney(count, excessToKaiMonastry);
+    increaseMoney(count: number, availableOnSection: boolean = false, excessToKaiMonastry = false, currencyId: Currency = Currency.CROWN): number {
+        const amountPicked = state.actionChart.increaseMoney(count, excessToKaiMonastry, currencyId);
         const o = state.mechanics.getObject("money");
         if (count > 0) {
-            actionChartView.showInventoryMsg("pick", o,
-                translations.text("msgGetMoney", [count]));
+            if (currencyId === Currency.NOBLE) {
+                actionChartView.showInventoryMsg("pick", o,
+                    translations.text("msgGetNobles", [count]));
+            } else {
+                actionChartView.showInventoryMsg("pick", o,
+                    translations.text("msgGetCrowns", [count]));
+            }
+
         } else if (count < 0) {
-            actionChartView.showInventoryMsg("drop", o, translations.text("msgDropMoney", [-count]));
+            if (currencyId === Currency.NOBLE) {
+                actionChartView.showInventoryMsg("drop", o, translations.text("msgDropNobles", [-count]));
+            } else {
+                actionChartView.showInventoryMsg("drop", o, translations.text("msgDropCrowns", [-count]));
+            }
             if (availableOnSection && count < 0) {
                 // Add the droped money as available on the current section
                 const sectionState = state.sectionStates.getSectionState();
-                sectionState.addObjectToSection(Item.MONEY, 0, false, -count);
+                sectionState.addObjectToSection(currencyId === Currency.NOBLE ? Item.NOBLE : Item.MONEY, 0, false, -count);
             }
         }
         actionChartView.updateMoney();
