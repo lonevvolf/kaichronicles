@@ -362,7 +362,7 @@ export class ObjectsTableItem {
                     alert( translations.text("noEnoughMoney") );
                     return;
                 }
-            } else if ( state.actionChart.beltPouch < this.objectInfo.price ) {
+            } else if ( Currency.toCurrency(state.actionChart.beltPouchNobles, Currency.NOBLE, Currency.CROWN) + state.actionChart.beltPouch < this.objectInfo.price ) {
                 alert( translations.text("noEnoughMoney") );
                 return;
             }
@@ -402,7 +402,6 @@ export class ObjectsTableItem {
         }
 
         if ( objectPicked ) {
-
             let countPicked = this.objectInfo.count;
 
             if ( this.item.id === Item.QUIVER || this.item.id === Item.ARROW ) {
@@ -427,10 +426,10 @@ export class ObjectsTableItem {
 
             if ( this.objectInfo.price ) {
                 if (this.objectInfo.currency) {
-                    actionChartController.increaseMoney( - this.objectInfo.price, false, false, this.objectInfo.currency );
+                    actionChartController.increaseMoney( -this.objectInfo.price, false, false, this.objectInfo.currency );
                 } else {
                     // Pay the price
-                    actionChartController.increaseMoney( - this.objectInfo.price );
+                    actionChartController.increaseMoney( -this.objectInfo.price );
                 }
             }
 
@@ -443,7 +442,11 @@ export class ObjectsTableItem {
 
     /** Sell object operation */
     private sell() {
-        if ( !confirm( translations.text( "confirmSell" , [ this.objectInfo.price ] ) ) ) {
+        const sellString = this.objectInfo.currency === Currency.NOBLE ? 
+            translations.text( "confirmSellNobles" , [ this.objectInfo.price ] ) :
+            translations.text( "confirmSell" , [ this.objectInfo.price ] );
+
+        if ( !confirm( sellString ) ) {
             return;
         }
 
@@ -453,7 +456,7 @@ export class ObjectsTableItem {
         } else {
             actionChartController.drop( this.item.id , false , true );
         }
-        actionChartController.increaseMoney( this.objectInfo.price );
+        actionChartController.increaseMoney( this.objectInfo.price, false, false, this.objectInfo.currency );
         mechanicsEngine.fireInventoryEvents(true, this.item);
     }
 

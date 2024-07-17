@@ -451,7 +451,21 @@ export class ActionChart {
             }
             default: {
                 oldBeltPouch = this.beltPouch;
-                this.beltPouch += Currency.toCurrency(count, currencyId);
+
+                // If we need to remove from multiple currencies
+                let crownsCount = Currency.toCurrency(count, currencyId);
+                if (crownsCount < 0 && this.beltPouch < -crownsCount) {
+                    crownsCount += this.beltPouch;
+                    this.beltPouch = 0;
+
+                    if (crownsCount < 0) {
+                        const noblesCount = Currency.toCurrency(count, Currency.CROWN, Currency.NOBLE);
+                        this.beltPouchNobles += noblesCount;
+                    }
+                } else {
+                    this.beltPouch += Currency.toCurrency(count, currencyId);
+                }
+
                 break;
             }
         }
@@ -953,7 +967,12 @@ export class ActionChart {
             // Surge currently active
 
             const surgeDisciplineId = combat.getSurgeDiscipline();
-            if (surgeDisciplineId === GndDiscipline.KaiSurge) {
+            if (surgeDisciplineId === NewOrderDiscipline.KaiSurge) {
+                bonuses.push({
+                    concept: translations.text("kaisurge"),
+                    increment: combat.getFinalSurgeBonus(NewOrderDiscipline.KaiSurge)
+                });
+            } else if (surgeDisciplineId === GndDiscipline.KaiSurge) {
                 bonuses.push({
                     concept: translations.text("kaisurge"),
                     increment: combat.getFinalSurgeBonus(GndDiscipline.KaiSurge)
@@ -966,8 +985,9 @@ export class ActionChart {
             }
 
         } else if (!combat.noMindblast) {
-            if (this.hasKaiDiscipline(KaiDiscipline.Mindblast) || this.hasMgnDiscipline(MgnDiscipline.PsiSurge) ||
-                this.hasGndDiscipline(GndDiscipline.KaiSurge)
+            if (((this.hasKaiDiscipline(KaiDiscipline.Mindblast) || this.hasMgnDiscipline(MgnDiscipline.PsiSurge) ||
+                this.hasGndDiscipline(GndDiscipline.KaiSurge)) && state.book.getBookSeries().id !== BookSeriesId.NewOrder)
+                || this.hasNewOrderDiscipline(NewOrderDiscipline.KaiSurge)
             ) {
                 // Mindblast active
                 bonuses.push({
@@ -1330,7 +1350,7 @@ export class ActionChart {
         if (App.debugMode === DebugMode.DEBUG || App.debugMode === DebugMode.TEST) {
             const possibleDisciplines = Disciplines.getSeriesDisciplines(seriesId !== null ? seriesId : state.book.getBookSeries().id);
             if (!possibleDisciplines.includes(disciplineId)) {
-                mechanicsEngine.debugWarning("Disciplines of book series " + seriesId + " do not contains discipline " + disciplineId);
+                mechanicsEngine.debugWarning("Disciplines of book series " + seriesId.toString() + " do not contains discipline " + disciplineId);
             }
         }
         return this.getSeriesDisciplines(seriesId).disciplines.includes(disciplineId);

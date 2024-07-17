@@ -1,4 +1,4 @@
-import { mechanicsEngine } from "../..";
+import { BookSeriesId, mechanicsEngine } from "../..";
 
 /**
  * Translations table
@@ -30,6 +30,7 @@ export class Translations {
         "setCurrentWeapon" : "Set as current weapon",
         "dropObject" : "Drop object",
         "confirmSell" : "Are you sure you want to sell the object for {0} Gold Crowns?",
+        "confirmSellNobles" : "Are you sure you want to sell the object for {0} Nobles?",
         "confirmUse" : 'Are you sure you want to use "{0}"?',
         "confirmDrop" : 'Are you sure you want to drop "{0}"?',
         "noEnoughMoney" : "You don't have enough money",
@@ -191,7 +192,7 @@ export class Translations {
      * should be returned
      */
     public translateView( view: HTMLElement | JQuery<HTMLElement> , doNotClone: boolean = false ): JQuery<HTMLElement> {
-        let $clonedView;
+        let $clonedView : JQuery<HTMLElement>;
         if ( doNotClone ) {
             $clonedView = $(view);
         } else {
@@ -225,7 +226,7 @@ export class Translations {
 
     /**
      * Get a translated message
-     * @param {string} textId The text it to get
+     * @param {string} textId The text id to get
      * @param {Array<object>} replacements Replacements to do on the message. It can be null
      * @returns {string} The text
      */
@@ -242,9 +243,10 @@ export class Translations {
             if ( replacements ) {
                 // TODO: Check replacements in debug mode
                 for (let i = 0; i < replacements.length; i++) {
-                    text = text.replaceAll( "{" + i + "}" , replacements[i].toString() );
+                    text = text.replaceAll( "{" + i.toString() + "}" , replacements[i].toString() );
                 }
             }
+
             return text;
         } catch (e) {
             mechanicsEngine.debugWarning(e);

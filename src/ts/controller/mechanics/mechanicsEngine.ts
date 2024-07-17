@@ -839,6 +839,7 @@ export const mechanicsEngine = {
         }
 
         const price = parseInt($rule.attr("price"), 10);
+        const currency = $rule.attr("currency");
 
         // Sell a specific item
         const objectId = $rule.attr("objectId");
@@ -849,7 +850,7 @@ export const mechanicsEngine = {
             sectionState.sellPrices.push({
                 id: objectId,
                 price,
-                currency: Currency.CROWN,
+                currency: currency,
                 count: parseInt($rule.attr("count"), 10),
                 unlimited: false,
                 useOnSection: false,
@@ -881,7 +882,7 @@ export const mechanicsEngine = {
                     sectionState.sellPrices.push({
                         id,
                         price,
-                        currency: Currency.CROWN,
+                        currency: currency,
                         count: 0,
                         unlimited: false,
                         useOnSection: false,

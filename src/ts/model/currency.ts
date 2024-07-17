@@ -35,7 +35,7 @@ export class Currency {
      * @param toCurrencyId Currency to exchange to
      * @returns To currency number, floor rounded
      */
-    public static toCurrency( nCoins: number, fromCurrencyId: Currency, toCurrencyId: Currency = Currency.CROWN) : number {
+    public static toCurrency( nCoins: number, fromCurrencyId: Currency = Currency.CROWN, toCurrencyId: Currency = Currency.CROWN) : number {
         if (fromCurrencyId !== Currency.CROWN && toCurrencyId !== Currency.CROWN) {
             mechanicsEngine.debugWarning( "One currency must be Crowns");
         }

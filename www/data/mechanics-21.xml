@@ -723,6 +723,10 @@
             <meal />
         </section>
 
+        <section id="sect100">
+            <tag id="bisutan" />
+        </section>
+
         <section id="sect102">
             <pick objectId="temujunsring" />
         </section>

@@ -903,6 +903,30 @@
             <image book="1" name="small15.png" />
         </special>
 
+        <special id="silverclasp">
+            <name>Silver Clasp</name>
+        </special>
+
+        <special id="leonghisscroll">
+            <name>Leonghi's Scroll</name>
+        </special>
+
+        <special id="emeraldmedallion">
+            <name>Emerald Medallion</name>
+        </special>
+
+        <special id="seotadust">
+            <name>Pouch of Seota Dust</name>
+        </special>
+
+        <special id="defiancetalisman">
+            <name>Talisman of Defiance</name>
+        </special>
+
+        <special id="eyeoflhaz">
+            <name>Eye of Lhaz</name>
+        </special>
+
     </specials>
 
     <objects>
@@ -1788,7 +1812,6 @@
         </object>
 
         <!-- BOOK 22 -->
-
         <object id="nhangdoll">
             <name>Nhang Doll</name>
         </object>
@@ -1803,6 +1826,19 @@
 
         <object id="pewtergoblet">
             <name>Pewter Goblet</name>
+        </object>
+
+        <object id="potionliera">
+            <name>Potion of Liera</name>
+            <description>A potion to make a person susceptible to mental suggestion (mind control)</description>
+        </object>
+
+        <object id="quillpen">
+            <name>Quill Pen</name>
+        </object>
+
+        <object id="inkpot">
+            <name>Pot of Ink</name>
         </object>
 
         <!-- OTHERS -->

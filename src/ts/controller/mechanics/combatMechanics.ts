@@ -1,4 +1,4 @@
-import { state, mechanicsEngine, Combat, template, SpecialObjectsUse, CombatTurn, GndDiscipline, translations } from "../..";
+import { state, mechanicsEngine, Combat, template, SpecialObjectsUse, CombatTurn, GndDiscipline, translations, BookSeriesId } from "../..";
 
 /**
  * Combats mechanics
@@ -83,6 +83,11 @@ export class CombatMechanics {
                 e.preventDefault();
                 CombatMechanics.showCombatRatioDetails( $(this).parents(".mechanics-combatUI").first() );
             });
+
+            // Set player name if not Lone Wolf
+            if (state.book.getBookSeries().id === BookSeriesId.NewOrder) {
+                $combatUI.find(".mechanics-playerName").html( state.actionChart.kaiName );
+            }
 
             // Set enemy name on table
             $combatUI.find(".mechanics-enemyName").html( combat.enemy );
@@ -425,7 +430,7 @@ export class CombatMechanics {
 
         // Check what Surge discipline can player use
         const surgeDisciplineId = combat.getSurgeDiscipline();
-        if (!surgeDisciplineId) {
+        if (!surgeDisciplineId || !combat.getFinalSurgeBonus(surgeDisciplineId)) {
             // Hide surge check
             $combatUI.find(".psisurgecheck").hide();
             return;
@@ -570,6 +575,9 @@ export class CombatMechanics {
             csPlayer += " = " + finalCSPlayer.toString();
         }
         $("#game-ratioplayer").text( csPlayer );
+        if (state.book.getBookSeries().id === BookSeriesId.NewOrder) {
+            $("#game-ratioplayername").html( state.actionChart.kaiName );
+        }
 
         // Enemy info:
         $("#game-ratioenemyname").html( combat.enemy );
