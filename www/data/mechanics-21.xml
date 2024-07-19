@@ -40,7 +40,7 @@
             </test>
 
             <randomTable>
-                <pick class="money" count="[RANDOM] + 20" excessToKaiMonastry="true" />
+                <pick class="money" count="[RANDOM] + 20" excessToKaiMonastry="false" />
             </randomTable>
 
             <object objectId="quarterstaff" />
@@ -328,12 +328,15 @@
         </section>
 
         <section id="sect44">
-            <combat combatSkillModifier="+3" />
+            <combat combatSkillModifier="-3" />
             <test currentWeapon="sunstrike">
-                <combat combatSkillModifier="+1"/>
+                <combat combatSkillModifierIncrement="+1"/>
             </test>
             <afterCombatTurn turn="2">
                 <combat combatSkillModifier="+0" />
+                <test currentWeapon="sunstrike">
+                    <combat combatSkillModifierIncrement="+1"/>
+                </test>
             </afterCombatTurn>
         </section>
 
@@ -680,7 +683,8 @@
             </choiceSelected>
         </section>
 
-        <section id="sect96">
+        <section id="sect96">            
+            <tag id="bisutan" />
             <test expression="([MONEY]) &lt; 3">
                 <choiceState section="sect183" set="disabled" />
             </test>
@@ -721,10 +725,6 @@
 
         <section id="sect99">
             <meal />
-        </section>
-
-        <section id="sect100">
-            <tag id="bisutan" />
         </section>
 
         <section id="sect102">
@@ -1003,6 +1003,7 @@
             </onInventoryEvent>
             <sell class="special" except="moonstone" price="10" />
             <sell class="weapon" price="3" />
+            <!-- TODO: Fix meal selling-->
             <sell class="object" price="1" />
         </section>
 
@@ -1058,7 +1059,7 @@
 
             <combat noMindblast="true" noKaiSurge="false" noPsiSurge="true" noKaiBlast="true" noKaiRay="true" combatSkillModifier="-3"/>
             <test currentWeapon="sunstrike">
-                <combat combatSkillModifier="+1"/>
+                <combat combatSkillModifierIncrement="+1"/>
             </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
@@ -1070,15 +1071,20 @@
         </section>
 
         <section id="sect164">
+            <message id="msg-drop-object" text="Drop either 1 Weapon or 2 Backpack Items before continuing" />
+
             <choiceState section="all" set="disabled" />
             <onInventoryEvent>
+                <!-- TODO: Check logic if player doesn't have enough items-->
                 <test expression="[BACKPACK-ITEMS-CNT-ON-SECTION] >= 2 || [WEAPON-ITEMS-CNT-ON-SECTION] >= 1">
                     <choiceState section="all" set="enabled" />
+                    <message id="msg-drop-object" op="hide" />
                 </test>
                 <test expression="[BACKPACK-ITEMS-CNT-ON-SECTION] &lt; 2 &amp;&amp; [WEAPON-ITEMS-CNT-ON-SECTION] &lt; 1">
                     <choiceState section="all" set="disabled" />
+                    <message id="msg-drop-object" op="show" />
                 </test>
-                </onInventoryEvent>
+            </onInventoryEvent>
         </section>
 
         <section id="sect165">
@@ -1265,10 +1271,13 @@
 
             <combat combatSkillModifier="+2" />
             <test currentWeapon="sunstrike">
-                <combat combatSkillModifier="+1"/>
+                <combat combatSkillModifierIncrement="+1"/>
             </test>
             <afterCombatTurn turn="1">
                 <combat combatSkillModifier="+0" />
+                <test currentWeapon="sunstrike">
+                    <combat combatSkillModifierIncrement="+1"/>
+                </test>
             </afterCombatTurn>
 
             <afterCombats>
@@ -1487,9 +1496,11 @@
         <section id="sect230">
             <choiceState section="all" set="disabled" />
             <combat noWeapon="1" />
-            <test currentWeapon="sunstrike">
-                <combat combatSkillModifier="+1"/>
-            </test>
+            <afterCombatTurn turn="1">
+                <test currentWeapon="sunstrike">
+                    <combat combatSkillModifierIncrement="+1"/>
+                </test>
+            </afterCombatTurn>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
             </afterCombats>
@@ -1611,10 +1622,13 @@
 
             <combat combatSkillModifier="2" />
             <test currentWeapon="sunstrike">
-                <combat combatSkillModifier="+1"/>
+                <combat combatSkillModifierIncrement="+1"/>
             </test>
             <afterCombatTurn turn="1">
                 <combat combatSkillModifier="+0" />
+                <test currentWeapon="sunstrike">
+                    <combat combatSkillModifierIncrement="+1"/>
+                </test>
             </afterCombatTurn>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
@@ -1793,6 +1807,10 @@
             <test expression="[ENDURANCE] &lt;= 10">
                 <randomTableIncrement increment="-1" />
             </test>
+        </section>
+
+        <section id="sect287">
+            <tag id="barrakeesh" />
         </section>
 
         <section id="sect288">

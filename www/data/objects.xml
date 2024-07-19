@@ -917,16 +917,26 @@
 
         <special id="seotadust">
             <name>Pouch of Seota Dust</name>
+            <description>Restores 10 ENDURANCE points. One use only.</description>
+            <effect class="endurance" increment="+10" />
         </special>
 
         <special id="defiancetalisman">
             <name>Talisman of Defiance</name>
+            <description>Adds +2 to COMBAT SKILL.</description>
+            <effect class="combatSkill" increment="+2" />
         </special>
 
         <special id="eyeoflhaz">
             <name>Eye of Lhaz</name>
+            <description>Enables user to exert control over poisonous snakes.</description>
         </special>
 
+        <special id="crystalprism">
+            <name>
+                Crystal Prism
+            </name>
+        </special>
     </specials>
 
     <objects>
@@ -1839,6 +1849,22 @@
 
         <object id="inkpot">
             <name>Pot of Ink</name>
+        </object>
+
+        <object id="scavabottle">
+            <name>Bottle of Scava</name>
+        </object>
+
+        <object id="3fishhooks">
+            <name>3 Fish Hooks</name>
+        </object>
+
+        <object id="ricewinebottle">
+            <name>Bottle of Rice Wine</name>
+        </object>
+
+        <object id="soap22">
+            <name>Soap</name>
         </object>
 
         <!-- OTHERS -->

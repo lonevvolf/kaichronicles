@@ -878,6 +878,7 @@ export const mechanicsEngine = {
 
             for (const id of objectIds) {
                 const item = state.mechanics.getObject(objectId);
+                // TODO: Allow selling of multiples (ie. you have two Potions of Laumspur) and Meals
                 if (!except.includes(id)) {
                     sectionState.sellPrices.push({
                         id,
@@ -887,8 +888,7 @@ export const mechanicsEngine = {
                         unlimited: false,
                         useOnSection: false,
                         usageCount: item && item.usageCount ? item.usageCount : 1,
-                        dessiStoneBonus: false
-                    });
+                        dessiStoneBonus: false                    });
                     except.push(id); // Avoid duplicates
                 }
             }
