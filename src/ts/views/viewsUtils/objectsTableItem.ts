@@ -96,7 +96,7 @@ export class ObjectsTableItem {
 
         // Nobles amount
         if ( this.objectInfo.id === Item.NOBLE && this.objectInfo.count ) {
-            name += " (" + this.objectInfo.count.toFxied() + " " + translations.text("nobles") + ")";
+            name += " (" + this.objectInfo.count.toFixed() + " " + translations.text("nobles") + ")";
 
         }
 
