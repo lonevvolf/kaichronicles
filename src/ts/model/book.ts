@@ -58,7 +58,7 @@ export class Book {
     public bookNumber: number;
 
     /** The book XML document */
-    public bookXml: any;
+    public bookXml: XMLDocument;
 
     /**
      * Array of 100 positions with the random table numbers as they appear on the book
@@ -102,7 +102,7 @@ export class Book {
         // Code taken from Lone Wolf Adventures, by Liquid State Limited.
 
         // remove general directives
-        xmlText = xmlText.replace(/(?:\%general|\%xhtml|\&inclusion)[a-z\.]*;/g, "");
+        xmlText = xmlText.replace(/(?:%general|%xhtml|&inclusion)[a-z.]*;/g, "");
 
         // Link to readers handbook (Book 13)
         xmlText = xmlText.replaceAll("&link.rh;", "https://www.projectaon.org/en/ReadersHandbook/Home");
@@ -211,7 +211,7 @@ export class Book {
      * @returns The download promise. The promise text is the author XML bio, fixed
      */
     private downloadAuthorInfo( authorId: string ): JQueryXHR {
-        const authorFileUrl = Book.getBaseUrl() + this.bookNumber + "/" + authorId + ".inc";
+        const authorFileUrl = Book.getBaseUrl() + this.bookNumber.toFixed() + "/" + authorId + ".inc";
         return $.ajax({
             url: authorFileUrl,
             dataType: "text"
@@ -240,7 +240,7 @@ export class Book {
      * Returns the book XML source URL
      */
     public getBookXmlURL() {
-        return Book.getBaseUrl() + this.bookNumber + "/" + this.getProjectAonBookCode() +
+        return Book.getBaseUrl() + this.bookNumber.toFixed() + "/" + this.getProjectAonBookCode() +
             ".xml";
     }
 
@@ -252,7 +252,7 @@ export class Book {
      * @returns The image URL, relative to application root
      */
     public getIllustrationURL(fileName: string): string {
-        const illUrl = Book.getBaseUrl() + this.bookNumber + "/ill/" +
+        const illUrl = Book.getBaseUrl() + this.bookNumber.toFixed() + "/ill/" +
             fileName;
         // console.log('Image URL: ' + illUrl);
         return illUrl;
@@ -300,7 +300,7 @@ export class Book {
             // eslint-disable-next-line @typescript-eslint/no-this-alias
             const self = this;
             $(this.bookXml).find('section[id=discplnz] > data section').not('#mksumary').not('#nodispln')
-            .each( function(disciplineSection) {
+            .each( function() {
 
                 const $node = $(this);
 
@@ -385,7 +385,7 @@ export class Book {
 
         // Get the title
         let title = $(this.bookXml)
-            .find('section[id="levels"] > data > ol > li:eq(' + (nDisciplines - 1) + ")")
+            .find('section[id="levels"] > data > ol > li:eq(' + (nDisciplines - 1).toFixed() + ")")
             .text();
         if ( !title ) {
             title = "Unknown";
@@ -412,8 +412,8 @@ export class Book {
      * @return Section ids that can go to the given section
      */
     public getOriginSections(sectionId: string): string[] {
-        const sourceSectionIds = [];
-        const sourceSections = $(this.bookXml)
+        const sourceSectionIds = <string[]>[];
+        $(this.bookXml)
             .find('section[class="numbered"]' )
             .has( 'data > choice[idref="' + sectionId + '"]')
             .each( (index, section) => {
@@ -426,14 +426,14 @@ export class Book {
      * Get the book cover image URL
      */
     public getCoverURL(): string {
-        return Book.getBaseUrl() + this.bookNumber + "/cover.jpg";
+        return Book.getBaseUrl() + this.bookNumber.toFixed() + "/cover.jpg";
     }
 
     /**
      * Return an array of 2 positions with the combat tables images
      */
-    public getCombatTablesImagesUrls() {
-        const images = [];
+    public getCombatTablesImagesUrls(): string[] {
+        const images = <string[]>[];
         images.push( this.getIllustrationURL( "crtpos.png" ) );
         images.push( this.getIllustrationURL( "crtneg.png" ) );
         return images;
@@ -447,7 +447,7 @@ export class Book {
         const $randomCells = $(this.bookXml)
             .find("section[id=random] > data > illustration > instance[class=text]")
             .find("td");
-        const numbers = [];
+        const numbers = <number[]>[];
         for (const cell of $randomCells.toArray()) {
             numbers.push( parseInt( $(cell).text(), 10 ) );
         }

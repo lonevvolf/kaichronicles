@@ -243,7 +243,7 @@ export class Translations {
             if ( replacements ) {
                 // TODO: Check replacements in debug mode
                 for (let i = 0; i < replacements.length; i++) {
-                    text = text.replaceAll( "{" + i.toString() + "}" , replacements[i].toString() );
+                    text = text.replaceAll( "{" + i.toFixed() + "}" , replacements[i].toString() );
                 }
             }
 

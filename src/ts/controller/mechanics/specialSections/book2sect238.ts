@@ -22,7 +22,7 @@ export const book2sect238 = {
 
         // Get the game state
         const sectionState = state.sectionStates.getSectionState();
-        let gameState:GameState = sectionState.ruleHasBeenExecuted(rule);
+        let gameState = <GameState>sectionState.ruleHasBeenExecuted(rule);
         if (!gameState) {
             gameState = {
                 moneyToBet: 1,

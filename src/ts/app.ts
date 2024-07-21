@@ -60,7 +60,7 @@ export class App {
         };
 
         // First, load the views
-        views.setup()
+        void views.setup()
             .then( () => {
                 try {
                     console.log("Real setup started");
@@ -82,15 +82,6 @@ export class App {
                     return jQuery.Deferred().reject(e).promise();
                 }
             })
-            // This chain can fail for any reason, not just because it failed the views load
-            /*.fail(function(jqXHR, textStatus, errorThrown) {
-                let reason = "Error loading views.html, error: " +
-                ajaxErrorMsg(this, jqXHR, textStatus, errorThrown);
-                if ( !reason ) {
-                    reason = "Unknown error";
-                }
-                template.setErrorMessage(reason);
-            });*/
             .fail((reason) => {
                 if ( !reason ) {
                   reason = "Unknown error";

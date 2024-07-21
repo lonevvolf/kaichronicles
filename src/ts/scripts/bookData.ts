@@ -39,7 +39,7 @@ export class BookData {
      * Get the local relative path for the book data
      */
     private getBookDir(): string {
-        return BookData.TARGET_ROOT + "/" + this.bookNumber.toString();
+        return BookData.TARGET_ROOT + "/" + this.bookNumber.toFixed();
     }
 
     /**
@@ -141,7 +141,8 @@ export class BookData {
     }
 
     public downloadBookData() {
-        const bookDir = BookData.TARGET_ROOT + "/" + this.bookNumber.toString();
+        const bookDir = BookData.TARGET_ROOT + "/" + this.bookNumber.toFixed();
+
         console.log("Re-creating directory " + bookDir);
         fs.removeSync( bookDir );
         fs.mkdirSync( bookDir );

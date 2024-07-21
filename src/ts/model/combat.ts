@@ -239,9 +239,9 @@ export class Combat {
                     const helshezagUsed = (state.actionChart.getSelectedWeapon() === Item.HELSHEZAG);
                     const turn = new CombatTurn(this, randomValue, elude, helshezagUsed);
                     this.turns.push(turn);
-                    dfd.resolve(turn);
+                    void dfd.resolve(turn);
                 } else {
-                    dfd.reject();
+                    void dfd.reject();
                 }
             }, null);
 
@@ -259,23 +259,23 @@ export class Combat {
 
         if(!this.kaiBlast) {
             // No Kai-blast selected
-            dfd.resolve();
+            void dfd.resolve();
         } else {
             // Get the first value
             randomTable.getRandomValueAsync(false, translations.text("pickKaiBlast", [1])).then((value1) => {
                 if(value1 === null) {
-                    dfd.reject();
+                    void dfd.reject();
                     return;
                 }
                 // Get the second value
                 randomTable.getRandomValueAsync(false, translations.text("pickKaiBlast", [2])).then((value2) => {
                     if(value2 === null) {
-                        dfd.reject();
+                        void dfd.reject();
                         return;
                     }
                     // Set the enemy loss
                     this.enemyKaiBlastLoss = -((value1 == 0 ? 1 : value1) + (value2 == 0 ? 1 : value2)) * this.mindblastMultiplier;
-                    dfd.resolve();
+                    void dfd.resolve();
                 }, null)
             }, null);
         }
@@ -283,7 +283,7 @@ export class Combat {
         return dfd.promise();
     }
 
-    public static applyLoss(currentEndurance: number, loss: any): number {
+    public static applyLoss(currentEndurance: number, loss: typeof COMBATTABLE_DEATH|number): number {
         if (loss === COMBATTABLE_DEATH) {
             return 0;
         } else {

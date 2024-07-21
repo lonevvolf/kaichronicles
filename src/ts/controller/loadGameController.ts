@@ -28,7 +28,7 @@ export class loadGameController {
         try {
             const reader = new FileReader();
             reader.onload = (e) => {
-                loadGameController.loadGame( (e.target as any).result );
+                loadGameController.loadGame( <string>e.target.result );
             };
             reader.readAsText(fileToUpload);
         } catch (e) {

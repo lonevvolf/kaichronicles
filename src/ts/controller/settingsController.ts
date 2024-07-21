@@ -48,7 +48,7 @@ export const settingsController = {
     /** Return a string to put on saved games files */
     getDateForFileNames(): string {
         const now = new Date();
-        return now.getFullYear() + "_" +
+        return now.getFullYear().toFixed() + "_" +
             ( now.getMonth() + 1 ).toString().padStart( 2 , "0" ) + "_" +
             now.getDate().toString().padStart( 2 , "0" ) + "_" +
             now.getHours().toString().padStart( 2 , "0" ) + "_" +
@@ -60,7 +60,7 @@ export const settingsController = {
      * Return a default save game file name
      */
     defaultSaveGameName() {
-        return settingsController.getDateForFileNames() + "-book-" + state.book.bookNumber + "-savegame.json";
+        return settingsController.getDateForFileNames() + "-book-" + state.book.bookNumber.toFixed() + "-savegame.json";
     },
 
     /**

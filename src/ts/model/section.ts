@@ -53,7 +53,7 @@ export class Section {
      * @param $xml The jQuery XML root tag
      * @returns The fake section
      */
-    public static createFromXml( book: Book , $xml: any ): Section {
+    public static createFromXml( book: Book , $xml: JQuery<HTMLElement> ): Section {
         const s = new Section( book , null , null);
         s.$xmlSection = $xml;
         s.$data = $xml;

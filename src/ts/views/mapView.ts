@@ -51,7 +51,7 @@ export const mapView = {
         $("#map-decreasezoom").on("click", (e: JQuery.TriggeredEvent) => {
             mapView.changeZoom(false, e);
         });
-        $("#map-resetzoom").on("click", (e: JQuery.TriggeredEvent) => {           
+        $("#map-resetzoom").on("click", () => {           
             const $image = $("#map-section img");
             $image.removeAttr("width");
             $image.removeAttr("height");
@@ -63,6 +63,7 @@ export const mapView = {
      * Unbind map events
      */
     unbindEvents() {
+        // Nothing here
     },
 
     /**

@@ -199,7 +199,7 @@ describe("setDisciplines", () => {
     for (let bookNumber = 1; bookNumber <= projectAon.supportedBooks.length; bookNumber++) {
     // for (let bookNumber = 7; bookNumber <= 7; bookNumber++) {
 
-        describe("Book " + bookNumber, () => {
+        describe("Book " + bookNumber.toFixed(), () => {
 
             beforeEach( async () => {
                 await driver.setupBookState(bookNumber);

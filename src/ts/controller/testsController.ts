@@ -62,7 +62,7 @@ export class testsController {
                 const renderer = new SectionRenderer(section);
                 renderer.renderSection();
             } catch (e) {
-                testsController.addError("Section " + i + " error: " + e, e);
+                testsController.addError("Section " + i.toFixed() + " error: " + e, e);
             }
         }
         testsController.addLog("Finished (errors are displayed here, see Dev. Tools console for warnings)");

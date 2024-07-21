@@ -1,6 +1,11 @@
 import { state, ExpressionEvaluator, numberPickerMechanics, MealMechanics, translations, randomTable, mechanicsEngine,
     EquipmentSectionMechanics, template } from "../..";
 
+interface RuleExecuted { 
+    randomValue: number, 
+    increment: number
+}
+
 /**
  * Random table links mechanics
  */
@@ -38,7 +43,7 @@ export const randomMechanics = {
         }
 
         // Check if the rule was already executed (= link clicked):
-        const result = state.sectionStates.ruleHasBeenExecuted(rule);
+        const result = <RuleExecuted>state.sectionStates.ruleHasBeenExecuted(rule);
         if (result) {
             // Setup the link, but disabled and with the value choosed:
             randomMechanics.setupRandomTableLink($link, true, result.randomValue,
@@ -63,7 +68,7 @@ export const randomMechanics = {
         return $(`.random:eq(${index})`);
     },
 
-    getRandomTableRefByRule(rule: any) {
+    getRandomTableRefByRule(rule: Element) {
         // Not really clear for me: parseInt(undefined) => Nan. It works, because (parseInt(undefined) ? true : false) === false, but, brfff...
         // return randomMechanics.getRandomTableRefByIndex( parseInt($(rule).attr('index')) );
         let indexValue = $(rule).attr("index");
@@ -87,7 +92,7 @@ export const randomMechanics = {
     },
 
     /** Increment for random table selection */
-    randomTableIncrement(rule: any) {
+    randomTableIncrement(rule: Element) {
 
         const $link = randomMechanics.getRandomTableRefByRule(rule);
         const txtIncrement: string = $(rule).attr("increment");

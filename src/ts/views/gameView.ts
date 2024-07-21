@@ -80,7 +80,7 @@ export const gameView = {
             $("#game-debugRandomTable").on("submit", (e) => {
                 e.preventDefault();
                 randomTable.nextValueDebug = parseInt(<string> $("#game-debugRandomFix").val(), 10);
-                console.log("Next random table value set to " + randomTable.nextValueDebug);
+                console.log("Next random table value set to " + randomTable.nextValueDebug.toFixed());
                 $("#game-debugRandomFix").val("");
             });
 

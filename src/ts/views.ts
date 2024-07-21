@@ -49,7 +49,7 @@ export const views = {
             template.setViewContent( translations.translateView(views.viewCache[viewPath]) );
             // Return a resolved promise:
             const dfd = jQuery.Deferred();
-            dfd.resolve();
+            void dfd.resolve();
             return dfd.promise();
         }
 
@@ -62,7 +62,7 @@ export const views = {
             dataType: "html",
             url: "views/" + viewPath
         })
-        .done( (data) => {
+        .done( (data: HTMLElement) => {
             // Save view on cache:
             views.viewCache[viewPath] = data;
             // Display the view

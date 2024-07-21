@@ -206,7 +206,6 @@ function declarePlayBookTests(book: Book) {
     // jest runs out of memory if the closure references the book variable. So I'll use these instead:
     const bookNumber = book.bookNumber;
     const bookCode = book.getProjectAonBookCode();
-    // console.log("Declaring tests book " + bookCode);
 
     let sectionIds: string[];
     if (process.env.KAISECT) {
@@ -219,7 +218,6 @@ function declarePlayBookTests(book: Book) {
 
         // Load book state
         beforeAll( async () => {
-            // console.log("Setup book " + book.bookNumber + " / " + book.language);
             await driver.setupBookState(bookNumber);
         });
 
@@ -235,7 +233,7 @@ function declarePlayBookTests(book: Book) {
 let bookNumberToTest: number = 0;
 if (process.env.KAIBOOK) {
     bookNumberToTest = parseInt(process.env.KAIBOOK, 10);
-    console.log("Just book " + bookNumberToTest);
+    console.log("Just book " + bookNumberToTest.toFixed());
 }
 
 // Traverse books

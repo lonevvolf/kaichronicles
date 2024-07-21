@@ -18,7 +18,6 @@ export const book19sect304 = {
         $('#game-section > p.choice').before(`<div class="combat well"><b>Wolf's Bane</b><br><span class="attribute">COMBAT SKILL</span>: ${combatSkill} &nbsp;&nbsp; <span class="attribute">ENDURANCE</span>: <span class="enemy-current-endurance">${endurance}</span> / ${endurance}</div>`);
 
         // Add combat to the section
-        let currentState = state.sectionStates.getSectionState();
-        currentState.combats.push(new Combat("Wolf's Bane", combatSkill, endurance));
+        state.sectionStates.getSectionState().combats.push(new Combat("Wolf's Bane", combatSkill, endurance));
     }
 };

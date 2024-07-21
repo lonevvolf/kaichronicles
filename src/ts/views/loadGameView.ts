@@ -14,7 +14,8 @@ export const loadGameView = {
      * Bind web file uploader events
      */
     bindFileUploaderEvents() {
-        (<JQuery<HTMLInputElement>> $("#loadGame-file")).on("change", function(e) {
+        // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
+        (<JQuery<HTMLInputElement>> $("#loadGame-file")).on("change", function() {
             if (!this.files || !this.files[0]) {
                 return;
             }

@@ -50,7 +50,7 @@ export class KaiNameSetup {
             const $f = $("#mechanics-chooseFirstName");
             randomMechanics.bindTableRandomLink($f, (value) => {
                 if ($("#mechanics-customKaiName").prop('readonly')) {
-                    $("#mechanics-customKaiName").val(this.firstNames[value] + " " + $("#mechanics-customKaiName").val());
+                    $("#mechanics-customKaiName").val(this.firstNames[value] + " " + <string>$("#mechanics-customKaiName").val());
                 } else {
                     $("#mechanics-customKaiName").val(this.firstNames[value]);
                     $("#mechanics-customKaiName").prop('readonly', true);
@@ -62,7 +62,7 @@ export class KaiNameSetup {
             const $l = $("#mechanics-chooseLastName");
             randomMechanics.bindTableRandomLink($l, (value) => {
                 if ($("#mechanics-customKaiName").prop('readonly')) {
-                    $("#mechanics-customKaiName").val($("#mechanics-customKaiName").val() + " " + this.lastNames[value]);
+                    $("#mechanics-customKaiName").val(<string>$("#mechanics-customKaiName").val() + " " + this.lastNames[value]);
                 } else {
                     $("#mechanics-customKaiName").val(this.lastNames[value]);
                     $("#mechanics-customKaiName").prop('readonly', true);

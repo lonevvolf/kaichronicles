@@ -26,16 +26,16 @@ export class BookSectionStates {
      * Enumerated properties are NOT the only ones, there can be others
      */
     public otherStates = {
-        book6sect26TargetPoints: null,
-        book6sect284: null,
+        book6sect26TargetPoints: <number>null,
+        book6sect284: <number[][]>[[]],
         book6sect340: [-1 , -1 , -1],
-        book9sect91: null,
+        book9sect91: <string>null,
     };
 
     /**
      * Global rules to run on each section
      */
-    public globalRulesIds = [];
+    public globalRulesIds = <string[]>[];
 
     /**
      * Get a section state. If it does not exists, it will be created
@@ -98,7 +98,7 @@ export class BookSectionStates {
         }
     }
 
-    public fromStateObject(stateObject) {
+    public fromStateObject(stateObject: BookSectionStates) {
 
         this.currentSection = stateObject.currentSection;
         this.huntEnabled = stateObject.huntEnabled;
@@ -110,13 +110,13 @@ export class BookSectionStates {
             this.sectionStates[ <string> sectionId ] = sectionState;
 
             // Restore combats
-            const combats = [];
+            const combats = <Combat[]>[];
             $.each( sectionState.combats , ( index , combat ) => {
                 const rightCombat = $.extend( new Combat( "" , 0 , 0 ) , combat );
                 combats.push( rightCombat );
 
                 // Restore combat turns
-                const turns = [];
+                const turns = <CombatTurn[]>[];
                 $.each( rightCombat.turns , ( turnIndex , turn ) => {
                     turns.push( $.extend( new CombatTurn(null, 0, false, false) , turn ) );
                 });

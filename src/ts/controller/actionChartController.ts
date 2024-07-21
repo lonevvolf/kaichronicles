@@ -14,7 +14,7 @@ export const actionChartController = {
             return;
         }
 
-        views.loadView("actionChart.html")
+        void views.loadView("actionChart.html")
             .then(() => {
                 actionChartView.fill(state.actionChart);
                 template.addSectionReadyMarker();
@@ -158,7 +158,7 @@ export const actionChartController = {
         }
 
         if (objectId === "allweaponlike") {
-            const weaponsIds = [];
+            const weaponsIds = <string[]>[];
             for (const w of state.actionChart.getWeaponObjects(false)) {
                 weaponsIds.push(w.id);
             }
@@ -411,7 +411,7 @@ export const actionChartController = {
      */
     displayEnduranceChangeToast(count: number, permanent: boolean) {
         if (count > 0) {
-            toastr.success(translations.text("msgEndurance", ["+" + count]));
+            toastr.success(translations.text("msgEndurance", ["+" + count.toFixed()]));
         } else if (count < 0) {
             let toast = translations.text("msgEndurance", [count]);
             if (permanent) {
@@ -476,11 +476,11 @@ export const actionChartController = {
      * @param count Number to increase. Negative to decrease
      * @param showToast True if we should show a "toast" on the UI with the CS increase
      */
-    increaseCombatSkill(count, showToast: boolean = true) {
+    increaseCombatSkill(count: number, showToast: boolean = true) {
         state.actionChart.combatSkill += count;
         if (showToast) {
             if (count > 0) {
-                toastr.success(translations.text("msgCombatSkill", ["+" + count]));
+                toastr.success(translations.text("msgCombatSkill", ["+" + count.toFixed()]));
             } else if (count < 0) {
                 toastr.warning(translations.text("msgCombatSkill", [count]));
             }
