@@ -1107,7 +1107,8 @@ export class ActionChart {
      */
     public getMealObjects(): string[] {
 
-        const result: string[] = [];
+        const result:string[] = [];
+
         this.enumerateObjectsAsItems((o: Item) => {
             if (o.isMeal && !result.includes(o.id)) {
                 result.push(o.id);
@@ -1351,7 +1352,7 @@ export class ActionChart {
         if (App.debugMode === DebugMode.DEBUG || App.debugMode === DebugMode.TEST) {
             const possibleDisciplines = Disciplines.getSeriesDisciplines(seriesId !== null ? seriesId : state.book.getBookSeries().id);
             if (!possibleDisciplines.includes(disciplineId)) {
-                mechanicsEngine.debugWarning("Disciplines of book series " + seriesId.toString() + " do not contains discipline " + disciplineId);
+                mechanicsEngine.debugWarning(`Disciplines of book series ${seriesId} do not contains discipline ${disciplineId}`);
             }
         }
         return this.getSeriesDisciplines(seriesId).disciplines.includes(disciplineId);

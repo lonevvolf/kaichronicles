@@ -210,7 +210,7 @@ export class SectionState {
     /**
      * Return true if any of the combats has, at least, one turn made.
      */
-    public areCombatsStarted(): Boolean {
+    public areCombatsStarted(): boolean {
         for (const combat of this.combats) {
             if ( combat.turns.length > 0) {
                 return true;
@@ -222,7 +222,7 @@ export class SectionState {
     /**
      * Return false if any of the combats don't allows prior usage of potions.
      */
-    public areCombatsPotionsAllowed(): Boolean {
+    public areCombatsPotionsAllowed(): boolean {
         for (const combat of this.combats) {
             if ( !combat.allowPotions) {
                 return false;
@@ -357,7 +357,7 @@ export class SectionState {
             return;
         }
 
-        mechanicsEngine.debugWarning( "Object to remove from section not found :" + objectId + " " + price );
+        mechanicsEngine.debugWarning( `Object to remove from section not found :${objectId} ${price}` );
     }
 
     /**

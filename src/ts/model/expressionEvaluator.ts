@@ -209,7 +209,7 @@ export class ExpressionEvaluator {
      */
     private static doReplacements( expression: string ): string {
         for ( const keyword of ExpressionEvaluator.getKeywords(expression) ) {
-            let replacement;
+            let replacement: string;
             const functionReplacer = ExpressionEvaluator.replacementFunctions[ keyword ];
             if ( !functionReplacer ) {
                 mechanicsEngine.debugWarning( "Unknown keyword on expression: " + keyword );
