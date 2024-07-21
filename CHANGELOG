@@ -138,3 +138,6 @@
  - Book 16: Fix sect225/sect318 where picking the Deathstaff was missing
  - Book 16: Fix incorrect section name (350 -> sect350)
  - Book 20: Fix incorrect section name (199 -> sect199)
+
+ 1.17 (*Thanks to lonevvolf for the reports/fixes/book 22*)
+ - Fix combat ratio increasing when going back and forth in action chart if combat has combatSkillModifierIncrement
