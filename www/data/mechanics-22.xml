@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <mechanics book="22" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/cracrayol/kaichronicles/master/www/data/mechanics.xsd">
-<!-- TODO: Add day/night weapon bonuses -->
 
     <!-- GAME RULES -->
     <sections>
@@ -152,12 +151,12 @@
 
         <section id="sect11">
             <choiceState section="all" set="disabled" />
-            <combat immuneTurns="1" />
+            <combat combatSkillModifier="0" immuneTurns="1" />
             <test currentWeapon="valiance">
-                <combat combatSkillModifier="+3"/>
+                <combat combatSkillModifierIncrement="+3"/>
             </test>
             <test currentWeapon="sunstrike">
-                <combat combatSkillModifier="+1"/>
+                <combat combatSkillModifierIncrement="+1"/>
             </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
@@ -183,6 +182,10 @@
             <endurance count="-1" />
         </section>
 
+        <section id="sect15">
+            <endurance count="+[MAXENDURANCE]" />
+        </section>
+
         <section id="sect18">
             <choiceState section="sect72" set="disabled" />
             <test hasDiscipline="pthmnshp">
@@ -193,12 +196,12 @@
 
         <section id="sect19">
             <choiceState section="all" set="disabled" />
-            <combat noMindblast="true" />
+            <combat combatSkillModifier="0" noMindblast="true" />
             <test currentWeapon="valiance">
-                <combat combatSkillModifier="+3"/>
+                <combat combatSkillModifierIncrement="+3"/>
             </test>
             <test currentWeapon="kaistar">
-                <combat combatSkillModifier="+2"/>
+                <combat combatSkillModifierIncrement="+2"/>
             </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
@@ -337,9 +340,8 @@
         <section id="sect45">
             <pick objectId="ironkey22" />
 
-            <!-- TODO: Check inventory state path (multiple ways to lose items in this book) -->
-            <restoreInventoryState restorePoint="book22sect52WeaponsConfiscated" />
-            <restoreInventoryState restorePoint="book22sect52BackpackItemsConfiscated" />
+            <restoreInventoryState restorePoint="book22weaponsConfiscated" />
+            <restoreInventoryState restorePoint="book22backpackItemsConfiscated" />
         </section>
 
         <section id="sect46">
@@ -375,9 +377,8 @@
 
         <section id="sect52">
             <endurance count="-3" />
-            <!-- TODO: Check state saving -->
-            <saveInventoryState restorePoint="book22sect52WeaponsConfiscated" objectsType="weaponlike" />
-            <saveInventoryState restorePoint="book22sect52BackpackItemsConfiscated" objectsType="backpackitems" />
+            <saveInventoryState restorePoint="book22weaponsConfiscated" objectsType="weaponlike" />
+            <saveInventoryState restorePoint="book22backpackItemsConfiscated" objectsType="backpackitems" />
             <drop objectId="allweaponlike" />
             <drop objectId="backpackcontent" />
         </section>
@@ -464,15 +465,18 @@
 
         <section id="sect67">
             <choiceState section="all" set="disabled" />
-            <combat allowPotions="false" noKaiBlast="true" noKaiRay="true" noKaiSurge="true" noMindblast="true" noPsiSurge="true" />
+            <combat combatSkillModifier="0" allowPotions="false" noKaiBlast="true" noKaiRay="true" noKaiSurge="true" noMindblast="true" noPsiSurge="true" />
             <test not="true" hasDiscipline="nexus">
-                <combat combatSkillModifier="-4" />
+                <combat combatSkillModifierIncrement="-4" />
             </test>
             <test currentWeapon="ulnarias">
-                <combat combatSkillModifier="+4" />
+                <combat combatSkillModifierIncrement="+4" />
             </test>
             <test currentWeapon="spawnsmite">
-                <combat combatSkillModifier="+1" />
+                <combat combatSkillModifierIncrement="+1" />
+            </test>
+            <test currentWeapon="sunstrike">
+                <combat combatSkillModifierIncrement="+1"/>
             </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
@@ -489,9 +493,12 @@
         <section id="sect74">
             <choiceState section="all" set="disabled" />
             <pick class="arrow" count="-1" />
-            <combat noMindblast="true" />
+            <combat noMindblast="true" combatSkillModifier="0" />
             <test currentWeapon="valiance">
-                <combat combatSkillModifier="+3" />
+                <combat combatSkillModifierIncrement="+3" />
+            </test>
+            <test currentWeapon="kaistar">
+                <combat combatSkillModifierIncrement="+2"/>
             </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
@@ -499,14 +506,10 @@
         </section>
 
         <section id="sect78">
-            <!-- TODO: Check Bisutan path (section 100, book 21) to ensure player passes through it -->
+            <choiceState section="sect322" set="disabled" />
             <test hasTag="bisutan">
                 <choiceState section="sect322" set="enabled" />
                 <choiceState section="sect43" set="disabled" />
-            </test>
-            <test not="true" hasTag="bistuan">
-                <choiceState section="sect322" set="disabled" />
-                <choiceState section="sect43" set="enabled" />
             </test>
         </section>
 
@@ -515,9 +518,8 @@
         </section>
 
         <section id="sect81">
-            <!-- TODO: Check inventory state path (multiple ways to lose items in this book) -->
-            <restoreInventoryState restorePoint="book22sect52WeaponsConfiscated" />
-            <restoreInventoryState restorePoint="book22sect52BackpackItemsConfiscated" />
+            <restoreInventoryState restorePoint="book22weaponsConfiscated" />
+            <restoreInventoryState restorePoint="book22backpackItemsConfiscated" />
 
         </section>
 
@@ -557,7 +559,13 @@
 
         <section id="sect86">
             <choiceState section="all" set="disabled" />
-            <combat mindblastMultiplier="2" />
+            <combat mindblastMultiplier="2" combatSkillModifier="0" />
+            <test currentWeapon="kaistar">
+                <combat combatSkillModifierIncrement="+2"/>
+            </test>
+            <afterCombats>
+                <choiceState section="all" set="enabled" />
+            </afterCombats>
         </section>
 
         <section id="sect87">
@@ -572,7 +580,10 @@
 
         <section id="sect89">
             <choiceState section="all" set="disabled" />
-            <combat />
+            <combat combatSkillModifier="0" />
+            <test currentWeapon="sunstrike">
+                <combat combatSkillModifierIncrement="+1"/>
+            </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
             </afterCombats>
@@ -631,9 +642,12 @@
 
         <section id="sect96">
             <choiceState section="all" set="disabled"  />
-            <combat immuneTurns="2" />
+            <combat combatSkillModifier="0" immuneTurns="2" />
             <test currentWeapon="valiance">
-                <combat combatSkillModifier="+3"/>
+                <combat combatSkillModifierIncrement="+3"/>
+            </test>
+            <test currentWeapon="sunstrike">
+                <combat combatSkillModifierIncrement="+1"/>
             </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
@@ -725,7 +739,10 @@
 
         <section id="sect110">
             <choiceState section="all" set="disabled" />
-            <combat />
+            <combat combatSkillModifier="0" />
+            <test currentWeapon="sunstrike">
+                <combat combatSkillModifierIncrement="+1"/>
+            </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
             </afterCombats>
@@ -771,9 +788,12 @@
 
         <section id="sect122">
             <choiceState section="all" set="disabled" />
-            <combat noMindblast="true" />
+            <combat combatSkillModifier="0" noMindblast="true" />
             <test currentWeapon="valiance">
-                <combat combatSkillModifier="+3" />
+                <combat combatSkillModifierIncrement="+3" />
+            </test>
+            <test currentWeapon="kaistar">
+                <combat combatSkillModifierIncrement="+2"/>
             </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
@@ -839,9 +859,12 @@
 
         <section id="sect131">
             <choiceState section="all" set="disabled" />
-            <combat immuneTurns="1" />
+            <combat combatSkillModifier="0" immuneTurns="1" />
             <test currentWeapon="valiance">
-                <combat combatSkillModifier="+3" />
+                <combat combatSkillModifierIncrement="+3" />
+            </test>
+            <test currentWeapon="sunstrike">
+                <combat combatSkillModifierIncrement="+1"/>
             </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
@@ -916,8 +939,8 @@
 
         <section id="sect148">
             <endurance count="-3" />
-            <saveInventoryState restorePoint="book22sect148WeaponsConfiscated" objectsType="weaponlike" />
-            <saveInventoryState restorePoint="book22sect148BackpackItemsConfiscated" objectsType="backpackitems" />
+            <saveInventoryState restorePoint="book22weaponsConfiscated" objectsType="weaponlike" />
+            <saveInventoryState restorePoint="book22backpackItemsConfiscated" objectsType="backpackitems" />
             <drop objectId="allweaponlike" />
             <drop objectId="backpackcontent" />
         </section>
@@ -959,9 +982,12 @@
 
         <section id="sect154">
             <choiceState section="all" set="disabled" />
-            <combat />
+            <combat combatSkillModifier="0" />
             <test currentWeapon="valiance">
-                <combat combatSkillModifier="+3" />
+                <combat combatSkillModifierIncrement="+3" />
+            </test>
+            <test currentWeapon="sunstrike">
+                <combat combatSkillModifierIncrement="+1"/>
             </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
@@ -1021,12 +1047,15 @@
 
         <section id="sect166">
             <choiceState section="all" set="disabled" />
-            <combat noKaiBlast="true" noKaiRay="true" noKaiSurge="true" noMindblast="true" noPsiSurge="true" />
+            <combat combatSkillModifier="0" noKaiBlast="true" noKaiRay="true" noKaiSurge="true" noMindblast="true" noPsiSurge="true" />
             <test currentWeapon="ulnarias">
-                <combat combatSkillModifier="+4" />
+                <combat combatSkillModifierIncrement="+4" />
             </test>
             <test currentWeapon="spawnsmite">
-                <combat combatSkillModifier="+1" />
+                <combat combatSkillModifierIncrement="+1" />
+            </test>
+            <test currentWeapon="sunstrike">
+                <combat combatSkillModifierIncrement="+1"/>
             </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
@@ -1041,9 +1070,12 @@
 
         <section id="sect169">
             <choiceState section="all" set="disabled" />
-            <combat noMindblast="true" />
+            <combat combatSkillModifier="0" noMindblast="true" />
             <test currentWeapon="valiance">
-                <combat combatSkillModifier="+3" />
+                <combat combatSkillModifierIncrement="+3" />
+            </test>
+            <test currentWeapon="kaistar">
+                <combat combatSkillModifierIncrement="+2"/>
             </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
@@ -1096,7 +1128,7 @@
 
         <section id="sect176">
             <choiceState section="all" set="disabled" />
-            <combat immuneTurns="1" />
+            <combat immuneTurns="1" disabledObjects="spawnsmite|alema|magnara|sunstrike|kaistar|valiance|ulnarias|raumas|illuminatus|firefall" />
             <afterCombats>
                 <choiceState section="all" set="enabled" />
             </afterCombats>
@@ -1135,9 +1167,8 @@
         </section>
 
         <section id="sect187">
-            <!-- TODO: Check inventory state path (multiple ways to lose items in this book) -->
-            <restoreInventoryState restorePoint="book22sect52WeaponsConfiscated" />
-            <restoreInventoryState restorePoint="book22sect52BackpackItemsConfiscated" />
+            <restoreInventoryState restorePoint="book22weaponsConfiscated" />
+            <restoreInventoryState restorePoint="book22backpackItemsConfiscated" />
         </section>
 
         <section id="sect188">
@@ -1241,12 +1272,12 @@
         <section id="sect208">
             <endurance count="-4" />
             <choiceState section="all" set="disabled" />
-            <combat />
+            <combat combatSkillModifier="0" />
             <test currentWeapon="valiance">
-                <combat combatSkillModifier="+3"/>
+                <combat combatSkillModifierIncrement="+3"/>
             </test>
-            <test currentWeapon="raumas">
-                <combat combatSkillModifier="+1"/>
+            <test currentWeapon="sunstrike">
+                <combat combatSkillModifierIncrement="+1"/>
             </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
@@ -1269,9 +1300,8 @@
 
         <section id="sect210">
             <endurance count="-2" />
-            <!-- TODO: Check inventory state path (multiple ways to lose items in this book) -->
-            <restoreInventoryState restorePoint="book22sect52WeaponsConfiscated" />
-            <restoreInventoryState restorePoint="book22sect52BackpackItemsConfiscated" />
+            <restoreInventoryState restorePoint="book22weaponsConfiscated" />
+            <restoreInventoryState restorePoint="book22backpackItemsConfiscated" />
         </section>
 
         <section id="sect211">
@@ -1374,9 +1404,12 @@
 
         <section id="sect224">
             <choiceState section="all" set="disabled" />
-            <combat noMindblast="true" />
+            <combat combatSkillModifier="0" noMindblast="true" />
             <test currentWeapon="valiance">
-                <combat combatSkillModifier="+3"/>
+                <combat combatSkillModifierIncrement="+3"/>
+            </test>
+            <test currentWeapon="kaistar">
+                <combat combatSkillModifierIncrement="+2"/>
             </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
@@ -1409,9 +1442,8 @@
         </section>
 
         <section id="sect228">
-            <!-- TODO: Check inventory state path (multiple ways to lose items in this book) -->
-            <saveInventoryState restorePoint="book22sect52WeaponsConfiscated" objectsType="weaponlike" />
-            <saveInventoryState restorePoint="book22sect52BackpackItemsConfiscated" objectsType="backpackitems" />
+            <saveInventoryState restorePoint="book22weaponsConfiscated" objectsType="weaponlike" />
+            <saveInventoryState restorePoint="book22backpackItemsConfiscated" objectsType="backpackitems" />
             <drop objectId="allweaponlike" />
             <drop objectId="backpackcontent" />
         </section>
@@ -1452,16 +1484,18 @@
         <section id="sect233">
             <choiceState section="all" set="disabled" />
             <pick class="arrow" count="-1" />
-            <combat />
+            <combat combatSkillModifier="0" />
+            <test currentWeapon="kaistar">
+                <combat combatSkillModifierIncrement="+2"/>
+            </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
             </afterCombats>
         </section>
 
         <section id="sect234">
-            <!-- TODO: Check inventory state path (multiple ways to lose items in this book) -->
-            <restoreInventoryState restorePoint="book22sect52WeaponsConfiscated" />
-            <restoreInventoryState restorePoint="book22sect52BackpackItemsConfiscated" />
+            <restoreInventoryState restorePoint="book22weaponsConfiscated" />
+            <restoreInventoryState restorePoint="book22backpackItemsConfiscated" />
         </section>
 
         <section id="sect236">
@@ -1523,11 +1557,11 @@
                 <test expression="[KAILEVEL] >= 6">
                     <choiceState section="sect96" set="enabled" />
                 </test>
-                <test hasDiscipline="alchemy">
-                    <choiceState section="sect131" set="enabled" />
-                </test>
-                <choiceState section="sect154" set="enabled" />
+            </test>            
+            <test hasDiscipline="alchemy">
+                <choiceState section="sect131" set="enabled" />
             </test>
+            <choiceState section="sect154" set="enabled" />
         </section>
 
         <section id="sect255">
@@ -1621,7 +1655,10 @@
 
         <section id="sect269">
             <choiceState section="all" set="disabled" />
-            <combat mindblastMultiplier="2" />
+            <combat combatSkillModifier="0" mindblastMultiplier="2" />
+            <test currentWeapon="kaistar">
+                <combat combatSkillModifierIncrement="+2"/>
+            </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
             </afterCombats>
@@ -1629,9 +1666,12 @@
 
         <section id="sect270">
             <choiceState section="all" set="disabled" />
-            <combat />
+            <combat combatSkillModifier="0" />
             <test currentWeapon="valiance">
-                <combat combatSkillModifier="+3"/>
+                <combat combatSkillModifierIncrement="+3"/>
+            </test>
+            <test currentWeapon="sunstrike">
+                <combat combatSkillModifierIncrement="+1"/>
             </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
@@ -1777,6 +1817,7 @@
         </section>
 
         <section id="sect300">
+            <tag id="caeno" />
             <choiceState section="sect259" set="disabled" />
             <test expression="[MONEY] >= 6">
                 <choiceState section="sect259" set="enabled" />
@@ -1784,9 +1825,8 @@
         </section>
 
         <section id="sect302">
-            <!-- TODO: Check inventory state path (multiple ways to lose items in this book) -->
-            <restoreInventoryState restorePoint="book22sect52WeaponsConfiscated" />
-            <restoreInventoryState restorePoint="book22sect52BackpackItemsConfiscated" />
+            <restoreInventoryState restorePoint="book22weaponsConfiscated" />
+            <restoreInventoryState restorePoint="book22backpackItemsConfiscated" />
         </section>
 
         <section id="sect303">
@@ -1955,7 +1995,10 @@
 
         <section id="sect340">
             <choiceState section="all" set="disabled" />
-            <combat />
+            <combat combatSkillModifier="0" />
+            <test currentWeapon="sunstrike">
+                <combat combatSkillModifierIncrement="+1"/>
+            </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
             </afterCombats>
@@ -1976,9 +2019,8 @@
         </section>
 
         <section id="sect345">
-            <!-- TODO: Check state saving -->
-            <saveInventoryState restorePoint="book22sect52WeaponsConfiscated" objectsType="weaponlike" />
-            <saveInventoryState restorePoint="book22sect52BackpackItemsConfiscated" objectsType="backpackitems" />
+            <saveInventoryState restorePoint="book22weaponsConfiscated" objectsType="weaponlike" />
+            <saveInventoryState restorePoint="book22backpackItemsConfiscated" objectsType="backpackitems" />
             <drop objectId="allweaponlike" />
             <drop objectId="backpackcontent" />
         </section>

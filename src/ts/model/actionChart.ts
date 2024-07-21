@@ -154,6 +154,7 @@ export class ActionChart {
                     this.setDisciplines( [ NewOrderDiscipline.GrandWeaponmastery , NewOrderDiscipline.Deliverance, NewOrderDiscipline.GrandHuntmastery,
                         NewOrderDiscipline.Assimilance, NewOrderDiscipline.AnimalMastery ] );
                     this.setWeaponSkill( ["sword"] );
+                    this.kaiName = "Kai Name";
                     break;
                 case BookSeriesId.GrandMaster:
                     this.endurance = this.currentEndurance = 35;
@@ -800,7 +801,7 @@ export class ActionChart {
     private getWeaponCombatSkillBonuses(noWeapon: boolean, bowCombat: boolean, disabledObjectsIds: string[])
         : Bonus[] {
 
-        const bonuses = [];
+        const bonuses: Bonus[] = [];
         let currentWeapon = this.getSelectedWeaponItem(bowCombat);
 
         // Check if the current weapon is disabled
@@ -817,7 +818,7 @@ export class ActionChart {
         // Weapons
         if (noWeapon || !currentWeapon) {
             // No current weapon:
-            let bonus;
+            let bonus: number;
 
             if (state.book.getBookSeries().id >= BookSeriesId.GrandMaster) {
                 if(this.hasMgnDiscipline(MgnDiscipline.Weaponmastery) && this.getDisciplines(BookSeriesId.GrandMaster).length >= 10) {
@@ -952,7 +953,7 @@ export class ActionChart {
             mechanicsEngine.runGlobalRules(true, combat);
         }
 
-        const bonuses = [];
+        const bonuses: Bonus[] = [];
 
         // Current weapon bonuses
         if (!combat.mentalOnly) {
@@ -1071,7 +1072,7 @@ export class ActionChart {
      */
     public getEnduranceBonuses(): Bonus[] {
 
-        const bonuses = [];
+        const bonuses: Bonus[] = [];
         this.enumerateObjectsAsItems((o: Item) => {
             if (o.enduranceEffect) {
                 bonuses.push({
@@ -1106,7 +1107,8 @@ export class ActionChart {
      */
     public getMealObjects(): string[] {
 
-        const result = [];
+        const result:string[] = [];
+
         this.enumerateObjectsAsItems((o: Item) => {
             if (o.isMeal && !result.includes(o.id)) {
                 result.push(o.id);
@@ -1350,7 +1352,7 @@ export class ActionChart {
         if (App.debugMode === DebugMode.DEBUG || App.debugMode === DebugMode.TEST) {
             const possibleDisciplines = Disciplines.getSeriesDisciplines(seriesId !== null ? seriesId : state.book.getBookSeries().id);
             if (!possibleDisciplines.includes(disciplineId)) {
-                mechanicsEngine.debugWarning("Disciplines of book series " + seriesId.toString() + " do not contains discipline " + disciplineId);
+                mechanicsEngine.debugWarning(`Disciplines of book series ${seriesId} do not contains discipline ${disciplineId}`);
             }
         }
         return this.getSeriesDisciplines(seriesId).disciplines.includes(disciplineId);

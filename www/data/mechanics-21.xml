@@ -1495,7 +1495,7 @@
 
         <section id="sect230">
             <choiceState section="all" set="disabled" />
-            <combat noWeapon="1" />
+            <combat noWeapon="1" combatSkillModifier="0" />
             <afterCombatTurn turn="1">
                 <test currentWeapon="sunstrike">
                     <combat combatSkillModifierIncrement="+1"/>

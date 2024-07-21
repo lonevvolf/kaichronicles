@@ -55,10 +55,10 @@ export class testsController {
         }
 
         const count = state.mechanics.getSectionsCount();
-        testsController.addLog("Testing sections render (" + count + ")");
+        testsController.addLog(`Testing sections render (${count})`);
         for (let i = 1; i < count; i++) {
             try {
-                const section = new Section(state.book, "sect" + i, state.mechanics);
+                const section = new Section(state.book, `sect${i}`, state.mechanics);
                 const renderer = new SectionRenderer(section);
                 renderer.renderSection();
             } catch (e) {
@@ -81,7 +81,7 @@ export class testsController {
         }
 
         // Test implemented random table
-        let count = [];
+        let count: number[] = [];
         for (let i = 0; i < 10; i++) {
             count[i] = 0;
         }
@@ -89,9 +89,9 @@ export class testsController {
         for (let i = 0; i < total; i++) {
             count[randomTable.getRandomValue()]++;
         }
-        console.log("Randomness test (" + total + " random table hits)");
+        console.log(`Randomness test (${total} random table hits)`);
         for (let i = 0; i < 10; i++) {
-            testsController.addLog(i + ": " + count[i] + " hits (" + (count[i] / total) * 100.0 + " %)");
+            testsController.addLog(`${i}: ${count[i]} hits (${(count[i] / total) * 100.0} %)`);
         }
 
         // Test randomness of the book random table:
@@ -106,7 +106,7 @@ export class testsController {
 
         console.log("Book random table:");
         for (let i = 0; i < 10; i++) {
-            testsController.addLog(i + ": " + count[i] + " (" + (count[i] / bookRandomTable.length) * 100.0 + " %)");
+            testsController.addLog(`${i}: ${count[i]} (${(count[i] / bookRandomTable.length) * 100.0} %)`);
         }
     }
 
@@ -119,7 +119,7 @@ export class testsController {
 
     private static testBook( validator: BookValidator ) {
         validator.validateBook();
-        const title = "Book " + validator.book.bookNumber;
+        const title = `Book ${validator.book.bookNumber}`;
         if (validator.errors.length === 0) {
             testsController.addLog(title + " OK!");
         } else {

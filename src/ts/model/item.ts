@@ -1,4 +1,3 @@
-import { INTERNAL_COMPUTE_OFFSET_SCRIPT } from "selenium-webdriver/lib/input";
 import { Book, translations, mechanicsEngine, Section, state } from "..";
 
 /**
@@ -280,7 +279,7 @@ export class Item {
      * Get information about the image
      * @param {jQuery} $o XML node for object
      */
-    private loadImageInfo($o: any) {
+    private loadImageInfo($o: JQuery<Element>) {
         const $image = $o.find("image");
         if ($image.length === 0) {
             return;

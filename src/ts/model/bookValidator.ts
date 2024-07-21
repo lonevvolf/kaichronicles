@@ -363,7 +363,7 @@ export class BookValidator {
         }
 
         // The book mechanics
-        let xmlText;
+        let xmlText: string;
         if ( this.mechanics.mechanicsXmlText ) {
             xmlText = this.mechanics.mechanicsXmlText;
         } else {
@@ -375,7 +375,7 @@ export class BookValidator {
         xmlText = xmlText.replace( /[áéíóú¡¿’]/gi , "" );
 
         // xmllint.js call parameters
-        const mechanicsFileName = "mechanics-" + this.book.bookNumber + ".xml";
+        const mechanicsFileName = `mechanics-${this.book.bookNumber}.xml`;
         const module = {
             xml: xmlText,
             schema: BookValidator.xsdText,
@@ -440,7 +440,7 @@ export class BookValidator {
         }
 
         // TODO: Check randomTableIncrement, and [BOWBONUS]: If it exists, the bounds should be -99, +99
-        let numberToTest;
+        let numberToTest: number[];
         if ( $rule.attr( "zeroAsTen" ) === "true" ) {
             numberToTest = [1, 10];
         } else {
@@ -524,7 +524,7 @@ export class BookValidator {
         if ( combatIndex ) {
             const nCombats = combats.length;
             if ( nCombats <= combatIndex ) {
-                this.addError( $rule , "There is no combat with index " + combatIndex );
+                this.addError( $rule , `There is no combat with index ${combatIndex}` );
             }
         }
 

@@ -918,7 +918,7 @@
         <special id="seotadust">
             <name>Pouch of Seota Dust</name>
             <description>Restores 10 ENDURANCE points. One use only.</description>
-            <effect class="endurance" increment="+10" />
+            <usage class="endurance" increment="+10" />
         </special>
 
         <special id="defiancetalisman">
