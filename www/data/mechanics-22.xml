@@ -182,6 +182,10 @@
             <endurance count="-1" />
         </section>
 
+        <section id="sect15">
+            <endurance count="+[MAXENDURANCE]" />
+        </section>
+
         <section id="sect18">
             <choiceState section="sect72" set="disabled" />
             <test hasDiscipline="pthmnshp">
@@ -502,13 +506,10 @@
         </section>
 
         <section id="sect78">
+            <choiceState section="sect322" set="disabled" />
             <test hasTag="bisutan">
                 <choiceState section="sect322" set="enabled" />
                 <choiceState section="sect43" set="disabled" />
-            </test>
-            <test not="true" hasTag="bistuan">
-                <choiceState section="sect322" set="disabled" />
-                <choiceState section="sect43" set="enabled" />
             </test>
         </section>
 
@@ -1556,11 +1557,11 @@
                 <test expression="[KAILEVEL] >= 6">
                     <choiceState section="sect96" set="enabled" />
                 </test>
-                <test hasDiscipline="alchemy">
-                    <choiceState section="sect131" set="enabled" />
-                </test>
-                <choiceState section="sect154" set="enabled" />
+            </test>            
+            <test hasDiscipline="alchemy">
+                <choiceState section="sect131" set="enabled" />
             </test>
+            <choiceState section="sect154" set="enabled" />
         </section>
 
         <section id="sect255">
