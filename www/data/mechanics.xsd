@@ -574,16 +574,6 @@
                 <xs:documentation>If false (true by default), don't allows usage of potions prior the combat</xs:documentation>
             </xs:annotation>
         </xs:attribute>
-        <xs:attribute name="properties">
-            <xs:annotation>
-                <xs:documentation>Combat properties used by Kai Weapons to determine CS bonus</xs:documentation>
-            </xs:annotation>
-            <xs:simpleType>
-                <xs:restriction base="xs:string">
-                    <xs:pattern value = "(repitilian|undead|rock|day|night|magic|underwater|winged|underground|fire|\|)*"/>
-                </xs:restriction>
-            </xs:simpleType>
-        </xs:attribute>
     </xs:complexType>
 
     <xs:complexType name="afterCombats">
