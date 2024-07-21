@@ -39,19 +39,19 @@ export class BookValidator {
         const book = new Book(bookNumber );
         const mechanics = new Mechanics( book );
 
-        const promises = [];
+        const promises = <JQueryXHR[]>[];
         promises.push( book.downloadBookXml() );
         promises.push( mechanics.downloadXml() );
         promises.push( mechanics.downloadObjectsXml() );
 
         const dfd = jQuery.Deferred<BookValidator>();
 
-        $.when(...promises)
+        void $.when(...promises)
         .done( () => {
-            dfd.resolve( new BookValidator(mechanics, book) );
+            void dfd.resolve( new BookValidator(mechanics, book) );
         } )
         .fail( () => {
-            dfd.reject("Error downloading book files");
+            void dfd.reject("Error downloading book files");
         });
 
         return dfd.promise();

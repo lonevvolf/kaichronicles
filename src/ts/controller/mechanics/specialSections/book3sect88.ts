@@ -1,4 +1,4 @@
-import { state, CombatTurn, Combat, COMBATTABLE_DEATH, randomTable } from "../../..";
+import { state, CombatTurn, COMBATTABLE_DEATH, randomTable, Combat } from "../../..";
 
 /**
  * Javek venom test
@@ -10,7 +10,7 @@ export const book3sect88 = {
         const sectionState = state.sectionStates.getSectionState();
 
         const nextTurnAsyncFunction = function(): JQueryPromise<CombatTurn> {
-            return Combat.prototype.nextTurnAsync.call(this)
+            return void Combat.prototype.nextTurnAsync.call(this)
             .then((turn: CombatTurn) => {
                 // Check the bite:
                 if ( turn.loneWolf > 0 && turn.loneWolf !== COMBATTABLE_DEATH ) {

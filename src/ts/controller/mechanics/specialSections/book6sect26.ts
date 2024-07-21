@@ -20,7 +20,7 @@ export const book6sect26 = {
 
     /** Replacement for combat turns generation */
     nextTurnAsync(): JQueryPromise<CombatTurn> {
-        return Combat.prototype.nextTurnAsync.call(this)
+        return void Combat.prototype.nextTurnAsync.call(this)
         .then((turn: CombatTurn) => {
             // Do not remove EP to the player. Do a backup of the real loss at turn.loneWolfExtra
             turn.loneWolfExtra = turn.loneWolf;
@@ -49,7 +49,7 @@ export const book6sect26 = {
     },
 
     getPlayerTargetPoints(): number {
-        const targetPoints:number = state.sectionStates.otherStates.book6sect26TargetPoints;
+        const targetPoints = state.sectionStates.otherStates.book6sect26TargetPoints;
         if ( targetPoints === undefined || targetPoints === null ) {
             return 50;
         }

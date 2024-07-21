@@ -21,25 +21,25 @@ export const mechanicsEngine = {
     mechanicsUIURL: "views/mechanicsEngine.html",
 
     /** The rule to run after combats */
-    onAfterCombatsRule: null,
+    onAfterCombatsRule: <Element>null,
 
     /** The rule to run after elude combats */
-    onEludeCombatsRule: null,
+    onEludeCombatsRule: <Element>null,
 
     /** The rule to run after some inventory event */
-    onInventoryEventRule: null,
+    onInventoryEventRule: <Element>null,
 
     /** Rules to execute after some combat turn */
-    onAfterCombatTurns: [],
+    onAfterCombatTurns: <Element[]>[],
 
     /** Rules for events on some choice is selected */
-    onChoiceSelected: [],
+    onChoiceSelected: <Element[]>[],
 
     /** The rule to run after some object used */
-    onObjectUsedRule: null,
+    onObjectUsedRule: <Element>null,
 
     /** The rule to execute when the action button of a number picker is clicked */
-    onNumberPickerChoosed: null,
+    onNumberPickerChoosed: <Element>null,
 
     /************************************************************/
     /**************** MAIN FUNCTIONS ****************************/
@@ -60,7 +60,7 @@ export const mechanicsEngine = {
             mechanicsEngine.$mechanicsUI = $(cachedView).find("#mechanics-container");
             // Return a resolved promise
             const dfd = jQuery.Deferred();
-            dfd.resolve();
+            void dfd.resolve();
             return dfd.promise();
         }
 
@@ -348,7 +348,7 @@ export const mechanicsEngine = {
         for (const rule of mechanicsEngine.onAfterCombatTurns) {
             // Turn when to execute the rule:
             const txtRuleTurn: string = $(rule).attr("turn");
-            const ruleTurn = (txtRuleTurn === "any" ? "any" : ExpressionEvaluator.evalInteger(txtRuleTurn));
+            const ruleTurn = (txtRuleTurn === "any" ? 0 : ExpressionEvaluator.evalInteger(txtRuleTurn));
 
             // We reapply all rules accumulatively
             if (txtRuleTurn === "any" || combat.turns.length >= ruleTurn) {
@@ -850,7 +850,7 @@ export const mechanicsEngine = {
         // Other things (money / meals / special items ...)
         else if (cls) {
             let objectIds: string[] = [];
-            let except: string[] = mechanicsEngine.getArrayProperty($rule, "except");
+            const except: string[] = mechanicsEngine.getArrayProperty($rule, "except");
 
             if (cls === Item.SPECIAL) {
                 objectIds = state.actionChart.getSpecialItemsIds();
@@ -1931,7 +1931,7 @@ export const mechanicsEngine = {
      * @param {XmlNode} rule The root rule
      * @param {function(XmlNode)} callback The function to execute
      */
-    enumerateSectionRules(rule: Element, callback: any) {
+    enumerateSectionRules(rule: Element, callback: (rule: Element) => string) {
 
         let result = callback(rule);
         if (result === "finish") {
@@ -1963,7 +1963,7 @@ export const mechanicsEngine = {
         const slotIndices: number[] = [];
         for (const itemSlotTxt of mechanicsEngine.getArrayProperty($rule, property)) {
 
-            let slotIndex;
+            let slotIndex: number;
             if (itemSlotTxt === "last") {
                 slotIndex = objectsArray.length;
             } else {

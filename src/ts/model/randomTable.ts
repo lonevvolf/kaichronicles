@@ -91,7 +91,7 @@ export class RandomTable {
 
     public randomTableClosed() {
         if(this.currentAsync !== null) {
-            this.currentAsync.deferred.resolve(this.currentAsync.value);
+            void this.currentAsync.deferred.resolve(this.currentAsync.value);
             this.currentAsync = null;
         }
     }

@@ -1,4 +1,4 @@
-import { Combat, combatTable, COMBATTABLE_DEATH, state, translations } from "..";
+import { Combat, CombatTable, COMBATTABLE_DEATH, state, translations } from "..";
 import { BookSeriesId } from "./bookSeries";
 
 export class CombatTurn {
@@ -21,7 +21,7 @@ export class CombatTurn {
     /** Enemy EP base loss.
      * It can be a number or COMBATTABLE_DEATH
      */
-    public enemyBase: any;
+    public enemyBase: typeof COMBATTABLE_DEATH | number;
 
     /** Enemy extra loss */
     public enemyExtra: number;
@@ -29,20 +29,20 @@ export class CombatTurn {
     /** The enemy total loss.
      * It can be a number or COMBATTABLE_DEATH
      */
-    public enemy: any;
+    public enemy: typeof COMBATTABLE_DEATH | number;
 
     /** The player base loss.
      * It can be a number or COMBATTABLE_DEATH
      */
-    public loneWolfBase: any;
+    public loneWolfBase: typeof COMBATTABLE_DEATH | number;
 
     /** Player extra loss */
-    public loneWolfExtra: number;
+    public loneWolfExtra: typeof COMBATTABLE_DEATH | number;
 
     /** Player total loss.
      * It can be a number or COMBATTABLE_DEATH
      */
-    public loneWolf: any;
+    public loneWolf: typeof COMBATTABLE_DEATH | number;
 
     /** Text with the player loss */
     public playerLossText: string;
@@ -80,7 +80,7 @@ export class CombatTurn {
         /** Enemy dammage multiplier */
         this.enemyMultiplier = combat.enemyMultiplier;
 
-        const tableResult = combatTable.getCombatTableResult(combat.getCombatRatio(), this.randomValue);
+        const tableResult = CombatTable.getCombatTableResult(combat.getCombatRatio(), this.randomValue);
 
         /** Enemy base loss  */
         this.enemyBase = ( ( elude || combat.enemyImmuneTurns >= this.turnNumber ) ? 0 : tableResult[0] );
@@ -122,9 +122,7 @@ export class CombatTurn {
         this.loneWolfExtra = 0;
         if ( this.loneWolf !== COMBATTABLE_DEATH && combat.mindforceEP < 0 && !state.actionChart.hasMindShield() ) {
             // Enemy mind force attack (combat.mindforceEP is negative):
-            if ( this.loneWolf !== COMBATTABLE_DEATH) {
-                this.loneWolf -= combat.mindforceEP;
-            }
+            this.loneWolf -= combat.mindforceEP;
             this.loneWolfExtra = combat.mindforceEP;
         }
         if ( this.loneWolf !== COMBATTABLE_DEATH) {
@@ -193,16 +191,16 @@ export class CombatTurn {
 
     /**
      * Translate the loss
-     * @param {string|number} loss It can be a number with the loss, or COMBATTABLE_DEATH
+     * @param {typeof COMBATTABLE_DEATH | number} loss It can be a number with the loss, or COMBATTABLE_DEATH
      */
-    public static translateLoss(loss: string|number): string {
+    public static translateLoss(loss: typeof COMBATTABLE_DEATH | number): string {
         return loss === COMBATTABLE_DEATH ? translations.text( "deathLetter" ) : loss.toString();
     }
 
     /**
      * Get a text for a turn result
      */
-    public static lossText( base: string|number , multiplier: number, extra: number, finalLoss: string|number ): string {
+    public static lossText( base: typeof COMBATTABLE_DEATH | number, multiplier: number, extra: typeof COMBATTABLE_DEATH | number, finalLoss: typeof COMBATTABLE_DEATH | number ): string {
         let loss = CombatTurn.translateLoss( base );
         if ( multiplier !== 1 ) {
             loss = `${loss} x ${multiplier}`;
@@ -222,7 +220,7 @@ export class CombatTurn {
      * @param multiplier The multiplier (can have decimals)
      * @return {number|string} The final endurance loss
      */
-    public static applyMultiplier( enduranceLoss: any , multiplier: number ): any {
+    public static applyMultiplier( enduranceLoss: typeof COMBATTABLE_DEATH | number , multiplier: number ): typeof COMBATTABLE_DEATH | number {
 
         if ( multiplier === 0 ) {
             // Ensure no death

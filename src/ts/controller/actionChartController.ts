@@ -14,7 +14,7 @@ export const actionChartController = {
             return;
         }
 
-        views.loadView("actionChart.html")
+        void views.loadView("actionChart.html")
             .then(() => {
                 actionChartView.fill(state.actionChart);
                 template.addSectionReadyMarker();
@@ -158,7 +158,7 @@ export const actionChartController = {
         }
 
         if (objectId === "allweaponlike") {
-            const weaponsIds = [];
+            const weaponsIds = <string[]>[];
             for (const w of state.actionChart.getWeaponObjects(false)) {
                 weaponsIds.push(w.id);
             }

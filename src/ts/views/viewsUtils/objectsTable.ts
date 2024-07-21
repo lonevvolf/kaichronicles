@@ -21,7 +21,7 @@ export class ObjectsTable {
     private type: ObjectsTableType;
 
     /** The jQuery for the objects table tag */
-    private $tableBody: any;
+    private $tableBody: JQuery<HTMLElement>;
 
     /** The objects to render */
     private objects: ObjectsTableItem[] = [];
@@ -49,7 +49,7 @@ export class ObjectsTable {
 
         // Number of arrows to distribute across quivers. Only applies if this is a Action Chart table
         let arrows = ( this.type === ObjectsTableType.INVENTORY ) ? state.actionChart.arrows : 0;
-        let fireseeds = ( this.type === ObjectsTableType.INVENTORY ) ? state.actionChart.fireseeds : 0;
+        const fireseeds = ( this.type === ObjectsTableType.INVENTORY ) ? state.actionChart.fireseeds : 0;
 
         for (let i = 0; i < objects.length; i++) {
 

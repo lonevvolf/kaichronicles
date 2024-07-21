@@ -36,7 +36,7 @@ export class Currency {
             currencyId = Currency.CROWN;
         }
 
-        let exchange = Currency.EXCHANGES[ currencyId ];
+        let exchange = <number>Currency.EXCHANGES[ currencyId ];
         if ( !exchange ) {
             mechanicsEngine.debugWarning( "Wrong currency: " + currencyId );
             exchange = 1;
