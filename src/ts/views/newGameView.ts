@@ -22,12 +22,12 @@ export const newGameView = {
                 alert(translations.text("youMustAgree"));
                 return;
             }
-            newGameController.startNewGame(<number> $("#newgame-book").val());
+            newGameController.startNewGame(parseInt(<string>$("#newgame-book").val()));
         });
 
         // Book change
         $("#newgame-book").on("change", () => {
-            newGameController.selectedBookChanged(<number> $("#newgame-book").val());
+            newGameController.selectedBookChanged(parseInt(<string>$("#newgame-book").val()));
         });
         
         // Random table change

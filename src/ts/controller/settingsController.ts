@@ -60,7 +60,7 @@ export const settingsController = {
      * Return a default save game file name
      */
     defaultSaveGameName() {
-        return settingsController.getDateForFileNames() + "-book-" + state.book.bookNumber + "-savegame.json";
+        return settingsController.getDateForFileNames() + "-book-" + state.book.bookNumber.toFixed() + "-savegame.json";
     },
 
     /**
