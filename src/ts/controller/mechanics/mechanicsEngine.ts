@@ -917,9 +917,7 @@ export const mechanicsEngine = {
 
         // Check LW combat ABSOLUTE skill modifier for this section:
         const combatSkillModifier = mechanicsEngine.getIntProperty($rule, "combatSkillModifier", true);
-        if (combatSkillModifier !== null) {
-            combat.combatModifier = combatSkillModifier;
-        }
+        combat.combatModifier = combatSkillModifier !== null ? combatSkillModifier : 0;
 
         // Check LW combat skill modifier INCREMENT
         const combatSkillModifierIncrement = mechanicsEngine.getIntProperty($rule, "combatSkillModifierIncrement", true);
