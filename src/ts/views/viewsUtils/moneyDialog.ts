@@ -1,22 +1,29 @@
-import { state, translations, mechanicsEngine, actionChartController, Item } from "../..";
+import { state, translations, mechanicsEngine, actionChartController, Item, Currency } from "../..";
 
 /**
  * Modal dialog to pick / drop money.
  */
 export class MoneyDialog {
 
-    public static show(drop: boolean) {
+    public static show(drop: boolean, currencyId: Currency = Currency.CROWN) {
 
-        MoneyDialog.setupDialog();
+        MoneyDialog.setupDialog(currencyId);
 
         // Update bounds and initial value
         if (drop) {
-            $("#mechanics-moneyamount")
+            if (currencyId === Currency.NOBLE) {
+                $("#mechanics-moneyamount")
+                .attr("max", state.actionChart.beltPouchNobles)
+                .val("1");                
+            } else {
+                $("#mechanics-moneyamount")
                 .attr("max", state.actionChart.beltPouch)
-                .val("1");
+                .val("1");                   
+            }
+
             $("#mechanics-moneyamount").attr("data-ismoneypicker", "true");
         } else {
-            const sectionMoney = state.sectionStates.getSectionState().getAvailableMoney();
+            const sectionMoney = state.sectionStates.getSectionState().getAvailableMoney(currencyId);
             $("#mechanics-moneyamount")
                 .attr("max", sectionMoney)
                 .val(sectionMoney);
@@ -37,28 +44,26 @@ export class MoneyDialog {
             .modal("show");
     }
 
-    private static setupDialog() {
+    private static setupDialog(currencyId : Currency = Currency.CROWN) {
 
         // If the dialog HTML do not exists, add it:
-        if ($("#mechanics-moneydialog").length > 0) {
-            return;
+        if ($("#mechanics-moneydialog").length === 0) {
+            const $moneyDlg = mechanicsEngine.getMechanicsUI("mechanics-moneydialog");
+            $("body").append($moneyDlg);
+
+            // Bind money picker events
+            $("#mechanics-moneyamount").bindNumberEvents();
         }
 
-        const $moneyDlg = mechanicsEngine.getMechanicsUI("mechanics-moneydialog");
-        $("body").append($moneyDlg);
-
-        // Bind money picker events
-        $("#mechanics-moneyamount").bindNumberEvents();
-
         // Bind drop money confirmation button
-        $("#mechanics-moneyapply").on("click", (e: JQuery.TriggeredEvent) => {
+        $("#mechanics-moneyapply").one("click", (e: JQuery.TriggeredEvent) => {
             e.preventDefault();
-            MoneyDialog.onDialogConfirmed();
+            MoneyDialog.onDialogConfirmed(currencyId);
         });
 
     }
 
-    private static onDialogConfirmed() {
+    private static onDialogConfirmed(currencyId : Currency = Currency.CROWN) {
 
         const $moneyAmount = $("#mechanics-moneyamount");
         if (!$moneyAmount.isValid()) {
@@ -68,12 +73,16 @@ export class MoneyDialog {
         const moneyAmount = $moneyAmount.getNumber();
         if ($("#mechanics-moneydialog").prop("data-isdrop")) {
             // Drop
-            actionChartController.increaseMoney(- moneyAmount, true);
+            actionChartController.increaseMoney(-moneyAmount, true, false, currencyId);
         } else {
             // Pick
-            const countPicked = actionChartController.increaseMoney(moneyAmount);
+            const countPicked = actionChartController.increaseMoney(moneyAmount, false, false, currencyId);
             const sectionState = state.sectionStates.getSectionState();
-            sectionState.removeObjectFromSection(Item.MONEY, 0, countPicked);
+            if (currencyId === Currency.NOBLE) {
+                sectionState.removeObjectFromSection(Item.NOBLE, 0, countPicked);
+            } else {
+                sectionState.removeObjectFromSection(Item.MONEY, 0, countPicked);
+            }
             // Re-render section
             mechanicsEngine.showAvailableObjects();
         }

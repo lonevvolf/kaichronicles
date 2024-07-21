@@ -1,4 +1,4 @@
-import { Combat, Mechanics, Item, state, ActionChart, ActionChartItem, mechanicsEngine } from "..";
+import { Combat, Mechanics, Item, state, ActionChart, ActionChartItem, mechanicsEngine, Currency } from "..";
 
 /**
  * Stores information about an object available to pick on a section
@@ -10,6 +10,9 @@ export interface SectionItem {
     /** The object price. If its zero or null, the object is free */
     price: number;
 
+    /** The object price currency. If it's null, then the price is in Gold Crowns */
+    currency: Currency
+    
     /** True if there are an infinite number of this kind of object on the section */
     unlimited: boolean;
 
@@ -112,8 +115,8 @@ export class SectionState {
         const items: Item[] = [];
         for ( const sectionItem of this.objects) {
 
-            if ( sectionItem.id === Item.MONEY ) {
-                // Money if not really an object. It's stored like one for mechanics needs
+            if ( sectionItem.id === Item.MONEY || sectionItem.id === Item.NOBLE ) {
+                // Money is not really an object. It's stored like one for mechanics needs
                 continue;
             }
 
@@ -280,16 +283,17 @@ export class SectionState {
      * @param objectId Object id to add
      * @param price The object price. 0 === no buy (free)
      * @param unlimited True if there are an infinite number of this kind of object on the section
-     * @param count Only applies if id = Item.QUIVER (number of arrows on the quiver), Item.ARROW (number of arrows), or Item.MONEY
-     * (number of Gold Crowns), or if price is is not zero (-> you buy "count" items for one "price")
+     * @param count Only applies if id = Item.QUIVER (number of arrows on the quiver), Item.ARROW (number of arrows), or Item.MONEY/NOBLE
+     * (number of Gold Crowns/Nobles), or if price is is not zero (-> you buy "count" items for one "price")
      * @param useOnSection The object is allowed to be used on the section (not picked object)?
-     * @param usageCount Number of remaining object uses. If no specified or < 0, the default Item usageCount will be used
+     * @param usageCount Number of remaining object uses. If not specified or < 0, the default Item usageCount will be used
+     * @param currency The currency of the price. If not specified, currency is Gold Crowns
      */
     public addObjectToSection(objectId: string , price: number = 0, unlimited: boolean = false, count: number = 0 ,
-                              useOnSection: boolean = false, usageCount: number = -1) {
+                              useOnSection: boolean = false, usageCount: number = -1, currency: Currency = Currency.CROWN) {
 
         // Special cases:
-        if ( objectId === Item.MONEY ) {
+        if ( objectId === Item.MONEY || objectId === Item.NOBLE ) {
             // Try to increase the current money amount / arrows on the section:
             const moneyIndex = this.getObjectIndex(objectId);
             if (moneyIndex >= 0) {
@@ -312,8 +316,9 @@ export class SectionState {
         this.objects.push({
             id: objectId,
             price,
+            currency: currency,
             unlimited,
-            count: (objectId === Item.QUIVER || objectId === Item.ARROW || objectId === Item.MONEY || objectId === Item.FIRESEED || price > 0 ? count : 0),
+            count: (objectId === Item.QUIVER || objectId === Item.ARROW || objectId === Item.MONEY || objectId === Item.NOBLE|| objectId === Item.FIRESEED || price > 0 ? count : 0),
             useOnSection,
             usageCount,
             dessiStoneBonus: false
@@ -340,7 +345,7 @@ export class SectionState {
 
         if (index >= 0 && index < this.objects.length) {
             let removeObject = true;
-            if ( ( objectId === Item.MONEY || objectId === Item.ARROW || objectId === Item.FIRESEED) && count >= 0 && this.objects[index].count > count ) {
+            if ( ( objectId === Item.MONEY || objectId === Item.NOBLE || objectId === Item.ARROW || objectId === Item.FIRESEED) && count >= 0 && this.objects[index].count > count ) {
                 // Still money / arrows / fireseeds available:
                 this.objects[index].count -= count;
                 removeObject = false;
@@ -384,12 +389,16 @@ export class SectionState {
     /**
      * Get the available amount of money on the section
      */
-    public getAvailableMoney(): number {
+    public getAvailableMoney(currencyId : Currency = null): number {
         let moneyCount = 0;
         for ( const o of this.objects ) {
-            if (o.id === Item.MONEY) {
+            if ((currencyId === null || currencyId === Currency.CROWN) && o.id === Item.MONEY) {
                 moneyCount += o.count;
             }
+            if ((currencyId === null || currencyId === Currency.NOBLE) && o.id === Item.NOBLE) {
+                moneyCount += Currency.toCurrency(o.count, Currency.NOBLE, Currency.CROWN);
+            }
+
         }
         return moneyCount;
     }

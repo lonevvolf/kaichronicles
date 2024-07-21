@@ -50,6 +50,9 @@ export class InventoryState {
                     objects.addItem(w.clone());
                 }
             }
+        } else if (objectTypes === "backpackitems") {
+            objects.backpackItems = actionChart.backpackItems.deepClone();
+            objects.meals = actionChart.meals;
         } else {
             const msg = "Wrong objectTypes: " + objectTypes;
             mechanicsEngine.debugWarning(msg);

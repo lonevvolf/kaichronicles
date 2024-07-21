@@ -273,7 +273,7 @@ export const mechanicsEngine = {
         // TODO: Both do the same
 
         let reRender = false;
-        mechanicsEngine.enumerateSectionRules($sectionRules[0], (rule) => {
+        mechanicsEngine.enumerateSectionRules($sectionRules[0], (rule: Element) => {
             if (rule.nodeName === "onInventoryEvent") {
                 // onInventoryEvent rule don't affect, has been executed
                 return "ignoreDescendants";
@@ -303,7 +303,7 @@ export const mechanicsEngine = {
 
                 const expression: string = $rule.attr("expression");
                 if (expression) {
-                    if (o.id === Item.MONEY && (expression.indexOf("[MONEY]") >= 0 || expression.indexOf("[MONEY-ON-SECTION]") >= 0)) {
+                    if ((o.id === Item.MONEY || o.id === Item.NOBLE) && (expression.indexOf("[MONEY]") >= 0 || expression.indexOf("[MONEY-ON-SECTION]") >= 0)) {
                         // Section should be re-rendered
                         reRender = true;
                         return "finish";
@@ -483,11 +483,14 @@ export const mechanicsEngine = {
         } else if (cls === Item.ARROW) {
             actionChartController.increaseArrows(count);
         } else if (cls === Item.MONEY) {
-            // TODO: We should store the amount of each currency. Unsupported
-            // Exchange to Gold Crows
-            count = Currency.toGoldCrowns(count, $rule.attr("currency"));
+            // TODO: We should store the amount of each currency. Only supported for Nobles
+            // Otherwise, exchange to Gold Crowns
+            if ($rule.attr("currency") !== Currency.NOBLE) {
+                count = Currency.toCurrency(count, $rule.attr("currency"));
+            }
             const excessToKaiMonastry = mechanicsEngine.getBooleanProperty($rule, "excessToKaiMonastry", false);
-            actionChartController.increaseMoney(count, false, excessToKaiMonastry);
+            actionChartController.increaseMoney(count, false, excessToKaiMonastry, $rule.attr("currency"));
+            
         } else {
             mechanicsEngine.debugWarning("Pick rule with no objectId / class");
         }
@@ -773,8 +776,14 @@ export const mechanicsEngine = {
         // Object price (optional)
         const priceValue = $(rule).attr("price");
         let price: number = 0;
+        let currency: Currency = Currency.CROWN;
         if (priceValue) {
             price = ExpressionEvaluator.evalInteger(priceValue);
+
+            const currencyValue = $(rule).attr("currency");
+            if (currencyValue) {
+                currency = currencyValue;
+            }
         }
 
         // Unlimited number of this kind of object?
@@ -788,7 +797,7 @@ export const mechanicsEngine = {
         const useOnSection = ($(rule).attr("useOnSection") === "true");
 
         // Add the object to the available objects on the section
-        sectionState.addObjectToSection(objectId, price, unlimited, count, useOnSection);
+        sectionState.addObjectToSection(objectId, price, unlimited, count, useOnSection, -1, currency);
 
         sectionState.markRuleAsExecuted(rule);
     },
@@ -830,6 +839,7 @@ export const mechanicsEngine = {
         }
 
         const price = parseInt($rule.attr("price"), 10);
+        const currency = $rule.attr("currency");
 
         // Sell a specific item
         const objectId = $rule.attr("objectId");
@@ -840,6 +850,7 @@ export const mechanicsEngine = {
             sectionState.sellPrices.push({
                 id: objectId,
                 price,
+                currency: currency,
                 count: parseInt($rule.attr("count"), 10),
                 unlimited: false,
                 useOnSection: false,
@@ -867,16 +878,17 @@ export const mechanicsEngine = {
 
             for (const id of objectIds) {
                 const item = state.mechanics.getObject(objectId);
+                // TODO: Allow selling of multiples (ie. you have two Potions of Laumspur) and Meals
                 if (!except.includes(id)) {
                     sectionState.sellPrices.push({
                         id,
                         price,
+                        currency: currency,
                         count: 0,
                         unlimited: false,
                         useOnSection: false,
                         usageCount: item && item.usageCount ? item.usageCount : 1,
-                        dessiStoneBonus: false
-                    });
+                        dessiStoneBonus: false                    });
                     except.push(id); // Avoid duplicates
                 }
             }

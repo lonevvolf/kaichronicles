@@ -377,6 +377,17 @@
                 <xs:documentation>If it's set, the price to buy the object (not free)</xs:documentation>
             </xs:annotation>
         </xs:attribute>
+        <xs:attribute name="currency">
+            <xs:annotation>
+                <xs:documentation>If it's set, the currency of the price to buy the object. Default is Gold Crowns.</xs:documentation>                
+            </xs:annotation>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="crown" />
+                    <xs:enumeration value="noble" />
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
         <xs:attribute name="count" type="xs:nonNegativeInteger">
             <xs:annotation>
                 <xs:documentation>Number of available objects</xs:documentation>
@@ -563,16 +574,6 @@
                 <xs:documentation>If false (true by default), don't allows usage of potions prior the combat</xs:documentation>
             </xs:annotation>
         </xs:attribute>
-        <xs:attribute name="properties">
-            <xs:annotation>
-                <xs:documentation>Combat properties used by Kai Weapons to determine CS bonus</xs:documentation>
-            </xs:annotation>
-            <xs:simpleType>
-                <xs:restriction base="xs:string">
-                    <xs:pattern value = "(repitilian|undead|rock|day|night|magic|underwater|winged|underground|fire|\|)*"/>
-                </xs:restriction>
-            </xs:simpleType>
-        </xs:attribute>
     </xs:complexType>
 
     <xs:complexType name="afterCombats">
@@ -739,7 +740,7 @@
                 <xs:documentation>- allweapons: Drop all weapons (it does not drop special items weapons)</xs:documentation>
                 <xs:documentation>- allhandtohand: Drop all hand to hand weapons (it does not drop special items weapons)</xs:documentation>
                 <xs:documentation>- allweaponlike: Drop all weapons and special items weapons</xs:documentation>
-                <xs:documentation>- backpackcontent: Drop all backpack content, but not the backpack</xs:documentation>
+                <xs:documentation>- backpackcontent: Drop all backpack contents, but not the backpack</xs:documentation>
                 <xs:documentation>- currentweapon: Drop the current hand-to-hand weapon</xs:documentation>
                 <xs:documentation>- allspecial: Drop all the special items</xs:documentation>
                 <xs:documentation>- allmeals: Drop all meals</xs:documentation>
@@ -885,6 +886,17 @@
                 <xs:documentation>The money got by selling the object.</xs:documentation>
             </xs:annotation>
         </xs:attribute>
+        <xs:attribute name="currency">
+            <xs:annotation>
+                <xs:documentation>If it's set, the currency of the price to sell the object. Default is Gold Crowns.</xs:documentation>                
+            </xs:annotation>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="crown" />
+                    <xs:enumeration value="noble" />
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
         <xs:attribute name="count" type="xs:nonNegativeInteger">
             <xs:annotation>
                 <xs:documentation>Only applies if id = 'quiver' (number of arrows on the quiver) or id = 'money' (number of Gold Crowns)</xs:documentation>
@@ -907,7 +919,8 @@
                 <xs:documentation>- all: The backpack content, the backpack itself, special items, meals and money</xs:documentation>
                 <xs:documentation>- weaponlike: Weapons and weapon-like special items</xs:documentation>
                 <xs:documentation>- bow: Bow weapons</xs:documentation>
-                <xs:documentation>- allobjects: The backpack content, special items and meals</xs:documentation>
+                <xs:documentation>- backpackitems: The backpack contents</xs:documentation>
+                <xs:documentation>- allobjects: The backpack contents, special items and meals</xs:documentation>
             </xs:annotation>
             <xs:simpleType>
                 <xs:restriction base="xs:string">

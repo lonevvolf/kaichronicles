@@ -142,6 +142,7 @@ export class BookData {
 
     public downloadBookData() {
         const bookDir = BookData.TARGET_ROOT + "/" + this.bookNumber.toFixed();
+
         console.log("Re-creating directory " + bookDir);
         fs.removeSync( bookDir );
         fs.mkdirSync( bookDir );

@@ -1,4 +1,4 @@
-import { SectionItem, Item, ObjectsTableType, state, translations, routing, kaimonasteryController, MoneyDialog, actionChartController, mechanicsEngine, template } from "../..";
+import { SectionItem, Item, ObjectsTableType, state, translations, routing, kaimonasteryController, MoneyDialog, actionChartController, mechanicsEngine, template, Currency } from "../..";
 
 /**
  * Item on a objects table to render
@@ -94,13 +94,24 @@ export class ObjectsTableItem {
             name += " (" + this.objectInfo.count.toFixed() + " " + translations.text("goldCrowns") + ")";
         }
 
+        // Nobles amount
+        if ( this.objectInfo.id === Item.NOBLE && this.objectInfo.count ) {
+            name += " (" + this.objectInfo.count.toFixed() + " " + translations.text("nobles") + ")";
+
+        }
+
         // Buy / sell price
         if ( this.objectInfo.price ) {
-            name += " (" + this.objectInfo.price.toFixed() + " " + translations.text("goldCrowns") + ")";
+            const currency = this.objectInfo.currency;
+            let currencyText = translations.text("goldCrowns");
+            if (currency === Currency.NOBLE) {
+                currencyText = translations.text("nobles");
+            }
+            name += " (" + this.objectInfo.price.toFixed() + " " + currencyText + ")";
         }
 
         // Buy X objects for a given price
-        if ( this.objectInfo.id !== Item.MONEY && this.objectInfo.id !== Item.ARROW && this.objectInfo.id !== Item.QUIVER &&
+        if ( this.objectInfo.id !== Item.MONEY && this.objectInfo.id !== Item.NOBLE && this.objectInfo.id !== Item.ARROW && this.objectInfo.id !== Item.QUIVER &&
             this.objectInfo.price > 0 && this.objectInfo.count > 1 ) {
             name = this.objectInfo.count.toFixed() + " x " + name;
         }
@@ -158,7 +169,7 @@ export class ObjectsTableItem {
 
         let link = `<a href="#" data-objectId="${this.item.id}" data-index="${this.index}" class="equipment-op btn btn-default" `;
 
-        if ( this.item.id === Item.QUIVER || this.item.id === Item.ARROW || this.item.id === Item.MONEY || this.item.id === Item.FIRESEED ||
+        if ( this.item.id === Item.QUIVER || this.item.id === Item.ARROW || this.item.id === Item.MONEY || this.item.id === Item.NOBLE || this.item.id === Item.FIRESEED ||
             ( this.objectInfo.price > 0 && this.objectInfo.count > 0 ) ) {
             // Store the number of arrows on the quiver / gold crowns / number of items to buy by the given price
             link += 'data-count="' + this.objectInfo.count.toFixed() + '" ';
@@ -166,6 +177,10 @@ export class ObjectsTableItem {
 
         if ( this.objectInfo.price ) {
             link += 'data-price="' + this.objectInfo.price.toFixed() + '" ';
+        }
+
+        if ( this.objectInfo.currency) {
+            link += 'data-currency="' + this.objectInfo.currency.toString() + '" ';
         }
 
         if ( this.objectInfo.unlimited ) {
@@ -269,6 +284,7 @@ export class ObjectsTableItem {
         const objectInfo: SectionItem = {
             id : null,
             price : 0,
+            currency: Currency.CROWN,
             unlimited : false,
             count : 0,
             useOnSection : false,
@@ -284,6 +300,11 @@ export class ObjectsTableItem {
         const txtPrice: string = $link.attr("data-price");
         if ( txtPrice ) {
             objectInfo.price = parseInt( txtPrice, 10 );
+        }
+
+        const txtCurrency: string = $link.attr("data-currency");
+        if ( txtCurrency ) {
+            objectInfo.currency = txtCurrency;
         }
 
         if ( $link.attr( "data-unlimited" ) === "true" ) {
@@ -329,15 +350,20 @@ export class ObjectsTableItem {
     private get() {
 
         // Special case. On kai monastery, ask the money amount to pick
-        if ( this.objectInfo.id === Item.MONEY && routing.getControllerName() === kaimonasteryController.NAME ) {
-            MoneyDialog.show(false);
+        if ( (this.objectInfo.id === Item.MONEY || this.objectInfo.id === Item.NOBLE) && routing.getControllerName() === kaimonasteryController.NAME ) {
+            MoneyDialog.show(false, this.objectInfo.id === Item.NOBLE ? Currency.NOBLE : Currency.CROWN);
             return;
         }
 
         // Check if it's a buy
         if ( this.objectInfo.price ) {
-
-            if ( state.actionChart.beltPouch < this.objectInfo.price ) {
+            // If the currency is not in Crowns, we assume the seller only accepts the specific currency
+            if (this.objectInfo.currency === Currency.NOBLE) {
+                if ( state.actionChart.beltPouchNobles < this.objectInfo.price ) {
+                    alert( translations.text("noEnoughMoney") );
+                    return;
+                }
+            } else if ( Currency.toCurrency(state.actionChart.beltPouchNobles, Currency.NOBLE, Currency.CROWN) + state.actionChart.beltPouch < this.objectInfo.price ) {
                 alert( translations.text("noEnoughMoney") );
                 return;
             }
@@ -348,13 +374,17 @@ export class ObjectsTableItem {
                 return;
             }
 
-            if ( !confirm( translations.text("confirmBuy", [this.objectInfo.price] ) ) ) {
+            if ( this.objectInfo.currency === Currency.NOBLE) {
+                if ( !confirm( translations.text("confirmBuyNobles", [this.objectInfo.price] ) ) ) {
+                    return;
+                }
+            } else if ( !confirm( translations.text("confirmBuy", [this.objectInfo.price] ) ) ) {
                 return;
             }
         }
 
         let objectPicked: boolean;
-        if ( this.item.id === Item.MONEY || this.item.id === Item.ARROW ) {
+        if ( this.item.id === Item.MONEY || this.item.id === Item.NOBLE || this.item.id === Item.ARROW ) {
             // Not really an object
             objectPicked = true;
         } else {
@@ -373,7 +403,6 @@ export class ObjectsTableItem {
         }
 
         if ( objectPicked ) {
-
             let countPicked = this.objectInfo.count;
 
             if ( this.item.id === Item.QUIVER || this.item.id === Item.ARROW ) {
@@ -385,9 +414,9 @@ export class ObjectsTableItem {
                 }
             }
 
-            if ( this.item.id === Item.MONEY ) {
+            if ( this.item.id === Item.MONEY || this.item.id === Item.NOBLE ) {
                 // Pick the money
-                countPicked = actionChartController.increaseMoney( this.objectInfo.count );
+                countPicked = actionChartController.increaseMoney( this.objectInfo.count, false, false, this.item.id === Item.NOBLE ? Currency.NOBLE : Currency.CROWN );
             }
 
             if ( !this.objectInfo.unlimited ) {
@@ -397,8 +426,12 @@ export class ObjectsTableItem {
             }
 
             if ( this.objectInfo.price ) {
-                // Pay the price
-                actionChartController.increaseMoney( - this.objectInfo.price );
+                if (this.objectInfo.currency) {
+                    actionChartController.increaseMoney( -this.objectInfo.price, false, false, this.objectInfo.currency );
+                } else {
+                    // Pay the price
+                    actionChartController.increaseMoney( -this.objectInfo.price );
+                }
             }
 
             // Refresh the table of available objects
@@ -410,7 +443,11 @@ export class ObjectsTableItem {
 
     /** Sell object operation */
     private sell() {
-        if ( !confirm( translations.text( "confirmSell" , [ this.objectInfo.price ] ) ) ) {
+        const sellString = this.objectInfo.currency === Currency.NOBLE ? 
+            translations.text( "confirmSellNobles" , [ this.objectInfo.price ] ) :
+            translations.text( "confirmSell" , [ this.objectInfo.price ] );
+
+        if ( !confirm( sellString ) ) {
             return;
         }
 
@@ -420,7 +457,7 @@ export class ObjectsTableItem {
         } else {
             actionChartController.drop( this.item.id , false , true );
         }
-        actionChartController.increaseMoney( this.objectInfo.price );
+        actionChartController.increaseMoney( this.objectInfo.price, false, false, this.objectInfo.currency );
         mechanicsEngine.fireInventoryEvents(true, this.item);
     }
 

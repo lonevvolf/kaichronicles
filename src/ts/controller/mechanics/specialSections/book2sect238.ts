@@ -94,9 +94,9 @@ export const book2sect238 = {
             gameState.moneyWon += moneyInc;
             let msg = `${translations.text("randomTable")}: ${random}.`;
             if (moneyInc >= 0) {
-                msg += translations.text("msgGetMoney", [moneyInc]);
+                msg += translations.text("msgGetCrowns", [moneyInc]);
             } else {
-                msg += translations.text("msgDropMoney", [-moneyInc]);
+                msg += translations.text("msgDropCrowns", [-moneyInc]);
             }
             $("#mechanics-gameStatus").text(msg);
 

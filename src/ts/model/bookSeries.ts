@@ -1,4 +1,4 @@
-import { KaiDiscipline, MgnDiscipline, GndDiscipline, mechanicsEngine , Disciplines } from "..";
+import { KaiDiscipline, MgnDiscipline, GndDiscipline, mechanicsEngine , Disciplines, NewOrderDiscipline } from "..";
 
 /**
  * Book series identifier
@@ -52,7 +52,7 @@ export class BookSeries {
         new BookSeries(BookSeriesId.Kai, 1, 5, 5, KaiDiscipline.Weaponskill, 1, KaiDiscipline.Mindshield, 10, 20),
         new BookSeries(BookSeriesId.Magnakai, 6, 12, 3, MgnDiscipline.Weaponmastery, 3, MgnDiscipline.PsiScreen, 10, 20),
         new BookSeries(BookSeriesId.GrandMaster, 13, 20, 4, GndDiscipline.GrandWeaponmastery, 2, GndDiscipline.KaiScreen, 25, 30),
-        new BookSeries(BookSeriesId.NewOrder, 21, 21, 5, GndDiscipline.GrandWeaponmastery, 1, GndDiscipline.KaiScreen, 25, 30)
+        new BookSeries(BookSeriesId.NewOrder, 21, 22, 5, NewOrderDiscipline.GrandWeaponmastery, 1, NewOrderDiscipline.KaiScreen, 25, 30)
     ];
 
     private constructor(id: BookSeriesId, bookStart: number, bookEnd: number, initialNDisciplines: number,

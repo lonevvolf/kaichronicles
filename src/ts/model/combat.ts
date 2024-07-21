@@ -1,4 +1,4 @@
-import { CombatTurn, state, GndDiscipline, MgnDiscipline, Bonus, translations, randomTable, Item, COMBATTABLE_DEATH, actionChartController, BookSeriesId } from "..";
+import { CombatTurn, state, GndDiscipline, MgnDiscipline, Bonus, translations, randomTable, Item, COMBATTABLE_DEATH, actionChartController, BookSeriesId, NewOrderDiscipline } from "..";
 
 export class Combat {
 
@@ -39,7 +39,7 @@ export class Combat {
     public noKaiRay = false;
 
     /** The CS bonus to apply if the player has Mindblast discipline */
-    public mindblastBonus;
+    public mindblastBonus : number;
 
     /** The CS bonus to apply if the player has Psi-Surge discipline */
     public psiSurgeBonus: number;
@@ -438,10 +438,12 @@ export class Combat {
 
     /**
      * The applicable Surge discipline in this combat
-     * @returns The applicable Surge discipline (GndDiscipline.KaiSurge or MgnDiscipline.PsiSurge). null if no Surge is applicable
+     * @returns The applicable Surge discipline (NewOrderDiscipline.KaiSurge or GndDiscipline.KaiSurge or MgnDiscipline.PsiSurge). null if no Surge is applicable
      */
     public getSurgeDiscipline(): string {
-        if (state.actionChart.hasGndDiscipline(GndDiscipline.KaiSurge) && !this.noKaiSurge) {
+        if (state.actionChart.hasNewOrderDiscipline(NewOrderDiscipline.KaiSurge) && !this.noKaiSurge) {
+            return NewOrderDiscipline.KaiSurge;
+        } else if (state.actionChart.hasGndDiscipline(GndDiscipline.KaiSurge) && !this.noKaiSurge) {
             return GndDiscipline.KaiSurge;
         } else if (state.actionChart.hasMgnDiscipline(MgnDiscipline.PsiSurge) && !this.noPsiSurge) {
             return MgnDiscipline.PsiSurge;
@@ -501,7 +503,7 @@ export class Combat {
      * @returns Minimum EP to use discipline
      */
     public static minimumEPForSurge(surgeDisciplineId: string): number {
-        if (surgeDisciplineId === GndDiscipline.KaiSurge) {
+        if (surgeDisciplineId === GndDiscipline.KaiSurge || surgeDisciplineId === NewOrderDiscipline.KaiSurge) {
             return 6;
         } else {
             // MgnDiscipline.PsiSurge
@@ -524,6 +526,11 @@ export class Combat {
     public static defaultSurgeBonus(surgeDisciplineId: string): number {
         if (surgeDisciplineId === GndDiscipline.KaiSurge) {
             return +8;
+        } else if (surgeDisciplineId === NewOrderDiscipline.KaiSurge) { 
+            return +4;
+        } else if (surgeDisciplineId === MgnDiscipline.PsiSurge && state.book.getBookSeries().id === BookSeriesId.NewOrder) { 
+            // New Order does not grant any default bonus unless the player takes Kai Surge
+            return 0;
         } else {
             // MgnDiscipline.PsiSurge
             /*
@@ -547,7 +554,8 @@ export class Combat {
      * @returns Default +CS bonus
      */
     public static defaultMindblastBonus(): number {
-        if (state.actionChart.hasGndDiscipline(GndDiscipline.KaiSurge)) {
+        if (state.actionChart.hasGndDiscipline(GndDiscipline.KaiSurge)
+            || state.actionChart.hasNewOrderDiscipline(NewOrderDiscipline.KaiSurge)) {
             return +4;
         } else if (state.actionChart.hasMgnDiscipline(MgnDiscipline.PsiSurge) && state.actionChart.getDisciplines(BookSeriesId.Magnakai).length >= 9) {
             // See defaultPsiSurgeBonus comment

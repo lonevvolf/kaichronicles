@@ -1,4 +1,4 @@
-import { randomMechanics, state, Item, numberPickerMechanics, mechanicsEngine } from "..";
+import { randomMechanics, state, Item, numberPickerMechanics, mechanicsEngine, Currency } from "..";
 
 /**
  * Evaluation of mechanics expressions
@@ -29,9 +29,9 @@ export class ExpressionEvaluator {
             return sectionState.getLastRandomCombatTurn();
         },
 
-        // Money on the belt pouch
+        // Total money on the belt pouches (in Crowns)
         "[MONEY]"() {
-            return state.actionChart.beltPouch;
+            return Currency.toCurrency(state.actionChart.beltPouchNobles, Currency.NOBLE, Currency.CROWN) + state.actionChart.beltPouch;
         },
 
         // Money available on the section

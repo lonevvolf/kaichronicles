@@ -1,4 +1,4 @@
-import { mechanicsEngine } from "../..";
+import { BookSeriesId, mechanicsEngine } from "../..";
 
 /**
  * Translations table
@@ -19,6 +19,7 @@ export class Translations {
         "noneMasculine" : "None",
         "disciplineDescription" : "Discipline description",
         "goldCrowns" : "Gold Crowns",
+        "nobles" : "Nobles",
         "arrows" : "Arrows",
         "current" : "Current",
         "backpackLost" : "You have lost your backpack",
@@ -29,17 +30,21 @@ export class Translations {
         "setCurrentWeapon" : "Set as current weapon",
         "dropObject" : "Drop object",
         "confirmSell" : "Are you sure you want to sell the object for {0} Gold Crowns?",
+        "confirmSellNobles" : "Are you sure you want to sell the object for {0} Nobles?",
         "confirmUse" : 'Are you sure you want to use "{0}"?',
         "confirmDrop" : 'Are you sure you want to drop "{0}"?',
         "noEnoughMoney" : "You don't have enough money",
         "confirmBuy" : "Are you sure you want to buy the object for {0} Gold Crowns?",
+        "confirmBuyNobles" : "Are you sure you want to buy the object for {0} Nobles?",
         "msgGetObject" : 'You get "{0}"',
         "msgDropObject" : 'You drop "{0}"',
         "msgGetMeal" : "You get {0} meals",
         "msgDropMeal" : "You drop {0} meals",
-        "msgGetMoney" : "You get {0} Gold Crowns",
+        "msgGetCrowns" : "You get {0} Gold Crowns",
+        "msgGetNobles" : "You get {0} Nobles",
         "msgGetArrows" : "You get {0} Arrows",
-        "msgDropMoney" : "You lost {0} Gold Crowns",
+        "msgDropCrowns" : "You lost {0} Gold Crowns",
+        "msgDropNobles" : "You lost {0} Nobles",
         "msgDropArrows" : "You lost {0} Arrows",
         "msgEndurance" : "{0} Endurance Points",
         "msgCombatSkill" : "{0} Combat Skill",
@@ -187,7 +192,7 @@ export class Translations {
      * should be returned
      */
     public translateView( view: HTMLElement | JQuery<HTMLElement> , doNotClone: boolean = false ): JQuery<HTMLElement> {
-        let $clonedView;
+        let $clonedView : JQuery<HTMLElement>;
         if ( doNotClone ) {
             $clonedView = $(view);
         } else {
@@ -221,7 +226,7 @@ export class Translations {
 
     /**
      * Get a translated message
-     * @param {string} textId The text it to get
+     * @param {string} textId The text id to get
      * @param {Array<object>} replacements Replacements to do on the message. It can be null
      * @returns {string} The text
      */
@@ -241,6 +246,7 @@ export class Translations {
                     text = text.replaceAll( "{" + i.toFixed() + "}" , replacements[i].toString() );
                 }
             }
+
             return text;
         } catch (e) {
             mechanicsEngine.debugWarning(e);

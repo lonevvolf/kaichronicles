@@ -34,6 +34,7 @@ export class Item {
 
     // Object ids
     public static readonly MONEY = "money";
+    public static readonly NOBLE = "noble";
     public static readonly QUIVER = "quiver";
     public static readonly ARROW = "arrow";
     public static readonly FIRESEED = "fireseed";
