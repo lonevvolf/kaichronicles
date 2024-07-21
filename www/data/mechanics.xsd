@@ -12,6 +12,7 @@
             <xs:enumeration value="crown" />
             <xs:enumeration value="lune" />
             <xs:enumeration value="kika" />
+            <xs:enumeration value="noble" />
         </xs:restriction>
     </xs:simpleType>
 
@@ -927,6 +928,7 @@
                     <xs:enumeration value="all" />
                     <xs:enumeration value="weaponlike" />
                     <xs:enumeration value="bow" />
+                    <xs:enumeration value="backpackitems" />
                     <xs:enumeration value="allobjects" />
                 </xs:restriction>
             </xs:simpleType>

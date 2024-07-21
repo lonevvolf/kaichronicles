@@ -140,4 +140,5 @@
  - Book 20: Fix incorrect section name (199 -> sect199)
 
  1.17 (*Thanks to lonevvolf for the reports/fixes/book 22*)
+ - Book 22 available.
  - Fix combat ratio increasing when going back and forth in action chart if combat has combatSkillModifierIncrement
