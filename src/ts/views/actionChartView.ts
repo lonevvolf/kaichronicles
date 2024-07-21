@@ -165,7 +165,7 @@ export const actionChartView = {
                     "</small></i></td></tr>" );
             }
             // Bind help button events
-            $displines.find("button").on("click", function(e) {
+            $displines.find("button").on("click", function() {
                 $(this).parent().find("i").toggle();
             });
         }
@@ -219,12 +219,12 @@ export const actionChartView = {
         $("#achart-cs-bonuses").text(actionChartController.getBonusesText( state.actionChart.getCurrentCombatSkillBonuses()));
 
         // Endurance
-        let txtEndurance = txtCurrent + state.actionChart.currentEndurance;
+        let txtEndurance = txtCurrent + state.actionChart.currentEndurance.toFixed();
         const max = state.actionChart.getMaxEndurance();
         if ( max !== state.actionChart.endurance ) {
-            txtEndurance += " / Max.: " + max;
+            txtEndurance += " / Max.: " + max.toFixed();
         }
-        txtEndurance += " / Original: " + state.actionChart.endurance;
+        txtEndurance += " / Original: " + state.actionChart.endurance.toFixed();
 
         $("#achart-endurance").val(txtEndurance);
         $("#achart-endurance-bonuses").text(actionChartController.getBonusesText( state.actionChart.getEnduranceBonuses()));

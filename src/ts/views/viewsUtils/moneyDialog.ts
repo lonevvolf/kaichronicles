@@ -7,7 +7,7 @@ export class MoneyDialog {
 
     public static show(drop: boolean) {
 
-        MoneyDialog.setupDialog(drop);
+        MoneyDialog.setupDialog();
 
         // Update bounds and initial value
         if (drop) {
@@ -37,7 +37,7 @@ export class MoneyDialog {
             .modal("show");
     }
 
-    private static setupDialog(drop: boolean) {
+    private static setupDialog() {
 
         // If the dialog HTML do not exists, add it:
         if ($("#mechanics-moneydialog").length > 0) {

@@ -60,7 +60,7 @@ export class App {
         };
 
         // First, load the views
-        views.setup()
+        void views.setup()
             .then( () => {
                 try {
                     console.log("Real setup started");

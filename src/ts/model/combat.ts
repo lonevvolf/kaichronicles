@@ -283,7 +283,7 @@ export class Combat {
         return dfd.promise();
     }
 
-    public static applyLoss(currentEndurance: number, loss: any): number {
+    public static applyLoss(currentEndurance: number, loss: typeof COMBATTABLE_DEATH|number): number {
         if (loss === COMBATTABLE_DEATH) {
             return 0;
         } else {

@@ -211,7 +211,7 @@ export class Book {
      * @returns The download promise. The promise text is the author XML bio, fixed
      */
     private downloadAuthorInfo( authorId: string ): JQueryXHR {
-        const authorFileUrl = Book.getBaseUrl() + this.bookNumber + "/" + authorId + ".inc";
+        const authorFileUrl = Book.getBaseUrl() + this.bookNumber.toFixed() + "/" + authorId + ".inc";
         return $.ajax({
             url: authorFileUrl,
             dataType: "text"
@@ -240,7 +240,7 @@ export class Book {
      * Returns the book XML source URL
      */
     public getBookXmlURL() {
-        return Book.getBaseUrl() + this.bookNumber + "/" + this.getProjectAonBookCode() +
+        return Book.getBaseUrl() + this.bookNumber.toFixed() + "/" + this.getProjectAonBookCode() +
             ".xml";
     }
 
@@ -252,7 +252,7 @@ export class Book {
      * @returns The image URL, relative to application root
      */
     public getIllustrationURL(fileName: string): string {
-        const illUrl = Book.getBaseUrl() + this.bookNumber + "/ill/" +
+        const illUrl = Book.getBaseUrl() + this.bookNumber.toFixed() + "/ill/" +
             fileName;
         // console.log('Image URL: ' + illUrl);
         return illUrl;
@@ -300,7 +300,7 @@ export class Book {
             // eslint-disable-next-line @typescript-eslint/no-this-alias
             const self = this;
             $(this.bookXml).find('section[id=discplnz] > data section').not('#mksumary').not('#nodispln')
-            .each( function(disciplineSection) {
+            .each( function() {
 
                 const $node = $(this);
 
@@ -385,7 +385,7 @@ export class Book {
 
         // Get the title
         let title = $(this.bookXml)
-            .find('section[id="levels"] > data > ol > li:eq(' + (nDisciplines - 1) + ")")
+            .find('section[id="levels"] > data > ol > li:eq(' + (nDisciplines - 1).toFixed() + ")")
             .text();
         if ( !title ) {
             title = "Unknown";
@@ -426,7 +426,7 @@ export class Book {
      * Get the book cover image URL
      */
     public getCoverURL(): string {
-        return Book.getBaseUrl() + this.bookNumber + "/cover.jpg";
+        return Book.getBaseUrl() + this.bookNumber.toFixed() + "/cover.jpg";
     }
 
     /**

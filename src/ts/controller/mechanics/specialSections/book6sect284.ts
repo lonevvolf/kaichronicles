@@ -65,8 +65,8 @@ export const book6sect284 = {
         $betsPlaceholder.empty();
         let html = "";
         for ( const bet of book6sect284.getBetsState() ) {
-            html += translations.text( "number" , [1] ) + ": " + bet[1] +
-            ", " + translations.text( "number" , [2] ) + ": " + bet[2] + " + 3 = " + ( bet[2] + 3 ) + "<br/>";
+            html += translations.text( "number" , [1] ) + ": " + bet[1].toFixed() +
+            ", " + translations.text( "number" , [2] ) + ": " + bet[2].toFixed() + " + 3 = " + ( bet[2] + 3 ).toFixed() + "<br/>";
         }
         $betsPlaceholder.html( html );
     },

@@ -909,7 +909,7 @@ export const mechanicsEngine = {
         } else {
             if (combatIndex >= sectionState.combats.length) {
                 mechanicsEngine.debugWarning('Rule "combat": Combat with index ' +
-                    combatIndex + " not found");
+                    combatIndex.toFixed() + " not found");
                 return;
             }
             combat = sectionState.combats[combatIndex];

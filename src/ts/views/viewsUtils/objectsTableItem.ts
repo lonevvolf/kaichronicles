@@ -75,34 +75,34 @@ export class ObjectsTableItem {
             const count = ( this.objectInfo.count ? this.objectInfo.count : 0 );
             // In INVENTORY always show "0 arrows", but not in SELL or AVAILABLE (ugly)
             if ( count > 0 || this.type === ObjectsTableType.INVENTORY ) {
-                name += " (" + count + " " + translations.text("arrows") + ")";
+                name += " (" + count.toFixed() + " " + translations.text("arrows") + ")";
             }
         }
 
         // Arrow amount
         if ( this.objectInfo.id === Item.ARROW && this.objectInfo.count ) {
-            name = this.objectInfo.count + " " + name;
+            name = this.objectInfo.count.toFixed() + " " + name;
         }
 
         // Fireseed amount
         if ( this.objectInfo.id === Item.FIRESEED ) {
-            name += " (" + this.objectInfo.count + ")";
+            name += " (" + this.objectInfo.count.toFixed() + ")";
         }
         
         // Money amount
         if ( this.objectInfo.id === Item.MONEY && this.objectInfo.count ) {
-            name += " (" + this.objectInfo.count + " " + translations.text("goldCrowns") + ")";
+            name += " (" + this.objectInfo.count.toFixed() + " " + translations.text("goldCrowns") + ")";
         }
 
         // Buy / sell price
         if ( this.objectInfo.price ) {
-            name += " (" + this.objectInfo.price + " " + translations.text("goldCrowns") + ")";
+            name += " (" + this.objectInfo.price.toFixed() + " " + translations.text("goldCrowns") + ")";
         }
 
         // Buy X objects for a given price
         if ( this.objectInfo.id !== Item.MONEY && this.objectInfo.id !== Item.ARROW && this.objectInfo.id !== Item.QUIVER &&
             this.objectInfo.price > 0 && this.objectInfo.count > 1 ) {
-            name = this.objectInfo.count + " x " + name;
+            name = this.objectInfo.count.toFixed() + " x " + name;
         }
 
         // Object Image
@@ -161,11 +161,11 @@ export class ObjectsTableItem {
         if ( this.item.id === Item.QUIVER || this.item.id === Item.ARROW || this.item.id === Item.MONEY || this.item.id === Item.FIRESEED ||
             ( this.objectInfo.price > 0 && this.objectInfo.count > 0 ) ) {
             // Store the number of arrows on the quiver / gold crowns / number of items to buy by the given price
-            link += 'data-count="' + this.objectInfo.count + '" ';
+            link += 'data-count="' + this.objectInfo.count.toFixed() + '" ';
         }
 
         if ( this.objectInfo.price ) {
-            link += 'data-price="' + this.objectInfo.price + '" ';
+            link += 'data-price="' + this.objectInfo.price.toFixed() + '" ';
         }
 
         if ( this.objectInfo.unlimited ) {

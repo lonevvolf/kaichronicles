@@ -271,7 +271,7 @@ export const template = {
             html += "<tr>";
             for (let column = 0; column < 10; column++) {
                 const num = numbers[ row * 10 + column ];
-                html += '<td data-number="' + num + '">' + num + "</td>";
+                html += '<td data-number="' + num.toFixed() + '">' + num.toFixed() + "</td>";
             }
             html += "</tr>";
         }

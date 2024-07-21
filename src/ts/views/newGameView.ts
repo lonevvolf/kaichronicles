@@ -11,9 +11,7 @@ export const newGameView = {
         let html = "";
         for ( let i = 1; i <= projectAon.supportedBooks.length; i++) {
             const title = projectAon.getBookTitle( i )
-            html += '<option value="' + i + '" >' +
-                i + ". " +
-                title + "</option>";
+            html += '<option value="' + i.toFixed() + '" >' + i.toFixed() + ". " + title + "</option>";
         }
         $("#newgame-book").html(html);
 
