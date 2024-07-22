@@ -1021,15 +1021,17 @@ export class ActionChart {
             }
         }
 
-        // Grand Master level bonus
-        const startingSkillsCount = state.book.getBookSeries().id === BookSeriesId.NewOrder ? 5 : 4;
+        // Grand Master / New Order level bonus
+        if (state.book.getBookSeries().id === BookSeriesId.GrandMaster || state.book.getBookSeries().id === BookSeriesId.NewOrder) {
+            const startingSkillsCount = state.book.getBookSeries().id === BookSeriesId.NewOrder ? 5 : 4;
         
-        const nGndDisciplines = this.getDisciplines(state.book.getBookSeries().id).length;
-        if (nGndDisciplines > startingSkillsCount) {
-            bonuses.push({
-                concept: translations.text("kaiLevel"),
-                increment: (nGndDisciplines - startingSkillsCount),
-            });
+            const nGndDisciplines = this.getDisciplines(state.book.getBookSeries().id).length;
+            if (nGndDisciplines > startingSkillsCount) {
+                bonuses.push({
+                    concept: translations.text("kaiLevel"),
+                    increment: (nGndDisciplines - startingSkillsCount),
+                });
+            }
         }
 
         return bonuses;
@@ -1087,15 +1089,17 @@ export class ActionChart {
             bonuses.push(c);
         }
 
-        // Grand Master level bonus
-        const startingSkillsCount = state.book.getBookSeries().id === BookSeriesId.NewOrder ? 5 : 4;
+        // Grand Master / New Order level bonus
+        if (state.book.getBookSeries().id === BookSeriesId.GrandMaster || state.book.getBookSeries().id === BookSeriesId.NewOrder) {
+            const startingSkillsCount = state.book.getBookSeries().id === BookSeriesId.NewOrder ? 5 : 4;
 
-        const nGndDisciplines = this.getDisciplines(state.book.getBookSeries().id).length;
-        if (nGndDisciplines > startingSkillsCount) {
-            bonuses.push({
-                concept: translations.text("kaiLevel"),
-                increment: (nGndDisciplines - startingSkillsCount) * 2,
-            });
+            const nGndDisciplines = this.getDisciplines(state.book.getBookSeries().id).length;
+            if (nGndDisciplines > startingSkillsCount) {
+                bonuses.push({
+                    concept: translations.text("kaiLevel"),
+                    increment: (nGndDisciplines - startingSkillsCount) * 2,
+                });
+            }
         }
 
         return bonuses;
