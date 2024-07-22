@@ -123,13 +123,13 @@ export function declareJqueryNumberFunctions() {
                 return false;
             }
 
-            // if ( this.attr("data-ismoneypicker") === "true" ) {
-            //     // Check if you have enough money
-            //     if ( state.actionChart.beltPouch < num) {
-            //         alert( translations.text( "noEnoughMoney" ) );
-            //         return false;
-            //     }
-            // }
+            if ( this.attr("data-ismoneypicker") === "true" ) {
+                // Check if you have enough money
+                if ( state.actionChart.getBeltPouchUsedAmount() < num) {
+                    alert( translations.text( "noEnoughMoney" ) );
+                    return false;
+                }
+            }
 
             return true;
         };
