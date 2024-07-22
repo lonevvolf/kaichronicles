@@ -20,7 +20,7 @@ export const book6sect26 = {
 
     /** Replacement for combat turns generation */
     nextTurnAsync(): JQueryPromise<CombatTurn> {
-        return void Combat.prototype.nextTurnAsync.call(this)
+        return Combat.prototype.nextTurnAsync.call(this)
         .then((turn: CombatTurn) => {
             // Do not remove EP to the player. Do a backup of the real loss at turn.loneWolfExtra
             turn.loneWolfExtra = turn.loneWolf;
