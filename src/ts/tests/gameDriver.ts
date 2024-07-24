@@ -3,6 +3,7 @@ import { state, Mechanics, BookSectionStates, Book, declareCommonHelpers, BookSe
 import { Type, Level } from "selenium-webdriver/lib/logging";
 import { readFileSync } from "fs-extra";
 import { ActionChart } from "../model/actionChart";
+import { Options } from "selenium-webdriver/chrome";
 
 declare global {
     namespace NodeJS {
@@ -36,7 +37,11 @@ export class GameDriver {
     public async setupBrowser() {
         // Setup Selenium
         // console.log("Setup Selenium");
-        this.driver = await new Builder().forBrowser(Browser.CHROME).build();
+
+        this.driver = await new Builder()
+            .forBrowser(Browser.CHROME)
+            .setChromeOptions(new Options().addArguments('--headless=new'))
+            .build();
         // Maximize to avoid links get shadows by toastr
         await this.driver.manage().window().maximize();
     }
