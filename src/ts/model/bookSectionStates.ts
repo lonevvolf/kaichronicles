@@ -27,7 +27,7 @@ export class BookSectionStates {
      */
     public otherStates = {
         book6sect26TargetPoints: <number>null,
-        book6sect284: <number[][]>[[]],
+        book6sect284: <number[][]>null,
         book6sect340: [-1 , -1 , -1],
         book9sect91: <string>null,
     };
