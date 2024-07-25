@@ -7,6 +7,15 @@ import { state, Book, projectAon, CombatMechanics } from "../..";
 import { GameDriver } from "../gameDriver";
 import { By } from "selenium-webdriver";
 
+interface SectionConf {
+    [bookId: number]: {
+        [sectionId: string]: {
+            money ?: number,
+            equipment ?: string[]
+        }
+    }
+}
+
 GameDriver.globalSetup();
 
 // To debug I add "sleeps", so increase the timeout
@@ -16,7 +25,7 @@ jest.setTimeout(30000);
 const driver: GameDriver = new GameDriver();
 
 // Configuration for sections
-const sectionsConfiguration = {
+const sectionsConfiguration: SectionConf = {
     3: {
         "sect152": {
             money: 10
@@ -36,11 +45,6 @@ const sectionsConfiguration = {
 
 // Initial setup
 beforeAll( async () => {
-    // Setup jQuery
-    // TODO: Try to remove this...
-    /*global.jQuery = require("jquery");
-    global.$ = global.jQuery;*/
-
     await driver.setupBrowser();
 });
 
@@ -126,22 +130,18 @@ async function noCombatErrorsWithElude(elude: boolean) {
 
 async function noCombatErrors() {
     await noCombatErrorsWithElude(false);
-}
-
-async function noEludeErrors() {
     await noCombatErrorsWithElude(true);
 }
 
 async function doMeals() {
-    while (true) {
-        const meal = await driver.getElementByCss("div.mechanics-meal-ui");
-        if (!meal) {
-            return;
-        }
+    let meal = await driver.getElementByCss("div.mechanics-meal-ui");
+    while (meal) {
         // Select do not eat
         await ( await meal.findElement(By.css("input[value='doNotEat']")) ).click();
         // Click ok
         await driver.cleanClickAndWait( meal.findElement(By.css("button")) );
+
+        meal = await driver.getElementByCss("div.mechanics-meal-ui");
     }
 }
 
@@ -191,9 +191,7 @@ function declareSectionTests(sectionId: string) {
         // Test there are no errors with initial section rendering
         test("No errors rendering section", noLogErrors );
 
-        // TODO: Unify both in a single test
         test("No errors playing combats", noCombatErrors );
-        test("No errors eluding combats", noEludeErrors );
 
         test("No errors choosing Random Table", noRandomTableErrors );
 
@@ -208,8 +206,8 @@ function declarePlayBookTests(book: Book) {
     const bookCode = book.getProjectAonBookCode();
 
     let sectionIds: string[];
-    if (process.env.KAISECT) {
-        sectionIds = [ process.env.KAISECT ];
+    if (process.env.npm_config_kaisect) {
+        sectionIds = [ process.env.npm_config_kaisect ];
     } else {
         sectionIds = book.getSectionsIds();
     }
@@ -228,11 +226,11 @@ function declarePlayBookTests(book: Book) {
     });
 }
 
-// Test single book?
-// This can be done with jest -t option, but it sill declares all tests and is damn slow
 let bookNumberToTest: number = 0;
-if (process.env.KAIBOOK) {
-    bookNumberToTest = parseInt(process.env.KAIBOOK, 10);
+
+// Test single book?
+if (process.env.npm_config_kaibook) {
+    bookNumberToTest = parseInt(process.env.npm_config_kaibook, 10);
     console.log("Just book " + bookNumberToTest.toFixed());
 }
 
