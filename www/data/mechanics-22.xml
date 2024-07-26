@@ -1300,8 +1300,8 @@
 
         <section id="sect210">
             <endurance count="-2" />
-            <restoreInventoryState restorePoint="book22weaponsConfiscated" />
-            <restoreInventoryState restorePoint="book22backpackItemsConfiscated" />
+            <saveInventoryState restorePoint="book22weaponsConfiscated" objectsType="weaponlike" />
+            <saveInventoryState restorePoint="book22backpackItemsConfiscated" objectsType="backpackitems" />
         </section>
 
         <section id="sect211">
