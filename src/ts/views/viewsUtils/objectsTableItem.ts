@@ -97,7 +97,7 @@ export class ObjectsTableItem {
         // Buy / sell price
         if ( this.objectInfo.price ) {
             const currency = this.objectInfo.currency;
-            const currencyText = translations.text(currency.toString());
+            const currencyText = translations.text(currency);
             name += " (" + this.objectInfo.price.toFixed() + " " + currencyText + ")";
         }
 
@@ -350,7 +350,7 @@ export class ObjectsTableItem {
         if ( this.objectInfo.price ) {
             // If the currency is not in Crowns, we assume the seller only accepts the specific currency
             if (this.objectInfo.currency !== CurrencyName.CROWN) {
-                if ( state.actionChart.beltPouch.money[this.objectInfo.currency.toString()] < this.objectInfo.price ) {
+                if ( state.actionChart.beltPouch[this.objectInfo.currency] < this.objectInfo.price ) {
                     alert( translations.text("noEnoughMoney") );
                     return;
                 }
@@ -365,11 +365,7 @@ export class ObjectsTableItem {
                 return;
             }
 
-            if ( this.objectInfo.currency === CurrencyName.NOBLE) {
-                if ( !confirm( translations.text("confirmBuyNobles", [this.objectInfo.price] ) ) ) {
-                    return;
-                }
-            } else if ( !confirm( translations.text("confirmBuy", [this.objectInfo.price] ) ) ) {
+            if ( !confirm( translations.text("confirmBuy", [this.objectInfo.price, translations.text(this.objectInfo.currency)] ) ) ) {
                 return;
             }
         }
@@ -434,9 +430,7 @@ export class ObjectsTableItem {
 
     /** Sell object operation */
     private sell() {
-        const sellString = this.objectInfo.currency === CurrencyName.NOBLE ? 
-            translations.text( "confirmSellNobles" , [ this.objectInfo.price ] ) :
-            translations.text( "confirmSell" , [ this.objectInfo.price ] );
+        const sellString = translations.text( "confirmSell" , [ this.objectInfo.price, translations.text(this.objectInfo.currency) ] );
 
         if ( !confirm( sellString ) ) {
             return;

@@ -27,7 +27,7 @@ export class GameDriver {
     private static readonly BASEPATH = "www/";
 
     public constructor() {
-        this.newGameUrl = "http://localhost:3000";
+        this.newGameUrl = "http://localhost:3001";
         if (process.env.KAIURL) {
             this.newGameUrl = process.env.KAIURL;
         }
@@ -40,7 +40,7 @@ export class GameDriver {
 
         this.driver = await new Builder()
             .forBrowser(Browser.CHROME)
-            //.setChromeOptions(new Options().addArguments('--headless=new'))
+            .setChromeOptions(new Options().addArguments('--headless=new'))
             .build();
         // Maximize to avoid links get shadows by toastr
         await this.driver.manage().window().maximize();

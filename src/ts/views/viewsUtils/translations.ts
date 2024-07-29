@@ -1,4 +1,4 @@
-import { BookSeriesId, mechanicsEngine } from "../..";
+import { mechanicsEngine } from "../..";
 
 /**
  * Translations table
@@ -35,13 +35,11 @@ export class Translations {
         "use": "Use",
         "setCurrentWeapon" : "Set as current weapon",
         "dropObject" : "Drop object",
-        "confirmSell" : "Are you sure you want to sell the object for {0} Gold Crowns?",
-        "confirmSellNobles" : "Are you sure you want to sell the object for {0} Nobles?",
+        "confirmSell" : "Are you sure you want to sell the object for {0} {1}?",
         "confirmUse" : 'Are you sure you want to use "{0}"?',
         "confirmDrop" : 'Are you sure you want to drop "{0}"?',
         "noEnoughMoney" : "You don't have enough money",
-        "confirmBuy" : "Are you sure you want to buy the object for {0} Gold Crowns?",
-        "confirmBuyNobles" : "Are you sure you want to buy the object for {0} Nobles?",
+        "confirmBuy" : "Are you sure you want to buy the object for {0} {1}?",
         "msgGetObject" : 'You get "{0}"',
         "msgDropObject" : 'You drop "{0}"',
         "msgGetMeal" : "You get {0} meals",
@@ -49,6 +47,7 @@ export class Translations {
         "msgGetMoney" : "You get {0} {1}",
         "msgGetArrows" : "You get {0} Arrows",
         "msgDropMoney" : "You lost {0} {1}",
+        "msgDropArrows" : "You lost {0} Arrows",
         "msgEndurance" : "{0} Endurance Points",
         "msgCombatSkill" : "{0} Combat Skill",
         "msgCurrentWeapon" : 'Your current weapon is now "{0}"',
