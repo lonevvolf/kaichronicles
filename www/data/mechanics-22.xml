@@ -1639,7 +1639,7 @@
         </section>
 
         <section id="sect267">
-            <endurance count="-3" />
+            <endurance count="3" />
             <choiceState section="all" set="disabled" />
             <test canUseBow="true">
                 <choiceState section="sect306" set="enabled" />
