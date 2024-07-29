@@ -1,4 +1,4 @@
-import { ActionChartItem, SectionItem, App, state, BookSeriesId, GndDiscipline, MgnDiscipline, KaiDiscipline, Item, translations, Combat, BookSeries, mechanicsEngine, LoreCircle, SetupDisciplines, randomTable, Disciplines, DebugMode, NewOrderDiscipline, Currency } from "..";
+import { ActionChartItem, SectionItem, App, state, BookSeriesId, GndDiscipline, MgnDiscipline, KaiDiscipline, Item, translations, Combat, BookSeries, mechanicsEngine, LoreCircle, SetupDisciplines, randomTable, Disciplines, DebugMode, NewOrderDiscipline, Currency, CurrencyName, actionChartController } from "..";
 
 /**
  * Bonus for CS/EP definition
@@ -54,11 +54,17 @@ export class ActionChart {
     /** The currently hand-to-hand selected weapon id. Empty string if the player has no weapon  */
     private selectedWeapon = "";
 
-    /** Crowns amount */
-    public beltPouch = 0;
-
-    /** Nobles amount */
-    public beltPouchNobles = 0;
+    /** Belt Pouch containing all currencies */
+    public beltPouch: { [currency: string]: number } = {
+        "crown" : 0,
+        "lune" : 0,
+        "kika" : 0,
+        "noble" : 0,
+        "ren": 0,
+        "sheasutorq": 0,
+        "orla" : 0,
+        "ain" : 0
+    };
 
     /** Number of meals (they count as backpack items) */
     public meals = 0;
@@ -436,85 +442,73 @@ export class ActionChart {
     }
 
     /**
-     * Increase / decrease the money number
+     * 
      * @param count Number to increase. Negative to decrease
-     * @param excessToKaiMonastry If true and if the belt pouch exceed 50, the excess is stored in the kaimonastry section
-     * @param currencyId The currency to add - defaults to Crowns
+     * @param currency The currency to add - defaults to Crowns
      * @returns Amount really picked.
      */
-    public increaseMoney(count: number, excessToKaiMonastry = false, currencyId : Currency = Currency.CROWN): number {        
-        let oldBeltPouch: number = 0;
-        switch (currencyId) {
-            case Currency.NOBLE: {
-                oldBeltPouch = this.beltPouchNobles;
-                this.beltPouchNobles += count;
-                break;
-            }
-            default: {
-                oldBeltPouch = this.beltPouch;
+    public increaseMoney(count: number, excessToKaiMonastery: boolean = false, currency: string = CurrencyName.CROWN) 
+    : number {
+        const oldBeltPouchTotal = this.beltPouch[currency];
+        let countRemaining = count;
 
-                // If we need to remove from multiple currencies
-                let crownsCount = Currency.toCurrency(count, currencyId);
-                if (crownsCount < 0 && this.beltPouch < -crownsCount) {
-                    crownsCount += this.beltPouch;
-                    this.beltPouch = 0;
+        // If we need to remove from multiple currencies
+        if (countRemaining < 0 && this.beltPouch[currency] < -countRemaining) {
+            // Take as much as possible from the original currency
+            countRemaining += this.beltPouch[currency];
+            countRemaining = Math.round(countRemaining * 100) / 100;
+            this.beltPouch[currency] = 0;
 
-                    if (crownsCount < 0) {
-                        const noblesCount = Currency.toCurrency(count, Currency.CROWN, Currency.NOBLE);
-                        this.beltPouchNobles += noblesCount;
-                    }
-                } else {
-                    this.beltPouch += Currency.toCurrency(count, currencyId);
-                }
-
-                break;
-            }
-        }
-
-        const excess = this.getBeltPouchUsedAmount() - 50;
-        if (excess > 0) {
-            if(excessToKaiMonastry) {
-                const kaimonastery = state.sectionStates.getSectionState("kaimonastery");
-                // TODO: Store individual currencies in the Kai Monastery
-                if(kaimonastery) {
-                    switch (currencyId) {
-                        case Currency.NOBLE: {
-                            kaimonastery.addObjectToSection(Item.MONEY, 0, false, excess);
-                        }
-                    }
-                }
-            }
-
-            switch (currencyId) {
-                case Currency.NOBLE: {
-                    this.beltPouchNobles = 50 - this.beltPouch;
-                    break;
-                }
-                default: {
-                    this.beltPouch = 50 - Currency.toCurrency(this.beltPouchNobles, Currency.NOBLE, Currency.CROWN);
+            // Find other currencies with remaining money
+            for (const c of Object.keys(this.beltPouch)) {
+                if (this.beltPouch[c] > 0) {
+                    countRemaining += actionChartController.increaseMoney(Currency.toCurrency(countRemaining, currency, c, false), false, excessToKaiMonastery, c);
                     break;
                 }
             }
-        } else if (this.beltPouch < 0) {
-            this.beltPouch = 0;
-        } else if (this.beltPouchNobles < 0) {
-            this.beltPouchNobles = 0;
+
+        } else {
+            this.beltPouch[currency] += count;
+            if (this.getBeltPouchUsedAmount() > 50) {
+                const totalOverageInCrowns = this.getBeltPouchUsedAmount() - 50;
+                const totalOverageInCurrency = Currency.toCurrency(totalOverageInCrowns, CurrencyName.CROWN, currency);
+                if (excessToKaiMonastery) {
+                    const kaimonastery = state.sectionStates.getSectionState("kaimonastery");
+                    if(kaimonastery) {
+                        kaimonastery.addObjectToSection(Item.MONEY, 0, false, totalOverageInCurrency, false, 0, currency);
+                    }
+                }
+                this.beltPouch[currency] -= totalOverageInCurrency;
+            }
         }
 
-        switch (currencyId) {
-            case Currency.NOBLE: {
-                return this.beltPouchNobles - oldBeltPouch;
-            }
-            default: {
-                return this.beltPouch - oldBeltPouch;
+        // Double check all currencies for < 0
+        for (const c in this.beltPouch) {
+            if (this.beltPouch[c] < 0) {
+                this.beltPouch[c] = 0;
             }
         }
+
+        return this.beltPouch[currency.toString()] - oldBeltPouchTotal;
     }
 
-    /** Returns total used size of Belt Pouch across all currencies (uses exchange rate) */
-    public getBeltPouchUsedAmount() : number {
-        return this.beltPouch 
-                + Currency.toCurrency(this.beltPouchNobles, Currency.NOBLE);
+    /** Returns total used size of Belt Pouch in Crowns across all currencies (uses exchange rate) */
+    public getBeltPouchUsedAmount(roundDown: boolean = true) : number {
+        let total: number = 0;
+        for (const currency in this.beltPouch) {
+            total += Currency.toCurrency(this.beltPouch[currency], currency, CurrencyName.CROWN, roundDown);
+        }
+
+        return total;    
+    }
+
+    public static combineBeltPouches(beltPouch1: { [currency: string]: number }, beltPouch2: { [currency: string]: number }) {
+        const output = {};
+        for (const currency in beltPouch1) {
+            output[currency] = beltPouch1[currency] + beltPouch2[currency];
+        }
+
+        return output;
     }
 
     /**
@@ -1548,6 +1542,24 @@ export class ActionChart {
             if (!o.newOrderDisciplines) {
                 o.newOrderDisciplines = { disciplines: [], weaponSkill: [] };
             }
+        }
+
+        // Changed in 1.18. Multicurrency support
+        if (o.beltPouch && typeof(o.beltPouch) === "number") {
+            let oldBeltPouch = o.beltPouch;
+            o.beltPouch = {};
+            o.beltPouch[CurrencyName.CROWN] = oldBeltPouch;
+
+            if (o.beltPouchNoble) {
+                o.beltPouch[CurrencyName.NOBLE] = o.beltPouchNoble;
+            }
+
+            // Setup uninitialized properties
+            Object.entries(CurrencyName).forEach(([key]) => {
+                if (!o.beltPouch[key]) {
+                   o.beltPouch[key] = 0;
+                }
+            });
         }
 
         const actionChart: ActionChart = $.extend(new ActionChart(), o);

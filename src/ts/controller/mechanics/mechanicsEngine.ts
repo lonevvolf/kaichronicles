@@ -1,6 +1,6 @@
 import { views, translations, Section, gameView, state, CombatMechanics, randomMechanics, Combat, Item, routing, gameController,
     App, ExpressionEvaluator, numberPickerMechanics, SkillsSetup, KaiNameSetup, SetupDisciplines, EquipmentSectionMechanics, actionChartController,
-    Currency, LoreCircle, BookSeriesId, MealMechanics, ActionChartItem, InventoryState, actionChartView, template, Book,
+    Currency, CurrencyName, LoreCircle, BookSeriesId, MealMechanics, ActionChartItem, InventoryState, actionChartView, template, Book,
     GrandMasterUpgrade, kaimonasteryController, book2sect238, book2sect308, book3sect88, book6sect26, book6sect284,
     book6sect340, book9sect91, book19sect304, ObjectsTable, ObjectsTableType, setupController, KaiDiscipline, MgnDiscipline,
     GndDiscipline, projectAon, DebugMode } from "../..";
@@ -303,7 +303,7 @@ export const mechanicsEngine = {
 
                 const expression: string = $rule.attr("expression");
                 if (expression) {
-                    if ((o.id === Item.MONEY || o.id === Item.NOBLE) && (expression.indexOf("[MONEY]") >= 0 || expression.indexOf("[MONEY-ON-SECTION]") >= 0)) {
+                    if (o.id === Item.MONEY && (expression.indexOf("[MONEY]") >= 0 || expression.indexOf("[MONEY-ON-SECTION]") >= 0)) {
                         // Section should be re-rendered
                         reRender = true;
                         return "finish";
@@ -475,7 +475,7 @@ export const mechanicsEngine = {
         const cls = $rule.attr("class");
 
         // Check the amount
-        let count = ExpressionEvaluator.evalInteger($rule.attr("count"));
+        const count = ExpressionEvaluator.evalFloat($rule.attr("count"));
 
         // Add to the action chart
         if (cls === Item.MEAL ) {
@@ -483,11 +483,6 @@ export const mechanicsEngine = {
         } else if (cls === Item.ARROW) {
             actionChartController.increaseArrows(count);
         } else if (cls === Item.MONEY) {
-            // TODO: We should store the amount of each currency. Only supported for Nobles
-            // Otherwise, exchange to Gold Crowns
-            if ($rule.attr("currency") !== Currency.NOBLE) {
-                count = Currency.toCurrency(count, $rule.attr("currency"));
-            }
             const excessToKaiMonastry = mechanicsEngine.getBooleanProperty($rule, "excessToKaiMonastry", false);
             actionChartController.increaseMoney(count, false, excessToKaiMonastry, $rule.attr("currency"));
             
@@ -776,7 +771,7 @@ export const mechanicsEngine = {
         // Object price (optional)
         const priceValue = $(rule).attr("price");
         let price: number = 0;
-        let currency: Currency = Currency.CROWN;
+        let currency: string = CurrencyName.CROWN;
         if (priceValue) {
             price = ExpressionEvaluator.evalInteger(priceValue);
 

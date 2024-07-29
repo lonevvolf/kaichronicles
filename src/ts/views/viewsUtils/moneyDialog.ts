@@ -1,27 +1,22 @@
-import { state, translations, mechanicsEngine, actionChartController, Item, Currency } from "../..";
+import { state, translations, mechanicsEngine, actionChartController, Item, Currency, CurrencyName } from "../..";
 
 /**
  * Modal dialog to pick / drop money.
  */
 export class MoneyDialog {
 
-    public static show(drop: boolean, currencyId: Currency = Currency.CROWN) {
+    public static show(drop: boolean, currencyId: string = CurrencyName.CROWN) {
 
         MoneyDialog.setupDialog(currencyId);
 
         // Update bounds and initial value
         if (drop) {
-            if (currencyId === Currency.NOBLE) {
-                $("#mechanics-moneyamount")
-                .attr("max", state.actionChart.beltPouchNobles)
-                .val("1");                
-            } else {
-                $("#mechanics-moneyamount")
-                .attr("max", state.actionChart.beltPouch)
-                .val("1");                   
-            }
+            $("#mechanics-moneyamount")
+            .attr("max", state.actionChart.beltPouch[currencyId])
+            .val("1");                   
 
             $("#mechanics-moneyamount").attr("data-ismoneypicker", "true");
+            $("#mechanics-moneyamount").attr("data-moneypickercurrency", currencyId);
         } else {
             const sectionMoney = state.sectionStates.getSectionState().getAvailableMoney(currencyId);
             $("#mechanics-moneyamount")
@@ -44,7 +39,7 @@ export class MoneyDialog {
             .modal("show");
     }
 
-    private static setupDialog(currencyId : Currency = Currency.CROWN) {
+    private static setupDialog(currencyId : string = CurrencyName.CROWN) {
 
         // If the dialog HTML do not exists, add it:
         if ($("#mechanics-moneydialog").length === 0) {
@@ -63,7 +58,7 @@ export class MoneyDialog {
 
     }
 
-    private static onDialogConfirmed(currencyId : Currency = Currency.CROWN) {
+    private static onDialogConfirmed(currencyId : string = CurrencyName.CROWN) {
 
         const $moneyAmount = $("#mechanics-moneyamount");
         if (!$moneyAmount.isValid()) {
@@ -78,11 +73,7 @@ export class MoneyDialog {
             // Pick
             const countPicked = actionChartController.increaseMoney(moneyAmount, false, false, currencyId);
             const sectionState = state.sectionStates.getSectionState();
-            if (currencyId === Currency.NOBLE) {
-                sectionState.removeObjectFromSection(Item.NOBLE, 0, countPicked);
-            } else {
-                sectionState.removeObjectFromSection(Item.MONEY, 0, countPicked);
-            }
+            sectionState.removeObjectFromSection(Item.MONEY, 0, countPicked, -1, currencyId);
             // Re-render section
             mechanicsEngine.showAvailableObjects();
         }

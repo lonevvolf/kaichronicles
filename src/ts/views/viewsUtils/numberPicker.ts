@@ -1,5 +1,5 @@
 
-import { state, translations, mechanicsEngine } from "../..";
+import { state, translations, mechanicsEngine, CurrencyName } from "../..";
 
 /**
  * Declare jQuery functions for number fields
@@ -125,7 +125,11 @@ export function declareJqueryNumberFunctions() {
 
             if ( this.attr("data-ismoneypicker") === "true" ) {
                 // Check if you have enough money
-                if ( state.actionChart.getBeltPouchUsedAmount() < num) {
+                let currency = this.attr("data-moneypickercurrency");
+                if (!currency) {
+                    currency = CurrencyName.CROWN;
+                }
+                if ( state.actionChart.beltPouch[currency] < num) {
                     alert( translations.text( "noEnoughMoney" ) );
                     return false;
                 }

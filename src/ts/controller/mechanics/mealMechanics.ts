@@ -104,7 +104,7 @@ export class MealMechanics {
                 // Do nothing
             } else if (option === "buyMeal") {
                 // Buy the meal
-                if (state.actionChart.beltPouch < price) {
+                if (state.actionChart.getBeltPouchUsedAmount() < price) {
                     alert(translations.text("noEnoughMoney"));
                     return;
                 }

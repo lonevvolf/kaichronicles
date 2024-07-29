@@ -1,4 +1,4 @@
-import { mechanicsEngine, gameView, state, template, randomTable, actionChartController, translations } from "../../..";
+import { mechanicsEngine, gameView, state, template, randomTable, actionChartController, translations, CurrencyName } from "../../..";
 
 interface GameState {
     moneyToBet: number,
@@ -47,9 +47,9 @@ export const book2sect238 = {
         template.animateValueChange($("#mechanics-moneyWon"), gameState.moneyWon,
             doNotAnimate);
         template.animateValueChange($("#mechanics-currentMoney"),
-            state.actionChart.beltPouch, doNotAnimate);
+            state.actionChart.getBeltPouchUsedAmount(), doNotAnimate);
 
-        const noMoney = (state.actionChart.beltPouch === 0);
+        const noMoney = (state.actionChart.getBeltPouchUsedAmount() === 0);
         if (gameState.moneyWon >= 40 || noMoney) {
             // Maximum money won
             $("#mechanics-play").hide();
@@ -94,9 +94,9 @@ export const book2sect238 = {
             gameState.moneyWon += moneyInc;
             let msg = `${translations.text("randomTable")}: ${random}.`;
             if (moneyInc >= 0) {
-                msg += translations.text("msgGetCrowns", [moneyInc]);
+                msg += translations.text("msgGetMoney", [moneyInc, translations.text(CurrencyName.CROWN)]);
             } else {
-                msg += translations.text("msgDropCrowns", [-moneyInc]);
+                msg += translations.text("msgDropMoney", [-moneyInc, translations.text(CurrencyName.CROWN)]);
             }
             $("#mechanics-gameStatus").text(msg);
 

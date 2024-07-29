@@ -1,4 +1,4 @@
-import { ObjectsTableItem, ActionChartItem, SectionItem, state, Item, translations, Currency } from "../..";
+import { ObjectsTableItem, ActionChartItem, SectionItem, state, Item, translations, CurrencyName } from "../..";
 
 /**
  * Kind of objects table
@@ -76,7 +76,7 @@ export class ObjectsTable {
                 sectionItem = {
                     id : aChartItem.id,
                     price : 0,
-                    currency: Currency.CROWN,
+                    currency: CurrencyName.CROWN,
                     unlimited : false,
                     count,
                     useOnSection : false,

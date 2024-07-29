@@ -40,7 +40,7 @@ export class GameDriver {
 
         this.driver = await new Builder()
             .forBrowser(Browser.CHROME)
-            .setChromeOptions(new Options().addArguments('--headless=new'))
+            //.setChromeOptions(new Options().addArguments('--headless=new'))
             .build();
         // Maximize to avoid links get shadows by toastr
         await this.driver.manage().window().maximize();
