@@ -452,27 +452,31 @@ export class ActionChart {
         const oldBeltPouchTotal = this.beltPouch[currency];
         let countRemaining = count;
 
-        // If we need to remove from multiple currencies
+        // If we are removing more than we have in a currency
         if (countRemaining < 0 && this.beltPouch[currency] < -countRemaining) {
             // Take as much as possible from the original currency
             countRemaining += this.beltPouch[currency];
             countRemaining = Math.round(countRemaining * 100) / 100;
             this.beltPouch[currency] = 0;
 
-            // Find other currencies with remaining money
-            for (const c of Object.keys(this.beltPouch)) {
-                if (this.beltPouch[c] > 0) {
-                    countRemaining += actionChartController.increaseMoney(Currency.toCurrency(countRemaining, currency, c, false), false, excessToKaiMonastery, c);
-                    break;
+            // If the loss is not limited to one currency, find other currencies with remaining money
+            if (currency === CurrencyName.CROWN) {
+                for (const c of Object.keys(this.beltPouch)) {
+                    if (countRemaining < 0 && this.beltPouch[c] > 0) {
+                        // countRemaining needs to be in source currency, but increase money returns in target currency
+                        countRemaining += -Currency.toCurrency(
+                            actionChartController.increaseMoney(Currency.toCurrency(countRemaining, currency, c, false), false, excessToKaiMonastery, c),
+                            c, currency);
+                    }
                 }
             }
 
         } else {
             this.beltPouch[currency] += count;
-            if (this.getBeltPouchUsedAmount() > 50) {
-                const totalOverageInCrowns = this.getBeltPouchUsedAmount() - 50;
+            if (this.getBeltPouchUsedAmount(false) > 50) {
+                const totalOverageInCrowns = this.getBeltPouchUsedAmount(false) - 50;
                 const totalOverageInCurrency = Currency.toCurrency(totalOverageInCrowns, CurrencyName.CROWN, currency);
-                if (excessToKaiMonastery) {
+                if (excessToKaiMonastery && totalOverageInCurrency > 0) {
                     const kaimonastery = state.sectionStates.getSectionState("kaimonastery");
                     if(kaimonastery) {
                         kaimonastery.addObjectToSection(Item.MONEY, 0, false, totalOverageInCurrency, false, 0, currency);
