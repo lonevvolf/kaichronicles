@@ -48,7 +48,7 @@ There are some keywords that can be used on expressions. They have the following
 * **[CROWNS]**: The current amount of Gold Crowns on the action chart (Belt pouch)
 * **[KIKA]**: The current amount of Kika on the action chart (Belt pouch)
 * **[LUNE]**: The current amount of Lune on the action chart (Belt pouch)
-* **[MONEY-ON-SECTION]**: The current amount of money available on the section
+* **[MONEY-ON-SECTION]**: The current amount of money available on the section across all currencies (in Gold Crowns)
 * **[BACKPACK-ITEMS-CNT-ON-SECTION]**: The current count of available backpack items on the section (each item count as 1)
 * **[BACKPACK-ITEMS-CNT-ON-ACTIONCHART]**: The current count of backpack items on the action chart (use itemCount of each item)
 * **[BACKPACK-ITEMS-ON-ACTIONCHART]**: The current count of backpack items on the action chart (each item count as 1)

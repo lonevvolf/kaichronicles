@@ -133,7 +133,7 @@ export class Translations {
         // Special sections
         //////////////////////////////////////
 
-        "playerDices" : "{0} dices",
+        "playerDices" : "{0} rolls",
         "playerNumber" : "Player {0}",
         "number" : "Number {0}",
         "adganaUse" : "Adgana use, Random Table number: {0}",

@@ -193,7 +193,7 @@
         </section>
 
         <section id="sect19">
-            <pick class="money" count="-3" />
+            <pick class="money" count="-10" currency="lune" />
         </section>
 
         <section id="sect20">
