@@ -242,11 +242,11 @@ export class ObjectsTableItem {
 
             // Get it / Buy it
             const title = translations.text( this.objectInfo.price ? "buyObject" : "pickObject" );
-            html += this.getOperationTag( "get" , title , '<span class="glyphicon glyphicon-plus"></span>' );
+            html += this.getOperationTag( "get" , title , '<span class="fa fa-plus"></span>' );
         } else if ( this.type === ObjectsTableType.SELL ) {
             // Shell object operation link
             const title = translations.text( "sellObject" );
-            html += this.getOperationTag( "sell" , title , '<span class="glyphicon glyphicon-share"></span>' );
+            html += this.getOperationTag( "sell" , title , '<span class="fa fa-share"></span>' );
         } else if ( this.type === ObjectsTableType.INVENTORY ) {
 
             const currentSection = state.sectionStates.getSectionState();
@@ -259,13 +259,13 @@ export class ObjectsTableItem {
             if ( this.item.isHandToHandWeapon() && state.actionChart.getSelectedWeapon() !== this.item.id ) {
                 // Op to set the weapon as current
                 const title = translations.text("setCurrentWeapon");
-                html += this.getOperationTag( "currentWeapon" , title , '<span class="glyphicon glyphicon-hand-left"></span>' );
+                html += this.getOperationTag( "currentWeapon" , title , '<span class="fa fa-hand-left"></span>' );
             }
 
             if ( this.item.droppable ) {
                 // Object can be dropped:
                 const title = translations.text("dropObject");
-                html += this.getOperationTag( "drop" , title , '<span class="glyphicon glyphicon-remove"></span>' );
+                html += this.getOperationTag( "drop" , title , '<span class="fa fa-remove"></span>' );
             }
 
         }

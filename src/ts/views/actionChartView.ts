@@ -162,7 +162,7 @@ export const actionChartView = {
                     '<button class="btn btn-default table-op" title="' +
                     translations.text("disciplineDescription") +
                     '">' +
-                        '<span class="glyphicon glyphicon-question-sign"></span>' +
+                        '<span class="fa fa-question-sign"></span>' +
                     "</button>" +
                     "<b>" + name + `</b><br/>${dInfo.imageHtml}<i style="display:none"><small>` +
                     descriptionHtml +

@@ -408,7 +408,7 @@ export class SectionRenderer {
      */
     private choice($choice: JQuery<HTMLElement>, level: number): string {
 
-        return '<p class="choice"><span class="glyphicon glyphicon-chevron-right"></span> ' +
+        return '<p class="choice"><span class="fa fa-chevron-right"></span> ' +
             this.renderNodeChildren( $choice , level ) + "</p>";
     }
 
