@@ -898,6 +898,7 @@
                 <xs:restriction base="xs:string">
                     <xs:enumeration value="crown" />
                     <xs:enumeration value="noble" />
+                    <xs:enumeration value="ren" />
                 </xs:restriction>
             </xs:simpleType>
         </xs:attribute>
