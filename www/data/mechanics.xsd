@@ -13,6 +13,7 @@
             <xs:enumeration value="lune" />
             <xs:enumeration value="kika" />
             <xs:enumeration value="noble" />
+            <xs:enumeration value="ren" />
         </xs:restriction>
     </xs:simpleType>
 
@@ -386,6 +387,7 @@
                 <xs:restriction base="xs:string">
                     <xs:enumeration value="crown" />
                     <xs:enumeration value="noble" />
+                    <xs:enumeration value="ren" />
                 </xs:restriction>
             </xs:simpleType>
         </xs:attribute>
@@ -895,6 +897,7 @@
                 <xs:restriction base="xs:string">
                     <xs:enumeration value="crown" />
                     <xs:enumeration value="noble" />
+                    <xs:enumeration value="ren" />
                 </xs:restriction>
             </xs:simpleType>
         </xs:attribute>

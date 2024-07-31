@@ -866,6 +866,7 @@ export const mechanicsEngine = {
             if (cls === Item.SPECIAL) {
                 objectIds = state.actionChart.getSpecialItemsIds();
                 except.push(Item.MAP); // don't sell this, come on!
+                // TODO: Disallow selling of Kai Weapons - texts assume the player has this
             }
             else if (cls == Item.WEAPON) {
                 objectIds = state.actionChart.getWeaponsIds();

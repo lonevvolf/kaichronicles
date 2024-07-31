@@ -104,7 +104,7 @@ export function declareJqueryNumberFunctions() {
          * Return true if the number is valid
          */
         $.fn.isValid = function() {
-            const num = this.getNumber();
+            const num: number = this.getNumber();
 
             if ( isNaN(num) ) {
                 alert( translations.text("npWrongValue" , [this.getTitle()] ) );

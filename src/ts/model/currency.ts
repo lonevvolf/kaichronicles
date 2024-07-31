@@ -8,7 +8,7 @@ export class Currency {
     /** Gold crowns id (Sommerlund) */
     public static readonly CROWN = "crown";
 
-    /** Lunes id */
+    /** Lunes id (Siyen) */
     public static readonly LUNE = "lune";
 
     /** Kikas id (Darklands) */
@@ -16,6 +16,18 @@ export class Currency {
 
     /** Nobles id (Southeastern Magnamund) */
     public static readonly NOBLE = "noble";
+
+    /** Ren id (Chai) */
+    public static readonly REN = "ren";
+
+    /** Sheasu Torq id */
+    public static readonly SHEASU_TORQ = "sheasutorq";
+
+    /** Orla id */
+    public static readonly ORLA = "orla";
+
+    /** Ain id */
+    public static readonly AIN = "ain";
 
     /**
      * Currencies exchange.
@@ -25,7 +37,11 @@ export class Currency {
         "crown" : 1,
         "lune" : 4,
         "kika" : 10,
-        "noble" : 1
+        "noble" : 1,
+        "ren" : 10,
+        "sheasutorq" : 4,
+        "orla" : 2,
+        "ain" : 1
     };
 
     /**

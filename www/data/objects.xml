@@ -1867,6 +1867,15 @@
             <name>Soap</name>
         </object>
 
+        <!-- BOOK 23 -->
+        <object id="jewelledknife">
+            <name>Jewelled Knife</name>
+        </object>
+
+        <object id="silversignetring">
+            <name>Silver Signet Ring</name>
+        </object>
+
         <!-- OTHERS -->
 
         <!-- This not really an object, but needed for mechanics -->
@@ -1886,11 +1895,6 @@
             <image book="1" name="pouch.png" />
         </object>
 
-        <!-- This not really an object, but needed for mechanics -->
-        <object id="noble">
-            <name>Nobles</name>
-            <image book="1" name="pouch.png" />
-        </object>
 
         <!-- Usually used as part of a quiver, but occasionally found by themselves -->
         <object id="arrow">
