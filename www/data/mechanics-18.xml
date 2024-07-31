@@ -627,7 +627,7 @@
         </section>
 
         <section id="sect109">
-            <pick class="money" count="65" />
+            <pick class="money" count="260" currency="lune" />
             <object objectId="sword" index="1" />
             <object objectId="sword" index="2" />
             <object objectId="axe" index="1" />
@@ -665,7 +665,7 @@
             <object objectId="bow" />
             <object objectId="quiver" count="5" />
             <object objectId="spyglass" />
-            <pick class="money" count="3" />
+            <pick class="money" count="12" currency="lune" />
             <meal />
         </section>
 
