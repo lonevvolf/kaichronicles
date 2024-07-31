@@ -1,4 +1,4 @@
-import { state, translations, mechanicsEngine, actionChartController, Item, Currency, CurrencyName } from "../..";
+import { state, translations, mechanicsEngine, actionChartController, Item, CurrencyName } from "../..";
 
 /**
  * Modal dialog to pick / drop money.
@@ -51,7 +51,7 @@ export class MoneyDialog {
         }
 
         // Bind drop money confirmation button
-        $("#mechanics-moneyapply").one("click", (e: JQuery.TriggeredEvent) => {
+        $("#mechanics-moneyapply").off("click").on("click", (e: JQuery.TriggeredEvent) => {
             e.preventDefault();
             MoneyDialog.onDialogConfirmed(currencyId);
         });
