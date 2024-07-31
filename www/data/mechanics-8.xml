@@ -162,7 +162,7 @@
         </section>
 
         <section id="sect16">
-            <pick class="money" count="5" />
+            <pick class="money" count="20" currency="lune" />
         </section>
 
         <section id="sect17">
@@ -430,7 +430,7 @@
         </section>
 
         <section id="sect59">
-            <pick class="money" count="10" />
+            <pick class="money" count="40" currency="lune" />
         </section>
 
         <section id="sect60">
