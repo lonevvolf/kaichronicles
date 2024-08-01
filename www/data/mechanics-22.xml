@@ -2044,8 +2044,7 @@
         </section>
         
         <section id="sect350">
-            <!-- Even though this is not instructed, it should be assumed by the text-->
-            <drop objectId="moonstone" />
+            <message text="Congratulations! You have finished the last book of Kai Chronicles!" />
         </section>
     </sections>
 </mechanics>

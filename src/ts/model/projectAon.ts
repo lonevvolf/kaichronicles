@@ -204,14 +204,6 @@ export const projectAon = {
             illustrators: [ "williams" ],
             biographies: [ "jdbiolw" , "bwbiolw" ]
         },
-
-        // Book 23:
-        {
-            title: "Mydnight's Hero",
-            code: "23mh",
-            illustrators: [ "williams" ],
-            biographies: [ "jdbiolw" , "bwbiolw" ]
-        },
     ] as BookMetadata[],
 
     /**
