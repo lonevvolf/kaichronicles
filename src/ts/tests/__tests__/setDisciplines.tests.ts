@@ -7,7 +7,7 @@ const driver: GameDriver = new GameDriver();
 
 GameDriver.globalSetup();
 
-jest.setTimeout(2000000);
+jest.setTimeout(1000000);
 
 let bookSeries: BookSeries;
 
@@ -197,8 +197,6 @@ async function testCarryDisciplinesPreviousBook(bookNumber: number) {
 describe("setDisciplines", () => {
 
     for (let bookNumber = 1; bookNumber <= projectAon.supportedBooks.length; bookNumber++) {
-    // for (let bookNumber = 7; bookNumber <= 7; bookNumber++) {
-
         describe("Book " + bookNumber.toFixed(), () => {
 
             beforeEach( async () => {

@@ -8,7 +8,7 @@ const driver: GameDriver = new GameDriver();
 
 GameDriver.globalSetup();
 
-// jest.setTimeout(200000);
+jest.setTimeout(20000);
 
 // Initial setup
 beforeAll( async () => {

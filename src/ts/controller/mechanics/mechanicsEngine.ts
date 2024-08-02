@@ -1,6 +1,6 @@
 import { views, translations, Section, gameView, state, CombatMechanics, randomMechanics, Combat, Item, routing, gameController,
     App, ExpressionEvaluator, numberPickerMechanics, SkillsSetup, KaiNameSetup, SetupDisciplines, EquipmentSectionMechanics, actionChartController,
-    Currency, LoreCircle, BookSeriesId, MealMechanics, ActionChartItem, InventoryState, actionChartView, template, Book,
+    CurrencyName, LoreCircle, BookSeriesId, MealMechanics, ActionChartItem, InventoryState, actionChartView, template, Book,
     GrandMasterUpgrade, kaimonasteryController, book2sect238, book2sect308, book3sect88, book6sect26, book6sect284,
     book6sect340, book9sect91, book19sect304, ObjectsTable, ObjectsTableType, setupController, KaiDiscipline, MgnDiscipline,
     GndDiscipline, projectAon, DebugMode } from "../..";
@@ -303,7 +303,7 @@ export const mechanicsEngine = {
 
                 const expression: string = $rule.attr("expression");
                 if (expression) {
-                    if ((o.id === Item.MONEY || o.id === Item.NOBLE) && (expression.indexOf("[MONEY]") >= 0 || expression.indexOf("[MONEY-ON-SECTION]") >= 0)) {
+                    if (o.id === Item.MONEY && (expression.indexOf("[MONEY]") >= 0 || expression.indexOf("[MONEY-ON-SECTION]") >= 0)) {
                         // Section should be re-rendered
                         reRender = true;
                         return "finish";
@@ -475,7 +475,7 @@ export const mechanicsEngine = {
         const cls = $rule.attr("class");
 
         // Check the amount
-        let count = ExpressionEvaluator.evalInteger($rule.attr("count"));
+        const count = ExpressionEvaluator.evalFloat($rule.attr("count"));
 
         // Add to the action chart
         if (cls === Item.MEAL ) {
@@ -483,11 +483,6 @@ export const mechanicsEngine = {
         } else if (cls === Item.ARROW) {
             actionChartController.increaseArrows(count);
         } else if (cls === Item.MONEY) {
-            // TODO: We should store the amount of each currency. Only supported for Nobles
-            // Otherwise, exchange to Gold Crowns
-            if ($rule.attr("currency") !== Currency.NOBLE) {
-                count = Currency.toCurrency(count, $rule.attr("currency"));
-            }
             const excessToKaiMonastry = mechanicsEngine.getBooleanProperty($rule, "excessToKaiMonastry", false);
             actionChartController.increaseMoney(count, false, excessToKaiMonastry, $rule.attr("currency"));
             
@@ -555,7 +550,6 @@ export const mechanicsEngine = {
         }
 
         // Check objects
-        let i: number;
         const objectIdsToTest = mechanicsEngine.getArrayProperty($rule, "hasObject");
         for (const objectId of objectIdsToTest) {
             if (!state.mechanics.getObject(objectId)) {
@@ -726,7 +720,7 @@ export const mechanicsEngine = {
     /**
      * Use Deliverance
      */
-    useDeliverance(rule: Element) {
+    useDeliverance() {
         actionChartController.use20EPRestore();
     },
 
@@ -776,14 +770,9 @@ export const mechanicsEngine = {
         // Object price (optional)
         const priceValue = $(rule).attr("price");
         let price: number = 0;
-        let currency: Currency = Currency.CROWN;
+        const currency = $(rule).attr("currency") ?? CurrencyName.CROWN;
         if (priceValue) {
             price = ExpressionEvaluator.evalInteger(priceValue);
-
-            const currencyValue = $(rule).attr("currency");
-            if (currencyValue) {
-                currency = currencyValue;
-            }
         }
 
         // Unlimited number of this kind of object?
@@ -839,8 +828,8 @@ export const mechanicsEngine = {
         }
 
         const price = parseInt($rule.attr("price"), 10);
-        const currency = $rule.attr("currency");
-
+        const currency = $rule.attr("currency") ?? CurrencyName.CROWN;
+        
         // Sell a specific item
         const objectId = $rule.attr("objectId");
         const cls = $rule.attr("class");
@@ -1185,14 +1174,14 @@ export const mechanicsEngine = {
     /**
      * Player death rule
      */
-    death(rule: Element) {
+    death() {
         actionChartController.increaseEndurance(-state.actionChart.currentEndurance, true);
     },
 
     /**
      * Dessi-stone rule
      */
-    applyDessiStone(rule: Element) {
+    applyDessiStone() {
         const currentWeaponId = state.actionChart.getSelectedWeapon();
         if(currentWeaponId !== "") {
             const selectedWeapon: ActionChartItem = state.actionChart.getActionChartItem(currentWeaponId);
@@ -1497,7 +1486,7 @@ export const mechanicsEngine = {
     /**
      * Add a button to access to the Kai monastery stored objects
      */
-    kaiMonasteryStorage(rule: Element) {
+    kaiMonasteryStorage() {
         const $tag = mechanicsEngine.getMechanicsUI("mechanics-kaimonasterystorage");
         gameView.appendToSection($tag, "afterChoices");
         $tag.find("button").on("click", (e: JQuery.Event) => {
@@ -1551,7 +1540,7 @@ export const mechanicsEngine = {
     /**
      * Fire the inventory event
      */
-    runInventoryEvent(rule: Element) {
+    runInventoryEvent() {
         mechanicsEngine.fireInventoryEvents();
     },
 
@@ -1635,31 +1624,31 @@ export const mechanicsEngine = {
         book2sect238.run(rule);
     },
 
-    book2sect308(rule: Element) {
+    book2sect308() {
         book2sect308.run();
     },
 
-    book3sect88(rule: Element) {
+    book3sect88() {
         book3sect88.run();
     },
 
-    book6sect26(rule: Element) {
+    book6sect26() {
         book6sect26.run();
     },
 
-    book6sect284(rule: Element) {
+    book6sect284() {
         book6sect284.run();
     },
 
-    book6sect340(rule: Element) {
+    book6sect340() {
         book6sect340.run();
     },
 
-    book9sect91(rule: Element) {
+    book9sect91() {
         book9sect91.run();
     },
 
-    book19sect304(rule: Element) {
+    book19sect304() {
         book19sect304.run();
     },
 

@@ -13,6 +13,10 @@
             <xs:enumeration value="lune" />
             <xs:enumeration value="kika" />
             <xs:enumeration value="noble" />
+            <xs:enumeration value="ren" />
+            <xs:enumeration value="sheasutorq" />
+            <xs:enumeration value="orla" />
+            <xs:enumeration value="ain" />
         </xs:restriction>
     </xs:simpleType>
 
@@ -378,16 +382,10 @@
                 <xs:documentation>If it's set, the price to buy the object (not free)</xs:documentation>
             </xs:annotation>
         </xs:attribute>
-        <xs:attribute name="currency">
+        <xs:attribute name="currency" type="currency">
             <xs:annotation>
-                <xs:documentation>If it's set, the currency of the price to buy the object. Default is Gold Crowns.</xs:documentation>                
+                <xs:documentation>If it's set, the currency of the price to buy the object. Default is "crown".</xs:documentation>
             </xs:annotation>
-            <xs:simpleType>
-                <xs:restriction base="xs:string">
-                    <xs:enumeration value="crown" />
-                    <xs:enumeration value="noble" />
-                </xs:restriction>
-            </xs:simpleType>
         </xs:attribute>
         <xs:attribute name="count" type="xs:nonNegativeInteger">
             <xs:annotation>
@@ -850,6 +848,11 @@
         <xs:attribute name="max" type="xs:integer">
             <xs:annotation>
                 <xs:documentation>Maximal value</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="currency" type="currency">
+            <xs:annotation>
+                <xs:documentation>Optional, and only for "money"="true". The currency to check for limits.</xs:documentation>
             </xs:annotation>
         </xs:attribute>
     </xs:complexType>

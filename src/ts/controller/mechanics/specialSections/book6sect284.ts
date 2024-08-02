@@ -77,7 +77,7 @@ export const book6sect284 = {
 
         const betsState = book6sect284.getBetsState();
 
-        const allMoneyLost = ( state.actionChart.beltPouch === 0 );
+        const allMoneyLost = ( state.actionChart.getBeltPouchUsedAmount() === 0 );
 
         // Can you quit?
         const quitEnabled = ( betsState.length < 3 && !allMoneyLost );
@@ -88,7 +88,7 @@ export const book6sect284 = {
         }
 
         // 3 bets played and still money?
-        const sect347Enabled = ( betsState.length >= 3 && state.actionChart.beltPouch > 0 );
+        const sect347Enabled = ( betsState.length >= 3 && state.actionChart.getBeltPouchUsedAmount() > 0 );
         mechanicsEngine.setChoiceState("sect347" , !sect347Enabled );
 
         // All money lost?

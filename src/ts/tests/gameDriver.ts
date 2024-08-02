@@ -1,5 +1,5 @@
 import { WebDriver, Builder, WebElement, By, until, Alert, Browser } from "selenium-webdriver";
-import { state, Mechanics, BookSectionStates, Book, declareCommonHelpers, BookSeriesId, CombatMechanics } from "..";
+import { state, Mechanics, BookSectionStates, Book, declareCommonHelpers, BookSeriesId, CombatMechanics, CurrencyName } from "..";
 import { Type, Level } from "selenium-webdriver/lib/logging";
 import { readFileSync } from "fs-extra";
 import { ActionChart } from "../model/actionChart";
@@ -22,12 +22,12 @@ export class GameDriver {
     private driver: WebDriver = null;
 
     /** URL to start a new game */
-    private newGameUrl;
+    private newGameUrl: string;
 
     private static readonly BASEPATH = "www/";
 
     public constructor() {
-        this.newGameUrl = "http://localhost:3000";
+        this.newGameUrl = "http://localhost:3001";
         if (process.env.KAIURL) {
             this.newGameUrl = process.env.KAIURL;
         }
@@ -91,8 +91,8 @@ export class GameDriver {
         return await (await this.getElementByCss(selector)).getText();
     }
 
-    public async increaseMoney(amount: number) {
-        await this.driver.executeScript(`kai.actionChartController.increaseMoney(${amount})`);
+    public async increaseMoney(amount: number, currency: CurrencyName = CurrencyName.CROWN) {
+        await this.driver.executeScript(`kai.actionChartController.increaseMoney(${amount}, false, false, "${currency}")`);
     }
 
     public async fireInventoryEvents() {
@@ -130,7 +130,7 @@ export class GameDriver {
     }
 
     public async getLogErrors(): Promise<string[]> {
-        const errors = [];
+        const errors: string[] = [];
         for (const entry of await this.driver.manage().logs().get(Type.BROWSER)) {
             if (entry.level === Level.SEVERE ) {
                 errors.push(entry.message);
@@ -276,7 +276,7 @@ export class GameDriver {
     }
 
     public async drop(objectId: string, availableOnSection: boolean = false) {
-        await this.driver.executeScript(`kai.actionChartController.drop("${objectId}", ${availableOnSection})`);
+        await this.driver.executeScript(`kai.actionChartController.drop("${objectId}", ${availableOnSection.toString()})`);
     }
 
     public async increaseArrows(count: number) {

@@ -1,4 +1,4 @@
-import { BookSeriesId, mechanicsEngine } from "../..";
+import { mechanicsEngine } from "../..";
 
 /**
  * Translations table
@@ -18,8 +18,14 @@ export class Translations {
         "noneFemenine" : "None",
         "noneMasculine" : "None",
         "disciplineDescription" : "Discipline description",
-        "goldCrowns" : "Gold Crowns",
-        "nobles" : "Nobles",
+        "crown" : "Gold Crowns",
+        "noble" : "Nobles",
+        "lune"  :   "Lune",
+        "kika"  :   "Kika",
+        "ren"   :  "Ren",
+        "sheasutorq"    : "Sheasu Torq",
+        "orla"  :   "Orla",
+        "ain"   :   "Ain",
         "arrows" : "Arrows",
         "current" : "Current",
         "backpackLost" : "You have lost your backpack",
@@ -29,22 +35,18 @@ export class Translations {
         "use": "Use",
         "setCurrentWeapon" : "Set as current weapon",
         "dropObject" : "Drop object",
-        "confirmSell" : "Are you sure you want to sell the object for {0} Gold Crowns?",
-        "confirmSellNobles" : "Are you sure you want to sell the object for {0} Nobles?",
+        "confirmSell" : "Are you sure you want to sell the object for {0} {1}?",
         "confirmUse" : 'Are you sure you want to use "{0}"?',
         "confirmDrop" : 'Are you sure you want to drop "{0}"?',
         "noEnoughMoney" : "You don't have enough money",
-        "confirmBuy" : "Are you sure you want to buy the object for {0} Gold Crowns?",
-        "confirmBuyNobles" : "Are you sure you want to buy the object for {0} Nobles?",
+        "confirmBuy" : "Are you sure you want to buy the object for {0} {1}?",
         "msgGetObject" : 'You get "{0}"',
         "msgDropObject" : 'You drop "{0}"',
         "msgGetMeal" : "You get {0} meals",
         "msgDropMeal" : "You drop {0} meals",
-        "msgGetCrowns" : "You get {0} Gold Crowns",
-        "msgGetNobles" : "You get {0} Nobles",
+        "msgGetMoney" : "You get {0} {1}",
         "msgGetArrows" : "You get {0} Arrows",
-        "msgDropCrowns" : "You lost {0} Gold Crowns",
-        "msgDropNobles" : "You lost {0} Nobles",
+        "msgDropMoney" : "You lost {0} {1}",
         "msgDropArrows" : "You lost {0} Arrows",
         "msgEndurance" : "{0} Endurance Points",
         "msgCombatSkill" : "{0} Combat Skill",
@@ -131,7 +133,7 @@ export class Translations {
         // Special sections
         //////////////////////////////////////
 
-        "playerDices" : "{0} dices",
+        "playerDices" : "{0} rolls",
         "playerNumber" : "Player {0}",
         "number" : "Number {0}",
         "adganaUse" : "Adgana use, Random Table number: {0}",

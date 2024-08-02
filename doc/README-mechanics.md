@@ -44,8 +44,11 @@ There are some keywords that can be used on expressions. They have the following
 * **[RANDOM]**: The value of the last random table value picked (not for combat random values)
 * **[RANDOMxxx]**: Ex. "[RANDOM2], The value of the xxx-th random table value picked (not for combat random values), where xxx is the random table index (0=first, 1=second,...)
 * **[COMBATRANDOM]**: The value of the last random table value picked on combats in this section
-* **[MONEY]**: The current amount of money on the action chart (Belt pouch)
-* **[MONEY-ON-SECTION]**: The current amount of money available on the section
+* **[MONEY]**: The current amount of money (total in Crowns) on the action chart (Belt pouch)
+* **[CROWNS]**: The current amount of Gold Crowns on the action chart (Belt pouch)
+* **[KIKA]**: The current amount of Kika on the action chart (Belt pouch)
+* **[LUNE]**: The current amount of Lune on the action chart (Belt pouch)
+* **[MONEY-ON-SECTION]**: The current amount of money available on the section across all currencies (in Gold Crowns)
 * **[BACKPACK-ITEMS-CNT-ON-SECTION]**: The current count of available backpack items on the section (each item count as 1)
 * **[BACKPACK-ITEMS-CNT-ON-ACTIONCHART]**: The current count of backpack items on the action chart (use itemCount of each item)
 * **[BACKPACK-ITEMS-ON-ACTIONCHART]**: The current count of backpack items on the action chart (each item count as 1)
@@ -161,7 +164,7 @@ will be available on the section.
   to pick
 * **index="number"** Required, for ugly reasons, when there are two or more pick rules with the same object id on a section
 * **currency="currencyId"** Optional, and only for class="money". Picked coins currency, default is "crown". 
-  Values can be "crown", "lune", "kika", or "noble".
+  Values can be "crown", "lune", "kika", "noble", "ren", "sheasutorq", "orla", or "ain"
 
 ### drop (execute once only)
 ```xml
@@ -502,9 +505,7 @@ on this section, the chilren rules will be executed
     </test>
 </numberPickerChoosed>
 ```
-Add a control on the UI to select a number. "numberPickerChoosed" is an optional event handler to execute when
-the number is picked. If the property "executeAtStart" is true, and the number picker action button was clicked
-on a previous rendering, the "numberPickerChoosed" will be executed at the section startup.
+Add a control on the UI to select a number. "numberPickerChoosed" is an optional event handler to execute when the number is picked. If the property "executeAtStart" is true, and the number picker action button was clicked on a previous rendering, the "numberPickerChoosed" will be executed at the section startup.
 
 ### goToSection
 ```xml
