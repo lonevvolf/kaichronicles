@@ -46,6 +46,10 @@ export class ExpressionEvaluator {
             return state.actionChart.beltPouch[CurrencyName.LUNE];
         },
 
+        "[REN]"() {
+            return state.actionChart.beltPouch[CurrencyName.REN];
+        },
+
         // Money available on the section
         "[MONEY-ON-SECTION]"() {
             const sectionState = state.sectionStates.getSectionState();

@@ -937,6 +937,15 @@
                 Crystal Prism
             </name>
         </special>
+
+        <!-- BOOK 23 -->
+        <special id="sadanzosscroll">
+            <name>Sadanzo's Scroll</name>
+        </special>
+
+        <special id="riverboatticket" itemCount="0">
+            <name>Riverboat Ticket</name>
+        </special>
     </specials>
 
     <objects>
@@ -1874,6 +1883,22 @@
 
         <object id="silversignetring">
             <name>Silver Signet Ring</name>
+        </object>
+
+        <object id="ivorycomb">
+            <name>Ivory Comb</name>
+        </object>
+
+        <object id="goldenhuntinghorn">
+            <name>Golden Hunting Horn</name>
+        </object>
+
+        <object id="jewelledtankard">
+            <name>Jewelled Tankard</name>
+        </object>
+
+        <object id="sadanzosseal">
+            <name>Sadanzo's Seal</name>
         </object>
 
         <!-- OTHERS -->
