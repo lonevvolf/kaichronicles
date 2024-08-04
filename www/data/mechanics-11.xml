@@ -435,7 +435,7 @@
         </section>
 
         <section id="sect73">
-            <pick class="meal" count="-([MEALS]/2)" />
+            <pick class="meal" count="-([MEALS] / 2)" />
             <drop specialItemSlots="2|4" />
         </section>
 

@@ -475,7 +475,9 @@ export const mechanicsEngine = {
         const cls = $rule.attr("class");
 
         // Check the amount
-        const count = ExpressionEvaluator.evalFloat($rule.attr("count"));
+        const count = cls !== Item.MONEY ? 
+            ExpressionEvaluator.evalInteger($rule.attr("count")) :
+            ExpressionEvaluator.evalFloat($rule.attr("count"));
 
         // Add to the action chart
         if (cls === Item.MEAL ) {
