@@ -470,9 +470,9 @@ export class ActionChart {
                     }
                 }
             }
-
         } else {
-            this.beltPouch[currency] += count;
+            // Never change a currency amount by fractional
+            this.beltPouch[currency] += Math.floor(count);
             if (this.getBeltPouchUsedAmount(false) > 50) {
                 const totalOverageInCrowns = this.getBeltPouchUsedAmount(false) - 50;
                 const totalOverageInCurrency = Currency.toCurrency(totalOverageInCrowns, CurrencyName.CROWN, currency);
