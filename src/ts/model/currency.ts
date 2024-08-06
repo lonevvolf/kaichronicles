@@ -47,14 +47,14 @@ export class Currency {
      */
     public static toCurrency( nCoins: number, fromCurrencyId: string = CurrencyName.CROWN, toCurrencyId: string = CurrencyName.CROWN, roundDown: boolean = true) : number {
         if (fromCurrencyId !== CurrencyName.CROWN && toCurrencyId !== CurrencyName.CROWN) {
-            mechanicsEngine.debugWarning( "One currency must be Crowns");
+            mechanicsEngine.debugWarning("One currency must be Crowns");
         }
 
         let exchange = 1;
         if (toCurrencyId === CurrencyName.CROWN) {
             exchange = Currency.EXCHANGES[ fromCurrencyId.toString() ];
             if ( !exchange ) {
-                mechanicsEngine.debugWarning( "Wrong currency: " + fromCurrencyId.toString() );
+                mechanicsEngine.debugWarning("Wrong currency: " + fromCurrencyId.toString() );
                 exchange = 1;
             }
         }

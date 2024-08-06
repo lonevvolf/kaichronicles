@@ -939,12 +939,20 @@
         </special>
 
         <!-- BOOK 23 -->
-        <special id="sadanzosscroll">
+        <special id="sadanzosscroll" itemCount="0">
             <name>Sadanzo's Scroll</name>
         </special>
 
         <special id="riverboatticket" itemCount="0">
             <name>Riverboat Ticket</name>
+        </special>
+
+        <special id="stonedagger" weaponType="dagger">
+            <name>Stone Dagger</name>
+        </special>
+
+        <special id="tehdakey" itemCount="0">
+            <name>Tehda Key</name>
         </special>
     </specials>
 

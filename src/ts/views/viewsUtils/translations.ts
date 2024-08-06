@@ -23,7 +23,7 @@ export class Translations {
         "lune"  :   "Lune",
         "kika"  :   "Kika",
         "ren"   :  "Ren",
-        "sheasutorq"    : "Sheasu Torq",
+        "sheasutorq"    : "Sheasu Torqs",
         "orla"  :   "Orla",
         "ain"   :   "Ain",
         "arrows" : "Arrows",
