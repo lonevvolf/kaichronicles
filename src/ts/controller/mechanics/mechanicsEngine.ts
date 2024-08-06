@@ -487,7 +487,7 @@ export const mechanicsEngine = {
         } else if (cls === Item.MONEY) {
             const excessToKaiMonastry = mechanicsEngine.getBooleanProperty($rule, "excessToKaiMonastry", false);
             const currency = $rule.attr("currency");
-            if (!(Object.values(CurrencyName) as string[]).includes(currency)) {
+            if (currency && !(Object.values(CurrencyName) as string[]).includes(currency)) {
                 mechanicsEngine.debugWarning("Unknown currency: " + currency);
             }
             actionChartController.increaseMoney(count, false, excessToKaiMonastry, currency);
