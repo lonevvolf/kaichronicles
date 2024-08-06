@@ -1560,8 +1560,8 @@ export class ActionChart {
 
             // Setup uninitialized properties
             Object.entries(CurrencyName).forEach(([key]) => {
-                if (!o.beltPouch[key]) {
-                   o.beltPouch[key] = 0;
+                if (!o.beltPouch[key.toLowerCase()]) {
+                   o.beltPouch[key.toLowerCase()] = 0;
                 }
             });
         }
