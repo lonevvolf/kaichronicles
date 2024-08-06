@@ -486,8 +486,11 @@ export const mechanicsEngine = {
             actionChartController.increaseArrows(count);
         } else if (cls === Item.MONEY) {
             const excessToKaiMonastry = mechanicsEngine.getBooleanProperty($rule, "excessToKaiMonastry", false);
-            actionChartController.increaseMoney(count, false, excessToKaiMonastry, $rule.attr("currency"));
-            
+            const currency = $rule.attr("currency");
+            if (!(Object.values(CurrencyName) as string[]).includes(currency)) {
+                mechanicsEngine.debugWarning("Unknown currency: " + currency);
+            }
+            actionChartController.increaseMoney(count, false, excessToKaiMonastry, currency);
         } else {
             mechanicsEngine.debugWarning("Pick rule with no objectId / class");
         }
@@ -773,6 +776,10 @@ export const mechanicsEngine = {
         const priceValue = $(rule).attr("price");
         let price: number = 0;
         const currency = $(rule).attr("currency") ?? CurrencyName.CROWN;
+        if (!(Object.values(CurrencyName) as string[]).includes(currency)) {
+            mechanicsEngine.debugWarning("Unknown currency: " + currency);
+        }
+        
         if (priceValue) {
             price = ExpressionEvaluator.evalInteger(priceValue);
         }

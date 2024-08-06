@@ -247,6 +247,9 @@
             <test currentWeapon="sunstrike">
                 <combat combatSkillModifierIncrement="+1"/>
             </test>
+            <test currentWeapon="sunstrike">
+                <combat combatSkillModifierIncrement="+1"/>
+            </test>
             <afterCombatTurn turn="3">
                 <combat combatSkillModifier="+5" />
             </afterCombatTurn>
@@ -457,6 +460,9 @@
             <test currentWeapon="valiance">
                 <combat combatSkillModifierIncrement="+3" />
             </test>
+            <test currentWeapon="kaistar">
+                <combat combatSkillModifierIncrement="+2"/>
+            </test>
             <afterCombatTurn turn="1">
                 <test expression="[COMBATSENDURANCELOST] > [COMBATSENEMYLOST]">
                     <choiceState section="sect40" set="enabled" />
@@ -616,6 +622,9 @@
         <section id="sect83">
             <choiceState section="all" set="disabled" />
             <combat noMindblast="true" />
+            <test currentWeapon="kaistar">
+                <combat combatSkillModifierIncrement="+2"/>
+            </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
             </afterCombats>
@@ -765,13 +774,15 @@
             <endurance count="-3" />
             <choiceState section="all" set="disabled" />
             <combat combatSkillModifier="-5" />
+            <test currentWeapon="kaistar">
+                <combat combatSkillModifierIncrement="+2"/>
+            </test>
             <afterCombatTurn turn="1">
                 <combat combatSkillModifier="0" />
             </afterCombatTurn>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
             </afterCombats>
-
         </section>
 
         <section id="sect108">
@@ -955,6 +966,9 @@
         <section id="sect128">
             <choiceState section="all" set="disabled" />
             <combat combatSkillModifierIncrement="+5" />
+            <test currentWeapon="kaistar">
+                <combat combatSkillModifierIncrement="+2"/>
+            </test>
             <afterCombats>
                 <test expression="[COMBATSDURATION] &lt;= 5">
                     <choiceState section="sect215" set="enabled" />
@@ -1487,6 +1501,9 @@
             <test currentWeapon="valiance">
                 <combat combatSkillModifierIncrement="+3" />
             </test>
+            <test currentWeapon="sunstrike">
+                <combat combatSkillModifierIncrement="+1"/>
+            </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
             </afterCombats>
@@ -1599,6 +1616,9 @@
             <test currentWeapon="valiance">
                 <combat combatSkillModifierIncrement="+3" />
             </test>
+            <test currentWeapon="sunstrike">
+                <combat combatSkillModifierIncrement="+1"/>
+            </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
             </afterCombats>
@@ -1640,6 +1660,9 @@
         <section id="sect254">
             <choiceState section="all" set="disabled" />
             <combat combatSkillModifierIncrement="+5" />
+            <test currentWeapon="sunstrike">
+                <combat combatSkillModifierIncrement="+1"/>
+            </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
             </afterCombats>
@@ -1669,13 +1692,17 @@
         </section>
 
         <section id="sect266">
-            <!-- TODO: Deadend if the player has no money? -->
             <test expression="[CROWNS] &lt; 2">
                 <choiceState section="sect37" set="disabled" />
             </test>
             <test expression="[REN] &lt; 20">
                 <choiceState section="sect241" set="disabled" />
             </test>
+            <!-- Deadend if the player doesn't have enough money; 
+             second choice is better, since first leads to money numberpicker -->
+             <test expression="[MONEY] &lt; 2">
+                <choiceState section="sect241" set="enabled" />
+             </test>
         </section>
 
         <section id="sect269">
@@ -1726,6 +1753,9 @@
         <section id="sect284">
             <choiceState section="all" set="disabled" />
             <combat combatSkillModifierIncrement="+5" />
+            <test currentWeapon="kaistar">
+                <combat combatSkillModifierIncrement="+2"/>
+            </test>
             <afterCombats>
                 <test expression="[COMBATSDURATION] &lt;= 4">
                     <choiceState section="sect215" set="enabled" />
@@ -1813,6 +1843,9 @@
             <afterCombats>
                 <choiceState section="all" set="enabled" />
             </afterCombats>
+            <test currentWeapon="kaistar">
+                <combat combatSkillModifierIncrement="+2"/>
+            </test>
             <test currentWeapon="raumas">
                 <combat combatSkillModifierIncrement="+1" />
             </test>
