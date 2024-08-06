@@ -253,6 +253,7 @@
         </section>
 
         <section id="sect29">
+            <pick class="money" count="-4"/>
             <endurance count="-2" />
         </section>
 
