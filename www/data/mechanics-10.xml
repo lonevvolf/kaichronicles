@@ -797,7 +797,7 @@
             <choiceState section="all" set="disabled" />
             <combat noMindblast="true" />
             <test hasObject="sommerswerd">
-                <combat dammageMultiplier="2" />
+                <combat damageMultiplier="2" />
             </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />

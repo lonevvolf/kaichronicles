@@ -1019,13 +1019,13 @@ export const mechanicsEngine = {
             combat.eludeEnemyEP = eludeEnemyEP;
         }
 
-        // Dammage multiplier (player)
-        const txtDammageMultiplier: string = $rule.attr("dammageMultiplier");
-        if (txtDammageMultiplier) {
-            combat.dammageMultiplier = parseFloat(txtDammageMultiplier);
+        // Damage multiplier (player)
+        const txtDamageMultiplier: string = $rule.attr("damageMultiplier");
+        if (txtDamageMultiplier) {
+            combat.damageMultiplier = parseFloat(txtDamageMultiplier);
         }
 
-        // Dammage multiplier (enemy)
+        // Damage multiplier (enemy)
         const txtEnemyMultiplier: string = $rule.attr("enemyMultiplier");
         if (txtEnemyMultiplier) {
             combat.enemyMultiplier = parseFloat(txtEnemyMultiplier);
@@ -1076,9 +1076,9 @@ export const mechanicsEngine = {
         combat.bowCombat = mechanicsEngine.getBooleanProperty($rule, "bow", false);
 
         // LW loss is permament (applied to the original endurance)?
-        const permanentDammage = mechanicsEngine.getBooleanProperty($rule, "permanentDammage");
-        if (permanentDammage !== null) {
-            combat.permanentDammage = permanentDammage;
+        const permanentDamage = mechanicsEngine.getBooleanProperty($rule, "permanentDamage");
+        if (permanentDamage !== null) {
+            combat.permanentDamage = permanentDamage;
         }
 
         // Objects to disable on this combat:

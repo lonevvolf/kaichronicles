@@ -113,11 +113,25 @@ export class BookSectionStates {
             const combats = <Combat[]>[];
             $.each( sectionState.combats , ( index , combat ) => {
                 const rightCombat = $.extend( new Combat( "" , 0 , 0 ) , combat );
+                // Fix for spelling error in old saves
+                if (rightCombat["dammageMultiplier"] !== undefined) {
+                    rightCombat.damageMultiplier = rightCombat["dammageMultiplier"];
+                    delete(rightCombat["dammageMultiplier"]);
+                }
+                if (rightCombat["permanentDammage"] !== undefined) {
+                    rightCombat.permanentDamage = rightCombat["permanentDammage"];
+                    delete(rightCombat["permanentDammage"]);
+                }
                 combats.push( rightCombat );
 
                 // Restore combat turns
                 const turns = <CombatTurn[]>[];
                 $.each( rightCombat.turns , ( turnIndex , turn ) => {
+                    // Fix for spelling error in old saves
+                    if (turn["dammageMultiplier"] !== undefined) {
+                        turn.damageMultiplier = turn["dammageMultiplier"];
+                        delete(turn["dammageMultiplier"]);
+                    }
                     turns.push( $.extend( new CombatTurn(null, 0, false, false) , turn ) );
                 });
                 rightCombat.turns = turns;

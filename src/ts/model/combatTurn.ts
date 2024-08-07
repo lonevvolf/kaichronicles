@@ -12,10 +12,10 @@ export class CombatTurn {
     /** The random table result  */
     public randomValue: number;
 
-    /** Lone wolf dammage multiplier (can have decimals) */
-    public dammageMultiplier: number;
+    /** Lone wolf damage multiplier (can have decimals) */
+    public damageMultiplier: number;
 
-    /** Enemy dammage multiplier (can have decimals) */
+    /** Enemy damage multiplier (can have decimals) */
     public enemyMultiplier: number;
 
     /** Enemy EP base loss.
@@ -75,9 +75,9 @@ export class CombatTurn {
 
         /** The random table result  */
         this.randomValue = randomValue;
-        /** Lone wolf dammage multiplier */
-        this.dammageMultiplier = combat.dammageMultiplier;
-        /** Enemy dammage multiplier */
+        /** Lone wolf damage multiplier */
+        this.damageMultiplier = combat.damageMultiplier;
+        /** Enemy damage multiplier */
         this.enemyMultiplier = combat.enemyMultiplier;
 
         const tableResult = CombatTable.getCombatTableResult(combat.getCombatRatio(), this.randomValue);
@@ -85,7 +85,7 @@ export class CombatTurn {
         /** Enemy base loss  */
         this.enemyBase = ( ( elude || combat.enemyImmuneTurns >= this.turnNumber ) ? 0 : tableResult[0] );
         /** The enemy loss */
-        this.enemy = CombatTurn.applyMultiplier( this.enemyBase , this.dammageMultiplier );
+        this.enemy = CombatTurn.applyMultiplier( this.enemyBase , this.damageMultiplier );
         /** Enemy extra loss (combat.enemyTurnLoss is negative) */
         this.enemyExtra = combat.enemyTurnLoss;
         if ( this.enemy !== COMBATTABLE_DEATH) {
@@ -185,7 +185,7 @@ export class CombatTurn {
      * Return a text with the enemy loss
      */
     public getEnemyLossText(): string {
-        return CombatTurn.lossText( this.enemyBase , this.dammageMultiplier , this.enemyExtra ,
+        return CombatTurn.lossText( this.enemyBase , this.damageMultiplier , this.enemyExtra ,
             this.enemy );
     }
 
@@ -228,7 +228,7 @@ export class CombatTurn {
         }
 
         if ( enduranceLoss !== COMBATTABLE_DEATH ) {
-            // Apply the dammage multiplier
+            // Apply the damage multiplier
             enduranceLoss = Math.floor( enduranceLoss * multiplier );
         }
 

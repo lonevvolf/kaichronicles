@@ -558,9 +558,9 @@
             <test not="true" hasDiscipline="hntmstry">
                 <combat combatSkillModifier="-3" />
             </test>
-            <combat dammageMultiplier="1" />
+            <combat damageMultiplier="1" />
             <test currentWeapon="sommerswerd">
-                <combat dammageMultiplier="2" />
+                <combat damageMultiplier="2" />
             </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
@@ -602,9 +602,9 @@
         <section id="sect104">
             <choiceState section="all" set="disabled" />
 
-            <combat dammageMultiplier="1" />
+            <combat damageMultiplier="1" />
             <test currentWeapon="sommerswerd">
-                <combat dammageMultiplier="2" />
+                <combat damageMultiplier="2" />
             </test>
             <test not="true" hasDiscipline="hntmstry|dvnation">
                 <combat combatSkillModifier="-2" />
@@ -934,9 +934,9 @@
             <choiceState section="all" set="disabled" />
 
             <combat combatSkillModifier="+2" />
-            <combat dammageMultiplier="1" />
+            <combat damageMultiplier="1" />
             <test currentWeapon="sommerswerd">
-                <combat dammageMultiplier="2" />
+                <combat damageMultiplier="2" />
             </test>
 
             <afterCombats>
@@ -1094,9 +1094,9 @@
 
             <choiceState section="all" set="disabled" />
             <combat combatSkillModifier="-4" />
-            <combat dammageMultiplier="1" />
+            <combat damageMultiplier="1" />
             <test currentWeapon="sommerswerd">
-                <combat dammageMultiplier="2" />
+                <combat damageMultiplier="2" />
             </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
@@ -1553,9 +1553,9 @@
         <section id="sect254">
             <choiceState section="all" set="disabled" />
 
-            <combat dammageMultiplier="1" />
+            <combat damageMultiplier="1" />
             <test currentWeapon="sommerswerd">
-                <combat dammageMultiplier="2" />
+                <combat damageMultiplier="2" />
             </test>
 
             <afterCombats>
@@ -1731,9 +1731,9 @@
         <section id="sect301">
             <choiceState section="all" set="disabled" />
 
-            <combat dammageMultiplier="1" />
+            <combat damageMultiplier="1" />
             <test currentWeapon="sommerswerd">
-                <combat dammageMultiplier="2" />
+                <combat damageMultiplier="2" />
             </test>
 
             <afterCombats>
@@ -1848,9 +1848,9 @@
         <section id="sect322">
             <choiceState section="all" set="disabled" />
 
-            <combat dammageMultiplier="1" />
+            <combat damageMultiplier="1" />
             <test currentWeapon="sommerswerd">
-                <combat dammageMultiplier="2" />
+                <combat damageMultiplier="2" />
             </test>
 
             <afterCombats>

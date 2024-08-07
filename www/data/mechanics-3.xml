@@ -591,7 +591,7 @@
             <choiceState section="all" set="disabled" />
             <combat noMindblast="true" mindforceEP="-2" />
             <test currentWeapon="sommerswerd">
-                <combat dammageMultiplier="2" />
+                <combat damageMultiplier="2" />
             </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
@@ -999,7 +999,7 @@
         <section id="sect164">
             <choiceState section="all" set="disabled" />
             <test currentWeapon="sommerswerd">
-                <combat dammageMultiplier="2" />
+                <combat damageMultiplier="2" />
             </test>
             <afterCombats>
                 <test not="true" expression="[COMBATSDURATION] > 5">
@@ -1730,7 +1730,7 @@
             <choiceState section="all" set="disabled" />
             <combat noMindblast="true" mindforceEP="-2" />
             <test currentWeapon="sommerswerd">
-                <combat dammageMultiplier="2" />
+                <combat damageMultiplier="2" />
             </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />

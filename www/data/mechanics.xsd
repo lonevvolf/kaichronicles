@@ -235,7 +235,7 @@
             </xs:annotation>
             <xs:simpleType>
                 <xs:restriction base="xs:string">
-                    <xs:pattern value = "(sixthsns|camflage|tracking|mindomtr|anmlknsp|healing|hunting|mindshld|mndblst|wepnskll|wpnmstry|anmlctrl|curing|invsblty|psisurge|psiscrn|nexus|dvnation|anmlmstr|deliver|assimila|kaisurge|kaiscrn|gnosis|magi|alchemy|hntmstry|pthmnshp|astrolgy|herbmst|element|bardsman|\|)*"/>
+                    <xs:pattern value="(sixthsns|camflage|tracking|mindomtr|anmlknsp|healing|hunting|mindshld|mndblst|wepnskll|wpnmstry|anmlctrl|curing|invsblty|psisurge|psiscrn|nexus|dvnation|anmlmstr|deliver|assimila|kaisurge|kaiscrn|gnosis|magi|alchemy|hntmstry|pthmnshp|astrolgy|herbmst|element|bardsman|\|)*"/>
                 </xs:restriction>
             </xs:simpleType>
         </xs:attribute>
@@ -498,14 +498,14 @@
                 <xs:documentation>LW can elude the combat once the enemy EP is at the value or below. eludeTurn has to be set</xs:documentation>
             </xs:annotation>
         </xs:attribute>
-        <xs:attribute name="dammageMultiplier" type="xs:decimal">
+        <xs:attribute name="damageMultiplier" type="xs:decimal">
             <xs:annotation>
-                <xs:documentation>LW dammage multiplier. Can have decimals (ex. "0.5")</xs:documentation>
+                <xs:documentation>LW damage multiplier. Can have decimals (ex. "0.5")</xs:documentation>
             </xs:annotation>
         </xs:attribute>
         <xs:attribute name="enemyMultiplier" type="xs:decimal">
             <xs:annotation>
-                <xs:documentation>Enemy dammage multiplier. Can have decimals (ex. "0.5")</xs:documentation>
+                <xs:documentation>Enemy damage multiplier. Can have decimals (ex. "0.5")</xs:documentation>
             </xs:annotation>
         </xs:attribute>
         <xs:attribute name="enemyTurnLoss" type="xs:string">
@@ -563,7 +563,7 @@
                 <xs:documentation>Turns during which the enemy will suffer no damage</xs:documentation>
             </xs:annotation>
         </xs:attribute>
-        <xs:attribute name="permanentDammage" type="xs:boolean">
+        <xs:attribute name="permanentDamage" type="xs:boolean">
             <xs:annotation>
                 <xs:documentation>If true, EP lost by LW on this combat will be permanent</xs:documentation>
             </xs:annotation>
