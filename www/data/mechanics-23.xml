@@ -54,7 +54,7 @@
             <object objectId="axe" />
 
             <test not="true" hasObject="spawnsmite|alema|magnara|sunstrike|kaistar|valiance|ulnarias|raumas|illuminatus|firefall">
-                <randomTable index="1">
+                <randomTable ignoreNumpicker="true" index="1">
                     <case value="0">
                         <pick objectId="spawnsmite"/>
                     </case>
