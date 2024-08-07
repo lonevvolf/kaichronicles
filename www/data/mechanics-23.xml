@@ -37,7 +37,7 @@
                 <pick objectId="backpack" />
             </test>
 
-            <randomTable>
+            <randomTable ignoreNumpicker="true">
                 <pick class="money" count="[RANDOM] + 20" excessToKaiMonastry="false" />
             </randomTable>
 
