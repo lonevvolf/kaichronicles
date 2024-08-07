@@ -890,16 +890,10 @@
                 <xs:documentation>The money got by selling the object.</xs:documentation>
             </xs:annotation>
         </xs:attribute>
-        <xs:attribute name="currency">
+        <xs:attribute name="currency" type="currency">
             <xs:annotation>
-                <xs:documentation>If it's set, the currency of the price to sell the object. Default is Gold Crowns.</xs:documentation>                
+                <xs:documentation>Optional. If it's set, the currency of the price to sell the object. Default is Gold Crowns.</xs:documentation>
             </xs:annotation>
-            <xs:simpleType>
-                <xs:restriction base="xs:string">
-                    <xs:enumeration value="crown" />
-                    <xs:enumeration value="noble" />
-                </xs:restriction>
-            </xs:simpleType>
         </xs:attribute>
         <xs:attribute name="count" type="xs:nonNegativeInteger">
             <xs:annotation>

@@ -54,10 +54,11 @@ export const randomMechanics = {
         } else {
             // Bind the tag click event
             const zeroAsTen = $(rule).attr("zeroAsTen") === "true";
+            const ignoreNumpicker = $(rule).attr("ignoreNumpicker") === "true";
             randomMechanics.bindTableRandomLink($link, (value, increment) => {
                 randomMechanics.onRandomTableMechanicsClicked(rule, value, increment);
             },
-                zeroAsTen);
+                zeroAsTen, ignoreNumpicker);
         }
     },
 
@@ -124,7 +125,7 @@ export const randomMechanics = {
      * @param {boolean} zeroAsTen true if the zero must to be returned as ten
      */
     bindTableRandomLink($element: JQuery<HTMLElement>, onLinkPressed: (value: number, increment: number) => void,
-                        zeroAsTen: boolean) {
+                        zeroAsTen: boolean, ignoreNumpicker: boolean = false) {
 
         // If the element is an span, replace it by a link
         $element = randomMechanics.setupRandomTableLink($element);
@@ -138,7 +139,7 @@ export const randomMechanics = {
             }
 
             // Validate money picker, if there is. If its not valid, don't follow with this link
-            if (!numberPickerMechanics.isValid()) {
+            if (!ignoreNumpicker && !numberPickerMechanics.isValid()) {
                 return;
             }
 

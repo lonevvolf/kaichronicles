@@ -48,6 +48,8 @@ There are some keywords that can be used on expressions. They have the following
 * **[CROWNS]**: The current amount of Gold Crowns on the action chart (Belt pouch)
 * **[KIKA]**: The current amount of Kika on the action chart (Belt pouch)
 * **[LUNE]**: The current amount of Lune on the action chart (Belt pouch)
+* **[REN]**: The current amount of Ren on the action chart (Belt pouch)
+* **[SHEASUTORQS]**: The current amount of Sheasu Torqs on the action chart (Belt pouch)
 * **[MONEY-ON-SECTION]**: The current amount of money available on the section across all currencies (in Gold Crowns)
 * **[BACKPACK-ITEMS-CNT-ON-SECTION]**: The current count of available backpack items on the section (each item count as 1)
 * **[BACKPACK-ITEMS-CNT-ON-ACTIONCHART]**: The current count of backpack items on the action chart (use itemCount of each item)
@@ -310,7 +312,7 @@ Enable or disable section choices
 Make an object available on the section. The player will can pick / buy it.
 * **objectId**: The available object id 
 * **price**: If it's set, the price to buy the object (not free)
-* **currency**: If it's set, the currency of the price to buy the object. If not, Crowns is assumed. Setting currency will limit the buyer to that currency (ie. Crowns not accepted if Nobles set)
+* **currency**: If it's set, the currency of the price to buy the object. If not, Crowns is assumed. Setting currency will limit the buyer to that currency (ie. Crowns not accepted if Nobles set).   Values can be "crown", "lune", "kika", "noble", "ren", "sheasutorq", "orla", or "ain"
 * **unlimited="true"**: There is an unlimited number of objects of this class on the section
 * **index="number"** Required, for ugly reasons, when there are two or more objects with the same object id on a section
 * **useOnSection="true"**: If true, the player will use the object without picking it

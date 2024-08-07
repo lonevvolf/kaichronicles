@@ -253,6 +253,7 @@
         </section>
 
         <section id="sect29">
+            <pick class="money" count="-4"/>
             <endurance count="-2" />
         </section>
 
@@ -2044,7 +2045,8 @@
         </section>
         
         <section id="sect350">
-            <message text="Congratulations! You have finished the last book of Kai Chronicles!" />
+            <!-- Even though this is not instructed, it should be assumed by the text-->
+            <drop objectId="moonstone" />
         </section>
     </sections>
 </mechanics>
