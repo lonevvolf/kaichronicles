@@ -607,10 +607,10 @@
         </section>
 
         <section id="sect80">
-            <test hasTag="oridonstone">
+            <test sectionVisited="sect104">
                 <choiceState section="sect155" set="disabled" />
             </test>
-            <test not="true" hasTag="oridonstone">
+            <test not="true" sectionVisited="sect104">
                 <choiceState section="sect52" set="disabled" />
             </test>
         </section>
@@ -745,10 +745,6 @@
             <afterCombats>
                 <choiceState section="all" set="enabled" />
             </afterCombats>
-        </section>
-
-        <section id="sect104">
-            <tag id="oridonstone" />
         </section>
 
         <section id="sect105">
@@ -1093,6 +1089,9 @@
             <test currentWeapon="kaistar">
                 <combat combatSkillModifierIncrement="+2"/>
             </test>
+            <afterCombats>
+                <choiceState section="all" set="enabled" />
+            </afterCombats>
         </section>
 
         <section id="sect160">
@@ -2012,9 +2011,6 @@
                     <choiceState section="all" set="enabled" />
                 </test>
             </randomTable>
-            <test hasDiscipline="hntmstry">
-                <randomTableIncrement increment="+1" />
-            </test>
         </section>
 
         <section id="sect333">
