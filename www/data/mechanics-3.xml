@@ -911,17 +911,20 @@
 
         <section id="sect152">
             <choiceState section="all" set="disabled" />
-            <numberPicker text="Choose the number of Gold Crowns you are going to throw" min="1" money="true" />
-            <randomTable zeroAsTen="true">
+            <numberPicker text="Choose the number of Gold Crowns you are going to throw" min="1" money="true" actionButton="Choose" />
+            <numberPickerChoosed>
                 <numberPicker enabled="false" />
-                <pick class="money" count="-[NUMBERPICKER]" />
-                <test expression="[RANDOM] &lt;= [NUMBERPICKER]">
-                    <choiceState section="sect319" set="enabled" />
-                </test>
-                <test not="true" expression="[RANDOM] &lt;= [NUMBERPICKER]">
-                    <choiceState section="sect181" set="enabled" />
-                </test>
-            </randomTable>
+                <randomTable zeroAsTen="true">
+                    <numberPicker enabled="false" />
+                    <pick class="money" count="-[NUMBERPICKER]" />
+                    <test expression="[RANDOM] &lt;= [NUMBERPICKER]">
+                        <choiceState section="sect319" set="enabled" />
+                    </test>
+                    <test not="true" expression="[RANDOM] &lt;= [NUMBERPICKER]">
+                        <choiceState section="sect181" set="enabled" />
+                    </test>
+                </randomTable>
+            </numberPickerChoosed> 
         </section>
 
         <section id="sect153">
