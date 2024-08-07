@@ -212,7 +212,14 @@ export const projectAon = {
             illustrators: [ "williams" ],
             biographies: [ "jdbiolw" , "bwbiolw" ]
         },
-    ] as BookMetadata[],
+
+        // Book 24:
+        {
+            title: "Rune War",
+            code: "24rw",
+            illustrators: [ "williams" ],
+            biographies: [ "jdbiolw" , "bwbiolw" ]
+        },    ] as BookMetadata[],
 
     /**
      * Returns the title of a book

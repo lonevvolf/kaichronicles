@@ -953,6 +953,12 @@
         <special id="tehdakey" itemCount="0">
             <name>Tehda Key</name>
         </special>
+
+        <!-- BOOK 24 -->
+         <special id="dungeonkeys">
+            <name>Dungeon Keys</name>
+            <image book="1" name="small15.png" />
+         </special>
     </specials>
 
     <objects>
@@ -1912,6 +1918,22 @@
          <object id="lute">
             <name>Lute</name>
             <image book="24" name="lute.png" />
+         </object>
+
+         <object id="graveweedconcentrate">
+            <name>Graveweed Concentrate</name>
+         </object>
+
+         <object id="mokradonpotion">
+            <name>Potion of Mokradon</name>
+         </object>
+
+         <object id="volzocpotion">
+            <name>Potion of Volzoc</name>
+         </object>
+
+         <object id="ghilev">
+            <name>Ghilev</name>
          </object>
 
         <!-- OTHERS -->
