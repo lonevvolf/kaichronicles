@@ -864,7 +864,6 @@ export const mechanicsEngine = {
             if (cls === Item.SPECIAL) {
                 objectIds = state.actionChart.getSpecialItemsIds();
                 except.push(Item.MAP); // don't sell this, come on!
-                // TODO: Disallow selling of Kai Weapons - texts assume the player has this
             }
             else if (cls == Item.WEAPON) {
                 objectIds = state.actionChart.getWeaponsIds();
@@ -876,9 +875,9 @@ export const mechanicsEngine = {
             }
 
             for (const id of objectIds) {
-                const item = state.mechanics.getObject(objectId);
+                const item = state.mechanics.getObject(id);
                 // TODO: Allow selling of multiples (ie. you have two Potions of Laumspur) and Meals
-                if (!except.includes(id)) {
+                if (!except.includes(id) && item.droppable) {
                     sectionState.sellPrices.push({
                         id,
                         price,
