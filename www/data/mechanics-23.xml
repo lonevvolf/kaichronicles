@@ -193,7 +193,6 @@
             <choiceState section="sect309" set="disabled" />
             <test hasDiscipline="alchemy">
                 <choiceState section="sect309" set="enabled" />
-                <choiceState section="sect78" set="disabled" />
             </test>
         </section>
         
