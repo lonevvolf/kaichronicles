@@ -1,5 +1,5 @@
 import { views, translations, Section, gameView, state, CombatMechanics, randomMechanics, Combat, Item, routing, gameController,
-    App, ExpressionEvaluator, numberPickerMechanics, SkillsSetup, KaiNameSetup, SetupDisciplines, EquipmentSectionMechanics, actionChartController,
+    App, ExpressionEvaluator, numberPickerMechanics, disciplinePickerMechanics, SkillsSetup, KaiNameSetup, SetupDisciplines, EquipmentSectionMechanics, actionChartController,
     CurrencyName, LoreCircle, BookSeriesId, MealMechanics, ActionChartItem, InventoryState, actionChartView, template, Book,
     GrandMasterUpgrade, kaimonasteryController, book2sect238, book2sect308, book3sect88, book6sect26, book6sect284,
     book6sect340, book9sect91, book19sect304, ObjectsTable, ObjectsTableType, setupController, KaiDiscipline, MgnDiscipline,
@@ -41,6 +41,9 @@ export const mechanicsEngine = {
     /** The rule to execute when the action button of a number picker is clicked */
     onNumberPickerChoosed: <Element>null,
 
+    /** The rule to execute when the action button of a discipline picker is clicked */
+    onDisciplinePickerChoosed: <Element>null,
+    
     /************************************************************/
     /**************** MAIN FUNCTIONS ****************************/
     /************************************************************/
@@ -106,6 +109,7 @@ export const mechanicsEngine = {
         mechanicsEngine.onChoiceSelected = [];
         mechanicsEngine.onObjectUsedRule = null;
         mechanicsEngine.onNumberPickerChoosed = null;
+        mechanicsEngine.onDisciplinePickerChoosed = null;
 
         // Disable previous link if we are on "The story so far" section
         gameView.enablePreviousLink(section.sectionId !== "tssf");
@@ -403,6 +407,23 @@ export const mechanicsEngine = {
         return true;
     },
 
+    /**
+     * The action button of a discipline picker was clicked
+     * @returns True if the discipline picker value was valid (== if the action has been executed)
+     */
+    fireDisciplinePickerChoosed(): boolean {
+        // Be sure the picker value is valid
+        if (!disciplinePickerMechanics.isValid()) {
+            return false;
+        }
+
+        if (mechanicsEngine.onDisciplinePickerChoosed) {
+            mechanicsEngine.runChildRules($(mechanicsEngine.onDisciplinePickerChoosed));
+        }
+
+        return true;
+    },
+
     /************************************************************/
     /**************** RULES *************************************/
     /************************************************************/
@@ -549,7 +570,7 @@ export const mechanicsEngine = {
                     mechanicsEngine.debugWarning("Unknown discipline: " + discipline);
                 }
                 if (state.actionChart.hasDiscipline(discipline)) {
-                    return true
+                    return true;
                 }
             }
         }
@@ -1330,6 +1351,13 @@ export const mechanicsEngine = {
     },
 
     /**
+     * Discipline picker UI
+     */
+    disciplinePicker(rule: Element) {
+        disciplinePickerMechanics.disciplinePicker(rule);
+    },
+
+    /**
      * Number picker action button clicked event handler
      */
     numberPickerChoosed(rule: Element) {
@@ -1339,6 +1367,19 @@ export const mechanicsEngine = {
         if (mechanicsEngine.getBooleanProperty($(rule), "executeAtStart") && numberPickerMechanics.actionButtonWasClicked()) {
             mechanicsEngine.runChildRules($(mechanicsEngine.onNumberPickerChoosed));
         }
+    },
+
+    /**
+     * Discipline picker action button clicked event handler
+     */
+    disciplinePickerChoosed(rule: Element) {
+        mechanicsEngine.onDisciplinePickerChoosed = rule;
+    },
+
+    disableDiscipline(rule: Element) {
+        const $rule = $(rule);
+        const disciplineIndex = ExpressionEvaluator.evalInteger($rule.attr("disciplineIndex"));
+        actionChartController.disableDiscipline(disciplineIndex);
     },
 
     /**
@@ -1531,6 +1572,19 @@ export const mechanicsEngine = {
         }
 
         state.actionChart.resetNewOrderCuringEPRestoredUsed();
+        state.sectionStates.markRuleAsExecuted(rule);
+    },
+
+    /**
+     * New Order: Reset disabled disciplines in the current book
+     */
+    resetNewOrderDisabledDisciplines(rule: Element) {
+        if ( state.sectionStates.ruleHasBeenExecuted(rule) ) {
+            // Execute only once
+            return;
+        }
+
+        state.actionChart.resetDisabledDisciplines();
         state.sectionStates.markRuleAsExecuted(rule);
     },
 

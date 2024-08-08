@@ -38,6 +38,7 @@ export class Translations {
         "confirmSell" : "Are you sure you want to sell the object for {0} {1}?",
         "confirmUse" : 'Are you sure you want to use "{0}"?',
         "confirmDrop" : 'Are you sure you want to drop "{0}"?',
+        "confirmDisableDiscipline" : "Are you sure you want to disable {0} for the rest of the book?",
         "noEnoughMoney" : "You don't have enough money",
         "confirmBuy" : "Are you sure you want to buy the object for {0} {1}?",
         "msgGetObject" : 'You get "{0}"',
@@ -150,7 +151,7 @@ export class Translations {
         // New game
         //////////////////////////////////////
 
-        "youMustAgree" : "You must agree the licence to continue",
+        "youMustAgree" : "You must agree the license to continue",
 
         //////////////////////////////////////
         // Settings
@@ -171,6 +172,25 @@ export class Translations {
         "CS" : "C.S.",
         "E" : "E.",
         "map" : "Map",
+
+        //////////////////////////////////////
+        // New Order Disciplines
+        //////////////////////////////////////
+        "wpnmstry" : "Grand Weaponmastery",
+        "anmlmstr" : "Animal Mastery",
+        "deliver" : "Deliverance",
+        "assimila" : "Assimilance" ,
+        "hntmstry" : "Grand Huntmastery",
+        "pthmnshp" : "Grand Pathsmanship",
+        "kaiscrn" : "Kai-screen",
+        "nexus": "Grand Nexus",
+        "gnosis" : "Telegnosis",
+        "magi" : "Magi-magic",
+        "alchemy" : "Kai-alchemy",
+        "astrolgy" : "Astrology",
+        "herbmst" : "Herbmastery" ,
+        "element" : "Elementalism",
+        "bardsman" : "Bardsmanship",
 
         //////////////////////////////////////
         // Others

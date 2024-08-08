@@ -23,6 +23,13 @@ export interface SeriesDisciplines {
      * On Kai series, it's a single weapon. On series >= Magnakai, they will be more than one
      */
     weaponSkill: string[];
+
+    /**
+     * Optional: a list of disabled disciplines
+     * Book 24 forces the player to disable a discipline until end of mission in a few places
+     * NOTE: Disabled disciplines will still be found in the disciplines array for compatability (KAILEVEL, etc.)
+     */
+    disabledDisciplines?: string[];
 }
 
 /**
@@ -94,8 +101,8 @@ export class ActionChart {
     /** Grand Master disciplines (books 13+). See kaiDisciplines comments */
     private grandMasterDisciplines: SeriesDisciplines = { disciplines: [], weaponSkill: [] };
 
-    /** Grand Master disciplines (books 21+). See kaiDisciplines comments */
-    private newOrderDisciplines: SeriesDisciplines = { disciplines: [], weaponSkill: [] };
+    /** New Order disciplines (books 21+). See kaiDisciplines comments */
+    private newOrderDisciplines: SeriesDisciplines = { disciplines: [], weaponSkill: [], disabledDisciplines: [] };
 
     /** Player annotations */
     public annotations = "";
@@ -1308,6 +1315,24 @@ export class ActionChart {
     }
 
     /**
+     * Reset the disabled disciplines
+     */
+    public resetDisabledDisciplines() {
+        this.newOrderDisciplines.disabledDisciplines = [];
+    }
+
+    /**
+     * Disable a discipline
+     */
+    public disableDiscipline(disciplineIndex: number) {
+        const disciplineToDisable = this.newOrderDisciplines.disciplines[disciplineIndex]; 
+
+        if (this.newOrderDisciplines.disabledDisciplines.indexOf(disciplineToDisable) === -1) {
+            this.newOrderDisciplines.disabledDisciplines.push(disciplineToDisable);
+        }
+    }
+
+    /**
      * Reset the New Order Curing EP Restored Counter
      */
     public resetNewOrderCuringEPRestoredUsed() {
@@ -1357,7 +1382,15 @@ export class ActionChart {
                 mechanicsEngine.debugWarning(`Disciplines of book series ${seriesId} do not contains discipline ${disciplineId}`);
             }
         }
-        return this.getSeriesDisciplines(seriesId).disciplines.includes(disciplineId);
+
+        const seriesDisciplines = this.getSeriesDisciplines(seriesId);
+        if( seriesDisciplines.disabledDisciplines ) {
+            const filtered = seriesDisciplines.disciplines
+                .filter(x => !seriesDisciplines.disabledDisciplines.includes(x));
+            return filtered.includes(disciplineId);
+        } else {
+            return this.getSeriesDisciplines(seriesId).disciplines.includes(disciplineId);
+        }
     }
 
     /** Player has a given Kai discipline */
@@ -1402,7 +1435,6 @@ export class ActionChart {
      * @returns Disciplines for that series to apply. They can be different of the real disciplines with which the player finished the series
      */
     private getSeriesDisciplines(seriesId: BookSeriesId = null): SeriesDisciplines {
-
         const currentSeriesId = state.book.getBookSeries().id;
         if (seriesId === null) {
             seriesId = currentSeriesId;
@@ -1412,7 +1444,6 @@ export class ActionChart {
         }
 
         let seriesDisciplines = this.getRealDisciplines(seriesId);
-
         // If the player has played SOME book of a previous series, player has ALL disciplines of that series
         // and can benefit of loyalty bonuses
         if (seriesId < currentSeriesId && (seriesDisciplines.disciplines.length > 0 
