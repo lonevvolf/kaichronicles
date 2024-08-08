@@ -955,10 +955,10 @@
         </special>
 
         <!-- BOOK 24 -->
-         <special id="dungeonkeys">
+        <special id="dungeonkeys">
             <name>Dungeon Keys</name>
             <image book="1" name="small15.png" />
-         </special>
+        </special>
     </specials>
 
     <objects>
@@ -1922,18 +1922,53 @@
 
          <object id="graveweedconcentrate">
             <name>Graveweed Concentrate</name>
+            <description>Fatal when swallowed</description>
          </object>
 
          <object id="mokradonpotion">
             <name>Potion of Mokradon</name>
+            <description>Causes irreversible blindness in humans</description>
          </object>
 
          <object id="volzocpotion">
             <name>Potion of Volzoc</name>
+            <description>Causes violent hallucinations</description>
          </object>
 
          <object id="ghilev">
             <name>Ghilev</name>
+         </object>
+
+         <object id="smallshovel">
+            <name>Small Shovel</name>
+         </object>
+
+         <object id="pliers">
+            <name>Pliers</name>
+         </object>
+
+         <object id="pincers">
+            <name>Pincers</name>
+         </object>
+
+         <object id="spike">
+            <name>Spike</name>
+         </object>
+
+         <object id="plane">
+            <name>Plane</name>
+         </object>
+
+         <object id="saw">
+            <name>Saw</name>
+         </object>
+
+         <object id="tekarochalice">
+            <name>Tekaro Chalice</name>
+         </object>
+
+         <object id="kaiclothes" droppable="false" itemCount="2">
+            <name>Kai Clothes</name>
          </object>
 
         <!-- OTHERS -->

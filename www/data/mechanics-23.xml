@@ -884,7 +884,7 @@
                     <choiceState section="all" set="enabled" />
                 </test>
                 <test expression="[RANDOM] % 2 == 1">
-                    <endurance count="-2" />                        
+                    <endurance count="-2" />
                     <choiceState section="all" set="enabled" />
                 </test>
             </randomTable>
