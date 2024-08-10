@@ -17,25 +17,20 @@
 </div>    
 
 <div class="row">
-  <div class="col-sm-6">
+  <div class="col-sm-6" id="achartBeltPouchDiv">
     <label data-translation="actionBeltPouch">Belt Pouch (Max. 50 Gold Crowns)</label>
-    <div class="input-group">
-      <input type="text" class="form-control" placeholder="" id="achart-beltPouch" readonly>
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="button" id="achart-dropmoneybutton">
-          <span class="glyphicon glyphicon-remove"></span>
-        </button>
-      </span>
-    </div>
-    <div class="input-group" id="achart-noblesInput">
-      <input type="text" class="form-control" placeholder="" id="achart-beltPouchNobles" readonly>
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="button" id="achart-dropnoblesbutton">
-          <span class="glyphicon glyphicon-remove"></span>
-        </button>
-      </span>
-    </div>
+
+
   </div>
+</div>
+
+<div class="input-group" id="achart-BeltPouchBalanceTemplate">
+  <input type="text" class="form-control" placeholder="" id="achart-beltPouchTemplate" readonly>
+  <span class="input-group-btn">
+    <button class="btn btn-default" type="button" id="achart-dropbuttonTemplate">
+      <span class="glyphicon glyphicon-remove"></span>
+    </button>
+  </span>
 </div>
 
 <h3><span data-translation="kaiDisciplines" >Kai disciplines</span> 
@@ -93,7 +88,7 @@
     </tbody>
 </table> 
 
-<p id="kaiWeapon">
+<div id="kaiWeapon">
   <h3><span data-translation="kaiWeapon">Kai Weapon</span></h3>
   <table class="table table-striped table-bordered" id="achart-kaiWeapon">
       <tbody>
@@ -113,7 +108,7 @@
         </tr>
       </tbody>
   </table> 
-</p>
+</div>
 
 <h3 data-translation="annotations">Annotations</h3>
 <textarea title="Annotations" class="form-control" rows="10" id="achart-annotations"></textarea>

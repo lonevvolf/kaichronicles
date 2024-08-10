@@ -1,4 +1,4 @@
-import { mechanicsEngine, state, gameView } from "../..";
+import { mechanicsEngine, state, gameView, CurrencyName } from "../..";
 
 /**
  * Tool to select a number (or an amount of money)
@@ -22,6 +22,11 @@ export const numberPickerMechanics = {
         // Check if it's a money picker
         if ($(rule).attr("money") === "true") {
             $ui.find("#mechanics-mpAmount").attr("data-ismoneypicker", "true");
+            let currency = $(rule).attr("currency");
+            if (!currency) {
+                currency = CurrencyName.CROWN;
+            }
+            $ui.find("#mechanics-mpAmount").attr("data-moneypickercurrency", currency);
         }
 
         // Check if it has an action button

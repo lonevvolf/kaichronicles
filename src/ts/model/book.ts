@@ -275,9 +275,9 @@ export class Book {
             this.bookTitle = $( this.bookXml ).find( "gamebook > meta > title").first().text();
         }
 
-        // Trick for book 19 title
-        if(this.bookNumber === 19) {
-            var txt = document.createElement("textarea");
+        // Trick for book 19/23 title
+        if(this.bookNumber === 19 || this.bookNumber === 23) {
+            const txt = document.createElement("textarea");
             txt.innerHTML = this.bookTitle;
             this.bookTitle = txt.value;
         }

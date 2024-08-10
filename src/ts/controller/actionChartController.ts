@@ -1,4 +1,4 @@
-import { setupController, views, actionChartView, state, ActionChartItem, SectionItem, EquipmentSectionMechanics, translations, template, mechanicsEngine, Item, SpecialObjectsUse, CombatMechanics, Bonus, InventoryState, Currency } from "..";
+import { setupController, views, actionChartView, state, ActionChartItem, SectionItem, EquipmentSectionMechanics, translations, template, mechanicsEngine, Item, SpecialObjectsUse, CombatMechanics, Bonus, InventoryState, CurrencyName } from "..";
 
 /**
  * The action chart controller
@@ -376,28 +376,21 @@ export const actionChartController = {
      * @param currencyId The currency to increase or decrease (defaults to Crowns)
      * @returns Amount really picked.
      */
-    increaseMoney(count: number, availableOnSection: boolean = false, excessToKaiMonastry = false, currencyId: Currency = Currency.CROWN): number {
+    increaseMoney(count: number, availableOnSection: boolean = false, excessToKaiMonastry = false, currencyId: string = CurrencyName.CROWN): number {
         const amountPicked = state.actionChart.increaseMoney(count, excessToKaiMonastry, currencyId);
         const o = state.mechanics.getObject("money");
-        if (count > 0) {
-            if (currencyId === Currency.NOBLE) {
-                actionChartView.showInventoryMsg("pick", o,
-                    translations.text("msgGetNobles", [count]));
-            } else {
-                actionChartView.showInventoryMsg("pick", o,
-                    translations.text("msgGetCrowns", [count]));
-            }
+        if (amountPicked > 0) {
+            actionChartView.showInventoryMsg("pick", o,
+                translations.text("msgGetMoney", [amountPicked, translations.text(currencyId)]));
 
-        } else if (count < 0) {
-            if (currencyId === Currency.NOBLE) {
-                actionChartView.showInventoryMsg("drop", o, translations.text("msgDropNobles", [-count]));
-            } else {
-                actionChartView.showInventoryMsg("drop", o, translations.text("msgDropCrowns", [-count]));
-            }
+        } else if (amountPicked < 0) {
+            actionChartView.showInventoryMsg("drop", o, 
+                translations.text("msgDropMoney", [[-amountPicked], translations.text(currencyId)]));
+            
             if (availableOnSection && count < 0) {
                 // Add the droped money as available on the current section
                 const sectionState = state.sectionStates.getSectionState();
-                sectionState.addObjectToSection(currencyId === Currency.NOBLE ? Item.NOBLE : Item.MONEY, 0, false, -count);
+                sectionState.addObjectToSection(Item.MONEY, 0, false, -count, false, 0, currencyId);
             }
         }
         actionChartView.updateMoney();
@@ -566,8 +559,10 @@ export const actionChartController = {
         }
         inventoryState.hasBackpack = false;
 
-        actionChartController.increaseMoney(inventoryState.beltPouch);
-        inventoryState.beltPouch = 0;
+        for(const currency in inventoryState.beltPouch) {
+            actionChartController.increaseMoney(inventoryState.beltPouch[currency], false, false, currency);
+            inventoryState.beltPouch[currency] = 0;
+        }
 
         actionChartController.increaseMeals(inventoryState.meals);
         inventoryState.meals = 0;

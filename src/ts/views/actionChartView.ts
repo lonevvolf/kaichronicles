@@ -1,4 +1,4 @@
-import { ActionChart, translations, ObjectsTable, ObjectsTableType, actionChartController, state, GndDiscipline, MoneyDialog, BookSeriesId, Item, Currency } from "..";
+import { ActionChart, translations, ObjectsTable, ObjectsTableType, actionChartController, state, GndDiscipline, MoneyDialog, BookSeriesId, Item, CurrencyName } from "..";
 
 /**
  * The action chart view API
@@ -90,15 +90,13 @@ export const actionChartView = {
      * Bind events for drop money UI
      */
     bindDropMoneyEvents() {
-        // Bind drop money button event
-        $("#achart-dropmoneybutton").on("click", (e: JQuery.TriggeredEvent) => {
-            e.preventDefault();
-            MoneyDialog.show( true );
-        });
-        $("#achart-dropnoblesbutton").on("click", (e: JQuery.TriggeredEvent) => {
-            e.preventDefault();
-            MoneyDialog.show( true, Currency.NOBLE );
-        });
+        for (const currency in state.actionChart.beltPouch) {
+            // Bind drop money button event
+            $(`#achart-dropmoneybutton${currency}`).on("click", (e: JQuery.TriggeredEvent) => {
+                e.preventDefault();
+                MoneyDialog.show( true, currency );
+            });
+        }
     },
 
     /**
@@ -198,18 +196,27 @@ export const actionChartView = {
     },
 
     updateMoney() {
-        $("#achart-beltPouch").val( `${state.actionChart.beltPouch} ${translations.text("goldCrowns")}` );
-        // Disable if the player has no money or it's death
-        $("#achart-dropmoneybutton").prop( "disabled", state.actionChart.beltPouch <= 0 || state.actionChart.currentEndurance <= 0 );
+        for (const currency in state.actionChart.beltPouch) {
+            const pouchBalanceTemplate = $("#achart-BeltPouchBalanceTemplate").clone();
+            pouchBalanceTemplate.removeAttr('id');
+
+            const beltPouchInputId = `achart-beltPouch${currency}`
+            const beltPouchDropButtonId = `achart-dropmoneybutton${currency}`;
+
+            pouchBalanceTemplate.find("#achart-beltPouchTemplate").attr("id", beltPouchInputId);
+            pouchBalanceTemplate.find("#achart-dropbuttonTemplate").attr("id", beltPouchDropButtonId);
+            $("#achartBeltPouchDiv").append(pouchBalanceTemplate);
     
-        if (state.actionChart.beltPouchNobles === 0) {
-            $("#achart-noblesInput").hide();
-        } else {
-            $("#achart-noblesInput").show();
-            $("#achart-beltPouchNobles").val( `${state.actionChart.beltPouchNobles} ${translations.text("nobles")}` );
+            $(`#${beltPouchInputId}`).val( `${state.actionChart.beltPouch[currency]} ${translations.text(currency)}` );
             // Disable if the player has no money or it's death
-            $("#achart-dropnoblesbutton").prop( "disabled", state.actionChart.beltPouchNobles <= 0 || state.actionChart.currentEndurance <= 0 );
+            $(`#${beltPouchDropButtonId}`).prop( "disabled", state.actionChart.beltPouch[currency] <= 0 || state.actionChart.currentEndurance <= 0 );    
+
+            if (currency !== CurrencyName.CROWN && state.actionChart.beltPouch[currency] === 0) {
+                pouchBalanceTemplate.hide();
+            }
         }
+    
+        $("#achart-BeltPouchBalanceTemplate").hide();
     },
 
     /**

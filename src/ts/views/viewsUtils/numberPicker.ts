@@ -1,5 +1,5 @@
 
-import { state, translations, mechanicsEngine } from "../..";
+import { state, translations, mechanicsEngine, CurrencyName } from "../..";
 
 /**
  * Declare jQuery functions for number fields
@@ -104,7 +104,7 @@ export function declareJqueryNumberFunctions() {
          * Return true if the number is valid
          */
         $.fn.isValid = function() {
-            const num = this.getNumber();
+            const num: number = this.getNumber();
 
             if ( isNaN(num) ) {
                 alert( translations.text("npWrongValue" , [this.getTitle()] ) );
@@ -125,7 +125,11 @@ export function declareJqueryNumberFunctions() {
 
             if ( this.attr("data-ismoneypicker") === "true" ) {
                 // Check if you have enough money
-                if ( state.actionChart.getBeltPouchUsedAmount() < num) {
+                let currency = this.attr("data-moneypickercurrency");
+                if (!currency) {
+                    currency = CurrencyName.CROWN;
+                }
+                if ( state.actionChart.beltPouch[currency] < num) {
                     alert( translations.text( "noEnoughMoney" ) );
                     return false;
                 }
