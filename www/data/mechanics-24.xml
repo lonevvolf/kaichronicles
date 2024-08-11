@@ -1416,13 +1416,256 @@
                 <choiceState section="sect96" set="disabled" />
             </test>
         </section>
+
+        <section id="sect216">
+            <endurance count="-5" />
+            <meal />
+        </section>
+
+        <section id="sect217">
+            <choiceState section="all" set="disabled" />
+            <combat />
+            <test currentWeapon="spawnsmite">
+                <combat combatSkillModifierIncrement="+1" />
+            </test>
+            <test currentWeapon="kaistar">
+                <combat combatSkillModifierIncrement="+2"/>
+            </test>
+            <afterCombats>
+                <choiceState section="all" set="enabled" />
+            </afterCombats>
+        </section>
+
+        <section id="sect218">
+            <choiceState section="sect331" set="disabled" />
+            <test hasDiscipline="alchemy">
+                <choiceState section="sect331" set="enabled" />
+                <choiceState section="sect105" set="disabled" />
+            </test>
+        </section>
+
+        <section id="sect220">
+            <endurance count="-1" />
+            <meal />
+        </section>
+
+        <section id="sect221">
+            <choiceState section="sect349" set="disabled" />
+            <test hasDiscipline="kaisurge|kaiscrn">
+                <choiceState section="sect349" set="enabled" />
+                <choiceState section="sect256" set="disabled" />
+            </test>
+        </section>
+
+        <section id="sect222">
+            <choiceState section="all" set="disabled" />
+            <randomTable zeroAsTen="true">
+                <case to="3">
+                    <choiceState section="sect232" set="enabled" />
+                </case>
+                <case from="4">
+                    <choiceState section="sect81" set="enabled" />
+                </case>
+            </randomTable>
+        </section>
+
+        <section id="sect223">
+            <choiceState section="all" set="disabled" />
+            <combat />
+            <afterCombats>
+                <choiceState section="all" set="enabled" />
+            </afterCombats>
+        </section>
+
+        <section id="sect224">
+            <endurance count="-5" />
+        </section>
+
+        <section id="sect225">
+            <object objectId="ghilev" />
+        </section>
+
+        <section id="sect226">
+            <endurance count="+9" />
+        </section>
+
+        <section id="sect228">
+            <choiceState section="all" set="disabled" />
+            <randomTable>
+                <case to="3">
+                    <choiceState section="sect41" set="enabled" />
+                </case>
+                <case from="4" to="6">
+                    <choiceState section="sect305" set="enabled" />
+                </case>
+                <case from="7">
+                    <choiceState section="sect254" set="enabled" />
+                </case>
+            </randomTable>
+            <test hasDiscipline="hntmstry">
+                <randomTableIncrement increment="+2" />
+            </test>
+        </section>
+
+        <section id="sect229">
+            <death />
+        </section>
+
+        <section id="sect230">
+            <object objectId="meal" index="0" />
+            <object objectId="meal" index="1" />
+        </section>
+
+        <section id="sect231">
+            <test canUseBow="false">
+                <choiceState section="sect56" set="disabled" />
+            </test>
+            <test not="true" hasDiscipline="alchemy">
+                <choiceState section="sect113" set="disabled" />
+            </test>
+        </section>
+
+        <section id="sect234">
+            <choiceState section="all" set="disabled" />
+            <randomTable>
+                <case to="4">
+                    <choiceState section="sect5" set="enabled" />
+                </case>
+                <case from="5">
+                    <choiceState section="sect166" set="enabled" />
+                </case>
+            </randomTable>
+        </section>
+
+        <section id="sect235">
+            <endurance count="-2" />
+            <meal />
+        </section>
+
+        <section id="sect237">
+            <object objectId="arrow" price="1" unlimited="true" />
+            <object objectId="dagger" price="3" unlimited="true" />
+            <object objectId="quarterstaff" price="3" unlimited="true" />
+            <object objectId="spear" price="5" unlimited="true" />
+            <object objectId="shortsword" price="6" unlimited="true" />
+            <object objectId="axe" price="6" unlimited="true" />
+            <object objectId="mace" price="6" unlimited="true" />
+            <object objectId="sword" price="7" unlimited="true" />
+            <object objectId="warhammer" price="7" unlimited="true" />
+            <object objectId="broadsword" price="9" unlimited="true" />
+            <object objectId="bow" price="10" unlimited="true" />
+        </section>
+
+        <section id="sect242">
+            <pick class="arrow" count="-1" />
+        </section>
+
+        <section id="sect245">
+            <choiceState section="all" set="disabled" />
+            <combat />
+            <test currentWeapon="illuminatus">
+                <combat combatSkillModifierIncrement="+2" />
+            </test>
+            <test currentWeapon="kaistar">
+                <combat combatSkillModifierIncrement="+2"/>
+            </test>
+            <afterCombats>
+                <choiceState section="all" set="enabled" />
+            </afterCombats>
+        </section>
+
+        <section id="sect249">
+            <choiceState section="all" set="disabled" />
+            <randomTable>
+                <case to="6">
+                    <choiceState section="sect107" set="enabled" />
+                </case>
+                <case from="7">
+                    <choiceState section="sect302" set="enabled" />
+                </case>
+            </randomTable>
+        </section>
+
+        <section id="sect252">
+            <choiceState section="all" set="disabled" />
+            <randomTable>
+                <case to="3">
+                    <choiceState section="sect99" set="enabled" />
+                </case>
+                <case from="4" to="8">
+                    <choiceState section="sect216" set="enabled" />
+                </case>
+                <case from="9">
+                    <choiceState section="sect153" set="enabled" />
+                </case>
+            </randomTable>
+            <test hasDiscipline="hntmstry">
+                <randomTableIncrement increment="+1" />
+            </test>
+        </section>
+
+        <section id="sect255">
+            <meal />
+        </section>
+
+        <section id="sect256">
+            <object objectId="redvial" />
+            <object objectId="bluevial" />
+            <object objectId="yellowvial" />
+        </section>
+
+        <section id="sect258">
+            <choiceState section="all" set="disabled" />
+            <randomTable>
+                <case to="7">
+                    <choiceState section="sect245" set="enabled" />
+                </case>
+                <case from="8">
+                    <choiceState section="sect278" set="enabled" />
+                </case>
+            </randomTable>
+            <test hasDiscipline="assimila">
+                <randomTableIncrement increment="+5" />
+            </test>
+            <test hasDiscipline="hntmstry">
+                <randomTableIncrement increment="+2" />
+            </test>
+        </section>
         
         <section id="sect262">
             <pick class="arrow" count="-1" />
         </section>
 
+        <section id="sect263">
+
+
+
+
+        
+        </section>
+
         <section id="sect293">
             <pick class="arrow" count="-1" />
+        </section>
+
+        <section id="sect328">
+            <choiceState section="all" set="disabled" />
+            <numberPicker actionButton="Choose" money="true" text="Choose how many Gold Crowns you are willing to pay for a night's lodging" />
+            <numberPickerChoosed>
+                <numberPicker enabled="false" />
+                <randomTable>
+                    <case to="8">
+                        <choiceState section="sect32" set="enabled" />
+                    </case>
+                    <case from="9">
+                        <choiceState section="sect234" set="enabled" />
+                    </case>
+                </randomTable>
+                <randomTableIncrement increment="[NUMBERPICKER]" />
+            </numberPickerChoosed>
+            <choiceSelected section="sect234">
+                <pick class="money" count="-[NUMBERPICKER]" />
+            </choiceSelected>
         </section>
     </sections>
 </mechanics>

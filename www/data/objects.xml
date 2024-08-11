@@ -959,6 +959,19 @@
             <name>Dungeon Keys</name>
             <image book="1" name="small15.png" />
         </special>
+
+        <special id="redvial">
+            <name>Red Vial</name>
+        </special>
+
+        <special id="bluevial">
+            <name>Blue Vial</name>
+        </special>
+
+        <special id="yellowvial">
+            <name>Yellow Vial</name>
+        </special>
+
     </specials>
 
     <objects>
@@ -1936,7 +1949,8 @@
          </object>
 
          <object id="ghilev">
-            <name>Ghilev</name>
+            <name>Dose of Ghilev</name>
+            <description>A fungus that can induce sleep in humans and animals when swallowed</description>
          </object>
 
          <object id="smallshovel">
@@ -1969,18 +1983,6 @@
 
          <object id="kaiclothes" droppable="false" itemCount="2">
             <name>Kai Clothes</name>
-         </object>
-
-         <object id="redvial">
-            <name>Red Vial</name>
-         </object>
-
-         <object id="bluevial">
-            <name>Blue Vial</name>
-         </object>
-
-         <object id="yellowvial">
-            <name>Yellow Vial</name>
          </object>
 
          <object id="phosphorbomb">
