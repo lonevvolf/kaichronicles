@@ -1971,6 +1971,22 @@
             <name>Kai Clothes</name>
          </object>
 
+         <object id="redvial">
+            <name>Red Vial</name>
+         </object>
+
+         <object id="bluevial">
+            <name>Blue Vial</name>
+         </object>
+
+         <object id="yellowvial">
+            <name>Yellow Vial</name>
+         </object>
+
+         <object id="phosphorbomb">
+            <name>Phosphor Bomb</name>
+         </object>
+
         <!-- OTHERS -->
 
         <!-- This not really an object, but needed for mechanics -->

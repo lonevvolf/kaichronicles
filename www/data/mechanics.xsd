@@ -252,7 +252,7 @@
         </xs:attribute>
         <xs:attribute name="hasCurrentWeapon" type="xs:boolean">
             <xs:annotation>
-                <xs:documentation>Do the player carry any of the objects?</xs:documentation>
+                <xs:documentation>Is the player currently armed with a weapon?</xs:documentation>
             </xs:annotation>
         </xs:attribute>
         <xs:attribute name="expression" type="xs:string">
