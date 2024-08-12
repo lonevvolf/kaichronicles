@@ -972,6 +972,14 @@
             <name>Yellow Vial</name>
         </special>
 
+        <special id="skulltorwristband" itemCount="0">
+            <name>Skull-Tor Wristband</name>
+        </special>
+
+        <special id="battlemap" itemCount="0">
+            <name>Battle-map</name>
+        </special>
+
     </specials>
 
     <objects>
@@ -1987,6 +1995,14 @@
 
          <object id="phosphorbomb">
             <name>Phosphor Bomb</name>
+         </object>
+
+         <object id="bowl">
+            <name>Bowl</name>
+         </object>
+
+         <object id="pitcher">
+            <name>Pitcher</name>
          </object>
 
         <!-- OTHERS -->

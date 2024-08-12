@@ -2066,9 +2066,5 @@
         <section id="sect346">
             <pick class="money" count="-[MONEY]" />
         </section>
-
-        <section id="sect350">
-            <message text="Congratulations! You have finished the last book of Kai Chronicles!" />
-        </section>
     </sections>
 </mechanics>

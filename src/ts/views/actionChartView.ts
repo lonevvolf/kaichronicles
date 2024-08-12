@@ -138,6 +138,7 @@ export const actionChartView = {
         } else {
             const bookDisciplines = state.book.getDisciplinesTable();
             const bookSeries = state.book.getBookSeries();
+            const disabledDisciplines = actionChart.getDisabledDisciplines();
             // Enumerate disciplines
             for (const disciplineId of actionChart.getDisciplines()) {
                 const dInfo = bookDisciplines[disciplineId];
@@ -154,6 +155,10 @@ export const actionChartView = {
                     }
                 }
 
+                if (disabledDisciplines.includes(disciplineId)) {
+                    name += " - Disabled";
+                }
+
                 // Unescape the HTML description:
                 const descriptionHtml = $("<div />").html(dInfo.description).text();
                 $displines.append( "<tr><td>" +
@@ -162,7 +167,8 @@ export const actionChartView = {
                     '">' +
                         '<span class="glyphicon glyphicon-question-sign"></span>' +
                     "</button>" +
-                    "<b>" + name + `</b><br/>${dInfo.imageHtml}<i style="display:none"><small>` +
+                    "<b" + (disabledDisciplines.includes(disciplineId) ? " class='disabled'" : "") 
+                    + ">" + name + `</b><br/>${dInfo.imageHtml}<i style="display:none"><small>` +
                     descriptionHtml +
                     "</small></i></td></tr>" );
             }

@@ -18,6 +18,7 @@ export const disciplinePickerMechanics = {
         // The discipline picker UI
         const $ui = mechanicsEngine.getMechanicsUI("mechanics-disciplinepicker");
         const disciplines = state.actionChart.getDisciplines();
+        const bookDisciplines = state.book.getDisciplinesTable();
 
         for(const discipline of disciplines) {
             $ui.find("#mechanics-dpTitle").text($(rule).attr("title") ?? "");
@@ -31,7 +32,7 @@ export const disciplinePickerMechanics = {
                 radioButton.attr("disabled", "disabled");
             }
             const radioButtonLabel = option.find("#mechanics-dpRadioLabel");
-            radioButtonLabel.text(translations.text(discipline));
+            radioButtonLabel.text(bookDisciplines[discipline].name);
             radioButtonLabel.attr("id", "mechanics-dpRadioLabel-" + discipline)
 
             $ui.append(option);

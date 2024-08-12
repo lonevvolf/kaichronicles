@@ -1370,6 +1370,15 @@ export class ActionChart {
     }
 
     /**
+     * Returns player disciplines for a given book series
+     * @param series Book series which get disciplines. If null or not specified, we get current book disciplines
+     * @returns Disciplines for that series
+     */
+    public getDisabledDisciplines(series: BookSeriesId = null): string[] {
+        return this.getSeriesDisciplines(series).disabledDisciplines;
+    }
+
+    /**
      * Player has a given discipline on a given book series?
      * @param disciplineId Displine to check
      * @param seriesId Book series to check. If null or not specified, the current book series

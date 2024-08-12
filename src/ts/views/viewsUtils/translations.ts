@@ -174,25 +174,6 @@ export class Translations {
         "map" : "Map",
 
         //////////////////////////////////////
-        // New Order Disciplines
-        //////////////////////////////////////
-        "wpnmstry" : "Grand Weaponmastery",
-        "anmlmstr" : "Animal Mastery",
-        "deliver" : "Deliverance",
-        "assimila" : "Assimilance" ,
-        "hntmstry" : "Grand Huntmastery",
-        "pthmnshp" : "Grand Pathsmanship",
-        "kaiscrn" : "Kai-screen",
-        "nexus": "Grand Nexus",
-        "gnosis" : "Telegnosis",
-        "magi" : "Magi-magic",
-        "alchemy" : "Kai-alchemy",
-        "astrolgy" : "Astrology",
-        "herbmst" : "Herbmastery" ,
-        "element" : "Elementalism",
-        "bardsman" : "Bardsmanship",
-
-        //////////////////////////////////////
         // Others
         //////////////////////////////////////
 
