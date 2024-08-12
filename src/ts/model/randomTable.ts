@@ -32,24 +32,21 @@ export class RandomTable {
 
     /**
      * Returns an integer number between 0 and 9
-     * @param ignoreZero true if the zero should not be returned
      * @param zeroAsTen true if the zero must to be returned as ten
      * @return The random number
      */
-    public getRandomValue(ignoreZero: boolean = false, zeroAsTen: boolean = false): number {
+    public getRandomValue(zeroAsTen: boolean = false): number {
         let value: number;
-        do {
-            if ( this.nextValueDebug >= 0 && this.nextValueDebug <= 9 ) {
-                // Debug value
-                value = this.nextValueDebug;
-                this.nextValueDebug = -1;
-            } else {
-                // Get an index for the picked number
-                const index = Math.floor( Math.random() * 100.0 );
-                // Get the number for that index on the book random table
-                value = state.book.bookRandomTable[index];
-            }
-        } while (ignoreZero && value === 0);
+        if ( this.nextValueDebug >= 0 && this.nextValueDebug <= 9 ) {
+            // Debug value
+            value = this.nextValueDebug;
+            this.nextValueDebug = -1;
+        } else {
+            // Get an index for the picked number
+            const index = Math.floor( Math.random() * 100.0 );
+            // Get the number for that index on the book random table
+            value = state.book.bookRandomTable[index];
+        }
 
         if ( zeroAsTen && value === 0 ) {
             return 10;
