@@ -1127,7 +1127,12 @@
                 <combat combatSkillModifierIncrement="+2"/>
             </test>
             <afterCombats>
-                <choiceState section="all" set="enabled" />
+                <test expression="[COMBATSDURATION] &lt;= 5">
+                    <choiceState section="sect187" set="enabled" />
+                </test>
+                <test expression="[COMBATSDURATION] > 6">
+                    <choiceState section="sect35" set="enabled" />
+                </test>
             </afterCombats>
         </section>
 
@@ -1150,6 +1155,7 @@
         </section>
         
         <section id="sect163">
+            <drop objectId="phosphorbomb" />
             <test not="true" hasDiscipline="alchemy">
                 <choiceState section="sect24" set="disabled" />
             </test>

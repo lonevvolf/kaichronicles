@@ -1375,7 +1375,7 @@ export class ActionChart {
      * @returns Disciplines for that series
      */
     public getDisabledDisciplines(series: BookSeriesId = null): string[] {
-        return this.getSeriesDisciplines(series).disabledDisciplines;
+        return this.getSeriesDisciplines(series).disabledDisciplines ?? [];
     }
 
     /**
