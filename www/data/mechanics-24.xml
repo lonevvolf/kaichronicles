@@ -181,7 +181,7 @@
         </section>
 
         <section id="sect13">
-            <meal />
+            <meal huntDisabled="true" />
         </section>
 
         <section id="sect15">
