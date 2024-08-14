@@ -1373,7 +1373,7 @@
             <!-- If you choose to use Mindblast or Psi-surge during combat, double all ENDURANCE point losses sustained by the enemy. -->
             <!-- Mindblast is always activated -->
             <test hasDiscipline="psisurge">
-                <combat dammageMultiplier="2" />
+                <combat damageMultiplier="2" />
             </test>
             <choiceState section="all" set="disabled" />
             <combat />
@@ -1687,7 +1687,7 @@
 
         <section id="sect290">
             <choiceState section="all" set="disabled" />
-            <combat dammageMultiplier="2" />
+            <combat damageMultiplier="2" />
             <afterCombats>
                 <choiceState section="all" set="enabled" />
             </afterCombats>

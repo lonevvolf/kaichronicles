@@ -839,7 +839,7 @@
         <section id="sect121">
             <choiceState section="all" set="disabled" />
             <currentWeapon objectId="sommerswerd" />
-            <combat dammageMultiplier="2" />
+            <combat damageMultiplier="2" />
             <afterCombats>
                 <choiceState section="sect29" set="enabled" />
             </afterCombats>

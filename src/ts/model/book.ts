@@ -384,8 +384,9 @@ export class Book {
         }
 
         // Get the title
+        const countOffset = $(this.bookXml).find('section[id="levels"] > data > ol').attr("start");
         let title = $(this.bookXml)
-            .find('section[id="levels"] > data > ol > li:eq(' + (nDisciplines - 1).toFixed() + ")")
+            .find('section[id="levels"] > data > ol > li:eq(' + (nDisciplines - 1 - (countOffset ? parseInt(countOffset) : 0)).toFixed() + ")")
             .text();
         if ( !title ) {
             title = "Unknown";

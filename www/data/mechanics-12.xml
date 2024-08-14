@@ -651,11 +651,11 @@
                 </executeOnce>
             </afterCombatTurn>
 
-            <!-- Dammage / CS modifiers -->
+            <!-- Damage / CS modifiers -->
             <onInventoryEvent>
-                <combat dammageMultiplier="1" />
+                <combat damageMultiplier="1" />
                 <test not="true" currentWeapon="sommerswerd|daggerofvashna">
-                    <combat dammageMultiplier="0" />
+                    <combat damageMultiplier="0" />
                 </test>
 
                 <combat combatSkillModifier="0" />
@@ -768,12 +768,12 @@
                 <currentWeapon objectId="helshezag" />
             </test>
 
-            <!-- Dammage / CS modifiers -->
+            <!-- Damage / CS modifiers -->
             <message text="You must use the Dagger of Vashna or the sword Helshezag as current weapon on this combat" />
             <onInventoryEvent>
-                <combat dammageMultiplier="1" />
+                <combat damageMultiplier="1" />
                 <test not="true" currentWeapon="helshezag|daggerofvashna|sommerswerd">
-                    <combat dammageMultiplier="0" />
+                    <combat damageMultiplier="0" />
                 </test>
 
                 <combat combatSkillModifier="0" />
@@ -1402,11 +1402,11 @@
                 </test>
             </onInventoryEvent>
 
-            <!-- Dammage / CS modifiers -->
+            <!-- Damage / CS modifiers -->
             <onInventoryEvent>
-                <combat dammageMultiplier="1" />
+                <combat damageMultiplier="1" />
                 <test not="true" currentWeapon="sommerswerd|daggerofvashna">
-                    <combat dammageMultiplier="0" />
+                    <combat damageMultiplier="0" />
                 </test>
 
                 <combat combatSkillModifier="0" />
@@ -2161,7 +2161,7 @@
             <afterCombatTurn turn="1">
                 <executeOnce>
                     <test expression="[COMBATSENDURANCELOST] > [COMBATSENEMYLOST]">
-                        <combat permanentDammage="true" />
+                        <combat permanentDamage="true" />
                     </test>
                 </executeOnce>
             </afterCombatTurn>

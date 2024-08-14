@@ -67,7 +67,7 @@
             <choiceState section="all" set="disabled" />
             <combat noMindblast="true" />
             <test currentWeapon="sommerswerd">
-                <combat dammageMultiplier="2" />
+                <combat damageMultiplier="2" />
             </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
@@ -145,7 +145,7 @@
             <choiceState section="all" set="disabled" />
             <combat noMindblast="true" />
             <test currentWeapon="sommerswerd">
-                <combat dammageMultiplier="2" />
+                <combat damageMultiplier="2" />
             </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
@@ -202,7 +202,7 @@
             <choiceState section="all" set="disabled" />
             <combat noMindblast="true" />
             <test currentWeapon="sommerswerd">
-                <combat dammageMultiplier="2" />
+                <combat damageMultiplier="2" />
             </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
@@ -397,7 +397,7 @@
             <choiceState section="all" set="disabled" />
             <combat noMindblast="true" />
             <test currentWeapon="sommerswerd">
-                <combat dammageMultiplier="2" />
+                <combat damageMultiplier="2" />
             </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
@@ -581,10 +581,10 @@
             <choiceState section="all" set="disabled" />
             <combat noMindblast="true" mindforceEP="-2" />
             <test currentWeapon="magicspear">
-                <combat dammageMultiplier="1" />
+                <combat damageMultiplier="1" />
             </test>
             <test not="true" currentWeapon="magicspear">
-                <combat dammageMultiplier="0" />
+                <combat damageMultiplier="0" />
             </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
@@ -705,7 +705,7 @@
             <choiceState section="all" set="disabled" />
             <combat noMindblast="true" />
             <test currentWeapon="sommerswerd">
-                <combat dammageMultiplier="2" />
+                <combat damageMultiplier="2" />
             </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
@@ -1166,7 +1166,7 @@
             <choiceState section="all" set="disabled" />
             <combat noMindblast="true" />
             <test currentWeapon="sommerswerd">
-                <combat dammageMultiplier="2" />
+                <combat damageMultiplier="2" />
             </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
@@ -1528,7 +1528,7 @@
 
         <section id="sect306">
             <choiceState section="all" set="disabled" />
-            <combat dammageMultiplier="2" />
+            <combat damageMultiplier="2" />
             <afterCombats>
                 <choiceState section="all" set="enabled" />
             </afterCombats>

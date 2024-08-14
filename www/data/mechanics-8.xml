@@ -102,7 +102,7 @@
                 <combat combatSkillModifier="-3" />
             </test>
             <test currentWeapon="sommerswerd">
-                <combat dammageMultiplier="2" />
+                <combat damageMultiplier="2" />
             </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
@@ -132,8 +132,8 @@
             <combat noMindblast="true" mindforceCS="-2" index="0" />
             <combat noMindblast="true" mindforceCS="-2" index="1" />
             <test currentWeapon="sommerswerd">
-                <combat dammageMultiplier="2" index="0" />
-                <combat dammageMultiplier="2" index="1" />
+                <combat damageMultiplier="2" index="0" />
+                <combat damageMultiplier="2" index="1" />
             </test>
             <afterCombatTurn turn="any">
                 <!-- Use the following construction rather than turn="6" above because afterCombatTurn is per-combat, not across combats -->
@@ -252,7 +252,7 @@
                 <combat combatSkillModifier="+2" />
             </test>
             <test currentWeapon="sommerswerd">
-                <combat dammageMultiplier="2" />
+                <combat damageMultiplier="2" />
             </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
@@ -663,7 +663,7 @@
                 <combat combatSkillModifier="-3" />
             </test>
             <test currentWeapon="sommerswerd">
-                <combat dammageMultiplier="2" />
+                <combat damageMultiplier="2" />
             </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
@@ -1617,8 +1617,8 @@
             <combat noMindblast="true" mindforceCS="-2" index="0" />
             <combat noMindblast="true" mindforceCS="-2" index="1" />
             <test currentWeapon="sommerswerd">
-                <combat dammageMultiplier="2" index="0" />
-                <combat dammageMultiplier="2" index="1" />
+                <combat damageMultiplier="2" index="0" />
+                <combat damageMultiplier="2" index="1" />
             </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
@@ -1762,7 +1762,7 @@
                 <combat combatSkillModifier="+2" />
             </test>
             <test currentWeapon="sommerswerd">
-                <combat dammageMultiplier="2" />
+                <combat damageMultiplier="2" />
             </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />

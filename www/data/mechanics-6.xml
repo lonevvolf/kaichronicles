@@ -1432,9 +1432,9 @@
                 <combat turnLoss="-2" />
             </test>
 
-            <combat dammageMultiplier="1" />
+            <combat damageMultiplier="1" />
             <test currentWeapon="sommerswerd">
-                <combat dammageMultiplier="2" />
+                <combat damageMultiplier="2" />
             </test>
 
             <afterCombats>

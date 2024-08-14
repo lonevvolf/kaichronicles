@@ -1383,16 +1383,12 @@
         <section id="sect223">
             <pick class="money" count="-[MONEY]"  />
 
-            <message id="msg-drop-special" text="Drop one Special Item of your choice (except Moonstone)" />
+            <message id="msg-drop-special" text="Drop one Special Item of your choice" />
             <onInventoryEvent>
                 <test expression="[SPECIAL-ITEMS-ON-ACTIONCHART] &lt; 2 || [SPECIAL-ITEMS-ON-SECTION] > 0">
                     <test not="true" objectOnSection="moonstone">
                         <message id="msg-drop-special" op="hide" />
                         <choiceState section="all" set="enabled" />
-                    </test>
-                    <test objectOnSection="moonstone">
-                        <message id="msg-drop-special" op="show" />
-                        <choiceState section="all" set="disabled" />
                     </test>
                 </test>
 
