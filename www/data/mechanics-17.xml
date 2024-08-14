@@ -237,9 +237,9 @@
 
         <section id="sect31">
             <choiceState section="all" set="disabled" />
-            <combat mindblastMultiplier="2" dammageMultiplier="1" />
+            <combat mindblastMultiplier="2" damageMultiplier="1" />
             <test currentWeapon="sommerswerd" hasDessiStone="true">
-                <combat mindblastMultiplier="2" dammageMultiplier="2" />
+                <combat mindblastMultiplier="2" damageMultiplier="2" />
             </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
@@ -254,9 +254,9 @@
 
         <section id="sect35">
             <choiceState section="all" set="disabled" />
-            <combat noMindblast="true" noPsiSurge="true" noKaiSurge="true" eludeTurn="4" dammageMultiplier="1" />
+            <combat noMindblast="true" noPsiSurge="true" noKaiSurge="true" eludeTurn="4" damageMultiplier="1" />
             <test currentWeapon="sommerswerd" hasDessiStone="true">
-                <combat noMindblast="true" noPsiSurge="true" noKaiSurge="true" eludeTurn="4" dammageMultiplier="2" />
+                <combat noMindblast="true" noPsiSurge="true" noKaiSurge="true" eludeTurn="4" damageMultiplier="2" />
             </test>
             <afterElude>
                 <choiceState section="sect41" set="enabled" />
@@ -320,9 +320,9 @@
 
         <section id="sect42">
             <choiceState section="all" set="disabled" />
-            <combat noMindblast="true" noPsiSurge="true" combatSkillModifier="-5" dammageMultiplier="1" />
+            <combat noMindblast="true" noPsiSurge="true" combatSkillModifier="-5" damageMultiplier="1" />
             <test currentWeapon="sommerswerd" hasDessiStone="true">
-                <combat noMindblast="true" noPsiSurge="true" combatSkillModifier="-5" dammageMultiplier="2" />
+                <combat noMindblast="true" noPsiSurge="true" combatSkillModifier="-5" damageMultiplier="2" />
             </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
@@ -758,7 +758,7 @@
         <section id="sect110">
             <choiceState section="all" set="disabled" />
             <currentWeapon objectId="sommerswerd" />
-            <combat eludeTurn="3" immuneTurns="2" dammageMultiplier="2" />
+            <combat eludeTurn="3" immuneTurns="2" damageMultiplier="2" />
             <afterElude>
                 <choiceState section="sect56" set="enabled" />
             </afterElude>
@@ -825,9 +825,9 @@
 
         <section id="sect121">
             <choiceState section="all" set="disabled" />
-            <combat noMindblast="true" noPsiSurge="true" dammageMultiplier="1" />
+            <combat noMindblast="true" noPsiSurge="true" damageMultiplier="1" />
             <test currentWeapon="sommerswerd" hasDessiStone="true">
-                <combat noMindblast="true" noPsiSurge="true" dammageMultiplier="2" />
+                <combat noMindblast="true" noPsiSurge="true" damageMultiplier="2" />
             </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
@@ -920,9 +920,9 @@
         <section id="sect132">
             <endurance count="-3" />
             <choiceState section="all" set="disabled" />
-            <combat noMindblast="true" noPsiSurge="true" combatSkillModifier="-5" dammageMultiplier="1" />
+            <combat noMindblast="true" noPsiSurge="true" combatSkillModifier="-5" damageMultiplier="1" />
             <test currentWeapon="sommerswerd" hasDessiStone="true">
-                <combat noMindblast="true" noPsiSurge="true" combatSkillModifier="-5" dammageMultiplier="2" />
+                <combat noMindblast="true" noPsiSurge="true" combatSkillModifier="-5" damageMultiplier="2" />
             </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
@@ -1111,7 +1111,7 @@
         <section id="sect167">
             <currentWeapon objectId="sommerswerd" />
             <choiceState section="all" set="disabled" />
-            <combat noMindblast="true" noPsiSurge="true" noKaiSurge="true" immuneTurns="2" dammageMultiplier="2" />
+            <combat noMindblast="true" noPsiSurge="true" noKaiSurge="true" immuneTurns="2" damageMultiplier="2" />
             <afterCombats>
                 <choiceState section="all" set="enabled" />
             </afterCombats>
@@ -1420,7 +1420,7 @@
         <section id="sect214">
             <choiceState section="all" set="disabled" />
             <currentWeapon objectId="sommerswerd" />
-            <combat noMindblast="true" noPsiSurge="true" dammageMultiplier="2" />
+            <combat noMindblast="true" noPsiSurge="true" damageMultiplier="2" />
             <afterCombats>
                 <choiceState section="all" set="enabled" />
             </afterCombats>
@@ -1631,9 +1631,9 @@
 
         <section id="sect260">
             <choiceState section="all" set="disabled" />
-            <combat noMindblast="true" noPsiSurge="true" dammageMultiplier="1" />
+            <combat noMindblast="true" noPsiSurge="true" damageMultiplier="1" />
             <test currentWeapon="sommerswerd" hasDessiStone="true">
-                <combat noMindblast="true" noPsiSurge="true" dammageMultiplier="2" />
+                <combat noMindblast="true" noPsiSurge="true" damageMultiplier="2" />
             </test>
             <afterCombats>
                 <test not="true" expression="[COMBATSDURATION] >= 6">
@@ -1657,7 +1657,7 @@
             <choiceState section="all" set="disabled" />
             <combat noMindblast="true" noPsiSurge="true" noKaiSurge="true" eludeTurn="3" />
             <test currentWeapon="sommerswerd" hasDessiStone="true">
-                <combat noMindblast="true" noPsiSurge="true" noKaiSurge="true" eludeTurn="3" dammageMultiplier="2" />
+                <combat noMindblast="true" noPsiSurge="true" noKaiSurge="true" eludeTurn="3" damageMultiplier="2" />
             </test>
             <afterElude>
                 <choiceState section="sect76" set="enabled" />
@@ -1748,9 +1748,9 @@
 
         <section id="sect277">
             <choiceState section="all" set="disabled" />
-            <combat noMindblast="true" noPsiSurge="true" dammageMultiplier="1" />
+            <combat noMindblast="true" noPsiSurge="true" damageMultiplier="1" />
             <test currentWeapon="sommerswerd" hasDessiStone="true">
-                <combat noMindblast="true" noPsiSurge="true" dammageMultiplier="2" />
+                <combat noMindblast="true" noPsiSurge="true" damageMultiplier="2" />
             </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
@@ -1770,9 +1770,9 @@
 
         <section id="sect279">
             <choiceState section="all" set="disabled" />
-            <combat mindblastMultiplier="2" dammageMultiplier="1" />
+            <combat mindblastMultiplier="2" damageMultiplier="1" />
             <test currentWeapon="sommerswerd" hasDessiStone="true">
-                <combat mindblastMultiplier="2" dammageMultiplier="2" />
+                <combat mindblastMultiplier="2" damageMultiplier="2" />
             </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
@@ -1787,9 +1787,9 @@
             <endurance count="-2" />
             <pick class="arrow" count="-1" />
             <choiceState section="all" set="disabled" />
-            <combat noMindblast="true" noPsiSurge="true" noKaiSurge="true" eludeTurn="4" dammageMultiplier="1" />
+            <combat noMindblast="true" noPsiSurge="true" noKaiSurge="true" eludeTurn="4" damageMultiplier="1" />
             <test currentWeapon="sommerswerd" hasDessiStone="true">
-                <combat noMindblast="true" noPsiSurge="true" noKaiSurge="true" eludeTurn="4" dammageMultiplier="2" />
+                <combat noMindblast="true" noPsiSurge="true" noKaiSurge="true" eludeTurn="4" damageMultiplier="2" />
             </test>
             <afterElude>
                 <choiceState section="sect41" set="enabled" />
@@ -1854,9 +1854,9 @@
 
         <section id="sect288">
             <choiceState section="all" set="disabled" />
-            <combat noMindblast="true" noPsiSurge="true" dammageMultiplier="1" />
+            <combat noMindblast="true" noPsiSurge="true" damageMultiplier="1" />
             <test currentWeapon="sommerswerd" hasDessiStone="true">
-                <combat noMindblast="true" noPsiSurge="true" dammageMultiplier="2" />
+                <combat noMindblast="true" noPsiSurge="true" damageMultiplier="2" />
             </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
@@ -1964,9 +1964,9 @@
 
         <section id="sect310">
             <choiceState section="all" set="disabled" />
-            <combat noMindblast="true" noPsiSurge="true" eludeTurn="3" dammageMultiplier="1" />
+            <combat noMindblast="true" noPsiSurge="true" eludeTurn="3" damageMultiplier="1" />
             <test currentWeapon="sommerswerd" hasDessiStone="true">
-                <combat noMindblast="true" noPsiSurge="true" eludeTurn="3" dammageMultiplier="2" />
+                <combat noMindblast="true" noPsiSurge="true" eludeTurn="3" damageMultiplier="2" />
             </test>
             <afterCombats>
                 <choiceState section="sect48" set="enabled" />

@@ -77,9 +77,9 @@
 
         <section id="sect4">
             <choiceState section="all" set="disabled" />
-            <combat dammageMultiplier="0" />
+            <combat damageMultiplier="0" />
             <afterCombatTurn turn="1">
-                <combat dammageMultiplier="1" />
+                <combat damageMultiplier="1" />
             </afterCombatTurn>
             <afterCombats>
                 <test not="true" expression="[COMBATSDURATION] >= 5">
@@ -1265,7 +1265,7 @@
 
         <section id="sect240">
             <choiceState section="all" set="disabled" />
-            <combat dammageMultiplier="2" />
+            <combat damageMultiplier="2" />
             <afterCombats>
                 <choiceState section="all" set="enabled" />
             </afterCombats>
@@ -1966,7 +1966,7 @@
         <section id="sect370">
             <endurance count="-3" />
             <choiceState section="all" set="disabled" />
-            <combat dammageMultiplier="2" />
+            <combat damageMultiplier="2" />
             <afterCombats>
                 <choiceState section="all" set="enabled" />
             </afterCombats>

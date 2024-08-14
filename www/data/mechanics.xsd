@@ -103,7 +103,13 @@
             <xs:documentation>Execute once only. New Order: Reset counter of EP restore by Curing, limited to 10 per book.</xs:documentation>
         </xs:annotation>
     </xs:complexType>
-    
+
+    <xs:complexType name="resetNewOrderDisabledDisciplines">
+        <xs:annotation>
+            <xs:documentation>Execute once only. New Order: Reset any disabled disciplines in the current book.</xs:documentation>
+        </xs:annotation>
+    </xs:complexType>
+
     <xs:complexType name="setDisciplines">
         <xs:annotation>
             <xs:documentation>Game setup: The player selects the Kai disciplines.</xs:documentation>
@@ -235,7 +241,7 @@
             </xs:annotation>
             <xs:simpleType>
                 <xs:restriction base="xs:string">
-                    <xs:pattern value = "(sixthsns|camflage|tracking|mindomtr|anmlknsp|healing|hunting|mindshld|mndblst|wepnskll|wpnmstry|anmlctrl|curing|invsblty|psisurge|psiscrn|nexus|dvnation|anmlmstr|deliver|assimila|kaisurge|kaiscrn|gnosis|magi|alchemy|hntmstry|pthmnshp|astrolgy|herbmst|element|bardsman|\|)*"/>
+                    <xs:pattern value="(sixthsns|camflage|tracking|mindomtr|anmlknsp|healing|hunting|mindshld|mndblst|wepnskll|wpnmstry|anmlctrl|curing|invsblty|psisurge|psiscrn|nexus|dvnation|anmlmstr|deliver|assimila|kaisurge|kaiscrn|gnosis|magi|alchemy|hntmstry|pthmnshp|astrolgy|herbmst|element|bardsman|\|)*"/>
                 </xs:restriction>
             </xs:simpleType>
         </xs:attribute>
@@ -246,7 +252,7 @@
         </xs:attribute>
         <xs:attribute name="hasCurrentWeapon" type="xs:boolean">
             <xs:annotation>
-                <xs:documentation>Do the player carry any of the objects?</xs:documentation>
+                <xs:documentation>Is the player currently armed with a weapon?</xs:documentation>
             </xs:annotation>
         </xs:attribute>
         <xs:attribute name="expression" type="xs:string">
@@ -498,14 +504,14 @@
                 <xs:documentation>LW can elude the combat once the enemy EP is at the value or below. eludeTurn has to be set</xs:documentation>
             </xs:annotation>
         </xs:attribute>
-        <xs:attribute name="dammageMultiplier" type="xs:decimal">
+        <xs:attribute name="damageMultiplier" type="xs:decimal">
             <xs:annotation>
-                <xs:documentation>LW dammage multiplier. Can have decimals (ex. "0.5")</xs:documentation>
+                <xs:documentation>LW damage multiplier. Can have decimals (ex. "0.5")</xs:documentation>
             </xs:annotation>
         </xs:attribute>
         <xs:attribute name="enemyMultiplier" type="xs:decimal">
             <xs:annotation>
-                <xs:documentation>Enemy dammage multiplier. Can have decimals (ex. "0.5")</xs:documentation>
+                <xs:documentation>Enemy damage multiplier. Can have decimals (ex. "0.5")</xs:documentation>
             </xs:annotation>
         </xs:attribute>
         <xs:attribute name="enemyTurnLoss" type="xs:string">
@@ -563,7 +569,7 @@
                 <xs:documentation>Turns during which the enemy will suffer no damage</xs:documentation>
             </xs:annotation>
         </xs:attribute>
-        <xs:attribute name="permanentDammage" type="xs:boolean">
+        <xs:attribute name="permanentDamage" type="xs:boolean">
             <xs:annotation>
                 <xs:documentation>If true, EP lost by LW on this combat will be permanent</xs:documentation>
             </xs:annotation>
@@ -637,6 +643,25 @@
         <xs:attribute name="executeAtStart" type="xs:boolean">
             <xs:annotation>
                 <xs:documentation>If true, and the number picker action button was clicked on a previous rendering, the "numberPickerChoosed" will be executed at the section startup.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="disciplinePickerChoosed">
+        <xs:annotation>
+            <xs:documentation>Optional event handler to execute when the discipline is picked.</xs:documentation>
+        </xs:annotation>
+
+        <xs:group ref="any_rule" minOccurs="0" maxOccurs="unbounded" />
+    </xs:complexType>
+    
+    <xs:complexType name="disableDiscipline">
+        <xs:annotation>
+            <xs:documentation>Disable an active player discipline</xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="disciplineIndex" type="xs:nonNegativeInteger" use="required">
+            <xs:annotation>
+                <xs:documentation>The index of the discipline to be disabled in the player's list of disciplines.</xs:documentation>
             </xs:annotation>
         </xs:attribute>
     </xs:complexType>
@@ -853,6 +878,32 @@
         <xs:attribute name="currency" type="currency">
             <xs:annotation>
                 <xs:documentation>Optional, and only for "money"="true". The currency to check for limits.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="disciplinePicker">
+        <xs:annotation>
+            <xs:documentation>Add a control on the UI to select a discipline from the player's currently active disciplines.</xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="enabled" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation>If set to false, disable the number picker</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="actionButton" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>Text displayed in the button</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="text" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>Text displayed in the number picker UI</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="confirmText" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>Optional: text (from translations) displayed as a confirmation text before completing the action</xs:documentation>
             </xs:annotation>
         </xs:attribute>
     </xs:complexType>
@@ -1128,11 +1179,13 @@
             <xs:element name="choiceSelected" type="choiceSelected" />
             <xs:element name="currentWeapon" type="currentWeapon" />
             <xs:element name="numberPicker" type="numberPicker" />
+            <xs:element name="disciplinePicker" type="disciplinePicker" />
             <xs:element name="huntStatus" type="huntStatus" />
             <xs:element name="sell" type="sell" />
             <xs:element name="saveInventoryState" type="saveInventoryState" />
             <xs:element name="restoreInventoryState" type="restoreInventoryState" />
             <xs:element name="numberPickerChoosed" type="numberPickerChoosed" />
+            <xs:element name="disciplinePickerChoosed" type="disciplinePickerChoosed" />
             <xs:element name="goToSection" type="goToSection" />
             <xs:element name="toast" type="toast" />
             <xs:element name="registerGlobalRule" type="registerGlobalRule" />

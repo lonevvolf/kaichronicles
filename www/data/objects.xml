@@ -816,68 +816,67 @@
         </special>
 
         <!-- BOOK 21 -->
-
-        <special id="spawnsmite" weaponType="axe" incompatibleWith="alema|magnara|sunstrike|kaistar|valiance|ulnarias|raumas|illuminatus|firefall">
+        <special droppable="false" id="spawnsmite" weaponType="axe" incompatibleWith="alema|magnara|sunstrike|kaistar|valiance|ulnarias|raumas|illuminatus|firefall">
             <name>Spawnsmite</name>
             <description>+6CS versus reptilian enemies</description>
             <effect class="combatSkill" increment="5" />
         </special>
 
-        <special id="alema" weaponType="axe" incompatibleWith="spawnsmite|magnara|sunstrike|kaistar|valiance|ulnarias|raumas|illuminatus|firefall">
+        <special droppable="false" id="alema" weaponType="axe" incompatibleWith="spawnsmite|magnara|sunstrike|kaistar|valiance|ulnarias|raumas|illuminatus|firefall">
             <name>Alema</name>
             <description>+7CS versus undead enemies</description>
             <effect class="combatSkill" increment="5" />
         </special>
 
-        <special id="magnara" weaponType="axe" incompatibleWith="spawnsmite|alema|sunstrike|kaistar|valiance|ulnarias|raumas|illuminatus|firefall">
+        <special droppable="false" id="magnara" weaponType="axe" incompatibleWith="spawnsmite|alema|sunstrike|kaistar|valiance|ulnarias|raumas|illuminatus|firefall">
             <name>Magnara</name>
             <description>+8CS versus rock or stone</description>
             <effect class="combatSkill" increment="5" />
         </special>
 
-        <special id="sunstrike" weaponType="sword" incompatibleWith="spawnsmite|magnara|alema|kaistar|valiance|ulnarias|raumas|illuminatus|firefall">
+        <special droppable="false" id="sunstrike" weaponType="sword" incompatibleWith="spawnsmite|magnara|alema|kaistar|valiance|ulnarias|raumas|illuminatus|firefall">
             <name>Sunstrike</name>
             <description>+6CS when used in daylight</description>
             <effect class="combatSkill" increment="5" />
         </special>
 
-        <special id="kaistar" weaponType="sword" incompatibleWith="spawnsmite|magnara|sunstrike|alema|valiance|ulnarias|raumas|illuminatus|firefall">
+        <special droppable="false" id="kaistar" weaponType="sword" incompatibleWith="spawnsmite|magnara|sunstrike|alema|valiance|ulnarias|raumas|illuminatus|firefall">
             <name>Kaistar</name>
             <description>+7CS when used at night</description>
             <effect class="combatSkill" increment="5" />
         </special>
 
-        <special id="valiance" weaponType="sword" incompatibleWith="spawnsmite|magnara|sunstrike|kaistar|alema|ulnarias|raumas|illuminatus|firefall">
+        <special droppable="false" id="valiance" weaponType="sword" incompatibleWith="spawnsmite|magnara|sunstrike|kaistar|alema|ulnarias|raumas|illuminatus|firefall">
             <name>Valiance</name>
             <description>+8CS when used against magicians or creatures born of magic</description>
             <effect class="combatSkill" increment="5" />
         </special>
 
-        <special id="ulnarias" weaponType="sword" incompatibleWith="spawnsmite|magnara|sunstrike|kaistar|valiance|alema|raumas|illuminatus|firefall">
+        <special droppable="false" id="ulnarias" weaponType="sword" incompatibleWith="spawnsmite|magnara|sunstrike|kaistar|valiance|alema|raumas|illuminatus|firefall">
             <name>Ulnarias</name>
             <description>+9CS when used underwater</description>
             <effect class="combatSkill" increment="5" />
         </special>
 
-        <special id="raumas" weaponType="broadsword" incompatibleWith="spawnsmite|magnara|sunstrike|kaistar|valiance|ulnarias|alema|illuminatus|firefall">
+        <special droppable="false" id="raumas" weaponType="broadsword" incompatibleWith="spawnsmite|magnara|sunstrike|kaistar|valiance|ulnarias|alema|illuminatus|firefall">
             <name>Raumas</name>
             <description>+6CS versus winged enemies</description>
             <effect class="combatSkill" increment="5" />
         </special>
 
-        <special id="illuminatus" weaponType="broadsword" incompatibleWith="spawnsmite|magnara|sunstrike|kaistar|valiance|ulnarias|raumas|alema|firefall">
+        <special droppable="false" id="illuminatus" weaponType="broadsword" incompatibleWith="spawnsmite|magnara|sunstrike|kaistar|valiance|ulnarias|raumas|alema|firefall">
             <name>Illuminatus</name>
             <description>+7CS when used underground</description>
             <effect class="combatSkill" increment="5" />
         </special>
 
-        <special id="firefall" weaponType="broadsword" incompatibleWith="spawnsmite|magnara|sunstrike|kaistar|valiance|ulnarias|raumas|illuminatus|alema">
+        <special droppable="false" id="firefall" weaponType="broadsword" incompatibleWith="spawnsmite|magnara|sunstrike|kaistar|valiance|ulnarias|raumas|illuminatus|alema">
             <name>Firefall</name>
             <description>+8CS versus fire-emitting enemies</description>
             <effect class="combatSkill" increment="5" />
         </special>
 
-        <special id="moonstone">
+        <special droppable="false" id="moonstone">
             <name>Moonstone</name>
         </special>
 
@@ -933,9 +932,7 @@
         </special>
 
         <special id="crystalprism">
-            <name>
-                Crystal Prism
-            </name>
+            <name>Crystal Prism</name>
         </special>
 
         <!-- BOOK 23 -->
@@ -954,6 +951,33 @@
         <special id="tehdakey" itemCount="0">
             <name>Tehda Key</name>
         </special>
+
+        <!-- BOOK 24 -->
+        <special id="dungeonkeys">
+            <name>Dungeon Keys</name>
+            <image book="1" name="small15.png" />
+        </special>
+
+        <special id="redvial">
+            <name>Red Vial</name>
+        </special>
+
+        <special id="bluevial">
+            <name>Blue Vial</name>
+        </special>
+
+        <special id="yellowvial">
+            <name>Yellow Vial</name>
+        </special>
+
+        <special id="skulltorwristband" itemCount="0">
+            <name>Skull-Tor Wristband</name>
+        </special>
+
+        <special id="battlemap" itemCount="0">
+            <name>Battle-map</name>
+        </special>
+
     </specials>
 
     <objects>
@@ -1908,6 +1932,76 @@
         <object id="sadanzosseal">
             <name>Sadanzo's Seal</name>
         </object>
+
+        <!-- BOOK 24 -->
+         <object id="lute">
+            <name>Lute</name>
+            <image book="24" name="lute.png" />
+         </object>
+
+         <object id="graveweedconcentrate">
+            <name>Graveweed Concentrate</name>
+            <description>Fatal when swallowed</description>
+         </object>
+
+         <object id="mokradonpotion">
+            <name>Potion of Mokradon</name>
+            <description>Causes irreversible blindness in humans</description>
+         </object>
+
+         <object id="volzocpotion">
+            <name>Potion of Volzoc</name>
+            <description>Causes violent hallucinations</description>
+         </object>
+
+         <object id="ghilev">
+            <name>Dose of Ghilev</name>
+            <description>A fungus that can induce sleep in humans and animals when swallowed</description>
+         </object>
+
+         <object id="smallshovel">
+            <name>Small Shovel</name>
+         </object>
+
+         <object id="pliers">
+            <name>Pliers</name>
+         </object>
+
+         <object id="pincers">
+            <name>Pincers</name>
+         </object>
+
+         <object id="spike">
+            <name>Spike</name>
+         </object>
+
+         <object id="plane">
+            <name>Plane</name>
+         </object>
+
+         <object id="saw">
+            <name>Saw</name>
+         </object>
+
+         <object id="tekarochalice">
+            <name>Tekaro Chalice</name>
+         </object>
+
+         <object id="kaiclothes" droppable="false" itemCount="2">
+            <name>Kai Clothes</name>
+         </object>
+
+         <object id="phosphorbomb">
+            <name>Phosphor Bomb</name>
+         </object>
+
+         <object id="bowl">
+            <name>Bowl</name>
+         </object>
+
+         <object id="pitcher">
+            <name>Pitcher</name>
+         </object>
 
         <!-- OTHERS -->
 

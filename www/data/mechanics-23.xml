@@ -37,7 +37,7 @@
                 <pick objectId="backpack" />
             </test>
 
-            <randomTable ignoreNumpicker="true">
+            <randomTable>
                 <pick class="money" count="[RANDOM] + 20" excessToKaiMonastry="false" />
             </randomTable>
 
@@ -54,7 +54,7 @@
             <object objectId="axe" />
 
             <test not="true" hasObject="spawnsmite|alema|magnara|sunstrike|kaistar|valiance|ulnarias|raumas|illuminatus|firefall">
-                <randomTable ignoreNumpicker="true" index="1">
+                <randomTable index="1">
                     <case value="0">
                         <pick objectId="spawnsmite"/>
                     </case>
@@ -884,7 +884,7 @@
                     <choiceState section="all" set="enabled" />
                 </test>
                 <test expression="[RANDOM] % 2 == 1">
-                    <endurance count="-2" />                        
+                    <endurance count="-2" />
                     <choiceState section="all" set="enabled" />
                 </test>
             </randomTable>
@@ -2065,10 +2065,6 @@
 
         <section id="sect346">
             <pick class="money" count="-[MONEY]" />
-        </section>
-
-        <section id="sect350">
-            <message text="Congratulations! You have finished the last book of Kai Chronicles!" />
         </section>
     </sections>
 </mechanics>

@@ -388,7 +388,7 @@ export const actionChartController = {
                 translations.text("msgDropMoney", [[-amountPicked], translations.text(currencyId)]));
             
             if (availableOnSection && count < 0) {
-                // Add the droped money as available on the current section
+                // Add the dropped money as available on the current section
                 const sectionState = state.sectionStates.getSectionState();
                 sectionState.addObjectToSection(Item.MONEY, 0, false, -count, false, 0, currencyId);
             }
@@ -620,6 +620,10 @@ export const actionChartController = {
             toastr.success(translations.text("msgEndurance", ["+20"]));
             template.updateStatistics();
         }
+    },
+
+    disableDiscipline(disciplineIndex: number) {
+        state.actionChart.disableDiscipline(disciplineIndex);
     },
 
     /** Return page */

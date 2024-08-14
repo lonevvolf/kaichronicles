@@ -132,12 +132,13 @@ export const actionChartView = {
         }
 
         // TODO: Display the discipline "quote" tag instead the name
-        const $displines = $("#achart-disciplines > tbody");
+        const $disciplines = $("#achart-disciplines > tbody");
         if ( actionChart.getDisciplines().length === 0 ) {
-            $displines.append( "<tr><td>(" + translations.text("noneFemenine") + ")</td></tr>" );
+            $disciplines.append( "<tr><td>(" + translations.text("noneFemenine") + ")</td></tr>" );
         } else {
             const bookDisciplines = state.book.getDisciplinesTable();
             const bookSeries = state.book.getBookSeries();
+            const disabledDisciplines = actionChart.getDisabledDisciplines();
             // Enumerate disciplines
             for (const disciplineId of actionChart.getDisciplines()) {
                 const dInfo = bookDisciplines[disciplineId];
@@ -154,20 +155,25 @@ export const actionChartView = {
                     }
                 }
 
+                if (disabledDisciplines.includes(disciplineId)) {
+                    name += " - Disabled";
+                }
+
                 // Unescape the HTML description:
                 const descriptionHtml = $("<div />").html(dInfo.description).text();
-                $displines.append( "<tr><td>" +
+                $disciplines.append( "<tr><td>" +
                     '<button class="btn btn-default table-op" title="' +
                     translations.text("disciplineDescription") +
                     '">' +
                         '<span class="glyphicon glyphicon-question-sign"></span>' +
                     "</button>" +
-                    "<b>" + name + `</b><br/>${dInfo.imageHtml}<i style="display:none"><small>` +
+                    "<b" + (disabledDisciplines.includes(disciplineId) ? " class='disabled'" : "") 
+                    + ">" + name + `</b><br/>${dInfo.imageHtml}<i style="display:none"><small>` +
                     descriptionHtml +
                     "</small></i></td></tr>" );
             }
             // Bind help button events
-            $displines.find("button").on("click", function() {
+            $disciplines.find("button").on("click", function() {
                 $(this).parent().find("i").toggle();
             });
         }

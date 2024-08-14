@@ -734,10 +734,10 @@
         <section id="sect103">
             <message id="msg-drop-object" text="Drop Special Items of your choice to restore Endurance points" />
             <onInventoryEvent>
-                <test objectOnSection="moonstone|ironskull">
+                <test objectOnSection="ironskull">
                     <choiceState section="all" set="disabled" />
                 </test>
-                <test not="true" objectOnSection="moonstone|ironskull">
+                <test not="true" objectOnSection="ironskull">
                     <choiceState section="all" set="enabled" />
                 </test>
             </onInventoryEvent>

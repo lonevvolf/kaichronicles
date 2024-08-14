@@ -77,10 +77,10 @@ export class Combat {
     /** LW is immune for X turns */
     public immuneTurns = 0;
 
-    /** Player dammage multiplier */
-    public dammageMultiplier = 1.0;
+    /** Player damage multiplier */
+    public damageMultiplier = 1.0;
 
-    /** Enemy dammage multiplier */
+    /** Enemy damage multiplier */
     public enemyMultiplier = 1.0;
 
     /** Mindforce negative bonus by enemy mindforce attack */
@@ -141,7 +141,7 @@ export class Combat {
     public adganaUsed = false;
 
     /** Loss on this combat is permanent (reduce original endurance)? */
-    public permanentDammage = false;
+    public permanentDamage = false;
 
     /**
      * Create a combat
@@ -332,11 +332,11 @@ export class Combat {
             state.actionChart.currentEndurance = 0;
         } else {
 
-            // Aply dammage
-            state.actionChart.increaseEndurance(-turn.loneWolf, this.permanentDammage);
+            // Apply damage
+            state.actionChart.increaseEndurance(-turn.loneWolf, this.permanentDamage);
 
-            // If dammage is permanent, display a toast
-            if (this.permanentDammage) {
+            // If damage is permanent, display a toast
+            if (this.permanentDamage) {
                 actionChartController.displayEnduranceChangeToast(-turn.loneWolf, true);
             }
 

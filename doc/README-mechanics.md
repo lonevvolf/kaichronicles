@@ -74,6 +74,7 @@ There are some keywords that can be used on expressions. They have the following
 * **[ARROWS]**: Current number of arrows on the quiver
 * **[BOWBONUS]** : Bonus for bow usage: It's Weaponmastery bonus + bow object bonus (see "silverbowduadon" object). It will be -4 if the player has no bow
 * **[NUMBERPICKER]**: The selected number on the "numberPicker" UI
+* **[DISCIPLINEPICKER]**: The selected discipline index in the actionChart disciplines list
 
 ## Codes for Magnakai disciplines
 
@@ -107,6 +108,25 @@ These are the codes for each Grand Master discipline, used by the mechanics, as 
 * **Magi-magic**: magi
 * **Kai-alchemy**: alchemy
 
+These are the codes for each New Order discipline, used by the mechanics, as they appear on the XMLs:
+
+* **Grand Weaponmastery**: wpnmstry
+* **Animal Mastery**: anmlmstr
+* **Deliverance (Advanced Curing)**: deliver
+* **Assimilance (Advanced Invisibility)**: assimila
+* **Grand Huntmastery**: hntmstry
+* **Grand Pathsmanship**: pthmnshp
+* **Kai-surge**: kaisurge
+* **Kai-screen**: kaiscrn
+* **Grand Nexus**: nexus
+* **Telegnosis (Advanced Divination)**: gnosis
+* **Magi-magic**: magi
+* **Kai-alchemy**: alchemy
+* **Astrology**: astrolgy
+* **Herbmastery**: herbmst
+* **Elementalism**: element
+* **Bardsmanship**: bardsman
+
 ## Rules description
 Description of the rules usage:
 
@@ -127,6 +147,9 @@ Game setup: The player selects their Kai Name. (New Order only)
 
 ### resetNewOrderCuringEPRestoredUse
 Execute once only. New Order: Reset counter of EP restore by Curing, limited to 10 EP per book.
+
+### resetNewOrderDisabledDisciplines
+Execute once only. New Order: Reset any disabled disciplines in the current book.
 
 ### setSkills
 Game setup: The player selects the initial Endurance and Combat Skill
@@ -387,8 +410,8 @@ the following properties:
 * **eludeEnemyEP="number"**: LW can elude the combat once the enemy EP is at the value or below. eludeTurn has to be set
 * **enemyImmuneTurns="number"**: Turns during which the enemy will suffer no damage
 * **immuneTurns="number"**: Turns during which LW will suffer no damage
-* **dammageMultiplier="number"**: LW dammage multiplier. Can have decimals (ex. "0.5")
-* **enemyMultiplier="number"**: Enemy dammage multiplier. Can have decimals (ex. "0.5")
+* **damageMultiplier="number"**: LW damage multiplier. Can have decimals (ex. "0.5")
+* **enemyMultiplier="number"**: Enemy damage multiplier. Can have decimals (ex. "0.5")
 * **fake="true"**: This is a fake combat. When it's finished, LW endurance points lost will be restored
 * **restoreFactor="floatNumber"**: Only applies if fake="true". Factor of the EP lost to restore after the combat. Default is 1.0 (100% of the EP lost)
 * **enemyTurnLoss="-number"** Extra E.P. lost by the enemy each turn. Should be negative or zero
@@ -396,7 +419,7 @@ the following properties:
 * **turnLossIfWounded="-number"** Extra E.P. lost by LW, if the player has been wounded on that turn. Should be negative or zero
 * **bow="true"** It's a combat with bow? (false = hand-to-hand)
 * **disabledObjects="objectId1|objectId2|..."** Set objects that cannot be used on this combat. "none" to enable all objects previously disabled.
-* **permanentDammage="boolean"** EP lost by LW on this combat will be permanent?
+* **permanentDamage="boolean"** EP lost by LW on this combat will be permanent?
 * **allowPotions="boolean"** Allow usage of potions prior the combat
 
 Different combat tags with different attributes are cumulative. Different combat tags with the same attribute will
@@ -508,6 +531,27 @@ on this section, the chilren rules will be executed
 </numberPickerChoosed>
 ```
 Add a control on the UI to select a number. "numberPickerChoosed" is an optional event handler to execute when the number is picked. If the property "executeAtStart" is true, and the number picker action button was clicked on a previous rendering, the "numberPickerChoosed" will be executed at the section startup.
+
+### disciplinePicker / disciplinePickerChoosed
+```xml
+<disciplinePicker 
+    text="Choose the number of Gold Crowns you are going to throw"
+    confirmText="confirmDisableDiscipline"
+    actionButton="Disable Discipline"
+    />
+<disciplinePicker enabled="false" />
+<disciplinePickerChoosed>
+    <disableDiscipline disciplineIndex="[DISCIPLINEPICKER]" />
+    <disciplinePicker enabled="false"  />
+</numberPickerChoosed>
+```
+Add a control on the UI to select a discipline. "disciplinePickerChoosed" is an optional event handler to execute when the discipline is picked. Used to select a discipline to disable, together with <disableDiscipline>
+
+### disableDiscipline
+```xml
+    <disableDiscipline disciplineIndex="[DISCIPLINEPICKER]" />
+```
+Disables the discipline with the index indicated in the actionChart disciplines array
 
 ### goToSection
 ```xml

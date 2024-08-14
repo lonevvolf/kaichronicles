@@ -73,9 +73,17 @@ export class SectionState {
 
     /**
      * Number picker states for this section.
-     * See numberPicker.js and numberPickerMechanics.ts
+     * See numberPicker.ts and numberPickerMechanics.ts
      */
     public numberPickersState = {
+        actionFired: null
+    };
+
+    /**
+     * Discipline picker states for this section.
+     * See disciplinePicker.ts and disciplinePickerMechanics.ts
+     */
+    public disciplinePickersState = {
         actionFired: null
     };
 

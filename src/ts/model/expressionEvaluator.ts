@@ -1,10 +1,9 @@
-import { randomMechanics, state, Item, numberPickerMechanics, mechanicsEngine, Currency, CurrencyName } from "..";
+import { randomMechanics, state, Item, numberPickerMechanics, disciplinePickerMechanics, mechanicsEngine, CurrencyName } from "..";
 
 /**
  * Evaluation of mechanics expressions
  */
 export class ExpressionEvaluator {
-
     /**
      * Expression to find texts to replace
      * Matches anything between "[" and "]", both included
@@ -178,6 +177,10 @@ export class ExpressionEvaluator {
 
         "[NUMBERPICKER]"() {
             return numberPickerMechanics.getNumberPickerValue();
+        },
+
+        "[DISCIPLINEPICKER]"() {
+            return disciplinePickerMechanics.getDisciplinePickerValue();
         },
 
         "[COMBATSDURATION]"() {

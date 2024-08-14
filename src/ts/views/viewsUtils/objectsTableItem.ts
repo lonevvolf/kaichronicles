@@ -393,8 +393,12 @@ export class ObjectsTableItem {
             let countPicked = this.objectInfo.count;
 
             if ( this.item.id === Item.QUIVER || this.item.id === Item.ARROW ) {
+                // Allow refilling of arrows if unlimited supply
+                if (this.objectInfo.unlimited) {
+                    countPicked = 100;
+                }
                 // Increase the number of arrows on the action chart
-                const realIncrement = actionChartController.increaseArrows( this.objectInfo.count );
+                const realIncrement = actionChartController.increaseArrows( countPicked );
                 if ( this.item.id === Item.ARROW ) {
                     // Track real number of arrows picked
                     countPicked = realIncrement;

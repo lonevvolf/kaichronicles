@@ -856,9 +856,9 @@
         <section id="sect131">
             <endurance count="-6" />
             <choiceState section="all" set="disabled" />
-            <combat dammageMultiplier="1" combatSkillModifier="-3" />
+            <combat damageMultiplier="1" combatSkillModifier="-3" />
             <test currentWeapon="sommerswerd">
-                <combat dammageMultiplier="2" combatSkillModifier="-3" />
+                <combat damageMultiplier="2" combatSkillModifier="-3" />
             </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
