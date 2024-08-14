@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<mechanics book="25" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/cracrayol/kaichronicles/master/www/data/mechanics.xsd">
+
+    <!-- GAME RULES -->
+    <sections>
+        <section id="tssf">
+            <!-- Drop the previous books map -->
+            <drop objectId="map" />
+            <!-- Restore Deliverance use each X days -->
+            <restoreDeliveranceUse />
+            <!-- Reset Curing EP Used counter-->
+            <resetNewOrderCuringEPRestoredUse />
+            <!-- Rest any disabled disciplines -->
+            <resetNewOrderDisabledDisciplines />
+        </section>
+
+        <section id="gamerulz">
+            <!-- Select the player skills (weapons skill and endurance) UI -->
+            <setSkills />
+        </section>
+
+        <section id="kainame">
+            <!-- Select the player Kai name UI -->
+            <setKaiName />
+        </section>
+        
+        <section id="discplnz">
+            <!-- Select the Kai disciplines UI -->
+            <setDisciplines />
+        </section>
+
+        <section id="equipmnt" pickMaximum="5">
+            <!-- Do not pick 2 maps! -->
+            <test not="true" hasObject="map">
+                <pick objectId="map" />
+            </test>
+            <test not="true" hasObject="backpack">
+                <pick objectId="backpack" />
+            </test>
+
+            <randomTable>
+                <pick class="money" count="[RANDOM] + 20" excessToKaiMonastry="false" />
+            </randomTable>
+
+            <object objectId="axe" />
+            <object objectId="sword" />
+            <object objectId="quiver" count="6" />
+            <object objectId="flute" />
+            <object objectId="dagger" />
+            <object objectId="bow" />
+            <object objectId="meal" index="0" />
+            <object objectId="meal" index="1" />
+            <object objectId="rope" />
+            <object objectId="laumspurpotion4" />
+            <object objectId="broadsword" />
+
+            <test not="true" hasObject="spawnsmite|alema|magnara|sunstrike|kaistar|valiance|ulnarias|raumas|illuminatus|firefall">
+                <randomTable index="1">
+                    <case value="0">
+                        <pick objectId="spawnsmite"/>
+                    </case>
+                    <case value="1">
+                        <pick objectId="alema"/>
+                    </case>
+                    <case value="2">
+                        <pick objectId="magnara"/>
+                    </case>
+                    <case value="3">
+                        <pick objectId="sunstrike"/>
+                    </case>
+                    <case value="4">
+                        <pick objectId="kaistar"/>
+                    </case>
+                    <case value="5">
+                        <pick objectId="valiance"/>
+                    </case>
+                    <case value="6">
+                        <pick objectId="ulnarias"/>
+                    </case>
+                    <case value="7">
+                        <pick objectId="raumas"/>
+                    </case>
+                    <case value="8">
+                        <pick objectId="illuminatus"/>
+                    </case>
+                    <case value="9">
+                        <pick objectId="firefall"/>
+                    </case>
+                </randomTable>
+            </test>
+
+            <chooseEquipment text="Click on the Random Table links to get money and a Kai Weapon before continuing" />
+
+            <numberPicker money="true" currency="crown" text="You may choose the number of Gold Crowns to exchange for Ren" min="1" actionButton="Exchange" />
+            <numberPickerChoosed>
+                <pick class="money" count="-[NUMBERPICKER]" />
+                <pick class="money" count="[NUMBERPICKER] * 10" currency="ren" />
+                <numberPicker enabled="false" />
+            </numberPickerChoosed>
+            <message text="You may take up to five of the following (all meals count as one object):" />
+        </section>
+
+        <section id="kaiwisdm">
+            <!-- Restore the endurance to the maximum -->
+            <endurance count="+[MAXENDURANCE]" />
+        </section>
+
+        <section id="sect1">
+            <pick objectId="platinumamulet2" />
+        </section>
+
+        <section id="sect2">
+            <choiceState section="all" set="disabled" />
+            <combat />
+            <afterCombats>
+                <choiceState section="all" set="enabled" />
+            </afterCombats>
+        </section>
+
+        <section id="sect4">
+            <choiceState section="all" set="disabled" />
+            <combat />
+            <afterCombats>
+                <choiceState section="all" set="enabled" />
+            </afterCombats>
+        </section>
+
+        <section id="sect7">
+            <endurance count="-2" />
+        </section>
+
+        <section id="sect350">
+            <message text="Congratulations! You have finished the last book of Kai Chronicles!" />
+        </section>
+    </sections>
+</mechanics>
