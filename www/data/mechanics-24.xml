@@ -1880,6 +1880,10 @@
             </onInventoryEvent>
         </section>
 
+        <section id="sect287">
+            <drop objectId="kaiclothes" />
+        </section>
+
         <section id="sect288">
             <choiceState section="all" set="disabled" />
             <randomTable zeroAsTen="true">
