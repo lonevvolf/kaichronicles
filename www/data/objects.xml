@@ -103,6 +103,12 @@
             <image book="1|9" name="dagger.png" />
         </weapon>
 
+        <!-- BOOK 25 -->
+        <weapon id="halberd">
+            <name>Halberd (Spear)</name>
+            <image book="1|9" name="spear.png" />
+        </weapon>
+
     </weapons>
 
     <specials>
@@ -902,6 +908,11 @@
             <image book="1" name="small15.png" />
         </special>
 
+        <special id="copperkey22" itemCount="0">
+            <name>Copper Key</name>
+            <image book="1" name="small15.png" />
+        </special>
+
         <special id="silverclasp">
             <name>Silver Clasp</name>
         </special>
@@ -979,11 +990,20 @@
         </special>
 
         <!-- BOOK 25 -->
-         <special id="platinumamulet2" itemCount="0">
+        <special id="platinumamulet2" itemCount="0">
             <name>Platinum Amulet</name>
             <description>Has protective powers that may help you when you enter Gazad Helkona.</description>
-         </special>
+        </special>
 
+        <special id="wolfbrooch">
+            <name>Wolf Brooch</name>
+        </special>
+         
+        <special id="blackamulet25">
+            <name>Black Amulet</name>
+            <description>A shiny black amulet engraved with the spider-and-blazing-sun emblem of Darklord Chlanzor.
+                It feels unusually cold to the touch, as if this item has been kept packed in ice.</description>
+        </special>
 
     </specials>
 
@@ -2020,8 +2040,44 @@
             <usage class="endurance" increment="2" />
         </object>
 
-        <object id="ironkey24">
+        <object id="ironkey25">
             <name>Iron Key</name>
+            <image book="1" name="small15.png" />
+        </object>
+
+        <object id="leathertunic">
+            <name>Leather Tunic</name>
+        </object>
+
+        <object id="blanket25" itemCount="2.0">
+            <name>Blanket</name>
+        </object>
+
+        <object id="laumspurdecanter" usageCount="2">
+            <name>Decanter</name>
+            <description>
+                Restores 4 ENDURANCE points.
+                There is enough for two doses
+            </description>
+            <usage class="endurance" increment="+4" />
+        </object>
+
+        <object id="bonedice">
+            <name>Bone Dice</name>
+        </object>
+
+        <!-- TODO: Requires a meal or Huntmastery to use-->
+        <object id="obhanthorjar" usageCount="2">
+            <name>Jar of Obhanthor</name>
+            <description>
+                Restores 5 ENDURANCE points.
+                There is enough for two doses (must be consumed with a meal)
+            </description>
+            <usage class="endurance" increment="+5" />
+        </object>
+
+        <object id="copperkey25">
+            <name>Copper Key</name>
             <image book="1" name="small15.png" />
         </object>
 

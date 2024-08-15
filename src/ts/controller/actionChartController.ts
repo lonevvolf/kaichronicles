@@ -203,6 +203,11 @@ export const actionChartController = {
             return true;
         }
 
+        if (objectId === "kaiweapon") {
+            actionChartController.drop(state.actionChart.getKaiWeapon());
+            return true;
+        }
+
         const droppedItem = state.actionChart.drop(objectId, dropCount, objectIndex);
         if (droppedItem) {
             const item = droppedItem.getItem();

@@ -211,6 +211,7 @@ decrease a counter, use the "pick" rule. The "objectId" can be one or more objec
 * **allmeals**: Drop all meals
 * **all**: Drop all (weapons, backpack, special items, and money)
 * **allobjects** Drop all objects (weapons, special items, and backpack content, but not the backpack itself)
+* **kaiweapon** Drop the player's Kai Weapon
 
 If you set more than one object id, the first one owned by the player will be dropped
 
