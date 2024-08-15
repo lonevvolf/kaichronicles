@@ -1374,6 +1374,10 @@
             </test>
         </section>
 
+        <section id="sect200">
+            <tag id="duadon" />
+        </section>
+
         <section id="sect201">
             <choiceState section="all" set="disabled" />
             <randomTable>
