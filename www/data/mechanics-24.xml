@@ -1610,6 +1610,10 @@
             <object objectId="broadsword" price="9" unlimited="true" />
             <object objectId="bow" price="10" unlimited="true" />
         </section>
+        
+        <section id="sect238">
+            <pick class="arrow" count="-1" />
+        </section>
 
         <section id="sect242">
             <pick class="arrow" count="-1" />
