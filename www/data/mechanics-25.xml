@@ -130,6 +130,82 @@
             <endurance count="-2" />
         </section>
 
+        <section id="sect9">
+            <test not="true" hasDiscipline="bardsman">
+                <choiceState section="sect246" set="disabled" />
+            </test>
+            <test hasDiscipline="bardsman">
+                <choiceState section="sect165" set="disabled" />
+            </test>
+        </section>
+
+        <section id="sect10">
+            <endurance count="-2" />
+        </section>
+
+        <section id="sect11">
+            <!-- TODO: Set correct destination -->
+            <numberPicker text="Choose the number for the combination lock" min="1" max="350" actionButton="Choose" />
+            <numberPickerChoosed>
+                <test expression="[NUMBERPICKER] == XXX">
+                    <goToSection section="sectXXX" />
+                </test>
+                <test expression="[NUMBERPICKER] != XXX">
+                    <toast text="Wrong number!" />
+                </test>
+            </numberPickerChoosed>
+        </section>
+
+        <section id="sect12">
+            <!-- TODO: Set correct source section -->
+             <object objectId="gnalliameal" index="0" />
+             <object objectId="gnalliameal" index="1" />
+             <object objectId="gnalliameal" index="2" />
+             <object objectId="gnalliameal" index="3" />
+             <object objectId="gnalliameal" index="4" />
+        </section>
+
+        <section id="sect13">
+            <endurance count="-3" />
+
+            <choiceState section="all" set="disabled" />
+            <randomTable>
+                <case to="4">
+                    <choiceState section="sect171" set="enabled" />
+                </case>
+                <case from="5">
+                    <choiceState section="sect320" set="enabled" />
+                </case>
+            </randomTable>
+        </section>
+
+        <section id="sect14">
+            <object objectId="ironkey24" />
+        </section>
+
+        <section id="sect16">
+            <choiceState section="all" set="disabled" />
+            <randomTable>
+                <case to="4">
+                    <choiceState section="sect104" set="enabled" />
+                </case>
+                <case from="5">
+                    <choiceState section="sect231" set="enabled" />
+                </case>
+            </randomTable>
+        </section>
+
+        <section id="sect17">
+            <pick class="arrow" count="-1"/>
+
+
+
+
+
+
+            
+        </section>
+
         <section id="sect350">
             <message text="Congratulations! You have finished the last book of Kai Chronicles!" />
         </section>

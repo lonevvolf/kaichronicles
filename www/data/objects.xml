@@ -2010,6 +2010,21 @@
             <name>Pitcher</name>
          </object>
 
+         <!-- BOOK 25 -->
+         <object id="gnalliameal" isMeal="true">
+            <name>Meal of Gnallia</name>
+            <description>
+                It can be used as a Meal. Restores 2 ENDURANCE points
+            </description>
+            <image book="1|9" name="food.png" />
+            <usage class="endurance" increment="2" />
+        </object>
+
+        <object id="ironkey24">
+            <name>Iron Key</name>
+            <image book="1" name="small15.png" />
+        </object>
+
         <!-- OTHERS -->
 
         <!-- This not really an object, but needed for mechanics -->
