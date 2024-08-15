@@ -1084,9 +1084,11 @@
         <section id="sect156">
             <choiceState section="all" set="disabled" />
             <pick objectId="kaiclothes" />
-            <test not="true" objectOnSection="kaiclothes">
-                <choiceState section="all" set="enabled" />
-            </test>
+            <onInventoryEvent>
+                <test not="true" objectOnSection="kaiclothes">
+                    <choiceState section="all" set="enabled" />
+                </test>
+            </onInventoryEvent>
         </section>
 
         <section id="sect157">
