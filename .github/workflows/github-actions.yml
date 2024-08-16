@@ -40,7 +40,7 @@ jobs:
           # Session Password
           pass: ${{ secrets.SFTP_PASS }}
           # Optional hostkey if not cached
-          hostkey: # optional
+          hostkey: XXX
           # Path to the file that contains the psftp commands to be executed
-          scriptPath: 
+          scriptPath: deploy.sh
           
