@@ -36,17 +36,11 @@ jobs:
         with:
           name: dist
           path: /tmp/kaiChronicles/dist
-      - name: P-SFTP
-        uses: Luis97lol/PSFTP@v1.4
+      - uses: milanmk/actions-file-deployer@master
         with:
-          # Remote SFTP Host
-          host: ${{ secrets.SFTP_HOST }}
-          # Session Username
-          user: ${{ secrets.SFTP_USER }}
-          # Session Password
+          remote-protocol: "sftp"
+          remote-host: ${{ secrets.SFTP_HOST }}
+          remote-user: ${{ secrets.SFTP_USER }}  
           pass: ${{ secrets.SFTP_PASS }}
-          # Optional hostkey if not cached
-          hostkey: XXX
-          # Path to the file that contains the psftp commands to be executed
-          scriptPath: deploy.sh
-          
+          remote-path: "/ryan/kaiChronicles"
+          local-path: "/tmp/kaiChronicles/dist"
