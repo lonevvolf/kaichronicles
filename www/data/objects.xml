@@ -2066,13 +2066,12 @@
             <name>Bone Dice</name>
         </object>
 
-        <!-- TODO: Requires a meal or Huntmastery to use-->
         <object id="obhanthorjar" usageCount="2">
             <name>Jar of Obhanthor</name>
             <description>
                 Restores 5 ENDURANCE points (must be consumed with a meal)
             </description>
-            <usage class="endurance" increment="+5" />
+            <usage class="endurance" increment="+5" takenWithMeal="true" />
         </object>
 
         <object id="satchwortjar" usageCount="2">
