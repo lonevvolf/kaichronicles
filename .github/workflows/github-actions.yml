@@ -41,6 +41,8 @@ jobs:
         with:
             username: ${{ secrets.SFTP_USER }}  
             server: ${{ secrets.SFTP_HOST }}
+            password: ${{ secrets.SFTP_PASS }}
+            
             local_path: "/tmp/kaiChronicles/dist/*"
             remote_path: "/ryan/kaiChronicles"
 
