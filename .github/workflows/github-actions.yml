@@ -36,11 +36,11 @@ jobs:
         with:
           name: dist
           path: /tmp/kaiChronicles/dist
-      - uses: milanmk/actions-file-deployer@master
+      - name: Deploy files to Project Aon
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
-          remote-protocol: "sftp"
-          remote-host: ${{ secrets.SFTP_HOST }}
-          remote-user: ${{ secrets.SFTP_USER }}  
-          pass: ${{ secrets.SFTP_PASS }}
-          remote-path: "/ryan/kaiChronicles"
-          local-path: "/tmp/kaiChronicles/dist"
+            username: ${{ secrets.SFTP_USER }}  
+            server: ${{ secrets.SFTP_HOST }}
+            local_path: "/tmp/kaiChronicles/dist/*"
+            remote_path: "/ryan/kaiChronicles"
+
