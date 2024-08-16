@@ -11,7 +11,7 @@
             <restoreDeliveranceUse />
             <!-- Reset Curing EP Used counter-->
             <resetNewOrderCuringEPRestoredUse />
-            <!-- Rest any disabled disciplines -->
+            <!-- Reset any disabled disciplines -->
             <resetNewOrderDisabledDisciplines />
         </section>
 
@@ -2282,6 +2282,11 @@
             <object objectId="redvial" />
             <object objectId="bluevial" />
             <object objectId="yellowvial" />
+        </section>
+
+        <section id="sect350">
+            <!-- Reset any disabled disciplines -->
+            <resetNewOrderDisabledDisciplines />
         </section>
     </sections>
 </mechanics>

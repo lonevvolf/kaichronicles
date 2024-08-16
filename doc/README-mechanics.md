@@ -411,6 +411,7 @@ the following properties:
 * **eludeEnemyEP="number"**: LW can elude the combat once the enemy EP is at the value or below. eludeTurn has to be set
 * **enemyImmuneTurns="number"**: Turns during which the enemy will suffer no damage
 * **immuneTurns="number"**: Turns during which LW will suffer no damage
+* **immuneDamage="number"**: Total damage which LW is shielded from during the combat
 * **damageMultiplier="number"**: LW damage multiplier. Can have decimals (ex. "0.5")
 * **enemyMultiplier="number"**: Enemy damage multiplier. Can have decimals (ex. "0.5")
 * **fake="true"**: This is a fake combat. When it's finished, LW endurance points lost will be restored

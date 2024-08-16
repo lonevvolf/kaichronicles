@@ -77,6 +77,9 @@ export class Combat {
     /** LW is immune for X turns */
     public immuneTurns = 0;
 
+    /** LW is immune for X damage */
+    public immuneDamage = 0;
+
     /** Player damage multiplier */
     public damageMultiplier = 1.0;
 
