@@ -21,8 +21,9 @@ jobs:
       - name: Summarize Tests
         run: npx github-actions-ctrf ctrf/ctrf-report.json
       - name: Archive dist folder
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
+          name: dist
           path: dist
   deploy:
     needs: build
@@ -30,6 +31,11 @@ jobs:
     # Specify runner + deployment step
     runs-on: ubuntu-latest
     steps:
+      - name: Archive dist folder
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: /tmp/kaiChronicles/dist
       - name: P-SFTP
         uses: Luis97lol/PSFTP@v1.4
         with:
