@@ -204,8 +204,7 @@ export const actionChartController = {
         }
 
         if (objectId === "kaiweapon") {
-            actionChartController.drop(state.actionChart.getKaiWeapon());
-            return true;
+            return actionChartController.drop(state.actionChart.getKaiWeapon());
         }
 
         const droppedItem = state.actionChart.drop(objectId, dropCount, objectIndex);
@@ -607,12 +606,13 @@ export const actionChartController = {
         const o = state.mechanics.getObject("arrow");
 
         if (realIncrement > 0) {
-            actionChartView.showInventoryMsg("pick", o,
-                translations.text("msgGetArrows", [realIncrement]));
+            const gotText = realIncrement === 1 ? translations.text("msgGetArrow", [realIncrement]) : translations.text("msgGetArrows", [realIncrement]);
+
+            actionChartView.showInventoryMsg("pick", o, gotText );
         } else if (increment < 0) {
+            const lostText = increment === -1 ? translations.text("msgDropArrow", [-increment]) : translations.text("msgDropArrows", [-increment]);
             // If increment is negative, show always the original amount, not the real (useful for debugging)
-            actionChartView.showInventoryMsg("drop", o,
-                translations.text("msgDropArrows", [-increment]));
+            actionChartView.showInventoryMsg("drop", o, lostText);
         } else if (increment > 0 && realIncrement === 0) {
             // You cannot pick more arrows (not quivers enough)
             toastr.error(translations.text("noQuiversEnough"));

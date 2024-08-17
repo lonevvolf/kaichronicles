@@ -791,7 +791,7 @@
         </xs:attribute>
         <xs:attribute name="restorePoint" type="xs:string">
             <xs:annotation>
-                <xs:documentation>If specified, the dropped item will can be restored with the rule "restoreInventoryState", with the given restore point id.</xs:documentation>
+                <xs:documentation>If specified, the dropped item can be restored with the rule "restoreInventoryState", with the given restore point id.</xs:documentation>
             </xs:annotation>
         </xs:attribute>        
         <xs:attribute name="count" type="xs:nonNegativeInteger">

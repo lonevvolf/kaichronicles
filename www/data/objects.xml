@@ -2090,13 +2090,43 @@
         <!-- TODO: Similar to Grand Master healing, should only restore combat wounds -->
         <object id="tortwichvial" usageCount="2">
             <name>Vial of Tortwich</name>
-            <description>Vial of Tortwich (a crystalline salt that will restore 3 ENDURANCE points when consumed after sustaining wounds in combat).
+            <description>A crystalline salt that will restore 3 ENDURANCE points when consumed after sustaining wounds in combat.
             </description>
             <usage class="endurance" increment="+3" />
         </object>
 
         <object id="dargorsebuds">
             <name>Dargorse Buds</name>
+            <description>
+                The poisonous fruits of a prickly wilderness briar. 
+                You only have enough for one dose.
+            </description>
+        </object>
+
+        <object id="finglaspotion" usageCount="1">
+            <name>Potion of Finglas</name>
+            <description>This restores 7 ENDURANCE points to your total when swallowed</description>
+            <usage class="endurance" increment="+7" />
+        </object>
+
+        <object id="kraanpipe">
+            <name>Kraan Pipe</name>
+            <description>A crude tin whistle which can be used to summon and control a Kraan.</description>
+        </object>
+
+        <object id="venellvial" usageCount="2">
+            <name>Vial of Venell</name>
+            <description>A healing powder that will restore 5 ENDURANCE points per dose when swallowed with a Meal.
+            </description>
+            <usage class="endurance" increment="+5" takenWithMeal="true" />
+        </object>
+
+        <object id="candlestick">
+            <name>Candlestick</name>
+        </object>
+
+        <object id="diningfork">
+            <name>Dining Fork</name>
         </object>
 
         <!-- OTHERS -->

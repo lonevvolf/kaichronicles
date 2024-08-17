@@ -1290,7 +1290,7 @@ export const mechanicsEngine = {
                         break dropLoop;
                     }
                 } else {
-                    // Stop if at least one item has been dropped but no more availlable
+                    // Stop if at least one item has been dropped but no more available
                     if(countDrop > 0) {
                         break dropLoop;
                     }
