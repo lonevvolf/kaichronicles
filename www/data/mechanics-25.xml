@@ -151,6 +151,7 @@
                 </test>
                 <test expression="[NUMBERPICKER] != 105">
                     <toast text="Wrong number!" />
+                    <numberPicker enabled="false" />
                 </test>
             </numberPickerChoosed>
         </section>
@@ -368,7 +369,7 @@
         </section>
 
         <section id="sect40">
-            <endurance count="-5" />
+            <endurance count="-15" />
         </section>
 
         <section id="sect41">
@@ -2205,6 +2206,7 @@
                 </test>
                 <test expression="[NUMBERPICKER] != 105">
                     <toast text="Wrong number!" />
+                    <numberPicker enabled="false" />
                 </test>
             </numberPickerChoosed>
         </section>
@@ -2472,6 +2474,10 @@
             <object objectId="bonedice" />
             <object objectId="spear" index="0" />
             <object objectId="spear" index="1" />
+        </section>
+
+        <section id="sect340">
+            <meal huntDisabled="true" />
         </section>
 
         <section id="sect341">
