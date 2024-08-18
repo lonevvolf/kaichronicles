@@ -66,6 +66,8 @@ export const projectAon = {
             biographies: [ "jdbiolw" , "gcbiolw" ]
         },
 
+        /////////// MAGNAKAI ///////////
+
         // Book 6:
         {
             title: "The Kingdoms of Terror",
@@ -106,8 +108,6 @@ export const projectAon = {
             biographies: [ "jdbiolw" , "bwbiolw" ]
         },
 
-        ///////////////////////////////////////
-
         // Book 11:
         {
             title: "The Prisoners of Time",
@@ -116,7 +116,7 @@ export const projectAon = {
             biographies: [ "jdbiolw" , "bwbiolw" ]
         },
 
-        // Book 12 (Finished, pending of some game tests):
+        // Book 12:
         {
             title: "The Masters of Darkness",
             code: "12tmod",
@@ -124,6 +124,7 @@ export const projectAon = {
             biographies: [ "jdbiolw" , "bwbiolw" ]
         },
 
+        /////////// GRANDMASTER ///////////
         // Book 13:
         {
             title: "The Plague Lords of Ruel",
@@ -219,7 +220,16 @@ export const projectAon = {
             code: "24rw",
             illustrators: [ "williams" ],
             biographies: [ "jdbiolw" , "bwbiolw" ]
-        },    ] as BookMetadata[],
+        },   
+
+        // Book 25:
+        {
+            title: "Trail of the Wolf",
+            code: "25totw",
+            illustrators: [ "williams" ],
+            biographies: [ "jdbiolw" , "bwbiolw" ]
+        }, 
+    ] as BookMetadata[],
 
     /**
      * Returns the title of a book

@@ -46,9 +46,9 @@ export const disciplinePickerMechanics = {
             const $pickDisciplineButton = $ui.find("#mechanics-pickdiscipline");
             $pickDisciplineButton.show().text(actionButtonTitle);
             disciplinePickerMechanics.bindButtonActionEvent($pickDisciplineButton, () => {
-                const selectedDisciplineIndex = parseInt($("#mechanics-disciplinepicker").find("input[type='radio'][checked='checked']").val().toString());
+                const selectedDisciplineIndex = parseInt($("#mechanics-disciplinepicker").find("input[type='radio']:checked").val().toString());
                 const selectedDiscipline = state.actionChart.getDisciplines()[selectedDisciplineIndex];
-                if (!confirm(translations.text(mechanicsEngine.getRuleText(rule, "confirmText"), [translations.text(selectedDiscipline)]))) {
+                if (!confirm(translations.text(mechanicsEngine.getRuleText(rule, "confirmText"), [bookDisciplines[selectedDiscipline].name]))) {
                     return;
                 }
                 if (mechanicsEngine.fireDisciplinePickerChoosed()) {

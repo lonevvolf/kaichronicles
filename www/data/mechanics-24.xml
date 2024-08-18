@@ -11,7 +11,7 @@
             <restoreDeliveranceUse />
             <!-- Reset Curing EP Used counter-->
             <resetNewOrderCuringEPRestoredUse />
-            <!-- Rest any disabled disciplines -->
+            <!-- Reset any disabled disciplines -->
             <resetNewOrderDisabledDisciplines />
         </section>
 
@@ -2299,7 +2299,8 @@
         </section>
 
         <section id="sect350">
-            <message text="Congratulations! You have finished the last book of Kai Chronicles!" />
+            <!-- Reset any disabled disciplines -->
+            <resetNewOrderDisabledDisciplines />
         </section>
     </sections>
 </mechanics>
