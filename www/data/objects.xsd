@@ -227,5 +227,10 @@
                 <xs:documentation>Optional. Endurance only. If true, allow use of the object prior a combat.</xs:documentation>
             </xs:annotation>
         </xs:attribute>
+        <xs:attribute name="takenWithMeal" type="xs:boolean" default="false">
+            <xs:annotation>
+                <xs:documentation>Optional. If true, it can only be used if the player has a meal or Grand Huntmastery (meal will be consumed)</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
     </xs:complexType>
 </xs:schema>
