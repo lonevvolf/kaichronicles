@@ -990,7 +990,7 @@
         </special>
 
         <!-- BOOK 25 -->
-        <special id="platinumamulet25" itemCount="0" droppable="false">
+        <special id="platinumamulet25" itemCount="0">
             <name>Platinum Amulet</name>
             <description>Has protective powers that may help you when you enter Gazad Helkona.</description>
         </special>
@@ -1003,6 +1003,12 @@
             <name>Black Amulet</name>
             <description>A shiny black amulet engraved with the spider-and-blazing-sun emblem of Darklord Chlanzor.
                 It feels unusually cold to the touch, as if this item has been kept packed in ice.</description>
+        </special>
+
+        <!-- BOOK 26 -->
+        <special id="suncrystal26" itemCount="0">
+            <name>Sun-crystal</name>
+            <image book="26" name="small1.png" />
         </special>
 
     </specials>

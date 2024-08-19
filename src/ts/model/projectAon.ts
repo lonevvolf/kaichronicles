@@ -229,6 +229,14 @@ export const projectAon = {
             illustrators: [ "williams" ],
             biographies: [ "jdbiolw" , "bwbiolw" ]
         }, 
+
+        // Book 26:
+        {
+            title: "The Fall Of Blood Mountain",
+            code: "26tfobm",
+            illustrators: [ "williams" ],
+            biographies: [ "jdbiolw" , "bwbiolw" ]
+        }, 
     ] as BookMetadata[],
 
     /**
