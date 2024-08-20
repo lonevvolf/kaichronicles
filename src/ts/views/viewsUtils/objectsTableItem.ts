@@ -75,13 +75,13 @@ export class ObjectsTableItem {
             const count = ( this.objectInfo.count ? this.objectInfo.count : 0 );
             // In INVENTORY always show "0 arrows", but not in SELL or AVAILABLE (ugly)
             if ( count > 0 || this.type === ObjectsTableType.INVENTORY ) {
-                name += " (" + count.toFixed() + " " + translations.text("arrows") + ")";
+                name += " (" + count.toFixed() + " " + (count === 1 ? translations.text("arrow") : translations.text("arrows")) + ")";
             }
         }
 
         // Arrow amount
         if ( this.objectInfo.id === Item.ARROW && this.objectInfo.count ) {
-            name = this.objectInfo.count.toFixed() + " " + name;
+            name = this.objectInfo.count.toFixed() + " " + (this.objectInfo.count === 1 ? translations.text("arrow") : name);
         }
 
         // Fireseed amount

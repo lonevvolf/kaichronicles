@@ -26,6 +26,7 @@ export class Translations {
         "sheasutorq"    : "Sheasu Torqs",
         "orla"  :   "Orla",
         "ain"   :   "Ain",
+        "arrow" :   "Arrow",
         "arrows" : "Arrows",
         "current" : "Current",
         "backpackLost" : "You have lost your backpack",

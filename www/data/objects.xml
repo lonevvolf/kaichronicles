@@ -1011,6 +1011,16 @@
             <image book="26" name="small1.png" />
         </special>
 
+        <special id="andarinwarhammer" weaponType="warhammer">
+            <name>Andarin Warhammer</name>
+            <description>
+                In combat against any enemy it will give you a bonus of +5 to your COMBAT SKILL.
+            </description>
+            <image book="1|9" name="warhammr.png" />
+            <effect class="combatSkill" increment="+5" />
+        </special>
+
+
     </specials>
 
     <objects>
@@ -2133,6 +2143,20 @@
 
         <object id="diningfork">
             <name>Dining Fork</name>
+        </object>
+
+        <!-- BOOK 26 -->
+        <object id="vinegarjug">
+            <name>Jug of Vinegar</name>
+        </object>
+
+        <object id="ashexapotion" usageCount="1">
+            <name>Ashexa Potion</name>
+            <description>
+                When you swallow a potion of Ashexa it will restore 5 ENDURANCE points.
+            </description>
+            <image book="3|9" name="potion.png" />
+            <usage class="endurance" increment="+5" />    
         </object>
 
         <!-- OTHERS -->
