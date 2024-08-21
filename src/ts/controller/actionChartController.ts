@@ -315,6 +315,8 @@ export const actionChartController = {
                 // Check if a meal should be consumed as well (note that meal-like objects are not observed here, since New Order hasn't offered any yet)
                 if (o.usage.takenWithMeal && !state.actionChart.hasDiscipline(NewOrderDiscipline.GrandHuntmastery)) {
                     actionChartController.increaseMeals(-1);
+                } else if (o.usage.takenWithLaumspur && !state.actionChart.hasDiscipline(NewOrderDiscipline.Herbmastery)) {
+                    actionChartController.use("laumspurpotion4");
                 }
             } else if (o.usage.cls === Item.COMBATSKILL) {
                 // Combat skill modifiers only apply to the current section combats

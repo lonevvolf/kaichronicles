@@ -166,6 +166,7 @@ If it's set, the player can "use" the object, and then it will be dropped from t
 * **"increment" property**: Amount to increment
 * **"priorCombat" property**: If true and class is endurance, than can be used prior a combat (false by default)
 * **"takenWithMeal" property**: If true, it can only be used if the player has a meal or Grand Huntmastery (meal will be consumed)
+* **"takenWithLaumspur" property**: If true, it can only be used if the player has a Laumspur potion or Herbmastery (potion will be consumed)
 
 ### "isMeal" property
 If true, the object can be eaten as a Meal.

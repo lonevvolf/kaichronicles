@@ -16,6 +16,9 @@ export interface ItemEffect {
 
     /** Usage requires and consumes meal */
     takenWithMeal: boolean;
+ 
+    /** Usage requires and consumes meal */
+    takenWithLaumspur: boolean;
 }
 
 /**
@@ -204,7 +207,8 @@ export class Item {
                 cls: $usage.attr("class"),
                 increment: parseInt($usage.attr("increment"), 10),
                 priorCombat: $usage.attr("priorCombat") === "true",
-                takenWithMeal: $usage.attr("takenWithMeal") === "true"
+                takenWithMeal: $usage.attr("takenWithMeal") === "true",
+                takenWithLaumspur: $usage.attr("takenWithLaumspur") === "true",
             };
         }
 

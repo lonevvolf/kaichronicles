@@ -1020,6 +1020,10 @@
             <effect class="combatSkill" increment="+5" />
         </special>
 
+        <special id="bronzedisc26" itemCount="0">
+            <name>Bonze Disc</name>
+            <description>A Bronze Disc that is stamped with the Drodarin numerals "3–2–1"</description>
+        </special>
 
     </specials>
 
@@ -2153,10 +2157,19 @@
         <object id="ashexapotion" usageCount="1">
             <name>Ashexa Potion</name>
             <description>
-                When you swallow a potion of Ashexa it will restore 5 ENDURANCE points.
+                When you swallow a potion of Ashexa it will restore 5 ENDURANCE points if taken with a Laumspur Potion.
             </description>
             <image book="3|9" name="potion.png" />
-            <usage class="endurance" increment="+5" />    
+            <usage class="endurance" increment="+5" takenWithLaumspur="true" />    
+        </object>
+        
+        <object id="borbrewbottle">
+            <name>Bottle of Bor Brew</name>
+        </object>
+
+        <object id="copperkey26">
+            <name>Copper Key</name>
+            <image book="1" name="small15.png" />
         </object>
 
         <!-- OTHERS -->
@@ -2177,7 +2190,6 @@
             <name>Money</name>
             <image book="1" name="pouch.png" />
         </object>
-
 
         <!-- Usually used as part of a quiver, but occasionally found by themselves -->
         <object id="arrow">

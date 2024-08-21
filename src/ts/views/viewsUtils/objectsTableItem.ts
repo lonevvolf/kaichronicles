@@ -242,7 +242,8 @@ export class ObjectsTableItem {
             const currentSection = state.sectionStates.getSectionState();
             if (this.item.usage && (this.item.usage.cls !== Item.ENDURANCE || !currentSection.someCombatActive() ||
                 (this.item.usage.priorCombat && !currentSection.areCombatsStarted() && currentSection.areCombatsPotionsAllowed()))
-                && (!this.item.usage.takenWithMeal || state.actionChart.meals > 0 || state.actionChart.hasDiscipline(NewOrderDiscipline.GrandHuntmastery))) {
+                && (!this.item.usage.takenWithMeal || state.actionChart.meals > 0 || state.actionChart.hasDiscipline(NewOrderDiscipline.GrandHuntmastery))
+                && (!this.item.usage.takenWithLaumspur || state.actionChart.hasObject("laumspurpotion4") || state.actionChart.hasDiscipline(NewOrderDiscipline.Herbmastery))) {
                 // Use object operation
                 html += this.getUseOperation();
             }
