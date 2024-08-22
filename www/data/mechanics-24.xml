@@ -11,8 +11,6 @@
             <restoreDeliveranceUse />
             <!-- Reset Curing EP Used counter-->
             <resetNewOrderCuringEPRestoredUse />
-            <!-- Reset any disabled disciplines -->
-            <resetNewOrderDisabledDisciplines />
         </section>
 
         <section id="gamerulz">
@@ -1021,7 +1019,7 @@
                     <goToSection section="sect280" />
                 </test>
                 <test expression="[NUMBERPICKER] != 280">
-                    <toast text="Wrong number!" />
+                    <goToSection section="sect248" />
                 </test>
             </numberPickerChoosed>
         </section>
@@ -1107,8 +1105,7 @@
                     <goToSection section="sect221" />
                 </test>
                 <test expression="[NUMBERPICKER] != 221">
-                    <toast text="Wrong number!" />
-                    <numberPicker enabled="false" />
+                    <goToSection section="sect26" />
                 </test>
             </numberPickerChoosed>
         </section>
