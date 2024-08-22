@@ -1206,6 +1206,8 @@
             <xs:element name="grandMasterUpgrade" type="grandMasterUpgrade" />
             <xs:element name="removeSpecialGrandMaster" type="removeSpecialGrandMaster" />
             <xs:element name="applyDessiStone" type="applyDessiStone" />
+            <xs:element name="disableDiscipline" type="disableDiscipline" />
+            <xs:element name="resetNewOrderDisabledDisciplines" type="resetNewOrderDisabledDisciplines" />
 
             <xs:element name="book2Sect238" type="specialsection_type" />
             <xs:element name="book2sect308" type="specialsection_type" />
