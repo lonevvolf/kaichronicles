@@ -664,7 +664,7 @@
         <xs:annotation>
             <xs:documentation>Disable an active player discipline</xs:documentation>
         </xs:annotation>
-        <xs:attribute name="disciplineIndex" type="xs:nonNegativeInteger" use="required">
+        <xs:attribute name="disciplineIndex" type="xs:string" use="required">
             <xs:annotation>
                 <xs:documentation>The index of the discipline to be disabled in the player's list of disciplines.</xs:documentation>
             </xs:annotation>
