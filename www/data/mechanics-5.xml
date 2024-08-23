@@ -435,7 +435,6 @@
                     <goToSection section="sect67" />
                 </test>
                 <test expression="[NUMBERPICKER] != 67">
-                    <toast text="Wrong number!" />
                     <goToSection section="sect98" />
                 </test>
             </numberPickerChoosed>

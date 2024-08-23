@@ -11,8 +11,6 @@
             <restoreDeliveranceUse />
             <!-- Reset Curing EP Used counter-->
             <resetNewOrderCuringEPRestoredUse />
-            <!-- Reset any disabled disciplines -->
-            <resetNewOrderDisabledDisciplines />
         </section>
 
         <section id="gamerulz">
@@ -156,8 +154,7 @@
                     <goToSection section="sect105" />
                 </test>
                 <test expression="[NUMBERPICKER] != 105">
-                    <toast text="Wrong number!" />
-                    <numberPicker enabled="false" />
+                    <goToSection section="sect183" />
                 </test>
             </numberPickerChoosed>
         </section>
@@ -226,19 +223,23 @@
         </section>
 
         <section id="sect20">
-            <!-- TODO: Link from other sections -->
-             <choiceState section="sect326" set="disabled" />
-             <test not="true" hasDiscipline="assimila">
-                <choiceState section="sect58" set="disabled" />
-             </test>
-             <test not="true" hasDiscipline="alchemy">
-                <choiceState section="sect205" set="disabled" />
-             </test>
-             <test hasDiscipline="element">
+            <choiceState section="sect326" set="disabled" />
+            <choiceState section="sect58" set="disabled" />
+            <choiceState section="sect205" set="disabled" />
+            <test hasDiscipline="assimila">
+                <choiceState section="sect58" set="enabled" />
+                <choiceState section="sect111" set="disabled" />
+            </test>
+            <test hasDiscipline="alchemy">
+                <choiceState section="sect205" set="enabled" />
+                <choiceState section="sect111" set="disabled" />
+            </test>
+            <test hasDiscipline="element">
                 <test expression="[KAILEVEL] >= 8">
                     <choiceState section="sect326" set="enabled" />
+                    <choiceState section="sect111" set="disabled" />
                 </test>
-             </test>
+            </test>
         </section>
 
         <section id="sect21">
@@ -377,8 +378,7 @@
                     <goToSection section="sect20" />
                 </test>
                 <test expression="[NUMBERPICKER] != 20">
-                    <toast text="Wrong number!" />
-                    <numberPicker enabled="false" />
+                    <goToSection section="sect195" />
                 </test>
             </numberPickerChoosed>
         </section>
@@ -1680,8 +1680,7 @@
                     <goToSection section="sect12" />
                 </test>
                 <test expression="[NUMBERPICKER] != 12">
-                    <toast text="Wrong number!" />
-                    <numberPicker enabled="false" />
+                    <goToSection section="sect261" />
                 </test>
             </numberPickerChoosed>
         </section>
@@ -1954,8 +1953,7 @@
                     <goToSection section="sect20" />
                 </test>
                 <test expression="[NUMBERPICKER] != 20">
-                    <toast text="Wrong number!" />
-                    <numberPicker enabled="false" />
+                    <goToSection section="sect195" />
                 </test>
             </numberPickerChoosed>
         </section>
@@ -2233,8 +2231,7 @@
                     <goToSection section="sect20" />
                 </test>
                 <test expression="[NUMBERPICKER] != 20">
-                    <toast text="Wrong number!" />
-                    <numberPicker enabled="false" />
+                    <goToSection section="sect195" />
                 </test>
             </numberPickerChoosed>
         </section>
@@ -2280,8 +2277,7 @@
                     <goToSection section="sect105" />
                 </test>
                 <test expression="[NUMBERPICKER] != 105">
-                    <toast text="Wrong number!" />
-                    <numberPicker enabled="false" />
+                    <goToSection section="sect183" />
                 </test>
             </numberPickerChoosed>
         </section>
@@ -2626,8 +2622,7 @@
                     <goToSection section="sect20" />
                 </test>
                 <test expression="[NUMBERPICKER] != 20">
-                    <toast text="Wrong number!" />
-                    <numberPicker enabled="false" />
+                    <goToSection section="sect195" />
                 </test>
             </numberPickerChoosed>
         </section>
