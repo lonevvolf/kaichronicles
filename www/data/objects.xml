@@ -1014,7 +1014,7 @@
         <special id="andarinwarhammer" weaponType="warhammer">
             <name>Andarin Warhammer</name>
             <description>
-                In combat against any enemy it will give you a bonus of +5 to your COMBAT SKILL.
+                In combat against any enemy it will give you a bonus of +5 to your COMBAT SKILL. You may use this magical warhammer as an alternative to your Kai Weapon.
             </description>
             <image book="1|9" name="warhammr.png" />
             <effect class="combatSkill" increment="+5" />
@@ -1023,6 +1023,25 @@
         <special id="bronzedisc26" itemCount="0">
             <name>Bonze Disc</name>
             <description>A Bronze Disc that is stamped with the Drodarin numerals "3–2–1"</description>
+        </special>
+
+        <special id="andarinbloodstone" itemCount="0">
+            <name>Andarin Bloodstone</name>
+            <description>The colours of the amulet will deepen as you draw closer to King Ryvin's sons.</description>
+        </special>
+
+        <special id="korliniumchainmailvest">
+            <name>Korlinium Chainmail Vest</name>
+            <description>This can be worn beneath your tunic.</description>
+            <image book="1" name="mail.png" />
+            <effect class="combatSkill" increment="+2" />
+        </special>
+
+        <special id="sunderer" weaponType="axe">
+            <name>Sunderer</name>
+            <description>In combat against any enemy it will give you a bonus of +5 to your COMBAT SKILL. You may use this magical axe as an alternative to your existing Kai Weapon.</description>
+            <image book="1|9" name="axe.png" />
+            <effect class="combatSkill" increment="+5" />
         </special>
 
     </specials>
@@ -2170,6 +2189,12 @@
         <object id="copperkey26">
             <name>Copper Key</name>
             <image book="1" name="small15.png" />
+        </object>
+
+        <object id="drodarinbagofholding">
+            <name>Drodarin Bag of Holding</name>
+            <description>This can be used to store five additional Backpack Items, although the Bag itself occupies only one space.</description>
+            <effect class="backpackSlots" increment="+5" />
         </object>
 
         <!-- OTHERS -->

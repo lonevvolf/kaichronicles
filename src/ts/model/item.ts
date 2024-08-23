@@ -29,6 +29,7 @@ export class Item {
     // Item effect classes (see ItemEffect interface)
     public static readonly COMBATSKILL = "combatSkill";
     public static readonly ENDURANCE = "endurance";
+    public static readonly BACKPACKSLOTS = "backpackSlots";
 
     // Object types
     /** Special item type */
@@ -110,6 +111,9 @@ export class Item {
 
     /** Endurance increment when the player carry the object */
     public enduranceEffect: number = 0;
+
+    /** Number of extra backpack slots */
+    public backpackSlotsBonus: number = 0;
 
     /** Usage effect */
     public usage: ItemEffect;
@@ -222,6 +226,8 @@ export class Item {
                 this.combatSkillEffect = increment;
             } else if (cls === Item.ENDURANCE) {
                 this.enduranceEffect = increment;
+            } else if (cls === Item.BACKPACKSLOTS) {
+                this.backpackSlotsBonus = increment;
             } else {
                 mechanicsEngine.debugWarning("Object " + this.id + ", wrong class effect: " + cls);
             }

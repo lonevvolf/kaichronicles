@@ -296,10 +296,10 @@ export const actionChartController = {
     /**
      * Use an object
      * @param objectId The object to use
-     * @param dropObject True if the object should be droped from the action chart
+     * @param dropObject True if the object should be dropped from the action chart
      * @param index If used object was a owned object, this is the object index in its Action Chart array. If not specified
      * or < 0, the first owned object will be used
-     * @param displayToast True if a message must to be displayed
+     * @param displayToast True if a message must be displayed
      */
     use(objectId: string, dropObject: boolean = true, index: number = -1, displayToast = false, applyEffect = true) {
         // Get the object
