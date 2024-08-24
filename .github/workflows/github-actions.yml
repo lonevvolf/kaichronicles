@@ -35,6 +35,8 @@ jobs:
         with:
           name: dist
           path: /tmp/kaiChronicles/dist
+      - name: Display structure of downloaded files
+        run: ls -R /tmp/kaiChronicles/dist
       - name: Deploy files to Project Aon
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
