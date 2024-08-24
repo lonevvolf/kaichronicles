@@ -11,8 +11,6 @@
             <restoreDeliveranceUse />
             <!-- Reset Curing EP Used counter-->
             <resetNewOrderCuringEPRestoredUse />
-            <!-- Rest any disabled disciplines -->
-            <resetNewOrderDisabledDisciplines />
         </section>
 
         <section id="gamerulz">
@@ -1021,7 +1019,7 @@
                     <goToSection section="sect280" />
                 </test>
                 <test expression="[NUMBERPICKER] != 280">
-                    <toast text="Wrong number!" />
+                    <goToSection section="sect248" />
                 </test>
             </numberPickerChoosed>
         </section>
@@ -1084,9 +1082,11 @@
         <section id="sect156">
             <choiceState section="all" set="disabled" />
             <pick objectId="kaiclothes" />
-            <test not="true" objectOnSection="kaiclothes">
-                <choiceState section="all" set="enabled" />
-            </test>
+            <onInventoryEvent>
+                <test not="true" objectOnSection="kaiclothes">
+                    <choiceState section="all" set="enabled" />
+                </test>
+            </onInventoryEvent>
         </section>
 
         <section id="sect157">
@@ -1105,8 +1105,7 @@
                     <goToSection section="sect221" />
                 </test>
                 <test expression="[NUMBERPICKER] != 221">
-                    <toast text="Wrong number!" />
-                    <numberPicker enabled="false" />
+                    <goToSection section="sect26" />
                 </test>
             </numberPickerChoosed>
         </section>
@@ -1374,6 +1373,10 @@
             </test>
         </section>
 
+        <section id="sect200">
+            <tag id="duadon" />
+        </section>
+
         <section id="sect201">
             <choiceState section="all" set="disabled" />
             <randomTable>
@@ -1609,6 +1612,10 @@
             <object objectId="warhammer" price="7" unlimited="true" />
             <object objectId="broadsword" price="9" unlimited="true" />
             <object objectId="bow" price="10" unlimited="true" />
+        </section>
+        
+        <section id="sect238">
+            <pick class="arrow" count="-1" />
         </section>
 
         <section id="sect242">
@@ -1878,6 +1885,10 @@
                     <choiceState section="all" set="disabled" />
                 </test>
             </onInventoryEvent>
+        </section>
+
+        <section id="sect287">
+            <drop objectId="kaiclothes" />
         </section>
 
         <section id="sect288">
@@ -2285,7 +2296,8 @@
         </section>
 
         <section id="sect350">
-            <message text="Congratulations! You have finished the last book of Kai Chronicles!" />
+            <!-- Reset any disabled disciplines -->
+            <resetNewOrderDisabledDisciplines />
         </section>
     </sections>
 </mechanics>

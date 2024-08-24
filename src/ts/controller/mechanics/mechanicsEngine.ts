@@ -1064,6 +1064,12 @@ export const mechanicsEngine = {
             combat.immuneTurns = parseInt(txtImmuneTurns, 10);
         }
 
+        // LW is immune for X turns
+        const txtImmuneDamage: string = $rule.attr("immuneDamage");
+        if (txtImmuneDamage) {
+            combat.immuneDamage = parseInt(txtImmuneDamage, 10);
+        }
+
         // Enemy extra loss per turn
         const enemyTurnLoss = mechanicsEngine.getIntProperty($rule, "enemyTurnLoss", true);
         if (enemyTurnLoss !== null) {
@@ -1284,7 +1290,7 @@ export const mechanicsEngine = {
                         break dropLoop;
                     }
                 } else {
-                    // Stop if at least one item has been dropped but no more availlable
+                    // Stop if at least one item has been dropped but no more available
                     if(countDrop > 0) {
                         break dropLoop;
                     }

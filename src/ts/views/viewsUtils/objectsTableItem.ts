@@ -1,4 +1,4 @@
-import { SectionItem, Item, ObjectsTableType, state, translations, routing, kaimonasteryController, MoneyDialog, actionChartController, mechanicsEngine, template, CurrencyName } from "../..";
+import { SectionItem, Item, ObjectsTableType, state, translations, routing, kaimonasteryController, MoneyDialog, actionChartController, mechanicsEngine, template, CurrencyName, NewOrderDiscipline } from "../..";
 
 /**
  * Item on a objects table to render
@@ -239,10 +239,10 @@ export class ObjectsTableItem {
             const title = translations.text( "sellObject" );
             html += this.getOperationTag( "sell" , title , '<span class="glyphicon glyphicon-share"></span>' );
         } else if ( this.type === ObjectsTableType.INVENTORY ) {
-
             const currentSection = state.sectionStates.getSectionState();
             if (this.item.usage && (this.item.usage.cls !== Item.ENDURANCE || !currentSection.someCombatActive() ||
-                (this.item.usage.priorCombat && !currentSection.areCombatsStarted() && currentSection.areCombatsPotionsAllowed()))) {
+                (this.item.usage.priorCombat && !currentSection.areCombatsStarted() && currentSection.areCombatsPotionsAllowed()))
+                && (!this.item.usage.takenWithMeal || state.actionChart.meals > 0 || state.actionChart.hasDiscipline(NewOrderDiscipline.GrandHuntmastery))) {
                 // Use object operation
                 html += this.getUseOperation();
             }

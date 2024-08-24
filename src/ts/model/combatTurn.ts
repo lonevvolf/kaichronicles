@@ -39,6 +39,9 @@ export class CombatTurn {
     /** Player extra loss */
     public loneWolfExtra: typeof COMBATTABLE_DEATH | number;
 
+    /** Player prevented damage */
+    public loneWolfPrevented: number;
+
     /** Player total loss.
      * It can be a number or COMBATTABLE_DEATH
      */
@@ -115,6 +118,7 @@ export class CombatTurn {
 
         /** The player base loss */
         this.loneWolfBase = ( ( combat.immuneTurns >= this.turnNumber ) ? 0 : tableResult[1] );
+
         /** Player loss */
         this.loneWolf = CombatTurn.applyMultiplier( this.loneWolfBase , this.enemyMultiplier );
 
@@ -164,6 +168,13 @@ export class CombatTurn {
             combat.kaiRayUse = 2;
         }
 
+        // Prevented damage
+        if (this.loneWolf !== COMBATTABLE_DEATH) {
+            this.loneWolfPrevented = Math.min(this.loneWolf, combat.immuneDamage);
+            combat.immuneDamage -= this.loneWolfPrevented;
+            this.loneWolf -= this.loneWolfPrevented;
+        }
+
         /** Text with the player loss */
         this.playerLossText = this.calculatePlayerLossText();
     }
@@ -177,7 +188,7 @@ export class CombatTurn {
      * Calculate the text with the player loss
      */
     public calculatePlayerLossText(): string {
-        return CombatTurn.lossText( this.loneWolfBase , this.enemyMultiplier , this.loneWolfExtra ,
+        return CombatTurn.lossText( this.loneWolfBase , this.enemyMultiplier , this.loneWolfExtra , this.loneWolfPrevented ,
             this.loneWolf );
     }
 
@@ -185,7 +196,7 @@ export class CombatTurn {
      * Return a text with the enemy loss
      */
     public getEnemyLossText(): string {
-        return CombatTurn.lossText( this.enemyBase , this.damageMultiplier , this.enemyExtra ,
+        return CombatTurn.lossText( this.enemyBase , this.damageMultiplier , this.enemyExtra , 0 ,
             this.enemy );
     }
 
@@ -200,7 +211,7 @@ export class CombatTurn {
     /**
      * Get a text for a turn result
      */
-    public static lossText( base: typeof COMBATTABLE_DEATH | number, multiplier: number, extra: typeof COMBATTABLE_DEATH | number, finalLoss: typeof COMBATTABLE_DEATH | number ): string {
+    public static lossText( base: typeof COMBATTABLE_DEATH | number, multiplier: number, extra: typeof COMBATTABLE_DEATH | number, prevented: number, finalLoss: typeof COMBATTABLE_DEATH | number ): string {
         let loss = CombatTurn.translateLoss( base );
         if ( multiplier !== 1 ) {
             loss = `${loss} x ${multiplier}`;
@@ -208,9 +219,13 @@ export class CombatTurn {
         if ( extra !== 0 ) {
             loss += ` + ${( - extra )}`;
         }
-        if ( multiplier !== 1 || extra !== 0 ) {
+        if ( prevented !== 0 ) {
+            loss += ` - ${prevented}`;
+        }
+        if ( multiplier !== 1 || extra !== 0 || prevented !== 0 ) {
             loss += " = " + CombatTurn.translateLoss( finalLoss );
         }
+
         return loss;
     }
 

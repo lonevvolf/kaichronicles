@@ -211,6 +211,7 @@ decrease a counter, use the "pick" rule. The "objectId" can be one or more objec
 * **allmeals**: Drop all meals
 * **all**: Drop all (weapons, backpack, special items, and money)
 * **allobjects** Drop all objects (weapons, special items, and backpack content, but not the backpack itself)
+* **kaiweapon** Drop the player's Kai Weapon
 
 If you set more than one object id, the first one owned by the player will be dropped
 
@@ -410,6 +411,7 @@ the following properties:
 * **eludeEnemyEP="number"**: LW can elude the combat once the enemy EP is at the value or below. eludeTurn has to be set
 * **enemyImmuneTurns="number"**: Turns during which the enemy will suffer no damage
 * **immuneTurns="number"**: Turns during which LW will suffer no damage
+* **immuneDamage="number"**: Total damage which LW is shielded from during the combat
 * **damageMultiplier="number"**: LW damage multiplier. Can have decimals (ex. "0.5")
 * **enemyMultiplier="number"**: Enemy damage multiplier. Can have decimals (ex. "0.5")
 * **fake="true"**: This is a fake combat. When it's finished, LW endurance points lost will be restored

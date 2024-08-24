@@ -19,7 +19,7 @@ export class BookValidator {
 
     /** Special values allowed on "drop" rule */
     private specialDropValues = [ "allweapons" , "allhandtohand" , "allweaponlike" , "backpackcontent" ,
-        "currentweapon" , "allspecial" , "allspecialgrdmaster", "allmeals" , "all" , "allobjects" ];
+        "currentweapon" , "allspecial" , "allspecialgrdmaster", "allmeals" , "all" , "allobjects", "kaiweapon" ];
 
     /**
      * XSD text for mechanics validation. null until is not loaded

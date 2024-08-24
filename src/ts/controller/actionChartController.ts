@@ -1,4 +1,4 @@
-import { setupController, views, actionChartView, state, ActionChartItem, SectionItem, EquipmentSectionMechanics, translations, template, mechanicsEngine, Item, SpecialObjectsUse, CombatMechanics, Bonus, InventoryState, CurrencyName } from "..";
+import { setupController, views, actionChartView, state, ActionChartItem, SectionItem, EquipmentSectionMechanics, translations, template, mechanicsEngine, Item, SpecialObjectsUse, CombatMechanics, Bonus, InventoryState, CurrencyName, NewOrderDiscipline } from "..";
 
 /**
  * The action chart controller
@@ -203,6 +203,10 @@ export const actionChartController = {
             return true;
         }
 
+        if (objectId === "kaiweapon") {
+            return actionChartController.drop(state.actionChart.getKaiWeapon());
+        }
+
         const droppedItem = state.actionChart.drop(objectId, dropCount, objectIndex);
         if (droppedItem) {
             const item = droppedItem.getItem();
@@ -308,6 +312,10 @@ export const actionChartController = {
             // Do the usage action:
             if (o.usage.cls === Item.ENDURANCE) {
                 actionChartController.increaseEndurance(o.usage.increment);
+                // Check if a meal should be consumed as well (note that meal-like objects are not observed here, since New Order hasn't offered any yet)
+                if (o.usage.takenWithMeal && !state.actionChart.hasDiscipline(NewOrderDiscipline.GrandHuntmastery)) {
+                    actionChartController.increaseMeals(-1);
+                }
             } else if (o.usage.cls === Item.COMBATSKILL) {
                 // Combat skill modifiers only apply to the current section combats
                 const sectionState = state.sectionStates.getSectionState();
@@ -598,12 +606,13 @@ export const actionChartController = {
         const o = state.mechanics.getObject("arrow");
 
         if (realIncrement > 0) {
-            actionChartView.showInventoryMsg("pick", o,
-                translations.text("msgGetArrows", [realIncrement]));
+            const gotText = realIncrement === 1 ? translations.text("msgGetArrow", [realIncrement]) : translations.text("msgGetArrows", [realIncrement]);
+
+            actionChartView.showInventoryMsg("pick", o, gotText );
         } else if (increment < 0) {
+            const lostText = increment === -1 ? translations.text("msgDropArrow", [-increment]) : translations.text("msgDropArrows", [-increment]);
             // If increment is negative, show always the original amount, not the real (useful for debugging)
-            actionChartView.showInventoryMsg("drop", o,
-                translations.text("msgDropArrows", [-increment]));
+            actionChartView.showInventoryMsg("drop", o, lostText);
         } else if (increment > 0 && realIncrement === 0) {
             // You cannot pick more arrows (not quivers enough)
             toastr.error(translations.text("noQuiversEnough"));

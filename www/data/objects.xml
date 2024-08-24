@@ -103,6 +103,12 @@
             <image book="1|9" name="dagger.png" />
         </weapon>
 
+        <!-- BOOK 25 -->
+        <weapon id="halberd">
+            <name>Halberd (Spear)</name>
+            <image book="1|9" name="spear.png" />
+        </weapon>
+
     </weapons>
 
     <specials>
@@ -902,6 +908,11 @@
             <image book="1" name="small15.png" />
         </special>
 
+        <special id="copperkey22" itemCount="0">
+            <name>Copper Key</name>
+            <image book="1" name="small15.png" />
+        </special>
+
         <special id="silverclasp">
             <name>Silver Clasp</name>
         </special>
@@ -976,6 +987,22 @@
 
         <special id="battlemap" itemCount="0">
             <name>Battle-map</name>
+        </special>
+
+        <!-- BOOK 25 -->
+        <special id="platinumamulet25" itemCount="0" droppable="false">
+            <name>Platinum Amulet</name>
+            <description>Has protective powers that may help you when you enter Gazad Helkona.</description>
+        </special>
+
+        <special id="wolfbrooch">
+            <name>Wolf Brooch</name>
+        </special>
+         
+        <special id="blackamulet25">
+            <name>Black Amulet</name>
+            <description>A shiny black amulet engraved with the spider-and-blazing-sun emblem of Darklord Chlanzor.
+                It feels unusually cold to the touch, as if this item has been kept packed in ice.</description>
         </special>
 
     </specials>
@@ -2002,6 +2029,105 @@
          <object id="pitcher">
             <name>Pitcher</name>
          </object>
+
+         <!-- BOOK 25 -->
+         <object id="gnalliameal" isMeal="true">
+            <name>Meal of Gnallia</name>
+            <description>
+                It can be used as a Meal. Restores 2 ENDURANCE points
+            </description>
+            <image book="1|9" name="food.png" />
+            <usage class="endurance" increment="2" />
+        </object>
+
+        <object id="ironkey25">
+            <name>Iron Key</name>
+            <image book="1" name="small15.png" />
+        </object>
+
+        <object id="leathertunic">
+            <name>Leather Tunic</name>
+        </object>
+
+        <object id="blanket25" itemCount="2.0">
+            <name>Blanket</name>
+        </object>
+
+        <object id="laumspurdecanter" usageCount="2">
+            <name>Decanter</name>
+            <description>
+                Restores 4 ENDURANCE points.
+                There is enough for two doses
+            </description>
+            <usage class="endurance" increment="+4" />
+        </object>
+
+        <object id="bonedice">
+            <name>Bone Dice</name>
+        </object>
+
+        <object id="obhanthorjar" usageCount="2">
+            <name>Jar of Obhanthor</name>
+            <description>
+                Restores 5 ENDURANCE points (must be consumed with a meal)
+            </description>
+            <usage class="endurance" increment="+5" takenWithMeal="true" />
+        </object>
+
+        <object id="satchwortjar" usageCount="2">
+            <name>Jar of Satchwort</name>
+            <description>
+                Restores 3 ENDURANCE points when consumed after sustaining wounds in combat
+            </description>
+            <usage class="endurance" increment="+3" />
+        </object>
+
+        <object id="copperkey25">
+            <name>Copper Key</name>
+            <image book="1" name="small15.png" />
+        </object>
+
+        <!-- TODO: Similar to Grand Master healing, should only restore combat wounds -->
+        <object id="tortwichvial" usageCount="2">
+            <name>Vial of Tortwich</name>
+            <description>A crystalline salt that will restore 3 ENDURANCE points when consumed after sustaining wounds in combat.
+            </description>
+            <usage class="endurance" increment="+3" />
+        </object>
+
+        <object id="dargorsebuds">
+            <name>Dargorse Buds</name>
+            <description>
+                The poisonous fruits of a prickly wilderness briar. 
+                You only have enough for one dose.
+            </description>
+        </object>
+
+        <object id="finglaspotion" usageCount="1">
+            <name>Potion of Finglas</name>
+            <description>This restores 7 ENDURANCE points to your total when swallowed</description>
+            <usage class="endurance" increment="+7" />
+        </object>
+
+        <object id="kraanpipe">
+            <name>Kraan Pipe</name>
+            <description>A crude tin whistle which can be used to summon and control a Kraan.</description>
+        </object>
+
+        <object id="venellvial" usageCount="2">
+            <name>Vial of Venell</name>
+            <description>A healing powder that will restore 5 ENDURANCE points per dose when swallowed with a Meal.
+            </description>
+            <usage class="endurance" increment="+5" takenWithMeal="true" />
+        </object>
+
+        <object id="candlestick">
+            <name>Candlestick</name>
+        </object>
+
+        <object id="diningfork">
+            <name>Dining Fork</name>
+        </object>
 
         <!-- OTHERS -->
 

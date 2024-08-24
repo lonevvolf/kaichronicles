@@ -426,22 +426,22 @@
         </xs:attribute>
         <xs:attribute name="combatSkillModifier" type="xs:string">
             <xs:annotation>
-                <xs:documentation>Absolute bonus (positive or negative) for Lone Wolf combat skill on this combat</xs:documentation>
+                <xs:documentation>Absolute bonus (positive or negative) for player's combat skill on this combat</xs:documentation>
             </xs:annotation>
         </xs:attribute>
         <xs:attribute name="combatSkillModifierIncrement" type="xs:string">
             <xs:annotation>
-                <xs:documentation>Bonus increment (positive or negative) for Lone Wolf combat skill on this combat</xs:documentation>
+                <xs:documentation>Bonus increment (positive or negative) for player's combat skill on this combat</xs:documentation>
             </xs:annotation>
         </xs:attribute>
         <xs:attribute name="mindforceCS" type="xs:integer">
             <xs:annotation>
-                <xs:documentation>Bonus (negative) to the Lone Wolf combat skill due to the enemy Mindblast. It will not be applied if the player has Mindshield / Psi-screen</xs:documentation>
+                <xs:documentation>Bonus (negative) to the player's combat skill due to the enemy Mindblast. It will not be applied if the player has Mindshield / Psi-screen</xs:documentation>
             </xs:annotation>
         </xs:attribute>
         <xs:attribute name="mindforceEP" type="xs:integer">
             <xs:annotation>
-                <xs:documentation>Endurance points lost by LW each turn, due to the enemy Mindblast. It will not be applied if the player has Mindshield / Psi-screen</xs:documentation>
+                <xs:documentation>Endurance points lost by the player each turn, due to the enemy Mindblast. It will not be applied if the player has Mindshield / Psi-screen</xs:documentation>
             </xs:annotation>
         </xs:attribute>
         <xs:attribute name="noMindblast" type="xs:boolean">
@@ -486,27 +486,27 @@
         </xs:attribute>
         <xs:attribute name="noWeapon" type="xs:string">
             <xs:annotation>
-                <xs:documentation>If true, Lone Wolf cannot use any weapon on this combat. If a number, LW cannot use any weapon for that many turns</xs:documentation>
+                <xs:documentation>If true, the player cannot use any weapon on this combat. If a number, the player cannot use any weapon for that many turns</xs:documentation>
             </xs:annotation>
         </xs:attribute>
         <xs:attribute name="eludeTurn" type="xs:integer">
             <xs:annotation>
-                <xs:documentation>Turn number after which LW can elude the combat</xs:documentation>
+                <xs:documentation>Turn number after which the player can evade the combat</xs:documentation>
             </xs:annotation>
         </xs:attribute>
         <xs:attribute name="maxEludeTurn" type="xs:integer">
             <xs:annotation>
-                <xs:documentation>Turn number after which LW cannot elude the combat anymore</xs:documentation>
+                <xs:documentation>Turn number after which the player cannot evade the combat anymore</xs:documentation>
             </xs:annotation>
         </xs:attribute>
         <xs:attribute name="eludeEnemyEP" type="xs:integer">
             <xs:annotation>
-                <xs:documentation>LW can elude the combat once the enemy EP is at the value or below. eludeTurn has to be set</xs:documentation>
+                <xs:documentation>The player can evade the combat once the enemy EP is at the value or below. eludeTurn has to be set</xs:documentation>
             </xs:annotation>
         </xs:attribute>
         <xs:attribute name="damageMultiplier" type="xs:decimal">
             <xs:annotation>
-                <xs:documentation>LW damage multiplier. Can have decimals (ex. "0.5")</xs:documentation>
+                <xs:documentation>Player damage multiplier. Can have decimals (ex. "0.5")</xs:documentation>
             </xs:annotation>
         </xs:attribute>
         <xs:attribute name="enemyMultiplier" type="xs:decimal">
@@ -521,17 +521,17 @@
         </xs:attribute>
         <xs:attribute name="turnLoss" type="xs:nonPositiveInteger">
             <xs:annotation>
-                <xs:documentation>Extra E.P. lost by LW each turn. Should be negative or zero</xs:documentation>
+                <xs:documentation>Extra E.P. lost by the player each turn. Should be negative or zero</xs:documentation>
             </xs:annotation>
         </xs:attribute>
         <xs:attribute name="turnLossIfWounded" type="xs:nonPositiveInteger">
             <xs:annotation>
-                <xs:documentation>Extra E.P. lost by LW, if the player has been wounded on that turn. Should be negative or zero</xs:documentation>
+                <xs:documentation>Extra E.P. lost by the player, if the player has been wounded on that turn. Should be negative or zero</xs:documentation>
             </xs:annotation>
         </xs:attribute>
         <xs:attribute name="fake" type="xs:boolean">
             <xs:annotation>
-                <xs:documentation>This is a fake combat. When it's finished, LW endurance points lost will be restored</xs:documentation>
+                <xs:documentation>This is a fake combat. When it's finished, the player's endurance points lost will be restored</xs:documentation>
             </xs:annotation>
         </xs:attribute>
         <xs:attribute name="restoreFactor" type="xs:decimal">
@@ -556,12 +556,17 @@
         </xs:attribute>
         <xs:attribute name="mentalOnly" type="xs:boolean">
             <xs:annotation>
-                <xs:documentation>If true, Lone Wolf cannot use any physical bonuses on this combat (any object bonus)</xs:documentation>
+                <xs:documentation>If true, player cannot use any physical bonuses on this combat (any object bonus)</xs:documentation>
             </xs:annotation>
         </xs:attribute>
         <xs:attribute name="immuneTurns" type="xs:nonNegativeInteger">
             <xs:annotation>
-                <xs:documentation>Turns during which LW will suffer no damage</xs:documentation>
+                <xs:documentation>Turns during which player will suffer no damage</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="immuneDamage" type="xs:nonNegativeInteger">
+            <xs:annotation>
+                <xs:documentation>Total damage which player is shielded from during the combat</xs:documentation>
             </xs:annotation>
         </xs:attribute>
         <xs:attribute name="enemyImmuneTurns" type="xs:nonNegativeInteger">
@@ -571,7 +576,7 @@
         </xs:attribute>
         <xs:attribute name="permanentDamage" type="xs:boolean">
             <xs:annotation>
-                <xs:documentation>If true, EP lost by LW on this combat will be permanent</xs:documentation>
+                <xs:documentation>If true, EP lost by the player on this combat will be permanent</xs:documentation>
             </xs:annotation>
         </xs:attribute>
         <xs:attribute name="allowPotions" type="xs:boolean">
@@ -659,7 +664,7 @@
         <xs:annotation>
             <xs:documentation>Disable an active player discipline</xs:documentation>
         </xs:annotation>
-        <xs:attribute name="disciplineIndex" type="xs:nonNegativeInteger" use="required">
+        <xs:attribute name="disciplineIndex" type="xs:string" use="required">
             <xs:annotation>
                 <xs:documentation>The index of the discipline to be disabled in the player's list of disciplines.</xs:documentation>
             </xs:annotation>
@@ -770,6 +775,7 @@
                 <xs:documentation>- allmeals: Drop all meals</xs:documentation>
                 <xs:documentation>- all: Drop all (weapons, backpack, special items, and money)</xs:documentation>
                 <xs:documentation>- allobjects: Drop all objects (weapons, special items, and backpack content, but not the backpack itself)</xs:documentation>
+                <xs:documentation>- kaiweapon: Drop the player's Kai Weapon</xs:documentation>
                 <xs:documentation>If you set more than one object id, the first one owned by the player will be dropped</xs:documentation>
             </xs:annotation>
         </xs:attribute>
@@ -785,7 +791,7 @@
         </xs:attribute>
         <xs:attribute name="restorePoint" type="xs:string">
             <xs:annotation>
-                <xs:documentation>If specified, the dropped item will can be restored with the rule "restoreInventoryState", with the given restore point id.</xs:documentation>
+                <xs:documentation>If specified, the dropped item can be restored with the rule "restoreInventoryState", with the given restore point id.</xs:documentation>
             </xs:annotation>
         </xs:attribute>        
         <xs:attribute name="count" type="xs:nonNegativeInteger">
@@ -1200,6 +1206,8 @@
             <xs:element name="grandMasterUpgrade" type="grandMasterUpgrade" />
             <xs:element name="removeSpecialGrandMaster" type="removeSpecialGrandMaster" />
             <xs:element name="applyDessiStone" type="applyDessiStone" />
+            <xs:element name="disableDiscipline" type="disableDiscipline" />
+            <xs:element name="resetNewOrderDisabledDisciplines" type="resetNewOrderDisabledDisciplines" />
 
             <xs:element name="book2Sect238" type="specialsection_type" />
             <xs:element name="book2sect308" type="specialsection_type" />

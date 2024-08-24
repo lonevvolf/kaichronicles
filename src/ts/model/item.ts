@@ -13,6 +13,9 @@ export interface ItemEffect {
 
     /** Endurance only. True if can be used prior a combat. */
     priorCombat: boolean;
+
+    /** Usage requires and consumes meal */
+    takenWithMeal: boolean;
 }
 
 /**
@@ -200,7 +203,8 @@ export class Item {
             this.usage = {
                 cls: $usage.attr("class"),
                 increment: parseInt($usage.attr("increment"), 10),
-                priorCombat: $usage.attr("priorCombat") === "true"
+                priorCombat: $usage.attr("priorCombat") === "true",
+                takenWithMeal: $usage.attr("takenWithMeal") === "true"
             };
         }
 
