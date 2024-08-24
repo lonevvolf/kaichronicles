@@ -17,8 +17,6 @@ jobs:
           npm install
           npm run downloaddata --url=${{ vars.REPO_URL }}
           npm run dist
-      - name: Summarize Tests
-        run: npx github-actions-ctrf ctrf/ctrf-report.json
       - name: Archive dist folder
         uses: actions/upload-artifact@v4
         with:
@@ -34,7 +32,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: dist
-          path: /tmp/kaiChronicles/dist
+          path: dist
       - name: Display structure of downloaded files
         run: ls -R /tmp/kaiChronicles/dist
       - name: Deploy files to Project Aon
@@ -44,6 +42,6 @@ jobs:
             server: ${{ secrets.SFTP_HOST }}
             password: ${{ secrets.SFTP_PASS }}
             
-            local_path: "/tmp/kaiChronicles/dist/*"
+            local_path: "./dist/*"
             remote_path: "/"
 
