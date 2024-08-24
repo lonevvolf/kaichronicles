@@ -126,6 +126,15 @@ describe("combat", () => {
         await driver.goToSection("sect86");
         expect( await driver.getCombatRatio() ).toBe(-10);
     });
+
+    test("combatSkillModifierIncrement", async () => {
+        await driver.setupBookState(11);
+        await driver.setDisciplines([MgnDiscipline.AnimalControl, MgnDiscipline.Curing, MgnDiscipline.Huntmastery]);
+        await driver.pick("psychicring");
+        await driver.pick("silverhelm");
+        await driver.goToSection("sect270");
+        expect( await driver.getCombatRatio() ).toBe(-5);
+    });
 });
 
 // setDisciplines -> See setDisciplines.tests.ts

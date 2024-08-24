@@ -148,7 +148,7 @@ export const mechanicsEngine = {
     /**
      * Run current section rules
      * @param resetRandomTableIncrements If it's true, any random table link increment will be reset before
-     * run the rules. Random table increments are stored on the UI, and they are accumulative. So if rules are re-executed
+     * running the rules. Random table increments are stored on the UI, and they are cumulative. So if rules are re-executed
      * without refresh the section, it can be needed
      */
     runSectionRules(resetRandomTableIncrements: boolean = false) {
@@ -161,6 +161,13 @@ export const mechanicsEngine = {
         const $sectionMechanics =
             state.mechanics.getSection(state.sectionStates.currentSection);
         if ($sectionMechanics !== null) {
+            // Reset the combatModifiers before rendering the rules
+            const sectionState = state.sectionStates.getSectionState();
+            if (sectionState && sectionState.combats) {
+                state.sectionStates.getSectionState().combats.forEach((combat) => {
+                    combat.combatModifier = 0;
+                });
+            }
             mechanicsEngine.runChildRules($sectionMechanics);
         }
 
@@ -948,7 +955,9 @@ export const mechanicsEngine = {
 
         // Check LW combat ABSOLUTE skill modifier for this section:
         const combatSkillModifier = mechanicsEngine.getIntProperty($rule, "combatSkillModifier", true);
-        combat.combatModifier = combatSkillModifier !== null ? combatSkillModifier : 0;
+        if (combatSkillModifier !== null) {
+            combat.combatModifier = combatSkillModifier;
+        }
 
         // Check LW combat skill modifier INCREMENT
         const combatSkillModifierIncrement = mechanicsEngine.getIntProperty($rule, "combatSkillModifierIncrement", true);
