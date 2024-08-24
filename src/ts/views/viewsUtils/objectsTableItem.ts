@@ -75,13 +75,13 @@ export class ObjectsTableItem {
             const count = ( this.objectInfo.count ? this.objectInfo.count : 0 );
             // In INVENTORY always show "0 arrows", but not in SELL or AVAILABLE (ugly)
             if ( count > 0 || this.type === ObjectsTableType.INVENTORY ) {
-                name += " (" + count.toFixed() + " " + translations.text("arrows") + ")";
+                name += " (" + count.toFixed() + " " + (count === 1 ? translations.text("arrow") : translations.text("arrows")) + ")";
             }
         }
 
         // Arrow amount
         if ( this.objectInfo.id === Item.ARROW && this.objectInfo.count ) {
-            name = this.objectInfo.count.toFixed() + " " + name;
+            name = this.objectInfo.count.toFixed() + " " + (this.objectInfo.count === 1 ? translations.text("arrow") : name);
         }
 
         // Fireseed amount
@@ -242,7 +242,8 @@ export class ObjectsTableItem {
             const currentSection = state.sectionStates.getSectionState();
             if (this.item.usage && (this.item.usage.cls !== Item.ENDURANCE || !currentSection.someCombatActive() ||
                 (this.item.usage.priorCombat && !currentSection.areCombatsStarted() && currentSection.areCombatsPotionsAllowed()))
-                && (!this.item.usage.takenWithMeal || state.actionChart.meals > 0 || state.actionChart.hasDiscipline(NewOrderDiscipline.GrandHuntmastery))) {
+                && (!this.item.usage.takenWithMeal || state.actionChart.meals > 0 || state.actionChart.hasDiscipline(NewOrderDiscipline.GrandHuntmastery))
+                && (!this.item.usage.takenWithLaumspur || state.actionChart.hasObject("laumspurpotion4") || state.actionChart.hasDiscipline(NewOrderDiscipline.Herbmastery))) {
                 // Use object operation
                 html += this.getUseOperation();
             }
@@ -253,7 +254,10 @@ export class ObjectsTableItem {
                 html += this.getOperationTag( "currentWeapon" , title , '<span class="glyphicon glyphicon-hand-left"></span>' );
             }
 
-            if ( this.item.droppable ) {
+            // Prevent dropping the item if it gives bonus backpack slots and we would be over the limit after dropping
+            if ( this.item.droppable 
+                && (this.item.backpackSlotsBonusEffect === 0 || 
+                ( state.actionChart.getNBackpackItems() <= state.actionChart.getMaxBackpackItems() - this.item.backpackSlotsBonusEffect + this.item.itemCount)) ) {
                 // Object can be dropped:
                 const title = translations.text("dropObject");
                 html += this.getOperationTag( "drop" , title , '<span class="glyphicon glyphicon-remove"></span>' );

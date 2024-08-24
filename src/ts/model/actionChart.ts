@@ -332,7 +332,7 @@ export class ActionChart {
                 if ( !this.hasBackpack ) {
                     throw translations.text( "backpackLost" );
                 }
-                if ( ( this.getNBackpackItems(false) + item.itemCount ) > ActionChart.getMaxBackpackItems() ) {
+                if ( ( this.getNBackpackItems(false) + item.itemCount ) > this.getMaxBackpackItems() ) {
                     throw translations.text( "msgNoMoreBackpackItems" );
                 }
                 if ( aChartItem.id === Item.MEAL ) {
@@ -357,9 +357,9 @@ export class ActionChart {
     }
 
     /**
-     * Returns the total number of backpack items, according to the number of slots each item consum
-     * @param roundToInteger If true (default), the total number of objects will be rounded up to a integer (Item.itemCount can have decimals)
-     * @param useItemCount If true (default), use the valur of itemCount, otherwise each item count as 1.
+     * Returns the total number of backpack items, according to the number of slots each item consumes
+     * @param roundToInteger If true (default), the total number of objects will be rounded up to an integer (Item.itemCount can have decimals)
+     * @param useItemCount If true (default), use the value of itemCount, otherwise each item count as 1.
      * @returns The number of objects on the backpack
      */
     public getNBackpackItems(roundToInteger = true, useItemCount = true): number {
@@ -407,7 +407,7 @@ export class ActionChart {
                 throw translations.text("backpackLost");
             }
 
-            const maxToPick = ActionChart.getMaxBackpackItems() - this.getNBackpackItems();
+            const maxToPick = this.getMaxBackpackItems() - this.getNBackpackItems();
             if ( maxToPick < 0 ) {
                 count = 0;
             } else if (count > maxToPick) {
@@ -1074,6 +1074,24 @@ export class ActionChart {
     }
 
     /**
+     * Get the current bonuses for backpack slots
+     * @returns Array of objects with the backpack slot bonuses
+     */
+    public getBackpackSlotsBonuses(): Bonus[] {
+        const bonuses: Bonus[] = [];
+        this.enumerateObjectsAsItems((o: Item) => {
+            if (o.backpackSlotsBonusEffect) {
+                bonuses.push({
+                    concept: o.name,
+                    increment: o.backpackSlotsBonusEffect
+                });
+            }
+        });
+
+        return bonuses;
+    }
+
+    /**
      * Get the current bonuses for endurance
      * @return Array of objects with the bonuses concepts
      */
@@ -1509,8 +1527,15 @@ export class ActionChart {
     /**
      * Return the maximum number of backpack items in the current book
      */
-    private static getMaxBackpackItems(): number {
-        return state.book.getBookSeries().id >= BookSeriesId.GrandMaster ? 10 : 8;
+    public getMaxBackpackItems(): number {
+        const bonuses = this.getBackpackSlotsBonuses();
+
+        let backpackSlots = state.book.getBookSeries().id >= BookSeriesId.GrandMaster ? 10 : 8;
+        for (const bonus of bonuses) {
+            backpackSlots += bonus.increment;
+        }
+        
+        return backpackSlots;
     }
 
     /**
