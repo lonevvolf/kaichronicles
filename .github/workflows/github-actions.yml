@@ -43,5 +43,5 @@ jobs:
             password: ${{ secrets.SFTP_PASS }}
             
             local_path: "./dist/*"
-            remote_path: "/"
+            remote_path: "/home/${{ secrets.SFTP_USER }}/kaichronicles.projectaon.org"
 
