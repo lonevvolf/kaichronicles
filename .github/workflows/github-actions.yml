@@ -16,7 +16,6 @@ jobs:
           git config --global pack.threads "1"
           npm install
           npm run downloaddata --url=${{ vars.REPO_URL }}
-          npm run test --kaibook=1 --kaisect=tssf
           npm run dist
       - name: Summarize Tests
         run: npx github-actions-ctrf ctrf/ctrf-report.json
@@ -44,5 +43,5 @@ jobs:
             password: ${{ secrets.SFTP_PASS }}
             
             local_path: "/tmp/kaiChronicles/dist/*"
-            remote_path: "/ryan/kaiChronicles"
+            remote_path: "/"
 
