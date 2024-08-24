@@ -1283,9 +1283,7 @@
                     <choiceState section="sect317" set="enabled" />
                 </case>
             </randomTable>
-            <test hasWeaponskillWith="bow">
-                <randomTableIncrement increment="5" />
-            </test>
+            <randomTableIncrement increment="[BOWBONUS]" />
         </section>
 
         <section id="sect162">
@@ -1563,9 +1561,8 @@
                     <choiceState section="sect317" set="enabled" />
                 </case>
             </randomTable>
-            <test hasWeaponskillWith="bow">
-                <randomTableIncrement increment="5" />
-            </test>
+            <randomTableIncrement increment="[BOWBONUS]" />
+
         </section>
 
         <section id="sect199">
@@ -2084,9 +2081,8 @@
                     <choiceState section="sect280" set="enabled" />
                 </case>
             </randomTable>
-            <test hasWeaponskillWith="bow">
-                <randomTableIncrement increment="5" />
-            </test>
+            <randomTableIncrement increment="[BOWBONUS]" />
+
         </section>
 
         <section id="sect273">
@@ -2638,7 +2634,6 @@
         <section id="sect350">
             <!-- Reset any disabled disciplines -->
             <resetNewOrderDisabledDisciplines />
-            <message text="Congratulations! You have finished the last book of Kai Chronicles!" />
         </section>
     </sections>
 </mechanics>
