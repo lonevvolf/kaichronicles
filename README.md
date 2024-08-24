@@ -38,8 +38,8 @@ Open your browser on http://localhost:3000.
 Optional method for running a local website only to play the game
  * Download and install [Docker](https://docs.docker.com/install/) and make sure it's is in your PATH environment variable
  * Using a terminal (Linux or iOS) or PowerShell (Windows 10) navigate to the project's directory
- * Type `docker build -t kai:1.17 .`
- * Type `docker run -p 8080:8080 kai:1.17`
+ * Type `docker build -t kai:1.18 .`
+ * Type `docker run -p 8080:8080 kai:1.18`
  * Open http://localhost:8080
  
 More information about this method [here](./doc/README-docker.md)
