@@ -11,8 +11,6 @@
             <restoreDeliveranceUse />
             <!-- Reset Curing EP Used counter-->
             <resetNewOrderCuringEPRestoredUse />
-            <!-- Reset any disabled disciplines -->
-            <resetNewOrderDisabledDisciplines />
         </section>
 
         <section id="gamerulz">
@@ -411,7 +409,7 @@
                 <choiceState section="sect223" set="disabled" />
             </test>
             <test hasDiscipline="pthmnshp">
-                <choiceState section="sect166" set="enabled" />
+                <choiceState section="sect166" set="disabled" />
             </test>
         </section>
 
@@ -690,9 +688,6 @@
             <endurance count="+3" />
             <test not="true" hasDiscipline="alchemy">
                 <choiceState section="sect101" set="disabled" />
-            </test>
-            <test hasDiscipline="alchemy">
-                <choiceState section="sect247" set="disabled" />
             </test>
         </section>
 
@@ -996,7 +991,7 @@
 
         <section id="sect109">
             <choiceState section="all" set="disabled" />
-            <combat combatSkillModifierIncrement="+5" />
+            <combat combatSkillModifier="+5" />
             <afterCombats>
                 <choiceState section="all" set="enabled" />
             </afterCombats>
@@ -1089,6 +1084,8 @@
         </section>
 
         <section id="sect121">
+            <drop objectId="suncrystal26" />
+
             <choiceState section="all" set="disabled" />
             <randomTable>
                 <case to="3">
@@ -1175,6 +1172,9 @@
         </section>
 
         <section id="sect139">
+            <object objectId="shovel" />
+            <object objectId="pick" />
+
             <object objectId="bronzedisc26" />
         </section>
 
@@ -1715,7 +1715,7 @@
         </section>
 
         <section id="sect217">
-            <object objectId="borbrewbottle" />
+            <object objectId="borbrewbottle" unlimited="true" />
         </section>
 
         <section id="sect219">
@@ -1830,8 +1830,9 @@
         </section>
 
         <section id="sect235">
+            <!-- These need to be different to execute the rule to drop the last item twice -->
             <drop backpackItemSlots="last" />
-            <drop backpackItemSlots="last" />
+            <drop backpackItemSlots="last" count="1" />
             <pick class="arrow" count="-[ARROWS]" />
             <message id="msg-drop-weapon" text="Drop one weapon of your choice" />
 
@@ -2444,7 +2445,9 @@
         <section id="sect318">
             <registerGlobalRule id="illuminatusBonus">
                 <test combatsActive="true">
-                    <combat combatSkillModifierIncrement="+2" />
+                    <test currentWeapon="illuminatus">
+                        <combat index="0" combatSkillModifierIncrement="+2" />
+                    </test>
                 </test>
             </registerGlobalRule>
             <choiceState section="all" set="disabled" />
@@ -2475,6 +2478,7 @@
         </section>
 
         <section id="sect322">
+            <drop objectId="suncrystal26" />
             <choiceState section="all" set="disabled" />
             <randomTable>
                 <case to="3">

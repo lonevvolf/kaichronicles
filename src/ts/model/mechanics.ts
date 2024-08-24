@@ -134,7 +134,7 @@ export class Mechanics {
     }
 
     /**
-     * Get a jquery selector for a give rule, relative to the "section" parent
+     * Get a jquery selector for a given rule, relative to the "section" parent
      * @return {string} The jquery selector for the rule inside the section
      */
     public static getRuleSelector(rule: Element): string {

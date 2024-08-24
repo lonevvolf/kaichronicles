@@ -113,7 +113,7 @@ export class Item {
     public enduranceEffect: number = 0;
 
     /** Number of extra backpack slots */
-    public backpackSlotsBonus: number = 0;
+    public backpackSlotsBonusEffect: number = 0;
 
     /** Usage effect */
     public usage: ItemEffect;
@@ -227,7 +227,7 @@ export class Item {
             } else if (cls === Item.ENDURANCE) {
                 this.enduranceEffect = increment;
             } else if (cls === Item.BACKPACKSLOTS) {
-                this.backpackSlotsBonus = increment;
+                this.backpackSlotsBonusEffect = increment;
             } else {
                 mechanicsEngine.debugWarning("Object " + this.id + ", wrong class effect: " + cls);
             }

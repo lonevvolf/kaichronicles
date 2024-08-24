@@ -254,7 +254,10 @@ export class ObjectsTableItem {
                 html += this.getOperationTag( "currentWeapon" , title , '<span class="glyphicon glyphicon-hand-left"></span>' );
             }
 
-            if ( this.item.droppable ) {
+            // Prevent dropping the item if it gives bonus backpack slots and we would be over the limit after dropping
+            if ( this.item.droppable 
+                && (this.item.backpackSlotsBonusEffect === 0 || 
+                ( state.actionChart.getNBackpackItems() <= state.actionChart.getMaxBackpackItems() - this.item.backpackSlotsBonusEffect + this.item.itemCount)) ) {
                 // Object can be dropped:
                 const title = translations.text("dropObject");
                 html += this.getOperationTag( "drop" , title , '<span class="glyphicon glyphicon-remove"></span>' );

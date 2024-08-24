@@ -1006,7 +1006,7 @@
         </special>
 
         <!-- BOOK 26 -->
-        <special id="suncrystal26" itemCount="0">
+        <special id="suncrystal26">
             <name>Sun-crystal</name>
             <image book="26" name="small1.png" />
         </special>
@@ -1028,11 +1028,12 @@
         <special id="andarinbloodstone" itemCount="0">
             <name>Andarin Bloodstone</name>
             <description>The colours of the amulet will deepen as you draw closer to King Ryvin's sons.</description>
+            <image book="26" name="small5.png" />
         </special>
 
         <special id="korliniumchainmailvest">
             <name>Korlinium Chainmail Vest</name>
-            <description>This can be worn beneath your tunic.</description>
+            <description>This can be worn beneath your tunic. It adds +2 to your COMBAT SKILL.</description>
             <image book="1" name="mail.png" />
             <effect class="combatSkill" increment="+2" />
         </special>
@@ -2191,6 +2192,8 @@
             <image book="1" name="small15.png" />
         </object>
 
+        <!-- TODO: If player is forced to drop bag of holding, they can be over the limit. 
+         Find a way to force them to drop items before proceeding -->
         <object id="drodarinbagofholding">
             <name>Drodarin Bag of Holding</name>
             <description>This can be used to store five additional Backpack Items, although the Bag itself occupies only one space.</description>

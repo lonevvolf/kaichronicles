@@ -1080,10 +1080,10 @@ export class ActionChart {
     public getBackpackSlotsBonuses(): Bonus[] {
         const bonuses: Bonus[] = [];
         this.enumerateObjectsAsItems((o: Item) => {
-            if (o.backpackSlotsBonus) {
+            if (o.backpackSlotsBonusEffect) {
                 bonuses.push({
                     concept: o.name,
-                    increment: o.backpackSlotsBonus
+                    increment: o.backpackSlotsBonusEffect
                 });
             }
         });
@@ -1527,7 +1527,7 @@ export class ActionChart {
     /**
      * Return the maximum number of backpack items in the current book
      */
-    private getMaxBackpackItems(): number {
+    public getMaxBackpackItems(): number {
         const bonuses = this.getBackpackSlotsBonuses();
 
         let backpackSlots = state.book.getBookSeries().id >= BookSeriesId.GrandMaster ? 10 : 8;
