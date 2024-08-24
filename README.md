@@ -1,15 +1,13 @@
 ## Kai Chronicles
 
-Kai Chronicles is a game player for Lone Wolf game books. Books 1 - 24 are playable. The game player can run as a website.
+[Kai Chronicles](https://kaichronicles.projectaon.org) is a game player for Lone Wolf game books. Books 1 - 25 are playable. The game player can run as a website.
 
 This is a fork from the [original "Kai Chronicles"](https://github.com/tonib/kaichronicles) as tonib stopped development in November 2021.
 
 This repository does not contain game books data. Data must be downloaded from the [Project Aon web site](https://www.projectaon.org). 
 **REMEMBER** that game books data is under the [Project Aon license](https://www.projectaon.org/en/Main/License), so:
 
-* You cannot put this application on a public web server (only on your local machine, for
-  your own use). The only place where this game can be published is on the Project Aon 
-  web site
+* You cannot put this application on a public web server (only on your local machine, for your own use). The only place where this game can be published is on the Project Aon web site. It's available here : https://kaichronicles.projectaon.org
 * You cannot redistribute the game books data in any way
 
 ## Setup
@@ -44,15 +42,13 @@ Optional method for running a local website only to play the game
  * Type `docker run -p 8080:8080 kai:1.16`
  * Open http://localhost:8080
  
- More information about this method [here](./doc/README-docker.md)
+More information about this method [here](./doc/README-docker.md)
 
 ### Developing 
 
-Game rules for each book are located at [www/data](www/data). "mechanics-X" are the game rules
-for the book X. "objects.xml" are the game objects
+Game rules for each book are located at [www/data](www/data). "mechanics-X" are the game rules for the book X. "objects.xml" are the game objects
 
-There is (unfinished) documentation for [rules](doc/README-mechanics.md), [object formats](doc/README-objects.md) and
-[save game file format](doc/README-savegames.md).
+There is (unfinished) documentation for [rules](doc/README-mechanics.md), [object formats](doc/README-objects.md) and [save game file format](doc/README-savegames.md).
 
 The game rules implementation are at src/ts/controller/mechanics and www/controller/mechanics.
 
@@ -74,9 +70,7 @@ A "guide" to develop new books can be found at [doc/README-developing.md](doc/RE
 
 ### Tests
 
-Tests are run with Selenium Web Driver and Jest. Currently tests will run only with Chrome, and Selenium will need a "browser driver". See
-https://www.selenium.dev/documentation/en/webdriver/driver_requirements for installation instructions. Tests are located at src/ts/tests.
-Be sure Typescript for node.js is compiled before running tests:
+Tests are run with Selenium Web Driver and Jest. Currently tests will run only with Chrome, and Selenium will need a "browser driver". See https://www.selenium.dev/documentation/en/webdriver/driver_requirements for installation instructions. Tests are located at src/ts/tests. Be sure Typescript for node.js is compiled before running tests:
 
 ```bash
 npm run test

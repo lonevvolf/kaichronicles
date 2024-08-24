@@ -8,8 +8,8 @@
     "description": "A player for Lone Wolf game books.",
     "orientation": "portrait",
     "icons": [{
-      "src": "images/icon.png",
-      "sizes": "100x100",
+      "src": "images/icon_900.png",
+      "sizes": "900x900",
       "type": "image/png"
     }],
     "categories": ["games","kids","books"]
