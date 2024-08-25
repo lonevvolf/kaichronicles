@@ -1175,7 +1175,7 @@
             <object objectId="shovel" />
             <object objectId="pick" />
 
-            <object objectId="bronzedisc26" />
+            <pick objectId="bronzedisc26" />
         </section>
 
         <section id="sect143">
