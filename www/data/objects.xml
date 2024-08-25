@@ -990,7 +990,7 @@
         </special>
 
         <!-- BOOK 25 -->
-        <special id="platinumamulet25" itemCount="0" droppable="false">
+        <special id="platinumamulet25" itemCount="0">
             <name>Platinum Amulet</name>
             <description>Has protective powers that may help you when you enter Gazad Helkona.</description>
         </special>
@@ -1003,6 +1003,46 @@
             <name>Black Amulet</name>
             <description>A shiny black amulet engraved with the spider-and-blazing-sun emblem of Darklord Chlanzor.
                 It feels unusually cold to the touch, as if this item has been kept packed in ice.</description>
+        </special>
+
+        <!-- BOOK 26 -->
+        <special id="suncrystal26">
+            <name>Sun-crystal</name>
+            <image book="26" name="small1.png" />
+        </special>
+
+        <special id="andarinwarhammer" weaponType="warhammer">
+            <name>Andarin Warhammer</name>
+            <description>
+                In combat against any enemy it will give you a bonus of +5 to your COMBAT SKILL. You may use this magical warhammer as an alternative to your Kai Weapon.
+            </description>
+            <image book="1|9" name="warhammr.png" />
+            <effect class="combatSkill" increment="+5" />
+        </special>
+
+        <special id="bronzedisc26" itemCount="0">
+            <name>Bonze Disc</name>
+            <description>A Bronze Disc that is stamped with the Drodarin numerals "3–2–1"</description>
+        </special>
+
+        <special id="andarinbloodstone" itemCount="0">
+            <name>Andarin Bloodstone</name>
+            <description>The colours of the amulet will deepen as you draw closer to King Ryvin's sons.</description>
+            <image book="26" name="small5.png" />
+        </special>
+
+        <special id="korliniumchainmailvest">
+            <name>Korlinium Chainmail Vest</name>
+            <description>This can be worn beneath your tunic. It adds +2 to your COMBAT SKILL.</description>
+            <image book="1" name="mail.png" />
+            <effect class="combatSkill" increment="+2" />
+        </special>
+
+        <special id="sunderer" weaponType="axe">
+            <name>Sunderer</name>
+            <description>In combat against any enemy it will give you a bonus of +5 to your COMBAT SKILL. You may use this magical axe as an alternative to your existing Kai Weapon.</description>
+            <image book="1|9" name="axe.png" />
+            <effect class="combatSkill" increment="+5" />
         </special>
 
     </specials>
@@ -2129,6 +2169,37 @@
             <name>Dining Fork</name>
         </object>
 
+        <!-- BOOK 26 -->
+        <object id="vinegarjug">
+            <name>Jug of Vinegar</name>
+        </object>
+
+        <object id="ashexapotion" usageCount="1">
+            <name>Ashexa Potion</name>
+            <description>
+                When you swallow a potion of Ashexa it will restore 5 ENDURANCE points if taken with a Laumspur Potion.
+            </description>
+            <image book="3|9" name="potion.png" />
+            <usage class="endurance" increment="+5" takenWithLaumspur="true" />    
+        </object>
+        
+        <object id="borbrewbottle">
+            <name>Bottle of Bor Brew</name>
+        </object>
+
+        <object id="copperkey26">
+            <name>Copper Key</name>
+            <image book="1" name="small15.png" />
+        </object>
+
+        <!-- TODO: If player is forced to drop bag of holding, they can be over the limit. 
+         Find a way to force them to drop items before proceeding -->
+        <object id="drodarinbagofholding">
+            <name>Drodarin Bag of Holding</name>
+            <description>This can be used to store five additional Backpack Items, although the Bag itself occupies only one space.</description>
+            <effect class="backpackSlots" increment="+5" />
+        </object>
+
         <!-- OTHERS -->
 
         <!-- This not really an object, but needed for mechanics -->
@@ -2147,7 +2218,6 @@
             <name>Money</name>
             <image book="1" name="pouch.png" />
         </object>
-
 
         <!-- Usually used as part of a quiver, but occasionally found by themselves -->
         <object id="arrow">

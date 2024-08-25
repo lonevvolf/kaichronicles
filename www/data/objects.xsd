@@ -13,9 +13,14 @@
                     <xs:documentation>The combat skill will be increased</xs:documentation>
                 </xs:annotation>
             </xs:enumeration>
+            <xs:enumeration value="backpackSlots">
+                <xs:annotation>
+                    <xs:documentation>The number of backpack slots will be increased (only for effect).</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
             <xs:enumeration value="special">
                 <xs:annotation>
-                    <xs:documentation>Objects with complex behavior (only for effect). They are implemented on SpecialObjectsUse class, at specialObjectsUse.ts</xs:documentation>
+                    <xs:documentation>Objects with complex behavior (only for usage). They are implemented on SpecialObjectsUse class, at specialObjectsUse.ts</xs:documentation>
                 </xs:annotation>
             </xs:enumeration>
         </xs:restriction>

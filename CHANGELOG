@@ -106,20 +106,20 @@
  - Disable use of object restoring endurance prior/during combat (except is specified)
  - Apply healing only on story sections
 
- 1.13.1
+1.13.1
  - Fix combatsWon test not checked if set to false (can stuck the player in multiples books)
 
- 1.14
+1.14
  - Book 17 and 18 available
  - Book 14/15: Fix test that only check rope instead of rope/largerope
  - Added possibility to restart the book from section 1
  - Reset zoom button added for the map
 
- 1.15
+1.15
  - Book 19 and 20 available. Grand Master is now complete!
  - Restore the possibility to run Kai Chronicles inside Docker
  
- 1.15.1 (*Thanks to lonevvolf for the fixes*)
+1.15.1 (*Thanks to lonevvolf for the fixes*)
  - Fixed MIME type of the savegame to JSON
  - Allows to create homescreen app icon, on mobile devices, using Safari or Chrome.
  - Fireseeds are now stacked.
@@ -127,7 +127,7 @@
  - Book 9: Fix meal sections where only huntmastery is allowed (can't hunt if only kai hunting discipline)
  - Book 18: Don't remove quivers when loosing backpack (sect236/290/335)
 
- 1.16 (*Thanks to lonevvolf for the reports/fixes/book 21*)
+1.16 (*Thanks to lonevvolf for the reports/fixes/book 21*)
  - Book 21 available.
  - Add "Text size" (normal/large) setting
  - Fix type error (ennemy instead of enemy)
@@ -139,9 +139,12 @@
  - Book 16: Fix incorrect section name (350 -> sect350)
  - Book 20: Fix incorrect section name (199 -> sect199)
 
- 1.17 (*Thanks to lonevvolf for the books/multi-currency support*)
+1.17 (*Thanks to lonevvolf for the books/multi-currency support*)
  - Book 22 to 25 available.
  - Add multi-currency support (and update books that use other currencies other than gold crowns)
  - Fix "Kai Weapon" not hidden on non "New order" books
  - Fix combat ratio increasing when going back and forth in action chart if combat has combatSkillModifierIncrement
  - Disallow dropping/selling of Kai Weapons
+
+1.18 (*Thanks to lonevvolf for the books*)
+ - Book 26 available.
