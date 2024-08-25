@@ -20,7 +20,7 @@ export const mainMenuView = {
             e.preventDefault();
             routing.redirect("loadGame");
         });
-        $("#menu-color-theme").one("click", (e) => {
+        $("#menu-color-theme").on("click", (e) => {
             e.preventDefault();
             mainMenuController.changeColor();
         });
