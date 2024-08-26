@@ -1,4 +1,4 @@
-import { state, mechanicsEngine, Combat, template, SpecialObjectsUse, CombatTurn, GndDiscipline, translations, BookSeriesId } from "../..";
+import { state, mechanicsEngine, Combat, template, SpecialObjectsUse, CombatTurn, GndDiscipline, translations, BookSeriesId, NewOrderDiscipline } from "../..";
 
 /**
  * Combats mechanics
@@ -365,8 +365,12 @@ export class CombatMechanics {
     private static setupBlastUI($combatUI: JQuery<HTMLElement>, combat: Combat) {
 
         // Check if player can use Kai-blast
-        const hasKaiSurge = state.actionChart.hasGndDiscipline(GndDiscipline.KaiSurge);
-        if (!hasKaiSurge || state.actionChart.getDisciplines().length < 7 || combat.noKaiBlast) {
+        const hasKaiSurge = state.actionChart.hasGndDiscipline(GndDiscipline.KaiSurge) 
+                            || state.actionChart.hasNewOrderDiscipline(NewOrderDiscipline.KaiSurge);
+        const kaiSurgeLevelCheck = 
+            (state.actionChart.getDisciplines().length < 7 && state.book.getBookSeries().id === BookSeriesId.GrandMaster)
+            || (state.actionChart.getDisciplines().length < 11 && state.book.getBookSeries().id === BookSeriesId.NewOrder);
+        if (!hasKaiSurge || kaiSurgeLevelCheck || combat.noKaiBlast) {
             // Hide Kai-blast check
             $combatUI.find(".kaiblastcheck").hide();
             return;

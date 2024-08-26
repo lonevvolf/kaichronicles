@@ -1111,7 +1111,7 @@ export const mechanicsEngine = {
         // It's a bow combat?
         combat.bowCombat = mechanicsEngine.getBooleanProperty($rule, "bow", false);
 
-        // LW loss is permament (applied to the original endurance)?
+        // LW loss is permanent (applied to the original endurance)?
         const permanentDamage = mechanicsEngine.getBooleanProperty($rule, "permanentDamage");
         if (permanentDamage !== null) {
             combat.permanentDamage = permanentDamage;

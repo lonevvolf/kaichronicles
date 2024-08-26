@@ -237,6 +237,14 @@ export const projectAon = {
             illustrators: [ "williams" ],
             biographies: [ "jdbiolw" , "bwbiolw" ]
         }, 
+
+        // Book 27:
+        {
+            title: "Vampirium",
+            code: "27v",
+            illustrators: [ "williams" ],
+            biographies: [ "jdbiolw" , "bwbiolw" ]
+        }, 
     ] as BookMetadata[],
 
     /**

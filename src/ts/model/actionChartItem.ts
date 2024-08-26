@@ -21,6 +21,11 @@ export class ActionChartItem {
     public dessiStoneBonus = false;
 
     /**
+     * For Kai Weapons : Permanent CS bonus reduction
+     */
+    public damaged = false;
+
+    /**
      * Returns the Item info. null if it was not found
      */
     public getItem(): Item {

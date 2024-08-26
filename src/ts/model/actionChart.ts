@@ -902,9 +902,11 @@ export class ActionChart {
 
         // Check current weapon bonuses
         if (!noWeapon && currentWeapon && currentWeapon.combatSkillEffect) {
+            const acWeapon = state.actionChart.getActionChartItem(currentWeapon.id);
+            const bonus = currentWeapon.combatSkillEffect - (acWeapon.damaged ? 2 : 0);
             bonuses.push({
-                concept: currentWeapon.name,
-                increment: currentWeapon.combatSkillEffect
+                concept: currentWeapon.name + (acWeapon.damaged ? " (damaged)" : ""),
+                increment: bonus
             });
         }
 
