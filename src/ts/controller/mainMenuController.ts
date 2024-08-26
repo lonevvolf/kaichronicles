@@ -28,7 +28,6 @@ export const mainMenuController = {
      */
     changeColor() {
         settingsController.changeColorTheme(state.color === Color.Light ? Color.Dark : Color.Light);
-        mainMenuController.index();
     },
 
     /** Return page */
