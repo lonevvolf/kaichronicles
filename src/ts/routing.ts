@@ -56,8 +56,10 @@ export const routing = {
         }
         routing.redirect(initialHash);
 
-        // Force the initial load
-        routing.onHashChange();
+        // Force the initial load if the hashChange event will not fire automatically
+        if (routing.normalizeHash(location.hash) === initialHash) {
+            routing.onHashChange();
+        }
     },
 
     /**
@@ -118,7 +120,7 @@ export const routing = {
 
         let controller;
 
-        // Notify the previous controler that we leave
+        // Notify the previous controller that we leave
         try {
             if ( routing.lastControllerName ) {
                 controller = routing.getController(routing.lastControllerName);
