@@ -1,3 +1,6 @@
+/// <reference lib="webworker" />
+declare const self: ServiceWorkerGlobalScope;
+
 import { precacheAndRoute } from 'workbox-precaching/precacheAndRoute';
 import { registerRoute, Route } from 'workbox-routing';
 import { NetworkFirst, CacheFirst } from 'workbox-strategies';

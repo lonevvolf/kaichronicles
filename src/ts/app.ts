@@ -31,7 +31,10 @@ export class App {
     public static run(environment: string) {
 
         // PWA app setup (ServiceWorker)
-        pwa.registerServiceWorker();
+        // Service worker is disabled in webpack-dev-server: https://github.com/GoogleChrome/workbox/issues/1790
+        if (environment !== EnvironmentType.Development) {
+            pwa.registerServiceWorker();
+        }
 
         // Declare helper functions in common.ts
         declareCommonHelpers();

@@ -10,6 +10,17 @@ module.exports = {
     static: './www',
     port: 3000,
     hot: false,
+    client: {
+      overlay: {
+        // This is a terrible workaround for the annoying message from Workbox, but other solutions to suppress it have not yet worked
+        warnings: (warning) => {
+          if (warning.message.startsWith('InjectManifest has been called multiple times')) {
+            return false;
+          }
+          return true;
+        },
+      }
+    }
   },
   module: {
     rules: [

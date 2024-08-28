@@ -5,7 +5,7 @@ import { BookData } from "./bookData";
 import simpleGit, {SimpleGit, SimpleGitProgressEvent} from 'simple-git';
 
 /*
-    Dowload Project Aon book data
+    Download Project Aon book data
     Command line parameters:
     1) Book index (1-based). If it does not exists, the "www/data/projectAon" will be re-created and all books will be downloaded
 */
