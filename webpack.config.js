@@ -1,5 +1,6 @@
 const path = require('path');
 const TerserPlugin = require("terser-webpack-plugin");
+const {InjectManifest} = require('workbox-webpack-plugin');
 
 module.exports = {
   mode: 'development',
@@ -31,5 +32,14 @@ module.exports = {
   optimization: {
     minimize: true,
     minimizer: [new TerserPlugin()],
-  }
+  },
+  plugins: [
+    new InjectManifest({
+      swSrc: '/src/ts/sw.ts',
+      swDest: '../sw.js',
+      include: [
+        /kai\.js$/
+      ]
+    }),
+  ]
 };

@@ -1,4 +1,4 @@
-import { views, state, template, routing, declareCommonHelpers, mechanicsEngine } from ".";
+import { views, state, template, routing, declareCommonHelpers, mechanicsEngine, pwa } from ".";
 
 /** Execution enviroment type */
 export enum EnvironmentType {
@@ -29,6 +29,9 @@ export class App {
 
     /** Web application setup  */
     public static run(environment: string) {
+
+        // PWA app setup (ServiceWorker)
+        pwa.registerServiceWorker();
 
         // Declare helper functions in common.ts
         declareCommonHelpers();
