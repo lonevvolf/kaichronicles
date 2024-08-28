@@ -28,7 +28,7 @@ const htmlAndXmlRoute = new Route(({ request }) => {
 // Register the new route
 registerRoute(htmlAndXmlRoute);
 
-// A new route that matches font and handles
+// A new route that matches fonts and handles
 // them with the cache-first, falling back to cache strategy:
 const fontsRoute = new Route(({ request }) => {
   return request.destination === 'font'
@@ -39,6 +39,17 @@ const fontsRoute = new Route(({ request }) => {
 // Register the new route
 registerRoute(fontsRoute);
   
+// A new route that matches javascript and handles
+// them with the cache-first, falling back to cache strategy:
+const extJsRoute = new Route(({ request }) => {
+  return request.destination === 'script'
+}, new CacheFirst({
+  cacheName: 'extJs'
+}));
+
+// Register the new route
+registerRoute(extJsRoute);
+
 addEventListener('message', (event) => {
   if (event.data && event.data.type === 'SKIP_WAITING') {
     self.skipWaiting();
