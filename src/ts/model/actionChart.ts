@@ -1342,6 +1342,14 @@ export class ActionChart {
     }
 
     /**
+     * PERMANENTLY damage the player's Kai Weapon
+     */
+    public damageKaiWeapon() {
+        const kaiWeapon = this.getActionChartItem(this.getKaiWeapon());
+        kaiWeapon.damaged = true;
+    }
+
+    /**
      * Disable a discipline
      */
     public disableDiscipline(disciplineIndex: number) {

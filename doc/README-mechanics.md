@@ -151,6 +151,9 @@ Execute once only. New Order: Reset counter of EP restore by Curing, limited to 
 ### resetNewOrderDisabledDisciplines
 Execute once only. New Order: Reset any disabled disciplines in the current book.
 
+### damageKaiWeapon
+Execute once only. New Order: PERMANENTLY damage the player's Kai Weapon (-2CS)
+
 ### setSkills
 Game setup: The player selects the initial Endurance and Combat Skill
 

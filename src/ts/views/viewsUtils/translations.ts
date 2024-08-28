@@ -60,6 +60,7 @@ export class Translations {
         "msgAlreadyBackpack" : "You already have a Backpack",
         "msgNoMoreBackpackItems" : "You cannot get more Backpack Items",
         "msgNoMoreSpecialItems" : "You cannot get more Special Items",
+        "msgKaiWeaponDamaged" : "Your Kai Weapon has been permanently damaged",
         "noWeapon" : "No weapon",
         "weaponskill" : "Weaponskill",
         "weaponmastery" : "Weaponmastery",

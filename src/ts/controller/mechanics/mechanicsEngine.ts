@@ -1604,6 +1604,20 @@ export const mechanicsEngine = {
     },
 
     /**
+     * New Order: New Order: PERMANENTLY damage the player's Kai Weapon (-2CS)
+     */
+        damageKaiWeapon(rule: Element) {
+            if ( state.sectionStates.ruleHasBeenExecuted(rule) ) {
+                // Execute only once
+                return;
+            }
+    
+            state.actionChart.damageKaiWeapon();
+            toastr.error(translations.text("msgKaiWeaponDamaged"));
+            state.sectionStates.markRuleAsExecuted(rule);
+        },
+
+    /**
      * Set of rules that should be executed only once
      */
     executeOnce(rule: Element) {
