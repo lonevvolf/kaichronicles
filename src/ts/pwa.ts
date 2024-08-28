@@ -1,10 +1,25 @@
 import { Workbox } from "workbox-window";
 
-export const pwa = {
-    promptForUpdate() : boolean {
+export class pwa {
+    private static offlineToast: JQuery<HTMLElement> = null;
+
+    private static promptForUpdate() : boolean {
         return confirm("A new version of the application is available.  Update now?");
-    },
-    registerServiceWorker : () => {
+    }
+
+    public static showConnectivityStatus() : void {
+        window.addEventListener("online", () => {
+          toastr.info("Your Internet connection was restored.");
+          toastr.clear(this.offlineToast);
+        });
+      
+        window.addEventListener("offline", () => {
+          toastr.warning("Your Internet connection was lost.");
+          this.offlineToast = toastr.error("You're currently offline.", null, {timeOut: 0});
+        });
+    }
+
+    public static registerServiceWorker() {
         if ("serviceWorker" in window.navigator) {
             try {         
                 const wb = new Workbox("/sw.js");
@@ -30,7 +45,7 @@ export const pwa = {
                     // Implementing this is app-specific; some examples are:
                     // https://open-ui.org/components/alert.research or
                     // https://open-ui.org/components/toast.research
-                    if (pwa.promptForUpdate()) {
+                    if (this.promptForUpdate()) {
                       wb.messageSkipWaiting();
                     }
                   };
@@ -41,29 +56,12 @@ export const pwa = {
                     showSkipWaitingPrompt(event);
                   });
 
-                // wb.addEventListener("waiting", event => {
-                //     if (confirm("Update now?")) {
-                //         wb.addEventListener("controlling", event => {
-                //             window.location.reload();
-                //         });
-                                    
-                //         // Send a message telling the service worker to skip waiting.
-                //         // This will trigger the `controlling` event handler above.
-                //         wb.messageSkipWaiting();
-                //     }
-                // });
+                  window.addEventListener('load', () => {
+                    this.showConnectivityStatus();
+                  });
                   
                 wb.register();
-                // const registration = await window.navigator.serviceWorker.register("/sw.js", {
-                // scope: "/",
-                // });
-                // if (registration.installing) {
-                // console.log("Service worker installing");
-                // } else if (registration.waiting) {
-                // console.log("Service worker installed");
-                // } else if (registration.active) {
-                // console.log("Service worker active");
-                // }
+                
             } catch (error) {
                 console.error(`Registration failed with ${error}`);
             }
