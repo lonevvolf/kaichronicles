@@ -12,7 +12,7 @@ export const routing = {
     lastControllerName: null,
 
     /**
-     * Redirect to some controler / action route
+     * Redirect to some controller / action route
      * @param {string} route The route to redirect. It has a format "controller".
      * @param {object} parameters Hash with parameters for the route. It can be null
      * @returns True if the redirection can be done. False otherwise
@@ -50,15 +50,16 @@ export const routing = {
         $(window).on("hashchange", routing.onHashChange );
 
         // Call the initial controller
-        let initialHash = routing.normalizeHash(location.hash);
+        const initialHash = routing.normalizeHash(location.hash);
         if ( initialHash === "" ) {
-            initialHash = "mainMenu";
+            routing.redirect("mainMenu");
         }
-        routing.redirect(initialHash);
-
-        // Force the initial load if the hashChange event will not fire automatically
-        if (routing.normalizeHash(location.hash) === initialHash) {
-            routing.onHashChange();
+        else {
+            routing.redirect(initialHash);
+            // Force the initial load if the hashChange event will not fire automatically
+            if (routing.normalizeHash(location.hash) === initialHash) {
+                routing.onHashChange();
+            }
         }
     },
 
