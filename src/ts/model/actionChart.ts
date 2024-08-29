@@ -1,4 +1,4 @@
-import { ActionChartItem, SectionItem, App, state, BookSeriesId, GndDiscipline, MgnDiscipline, KaiDiscipline, Item, translations, Combat, BookSeries, mechanicsEngine, LoreCircle, SetupDisciplines, randomTable, Disciplines, DebugMode, NewOrderDiscipline, Currency } from "..";
+import { ActionChartItem, SectionItem, App, state, BookSeriesId, GndDiscipline, MgnDiscipline, KaiDiscipline, Item, translations, Combat, BookSeries, mechanicsEngine, LoreCircle, SetupDisciplines, randomTable, Disciplines, DebugMode, NewOrderDiscipline, Currency, CurrencyName, actionChartController } from "..";
 
 /**
  * Bonus for CS/EP definition
@@ -23,6 +23,13 @@ export interface SeriesDisciplines {
      * On Kai series, it's a single weapon. On series >= Magnakai, they will be more than one
      */
     weaponSkill: string[];
+
+    /**
+     * Optional: a list of disabled disciplines
+     * Book 24 forces the player to disable a discipline until end of mission in a few places
+     * NOTE: Disabled disciplines will still be found in the disciplines array for compatability (KAILEVEL, etc.)
+     */
+    disabledDisciplines?: string[];
 }
 
 /**
@@ -54,11 +61,17 @@ export class ActionChart {
     /** The currently hand-to-hand selected weapon id. Empty string if the player has no weapon  */
     private selectedWeapon = "";
 
-    /** Crowns amount */
-    public beltPouch = 0;
-
-    /** Nobles amount */
-    public beltPouchNobles = 0;
+    /** Belt Pouch containing all currencies */
+    public beltPouch: { [currency: string]: number } = {
+        "crown" : 0,
+        "lune" : 0,
+        "kika" : 0,
+        "noble" : 0,
+        "ren": 0,
+        "sheasutorq": 0,
+        "orla" : 0,
+        "ain" : 0
+    };
 
     /** Number of meals (they count as backpack items) */
     public meals = 0;
@@ -88,8 +101,8 @@ export class ActionChart {
     /** Grand Master disciplines (books 13+). See kaiDisciplines comments */
     private grandMasterDisciplines: SeriesDisciplines = { disciplines: [], weaponSkill: [] };
 
-    /** Grand Master disciplines (books 21+). See kaiDisciplines comments */
-    private newOrderDisciplines: SeriesDisciplines = { disciplines: [], weaponSkill: [] };
+    /** New Order disciplines (books 21+). See kaiDisciplines comments */
+    private newOrderDisciplines: SeriesDisciplines = { disciplines: [], weaponSkill: [], disabledDisciplines: [] };
 
     /** Player annotations */
     public annotations = "";
@@ -319,7 +332,7 @@ export class ActionChart {
                 if ( !this.hasBackpack ) {
                     throw translations.text( "backpackLost" );
                 }
-                if ( ( this.getNBackpackItems(false) + item.itemCount ) > ActionChart.getMaxBackpackItems() ) {
+                if ( ( this.getNBackpackItems(false) + item.itemCount ) > this.getMaxBackpackItems() ) {
                     throw translations.text( "msgNoMoreBackpackItems" );
                 }
                 if ( aChartItem.id === Item.MEAL ) {
@@ -344,9 +357,9 @@ export class ActionChart {
     }
 
     /**
-     * Returns the total number of backpack items, according to the number of slots each item consum
-     * @param roundToInteger If true (default), the total number of objects will be rounded up to a integer (Item.itemCount can have decimals)
-     * @param useItemCount If true (default), use the valur of itemCount, otherwise each item count as 1.
+     * Returns the total number of backpack items, according to the number of slots each item consumes
+     * @param roundToInteger If true (default), the total number of objects will be rounded up to an integer (Item.itemCount can have decimals)
+     * @param useItemCount If true (default), use the value of itemCount, otherwise each item count as 1.
      * @returns The number of objects on the backpack
      */
     public getNBackpackItems(roundToInteger = true, useItemCount = true): number {
@@ -394,7 +407,7 @@ export class ActionChart {
                 throw translations.text("backpackLost");
             }
 
-            const maxToPick = ActionChart.getMaxBackpackItems() - this.getNBackpackItems();
+            const maxToPick = this.getMaxBackpackItems() - this.getNBackpackItems();
             if ( maxToPick < 0 ) {
                 count = 0;
             } else if (count > maxToPick) {
@@ -436,85 +449,77 @@ export class ActionChart {
     }
 
     /**
-     * Increase / decrease the money number
+     * 
      * @param count Number to increase. Negative to decrease
-     * @param excessToKaiMonastry If true and if the belt pouch exceed 50, the excess is stored in the kaimonastry section
-     * @param currencyId The currency to add - defaults to Crowns
+     * @param currency The currency to add - defaults to Crowns
      * @returns Amount really picked.
      */
-    public increaseMoney(count: number, excessToKaiMonastry = false, currencyId : Currency = Currency.CROWN): number {        
-        let oldBeltPouch: number = 0;
-        switch (currencyId) {
-            case Currency.NOBLE: {
-                oldBeltPouch = this.beltPouchNobles;
-                this.beltPouchNobles += count;
-                break;
-            }
-            default: {
-                oldBeltPouch = this.beltPouch;
+    public increaseMoney(count: number, excessToKaiMonastery: boolean = false, currency: string = CurrencyName.CROWN) 
+    : number {
+        const oldBeltPouchTotal = this.beltPouch[currency];
+        let countRemaining = count;
 
-                // If we need to remove from multiple currencies
-                let crownsCount = Currency.toCurrency(count, currencyId);
-                if (crownsCount < 0 && this.beltPouch < -crownsCount) {
-                    crownsCount += this.beltPouch;
-                    this.beltPouch = 0;
+        // If we are removing more than we have in a currency
+        if (countRemaining < 0 && this.beltPouch[currency] < -countRemaining) {
+            // Take as much as possible from the original currency
+            countRemaining += this.beltPouch[currency];
+            countRemaining = Math.round(countRemaining * 100) / 100;
+            this.beltPouch[currency] = 0;
 
-                    if (crownsCount < 0) {
-                        const noblesCount = Currency.toCurrency(count, Currency.CROWN, Currency.NOBLE);
-                        this.beltPouchNobles += noblesCount;
-                    }
-                } else {
-                    this.beltPouch += Currency.toCurrency(count, currencyId);
-                }
-
-                break;
-            }
-        }
-
-        const excess = this.getBeltPouchUsedAmount() - 50;
-        if (excess > 0) {
-            if(excessToKaiMonastry) {
-                const kaimonastery = state.sectionStates.getSectionState("kaimonastery");
-                // TODO: Store individual currencies in the Kai Monastery
-                if(kaimonastery) {
-                    switch (currencyId) {
-                        case Currency.NOBLE: {
-                            kaimonastery.addObjectToSection(Item.MONEY, 0, false, excess);
-                        }
+            // If the loss is not limited to one currency, find other currencies with remaining money
+            if (currency === CurrencyName.CROWN) {
+                for (const c of Object.keys(this.beltPouch)) {
+                    if (countRemaining < 0 && this.beltPouch[c] > 0) {
+                        // countRemaining needs to be in source currency, but increase money returns in target currency
+                        countRemaining += -Currency.toCurrency(
+                            actionChartController.increaseMoney(Currency.toCurrency(countRemaining, currency, c, false), false, excessToKaiMonastery, c),
+                            c, currency);
                     }
                 }
             }
-
-            switch (currencyId) {
-                case Currency.NOBLE: {
-                    this.beltPouchNobles = 50 - this.beltPouch;
-                    break;
+        } else {
+            // Never change a currency amount by fractional
+            this.beltPouch[currency] += Math.floor(count);
+            if (this.getBeltPouchUsedAmount(false) > 50) {
+                const totalOverageInCrowns = this.getBeltPouchUsedAmount(false) - 50;
+                const totalOverageInCurrency = Currency.toCurrency(totalOverageInCrowns, CurrencyName.CROWN, currency);
+                if (excessToKaiMonastery && totalOverageInCurrency > 0) {
+                    const kaimonastery = state.sectionStates.getSectionState("kaimonastery");
+                    if(kaimonastery) {
+                        kaimonastery.addObjectToSection(Item.MONEY, 0, false, totalOverageInCurrency, false, 0, currency);
+                    }
                 }
-                default: {
-                    this.beltPouch = 50 - Currency.toCurrency(this.beltPouchNobles, Currency.NOBLE, Currency.CROWN);
-                    break;
-                }
+                this.beltPouch[currency] -= totalOverageInCurrency;
             }
-        } else if (this.beltPouch < 0) {
-            this.beltPouch = 0;
-        } else if (this.beltPouchNobles < 0) {
-            this.beltPouchNobles = 0;
         }
 
-        switch (currencyId) {
-            case Currency.NOBLE: {
-                return this.beltPouchNobles - oldBeltPouch;
-            }
-            default: {
-                return this.beltPouch - oldBeltPouch;
+        // Double check all currencies for < 0
+        for (const c in this.beltPouch) {
+            if (this.beltPouch[c] < 0) {
+                this.beltPouch[c] = 0;
             }
         }
+
+        return this.beltPouch[currency.toString()] - oldBeltPouchTotal;
     }
 
-    /** Returns total used size of Belt Pouch across all currencies (uses exchange rate) */
-    public getBeltPouchUsedAmount() : number {
-        return this.beltPouch 
-                + Currency.toCurrency(this.beltPouchNobles, Currency.NOBLE);
+    /** Returns total used size of Belt Pouch in Crowns across all currencies (uses exchange rate) */
+    public getBeltPouchUsedAmount(roundDown: boolean = true) : number {
+        let total: number = 0;
+        for (const currency in this.beltPouch) {
+            total += Currency.toCurrency(this.beltPouch[currency], currency, CurrencyName.CROWN, roundDown);
+        }
+
+        return total;    
+    }
+
+    public static combineBeltPouches(beltPouch1: { [currency: string]: number }, beltPouch2: { [currency: string]: number }) {
+        const output = {};
+        for (const currency in beltPouch1) {
+            output[currency] = beltPouch1[currency] + beltPouch2[currency];
+        }
+
+        return output;
     }
 
     /**
@@ -1021,15 +1026,17 @@ export class ActionChart {
             }
         }
 
-        // Grand Master level bonus
-        const startingSkillsCount = state.book.getBookSeries().id === BookSeriesId.NewOrder ? 5 : 4;
+        // Grand Master / New Order level bonus
+        if (state.book.getBookSeries().id === BookSeriesId.GrandMaster || state.book.getBookSeries().id === BookSeriesId.NewOrder) {
+            const startingSkillsCount = state.book.getBookSeries().id === BookSeriesId.NewOrder ? 5 : 4;
         
-        const nGndDisciplines = this.getDisciplines(state.book.getBookSeries().id).length;
-        if (nGndDisciplines > startingSkillsCount) {
-            bonuses.push({
-                concept: translations.text("kaiLevel"),
-                increment: (nGndDisciplines - startingSkillsCount),
-            });
+            const nGndDisciplines = this.getDisciplines(state.book.getBookSeries().id).length;
+            if (nGndDisciplines > startingSkillsCount) {
+                bonuses.push({
+                    concept: translations.text("kaiLevel"),
+                    increment: (nGndDisciplines - startingSkillsCount),
+                });
+            }
         }
 
         return bonuses;
@@ -1067,6 +1074,24 @@ export class ActionChart {
     }
 
     /**
+     * Get the current bonuses for backpack slots
+     * @returns Array of objects with the backpack slot bonuses
+     */
+    public getBackpackSlotsBonuses(): Bonus[] {
+        const bonuses: Bonus[] = [];
+        this.enumerateObjectsAsItems((o: Item) => {
+            if (o.backpackSlotsBonusEffect) {
+                bonuses.push({
+                    concept: o.name,
+                    increment: o.backpackSlotsBonusEffect
+                });
+            }
+        });
+
+        return bonuses;
+    }
+
+    /**
      * Get the current bonuses for endurance
      * @return Array of objects with the bonuses concepts
      */
@@ -1087,15 +1112,17 @@ export class ActionChart {
             bonuses.push(c);
         }
 
-        // Grand Master level bonus
-        const startingSkillsCount = state.book.getBookSeries().id === BookSeriesId.NewOrder ? 5 : 4;
+        // Grand Master / New Order level bonus
+        if (state.book.getBookSeries().id === BookSeriesId.GrandMaster || state.book.getBookSeries().id === BookSeriesId.NewOrder) {
+            const startingSkillsCount = state.book.getBookSeries().id === BookSeriesId.NewOrder ? 5 : 4;
 
-        const nGndDisciplines = this.getDisciplines(state.book.getBookSeries().id).length;
-        if (nGndDisciplines > startingSkillsCount) {
-            bonuses.push({
-                concept: translations.text("kaiLevel"),
-                increment: (nGndDisciplines - startingSkillsCount) * 2,
-            });
+            const nGndDisciplines = this.getDisciplines(state.book.getBookSeries().id).length;
+            if (nGndDisciplines > startingSkillsCount) {
+                bonuses.push({
+                    concept: translations.text("kaiLevel"),
+                    increment: (nGndDisciplines - startingSkillsCount) * 2,
+                });
+            }
         }
 
         return bonuses;
@@ -1306,6 +1333,24 @@ export class ActionChart {
     }
 
     /**
+     * Reset the disabled disciplines
+     */
+    public resetDisabledDisciplines() {
+        this.newOrderDisciplines.disabledDisciplines = [];
+    }
+
+    /**
+     * Disable a discipline
+     */
+    public disableDiscipline(disciplineIndex: number) {
+        const disciplineToDisable = this.newOrderDisciplines.disciplines[disciplineIndex]; 
+
+        if (this.newOrderDisciplines.disabledDisciplines.indexOf(disciplineToDisable) === -1) {
+            this.newOrderDisciplines.disabledDisciplines.push(disciplineToDisable);
+        }
+    }
+
+    /**
      * Reset the New Order Curing EP Restored Counter
      */
     public resetNewOrderCuringEPRestoredUsed() {
@@ -1343,6 +1388,15 @@ export class ActionChart {
     }
 
     /**
+     * Returns player disciplines for a given book series
+     * @param series Book series which get disciplines. If null or not specified, we get current book disciplines
+     * @returns Disciplines for that series
+     */
+    public getDisabledDisciplines(series: BookSeriesId = null): string[] {
+        return this.getSeriesDisciplines(series).disabledDisciplines ?? [];
+    }
+
+    /**
      * Player has a given discipline on a given book series?
      * @param disciplineId Displine to check
      * @param seriesId Book series to check. If null or not specified, the current book series
@@ -1355,7 +1409,15 @@ export class ActionChart {
                 mechanicsEngine.debugWarning(`Disciplines of book series ${seriesId} do not contains discipline ${disciplineId}`);
             }
         }
-        return this.getSeriesDisciplines(seriesId).disciplines.includes(disciplineId);
+
+        const seriesDisciplines = this.getSeriesDisciplines(seriesId);
+        if( seriesDisciplines.disabledDisciplines ) {
+            const filtered = seriesDisciplines.disciplines
+                .filter(x => !seriesDisciplines.disabledDisciplines.includes(x));
+            return filtered.includes(disciplineId);
+        } else {
+            return this.getSeriesDisciplines(seriesId).disciplines.includes(disciplineId);
+        }
     }
 
     /** Player has a given Kai discipline */
@@ -1400,7 +1462,6 @@ export class ActionChart {
      * @returns Disciplines for that series to apply. They can be different of the real disciplines with which the player finished the series
      */
     private getSeriesDisciplines(seriesId: BookSeriesId = null): SeriesDisciplines {
-
         const currentSeriesId = state.book.getBookSeries().id;
         if (seriesId === null) {
             seriesId = currentSeriesId;
@@ -1410,7 +1471,6 @@ export class ActionChart {
         }
 
         let seriesDisciplines = this.getRealDisciplines(seriesId);
-
         // If the player has played SOME book of a previous series, player has ALL disciplines of that series
         // and can benefit of loyalty bonuses
         if (seriesId < currentSeriesId && (seriesDisciplines.disciplines.length > 0 
@@ -1467,8 +1527,15 @@ export class ActionChart {
     /**
      * Return the maximum number of backpack items in the current book
      */
-    private static getMaxBackpackItems(): number {
-        return state.book.getBookSeries().id >= BookSeriesId.GrandMaster ? 10 : 8;
+    public getMaxBackpackItems(): number {
+        const bonuses = this.getBackpackSlotsBonuses();
+
+        let backpackSlots = state.book.getBookSeries().id >= BookSeriesId.GrandMaster ? 10 : 8;
+        for (const bonus of bonuses) {
+            backpackSlots += bonus.increment;
+        }
+        
+        return backpackSlots;
     }
 
     /**
@@ -1544,6 +1611,24 @@ export class ActionChart {
             if (!o.newOrderDisciplines) {
                 o.newOrderDisciplines = { disciplines: [], weaponSkill: [] };
             }
+        }
+
+        // Changed in 1.18. Multicurrency support
+        if (o.beltPouch && typeof(o.beltPouch) === "number") {
+            let oldBeltPouch = o.beltPouch;
+            o.beltPouch = {};
+            o.beltPouch[CurrencyName.CROWN] = oldBeltPouch;
+
+            if (o.beltPouchNoble) {
+                o.beltPouch[CurrencyName.NOBLE] = o.beltPouchNoble;
+            }
+
+            // Setup uninitialized properties
+            Object.entries(CurrencyName).forEach(([key]) => {
+                if (!o.beltPouch[key.toLowerCase()]) {
+                   o.beltPouch[key.toLowerCase()] = 0;
+                }
+            });
         }
 
         const actionChart: ActionChart = $.extend(new ActionChart(), o);

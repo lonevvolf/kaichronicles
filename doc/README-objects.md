@@ -102,7 +102,7 @@ Optional. If it's set, the object has some effect when it's carried:
 * **"class" property**: It says what is the effect of the object:
     * "endurance": The endurance will be increased
     * "combatSkill": The combat skill will be increased
-    * "special": Objects with complex behavior. They are implemented on SpecialObjectsUse class, at specialObjectsUse.ts
+    * "backpackSlots": The number of backpack slots will be increased
 * **"increment" property**: Amount to increment
 
 ### "incompatibleWith" property
@@ -163,8 +163,11 @@ If it's set, the player can "use" the object, and then it will be dropped from t
     * "endurance": The endurance will be increased
     * "combatSkill": The combat skill will be increased. This will apply only for the 
       current section
+    * "special": Objects with complex behavior. They are implemented on SpecialObjectsUse class, at specialObjectsUse.ts
 * **"increment" property**: Amount to increment
 * **"priorCombat" property**: If true and class is endurance, than can be used prior a combat (false by default)
+* **"takenWithMeal" property**: If true, it can only be used if the player has a meal or Grand Huntmastery (meal will be consumed)
+* **"takenWithLaumspur" property**: If true, it can only be used if the player has a Laumspur potion or Herbmastery (potion will be consumed)
 
 ### "isMeal" property
 If true, the object can be eaten as a Meal.

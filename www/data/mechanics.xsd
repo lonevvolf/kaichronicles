@@ -14,6 +14,9 @@
             <xs:enumeration value="kika" />
             <xs:enumeration value="noble" />
             <xs:enumeration value="ren" />
+            <xs:enumeration value="sheasutorq" />
+            <xs:enumeration value="orla" />
+            <xs:enumeration value="ain" />
         </xs:restriction>
     </xs:simpleType>
 
@@ -100,7 +103,13 @@
             <xs:documentation>Execute once only. New Order: Reset counter of EP restore by Curing, limited to 10 per book.</xs:documentation>
         </xs:annotation>
     </xs:complexType>
-    
+
+    <xs:complexType name="resetNewOrderDisabledDisciplines">
+        <xs:annotation>
+            <xs:documentation>Execute once only. New Order: Reset any disabled disciplines in the current book.</xs:documentation>
+        </xs:annotation>
+    </xs:complexType>
+
     <xs:complexType name="setDisciplines">
         <xs:annotation>
             <xs:documentation>Game setup: The player selects the Kai disciplines.</xs:documentation>
@@ -232,7 +241,7 @@
             </xs:annotation>
             <xs:simpleType>
                 <xs:restriction base="xs:string">
-                    <xs:pattern value = "(sixthsns|camflage|tracking|mindomtr|anmlknsp|healing|hunting|mindshld|mndblst|wepnskll|wpnmstry|anmlctrl|curing|invsblty|psisurge|psiscrn|nexus|dvnation|anmlmstr|deliver|assimila|kaisurge|kaiscrn|gnosis|magi|alchemy|hntmstry|pthmnshp|astrolgy|herbmst|element|bardsman|\|)*"/>
+                    <xs:pattern value="(sixthsns|camflage|tracking|mindomtr|anmlknsp|healing|hunting|mindshld|mndblst|wepnskll|wpnmstry|anmlctrl|curing|invsblty|psisurge|psiscrn|nexus|dvnation|anmlmstr|deliver|assimila|kaisurge|kaiscrn|gnosis|magi|alchemy|hntmstry|pthmnshp|astrolgy|herbmst|element|bardsman|\|)*"/>
                 </xs:restriction>
             </xs:simpleType>
         </xs:attribute>
@@ -243,7 +252,7 @@
         </xs:attribute>
         <xs:attribute name="hasCurrentWeapon" type="xs:boolean">
             <xs:annotation>
-                <xs:documentation>Do the player carry any of the objects?</xs:documentation>
+                <xs:documentation>Is the player currently armed with a weapon?</xs:documentation>
             </xs:annotation>
         </xs:attribute>
         <xs:attribute name="expression" type="xs:string">
@@ -379,17 +388,10 @@
                 <xs:documentation>If it's set, the price to buy the object (not free)</xs:documentation>
             </xs:annotation>
         </xs:attribute>
-        <xs:attribute name="currency">
+        <xs:attribute name="currency" type="currency">
             <xs:annotation>
-                <xs:documentation>If it's set, the currency of the price to buy the object. Default is Gold Crowns.</xs:documentation>                
+                <xs:documentation>If it's set, the currency of the price to buy the object. Default is "crown".</xs:documentation>
             </xs:annotation>
-            <xs:simpleType>
-                <xs:restriction base="xs:string">
-                    <xs:enumeration value="crown" />
-                    <xs:enumeration value="noble" />
-                    <xs:enumeration value="ren" />
-                </xs:restriction>
-            </xs:simpleType>
         </xs:attribute>
         <xs:attribute name="count" type="xs:nonNegativeInteger">
             <xs:annotation>
@@ -424,22 +426,22 @@
         </xs:attribute>
         <xs:attribute name="combatSkillModifier" type="xs:string">
             <xs:annotation>
-                <xs:documentation>Absolute bonus (positive or negative) for Lone Wolf combat skill on this combat</xs:documentation>
+                <xs:documentation>Absolute bonus (positive or negative) for player's combat skill on this combat</xs:documentation>
             </xs:annotation>
         </xs:attribute>
         <xs:attribute name="combatSkillModifierIncrement" type="xs:string">
             <xs:annotation>
-                <xs:documentation>Bonus increment (positive or negative) for Lone Wolf combat skill on this combat</xs:documentation>
+                <xs:documentation>Bonus increment (positive or negative) for player's combat skill on this combat</xs:documentation>
             </xs:annotation>
         </xs:attribute>
         <xs:attribute name="mindforceCS" type="xs:integer">
             <xs:annotation>
-                <xs:documentation>Bonus (negative) to the Lone Wolf combat skill due to the enemy Mindblast. It will not be applied if the player has Mindshield / Psi-screen</xs:documentation>
+                <xs:documentation>Bonus (negative) to the player's combat skill due to the enemy Mindblast. It will not be applied if the player has Mindshield / Psi-screen</xs:documentation>
             </xs:annotation>
         </xs:attribute>
         <xs:attribute name="mindforceEP" type="xs:integer">
             <xs:annotation>
-                <xs:documentation>Endurance points lost by LW each turn, due to the enemy Mindblast. It will not be applied if the player has Mindshield / Psi-screen</xs:documentation>
+                <xs:documentation>Endurance points lost by the player each turn, due to the enemy Mindblast. It will not be applied if the player has Mindshield / Psi-screen</xs:documentation>
             </xs:annotation>
         </xs:attribute>
         <xs:attribute name="noMindblast" type="xs:boolean">
@@ -484,32 +486,32 @@
         </xs:attribute>
         <xs:attribute name="noWeapon" type="xs:string">
             <xs:annotation>
-                <xs:documentation>If true, Lone Wolf cannot use any weapon on this combat. If a number, LW cannot use any weapon for that many turns</xs:documentation>
+                <xs:documentation>If true, the player cannot use any weapon on this combat. If a number, the player cannot use any weapon for that many turns</xs:documentation>
             </xs:annotation>
         </xs:attribute>
         <xs:attribute name="eludeTurn" type="xs:integer">
             <xs:annotation>
-                <xs:documentation>Turn number after which LW can elude the combat</xs:documentation>
+                <xs:documentation>Turn number after which the player can evade the combat</xs:documentation>
             </xs:annotation>
         </xs:attribute>
         <xs:attribute name="maxEludeTurn" type="xs:integer">
             <xs:annotation>
-                <xs:documentation>Turn number after which LW cannot elude the combat anymore</xs:documentation>
+                <xs:documentation>Turn number after which the player cannot evade the combat anymore</xs:documentation>
             </xs:annotation>
         </xs:attribute>
         <xs:attribute name="eludeEnemyEP" type="xs:integer">
             <xs:annotation>
-                <xs:documentation>LW can elude the combat once the enemy EP is at the value or below. eludeTurn has to be set</xs:documentation>
+                <xs:documentation>The player can evade the combat once the enemy EP is at the value or below. eludeTurn has to be set</xs:documentation>
             </xs:annotation>
         </xs:attribute>
-        <xs:attribute name="dammageMultiplier" type="xs:decimal">
+        <xs:attribute name="damageMultiplier" type="xs:decimal">
             <xs:annotation>
-                <xs:documentation>LW dammage multiplier. Can have decimals (ex. "0.5")</xs:documentation>
+                <xs:documentation>Player damage multiplier. Can have decimals (ex. "0.5")</xs:documentation>
             </xs:annotation>
         </xs:attribute>
         <xs:attribute name="enemyMultiplier" type="xs:decimal">
             <xs:annotation>
-                <xs:documentation>Enemy dammage multiplier. Can have decimals (ex. "0.5")</xs:documentation>
+                <xs:documentation>Enemy damage multiplier. Can have decimals (ex. "0.5")</xs:documentation>
             </xs:annotation>
         </xs:attribute>
         <xs:attribute name="enemyTurnLoss" type="xs:string">
@@ -519,17 +521,17 @@
         </xs:attribute>
         <xs:attribute name="turnLoss" type="xs:nonPositiveInteger">
             <xs:annotation>
-                <xs:documentation>Extra E.P. lost by LW each turn. Should be negative or zero</xs:documentation>
+                <xs:documentation>Extra E.P. lost by the player each turn. Should be negative or zero</xs:documentation>
             </xs:annotation>
         </xs:attribute>
         <xs:attribute name="turnLossIfWounded" type="xs:nonPositiveInteger">
             <xs:annotation>
-                <xs:documentation>Extra E.P. lost by LW, if the player has been wounded on that turn. Should be negative or zero</xs:documentation>
+                <xs:documentation>Extra E.P. lost by the player, if the player has been wounded on that turn. Should be negative or zero</xs:documentation>
             </xs:annotation>
         </xs:attribute>
         <xs:attribute name="fake" type="xs:boolean">
             <xs:annotation>
-                <xs:documentation>This is a fake combat. When it's finished, LW endurance points lost will be restored</xs:documentation>
+                <xs:documentation>This is a fake combat. When it's finished, the player's endurance points lost will be restored</xs:documentation>
             </xs:annotation>
         </xs:attribute>
         <xs:attribute name="restoreFactor" type="xs:decimal">
@@ -554,12 +556,17 @@
         </xs:attribute>
         <xs:attribute name="mentalOnly" type="xs:boolean">
             <xs:annotation>
-                <xs:documentation>If true, Lone Wolf cannot use any physical bonuses on this combat (any object bonus)</xs:documentation>
+                <xs:documentation>If true, player cannot use any physical bonuses on this combat (any object bonus)</xs:documentation>
             </xs:annotation>
         </xs:attribute>
         <xs:attribute name="immuneTurns" type="xs:nonNegativeInteger">
             <xs:annotation>
-                <xs:documentation>Turns during which LW will suffer no damage</xs:documentation>
+                <xs:documentation>Turns during which player will suffer no damage</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="immuneDamage" type="xs:nonNegativeInteger">
+            <xs:annotation>
+                <xs:documentation>Total damage which player is shielded from during the combat</xs:documentation>
             </xs:annotation>
         </xs:attribute>
         <xs:attribute name="enemyImmuneTurns" type="xs:nonNegativeInteger">
@@ -567,9 +574,9 @@
                 <xs:documentation>Turns during which the enemy will suffer no damage</xs:documentation>
             </xs:annotation>
         </xs:attribute>
-        <xs:attribute name="permanentDammage" type="xs:boolean">
+        <xs:attribute name="permanentDamage" type="xs:boolean">
             <xs:annotation>
-                <xs:documentation>If true, EP lost by LW on this combat will be permanent</xs:documentation>
+                <xs:documentation>If true, EP lost by the player on this combat will be permanent</xs:documentation>
             </xs:annotation>
         </xs:attribute>
         <xs:attribute name="allowPotions" type="xs:boolean">
@@ -641,6 +648,25 @@
         <xs:attribute name="executeAtStart" type="xs:boolean">
             <xs:annotation>
                 <xs:documentation>If true, and the number picker action button was clicked on a previous rendering, the "numberPickerChoosed" will be executed at the section startup.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="disciplinePickerChoosed">
+        <xs:annotation>
+            <xs:documentation>Optional event handler to execute when the discipline is picked.</xs:documentation>
+        </xs:annotation>
+
+        <xs:group ref="any_rule" minOccurs="0" maxOccurs="unbounded" />
+    </xs:complexType>
+    
+    <xs:complexType name="disableDiscipline">
+        <xs:annotation>
+            <xs:documentation>Disable an active player discipline</xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="disciplineIndex" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>The index of the discipline to be disabled in the player's list of disciplines.</xs:documentation>
             </xs:annotation>
         </xs:attribute>
     </xs:complexType>
@@ -749,6 +775,7 @@
                 <xs:documentation>- allmeals: Drop all meals</xs:documentation>
                 <xs:documentation>- all: Drop all (weapons, backpack, special items, and money)</xs:documentation>
                 <xs:documentation>- allobjects: Drop all objects (weapons, special items, and backpack content, but not the backpack itself)</xs:documentation>
+                <xs:documentation>- kaiweapon: Drop the player's Kai Weapon</xs:documentation>
                 <xs:documentation>If you set more than one object id, the first one owned by the player will be dropped</xs:documentation>
             </xs:annotation>
         </xs:attribute>
@@ -764,7 +791,7 @@
         </xs:attribute>
         <xs:attribute name="restorePoint" type="xs:string">
             <xs:annotation>
-                <xs:documentation>If specified, the dropped item will can be restored with the rule "restoreInventoryState", with the given restore point id.</xs:documentation>
+                <xs:documentation>If specified, the dropped item can be restored with the rule "restoreInventoryState", with the given restore point id.</xs:documentation>
             </xs:annotation>
         </xs:attribute>        
         <xs:attribute name="count" type="xs:nonNegativeInteger">
@@ -854,6 +881,37 @@
                 <xs:documentation>Maximal value</xs:documentation>
             </xs:annotation>
         </xs:attribute>
+        <xs:attribute name="currency" type="currency">
+            <xs:annotation>
+                <xs:documentation>Optional, and only for "money"="true". The currency to check for limits.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="disciplinePicker">
+        <xs:annotation>
+            <xs:documentation>Add a control on the UI to select a discipline from the player's currently active disciplines.</xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="enabled" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation>If set to false, disable the number picker</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="actionButton" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>Text displayed in the button</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="text" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>Text displayed in the number picker UI</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="confirmText" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>Optional: text (from translations) displayed as a confirmation text before completing the action</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
     </xs:complexType>
 
     <xs:complexType name="huntStatus">
@@ -889,17 +947,10 @@
                 <xs:documentation>The money got by selling the object.</xs:documentation>
             </xs:annotation>
         </xs:attribute>
-        <xs:attribute name="currency">
+        <xs:attribute name="currency" type="currency">
             <xs:annotation>
-                <xs:documentation>If it's set, the currency of the price to sell the object. Default is Gold Crowns.</xs:documentation>                
+                <xs:documentation>Optional. If it's set, the currency of the price to sell the object. Default is Gold Crowns.</xs:documentation>
             </xs:annotation>
-            <xs:simpleType>
-                <xs:restriction base="xs:string">
-                    <xs:enumeration value="crown" />
-                    <xs:enumeration value="noble" />
-                    <xs:enumeration value="ren" />
-                </xs:restriction>
-            </xs:simpleType>
         </xs:attribute>
         <xs:attribute name="count" type="xs:nonNegativeInteger">
             <xs:annotation>
@@ -1134,11 +1185,13 @@
             <xs:element name="choiceSelected" type="choiceSelected" />
             <xs:element name="currentWeapon" type="currentWeapon" />
             <xs:element name="numberPicker" type="numberPicker" />
+            <xs:element name="disciplinePicker" type="disciplinePicker" />
             <xs:element name="huntStatus" type="huntStatus" />
             <xs:element name="sell" type="sell" />
             <xs:element name="saveInventoryState" type="saveInventoryState" />
             <xs:element name="restoreInventoryState" type="restoreInventoryState" />
             <xs:element name="numberPickerChoosed" type="numberPickerChoosed" />
+            <xs:element name="disciplinePickerChoosed" type="disciplinePickerChoosed" />
             <xs:element name="goToSection" type="goToSection" />
             <xs:element name="toast" type="toast" />
             <xs:element name="registerGlobalRule" type="registerGlobalRule" />
@@ -1153,6 +1206,8 @@
             <xs:element name="grandMasterUpgrade" type="grandMasterUpgrade" />
             <xs:element name="removeSpecialGrandMaster" type="removeSpecialGrandMaster" />
             <xs:element name="applyDessiStone" type="applyDessiStone" />
+            <xs:element name="disableDiscipline" type="disableDiscipline" />
+            <xs:element name="resetNewOrderDisabledDisciplines" type="resetNewOrderDisabledDisciplines" />
 
             <xs:element name="book2Sect238" type="specialsection_type" />
             <xs:element name="book2sect308" type="specialsection_type" />

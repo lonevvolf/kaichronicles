@@ -1,10 +1,9 @@
-import { randomMechanics, state, Item, numberPickerMechanics, mechanicsEngine, Currency } from "..";
+import { randomMechanics, state, Item, numberPickerMechanics, disciplinePickerMechanics, mechanicsEngine, CurrencyName } from "..";
 
 /**
  * Evaluation of mechanics expressions
  */
 export class ExpressionEvaluator {
-
     /**
      * Expression to find texts to replace
      * Matches anything between "[" and "]", both included
@@ -31,7 +30,27 @@ export class ExpressionEvaluator {
 
         // Total money on the belt pouches (in Crowns)
         "[MONEY]"() {
-            return Currency.toCurrency(state.actionChart.beltPouchNobles, Currency.NOBLE, Currency.CROWN) + state.actionChart.beltPouch;
+            return state.actionChart.getBeltPouchUsedAmount(false);
+        },
+
+        "[CROWNS]"() {
+            return state.actionChart.beltPouch[CurrencyName.CROWN];
+        },
+
+        "[KIKA]"() {
+            return state.actionChart.beltPouch[CurrencyName.KIKA];
+        },
+
+        "[LUNE]"() {
+            return state.actionChart.beltPouch[CurrencyName.LUNE];
+        },
+
+        "[REN]"() {
+            return state.actionChart.beltPouch[CurrencyName.REN];
+        },
+
+        "[SHEASUTORQS]"() {
+            return state.actionChart.beltPouch[CurrencyName.SHEASUTORQ];
         },
 
         // Money available on the section
@@ -160,6 +179,10 @@ export class ExpressionEvaluator {
             return numberPickerMechanics.getNumberPickerValue();
         },
 
+        "[DISCIPLINEPICKER]"() {
+            return disciplinePickerMechanics.getDisciplinePickerValue();
+        },
+
         "[COMBATSDURATION]"() {
             const sectionState = state.sectionStates.getSectionState();
             return sectionState.combatsDuration();
@@ -267,6 +290,15 @@ export class ExpressionEvaluator {
      */
     public static evalInteger( expression: string ): number {
         return Math.floor( ExpressionEvaluator.eval( expression ) );
+    }
+
+    /**
+     * Evaluates an integer expression
+     * @param expression Expression to evaluate
+     * @returns The expression value
+     */
+    public static evalFloat( expression: string ): number {
+        return <number>(ExpressionEvaluator.eval( expression ));
     }
 
 }

@@ -17,3 +17,7 @@ project-aon
 
 # Tests result
 tests_log.txt
+ctrf-report.json
+www/sw.js
+www/sw.js.LICENSE.txt
+www/sw.js.map

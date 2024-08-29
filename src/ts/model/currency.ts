@@ -1,34 +1,28 @@
 import { mechanicsEngine } from "..";
 
+export enum CurrencyName {
+    /** Gold crowns id (Sommerlund) */
+    CROWN = "crown",
+    /** Lunes id (Siyen) */
+    LUNE = "lune",
+    /** Kikas id (Darklands) */
+    KIKA = "kika",
+    /** Nobles id (Southeastern Magnamund) */
+    NOBLE = "noble",
+    /** Ren id (Chai) */
+    REN = "ren",
+    /** Sheasu Torq id (Isle of Sheasu) */
+    SHEASUTORQ = "sheasutorq",
+    /** Orla id (Nael and Aluvia) */
+    ORLA = "orla",
+    /** Ain id (Drodarin) */
+    AIN = "ain"
+}
+
 /**
  * Currency exchange
  */
 export class Currency {
-
-    /** Gold crowns id (Sommerlund) */
-    public static readonly CROWN = "crown";
-
-    /** Lunes id (Siyen) */
-    public static readonly LUNE = "lune";
-
-    /** Kikas id (Darklands) */
-    public static readonly KIKA = "kika";
-
-    /** Nobles id (Southeastern Magnamund) */
-    public static readonly NOBLE = "noble";
-
-    /** Ren id (Chai) */
-    public static readonly REN = "ren";
-
-    /** Sheasu Torq id */
-    public static readonly SHEASU_TORQ = "sheasutorq";
-
-    /** Orla id */
-    public static readonly ORLA = "orla";
-
-    /** Ain id */
-    public static readonly AIN = "ain";
-
     /**
      * Currencies exchange.
      * How many coins per 1 Gold Crown?
@@ -45,34 +39,39 @@ export class Currency {
     };
 
     /**
-     * Make a currency exchange - currently one of the currencies should be Crowns
+     * Make a currency exchange - one of the currencies should be Crowns
      * @param nCoins Number of coins
      * @param fromCurrencyId Currency to exchange from
      * @param toCurrencyId Currency to exchange to
      * @returns To currency number, floor rounded
      */
-    public static toCurrency( nCoins: number, fromCurrencyId: Currency = Currency.CROWN, toCurrencyId: Currency = Currency.CROWN) : number {
-        if (fromCurrencyId !== Currency.CROWN && toCurrencyId !== Currency.CROWN) {
-            mechanicsEngine.debugWarning( "One currency must be Crowns");
+    public static toCurrency( nCoins: number, fromCurrencyId: string = CurrencyName.CROWN, toCurrencyId: string = CurrencyName.CROWN, roundDown: boolean = true) : number {
+        if (fromCurrencyId !== CurrencyName.CROWN && toCurrencyId !== CurrencyName.CROWN) {
+            mechanicsEngine.debugWarning("One currency must be Crowns");
         }
 
         let exchange = 1;
-        if (toCurrencyId === Currency.CROWN) {
+        if (toCurrencyId === CurrencyName.CROWN) {
             exchange = Currency.EXCHANGES[ fromCurrencyId.toString() ];
             if ( !exchange ) {
-                mechanicsEngine.debugWarning( "Wrong currency: " + fromCurrencyId.toString() );
+                mechanicsEngine.debugWarning("Wrong currency: " + fromCurrencyId.toString() );
                 exchange = 1;
             }
         }
         else {
             exchange = (1 / Currency.EXCHANGES[ toCurrencyId.toString() ]);
             if ( !exchange ) {
-                mechanicsEngine.debugWarning( "Wrong currency: " + fromCurrencyId.toString() );
+                mechanicsEngine.debugWarning( "Wrong currency: " + toCurrencyId.toString() );
                 exchange = 1;
             }
         }
 
-        return Math.floor( nCoins / exchange );
+        if (roundDown) {
+            return Math.floor( nCoins / exchange );
+        }
+        else {
+            return nCoins / exchange;
+        }
     }
 
 }

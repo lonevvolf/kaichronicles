@@ -190,7 +190,8 @@ export class SectionRenderer {
      * @returns The HTML
      */
     private ol($ol: JQuery<HTMLElement>, level: number): string {
-        return "<ol>" + this.renderNodeChildren( $ol , level ) + "</ol>";
+        const start = $ol.attr("start") ? ` start=${$ol.attr("start")}` : '';
+        return `<ol${start}>` + this.renderNodeChildren( $ol , level ) + "</ol>";
     }
 
     ////////////////////////////////////////////////////////

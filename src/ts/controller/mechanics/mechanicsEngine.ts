@@ -1,6 +1,6 @@
 import { views, translations, Section, gameView, state, CombatMechanics, randomMechanics, Combat, Item, routing, gameController,
-    App, ExpressionEvaluator, numberPickerMechanics, SkillsSetup, KaiNameSetup, SetupDisciplines, EquipmentSectionMechanics, actionChartController,
-    Currency, LoreCircle, BookSeriesId, MealMechanics, ActionChartItem, InventoryState, actionChartView, template, Book,
+    App, ExpressionEvaluator, numberPickerMechanics, disciplinePickerMechanics, SkillsSetup, KaiNameSetup, SetupDisciplines, EquipmentSectionMechanics, actionChartController,
+    CurrencyName, LoreCircle, BookSeriesId, MealMechanics, ActionChartItem, InventoryState, actionChartView, template, Book,
     GrandMasterUpgrade, kaimonasteryController, book2sect238, book2sect308, book3sect88, book6sect26, book6sect284,
     book6sect340, book9sect91, book19sect304, ObjectsTable, ObjectsTableType, setupController, KaiDiscipline, MgnDiscipline,
     GndDiscipline, projectAon, DebugMode } from "../..";
@@ -41,6 +41,9 @@ export const mechanicsEngine = {
     /** The rule to execute when the action button of a number picker is clicked */
     onNumberPickerChoosed: <Element>null,
 
+    /** The rule to execute when the action button of a discipline picker is clicked */
+    onDisciplinePickerChoosed: <Element>null,
+    
     /************************************************************/
     /**************** MAIN FUNCTIONS ****************************/
     /************************************************************/
@@ -106,6 +109,7 @@ export const mechanicsEngine = {
         mechanicsEngine.onChoiceSelected = [];
         mechanicsEngine.onObjectUsedRule = null;
         mechanicsEngine.onNumberPickerChoosed = null;
+        mechanicsEngine.onDisciplinePickerChoosed = null;
 
         // Disable previous link if we are on "The story so far" section
         gameView.enablePreviousLink(section.sectionId !== "tssf");
@@ -144,7 +148,7 @@ export const mechanicsEngine = {
     /**
      * Run current section rules
      * @param resetRandomTableIncrements If it's true, any random table link increment will be reset before
-     * run the rules. Random table increments are stored on the UI, and they are accumulative. So if rules are re-executed
+     * running the rules. Random table increments are stored on the UI, and they are cumulative. So if rules are re-executed
      * without refresh the section, it can be needed
      */
     runSectionRules(resetRandomTableIncrements: boolean = false) {
@@ -157,6 +161,13 @@ export const mechanicsEngine = {
         const $sectionMechanics =
             state.mechanics.getSection(state.sectionStates.currentSection);
         if ($sectionMechanics !== null) {
+            // Reset the combatModifiers before rendering the rules
+            const sectionState = state.sectionStates.getSectionState();
+            if (sectionState && sectionState.combats) {
+                state.sectionStates.getSectionState().combats.forEach((combat) => {
+                    combat.combatModifier = 0;
+                });
+            }
             mechanicsEngine.runChildRules($sectionMechanics);
         }
 
@@ -303,7 +314,7 @@ export const mechanicsEngine = {
 
                 const expression: string = $rule.attr("expression");
                 if (expression) {
-                    if ((o.id === Item.MONEY || o.id === Item.NOBLE) && (expression.indexOf("[MONEY]") >= 0 || expression.indexOf("[MONEY-ON-SECTION]") >= 0)) {
+                    if (o.id === Item.MONEY && (expression.indexOf("[MONEY]") >= 0 || expression.indexOf("[MONEY-ON-SECTION]") >= 0)) {
                         // Section should be re-rendered
                         reRender = true;
                         return "finish";
@@ -403,6 +414,23 @@ export const mechanicsEngine = {
         return true;
     },
 
+    /**
+     * The action button of a discipline picker was clicked
+     * @returns True if the discipline picker value was valid (== if the action has been executed)
+     */
+    fireDisciplinePickerChoosed(): boolean {
+        // Be sure the picker value is valid
+        if (!disciplinePickerMechanics.isValid()) {
+            return false;
+        }
+
+        if (mechanicsEngine.onDisciplinePickerChoosed) {
+            mechanicsEngine.runChildRules($(mechanicsEngine.onDisciplinePickerChoosed));
+        }
+
+        return true;
+    },
+
     /************************************************************/
     /**************** RULES *************************************/
     /************************************************************/
@@ -475,7 +503,9 @@ export const mechanicsEngine = {
         const cls = $rule.attr("class");
 
         // Check the amount
-        let count = ExpressionEvaluator.evalInteger($rule.attr("count"));
+        const count = cls !== Item.MONEY ? 
+            ExpressionEvaluator.evalInteger($rule.attr("count")) :
+            ExpressionEvaluator.evalFloat($rule.attr("count"));
 
         // Add to the action chart
         if (cls === Item.MEAL ) {
@@ -483,14 +513,12 @@ export const mechanicsEngine = {
         } else if (cls === Item.ARROW) {
             actionChartController.increaseArrows(count);
         } else if (cls === Item.MONEY) {
-            // TODO: We should store the amount of each currency. Only supported for Nobles
-            // Otherwise, exchange to Gold Crowns
-            if ($rule.attr("currency") !== Currency.NOBLE) {
-                count = Currency.toCurrency(count, $rule.attr("currency"));
-            }
             const excessToKaiMonastry = mechanicsEngine.getBooleanProperty($rule, "excessToKaiMonastry", false);
-            actionChartController.increaseMoney(count, false, excessToKaiMonastry, $rule.attr("currency"));
-            
+            const currency = $rule.attr("currency");
+            if (currency && !(Object.values(CurrencyName) as string[]).includes(currency)) {
+                mechanicsEngine.debugWarning("Unknown currency: " + currency);
+            }
+            actionChartController.increaseMoney(count, false, excessToKaiMonastry, currency);
         } else {
             mechanicsEngine.debugWarning("Pick rule with no objectId / class");
         }
@@ -549,13 +577,12 @@ export const mechanicsEngine = {
                     mechanicsEngine.debugWarning("Unknown discipline: " + discipline);
                 }
                 if (state.actionChart.hasDiscipline(discipline)) {
-                    return true
+                    return true;
                 }
             }
         }
 
         // Check objects
-        let i: number;
         const objectIdsToTest = mechanicsEngine.getArrayProperty($rule, "hasObject");
         for (const objectId of objectIdsToTest) {
             if (!state.mechanics.getObject(objectId)) {
@@ -726,7 +753,7 @@ export const mechanicsEngine = {
     /**
      * Use Deliverance
      */
-    useDeliverance(rule: Element) {
+    useDeliverance() {
         actionChartController.use20EPRestore();
     },
 
@@ -776,14 +803,13 @@ export const mechanicsEngine = {
         // Object price (optional)
         const priceValue = $(rule).attr("price");
         let price: number = 0;
-        let currency: Currency = Currency.CROWN;
+        const currency = $(rule).attr("currency") ?? CurrencyName.CROWN;
+        if (!(Object.values(CurrencyName) as string[]).includes(currency)) {
+            mechanicsEngine.debugWarning("Unknown currency: " + currency);
+        }
+        
         if (priceValue) {
             price = ExpressionEvaluator.evalInteger(priceValue);
-
-            const currencyValue = $(rule).attr("currency");
-            if (currencyValue) {
-                currency = currencyValue;
-            }
         }
 
         // Unlimited number of this kind of object?
@@ -839,8 +865,8 @@ export const mechanicsEngine = {
         }
 
         const price = parseInt($rule.attr("price"), 10);
-        const currency = $rule.attr("currency");
-
+        const currency = $rule.attr("currency") ?? CurrencyName.CROWN;
+        
         // Sell a specific item
         const objectId = $rule.attr("objectId");
         const cls = $rule.attr("class");
@@ -866,7 +892,6 @@ export const mechanicsEngine = {
             if (cls === Item.SPECIAL) {
                 objectIds = state.actionChart.getSpecialItemsIds();
                 except.push(Item.MAP); // don't sell this, come on!
-                // TODO: Disallow selling of Kai Weapons - texts assume the player has this
             }
             else if (cls == Item.WEAPON) {
                 objectIds = state.actionChart.getWeaponsIds();
@@ -878,9 +903,9 @@ export const mechanicsEngine = {
             }
 
             for (const id of objectIds) {
-                const item = state.mechanics.getObject(objectId);
+                const item = state.mechanics.getObject(id);
                 // TODO: Allow selling of multiples (ie. you have two Potions of Laumspur) and Meals
-                if (!except.includes(id)) {
+                if (!except.includes(id) && item.droppable) {
                     sectionState.sellPrices.push({
                         id,
                         price,
@@ -930,7 +955,9 @@ export const mechanicsEngine = {
 
         // Check LW combat ABSOLUTE skill modifier for this section:
         const combatSkillModifier = mechanicsEngine.getIntProperty($rule, "combatSkillModifier", true);
-        combat.combatModifier = combatSkillModifier !== null ? combatSkillModifier : 0;
+        if (combatSkillModifier !== null) {
+            combat.combatModifier = combatSkillModifier;
+        }
 
         // Check LW combat skill modifier INCREMENT
         const combatSkillModifierIncrement = mechanicsEngine.getIntProperty($rule, "combatSkillModifierIncrement", true);
@@ -1022,13 +1049,13 @@ export const mechanicsEngine = {
             combat.eludeEnemyEP = eludeEnemyEP;
         }
 
-        // Dammage multiplier (player)
-        const txtDammageMultiplier: string = $rule.attr("dammageMultiplier");
-        if (txtDammageMultiplier) {
-            combat.dammageMultiplier = parseFloat(txtDammageMultiplier);
+        // Damage multiplier (player)
+        const txtDamageMultiplier: string = $rule.attr("damageMultiplier");
+        if (txtDamageMultiplier) {
+            combat.damageMultiplier = parseFloat(txtDamageMultiplier);
         }
 
-        // Dammage multiplier (enemy)
+        // Damage multiplier (enemy)
         const txtEnemyMultiplier: string = $rule.attr("enemyMultiplier");
         if (txtEnemyMultiplier) {
             combat.enemyMultiplier = parseFloat(txtEnemyMultiplier);
@@ -1044,6 +1071,12 @@ export const mechanicsEngine = {
         const txtImmuneTurns: string = $rule.attr("immuneTurns");
         if (txtImmuneTurns) {
             combat.immuneTurns = parseInt(txtImmuneTurns, 10);
+        }
+
+        // LW is immune for X turns
+        const txtImmuneDamage: string = $rule.attr("immuneDamage");
+        if (txtImmuneDamage) {
+            combat.immuneDamage = parseInt(txtImmuneDamage, 10);
         }
 
         // Enemy extra loss per turn
@@ -1079,9 +1112,9 @@ export const mechanicsEngine = {
         combat.bowCombat = mechanicsEngine.getBooleanProperty($rule, "bow", false);
 
         // LW loss is permament (applied to the original endurance)?
-        const permanentDammage = mechanicsEngine.getBooleanProperty($rule, "permanentDammage");
-        if (permanentDammage !== null) {
-            combat.permanentDammage = permanentDammage;
+        const permanentDamage = mechanicsEngine.getBooleanProperty($rule, "permanentDamage");
+        if (permanentDamage !== null) {
+            combat.permanentDamage = permanentDamage;
         }
 
         // Objects to disable on this combat:
@@ -1186,14 +1219,14 @@ export const mechanicsEngine = {
     /**
      * Player death rule
      */
-    death(rule: Element) {
+    death() {
         actionChartController.increaseEndurance(-state.actionChart.currentEndurance, true);
     },
 
     /**
      * Dessi-stone rule
      */
-    applyDessiStone(rule: Element) {
+    applyDessiStone() {
         const currentWeaponId = state.actionChart.getSelectedWeapon();
         if(currentWeaponId !== "") {
             const selectedWeapon: ActionChartItem = state.actionChart.getActionChartItem(currentWeaponId);
@@ -1266,7 +1299,7 @@ export const mechanicsEngine = {
                         break dropLoop;
                     }
                 } else {
-                    // Stop if at least one item has been dropped but no more availlable
+                    // Stop if at least one item has been dropped but no more available
                     if(countDrop > 0) {
                         break dropLoop;
                     }
@@ -1333,6 +1366,13 @@ export const mechanicsEngine = {
     },
 
     /**
+     * Discipline picker UI
+     */
+    disciplinePicker(rule: Element) {
+        disciplinePickerMechanics.disciplinePicker(rule);
+    },
+
+    /**
      * Number picker action button clicked event handler
      */
     numberPickerChoosed(rule: Element) {
@@ -1342,6 +1382,19 @@ export const mechanicsEngine = {
         if (mechanicsEngine.getBooleanProperty($(rule), "executeAtStart") && numberPickerMechanics.actionButtonWasClicked()) {
             mechanicsEngine.runChildRules($(mechanicsEngine.onNumberPickerChoosed));
         }
+    },
+
+    /**
+     * Discipline picker action button clicked event handler
+     */
+    disciplinePickerChoosed(rule: Element) {
+        mechanicsEngine.onDisciplinePickerChoosed = rule;
+    },
+
+    disableDiscipline(rule: Element) {
+        const $rule = $(rule);
+        const disciplineIndex = ExpressionEvaluator.evalInteger($rule.attr("disciplineIndex"));
+        actionChartController.disableDiscipline(disciplineIndex);
     },
 
     /**
@@ -1498,7 +1551,7 @@ export const mechanicsEngine = {
     /**
      * Add a button to access to the Kai monastery stored objects
      */
-    kaiMonasteryStorage(rule: Element) {
+    kaiMonasteryStorage() {
         const $tag = mechanicsEngine.getMechanicsUI("mechanics-kaimonasterystorage");
         gameView.appendToSection($tag, "afterChoices");
         $tag.find("button").on("click", (e: JQuery.Event) => {
@@ -1538,6 +1591,19 @@ export const mechanicsEngine = {
     },
 
     /**
+     * New Order: Reset disabled disciplines in the current book
+     */
+    resetNewOrderDisabledDisciplines(rule: Element) {
+        if ( state.sectionStates.ruleHasBeenExecuted(rule) ) {
+            // Execute only once
+            return;
+        }
+
+        state.actionChart.resetDisabledDisciplines();
+        state.sectionStates.markRuleAsExecuted(rule);
+    },
+
+    /**
      * Set of rules that should be executed only once
      */
     executeOnce(rule: Element) {
@@ -1552,7 +1618,7 @@ export const mechanicsEngine = {
     /**
      * Fire the inventory event
      */
-    runInventoryEvent(rule: Element) {
+    runInventoryEvent() {
         mechanicsEngine.fireInventoryEvents();
     },
 
@@ -1636,31 +1702,31 @@ export const mechanicsEngine = {
         book2sect238.run(rule);
     },
 
-    book2sect308(rule: Element) {
+    book2sect308() {
         book2sect308.run();
     },
 
-    book3sect88(rule: Element) {
+    book3sect88() {
         book3sect88.run();
     },
 
-    book6sect26(rule: Element) {
+    book6sect26() {
         book6sect26.run();
     },
 
-    book6sect284(rule: Element) {
+    book6sect284() {
         book6sect284.run();
     },
 
-    book6sect340(rule: Element) {
+    book6sect340() {
         book6sect340.run();
     },
 
-    book9sect91(rule: Element) {
+    book9sect91() {
         book9sect91.run();
     },
 
-    book19sect304(rule: Element) {
+    book19sect304() {
         book19sect304.run();
     },
 

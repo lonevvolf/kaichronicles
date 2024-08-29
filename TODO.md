@@ -8,9 +8,6 @@ TODO
 - Get Kai/Magnakai bonuses as specified in the handbook (See Healing for example)
   * https://github.com/tonib/kaichronicles/issues/5
   * https://www.projectaon.org/es/foro3/viewtopic.php?p=27752#p27752
-- Book 9, sect189: We should keep the count of the different currencies (Lunes, Gold Crows,...). Also on:
-  * book 12, sect43
-  * book 12, sect61
 - Add a "random discipline" button that will randomly select the proper number of initial disciplines, as well as your bonus discipline each book from the choices remaining
 - Add a Seventh-Sense-like achievement system
 

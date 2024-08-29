@@ -13,6 +13,12 @@ export interface ItemEffect {
 
     /** Endurance only. True if can be used prior a combat. */
     priorCombat: boolean;
+
+    /** Usage requires and consumes meal */
+    takenWithMeal: boolean;
+ 
+    /** Usage requires and consumes meal */
+    takenWithLaumspur: boolean;
 }
 
 /**
@@ -23,6 +29,7 @@ export class Item {
     // Item effect classes (see ItemEffect interface)
     public static readonly COMBATSKILL = "combatSkill";
     public static readonly ENDURANCE = "endurance";
+    public static readonly BACKPACKSLOTS = "backpackSlots";
 
     // Object types
     /** Special item type */
@@ -34,7 +41,6 @@ export class Item {
 
     // Object ids
     public static readonly MONEY = "money";
-    public static readonly NOBLE = "noble";
     public static readonly QUIVER = "quiver";
     public static readonly ARROW = "arrow";
     public static readonly FIRESEED = "fireseed";
@@ -105,6 +111,9 @@ export class Item {
 
     /** Endurance increment when the player carry the object */
     public enduranceEffect: number = 0;
+
+    /** Number of extra backpack slots */
+    public backpackSlotsBonusEffect: number = 0;
 
     /** Usage effect */
     public usage: ItemEffect;
@@ -201,7 +210,9 @@ export class Item {
             this.usage = {
                 cls: $usage.attr("class"),
                 increment: parseInt($usage.attr("increment"), 10),
-                priorCombat: $usage.attr("priorCombat") === "true"
+                priorCombat: $usage.attr("priorCombat") === "true",
+                takenWithMeal: $usage.attr("takenWithMeal") === "true",
+                takenWithLaumspur: $usage.attr("takenWithLaumspur") === "true",
             };
         }
 
@@ -215,6 +226,8 @@ export class Item {
                 this.combatSkillEffect = increment;
             } else if (cls === Item.ENDURANCE) {
                 this.enduranceEffect = increment;
+            } else if (cls === Item.BACKPACKSLOTS) {
+                this.backpackSlotsBonusEffect = increment;
             } else {
                 mechanicsEngine.debugWarning("Object " + this.id + ", wrong class effect: " + cls);
             }

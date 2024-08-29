@@ -1,4 +1,4 @@
-import { ActionChart, translations, ObjectsTable, ObjectsTableType, actionChartController, state, GndDiscipline, MoneyDialog, BookSeriesId, Item, Currency } from "..";
+import { ActionChart, translations, ObjectsTable, ObjectsTableType, actionChartController, state, GndDiscipline, MoneyDialog, BookSeriesId, Item, CurrencyName } from "..";
 
 /**
  * The action chart view API
@@ -90,15 +90,13 @@ export const actionChartView = {
      * Bind events for drop money UI
      */
     bindDropMoneyEvents() {
-        // Bind drop money button event
-        $("#achart-dropmoneybutton").on("click", (e: JQuery.TriggeredEvent) => {
-            e.preventDefault();
-            MoneyDialog.show( true );
-        });
-        $("#achart-dropnoblesbutton").on("click", (e: JQuery.TriggeredEvent) => {
-            e.preventDefault();
-            MoneyDialog.show( true, Currency.NOBLE );
-        });
+        for (const currency in state.actionChart.beltPouch) {
+            // Bind drop money button event
+            $(`#achart-dropmoneybutton${currency}`).on("click", (e: JQuery.TriggeredEvent) => {
+                e.preventDefault();
+                MoneyDialog.show( true, currency );
+            });
+        }
     },
 
     /**
@@ -134,12 +132,13 @@ export const actionChartView = {
         }
 
         // TODO: Display the discipline "quote" tag instead the name
-        const $displines = $("#achart-disciplines > tbody");
+        const $disciplines = $("#achart-disciplines > tbody");
         if ( actionChart.getDisciplines().length === 0 ) {
-            $displines.append( "<tr><td>(" + translations.text("noneFemenine") + ")</td></tr>" );
+            $disciplines.append( "<tr><td>(" + translations.text("noneFemenine") + ")</td></tr>" );
         } else {
             const bookDisciplines = state.book.getDisciplinesTable();
             const bookSeries = state.book.getBookSeries();
+            const disabledDisciplines = actionChart.getDisabledDisciplines();
             // Enumerate disciplines
             for (const disciplineId of actionChart.getDisciplines()) {
                 const dInfo = bookDisciplines[disciplineId];
@@ -156,20 +155,25 @@ export const actionChartView = {
                     }
                 }
 
+                if (disabledDisciplines.includes(disciplineId)) {
+                    name += " - Disabled";
+                }
+
                 // Unescape the HTML description:
                 const descriptionHtml = $("<div />").html(dInfo.description).text();
-                $displines.append( "<tr><td>" +
+                $disciplines.append( "<tr><td>" +
                     '<button class="btn btn-default table-op" title="' +
                     translations.text("disciplineDescription") +
                     '">' +
                         '<span class="fa fa-question-sign"></span>' +
                     "</button>" +
-                    "<b>" + name + `</b><br/>${dInfo.imageHtml}<i style="display:none"><small>` +
+                    "<b" + (disabledDisciplines.includes(disciplineId) ? " class='disabled'" : "") 
+                    + ">" + name + `</b><br/>${dInfo.imageHtml}<i style="display:none"><small>` +
                     descriptionHtml +
                     "</small></i></td></tr>" );
             }
             // Bind help button events
-            $displines.find("button").on("click", function() {
+            $disciplines.find("button").on("click", function() {
                 $(this).parent().find("i").toggle();
             });
         }
@@ -198,18 +202,27 @@ export const actionChartView = {
     },
 
     updateMoney() {
-        $("#achart-beltPouch").val( `${state.actionChart.beltPouch} ${translations.text("goldCrowns")}` );
-        // Disable if the player has no money or it's death
-        $("#achart-dropmoneybutton").prop( "disabled", state.actionChart.beltPouch <= 0 || state.actionChart.currentEndurance <= 0 );
+        for (const currency in state.actionChart.beltPouch) {
+            const pouchBalanceTemplate = $("#achart-BeltPouchBalanceTemplate").clone();
+            pouchBalanceTemplate.removeAttr('id');
+
+            const beltPouchInputId = `achart-beltPouch${currency}`
+            const beltPouchDropButtonId = `achart-dropmoneybutton${currency}`;
+
+            pouchBalanceTemplate.find("#achart-beltPouchTemplate").attr("id", beltPouchInputId);
+            pouchBalanceTemplate.find("#achart-dropbuttonTemplate").attr("id", beltPouchDropButtonId);
+            $("#achartBeltPouchDiv").append(pouchBalanceTemplate);
     
-        if (state.actionChart.beltPouchNobles === 0) {
-            $("#achart-noblesInput").hide();
-        } else {
-            $("#achart-noblesInput").show();
-            $("#achart-beltPouchNobles").val( `${state.actionChart.beltPouchNobles} ${translations.text("nobles")}` );
+            $(`#${beltPouchInputId}`).val( `${state.actionChart.beltPouch[currency]} ${translations.text(currency)}` );
             // Disable if the player has no money or it's death
-            $("#achart-dropnoblesbutton").prop( "disabled", state.actionChart.beltPouchNobles <= 0 || state.actionChart.currentEndurance <= 0 );
+            $(`#${beltPouchDropButtonId}`).prop( "disabled", state.actionChart.beltPouch[currency] <= 0 || state.actionChart.currentEndurance <= 0 );    
+
+            if (currency !== CurrencyName.CROWN && state.actionChart.beltPouch[currency] === 0) {
+                pouchBalanceTemplate.hide();
+            }
         }
+    
+        $("#achart-BeltPouchBalanceTemplate").hide();
     },
 
     /**

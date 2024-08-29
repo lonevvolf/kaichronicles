@@ -1,15 +1,13 @@
 ## Kai Chronicles
 
-Kai Chronicles is a game player for Lone Wolf game books. Books 1 - 22 are playable. The game player can run as a website.
+[Kai Chronicles](https://kaichronicles.projectaon.org) is a game player for Lone Wolf game books. Books 1 - 26 are playable. The game player can run as a website.
 
 This is a fork from the [original "Kai Chronicles"](https://github.com/tonib/kaichronicles) as tonib stopped development in November 2021.
 
 This repository does not contain game books data. Data must be downloaded from the [Project Aon web site](https://www.projectaon.org). 
 **REMEMBER** that game books data is under the [Project Aon license](https://www.projectaon.org/en/Main/License), so:
 
-* You cannot put this application on a public web server (only on your local machine, for
-  your own use). The only place where this game can be published is on the Project Aon 
-  web site
+* You cannot put this application on a public web server (only on your local machine, for your own use). The only place where this game can be published is on the Project Aon web site. It's available here : https://kaichronicles.projectaon.org
 * You cannot redistribute the game books data in any way
 
 ## Setup
@@ -40,19 +38,17 @@ Open your browser on http://localhost:3000.
 Optional method for running a local website only to play the game
  * Download and install [Docker](https://docs.docker.com/install/) and make sure it's is in your PATH environment variable
  * Using a terminal (Linux or iOS) or PowerShell (Windows 10) navigate to the project's directory
- * Type `docker build -t kai:1.16 .`
- * Type `docker run -p 8080:8080 kai:1.16`
+ * Type `docker build -t kai:1.18 .`
+ * Type `docker run -p 8080:8080 kai:1.18`
  * Open http://localhost:8080
  
- More information about this method [here](./doc/README-docker.md)
+More information about this method [here](./doc/README-docker.md)
 
 ### Developing 
 
-Game rules for each book are located at [www/data](www/data). "mechanics-X" are the game rules
-for the book X. "objects.xml" are the game objects
+Game rules for each book are located at [www/data](www/data). "mechanics-X" are the game rules for the book X. "objects.xml" are the game objects
 
-There is (unfinished) documentation for [rules](doc/README-mechanics.md), [object formats](doc/README-objects.md) and
-[save game file format](doc/README-savegames.md).
+There is (unfinished) documentation for [rules](doc/README-mechanics.md), [object formats](doc/README-objects.md) and [save game file format](doc/README-savegames.md).
 
 The game rules implementation are at src/ts/controller/mechanics and www/controller/mechanics.
 
@@ -72,11 +68,30 @@ npm run lint
 
 A "guide" to develop new books can be found at [doc/README-developing.md](doc/README-developing.md)
 
+### Progressive Web App (PWA) Development
+
+Kai Chronicles has been extended to act as a PWA.  It can be added to the home screen of a mobile phone, or as an app in Windows.  The app will continue to function offline due to caching of assets, though the books are not predownloaded, so starting a New Game will fail unless you have already started the book before.
+
+Of course, asset caching complicates development, not least because webpack-dev-server doesn't play nice with the precaching mechanism (https://github.com/GoogleChrome/workbox/issues/1790).  Therefore, the caching and PWA functionality should be disabled while developing.  
+
+If you want to specifically develop PWA features:
+1) Comment out:
+        `if (environment !== EnvironmentType.Development)`
+  in app.ts
+2) Make your changes to the app
+3) Run:
+      `npm run predist`
+   to regenerate the service worker code
+4) Run a dedicated http server other than webpack-dev-server:
+      `npx http-server ./www`
+5) Open the app at:
+      `http://localhost:8080`
+
+After finishing, be sure to reverse the change from step 1 before committing changes.  Hopefully this process can be improved in the future, but there shouldn't be frequent changes to the PWA functionality.
+
 ### Tests
 
-Tests are run with Selenium Web Driver and Jest. Currently tests will run only with Chrome, and Selenium will need a "browser driver". See
-https://www.selenium.dev/documentation/en/webdriver/driver_requirements for installation instructions. Tests are located at src/ts/tests.
-Be sure Typescript for node.js is compiled before running tests:
+Tests are run with Selenium Web Driver and Jest. Currently tests will run only with Chrome, and Selenium will need a "browser driver". See https://www.selenium.dev/documentation/en/webdriver/driver_requirements for installation instructions. Tests are located at src/ts/tests. Be sure Typescript for node.js is compiled before running tests:
 
 ```bash
 npm run test

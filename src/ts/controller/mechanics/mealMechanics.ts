@@ -44,7 +44,7 @@ export class MealMechanics {
         // Add the UI to the section
         gameView.appendToSection($meal);
 
-        // Check if hunting disciplines, of any book serie, is available
+        // Check if hunting disciplines, of any book series, is available
         const huntDisabled = mechanicsEngine.getBooleanProperty($rule, "huntDisabled", false);
 
         const hasHuntingDiscipline = 
@@ -104,7 +104,7 @@ export class MealMechanics {
                 // Do nothing
             } else if (option === "buyMeal") {
                 // Buy the meal
-                if (state.actionChart.beltPouch < price) {
+                if (state.actionChart.getBeltPouchUsedAmount() < price) {
                     alert(translations.text("noEnoughMoney"));
                     return;
                 }

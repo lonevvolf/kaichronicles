@@ -360,8 +360,7 @@
         </section>
 
         <section id="sect43">
-            <!-- TODO: We should keep the count of the different currencies (Lunes, Gold Crows,...). Unimplemented -->
-            <pick class="money" count="-1" />
+            <pick class="money" count="-([KIKA] / 2)" currency="kika" />
         </section>
 
         <section id="sect44">
@@ -526,13 +525,12 @@
         </section>
 
         <section id="sect61">
-            <!-- TODO: We should keep the count of the different currencies (Lunes, Gold Crows,...). Unimplemented -->
-            <numberPicker text="Decide how many Gold Crowns you wish to bet" min="1" money="true" />
+            <numberPicker text="Decide how many Kika you wish to bet" min="1" money="true" currency="kika" />
             <choiceSelected section="sect265">
-                <pick class="money" count="[NUMBERPICKER]*2" />
+                <pick class="money" count="[NUMBERPICKER]*2" currency="kika" />
             </choiceSelected>
             <choiceSelected section="sect225">
-                <pick class="money" count="-[NUMBERPICKER]" />
+                <pick class="money" count="-[NUMBERPICKER]" currency="kika" />
             </choiceSelected>
         </section>
 
@@ -653,11 +651,11 @@
                 </executeOnce>
             </afterCombatTurn>
 
-            <!-- Dammage / CS modifiers -->
+            <!-- Damage / CS modifiers -->
             <onInventoryEvent>
-                <combat dammageMultiplier="1" />
+                <combat damageMultiplier="1" />
                 <test not="true" currentWeapon="sommerswerd|daggerofvashna">
-                    <combat dammageMultiplier="0" />
+                    <combat damageMultiplier="0" />
                 </test>
 
                 <combat combatSkillModifier="0" />
@@ -770,12 +768,12 @@
                 <currentWeapon objectId="helshezag" />
             </test>
 
-            <!-- Dammage / CS modifiers -->
+            <!-- Damage / CS modifiers -->
             <message text="You must use the Dagger of Vashna or the sword Helshezag as current weapon on this combat" />
             <onInventoryEvent>
-                <combat dammageMultiplier="1" />
+                <combat damageMultiplier="1" />
                 <test not="true" currentWeapon="helshezag|daggerofvashna|sommerswerd">
-                    <combat dammageMultiplier="0" />
+                    <combat damageMultiplier="0" />
                 </test>
 
                 <combat combatSkillModifier="0" />
@@ -1319,8 +1317,7 @@
         </section>
 
         <section id="sect162">
-            <!-- TODO: We should keep the count of the different currencies (Lunes, Gold Crows,...). Unimplemented -->
-            <test not="true" expression="[MONEY] > 0">
+            <test not="true" expression="[KIKA] > 0">
                 <choiceState section="sect43" set="disabled" />
             </test>
         </section>
@@ -1405,11 +1402,11 @@
                 </test>
             </onInventoryEvent>
 
-            <!-- Dammage / CS modifiers -->
+            <!-- Damage / CS modifiers -->
             <onInventoryEvent>
-                <combat dammageMultiplier="1" />
+                <combat damageMultiplier="1" />
                 <test not="true" currentWeapon="sommerswerd|daggerofvashna">
-                    <combat dammageMultiplier="0" />
+                    <combat damageMultiplier="0" />
                 </test>
 
                 <combat combatSkillModifier="0" />
@@ -1529,8 +1526,7 @@
         </section>
 
         <section id="sect184">
-            <!-- TODO: We should keep the count of the different currencies (Lunes, Gold Crows,...). Unimplemented -->
-            <test not="true" expression="[MONEY] > 0">
+            <test not="true" expression="[KIKA] > 0">
                 <choiceState section="sect61" set="disabled" />
             </test>
         </section>
@@ -1668,8 +1664,7 @@
         </section>
 
         <section id="sect202">
-            <!-- TODO: We should keep the count of the different currencies (Lunes, Gold Crows,...). Unimplemented -->
-            <pick class="money" count="-1" />
+            <pick class="money" count="-[KIKA]" currency="kika" />
         </section>
 
         <section id="sect203">
@@ -1796,8 +1791,7 @@
         </section>
 
         <section id="sect221">
-            <!-- TODO: We should keep the count of the different currencies (Lunes, Gold Crows,...). Unimplemented -->
-            <test not="true" expression="[MONEY] > 0">
+            <test not="true" expression="[KIKA] > 0">
                 <choiceState section="sect108" set="disabled" />
             </test>
         </section>
@@ -2167,7 +2161,7 @@
             <afterCombatTurn turn="1">
                 <executeOnce>
                     <test expression="[COMBATSENDURANCELOST] > [COMBATSENEMYLOST]">
-                        <combat permanentDammage="true" />
+                        <combat permanentDamage="true" />
                     </test>
                 </executeOnce>
             </afterCombatTurn>
@@ -2425,9 +2419,11 @@
         </section>
 
         <section id="sect314">
-            <!-- TODO: We should keep the count of the different currencies (Lunes, Gold Crows,...). Unimplemented -->
-            <test not="true" expression="[MONEY] > 0">
+            <test not="true" expression="[KIKA] > 0">
                 <choiceState section="sect202" set="disabled" />
+            </test>
+
+            <test not="true" expression="[CROWNS] > 0">
                 <choiceState section="sect126" set="disabled" />
             </test>
 
@@ -2436,7 +2432,7 @@
             </test>
 
             <!-- There is a dead end if you have no money and no medal. In this case, let the player choose -->
-            <test not="true" expression="[MONEY] > 0">
+            <test not="true" expression="[CROWNS] > 0 || [KIKA] > 0">
                 <test not="true" hasObject="medal">
                     <choiceState section="sect202" set="enabled" />
                     <choiceState section="sect126" set="enabled" />

@@ -225,7 +225,7 @@
                 <input type="radio" name="mechanics-mealOption" value="buyMeal">
                 <span data-translation="buyMeal">Buy meal</span> 
                 (<span class="mechanics-mealPrice">0</span> 
-                <span data-translation="goldCrowns">Gold Crowns</span>)
+                <span data-translation="crown">Gold Crowns</span>)
             </label>
         </div>
         <div class="radio mechanics-eatDoNotEat">
@@ -261,6 +261,22 @@
             </div>
         </div>
         <button class="btn btn-primary btn-block" type="button" id="mechanics-picknumber" 
+            style="display: none; margin-top: 5px;">
+            Action
+        </button>
+    </div>
+
+    <!-- Discipline picker -->
+    <div class="well" id="mechanics-disciplinepicker">
+        <p><b id="mechanics-dpTitle">Discipline picker</b></p>
+        <div class="radio" id="mechanics-dpOption">
+            <label>
+                <input title="Discipline Picker Radio Button" id="mechanics-dpRadioButton" type="radio" name="mechanics-disciplineGroup" value="0">
+                <span id="mechanics-dpRadioLabel"></span>
+            </label>
+        </div>
+        
+        <button class="btn btn-primary btn-block" type="button" id="mechanics-pickdiscipline" 
             style="display: none; margin-top: 5px;">
             Action
         </button>
@@ -435,6 +451,7 @@
             <b>
                 <span data-translation="beltPouch">Belt pouch</span>: 
                 <span id="mechanics-currentMoney">0</span>
+                <span> Gold Crowns</span>
             </b>
         </div>
         <div class="form-group">

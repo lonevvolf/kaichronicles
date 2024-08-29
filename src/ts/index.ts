@@ -9,6 +9,7 @@ export * from "./views";
 export * from "./app";
 export * from "./routing";
 export * from "./common";
+export * from "./pwa";
 
 export * from "./controller/mainMenuController";
 export * from "./controller/privacyController";
@@ -40,6 +41,7 @@ export * from "./controller/mechanics/specialSections/book19sect304";
 export * from "./controller/mechanics/randomMechanics";
 export * from "./controller/mechanics/equipmentSectionMechanics";
 export * from "./controller/mechanics/numberPickerMechanics";
+export * from "./controller/mechanics/disciplinePickerMechanics";
 export * from "./controller/mechanics/grandMasterUpgrade";
 export * from "./controller/mechanics/specialObjectsUse";
 export * from "./controller/kaimonasteryController";

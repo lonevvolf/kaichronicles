@@ -797,7 +797,7 @@
             <choiceState section="all" set="disabled" />
             <combat noMindblast="true" />
             <test hasObject="sommerswerd">
-                <combat dammageMultiplier="2" />
+                <combat damageMultiplier="2" />
             </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
@@ -867,7 +867,7 @@
 
         <section id="sect145">
             <object objectId="bullwhip" />
-            <pick class="money" count="9" />
+            <pick class="money" count="36" currency="lune" />
             <object objectId="torch" />
             <object objectId="tinderbox" />
             <object objectId="bottlewater" />
@@ -1533,7 +1533,7 @@
             <object objectId="axe" index="1" />
             <object objectId="mace" />
             <object objectId="broadsword" />
-            <pick class="money" count="4" />
+            <pick class="money" count="16" currency="lune" />
             <object objectId="meal" index="0" />
             <object objectId="meal" index="1" />
             <object objectId="meal" index="2" />
@@ -1679,7 +1679,7 @@
             <object objectId="blanket" />
             <object objectId="quiver" />
             <object objectId="arrow" count="3" />
-            <pick class="money" count="4" />
+            <pick class="money" count="16" currency="lune" />
         </section>
 
         <section id="sect297">

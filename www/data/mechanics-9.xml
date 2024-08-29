@@ -193,7 +193,7 @@
         </section>
 
         <section id="sect19">
-            <pick class="money" count="-3" />
+            <pick class="money" count="-10" currency="lune" />
         </section>
 
         <section id="sect20">
@@ -558,9 +558,9 @@
             <test not="true" hasDiscipline="hntmstry">
                 <combat combatSkillModifier="-3" />
             </test>
-            <combat dammageMultiplier="1" />
+            <combat damageMultiplier="1" />
             <test currentWeapon="sommerswerd">
-                <combat dammageMultiplier="2" />
+                <combat damageMultiplier="2" />
             </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
@@ -602,9 +602,9 @@
         <section id="sect104">
             <choiceState section="all" set="disabled" />
 
-            <combat dammageMultiplier="1" />
+            <combat damageMultiplier="1" />
             <test currentWeapon="sommerswerd">
-                <combat dammageMultiplier="2" />
+                <combat damageMultiplier="2" />
             </test>
             <test not="true" hasDiscipline="hntmstry|dvnation">
                 <combat combatSkillModifier="-2" />
@@ -885,7 +885,7 @@
             <object objectId="dagger" />
             <object objectId="meal" index="0" />
             <object objectId="meal" index="1" />
-            <pick class="money" count="7" />
+            <pick class="money" count="28" currency="lune" />
             <object objectId="blanket" />
             <test not="true" hasDiscipline="curing">
                 <choiceState section="sect29" set="disabled" />
@@ -917,26 +917,26 @@
 
         <section id="sect163">
             <choiceState section="all" set="disabled" />
-            <numberPicker text="Choose the number of Gold Crowns you wish to give to the villagers" min="1" money="true" actionButton="Choose" />
-            <numberPickerChoosed executeAtStart="true">
-                <numberPicker enabled="false" />
-                <pick class="money" count="-[NUMBERPICKER]" />
-                <test expression="[NUMBERPICKER] >= 3">
+            <message text="Drop the money you wish to give to the villagers" />
+            <onInventoryEvent>
+                <test expression="[MONEY-ON-SECTION] >= 3">
                     <choiceState section="sect28" set="enabled" />
+                    <choiceState section="sect235" set="disabled" />
                 </test>
-                <test not="true" expression="[NUMBERPICKER] >= 3">
+                <test not="true" expression="[MONEY-ON-SECTION] >= 3">
+                    <choiceState section="sect28" set="disabled" />
                     <choiceState section="sect235" set="enabled" />
                 </test>
-            </numberPickerChoosed>
+            </onInventoryEvent>
         </section>
 
         <section id="sect166">
             <choiceState section="all" set="disabled" />
 
             <combat combatSkillModifier="+2" />
-            <combat dammageMultiplier="1" />
+            <combat damageMultiplier="1" />
             <test currentWeapon="sommerswerd">
-                <combat dammageMultiplier="2" />
+                <combat damageMultiplier="2" />
             </test>
 
             <afterCombats>
@@ -1074,9 +1074,10 @@
         </section>
 
         <section id="sect189">
-            <!-- TODO: We should keep the count of the different currencies (Lunes, Gold Crows,...). Unimplemented -->
-            <test not="true" expression="[MONEY] >= 1">
+            <test not="true" expression="[LUNE] >= 1">
                 <choiceState section="sect253" set="disabled" />
+            </test>
+            <test not="true" expression="[CROWNS] >= 1">
                 <choiceState section="sect319" set="disabled" />
             </test>
         </section>
@@ -1093,9 +1094,9 @@
 
             <choiceState section="all" set="disabled" />
             <combat combatSkillModifier="-4" />
-            <combat dammageMultiplier="1" />
+            <combat damageMultiplier="1" />
             <test currentWeapon="sommerswerd">
-                <combat dammageMultiplier="2" />
+                <combat damageMultiplier="2" />
             </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
@@ -1544,9 +1545,7 @@
         </section>
 
         <section id="sect253">
-            <!-- TODO: We should keep the count of the different currencies (Lunes, Gold Crows,...). Unimplemented -->
-            <!-- 10 Lunes == 2,5 GC -->
-            <test not="true" expression="[MONEY] >= 3">
+            <test not="true" expression="[LUNE] >= 10">
                 <choiceState section="sect19" set="disabled" />
             </test>
         </section>
@@ -1554,9 +1553,9 @@
         <section id="sect254">
             <choiceState section="all" set="disabled" />
 
-            <combat dammageMultiplier="1" />
+            <combat damageMultiplier="1" />
             <test currentWeapon="sommerswerd">
-                <combat dammageMultiplier="2" />
+                <combat damageMultiplier="2" />
             </test>
 
             <afterCombats>
@@ -1732,9 +1731,9 @@
         <section id="sect301">
             <choiceState section="all" set="disabled" />
 
-            <combat dammageMultiplier="1" />
+            <combat damageMultiplier="1" />
             <test currentWeapon="sommerswerd">
-                <combat dammageMultiplier="2" />
+                <combat damageMultiplier="2" />
             </test>
 
             <afterCombats>
@@ -1849,9 +1848,9 @@
         <section id="sect322">
             <choiceState section="all" set="disabled" />
 
-            <combat dammageMultiplier="1" />
+            <combat damageMultiplier="1" />
             <test currentWeapon="sommerswerd">
-                <combat dammageMultiplier="2" />
+                <combat damageMultiplier="2" />
             </test>
 
             <afterCombats>

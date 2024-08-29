@@ -126,6 +126,15 @@ describe("combat", () => {
         await driver.goToSection("sect86");
         expect( await driver.getCombatRatio() ).toBe(-10);
     });
+
+    test("combatSkillModifierIncrement", async () => {
+        await driver.setupBookState(11);
+        await driver.setDisciplines([MgnDiscipline.AnimalControl, MgnDiscipline.Curing, MgnDiscipline.Huntmastery]);
+        await driver.pick("psychicring");
+        await driver.pick("silverhelm");
+        await driver.goToSection("sect270");
+        expect( await driver.getCombatRatio() ).toBe(-5);
+    });
 });
 
 // setDisciplines -> See setDisciplines.tests.ts
@@ -168,12 +177,12 @@ describe("test", () => {
         await driver.goToSection("sect96");
         expect( await driver.choiceIsEnabled("sect225") ).toBe(false);
 
-        // Only bow, you cannot shot
+        // Only bow, you cannot shoot
         await driver.pick(Item.BOW);
         await driver.goToSection("sect96");
         expect( await driver.choiceIsEnabled("sect225") ).toBe(false);
 
-        // Bow and quiver, but no arrows, you cannot shot
+        // Bow and quiver, but no arrows, you cannot shoot
         await driver.pick(Item.QUIVER);
         await driver.goToSection("sect96");
         expect( await driver.choiceIsEnabled("sect225") ).toBe(false);
@@ -182,7 +191,7 @@ describe("test", () => {
         await driver.goToSection("sect96");
         expect( await driver.choiceIsEnabled("sect225") ).toBe(true);
 
-        // If you pick the bow from the section, expect to shot inmediatelly
+        // If you pick the bow from the section, expect to shoot immediately
         await driver.drop(Item.BOW, true);
         await driver.goToSection("sect96");
         expect( await driver.choiceIsEnabled("sect225") ).toBe(false);

@@ -137,11 +137,6 @@ export const randomMechanics = {
                 return;
             }
 
-            // Validate money picker, if there is. If its not valid, don't follow with this link
-            if (!numberPickerMechanics.isValid()) {
-                return;
-            }
-
             // If there are pending meals, don't follow with this link
             if (MealMechanics.arePendingMeals()) {
                 alert(translations.text("doMealFirst"));

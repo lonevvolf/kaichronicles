@@ -26,7 +26,6 @@ export const settingsController = {
      */
     changeColorTheme(color: Color): void {
         template.changeColorTheme( color );
-        state.updateColorTheme( color );
     },
 
     /**
@@ -35,7 +34,6 @@ export const settingsController = {
      */
     changeTextSize(textSize: TextSize): void {
         template.changeTextSize( textSize );
-        state.updateTextSize( textSize );
     },
 
     /**

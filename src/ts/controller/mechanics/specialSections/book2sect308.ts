@@ -1,4 +1,4 @@
-import { mechanicsEngine, gameView, template, state, translations, actionChartController, randomTable } from "../../..";
+import { mechanicsEngine, gameView, template, state, translations, actionChartController, randomTable, CurrencyName } from "../../..";
 
 interface GameResult {
     dice1: number,
@@ -27,11 +27,11 @@ export const book2sect308 = {
 
     updateUI(doNotAnimate: boolean) {
         template.animateValueChange( $("#mechanics-currentMoney") ,
-                state.actionChart.beltPouch , doNotAnimate);
+                state.actionChart.getBeltPouchUsedAmount() , doNotAnimate);
     },
 
     click() {
-        if ( state.actionChart.beltPouch < 3 ) {
+        if ( state.actionChart.getBeltPouchUsedAmount() < 3 ) {
             alert( translations.text("noEnoughMoney") );
             return;
         }
@@ -41,10 +41,15 @@ export const book2sect308 = {
         const lw = book2sect308.playerResult( translations.text("loneWolf") );
         let status = `${player1.status}<br/>${player2.status}<br/>${lw.status}<br/>`;
         if ( lw.total > player1.total && lw.total > player2.total ) {
-            status += translations.text("msgGetCrowns" , [6]);
-            actionChartController.increaseMoney(6);
+            if (state.book.bookNumber === 10) { // Book 10 winnings are in Lune
+                status += translations.text("msgGetMoney" , [24, translations.text(CurrencyName.LUNE)]);
+                actionChartController.increaseMoney(24, false, false, CurrencyName.LUNE);
+            } else {
+                status += translations.text("msgGetMoney" , [6, translations.text(CurrencyName.CROWN)]);
+                actionChartController.increaseMoney(6);
+            }
         } else {
-            status += translations.text("msgDropCrowns" , [3]);
+            status += translations.text("msgDropMoney" , [3, translations.text(CurrencyName.CROWN)]);
             actionChartController.increaseMoney(-3);
         }
 
@@ -62,7 +67,12 @@ export const book2sect308 = {
         result.status = `${translations.text( "playerDices" , [playerName] )}: ${result.dice1} + ${result.dice2} = `;
         if ( result.dice1 === 0 && result.dice2 === 0 ) {
             result.total = 100;
-            result.status += " Portholes!";
+            if (state.book.bookNumber === 10) { // Book 10 game is called Bullseyes
+                result.status += " Bullseyes!";
+            }
+            else {
+                result.status += " Portholes!";
+            }
         } else {
             result.total = result.dice1 + result.dice2;
             result.status += result.total;

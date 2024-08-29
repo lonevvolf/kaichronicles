@@ -1,4 +1,4 @@
-import { BookSeriesId, mechanicsEngine } from "../..";
+import { mechanicsEngine } from "../..";
 
 /**
  * Translations table
@@ -18,8 +18,15 @@ export class Translations {
         "noneFemenine" : "None",
         "noneMasculine" : "None",
         "disciplineDescription" : "Discipline description",
-        "goldCrowns" : "Gold Crowns",
-        "nobles" : "Nobles",
+        "crown" : "Gold Crowns",
+        "noble" : "Nobles",
+        "lune"  :   "Lune",
+        "kika"  :   "Kika",
+        "ren"   :  "Ren",
+        "sheasutorq"    : "Sheasu Torqs",
+        "orla"  :   "Orla",
+        "ain"   :   "Ain",
+        "arrow" :   "Arrow",
         "arrows" : "Arrows",
         "current" : "Current",
         "backpackLost" : "You have lost your backpack",
@@ -29,23 +36,22 @@ export class Translations {
         "use": "Use",
         "setCurrentWeapon" : "Set as current weapon",
         "dropObject" : "Drop object",
-        "confirmSell" : "Are you sure you want to sell the object for {0} Gold Crowns?",
-        "confirmSellNobles" : "Are you sure you want to sell the object for {0} Nobles?",
+        "confirmSell" : "Are you sure you want to sell the object for {0} {1}?",
         "confirmUse" : 'Are you sure you want to use "{0}"?',
         "confirmDrop" : 'Are you sure you want to drop "{0}"?',
+        "confirmDisableDiscipline" : "Are you sure you want to disable {0} for the rest of the book?",
         "noEnoughMoney" : "You don't have enough money",
-        "confirmBuy" : "Are you sure you want to buy the object for {0} Gold Crowns?",
-        "confirmBuyNobles" : "Are you sure you want to buy the object for {0} Nobles?",
-        "msgGetObject" : 'You get "{0}"',
+        "confirmBuy" : "Are you sure you want to buy the object for {0} {1}?",
+        "msgGetObject" : 'You got "{0}"',
         "msgDropObject" : 'You drop "{0}"',
-        "msgGetMeal" : "You get {0} meals",
+        "msgGetMeal" : "You got {0} meals",
         "msgDropMeal" : "You drop {0} meals",
-        "msgGetCrowns" : "You get {0} Gold Crowns",
-        "msgGetNobles" : "You get {0} Nobles",
-        "msgGetArrows" : "You get {0} Arrows",
-        "msgDropCrowns" : "You lost {0} Gold Crowns",
-        "msgDropNobles" : "You lost {0} Nobles",
+        "msgGetMoney" : "You got {0} {1}",
+        "msgGetArrows" : "You got {0} Arrows",
+        "msgGetArrow" : "You got {0} Arrow",
+        "msgDropMoney" : "You lost {0} {1}",
         "msgDropArrows" : "You lost {0} Arrows",
+        "msgDropArrow" : "You lost {0} Arrow",
         "msgEndurance" : "{0} Endurance Points",
         "msgCombatSkill" : "{0} Combat Skill",
         "msgCurrentWeapon" : 'Your current weapon is now "{0}"',
@@ -131,7 +137,7 @@ export class Translations {
         // Special sections
         //////////////////////////////////////
 
-        "playerDices" : "{0} dices",
+        "playerDices" : "{0} rolls",
         "playerNumber" : "Player {0}",
         "number" : "Number {0}",
         "adganaUse" : "Adgana use, Random Table number: {0}",
@@ -148,7 +154,7 @@ export class Translations {
         // New game
         //////////////////////////////////////
 
-        "youMustAgree" : "You must agree the licence to continue",
+        "youMustAgree" : "You must agree the license to continue",
 
         //////////////////////////////////////
         // Settings

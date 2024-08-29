@@ -1,4 +1,4 @@
-import { setupController, views, actionChartView, state, ActionChartItem, SectionItem, EquipmentSectionMechanics, translations, template, mechanicsEngine, Item, SpecialObjectsUse, CombatMechanics, Bonus, InventoryState, Currency } from "..";
+import { setupController, views, actionChartView, state, ActionChartItem, SectionItem, EquipmentSectionMechanics, translations, template, mechanicsEngine, Item, SpecialObjectsUse, CombatMechanics, Bonus, InventoryState, CurrencyName, NewOrderDiscipline } from "..";
 
 /**
  * The action chart controller
@@ -203,6 +203,10 @@ export const actionChartController = {
             return true;
         }
 
+        if (objectId === "kaiweapon") {
+            return actionChartController.drop(state.actionChart.getKaiWeapon());
+        }
+
         const droppedItem = state.actionChart.drop(objectId, dropCount, objectIndex);
         if (droppedItem) {
             const item = droppedItem.getItem();
@@ -292,10 +296,10 @@ export const actionChartController = {
     /**
      * Use an object
      * @param objectId The object to use
-     * @param dropObject True if the object should be droped from the action chart
+     * @param dropObject True if the object should be dropped from the action chart
      * @param index If used object was a owned object, this is the object index in its Action Chart array. If not specified
      * or < 0, the first owned object will be used
-     * @param displayToast True if a message must to be displayed
+     * @param displayToast True if a message must be displayed
      */
     use(objectId: string, dropObject: boolean = true, index: number = -1, displayToast = false, applyEffect = true) {
         // Get the object
@@ -308,6 +312,12 @@ export const actionChartController = {
             // Do the usage action:
             if (o.usage.cls === Item.ENDURANCE) {
                 actionChartController.increaseEndurance(o.usage.increment);
+                // Check if a meal should be consumed as well (note that meal-like objects are not observed here, since New Order hasn't offered any yet)
+                if (o.usage.takenWithMeal && !state.actionChart.hasDiscipline(NewOrderDiscipline.GrandHuntmastery)) {
+                    actionChartController.increaseMeals(-1);
+                } else if (o.usage.takenWithLaumspur && !state.actionChart.hasDiscipline(NewOrderDiscipline.Herbmastery)) {
+                    actionChartController.use("laumspurpotion4");
+                }
             } else if (o.usage.cls === Item.COMBATSKILL) {
                 // Combat skill modifiers only apply to the current section combats
                 const sectionState = state.sectionStates.getSectionState();
@@ -376,28 +386,21 @@ export const actionChartController = {
      * @param currencyId The currency to increase or decrease (defaults to Crowns)
      * @returns Amount really picked.
      */
-    increaseMoney(count: number, availableOnSection: boolean = false, excessToKaiMonastry = false, currencyId: Currency = Currency.CROWN): number {
+    increaseMoney(count: number, availableOnSection: boolean = false, excessToKaiMonastry = false, currencyId: string = CurrencyName.CROWN): number {
         const amountPicked = state.actionChart.increaseMoney(count, excessToKaiMonastry, currencyId);
         const o = state.mechanics.getObject("money");
-        if (count > 0) {
-            if (currencyId === Currency.NOBLE) {
-                actionChartView.showInventoryMsg("pick", o,
-                    translations.text("msgGetNobles", [count]));
-            } else {
-                actionChartView.showInventoryMsg("pick", o,
-                    translations.text("msgGetCrowns", [count]));
-            }
+        if (amountPicked > 0) {
+            actionChartView.showInventoryMsg("pick", o,
+                translations.text("msgGetMoney", [amountPicked, translations.text(currencyId)]));
 
-        } else if (count < 0) {
-            if (currencyId === Currency.NOBLE) {
-                actionChartView.showInventoryMsg("drop", o, translations.text("msgDropNobles", [-count]));
-            } else {
-                actionChartView.showInventoryMsg("drop", o, translations.text("msgDropCrowns", [-count]));
-            }
+        } else if (amountPicked < 0) {
+            actionChartView.showInventoryMsg("drop", o, 
+                translations.text("msgDropMoney", [[-amountPicked], translations.text(currencyId)]));
+            
             if (availableOnSection && count < 0) {
-                // Add the droped money as available on the current section
+                // Add the dropped money as available on the current section
                 const sectionState = state.sectionStates.getSectionState();
-                sectionState.addObjectToSection(currencyId === Currency.NOBLE ? Item.NOBLE : Item.MONEY, 0, false, -count);
+                sectionState.addObjectToSection(Item.MONEY, 0, false, -count, false, 0, currencyId);
             }
         }
         actionChartView.updateMoney();
@@ -566,8 +569,10 @@ export const actionChartController = {
         }
         inventoryState.hasBackpack = false;
 
-        actionChartController.increaseMoney(inventoryState.beltPouch);
-        inventoryState.beltPouch = 0;
+        for(const currency in inventoryState.beltPouch) {
+            actionChartController.increaseMoney(inventoryState.beltPouch[currency], false, false, currency);
+            inventoryState.beltPouch[currency] = 0;
+        }
 
         actionChartController.increaseMeals(inventoryState.meals);
         inventoryState.meals = 0;
@@ -603,12 +608,13 @@ export const actionChartController = {
         const o = state.mechanics.getObject("arrow");
 
         if (realIncrement > 0) {
-            actionChartView.showInventoryMsg("pick", o,
-                translations.text("msgGetArrows", [realIncrement]));
+            const gotText = realIncrement === 1 ? translations.text("msgGetArrow", [realIncrement]) : translations.text("msgGetArrows", [realIncrement]);
+
+            actionChartView.showInventoryMsg("pick", o, gotText );
         } else if (increment < 0) {
+            const lostText = increment === -1 ? translations.text("msgDropArrow", [-increment]) : translations.text("msgDropArrows", [-increment]);
             // If increment is negative, show always the original amount, not the real (useful for debugging)
-            actionChartView.showInventoryMsg("drop", o,
-                translations.text("msgDropArrows", [-increment]));
+            actionChartView.showInventoryMsg("drop", o, lostText);
         } else if (increment > 0 && realIncrement === 0) {
             // You cannot pick more arrows (not quivers enough)
             toastr.error(translations.text("noQuiversEnough"));
@@ -625,6 +631,10 @@ export const actionChartController = {
             toastr.success(translations.text("msgEndurance", ["+20"]));
             template.updateStatistics();
         }
+    },
+
+    disableDiscipline(disciplineIndex: number) {
+        state.actionChart.disableDiscipline(disciplineIndex);
     },
 
     /** Return page */

@@ -253,6 +253,7 @@
         </section>
 
         <section id="sect29">
+            <pick class="money" count="-4"/>
             <endurance count="-2" />
         </section>
 
@@ -1300,8 +1301,8 @@
 
         <section id="sect210">
             <endurance count="-2" />
-            <restoreInventoryState restorePoint="book22weaponsConfiscated" />
-            <restoreInventoryState restorePoint="book22backpackItemsConfiscated" />
+            <saveInventoryState restorePoint="book22weaponsConfiscated" objectsType="weaponlike" />
+            <saveInventoryState restorePoint="book22backpackItemsConfiscated" objectsType="backpackitems" />
         </section>
 
         <section id="sect211">
@@ -1382,16 +1383,12 @@
         <section id="sect223">
             <pick class="money" count="-[MONEY]"  />
 
-            <message id="msg-drop-special" text="Drop one Special Item of your choice (except Moonstone)" />
+            <message id="msg-drop-special" text="Drop one Special Item of your choice" />
             <onInventoryEvent>
                 <test expression="[SPECIAL-ITEMS-ON-ACTIONCHART] &lt; 2 || [SPECIAL-ITEMS-ON-SECTION] > 0">
                     <test not="true" objectOnSection="moonstone">
                         <message id="msg-drop-special" op="hide" />
                         <choiceState section="all" set="enabled" />
-                    </test>
-                    <test objectOnSection="moonstone">
-                        <message id="msg-drop-special" op="show" />
-                        <choiceState section="all" set="disabled" />
                     </test>
                 </test>
 
@@ -1639,7 +1636,7 @@
         </section>
 
         <section id="sect267">
-            <endurance count="-3" />
+            <endurance count="3" />
             <choiceState section="all" set="disabled" />
             <test canUseBow="true">
                 <choiceState section="sect306" set="enabled" />
@@ -1693,9 +1690,8 @@
                     <choiceState section="sect317" set="enabled" />
                 </case>
             </randomTable>
-            <test hasWeaponskillWith="bow">
-                <randomTableIncrement increment="+5" />
-            </test>
+            <randomTableIncrement increment="[BOWBONUS]" />
+
         </section>
 
         <section id="sect275">

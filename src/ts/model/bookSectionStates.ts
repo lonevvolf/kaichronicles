@@ -27,7 +27,7 @@ export class BookSectionStates {
      */
     public otherStates = {
         book6sect26TargetPoints: <number>null,
-        book6sect284: <number[][]>[[]],
+        book6sect284: <number[][]>null,
         book6sect340: [-1 , -1 , -1],
         book9sect91: <string>null,
     };
@@ -113,11 +113,25 @@ export class BookSectionStates {
             const combats = <Combat[]>[];
             $.each( sectionState.combats , ( index , combat ) => {
                 const rightCombat = $.extend( new Combat( "" , 0 , 0 ) , combat );
+                // Fix for spelling error in old saves
+                if (rightCombat["dammageMultiplier"] !== undefined) {
+                    rightCombat.damageMultiplier = rightCombat["dammageMultiplier"];
+                    delete(rightCombat["dammageMultiplier"]);
+                }
+                if (rightCombat["permanentDammage"] !== undefined) {
+                    rightCombat.permanentDamage = rightCombat["permanentDammage"];
+                    delete(rightCombat["permanentDammage"]);
+                }
                 combats.push( rightCombat );
 
                 // Restore combat turns
                 const turns = <CombatTurn[]>[];
                 $.each( rightCombat.turns , ( turnIndex , turn ) => {
+                    // Fix for spelling error in old saves
+                    if (turn["dammageMultiplier"] !== undefined) {
+                        turn.damageMultiplier = turn["dammageMultiplier"];
+                        delete(turn["dammageMultiplier"]);
+                    }
                     turns.push( $.extend( new CombatTurn(null, 0, false, false) , turn ) );
                 });
                 rightCombat.turns = turns;

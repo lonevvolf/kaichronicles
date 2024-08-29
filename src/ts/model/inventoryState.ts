@@ -14,7 +14,7 @@ export class InventoryState {
 
     public specialItems: ActionChartItem[] = [];
 
-    public beltPouch: number = 0;
+    public beltPouch : { [currency: string]: number } = {};
 
     public arrows: number = 0;
 
@@ -94,7 +94,7 @@ export class InventoryState {
         this.hasBackpack = this.hasBackpack || s2.hasBackpack;
         this.backpackItems = this.backpackItems.concat(s2.backpackItems);
         this.specialItems = this.specialItems.concat(s2.specialItems);
-        this.beltPouch = this.beltPouch + s2.beltPouch;
+        this.beltPouch = ActionChart.combineBeltPouches(this.beltPouch, s2.beltPouch);
         this.arrows = this.arrows + s2.arrows;
         this.meals = this.meals + s2.meals;
     }
