@@ -494,7 +494,7 @@ export const mechanicsEngine = {
                 sectionState.addObjectToSection(objectId);
             }
 
-            // Mark the rule as exececuted
+            // Mark the rule as executed
             sectionState.markRuleAsExecuted(rule);
             return;
         }
@@ -1612,7 +1612,8 @@ export const mechanicsEngine = {
                 return;
             }
     
-            state.actionChart.damageKaiWeapon();
+            const damage = mechanicsEngine.getIntProperty($(rule), "damage", false);
+            state.actionChart.damageKaiWeapon(damage);
             toastr.error(translations.text("msgKaiWeaponDamaged"));
             state.sectionStates.markRuleAsExecuted(rule);
         },

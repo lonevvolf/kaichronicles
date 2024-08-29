@@ -824,61 +824,61 @@
         <!-- BOOK 21 -->
         <special droppable="false" id="spawnsmite" weaponType="axe" incompatibleWith="alema|magnara|sunstrike|kaistar|valiance|ulnarias|raumas|illuminatus|firefall">
             <name>Spawnsmite</name>
-            <description>+6CS versus reptilian enemies</description>
+            <description>Additional +1 CS versus reptilian enemies</description>
             <effect class="combatSkill" increment="5" />
         </special>
 
         <special droppable="false" id="alema" weaponType="axe" incompatibleWith="spawnsmite|magnara|sunstrike|kaistar|valiance|ulnarias|raumas|illuminatus|firefall">
             <name>Alema</name>
-            <description>+7CS versus undead enemies</description>
+            <description>Additional +2 CS versus undead enemies</description>
             <effect class="combatSkill" increment="5" />
         </special>
 
         <special droppable="false" id="magnara" weaponType="axe" incompatibleWith="spawnsmite|alema|sunstrike|kaistar|valiance|ulnarias|raumas|illuminatus|firefall">
             <name>Magnara</name>
-            <description>+8CS versus rock or stone</description>
+            <description>Additional +3 CS versus rock or stone</description>
             <effect class="combatSkill" increment="5" />
         </special>
 
         <special droppable="false" id="sunstrike" weaponType="sword" incompatibleWith="spawnsmite|magnara|alema|kaistar|valiance|ulnarias|raumas|illuminatus|firefall">
             <name>Sunstrike</name>
-            <description>+6CS when used in daylight</description>
+            <description>Additional +1 CS when used in daylight</description>
             <effect class="combatSkill" increment="5" />
         </special>
 
         <special droppable="false" id="kaistar" weaponType="sword" incompatibleWith="spawnsmite|magnara|sunstrike|alema|valiance|ulnarias|raumas|illuminatus|firefall">
             <name>Kaistar</name>
-            <description>+7CS when used at night</description>
+            <description>Additional +2 CS when used at night</description>
             <effect class="combatSkill" increment="5" />
         </special>
 
         <special droppable="false" id="valiance" weaponType="sword" incompatibleWith="spawnsmite|magnara|sunstrike|kaistar|alema|ulnarias|raumas|illuminatus|firefall">
             <name>Valiance</name>
-            <description>+8CS when used against magicians or creatures born of magic</description>
+            <description>Additional +3 CS when used against magicians or creatures born of magic</description>
             <effect class="combatSkill" increment="5" />
         </special>
 
         <special droppable="false" id="ulnarias" weaponType="sword" incompatibleWith="spawnsmite|magnara|sunstrike|kaistar|valiance|alema|raumas|illuminatus|firefall">
             <name>Ulnarias</name>
-            <description>+9CS when used underwater</description>
+            <description>Additional +4 CS when used underwater</description>
             <effect class="combatSkill" increment="5" />
         </special>
 
         <special droppable="false" id="raumas" weaponType="broadsword" incompatibleWith="spawnsmite|magnara|sunstrike|kaistar|valiance|ulnarias|alema|illuminatus|firefall">
             <name>Raumas</name>
-            <description>+6CS versus winged enemies</description>
+            <description>Additional +1 CS versus winged enemies</description>
             <effect class="combatSkill" increment="5" />
         </special>
 
         <special droppable="false" id="illuminatus" weaponType="broadsword" incompatibleWith="spawnsmite|magnara|sunstrike|kaistar|valiance|ulnarias|raumas|alema|firefall">
             <name>Illuminatus</name>
-            <description>+7CS when used underground</description>
+            <description>Additional +2 CS when used underground</description>
             <effect class="combatSkill" increment="5" />
         </special>
 
         <special droppable="false" id="firefall" weaponType="broadsword" incompatibleWith="spawnsmite|magnara|sunstrike|kaistar|valiance|ulnarias|raumas|illuminatus|alema">
             <name>Firefall</name>
-            <description>+8CS versus fire-emitting enemies</description>
+            <description>Additional +3 CS versus fire-emitting enemies</description>
             <effect class="combatSkill" increment="5" />
         </special>
 
@@ -1043,6 +1043,23 @@
             <description>In combat against any enemy it will give you a bonus of +5 to your COMBAT SKILL. You may use this magical axe as an alternative to your existing Kai Weapon.</description>
             <image book="1|9" name="axe.png" />
             <effect class="combatSkill" increment="+5" />
+        </special>
+
+        <!-- BOOK 27 -->
+        <special id="clawofnaar">
+            <name>Claw of Naar</name>
+        </special>
+
+        <special id="goldtalisman">
+            <name>Gold Talisman</name>
+        </special>
+
+        <special id="siyenesecompass">
+            <name>Siyenese Compass</name>
+        </special>
+
+        <special id="tigerring" itemCount="0">
+            <name>Tiger Ring</name>
         </special>
 
     </specials>
@@ -2189,6 +2206,16 @@
 
         <object id="copperkey26">
             <name>Copper Key</name>
+            <image book="1" name="small15.png" />
+        </object>
+
+        <!-- BOOK 26 -->
+        <object id="poghlam">
+            <name>Poghlam</name>
+        </object>
+
+        <object id="redkey">
+            <name>Red Key</name>
             <image book="1" name="small15.png" />
         </object>
 

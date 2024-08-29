@@ -112,8 +112,13 @@
 
     <xs:complexType name="damageKaiWeapon">
         <xs:annotation>
-            <xs:documentation>Execute once only. New Order: PERMANENTLY damage the player's Kai Weapon (-2CS)</xs:documentation>
+            <xs:documentation>Execute once only. New Order: PERMANENTLY damage the player's Kai Weapon</xs:documentation>
         </xs:annotation>
+        <xs:attribute name="damage" type="xs:integer">
+            <xs:annotation>
+                <xs:documentation>Amount to adjust Kai Weapon CS (should be negative for damage)</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
     </xs:complexType>
 
     <xs:complexType name="setDisciplines">

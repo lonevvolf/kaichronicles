@@ -23,7 +23,7 @@ export class ActionChartItem {
     /**
      * For Kai Weapons : Permanent CS bonus reduction
      */
-    public damaged = false;
+    public damage = 0;
 
     /**
      * Returns the Item info. null if it was not found
