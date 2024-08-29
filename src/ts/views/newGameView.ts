@@ -1,4 +1,4 @@
-import { projectAon, translations, newGameController, state } from "..";
+import { projectAon, translations, newGameController, state, pwa } from "..";
 
 /**
  * The new game view API
@@ -34,6 +34,20 @@ export const newGameView = {
         $("#newgame-randomtable").val((state.manualRandomTable) ? "manual" : "computer");
         $("#newgame-randomtable").on("change", () => {
             state.manualRandomTable = ($("#newgame-randomtable").val() === "manual");
+        });
+
+        if (pwa.isOnline) {
+            $("#newgame-offline-warning").hide();
+        } else {
+            $("#newgame-offline-warning").show();
+        }
+
+        window.addEventListener("online", () => {
+            $("#newgame-offline-warning").hide();
+        });
+        
+        window.addEventListener("offline", () => {
+            $("#newgame-offline-warning").show();
         });
 
         // Set the first book as selected:

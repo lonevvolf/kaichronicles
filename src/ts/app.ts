@@ -32,7 +32,8 @@ export class App {
 
         // PWA app setup (ServiceWorker)
         // Service worker is disabled in webpack-dev-server: https://github.com/GoogleChrome/workbox/issues/1790
-        if (environment !== EnvironmentType.Development) {
+        if (environment !== EnvironmentType.Development) 
+        {
             pwa.registerServiceWorker();
         }
 
