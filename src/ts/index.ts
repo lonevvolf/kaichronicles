@@ -9,6 +9,7 @@ export * from "./views";
 export * from "./app";
 export * from "./routing";
 export * from "./common";
+export * from "./pwa";
 
 export * from "./controller/mainMenuController";
 export * from "./controller/privacyController";

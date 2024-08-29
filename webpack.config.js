@@ -1,5 +1,6 @@
 const path = require('path');
 const TerserPlugin = require("terser-webpack-plugin");
+const {InjectManifest} = require('workbox-webpack-plugin');
 
 module.exports = {
   mode: 'development',
@@ -9,6 +10,17 @@ module.exports = {
     static: './www',
     port: 3000,
     hot: false,
+    client: {
+      overlay: {
+        // This is a terrible workaround for the annoying message from Workbox, but other solutions to suppress it have not yet worked
+        warnings: (warning) => {
+          if (warning.message.startsWith('InjectManifest has been called multiple times')) {
+            return false;
+          }
+          return true;
+        },
+      }
+    }
   },
   module: {
     rules: [
@@ -31,5 +43,14 @@ module.exports = {
   optimization: {
     minimize: true,
     minimizer: [new TerserPlugin()],
-  }
+  },
+  plugins: [
+    new InjectManifest({
+      swSrc: '/src/ts/sw.ts',
+      swDest: '../sw.js',
+      include: [
+        /kai\.js$/
+      ]
+    }),
+  ]
 };

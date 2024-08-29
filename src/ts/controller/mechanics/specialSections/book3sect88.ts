@@ -13,7 +13,8 @@ export const book3sect88 = {
             return Combat.prototype.nextTurnAsync.call(this)
             .then((turn: CombatTurn) => {
                 // Check the bite:
-                if ( turn.loneWolf > 0 && turn.loneWolf !== COMBATTABLE_DEATH ) {
+                if ( (typeof turn.loneWolf === "number" && turn.loneWolf > 0)
+                    || ( typeof turn.loneWolf === "string" && turn.loneWolf !== COMBATTABLE_DEATH )) {
                     const biteRandomValue = randomTable.getRandomValue();
                     turn.playerLossText = "(" + turn.playerLossText + ")";
                     turn.playerLossText += `Random: ${biteRandomValue}`;
