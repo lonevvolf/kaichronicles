@@ -68,6 +68,27 @@ npm run lint
 
 A "guide" to develop new books can be found at [doc/README-developing.md](doc/README-developing.md)
 
+### Progressive Web App (PWA) Development
+
+Kai Chronicles has been extended to act as a PWA.  It can be added to the home screen of a mobile phone, or as an app in Windows.  The app will continue to function offline due to caching of assets, though the books are not predownloaded, so starting a New Game will fail unless you have already started the book before.
+
+Of course, asset caching complicates development, not least because webpack-dev-server doesn't play nice with the precaching mechanism (https://github.com/GoogleChrome/workbox/issues/1790).  Therefore, the caching and PWA functionality should be disabled while developing.  
+
+If you want to specifically develop PWA features:
+1) Comment out:
+        `if (environment !== EnvironmentType.Development)`
+  in app.ts
+2) Make your changes to the app
+3) Run:
+      `npm run predist`
+   to regenerate the service worker code
+4) Run a dedicated http server other than webpack-dev-server:
+      `npx http-server ./www`
+5) Open the app at:
+      `http://localhost:8080`
+
+After finishing, be sure to reverse the change from step 1 before committing changes.  Hopefully this process can be improved in the future, but there shouldn't be frequent changes to the PWA functionality.
+
 ### Tests
 
 Tests are run with Selenium Web Driver and Jest. Currently tests will run only with Chrome, and Selenium will need a "browser driver". See https://www.selenium.dev/documentation/en/webdriver/driver_requirements for installation instructions. Tests are located at src/ts/tests. Be sure Typescript for node.js is compiled before running tests:

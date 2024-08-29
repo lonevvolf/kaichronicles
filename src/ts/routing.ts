@@ -34,7 +34,7 @@ export const routing = {
             template.collapseMenu();
 
             // This will fire the onHashChange callback:
-            location.hash = route;
+            window.location.hash = route;
 
         } catch (e) {
             mechanicsEngine.debugWarning(e);
