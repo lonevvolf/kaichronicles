@@ -6,10 +6,16 @@
   "start_url": ".",
   "background_color": "#fff",
   "theme_color": "#333",
-  "launch_handler": "auto",
+  "launch_handler": {
+    "client_mode" : "auto"
+  },
   "display": "standalone",
   "description": "A player for Lone Wolf game books.",
   "orientation": "portrait",
+  "edge_side_panel": {},
+  "dir": "ltr",
+  "lang": "en",
+  "scope": "https://kaichronicles.projectaon.org",
   "icons": [
     {
       "src": "images/app-icons/16x16.png",
@@ -69,13 +75,8 @@
     {
       "src": "images/app-icons/512x512.png",
       "sizes": "512x512",
-      "type": "image/png"
-    },
-    {
-      "src": "images/app-icons/512x512.png",
-      "sizes": "512x512",
       "type": "image/png",
-      "purpose": "maskable"
+      "purpose": "maskable any"
     }
   ],
   "categories": [
