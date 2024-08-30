@@ -79,6 +79,32 @@
       "purpose": "maskable any"
     }
   ],
+  "screenshots": [
+    {
+      "src" : "images/screenshots/ss1-desktop.png",
+      "sizes" : "1280x800",
+      "type" : "image/png",
+      "form_factor": "wide",
+      "label" : "Main Page of Kai Chronicles",
+      "platform" : "windows"
+    },
+    {
+      "src" : "images/screenshots/ss1-mobile.png",
+      "sizes" : "750x1334",
+      "type" : "image/png",
+      "form_factor": "narrow",
+      "label" : "Main Page of Kai Chronicles",
+      "platform" : "android"
+    },
+    {
+      "src" : "images/screenshots/ss1-mobile.png",
+      "sizes" : "750x1334",
+      "type" : "image/png",
+      "form_factor": "narrow",
+      "label" : "Main Page of Kai Chronicles",
+      "platform" : "ios"
+    },
+  ],
   "categories": [
     "games",
     "kids",
