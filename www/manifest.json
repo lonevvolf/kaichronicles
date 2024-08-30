@@ -2,9 +2,12 @@
   "$schema": "https://json.schemastore.org/web-manifest-combined.json",
   "name": "Kai Chronicles",
   "short_name": "Kai Chronicles",
+  "id": "/",
   "start_url": ".",
-  "display": "standalone",
   "background_color": "#fff",
+  "theme_color": "#333",
+  "launch_handler": "auto",
+  "display": "standalone",
   "description": "A player for Lone Wolf game books.",
   "orientation": "portrait",
   "icons": [
