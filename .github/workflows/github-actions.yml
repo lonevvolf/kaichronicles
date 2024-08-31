@@ -1,6 +1,6 @@
 name: Build and Deploy Kai Chronicles
 env: 
-  WEBPACKs_ENV: ${{ vars.WEBPACK_ENV }}
+  WEBPACK_ENV: ${{ vars.WEBPACK_ENV }}
 run-name: ${{ github.actor }} is building Kai Chronicles
 on: [push, workflow_dispatch]
 jobs:
