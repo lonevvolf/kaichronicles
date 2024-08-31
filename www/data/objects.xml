@@ -2225,6 +2225,16 @@
             <usage class="endurance" increment="+6" />
         </object>
 
+        <object id="omaldro">
+            <name>Omaldro</name>
+            <description>When swallowed, Omaldro will boost your COMBAT SKILL by 2 points for the duration of one combat.</description>
+            <usage class="combatSkill" increment="+2" />
+        </object>
+
+        <object id="barofsoap">
+            <name>Bar of Soap</name>
+        </object>
+
         <!-- TODO: If player is forced to drop bag of holding, they can be over the limit. 
          Find a way to force them to drop items before proceeding -->
         <object id="drodarinbagofholding">
