@@ -51,7 +51,7 @@ jobs:
 
   prod-deploy:
     needs: [build, staging-deploy]
-    environment: Project Aon DOESN'T EXIST
+    environment: Project Aon
 
     # Specify runner + deployment step
     runs-on: ubuntu-latest
