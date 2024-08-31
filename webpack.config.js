@@ -35,9 +35,8 @@ module.exports = {
     extensions: [ '.tsx', '.ts', '.js' ],
   },
   output: {
-    filename: 'kai.js',
-    path: path.resolve(__dirname, 'www/js'),
-    publicPath: '/js/',
+    filename: 'js/kai.js',
+    path: path.resolve(__dirname, 'www'),
     library: 'kai'
   },
   optimization: {
@@ -47,7 +46,7 @@ module.exports = {
   plugins: [
     new InjectManifest({
       swSrc: '/src/ts/sw.ts',
-      swDest: '../sw.js',
+      swDest: 'sw.js',
       include: [
         /kai\.js$/
       ]
