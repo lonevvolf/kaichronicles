@@ -58,6 +58,8 @@ jobs:
         with:
           name: dist
           path: dist
+      - name: Extract archive
+        run: cd dist && mkdir extract && tar -xvf dist.tar -C extract
       - name: Deploy files to Project Aon
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
@@ -66,6 +68,6 @@ jobs:
             server: ${{ secrets.SFTP_HOST }}
             password: ${{ secrets.SFTP_PASS }}
             
-            local_path: "./dist/*"
+            local_path: "./dist/extract/*"
             remote_path: "/home/${{ secrets.SFTP_USER }}/kaichronicles.projectaon.org"
 
