@@ -6,21 +6,19 @@ module.exports = {
   mode: process.env.WEBPACK_ENV ?? 'development',
   entry: './src/ts/index.ts',
   devtool: "source-map",
+  performance: {
+    maxEntrypointSize: 512000,
+    maxAssetSize: 512000
+  },
+  ignoreWarnings: [
+    {
+      message: /InjectManifest has been called multiple times/,
+    }
+  ],
   devServer: {
     static: './www',
     port: 3000,
     hot: false,
-    client: {
-      overlay: {
-        // This is a terrible workaround for the annoying message from Workbox, but other solutions to suppress it have not yet worked
-        warnings: (warning) => {
-          if (warning.message.startsWith('InjectManifest has been called multiple times')) {
-            return false;
-          }
-          return true;
-        },
-      }
-    }
   },
   module: {
     rules: [
