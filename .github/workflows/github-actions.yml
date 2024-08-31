@@ -20,10 +20,15 @@ jobs:
           npm run dist
       - name: Summarize Tests
         run: npx github-actions-ctrf ctrf/ctrf-report.json
-      - name: Archive dist folder
+      - name: Archive dist folder (GitHub Pages)
+        uses: actions/upload-pages-artifact@v3
+        with:
+          name: github-pages-dist
+          path: dist
+      - name: Archive dist folder (Project Aon)
         uses: actions/upload-artifact@v4
         with:
-          name: dist
+          name: projectaon-dist
           path: dist
   staging-deploy:
     needs: build
@@ -45,7 +50,7 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
         with:
-          artifact_name: dist
+          artifact_name: github-pages-dist
 
   prod-deploy:
     needs: [build, staging-deploy]
@@ -57,7 +62,7 @@ jobs:
       - name: Download dist folder
         uses: actions/download-artifact@v4
         with:
-          name: dist
+          name: projectaon-dist
           path: dist
       - name: Deploy files to Project Aon
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
