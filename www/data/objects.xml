@@ -2209,7 +2209,7 @@
             <image book="1" name="small15.png" />
         </object>
 
-        <!-- BOOK 26 -->
+        <!-- BOOK 27 -->
         <object id="poghlam">
             <name>Poghlam</name>
         </object>
@@ -2217,6 +2217,12 @@
         <object id="redkey">
             <name>Red Key</name>
             <image book="1" name="small15.png" />
+        </object>
+
+        <object id="klorva">
+            <name>Klorva</name>
+            <description>When swallowed after sustaining an injury, Klorva will restore 6 ENDURANCE points.</description>
+            <usage class="endurance" increment="+6" />
         </object>
 
         <!-- TODO: If player is forced to drop bag of holding, they can be over the limit. 
