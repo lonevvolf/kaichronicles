@@ -17,8 +17,6 @@ jobs:
           npm install
           npm run downloaddata --url=${{ vars.REPO_URL }}
           npm run dist
-      - name: Summarize Tests
-        run: npx github-actions-ctrf ctrf/ctrf-report.json
       - name: 'Tar files'
         run: tar -cvf dist.tar -C dist .
       - name: Archive dist folder
