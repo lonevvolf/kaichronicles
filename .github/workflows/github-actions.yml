@@ -57,7 +57,7 @@ jobs:
 
     # Specify runner + deployment step
     runs-on: ubuntu-latest
-    if: ${{ vars.WEBPACK_ENV }} == 'production'
+    if: env.WEBPACK_ENV == 'production'
     steps:
       - name: Download dist folder
         uses: actions/download-artifact@v4
