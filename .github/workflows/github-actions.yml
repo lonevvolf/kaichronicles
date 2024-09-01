@@ -57,7 +57,7 @@ jobs:
 
     # Specify runner + deployment step
     runs-on: ubuntu-latest
-    if: ${{ secrets.SFTP_USER }} != null
+    if: ${{ vars.WEBPACK_ENV }} == 'production'
     steps:
       - name: Download dist folder
         uses: actions/download-artifact@v4
