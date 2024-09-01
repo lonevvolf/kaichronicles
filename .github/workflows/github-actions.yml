@@ -52,12 +52,12 @@ jobs:
           artifact_name: dist
 
   prod-deploy:
-    if: ${{ secrets.SFTP_USER }} != null
     needs: [build, staging-deploy]
     environment: Project Aon
 
     # Specify runner + deployment step
     runs-on: ubuntu-latest
+    if: ${{ secrets.SFTP_USER }} != null
     steps:
       - name: Download dist folder
         uses: actions/download-artifact@v4
