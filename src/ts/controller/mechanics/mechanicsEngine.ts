@@ -1,5 +1,5 @@
 import { views, translations, Section, gameView, state, CombatMechanics, randomMechanics, Combat, Item, routing, gameController,
-    App, ExpressionEvaluator, numberPickerMechanics, disciplinePickerMechanics, SkillsSetup, KaiNameSetup, SetupDisciplines, EquipmentSectionMechanics, actionChartController,
+    App, ExpressionEvaluator, numberPickerMechanics, disciplinePickerMechanics, kaiWeaponPickerMechanics, SkillsSetup, KaiNameSetup, SetupDisciplines, EquipmentSectionMechanics, actionChartController,
     CurrencyName, LoreCircle, BookSeriesId, MealMechanics, ActionChartItem, InventoryState, actionChartView, template, Book,
     GrandMasterUpgrade, kaimonasteryController, book2sect238, book2sect308, book3sect88, book6sect26, book6sect284,
     book6sect340, book9sect91, book19sect304, ObjectsTable, ObjectsTableType, setupController, KaiDiscipline, MgnDiscipline,
@@ -333,6 +333,10 @@ export const mechanicsEngine = {
                     reRender = true;
                     return "finish";
                 }
+            } else if (rule.nodeName === "kaiWeaponPicker") {
+                // Section should be re-rendered
+                reRender = true;
+                return "finish";
             }
         });
         return reRender;
@@ -458,8 +462,7 @@ export const mechanicsEngine = {
     },
 
     /**
-     * Choose equipment UI (only for book 1)
-     * TODO: This is weird, only for book 1? Fix this
+     * Choose equipment UI 
      */
     chooseEquipment(rule: Element) {
         EquipmentSectionMechanics.chooseEquipment(rule);
@@ -523,7 +526,7 @@ export const mechanicsEngine = {
             mechanicsEngine.debugWarning("Pick rule with no objectId / class");
         }
 
-        // Mark the rule as exececuted
+        // Mark the rule as executed
         sectionState.markRuleAsExecuted(rule);
     },
 
@@ -711,6 +714,16 @@ export const mechanicsEngine = {
             const currentWeapon = state.actionChart.getSelectedWeaponItem(false);
             const currentIsSpecial = (currentWeapon && currentWeapon.type === Item.SPECIAL);
             if (currentIsSpecial === currentWeaponSpecial) {
+                return true;
+            }
+        }
+
+        // Current hand-to-hand weapon is magical?
+        const currentWeaponMagical = mechanicsEngine.getBooleanProperty($rule, "currentWeaponMagical");
+        if (currentWeaponMagical !== null) {
+            const currentWeapon = state.actionChart.getSelectedWeaponItem(false);
+            const currentIsMagical = (currentWeapon && (currentWeapon.enduranceEffect !== 0 || currentWeapon.combatSkillEffect !== 0));
+            if (currentIsMagical === currentWeaponMagical) {
                 return true;
             }
         }
@@ -1370,6 +1383,13 @@ export const mechanicsEngine = {
      */
     disciplinePicker(rule: Element) {
         disciplinePickerMechanics.disciplinePicker(rule);
+    },
+
+    /**
+     * Kai Weapon picker UI
+     */
+    kaiWeaponPicker(rule: Element) {
+        kaiWeaponPickerMechanics.kaiWeaponPicker(rule);
     },
 
     /**

@@ -42,6 +42,7 @@ export * from "./controller/mechanics/randomMechanics";
 export * from "./controller/mechanics/equipmentSectionMechanics";
 export * from "./controller/mechanics/numberPickerMechanics";
 export * from "./controller/mechanics/disciplinePickerMechanics";
+export * from "./controller/mechanics/kaiWeaponPickerMechanics";
 export * from "./controller/mechanics/grandMasterUpgrade";
 export * from "./controller/mechanics/specialObjectsUse";
 export * from "./controller/kaimonasteryController";

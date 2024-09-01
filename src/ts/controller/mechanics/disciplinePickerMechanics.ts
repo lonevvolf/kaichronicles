@@ -118,23 +118,6 @@ export const disciplinePickerMechanics = {
     /**
      * Get the discipline picker value
      */
-    getrDisciplinePickerValue(): number {
-        try {
-            const $picker = $("#mechanics-dpAmount");
-            if ($picker.length > 0) {
-                return $picker.getNumber();
-            } else {
-                return 0;
-            }
-        } catch (e) {
-            mechanicsEngine.debugWarning(e);
-            return 0;
-        }
-    },
-
-    /**
-     * Get the discipline picker value
-     */
     getDisciplinePickerValue(): number {
         try {
             return parseInt($('input[name="mechanics-disciplineGroup"]:checked').val().toString());

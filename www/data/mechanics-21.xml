@@ -55,40 +55,53 @@
             <object objectId="laumspurpotion4" />
             <object objectId="axe" />
 
-            <randomTable index="1">
-                <case value="0">
-                    <pick objectId="spawnsmite"/>
-                </case>
-                <case value="1">
-                    <pick objectId="alema"/>
-                </case>
-                <case value="2">
-                    <pick objectId="magnara"/>
-                </case>
-                <case value="3">
-                    <pick objectId="sunstrike"/>
-                </case>
-                <case value="4">
-                    <pick objectId="kaistar"/>
-                </case>
-                <case value="5">
-                    <pick objectId="valiance"/>
-                </case>
-                <case value="6">
-                    <pick objectId="ulnarias"/>
-                </case>
-                <case value="7">
-                    <pick objectId="raumas"/>
-                </case>
-                <case value="8">
-                    <pick objectId="illuminatus"/>
-                </case>
-                <case value="9">
-                    <pick objectId="firefall"/>
-                </case>
-            </randomTable>
+            <test not="true" hasObject="spawnsmite|alema|magnara|sunstrike|kaistar|valiance|ulnarias|raumas|illuminatus|firefall">
+                <randomTable index="1">
+                    <case value="0">
+                        <pick objectId="spawnsmite"/>
+                        <kaiWeaponPicker enabled="false"  />
+                    </case>
+                    <case value="1">
+                        <pick objectId="alema"/>
+                        <kaiWeaponPicker enabled="false"  />
+                    </case>
+                    <case value="2">
+                        <pick objectId="magnara"/>
+                        <kaiWeaponPicker enabled="false"  />
+                    </case>
+                    <case value="3">
+                        <pick objectId="sunstrike"/>
+                        <kaiWeaponPicker enabled="false"  />
+                    </case>
+                    <case value="4">
+                        <pick objectId="kaistar"/>
+                        <kaiWeaponPicker enabled="false"  />
+                    </case>
+                    <case value="5">
+                        <pick objectId="valiance"/>
+                        <kaiWeaponPicker enabled="false"  />
+                    </case>
+                    <case value="6">
+                        <pick objectId="ulnarias"/>
+                        <kaiWeaponPicker enabled="false"  />
+                    </case>
+                    <case value="7">
+                        <pick objectId="raumas"/>
+                        <kaiWeaponPicker enabled="false"  />
+                    </case>
+                    <case value="8">
+                        <pick objectId="illuminatus"/>
+                        <kaiWeaponPicker enabled="false"  />
+                    </case>
+                    <case value="9">
+                        <pick objectId="firefall"/>
+                        <kaiWeaponPicker enabled="false"  />
+                    </case>
+                </randomTable>
+            </test>
 
             <chooseEquipment text="Click on the Random Table links to get money and a Kai Weapon before continuing" />
+            <kaiWeaponPicker actionButton="Choose Kai Weapon" confirmText="confirmChooseKaiWeapon" text="Choose a Kai Weapon" />
 
             <message text="You may take up to five of the following (all meals count as one object):" />
         </section>

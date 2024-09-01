@@ -326,6 +326,11 @@
                 <xs:documentation>Current weapon is a Special Item (or not)?</xs:documentation>
             </xs:annotation>
         </xs:attribute>
+        <xs:attribute name="currentWeaponMagical" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation>Current weapon is has a CS or EP effect (or not)?</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
         <xs:attribute name="isGlobalRuleRegistered" type="xs:string">
             <xs:annotation>
                 <xs:documentation>A global rule with a given id is currently registered?</xs:documentation>
@@ -905,7 +910,7 @@
         </xs:annotation>
         <xs:attribute name="enabled" type="xs:boolean">
             <xs:annotation>
-                <xs:documentation>If set to false, disable the number picker</xs:documentation>
+                <xs:documentation>If set to false, disable the discipline picker</xs:documentation>
             </xs:annotation>
         </xs:attribute>
         <xs:attribute name="actionButton" type="xs:string">
@@ -915,7 +920,7 @@
         </xs:attribute>
         <xs:attribute name="text" type="xs:string">
             <xs:annotation>
-                <xs:documentation>Text displayed in the number picker UI</xs:documentation>
+                <xs:documentation>Text displayed in the discipline picker UI</xs:documentation>
             </xs:annotation>
         </xs:attribute>
         <xs:attribute name="confirmText" type="xs:string">
@@ -925,6 +930,32 @@
         </xs:attribute>
     </xs:complexType>
 
+    <xs:complexType name="kaiWeaponPicker">
+        <xs:annotation>
+            <xs:documentation>Add a control on the UI to select a Kai Weapon.</xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="enabled" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation>If set to false, disable the Kai Weapon picker</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="actionButton" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>Text displayed in the button</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="text" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>Text displayed in the Kai Weapon picker UI</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="confirmText" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>Optional: text (from translations) displayed as a confirmation text before completing the action</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+    
     <xs:complexType name="huntStatus">
         <xs:annotation>
             <xs:documentation>This will enable or disable the hunting on meals until new advice. This will be used on map zones where there is no food (deserts, etc).</xs:documentation>

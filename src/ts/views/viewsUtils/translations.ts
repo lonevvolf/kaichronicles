@@ -40,6 +40,7 @@ export class Translations {
         "confirmUse" : 'Are you sure you want to use "{0}"?',
         "confirmDrop" : 'Are you sure you want to drop "{0}"?',
         "confirmDisableDiscipline" : "Are you sure you want to disable {0} for the rest of the book?",
+        "confirmChooseKaiWeapon" : "Are you sure you want to select {0} as your Kai Weapon?",
         "noEnoughMoney" : "You don't have enough money",
         "confirmBuy" : "Are you sure you want to buy the object for {0} {1}?",
         "msgGetObject" : 'You got "{0}"',

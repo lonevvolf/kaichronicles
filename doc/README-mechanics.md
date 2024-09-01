@@ -300,6 +300,7 @@ will be executed.
 * **hasWeaponskillWith="weaponType"** : The player has "Weaponskill" (current book discipline, no loyalty bonus) with the given weapon type?
 * **canUseBow="boolean"** : The player has a bow and one arrow (or not)?
 * **currentWeaponSpecial="boolean"** : Current weapon is a Special Item (or not)?
+* **currentWeaponMagical="boolean"** : Current weapon is has a CS or EP effect (or not)?
 * **isGlobalRuleRegistered="globalRuleId"** : A global rule with a given id is currently registered?
 * **objectOnSection="objectId1|objectId2|..."**: Some of these objects is available on the current section?
 * **pickedSomethingOnSection="sectionId"**: Did the player pick something on the given section?
