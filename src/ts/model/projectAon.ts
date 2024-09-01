@@ -264,7 +264,7 @@ export const projectAon = {
 
 };
 
-// Do not use Typescript modules here, plain node.js modules for browser JS compatiblity (oh javascript...)
+// Do not use Typescript modules here, plain node.js modules for browser JS compatibility (oh javascript...)
 try {
     if (typeof exports !== "undefined") {
         exports.projectAon = projectAon;

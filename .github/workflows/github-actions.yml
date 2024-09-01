@@ -1,4 +1,6 @@
 name: Build and Deploy Kai Chronicles
+env: 
+  WEBPACK_ENV: ${{ vars.WEBPACK_ENV || 'development' }}
 run-name: ${{ github.actor }} is building Kai Chronicles
 on: [push, workflow_dispatch]
 jobs:
@@ -20,11 +22,14 @@ jobs:
           npm run dist
       - name: Summarize Tests
         run: npx github-actions-ctrf ctrf/ctrf-report.json
+      - name: 'Tar files'
+        run: tar -cvf dist.tar -C dist .
       - name: Archive dist folder
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          path: dist
-  deploy:
+          name: dist
+          path: dist.tar
+  staging-deploy:
     needs: build
 
     # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
@@ -43,3 +48,32 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          artifact_name: dist
+
+  prod-deploy:
+    needs: [build, staging-deploy]
+    environment: Project Aon
+
+    # Specify runner + deployment step
+    runs-on: ubuntu-latest
+    if: ${{ vars.WEBPACK_ENV && vars.WEBPACK_ENV == 'production' }}
+    steps:
+      - name: Download dist folder
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist
+      - name: Extract archive
+        run: cd dist && mkdir extract && tar -xvf dist.tar -C extract
+      - name: Deploy files to Project Aon
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+        with:
+            ssh_private_key: ""
+            username: ${{ secrets.SFTP_USER }}  
+            server: ${{ secrets.SFTP_HOST }}
+            password: ${{ secrets.SFTP_PASS }}
+            
+            local_path: "./dist/extract/*"
+            remote_path: "/home/${{ secrets.SFTP_USER }}/kaichronicles.projectaon.org"
+

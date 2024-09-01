@@ -1,17 +1,113 @@
 {
-    "$schema": "https://json.schemastore.org/web-manifest-combined.json",
-    "name": "Kai Chronicles",
-    "short_name": "Kai Chronicles",
-    "start_url": ".",
-    "display": "standalone",
-    "background_color": "#fff",
-    "description": "A player for Lone Wolf game books.",
-    "orientation": "portrait",
-    "icons": [{
-      "src": "images/icon_900.png",
-      "sizes": "900x900",
+  "$schema": "https://json.schemastore.org/web-manifest-combined.json",
+  "name": "Kai Chronicles",
+  "short_name": "Kai Chronicles",
+  "id": "/",
+  "start_url": ".",
+  "background_color": "#fff",
+  "theme_color": "#222",
+  "launch_handler": {
+    "client_mode" : "auto"
+  },
+  "display": "standalone",
+  "description": "A player for Lone Wolf game books.",
+  "orientation": "portrait",
+  "edge_side_panel": {},
+  "dir": "ltr",
+  "lang": "en",
+  "scope": "https://kaichronicles.projectaon.org",
+  "icons": [
+    {
+      "src": "images/app-icons/16x16.png",
+      "sizes": "16x16",
       "type": "image/png"
-    }],
-    "categories": ["games","kids","books"]
-  }
-  
+    },
+    {
+      "src": "images/app-icons/32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "images/app-icons/72x72.png",
+      "sizes": "72x72",
+      "type": "image/png"
+    },
+    {
+      "src": "images/app-icons/96x96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "images/app-icons/120x120.png",
+      "sizes": "120x120",
+      "type": "image/png"
+    },
+    {
+      "src": "images/app-icons/128x128.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "images/app-icons/144x144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "images/app-icons/152x152.png",
+      "sizes": "152x152",
+      "type": "image/png"
+    },
+    {
+      "src": "images/app-icons/180x180.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "images/app-icons/192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "images/app-icons/384x384.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    },
+    {
+      "src": "images/app-icons/512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ],
+  "screenshots": [
+    {
+      "src" : "images/screenshots/ss1-desktop.png",
+      "sizes" : "1280x800",
+      "type" : "image/png",
+      "form_factor": "wide",
+      "label" : "Main Page of Kai Chronicles",
+      "platform" : "windows"
+    },
+    {
+      "src" : "images/screenshots/ss1-mobile.png",
+      "sizes" : "750x1334",
+      "type" : "image/png",
+      "form_factor": "narrow",
+      "label" : "Main Page of Kai Chronicles",
+      "platform" : "android"
+    },
+    {
+      "src" : "images/screenshots/ss1-mobile.png",
+      "sizes" : "750x1334",
+      "type" : "image/png",
+      "form_factor": "narrow",
+      "label" : "Main Page of Kai Chronicles",
+      "platform" : "ios"
+    }
+  ],
+  "categories": [
+    "games",
+    "kids",
+    "books"
+  ]
+}
