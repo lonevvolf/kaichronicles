@@ -341,11 +341,12 @@
 
         <section id="sect38">
             <choiceState section="all" set="disabled" />
+            <!-- There's a mistake in the original text here, 5 is missing. Adding to middle result. -->
             <randomTable>
                 <case to="1">
                     <choiceState section="sect142" set="enabled" />
                 </case>
-                <case from="2" to="4">
+                <case from="2" to="5">
                     <choiceState section="sect198" set="enabled" />
                 </case>
                 <case from="6">
