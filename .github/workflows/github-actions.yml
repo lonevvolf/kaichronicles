@@ -52,6 +52,7 @@ jobs:
           artifact_name: dist
 
   prod-deploy:
+    if: ${{ secrets.SFTP_USER }} != null
     needs: [build, staging-deploy]
     environment: Project Aon
 
