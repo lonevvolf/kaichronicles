@@ -88,6 +88,14 @@ export class SectionState {
     };
 
     /**
+     * Kai Weapon picker states for this section.
+     * See kaiWeaponPicker.ts and kaiWeaponPickerMechanics.ts
+     */
+    public kaiWeaponPickersState = {
+        actionFired: null
+    };
+
+    /**
      * Mark a rule as executed
      * @param rule The executed rule
      * @param executionState The state to associate with the execution. If it's null,

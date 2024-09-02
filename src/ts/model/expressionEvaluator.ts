@@ -19,7 +19,7 @@ export class ExpressionEvaluator {
         // Last random value
         "[RANDOM]"() {
             // TODO Find a way to load previous value if lastValue is null
-            return randomMechanics.lastValue || 0;
+            return randomMechanics.lastValue ?? -1;
         },
 
         // Last combat random value

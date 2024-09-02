@@ -57,38 +57,49 @@
                 <randomTable index="1">
                     <case value="0">
                         <pick objectId="spawnsmite"/>
+                        <kaiWeaponPicker enabled="false"  />
                     </case>
                     <case value="1">
                         <pick objectId="alema"/>
+                        <kaiWeaponPicker enabled="false"  />
                     </case>
                     <case value="2">
                         <pick objectId="magnara"/>
+                        <kaiWeaponPicker enabled="false"  />
                     </case>
                     <case value="3">
                         <pick objectId="sunstrike"/>
+                        <kaiWeaponPicker enabled="false"  />
                     </case>
                     <case value="4">
                         <pick objectId="kaistar"/>
+                        <kaiWeaponPicker enabled="false"  />
                     </case>
                     <case value="5">
                         <pick objectId="valiance"/>
+                        <kaiWeaponPicker enabled="false"  />
                     </case>
                     <case value="6">
                         <pick objectId="ulnarias"/>
+                        <kaiWeaponPicker enabled="false"  />
                     </case>
                     <case value="7">
                         <pick objectId="raumas"/>
+                        <kaiWeaponPicker enabled="false"  />
                     </case>
                     <case value="8">
                         <pick objectId="illuminatus"/>
+                        <kaiWeaponPicker enabled="false"  />
                     </case>
                     <case value="9">
                         <pick objectId="firefall"/>
+                        <kaiWeaponPicker enabled="false"  />
                     </case>
                 </randomTable>
             </test>
 
             <chooseEquipment text="Click on the Random Table links to get money and a Kai Weapon before continuing" />
+            <kaiWeaponPicker actionButton="Choose Kai Weapon" confirmText="confirmChooseKaiWeapon" text="Choose a Kai Weapon" />
 
             <numberPicker money="true" currency="crown" text="You may choose the number of Gold Crowns to exchange for Ren" min="1" actionButton="Exchange" />
             <numberPickerChoosed>

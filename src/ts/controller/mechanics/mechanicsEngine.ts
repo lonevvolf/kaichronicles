@@ -1,5 +1,5 @@
 import { views, translations, Section, gameView, state, CombatMechanics, randomMechanics, Combat, Item, routing, gameController,
-    App, ExpressionEvaluator, numberPickerMechanics, disciplinePickerMechanics, SkillsSetup, KaiNameSetup, SetupDisciplines, EquipmentSectionMechanics, actionChartController,
+    App, ExpressionEvaluator, numberPickerMechanics, disciplinePickerMechanics, kaiWeaponPickerMechanics, SkillsSetup, KaiNameSetup, SetupDisciplines, EquipmentSectionMechanics, actionChartController,
     CurrencyName, LoreCircle, BookSeriesId, MealMechanics, ActionChartItem, InventoryState, actionChartView, template, Book,
     GrandMasterUpgrade, kaimonasteryController, book2sect238, book2sect308, book3sect88, book6sect26, book6sect284,
     book6sect340, book9sect91, book19sect304, ObjectsTable, ObjectsTableType, setupController, KaiDiscipline, MgnDiscipline,
@@ -333,6 +333,10 @@ export const mechanicsEngine = {
                     reRender = true;
                     return "finish";
                 }
+            } else if (rule.nodeName === "kaiWeaponPicker") {
+                // Section should be re-rendered
+                reRender = true;
+                return "finish";
             }
         });
         return reRender;
@@ -458,8 +462,7 @@ export const mechanicsEngine = {
     },
 
     /**
-     * Choose equipment UI (only for book 1)
-     * TODO: This is weird, only for book 1? Fix this
+     * Choose equipment UI 
      */
     chooseEquipment(rule: Element) {
         EquipmentSectionMechanics.chooseEquipment(rule);
@@ -494,7 +497,7 @@ export const mechanicsEngine = {
                 sectionState.addObjectToSection(objectId);
             }
 
-            // Mark the rule as exececuted
+            // Mark the rule as executed
             sectionState.markRuleAsExecuted(rule);
             return;
         }
@@ -523,7 +526,7 @@ export const mechanicsEngine = {
             mechanicsEngine.debugWarning("Pick rule with no objectId / class");
         }
 
-        // Mark the rule as exececuted
+        // Mark the rule as executed
         sectionState.markRuleAsExecuted(rule);
     },
 
@@ -711,6 +714,16 @@ export const mechanicsEngine = {
             const currentWeapon = state.actionChart.getSelectedWeaponItem(false);
             const currentIsSpecial = (currentWeapon && currentWeapon.type === Item.SPECIAL);
             if (currentIsSpecial === currentWeaponSpecial) {
+                return true;
+            }
+        }
+
+        // Current hand-to-hand weapon is magical?
+        const currentWeaponMagical = mechanicsEngine.getBooleanProperty($rule, "currentWeaponMagical");
+        if (currentWeaponMagical !== null) {
+            const currentWeapon = state.actionChart.getSelectedWeaponItem(false);
+            const currentIsMagical = (currentWeapon && (currentWeapon.enduranceEffect !== 0 || currentWeapon.combatSkillEffect !== 0));
+            if (currentIsMagical === currentWeaponMagical) {
                 return true;
             }
         }
@@ -1111,7 +1124,7 @@ export const mechanicsEngine = {
         // It's a bow combat?
         combat.bowCombat = mechanicsEngine.getBooleanProperty($rule, "bow", false);
 
-        // LW loss is permament (applied to the original endurance)?
+        // LW loss is permanent (applied to the original endurance)?
         const permanentDamage = mechanicsEngine.getBooleanProperty($rule, "permanentDamage");
         if (permanentDamage !== null) {
             combat.permanentDamage = permanentDamage;
@@ -1373,6 +1386,13 @@ export const mechanicsEngine = {
     },
 
     /**
+     * Kai Weapon picker UI
+     */
+    kaiWeaponPicker(rule: Element) {
+        kaiWeaponPickerMechanics.kaiWeaponPicker(rule);
+    },
+
+    /**
      * Number picker action button clicked event handler
      */
     numberPickerChoosed(rule: Element) {
@@ -1602,6 +1622,21 @@ export const mechanicsEngine = {
         state.actionChart.resetDisabledDisciplines();
         state.sectionStates.markRuleAsExecuted(rule);
     },
+
+    /**
+     * New Order: New Order: PERMANENTLY damage the player's Kai Weapon (-2CS)
+     */
+        damageKaiWeapon(rule: Element) {
+            if ( state.sectionStates.ruleHasBeenExecuted(rule) ) {
+                // Execute only once
+                return;
+            }
+    
+            const damage = mechanicsEngine.getIntProperty($(rule), "damage", false);
+            state.actionChart.damageKaiWeapon(damage);
+            toastr.error(translations.text("msgKaiWeaponDamaged"));
+            state.sectionStates.markRuleAsExecuted(rule);
+        },
 
     /**
      * Set of rules that should be executed only once

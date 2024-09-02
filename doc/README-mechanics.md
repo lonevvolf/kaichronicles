@@ -151,6 +151,13 @@ Execute once only. New Order: Reset counter of EP restore by Curing, limited to 
 ### resetNewOrderDisabledDisciplines
 Execute once only. New Order: Reset any disabled disciplines in the current book.
 
+### damageKaiWeapon
+Execute once only. New Order: PERMANENTLY damage the player's Kai Weapon
+```xml
+<damageKaiWeapon damage="-2" />
+```
+Permanently applies -2CS to the player's Kai Weapon
+
 ### setSkills
 Game setup: The player selects the initial Endurance and Combat Skill
 
@@ -293,6 +300,7 @@ will be executed.
 * **hasWeaponskillWith="weaponType"** : The player has "Weaponskill" (current book discipline, no loyalty bonus) with the given weapon type?
 * **canUseBow="boolean"** : The player has a bow and one arrow (or not)?
 * **currentWeaponSpecial="boolean"** : Current weapon is a Special Item (or not)?
+* **currentWeaponMagical="boolean"** : Current weapon is has a CS or EP effect (or not)?
 * **isGlobalRuleRegistered="globalRuleId"** : A global rule with a given id is currently registered?
 * **objectOnSection="objectId1|objectId2|..."**: Some of these objects is available on the current section?
 * **pickedSomethingOnSection="sectionId"**: Did the player pick something on the given section?

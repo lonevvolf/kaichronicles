@@ -902,9 +902,11 @@ export class ActionChart {
 
         // Check current weapon bonuses
         if (!noWeapon && currentWeapon && currentWeapon.combatSkillEffect) {
+            const acWeapon = state.actionChart.getActionChartItem(currentWeapon.id);
+            const bonus = currentWeapon.combatSkillEffect + acWeapon.damage;
             bonuses.push({
-                concept: currentWeapon.name,
-                increment: currentWeapon.combatSkillEffect
+                concept: currentWeapon.name + (acWeapon.damage !== 0 ? " (damaged)" : ""),
+                increment: bonus
             });
         }
 
@@ -1337,6 +1339,16 @@ export class ActionChart {
      */
     public resetDisabledDisciplines() {
         this.newOrderDisciplines.disabledDisciplines = [];
+    }
+
+    /**
+     * PERMANENTLY damage the player's Kai Weapon
+     */
+    public damageKaiWeapon(damage: number) {
+        const kaiWeapon = this.getActionChartItem(this.getKaiWeapon());
+        if (kaiWeapon) {
+            kaiWeapon.damage += damage;
+        }
     }
 
     /**

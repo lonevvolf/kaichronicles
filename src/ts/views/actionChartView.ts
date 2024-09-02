@@ -188,10 +188,12 @@ export const actionChartView = {
             const kaiWeapon = actionChart.getKaiWeapon();
             if (kaiWeapon) {
                 const item = state.mechanics.getObject(kaiWeapon);
+                const acItem = state.actionChart.getActionChartItem(item.id);
+                const csBonus = item.combatSkillEffect + acItem.damage;
                 $("#kaiWeaponName").text(item.name.charAt(0).toUpperCase() + item.name.slice(1));
                 $("#kaiWeaponProperties").text(item.description);
                 $("#kaiWeaponType").text(item.weaponType.charAt(0).toUpperCase() + item.weaponType.slice(1));
-                $("#kaiWeaponBonus").text(`+ ${item.combatSkillEffect} CS`);
+                $("#kaiWeaponBonus").text(`+ ${csBonus} CS ${acItem.damage !== 0 ? " (damaged)" : ""}`);
             } else {
                 $("#kaiWeaponName").text("");
                 $("#kaiWeaponProperties").text("");

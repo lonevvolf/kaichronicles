@@ -45,7 +45,7 @@ export const randomMechanics = {
         // Check if the rule was already executed (= link clicked):
         const result = <RuleExecuted>state.sectionStates.ruleHasBeenExecuted(rule);
         if (result) {
-            // Setup the link, but disabled and with the value choosed:
+            // Setup the link, but disabled and with the value chosen:
             randomMechanics.setupRandomTableLink($link, true, result.randomValue,
                 result.increment);
             // Fire the inner rules:
@@ -313,6 +313,18 @@ export const randomMechanics = {
         }
 
         return parseInt(txtPicked, 10);
+    },
+
+    /**
+     * Disables the link for the given random table on the section
+     * @param {number} index The index of the random table on the section
+     */
+    disableRandomTableByIndex(index: number) {
+        if (!index) {
+            index = 0;
+        }
+        const $link = $(`.random:eq(${index})`);
+        $link.addClass("disabled");
     }
 
 };
