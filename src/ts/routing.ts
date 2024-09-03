@@ -190,6 +190,7 @@ export const routing = {
         return str;
     },
 
+    
     /**
      * Get a hash parameter value
      * @param {string} paramName The hash parameter name
