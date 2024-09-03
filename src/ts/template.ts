@@ -157,7 +157,12 @@ export const template = {
      */
     setErrorMessage(msg: string) {
         mechanicsEngine.debugWarning(msg);
-        template.setViewContent('<p style="color: red">' + msg + "</p>");
+
+        const p = document.createElement('p');
+        $(p).prop("style", "color: red");
+        p.innerText = msg;
+
+        template.setViewContent(p.outerHTML);
     },
 
     /**

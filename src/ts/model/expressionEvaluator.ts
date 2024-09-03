@@ -8,7 +8,7 @@ export class ExpressionEvaluator {
      * Expression to find texts to replace
      * Matches anything between "[" and "]", both included
      */
-    private static replacementsRegex: RegExp = /\[.*?\]/g;
+    private static replacementsRegex: RegExp = /\[[^\[\]]*?\]/g;
 
     /**
      * Dictionary of functions to do the replacements.
