@@ -45,7 +45,6 @@ export const routing = {
             mechanicsEngine.debugWarning(e);
             return false;
         }
-
     },
 
     /** Setup the routing events and redirect to the initial action */
