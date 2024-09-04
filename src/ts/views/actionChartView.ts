@@ -161,16 +161,27 @@ export const actionChartView = {
 
                 // Unescape the HTML description:
                 const descriptionHtml = $("<div />").html(dInfo.description).text();
-                $disciplines.append( "<tr><td>" +
-                    '<button class="btn btn-default table-op" title="' +
+                const td = $("<td>");
+                td[0].innerHTML = '<button class="btn btn-default table-op" title="' +
                     translations.text("disciplineDescription") +
                     '">' +
                         '<span class="glyphicon glyphicon-question-sign"></span>' +
-                    "</button>" +
-                    "<b" + (disabledDisciplines.includes(disciplineId) ? " class='disabled'" : "") 
-                    + ">" + name + `</b><br/>${dInfo.imageHtml}<i style="display:none"><small>` +
+                    "</button>";
+
+                const b = $("<b>");
+                if (disabledDisciplines.includes(disciplineId)) {
+                    b.prop("class", "disabled")
+                }
+                
+                b[0].innerText = name;
+
+                td.append(b).append(`<br/>${dInfo.imageHtml}<i style="display:none"><small>` +
                     descriptionHtml +
-                    "</small></i></td></tr>" );
+                    "</small></i>");
+
+                const tr = $("<tr>").append(td);
+
+                $disciplines.append( tr[0].outerHTML );
             }
             // Bind help button events
             $disciplines.find("button").on("click", function() {
@@ -269,7 +280,10 @@ export const actionChartView = {
 
         // Current weapon:
         const current: Item = state.actionChart.getSelectedWeaponItem();
-        $("#achart-currentWeapon").html( current ? current.name : "<i>" + translations.text("noneFemenine") + "</i>" );
+
+        current ? 
+            $("#achart-currentWeapon").text(current.name) :
+            $("#achart-currentWeapon").empty().append($("<i>").text(translations.text("noneFemenine")));
 
         // Fight unarmed?
         const $fightUnarmed = $("#achart-fightUnarmed");

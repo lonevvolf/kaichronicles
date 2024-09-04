@@ -272,12 +272,7 @@ export class Book {
      */
     public getBookTitle(): string {
         if ( !this.bookTitle ) {
-            this.bookTitle = $( this.bookXml ).find( "gamebook > meta > title").first().text();
-        }
-
-        // Trick for book 19/23 title
-        if(this.bookNumber === 19 || this.bookNumber === 23) {
-            this.bookTitle = new DOMParser().parseFromString(this.bookTitle, "text/html").documentElement.textContent;
+            this.bookTitle = $( this.bookXml ).find( "gamebook > meta > title").first().text().replace("&rsquo;", "’");
         }
 
         return this.bookTitle;

@@ -1,4 +1,5 @@
 import { views, BookValidator, setupController, state, Section, SectionRenderer, randomTable, projectAon, mechanicsEngine } from "..";
+import striptags = require('striptags');
 
 /**
  * Application tests
@@ -161,7 +162,6 @@ export class testsController {
     }
 
     private static addLog( textLine: string ) {
-        const striptags = require('striptags');
         $("#tests-log").append(striptags(textLine) + "</br>");
     }
 
