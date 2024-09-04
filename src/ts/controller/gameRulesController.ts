@@ -48,13 +48,12 @@ export const gameRulesController = {
     },
 
     appendSection( sectionId: string ) {
-
         const section = new Section( state.book , sectionId , state.mechanics );
         const renderer = new SectionRenderer( section );
 
         // Add a target anchor
-        let html = '<a id="' + sectionId + '"></a>';
-        html += "<h2>" + section.getTitleHtml() + "</h2>";
+        let html = $("<a>").prop("id", sectionId)[0].outerHTML;
+        html += $("<h2>").text(section.getTitleHtml())[0].outerHTML;
         html += renderer.renderSection();
 
         $("#rules-content").append( html );

@@ -1,4 +1,5 @@
 import { state, KaiDiscipline, projectAon, Section, MgnDiscipline, GndDiscipline, BookSeriesId, SectionRenderer, BookSeries, mechanicsEngine } from "..";
+import he = require('he');
 
 /** Book disciplines table */
 export interface DisciplinesTable {
@@ -272,7 +273,7 @@ export class Book {
      */
     public getBookTitle(): string {
         if ( !this.bookTitle ) {
-            this.bookTitle = $( this.bookXml ).find( "gamebook > meta > title").first().text().replace("&rsquo;", "’");
+            this.bookTitle = he.decode($( this.bookXml ).find( "gamebook > meta > title").first().text());
         }
 
         return this.bookTitle;
