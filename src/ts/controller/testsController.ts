@@ -161,7 +161,8 @@ export class testsController {
     }
 
     private static addLog( textLine: string ) {
-        $("#tests-log").append(textLine + "</br>");
+        const striptags = require('striptags');
+        $("#tests-log").append(striptags(textLine) + "</br>");
     }
 
     private static addError( textLine: string , exception: any = null ) {

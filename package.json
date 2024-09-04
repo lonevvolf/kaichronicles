@@ -27,6 +27,7 @@
         "preprocess": "^3.2.0",
         "selenium-webdriver": "^4.1.2",
         "simple-git": "^3.7.1",
+        "striptags": "^3.2.0",
         "terser-webpack-plugin": "^5.3.10",
         "ts-jest": "^29.2.5",
         "ts-loader": "^9.3.0",
