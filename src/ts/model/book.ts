@@ -277,9 +277,7 @@ export class Book {
 
         // Trick for book 19/23 title
         if(this.bookNumber === 19 || this.bookNumber === 23) {
-            const txt = document.createElement("textarea");
-            txt.innerHTML = this.bookTitle;
-            this.bookTitle = txt.value;
+            this.bookTitle = new DOMParser().parseFromString(this.bookTitle, "text/html").documentElement.textContent;
         }
 
         return this.bookTitle;
