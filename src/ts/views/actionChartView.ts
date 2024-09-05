@@ -162,7 +162,7 @@ export const actionChartView = {
                 // Unescape the HTML description:
                 const descriptionHtml = $("<div />").html(dInfo.description).text();
                 const td = $("<td>");
-                td[0].innerHTML = '<button class="btn btn-default table-op" title="' +
+                td[0].innerHTML = '<button class="btn btn-default table-op" type="button" title="' +
                     translations.text("disciplineDescription") +
                     '">' +
                         '<span class="glyphicon glyphicon-question-sign"></span>' +
@@ -174,10 +174,11 @@ export const actionChartView = {
                 }
                 
                 b[0].innerText = name;
+                const small = $("<small>");
+                small[0].innerText = descriptionHtml;
 
-                td.append(b).append(`<br/>${dInfo.imageHtml}<i style="display:none"><small>` +
-                    descriptionHtml +
-                    "</small></i>");
+                const i = $("<i>").prop("style", "display:none").append(small);
+                td.append(b).append(`<br/>${dInfo.imageHtml}`).append(i);
 
                 const tr = $("<tr>").append(td);
 
