@@ -1213,6 +1213,7 @@
             <description>
                  Is a very powerful sleeping potion
             </description>
+            <image book="3|9" name="potion.png" />
         </object>
 
         <object id="tent" itemCount="3">
@@ -1322,6 +1323,7 @@
             <description>
                 Induces sleep for 1–2 hours per dose
             </description>
+            <image book="3|9" name="potion.png" />
         </object>
 
         <object id="tincturegraveweed">
@@ -2246,6 +2248,16 @@
             <name>Drodarin Bag of Holding</name>
             <description>This can be used to store five additional Backpack Items, although the Bag itself occupies only one space.</description>
             <effect class="backpackSlots" increment="+5" />
+        </object>
+
+        <!-- BOOK 28 -->
+        <object id="ashexaconcentrate" usageCount="1">
+            <name>Ashexa Concentrate</name>
+            <description>
+                A healing fungus. Will restore 6 ENDURANCE points.
+            </description>
+            <image book="3|9" name="potion.png" />
+            <usage class="endurance" increment="+6" />    
         </object>
 
         <!-- OTHERS -->
