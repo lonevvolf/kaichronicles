@@ -1062,6 +1062,11 @@
             <name>Tiger Ring</name>
         </special>
 
+        <!-- BOOK 28 -->
+        <special id="xidie" itemCount="0">
+            <name>Xi-die</name>
+        </special>
+
     </specials>
 
     <objects>
