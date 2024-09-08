@@ -398,7 +398,7 @@ export class ObjectsTableItem {
 
             if ( this.item.id === Item.QUIVER || this.item.id === Item.ARROW ) {
                 // Allow refilling of arrows if unlimited supply
-                if (this.objectInfo.unlimited) {
+                if (this.objectInfo.unlimited && this.objectInfo.price === 0) {
                     countPicked = 100;
                 }
                 // Increase the number of arrows on the action chart
