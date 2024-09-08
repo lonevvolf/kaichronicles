@@ -1,4 +1,5 @@
 import { Book, Mechanics, SectionRenderer, Combat, mechanicsEngine } from "..";
+import he = require('he');
 
 /**
  * A book section info
@@ -185,7 +186,8 @@ export class Section {
                 }
             }
         }
-        return title;
+        // Remove any HTML encoding
+        return he.decode(title);
     }
 
     /**

@@ -7,6 +7,11 @@ import { template, App, mechanicsEngine } from ".";
 export const routing = {
 
     /**
+     * The list of allowed controllers
+     */
+    controllers: [],
+
+    /**
      * The current controller name
      */
     lastControllerName: null,
@@ -40,11 +45,12 @@ export const routing = {
             mechanicsEngine.debugWarning(e);
             return false;
         }
-
     },
 
     /** Setup the routing events and redirect to the initial action */
     setup() {
+        // tslint:disable-next-line: no-eval
+        this.controllers = Object.keys(eval(App.PACKAGE_NAME)).filter((c) => c.endsWith('Controller'));
 
         // Hash change events
         $(window).on("hashchange", routing.onHashChange );
@@ -81,6 +87,17 @@ export const routing = {
         }
     },
 
+    /**
+     * Sanitize the controller name for safety
+     */
+    sanitizeControllerName(controllerName: string) {
+        if (routing.controllers.indexOf(controllerName) === -1) {
+            return "mainMenu";
+        } else {
+            return controllerName;
+        }
+    },
+
     /** Get the the controller object by its name */
     getController(controllerName: string) {
         try {
@@ -88,8 +105,10 @@ export const routing = {
                 return null;
             }
 
+            const sanitizedControllerName = routing.sanitizeControllerName(controllerName);
+
             // tslint:disable-next-line: no-eval
-            return eval( App.PACKAGE_NAME + "." + controllerName );
+            return eval( App.PACKAGE_NAME + "." + sanitizedControllerName );
         } catch (e) {
             mechanicsEngine.debugWarning(e);
             return null;
@@ -171,6 +190,7 @@ export const routing = {
         return str;
     },
 
+    
     /**
      * Get a hash parameter value
      * @param {string} paramName The hash parameter name

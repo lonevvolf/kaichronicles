@@ -1,4 +1,5 @@
 import { state, mechanicsEngine, Combat, template, SpecialObjectsUse, CombatTurn, GndDiscipline, translations, BookSeriesId, NewOrderDiscipline } from "../..";
+import striptags = require('striptags');
 
 /**
  * Combats mechanics
@@ -297,7 +298,7 @@ export class CombatMechanics {
      * @param turn The turn to render
      */
     private static renderCombatTurn( $combatTableBody: JQuery<HTMLElement> , turn: CombatTurn ) {
-        $combatTableBody.append(`<tr><td class="hidden-xs">${turn.turnNumber}</td><td>${turn.randomValue}</td><td>${turn.getPlayerLossText()}</td><td>${turn.getEnemyLossText()}</td></tr>`);
+        $combatTableBody.append(`<tr><td class="hidden-xs">${striptags(turn.turnNumber.toFixed())}</td><td>${striptags(turn.randomValue.toFixed())}</td><td>${striptags(turn.getPlayerLossText())}</td><td>${striptags(turn.getEnemyLossText())}</td></tr>`);
     }
 
     /**
