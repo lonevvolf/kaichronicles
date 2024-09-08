@@ -1262,6 +1262,7 @@
             <xs:element name="book6sect340" type="specialsection_type" />
             <xs:element name="book9sect91" type="specialsection_type" />
             <xs:element name="book19sect304" type="specialsection_type" />
+            <xs:element name="book28sect71" type="specialsection_type" />
         </xs:choice>
     </xs:group>
 

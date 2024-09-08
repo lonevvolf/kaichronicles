@@ -2,7 +2,7 @@ import { views, translations, Section, gameView, state, CombatMechanics, randomM
     App, ExpressionEvaluator, numberPickerMechanics, disciplinePickerMechanics, kaiWeaponPickerMechanics, SkillsSetup, KaiNameSetup, SetupDisciplines, EquipmentSectionMechanics, actionChartController,
     CurrencyName, LoreCircle, BookSeriesId, MealMechanics, ActionChartItem, InventoryState, actionChartView, template, Book,
     GrandMasterUpgrade, kaimonasteryController, book2sect238, book2sect308, book3sect88, book6sect26, book6sect284,
-    book6sect340, book9sect91, book19sect304, ObjectsTable, ObjectsTableType, setupController, KaiDiscipline, MgnDiscipline,
+    book6sect340, book9sect91, book19sect304, book28sect71, ObjectsTable, ObjectsTableType, setupController, KaiDiscipline, MgnDiscipline,
     GndDiscipline, projectAon, DebugMode } from "../..";
 
 /**
@@ -101,7 +101,7 @@ export const mechanicsEngine = {
     run(section: Section) {
 
         // Defaults:
-        gameView.enableNextLink(true);
+        gameView.enableNextLink(section.sectionId !== state.mechanics.getLastSectionId());
         mechanicsEngine.onAfterCombatsRule = null;
         mechanicsEngine.onEludeCombatsRule = null;
         mechanicsEngine.onInventoryEventRule = null;
@@ -1763,6 +1763,10 @@ export const mechanicsEngine = {
 
     book19sect304() {
         book19sect304.run();
+    },
+
+    book28sect71() {
+        book28sect71.run();
     },
 
     /************************************************************/

@@ -3,7 +3,7 @@
 <mechanics book="28" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/cracrayol/kaichronicles/master/www/data/mechanics.xsd">
 
     <!-- GAME RULES -->
-    <sections>
+    <sections count="300">
         <section id="tssf">
             <!-- Drop the previous books map -->
             <drop objectId="map" />
@@ -127,7 +127,23 @@
         </section>
 
         <section id="sect6">
-            <!-- TODO: Decide about bow-->
+            <!-- Requiring the player to take a Bow here seems a good compromise.
+             They cannot continue without taking it, so if they decide on failure,
+             they can restart the game at this point. -->
+             <test not="true" hasWeaponType="bow">
+                <message id="noBow" text="You do not have a bow. Take this bow if you wish to continue the game, or restart the game from the Settings menu" />
+                <object objectId="bow" />
+                <onInventoryEvent>
+                    <test not="true" objectOnSection="bow">
+                        <choiceState section="all" set="enabled" />
+                        <message id="noBow" op="hide" />
+                    </test>
+                    <test objectOnSection="bow">
+                        <choiceState section="all" set="disabled" />
+                        <message id="noBow" op="show" />
+                    </test>
+                </onInventoryEvent>
+             </test>
         </section>
 
         <section id="sect7">
@@ -444,9 +460,8 @@
         </section>
 
         <section id="sect71">
-            <!-- TODO: Implement enemy bonuses/reductions -->
+            <book28sect71 />
             <choiceState section="all" set="disabled" />
-            <combat />
             <afterCombats>
                 <choiceState section="all" set="enabled" />
             </afterCombats>
@@ -738,8 +753,7 @@
 
         <section id="sect136">
             <choiceState section="all" set="disabled" />
-            <!-- TODO: Implement enemy bonuses/reductions -->
-            <combat />
+            <book28sect71 />
             <afterCombats>
                 <choiceState section="all" set="enabled" />
             </afterCombats>
@@ -1358,8 +1372,7 @@
 
         <section id="sect254">
             <choiceState section="all" set="disabled" />
-            <!-- TODO: Implement enemy bonuses/reductions -->
-            <combat />
+            <book28sect71 />
             <afterCombats>
                 <choiceState section="all" set="enabled" />
             </afterCombats>
@@ -1417,8 +1430,151 @@
             </onInventoryEvent>
         </section>
 
-        <section id="sect350">
-            <!-- Reset  y disabled disciplines -->
+        <section id="sect268">
+            <choiceState section="all" set="disabled" />
+            <randomTable>
+                <case to="3">
+                    <choiceState section="sect217" set="enabled" />
+                </case>
+                <case from="4" to="6">
+                    <choiceState section="sect64" set="enabled" />
+                </case>
+                <case from="7">
+                    <choiceState section="sect163" set="enabled" />
+                </case>
+            </randomTable>
+        </section>
+
+        <section id="sect271">
+            <death />
+        </section>
+
+        <section id="sect272">
+            <test not="true" hasDiscipline="alchemy">
+                <choiceState section="sect115" set="disabled" />
+            </test>
+            <test not="true" hasDiscipline="magi">
+                <choiceState section="sect72" set="disabled" />
+            </test>
+            <test canUseBow="false">
+                <choiceState section="sect174" set="disabled" />
+            </test>
+        </section>
+        
+        <section id="sect275">
+            <choiceState section="all" set="disabled" />
+            <randomTable zeroAsTen="true">
+                <endurance count="-[RANDOM]" />
+                <choiceState section="all" set="enabled" />
+            </randomTable>
+            <test not="true" hasDiscipline="deliver">
+                <randomTableIncrement increment="+2" />
+            </test>
+        </section>
+
+        <section id="sect276">
+            <pick class="arrow" count="-1" />
+            <test not="true" hasDiscipline="alchemy">
+                <choiceState section="sect214" set="disabled" />
+            </test>
+            <test not="true" hasDiscipline="magi">
+                <choiceState section="sect52" set="disabled" />
+            </test>
+        </section>
+
+        <section id="sect277">
+            <choiceState section="all" set="disabled" />
+            <randomTable>
+                <case to="5">
+                    <choiceState section="sect201" set="enabled" />
+                </case>
+                <case from="6">
+                    <choiceState section="sect29" set="enabled" />
+                </case>
+            </randomTable>
+            <test hasDiscipline="hntmstry">
+                <randomTableIncrement increment="+2" />
+            </test>
+            <test hasDiscipline="assimila">
+                <randomTableIncrement increment="+1" />
+            </test>
+        </section>
+
+        <section id="sect285">
+            <endurance count="-1" />
+        </section>
+
+        <section id="sect287">
+            <choiceState section="sect254" set="disabled" />
+            <choiceState section="sect136" set="disabled" />
+            <test hasDiscipline="kaisurge">
+                <test expression="[KAILEVEL] >= 9">
+                    <choiceState section="sect254" set="enabled" />
+                </test>
+            </test>
+            <test hasDiscipline="assimila">
+                <test expression="[KAILEVEL] >= 9">
+                    <choiceState section="sect136" set="enabled" />
+                </test>
+            </test>
+        </section>
+
+        <section id="sect288">
+            <test not="true" hasDiscipline="alchemy">
+                <choiceState section="sect156" set="disabled" />
+            </test>
+            <test not="true" hasDiscipline="magi">
+                <choiceState section="sect142" set="disabled" />
+            </test>
+            <test canUseBow="false">
+                <choiceState section="sect73" set="disabled" />
+            </test>
+        </section>
+
+        <section id="sect289">
+            <test not="true" expression="[KAILEVEL] >= 8">
+                <choiceState section="sect85" set="disabled" />
+            </test>
+            <test expression="[KAILEVEL] >= 8">
+                <choiceState section="sect104" set="disabled" />
+            </test>
+        </section>
+
+        <section id="sect291">
+            <endurance count="-2" />
+        </section>
+
+        <section id="sect292">
+            <choiceState section="all" set="disabled" />
+            <combat />
+            <afterCombats>
+                <choiceState section="all" set="enabled" />
+            </afterCombats>
+        </section>
+
+        <section id="sect294">
+            <endurance count="-1" />
+        </section>
+
+        <section id="sect295">
+            <meal />
+        </section>
+
+        <section id="sect296">
+            <test not="true" hasDiscipline="alchemy">
+                <choiceState section="sect152" set="disabled" />
+            </test>
+            <test not="true" hasDiscipline="kaisurge">
+                <choiceState section="sect230" set="disabled" />
+            </test>
+        </section>
+
+        <section id="sect297">
+            <drop objectId="laumspur" />
+        </section>
+
+        <section id="sect300">
+            <!-- Reset any disabled disciplines -->
             <resetNewOrderDisabledDisciplines />
             <message text="Congratulations! You have finished the last book of Kai Chronicles!" />
         </section>

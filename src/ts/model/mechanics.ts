@@ -43,10 +43,10 @@ export class Mechanics {
      * @return Promise with the download
      */
     public downloadXml(): JQueryXHR {
-
         return $.get({
             url: this.getXmlURL(),
-            dataType: "text"
+            dataType: "text",
+            context: this
         })
         .done((xml: string) => {
             this.mechanicsXml = $.parseXML(xml);
