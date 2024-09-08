@@ -1017,6 +1017,7 @@
                 <xs:documentation>- weaponlike: Weapons and weapon-like special items</xs:documentation>
                 <xs:documentation>- bow: Bow weapons</xs:documentation>
                 <xs:documentation>- backpackitems: The backpack contents</xs:documentation>
+                <xs:documentation>- kaiweapon: The player's Kai Weapon (New Order)</xs:documentation>
                 <xs:documentation>- allobjects: The backpack contents, special items and meals</xs:documentation>
             </xs:annotation>
             <xs:simpleType>

@@ -564,11 +564,13 @@ export class CombatMechanics {
         const combat = sectionState.combats[ combatIndex ];
 
         const finalCSPlayer = combat.getCurrentCombatSkill();
+        let finalCSEnemy = combat.getCurrentEnemyCombatSkill();
 
         // Player CS for this combat:
         let csPlayer: string = state.actionChart.combatSkill.toString();
+        let csEnemy: string = combat.combatSkill.toString();
         const bonuses = combat.getCSBonuses();
-        for ( const bonus of bonuses ) {
+        for ( const bonus of bonuses.filter((b) => !b.enemy) ) {
             csPlayer += " ";
             if ( bonus.increment >= 0 ) {
                 csPlayer += "+";
@@ -584,11 +586,18 @@ export class CombatMechanics {
         }
 
         // Enemy info:
+        for ( const bonus of bonuses.filter((b) => b.enemy) ) {
+            csEnemy += " ";
+            if ( bonus.increment >= 0 ) {
+                csEnemy += "+";
+            }
+            csEnemy += bonus.increment.toString() + " (" + bonus.concept + ")";
+        }
         $("#game-ratioenemyname").html( combat.enemy );
-        $("#game-ratioenemy").text( combat.combatSkill );
+        $("#game-ratioenemy").text( csEnemy );
 
         // Combat ratio result:
-        $("#game-ratioresult").text( `${finalCSPlayer} - ${combat.combatSkill} =  ${( finalCSPlayer - combat.combatSkill )}` );
+        $("#game-ratioresult").text( `${finalCSPlayer} - ${finalCSEnemy} =  ${( finalCSPlayer - finalCSEnemy )}` );
 
         // Show dialog
         $("#game-ratiodetails").modal();

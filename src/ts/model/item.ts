@@ -30,6 +30,7 @@ export class Item {
     public static readonly COMBATSKILL = "combatSkill";
     public static readonly ENDURANCE = "endurance";
     public static readonly BACKPACKSLOTS = "backpackSlots";
+    public static readonly ENEMYCOMBATSKILL = "enemyCombatSkill";
 
     // Object types
     /** Special item type */
@@ -115,6 +116,9 @@ export class Item {
     /** Number of extra backpack slots */
     public backpackSlotsBonusEffect: number = 0;
 
+    /** Combat Skill increment TO ENEMY */
+    public enemyCombatSkillEffect: number = 0;
+    
     /** Usage effect */
     public usage: ItemEffect;
 
@@ -228,6 +232,8 @@ export class Item {
                 this.enduranceEffect = increment;
             } else if (cls === Item.BACKPACKSLOTS) {
                 this.backpackSlotsBonusEffect = increment;
+            } else if (cls == Item.ENEMYCOMBATSKILL) {
+                this.enemyCombatSkillEffect = increment;
             } else {
                 mechanicsEngine.debugWarning("Object " + this.id + ", wrong class effect: " + cls);
             }

@@ -468,6 +468,7 @@ The saveInventoryState optional property "objectsType" identifies the objects to
 * **all**: The backpack content, the backpack itself, special items, meals and money (This is the default value)
 * **weaponlike**: Weapons and weapon-like special items
 * **bow**: Bow weapons
+* **kaiweapon**: Kai Weapon (New Order)
 * **allobjects**: The backpack content, special items and meals
 
 The restoreInventoryState optional property "restoreWeapons" identifies if the Weapons, and weapon Special Items should be recovered. Default value is true. If it's false, weapons are not returned, and they can be recovered later with the same restore point.

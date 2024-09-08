@@ -109,6 +109,13 @@
             <image book="1|9" name="spear.png" />
         </weapon>
 
+        <!-- BOOK 28 -->
+        <weapon id="kirusami" weaponType="spear">
+            <name>Kirusami (Chai Spear)</name>
+            <image book="1|9" name="spear.png" />
+            <effect class="combatSkill" increment="+1" />
+        </weapon>
+
     </weapons>
 
     <specials>
@@ -1065,6 +1072,20 @@
         <!-- BOOK 28 -->
         <special id="xidie" itemCount="0">
             <name>Xi-die</name>
+        </special>
+
+        <special id="angsei" itemCount="0">
+            <name>Ang'sei</name>
+            <description>"Armour of Life" - When worn in combat, you may deduct 2 from your enemy's COMBAT SKILL.</description>
+            <effect class="enemyCombatSkill" increment="-2" />
+        </special>
+
+        <special id="tomeoftzu">
+            <name>The Tome of Tzu</name>
+        </special>
+
+        <special id="arrowofatonement">
+            <name>Arrow of Atonement</name>
         </special>
 
     </specials>
@@ -2258,6 +2279,28 @@
             </description>
             <image book="3|9" name="potion.png" />
             <usage class="endurance" increment="+6" />    
+        </object>
+
+        <object id="klorvapotion" usageCount="1">
+            <name>Potion of Klorva</name>
+            <description>Restores 6 ENDURANCE points</description>
+            <image book="1|9" name="potion.png" />
+            <usage class="endurance" increment="+6" />
+        </object>
+
+        <object id="sabitoroot">
+            <name>Sabito Root</name>
+            <description>Enables underwater breathing</description>
+        </object>
+
+        <object id="anduiflask">
+            <name>Andui Flask</name>
+            <description>Purifies any liquid placed in it</description>
+            <image book="1|9" name="potion.png" />
+        </object>
+
+        <object id="laumspur">
+            <name>Laumspur</name>
         </object>
 
         <!-- OTHERS -->

@@ -545,7 +545,7 @@ export const actionChartController = {
      */
     getBonusesText(bonuses: Bonus[]) {
         const txt = [];
-        for (const bonus of bonuses) {
+        for (const bonus of bonuses.filter((b) => !b.enemy)) {
             let txtInc = bonus.increment.toString();
             if (bonus.increment > 0) {
                 txtInc = "+" + txtInc;
