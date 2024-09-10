@@ -706,7 +706,6 @@
 
         <section id="sect124">
             <object objectId="meal" price="1" unlimited="true" />
-            <!-- TODO: Fix pick arrows bug-->
             <object objectId="arrow" price="1" count="2" unlimited="true" />
             <object objectId="ricewinebottle" price="1" unlimited="true" />
         </section>
@@ -1023,10 +1022,10 @@
         </section>
 
         <section id="sect192">
-            <!-- TODO: Implement purchasing logic -->
-            <object objectId="klorvapotion" price="4" />
-            <object objectId="sabitoroot" price="4" />
-            <object objectId="anduiflask" price="4" />
+            <message text="Either buy individual items, buy all three (price of the last item will be adjusted), or drop a Special Item." />
+            <onInventoryEvent>
+                <book28sect192 />
+            </onInventoryEvent>
         </section>
 
         <section id="sect196">
