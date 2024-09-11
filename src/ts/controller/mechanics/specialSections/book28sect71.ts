@@ -26,20 +26,22 @@ export const book28sect71 = {
         var enemyEP = parseInt(extractedEP, 10); 
 
         // Adjust enemy CS by 5 less any damage to the weapon
-        enemyCS += 5 + kaiWeaponItem.damage;
-        extractedCS += ` +${5 + kaiWeaponItem.damage} CS Kai Weapon Bonus`;
+        if (kaiWeaponItem) {
+            enemyCS += 5 + kaiWeaponItem.damage;
+            extractedCS += ` +${5 + kaiWeaponItem.damage} CS Kai Weapon Bonus`;
 
-        // Adjust enemy CS for any bonuses
-        if (kaiWeaponItem.id === "illuminatus") {
-            enemyCS += 2;
-            extractedCS += ` +2 CS Illuminatus`;
-        } else if (kaiWeaponItem.id === "valiance" && 
-            (state.actionChart.hasDiscipline("alchemy") || state.actionChart.hasDiscipline("magi"))) {
-                enemyCS += 3;
-                extractedCS += ` +3 CS Valiance`;
-        } else if (kaiWeaponItem.id === "kaistar") {
-            enemyCS += 2;
-            extractedCS += ` +2 CS Kaistar`;
+            // Adjust enemy CS for any bonuses
+            if (kaiWeaponItem.id === "illuminatus") {
+                enemyCS += 2;
+                extractedCS += ` +2 CS Illuminatus`;
+            } else if (kaiWeaponItem.id === "valiance" && 
+                (state.actionChart.hasDiscipline("alchemy") || state.actionChart.hasDiscipline("magi"))) {
+                    enemyCS += 3;
+                    extractedCS += ` +3 CS Valiance`;
+            } else if (kaiWeaponItem.id === "kaistar") {
+                enemyCS += 2;
+                extractedCS += ` +2 CS Kaistar`;
+            }
         }
 
         // Remove the existing combat from UI and state, to be replaced with a new one
