@@ -11,6 +11,12 @@ export const book28sect71 = {
         const inventoryStateObject: any = state.sectionStates.otherStates[restorePoint];
         const inventoryState = InventoryState.fromObject(inventoryStateObject);
         const kaiWeaponItem = inventoryState.specialItems[0];
+        const sectionState = state.sectionStates.getSectionState();
+
+        // If the combat has already been added
+        if (sectionState.combats.length) {
+            return;
+        }
 
         const pageCombat = $(".combat");
         var defaultCS = pageCombat.contents().filter(function() {

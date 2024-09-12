@@ -913,7 +913,7 @@ export class ActionChart {
         }
 
         // Check current weapon bonuses against enemy
-        if (!noWeapon && currentWeapon && currentWeapon.enemyCombatSkillEffect !== 0) {
+        if (!noWeapon && currentWeapon && currentWeapon.enemyCombatSkillEffect && currentWeapon.enemyCombatSkillEffect !== 0) {
             const acWeapon = state.actionChart.getActionChartItem(currentWeapon.id);
             const bonus = currentWeapon.enemyCombatSkillEffect;
             bonuses.push({

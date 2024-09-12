@@ -117,7 +117,7 @@ export class Item {
     public backpackSlotsBonusEffect: number = 0;
 
     /** Combat Skill increment TO ENEMY */
-    public enemyCombatSkillEffect: number = 0;
+    public enemyCombatSkillEffect?: number;
     
     /** Usage effect */
     public usage: ItemEffect;

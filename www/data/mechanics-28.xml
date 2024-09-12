@@ -144,6 +144,7 @@
                     </test>
                 </onInventoryEvent>
              </test>
+            <drop objectId="arrowofatonement" />
         </section>
 
         <section id="sect7">
@@ -580,8 +581,8 @@
         </section>
 
         <section id="sect87">
-            <object objectId="laumspurpotion4" index="0" />
-            <object objectId="laumspurpotion4" index="1" />
+            <object objectId="laumspur" index="0" />
+            <object objectId="laumspur" index="1" />
             <object objectId="potiongallowbrush" />
             <object objectId="ashexaconcentrate" />
         </section>
@@ -784,8 +785,8 @@
         </section>
 
         <section id="sect136">
-            <choiceState section="all" set="disabled" />
             <book28sect71 />
+            <choiceState section="all" set="disabled" />
             <afterCombats>
                 <choiceState section="all" set="enabled" />
             </afterCombats>
@@ -1098,7 +1099,7 @@
             <choiceState section="all" set="disabled" />
             <combat />
             <test hasDiscipline="element|nexus">
-                <randomTableIncrement increment="+3" />
+                <combat combatSkillModifierIncrement="+3" />
             </test>
             <test currentWeapon="sunstrike">
                 <combat combatSkillModifierIncrement="+1"/>
@@ -1325,6 +1326,7 @@
             <test hasDiscipline="hntmstry">
                 <randomTableIncrement increment="+2" />
             </test>
+            
         </section>
 
         <section id="sect241">
@@ -1515,6 +1517,10 @@
             <test canUseBow="false">
                 <choiceState section="sect174" set="disabled" />
             </test>
+        </section>
+
+        <section id="sect273">
+            <drop objectId="arrowofatonement" />
         </section>
         
         <section id="sect275">

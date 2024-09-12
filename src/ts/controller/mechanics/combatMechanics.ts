@@ -578,7 +578,7 @@ export class CombatMechanics {
             }
             csPlayer += bonus.increment.toString() + " (" + bonus.concept + ")";
         }
-        if ( bonuses.length > 0 ) {
+        if ( bonuses.filter((b) => !b.enemy).length > 0 ) {
             csPlayer += " = " + finalCSPlayer.toString();
         }
         $("#game-ratioplayer").text( csPlayer );
@@ -593,6 +593,9 @@ export class CombatMechanics {
                 csEnemy += "+";
             }
             csEnemy += bonus.increment.toString() + " (" + bonus.concept + ")";
+        }
+        if ( bonuses.filter((b) => b.enemy).length > 0 ) {
+            csEnemy += " = " + finalCSEnemy.toString();
         }
         $("#game-ratioenemyname").html( combat.enemy );
         $("#game-ratioenemy").text( csEnemy );

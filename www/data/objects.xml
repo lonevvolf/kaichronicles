@@ -2271,6 +2271,12 @@
             <effect class="backpackSlots" increment="+5" />
         </object>
 
+        <object id="laumspur">
+            <name>Laumspur</name>
+            <description>Restores 4 ENDURANCE points when swallowed after combat</description>
+            <usage class="endurance" increment="+4" />
+        </object>
+
         <!-- BOOK 28 -->
         <object id="ashexaconcentrate" usageCount="1">
             <name>Ashexa Concentrate</name>
@@ -2297,10 +2303,6 @@
             <name>Andui Flask</name>
             <description>Purifies any liquid placed in it</description>
             <image book="1|9" name="potion.png" />
-        </object>
-
-        <object id="laumspur">
-            <name>Laumspur</name>
         </object>
 
         <!-- OTHERS -->
