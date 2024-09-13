@@ -1,4 +1,5 @@
 import { state, mechanicsEngine, Combat, template, SpecialObjectsUse, CombatTurn, GndDiscipline, translations, BookSeriesId, NewOrderDiscipline } from "../..";
+import striptags = require('striptags');
 
 /**
  * Combats mechanics
@@ -297,7 +298,7 @@ export class CombatMechanics {
      * @param turn The turn to render
      */
     private static renderCombatTurn( $combatTableBody: JQuery<HTMLElement> , turn: CombatTurn ) {
-        $combatTableBody.append(`<tr><td class="hidden-xs">${turn.turnNumber}</td><td>${turn.randomValue}</td><td>${turn.getPlayerLossText()}</td><td>${turn.getEnemyLossText()}</td></tr>`);
+        $combatTableBody.append(`<tr><td class="hidden-xs">${striptags(turn.turnNumber.toFixed())}</td><td>${striptags(turn.randomValue.toFixed())}</td><td>${striptags(turn.getPlayerLossText())}</td><td>${striptags(turn.getEnemyLossText())}</td></tr>`);
     }
 
     /**
@@ -564,18 +565,20 @@ export class CombatMechanics {
         const combat = sectionState.combats[ combatIndex ];
 
         const finalCSPlayer = combat.getCurrentCombatSkill();
+        let finalCSEnemy = combat.getCurrentEnemyCombatSkill();
 
         // Player CS for this combat:
         let csPlayer: string = state.actionChart.combatSkill.toString();
+        let csEnemy: string = combat.combatSkill.toString();
         const bonuses = combat.getCSBonuses();
-        for ( const bonus of bonuses ) {
+        for ( const bonus of bonuses.filter((b) => !b.enemy) ) {
             csPlayer += " ";
             if ( bonus.increment >= 0 ) {
                 csPlayer += "+";
             }
             csPlayer += bonus.increment.toString() + " (" + bonus.concept + ")";
         }
-        if ( bonuses.length > 0 ) {
+        if ( bonuses.filter((b) => !b.enemy).length > 0 ) {
             csPlayer += " = " + finalCSPlayer.toString();
         }
         $("#game-ratioplayer").text( csPlayer );
@@ -584,11 +587,21 @@ export class CombatMechanics {
         }
 
         // Enemy info:
+        for ( const bonus of bonuses.filter((b) => b.enemy) ) {
+            csEnemy += " ";
+            if ( bonus.increment >= 0 ) {
+                csEnemy += "+";
+            }
+            csEnemy += bonus.increment.toString() + " (" + bonus.concept + ")";
+        }
+        if ( bonuses.filter((b) => b.enemy).length > 0 ) {
+            csEnemy += " = " + finalCSEnemy.toString();
+        }
         $("#game-ratioenemyname").html( combat.enemy );
-        $("#game-ratioenemy").text( combat.combatSkill );
+        $("#game-ratioenemy").text( csEnemy );
 
         // Combat ratio result:
-        $("#game-ratioresult").text( `${finalCSPlayer} - ${combat.combatSkill} =  ${( finalCSPlayer - combat.combatSkill )}` );
+        $("#game-ratioresult").text( `${finalCSPlayer} - ${finalCSEnemy} =  ${( finalCSPlayer - finalCSEnemy )}` );
 
         // Show dialog
         $("#game-ratiodetails").modal();

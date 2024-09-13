@@ -219,10 +219,10 @@ export class CombatTurn {
         if ( extra !== 0 ) {
             loss += ` + ${( - extra )}`;
         }
-        if ( prevented !== 0 ) {
+        if ( prevented ) {
             loss += ` - ${prevented}`;
         }
-        if ( multiplier !== 1 || extra !== 0 || prevented !== 0 ) {
+        if ( multiplier !== 1 || extra !== 0 || prevented ) {
             loss += " = " + CombatTurn.translateLoss( finalLoss );
         }
 

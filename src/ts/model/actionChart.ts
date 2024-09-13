@@ -8,6 +8,8 @@ export interface Bonus {
     concept: string;
     /** The increment / decrement of the CS/EP */
     increment: number;
+    /** Bonus" applies to Enemy */
+    enemy?: boolean;
 }
 
 /**
@@ -741,7 +743,7 @@ export class ActionChart {
     public getCurrentCombatSkill(combat: Combat = null): number {
 
         let cs = this.combatSkill;
-        const bonuses = this.getCurrentCombatSkillBonuses(combat);
+        const bonuses = this.getCurrentCombatSkillBonuses(combat).filter((b) => !b.enemy);
         for (const bonus of bonuses) {
             cs += bonus.increment;
         }
@@ -910,6 +912,17 @@ export class ActionChart {
             });
         }
 
+        // Check current weapon bonuses against enemy
+        if (!noWeapon && currentWeapon && currentWeapon.enemyCombatSkillEffect && currentWeapon.enemyCombatSkillEffect !== 0) {
+            const acWeapon = state.actionChart.getActionChartItem(currentWeapon.id);
+            const bonus = currentWeapon.enemyCombatSkillEffect;
+            bonuses.push({
+                concept: currentWeapon.name,
+                increment: bonus,
+                enemy: true
+            });
+        }
+
         if (bowCombat) {
             // Grand Master books, disciplines section foot note:
             // ...+2 Mentora bonus is therefore not cumulative with Grand Weaponmastery with Bow
@@ -1008,11 +1021,12 @@ export class ActionChart {
         // Other objects (not weapons). Ex. shield. They are not applied for bow combats
         if (!combat.mentalOnly && !combat.bowCombat) {
             this.enumerateObjectsAsItems((o: Item) => {
-                if (!o.isWeapon() && o.combatSkillEffect && !combat.disabledObjects.includes(o.id)) {
+                if (!o.isWeapon() && (o.combatSkillEffect || o.enemyCombatSkillEffect) && !combat.disabledObjects.includes(o.id)) {
                     bonuses.push({
                         concept: o.name,
-                        increment: o.combatSkillEffect
-                            });
+                        increment: o.enemyCombatSkillEffect !== undefined ? o.enemyCombatSkillEffect : o.combatSkillEffect,
+                        enemy: o.enemyCombatSkillEffect !== undefined
+                    });
                 }
             });
         }
@@ -1168,7 +1182,6 @@ export class ActionChart {
      * @return All weapon objects
      */
     public getWeaponAChartItems(onlyHandToHand: boolean = false): ActionChartItem[] {
-
         const result: ActionChartItem[] = [];
         // Traverse Weapons and Weapon-like objects
         this.enumerateObjects((aChartItem: ActionChartItem) => {

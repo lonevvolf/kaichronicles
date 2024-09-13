@@ -66,7 +66,8 @@ export const gameView = {
         });
 
         // Show book copyright
-        $("#game-copyrights").html(state.book.getBookTitle() + "<br/>" + state.book.getCopyrightHtml());
+        $("#game-copyrights").text(state.book.getBookTitle()).append($("<br/>"));
+        $("#game-copyrights").append(state.book.getCopyrightHtml());
 
         // Setup debug options
         if (App.debugMode === DebugMode.DEBUG) {

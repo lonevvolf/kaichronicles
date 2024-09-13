@@ -5,11 +5,14 @@ export const setupView = {
     log(text: string, level: string = null) {
         let style: string = "";
         if (level === "ok") {
-            style = 'style="color: green"';
+            style = "color: green";
         } else if (level === "error") {
-            style = 'style="color: red; font-weight: bold"';
+            style = "color: red; font-weight: bold";
         }
-        $("#setup-log").append("<div " + style + ">" + text + "</div>");
+        const div = document.createElement('div');
+        $(div).prop("style", style);
+        div.innerText = text;
+        $("#setup-log").append(div);
     },
 
     done() {

@@ -244,7 +244,15 @@ export const projectAon = {
             code: "27v",
             illustrators: [ "williams" ],
             biographies: [ "jdbiolw" , "bwbiolw" ]
-        }, 
+        },
+
+        // Book 28:
+        {
+            title: "The Hunger of Sejanoz",
+            code: "28thos",
+            illustrators: [ "williams" ],
+            biographies: [ "jdbiolw" , "bwbiolw" ]
+        },    
     ] as BookMetadata[],
 
     /**

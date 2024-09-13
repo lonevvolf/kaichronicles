@@ -178,7 +178,19 @@ export class Combat {
      */
     public getCurrentCombatSkill(): number {
         let cs = state.actionChart.combatSkill;
-        for (const bonus of this.getCSBonuses()) {
+        for (const bonus of this.getCSBonuses().filter((b) => !b.enemy)) {
+            cs += bonus.increment;
+        }
+        return cs;
+    }
+
+    /**
+     * Get the enemy Combat Skill for this combat
+     * @return The current combat skill
+     */
+    public getCurrentEnemyCombatSkill(): number {
+        let cs = this.combatSkill;
+        for (const bonus of this.getCSBonuses().filter((b) => b.enemy)) {
             cs += bonus.increment;
         }
         return cs;
@@ -223,7 +235,7 @@ export class Combat {
      * Returns the combat ratio for this combat
      */
     public getCombatRatio(): number {
-        return this.getCurrentCombatSkill() - this.combatSkill;
+        return this.getCurrentCombatSkill() - this.getCurrentEnemyCombatSkill();
     }
 
     /**

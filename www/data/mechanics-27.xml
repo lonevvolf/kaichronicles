@@ -2103,9 +2103,9 @@
         <section id="sect311">
             <object objectId="dagger" />
             <object objectId="axe" />
-            <object objectId="laumspurpotion4" index="0" />
-            <object objectId="laumspurpotion4" index="1" />
-            <object objectId="laumspurpotion4" index="2" />
+            <object objectId="laumspur" index="0" />
+            <object objectId="laumspur" index="1" />
+            <object objectId="laumspur" index="2" />
             <object objectId="meal" index="0" />
             <object objectId="meal" index="1" />
             <object objectId="meal" index="2" />
@@ -2296,7 +2296,6 @@
         <section id="sect350">
             <!-- Reset any disabled disciplines -->
             <resetNewOrderDisabledDisciplines />
-            <message text="Congratulations! You have finished the last book of Kai Chronicles!" />
         </section>
     </sections>
 </mechanics>

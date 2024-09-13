@@ -53,6 +53,8 @@ export class InventoryState {
         } else if (objectTypes === "backpackitems") {
             objects.backpackItems = actionChart.backpackItems.deepClone();
             objects.meals = actionChart.meals;
+        } else if (objectTypes === "kaiweapon") {
+            objects.specialItems.push(actionChart.getActionChartItem(actionChart.getKaiWeapon()));
         } else {
             const msg = "Wrong objectTypes: " + objectTypes;
             mechanicsEngine.debugWarning(msg);
