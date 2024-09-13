@@ -190,6 +190,11 @@ div.signpost {
     padding-top: 3px; 
 }
 
+/* Action chart print icon */
+.print {
+    float: right;
+}
+
 /* Combats */
 .combat td {
     text-align: center;
