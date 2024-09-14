@@ -4,7 +4,9 @@
         "sourceMap": true,
         "rootDir" : "src/ts",
         "target": "es5",
-        "lib": ["WebWorker", "es5"]
+        "lib": ["WebWorker", "es5"],
+        "resolveJsonModule": true,
+        "esModuleInterop": true
     },
 
     "include": [

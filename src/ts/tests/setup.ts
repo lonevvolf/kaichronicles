@@ -1,5 +1,5 @@
-import * as Webpack from "webpack";
-import * as WebpackDevServer from "webpack-dev-server";
+const Webpack = require("webpack");
+const WebpackDevServer = require("../../../lib/Server");
 import * as webpackConfig from "../../../webpack.config.js";
 
 
