@@ -1088,6 +1088,20 @@
             <name>Arrow of Atonement</name>
         </special>
 
+        <!-- BOOK 29 -->
+        <special id="trackergem">
+            <name>Tracker-Gem</name>
+        </special>
+
+        <special id="samorqueen">
+            <name>Samor Queen</name>
+        </special>
+
+        <special id="dureneseconsulatepass">
+            <name>Durenese Consulate Pass</name>
+            <description>It is engraved with the consulate emblem and inlaid with silver numerals that you are unable to decipher.</description>
+        </special>
+
     </specials>
 
     <objects>
@@ -1954,8 +1968,13 @@
             <name>Scented Oil</name>
         </object>
 
+        <!-- Left for compatibility-->
         <object id="candle">
             <name>Candle</name>
+        </object>
+
+        <object id="3candles">
+            <name>3 Candles</name>
         </object>
 
         <object id="slippers">
@@ -2303,6 +2322,27 @@
             <name>Andui Flask</name>
             <description>Purifies any liquid placed in it</description>
             <image book="1|9" name="potion.png" />
+        </object>
+
+        <!-- BOOK 29 -->
+        <object id="4candles">
+            <name>4 Candles</name>
+        </object>
+
+        <object id="whetstone">
+            <name>Whetstone</name>
+        </object>
+
+        <object id="compass">
+            <name>Compass</name>
+        </object>
+
+        <object id="manacles">
+            <name>Manacles (with two keys)</name>
+        </object>
+
+        <object id="tazhengpotion">
+            <name>Tazheng Potion</name>
         </object>
 
         <!-- OTHERS -->
