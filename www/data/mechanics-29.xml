@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<mechanics book="29" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/cracrayol/kaichronicles/master/www/data/mechanics.xsd">
-<!-- TODO: Implement Power Strike -->
+<mechanics book="29" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/cracrayol/kaichronicles/master/www/data/mechanics.xsd">
+    <!-- TODO: Implement Power Strike -->
 
     <!-- GAME RULES -->
     <sections>
@@ -23,7 +24,7 @@
             <!-- Select the player Kai name UI -->
             <setKaiName />
         </section>
-        
+
         <section id="discplnz">
             <!-- Select the Kai disciplines UI -->
             <setDisciplines />
@@ -54,62 +55,67 @@
             <object objectId="rope" />
             <object objectId="laumspurpotion4" />
 
-            <test not="true" hasObject="spawnsmite|alema|magnara|sunstrike|kaistar|valiance|ulnarias|raumas|illuminatus|firefall">
+            <test not="true"
+                hasObject="spawnsmite|alema|magnara|sunstrike|kaistar|valiance|ulnarias|raumas|illuminatus|firefall">
                 <randomTable index="1">
                     <case value="0">
-                        <pick objectId="spawnsmite"/>
-                        <kaiWeaponPicker enabled="false"  />
+                        <pick objectId="spawnsmite" />
+                        <kaiWeaponPicker enabled="false" />
                     </case>
                     <case value="1">
-                        <pick objectId="alema"/>
-                        <kaiWeaponPicker enabled="false"  />
+                        <pick objectId="alema" />
+                        <kaiWeaponPicker enabled="false" />
                     </case>
                     <case value="2">
-                        <pick objectId="magnara"/>
-                        <kaiWeaponPicker enabled="false"  />
+                        <pick objectId="magnara" />
+                        <kaiWeaponPicker enabled="false" />
                     </case>
                     <case value="3">
-                        <pick objectId="sunstrike"/>
-                        <kaiWeaponPicker enabled="false"  />
+                        <pick objectId="sunstrike" />
+                        <kaiWeaponPicker enabled="false" />
                     </case>
                     <case value="4">
-                        <pick objectId="kaistar"/>
-                        <kaiWeaponPicker enabled="false"  />
+                        <pick objectId="kaistar" />
+                        <kaiWeaponPicker enabled="false" />
                     </case>
                     <case value="5">
-                        <pick objectId="valiance"/>
-                        <kaiWeaponPicker enabled="false"  />
+                        <pick objectId="valiance" />
+                        <kaiWeaponPicker enabled="false" />
                     </case>
                     <case value="6">
-                        <pick objectId="ulnarias"/>
-                        <kaiWeaponPicker enabled="false"  />
+                        <pick objectId="ulnarias" />
+                        <kaiWeaponPicker enabled="false" />
                     </case>
                     <case value="7">
-                        <pick objectId="raumas"/>
-                        <kaiWeaponPicker enabled="false"  />
+                        <pick objectId="raumas" />
+                        <kaiWeaponPicker enabled="false" />
                     </case>
                     <case value="8">
-                        <pick objectId="illuminatus"/>
-                        <kaiWeaponPicker enabled="false"  />
+                        <pick objectId="illuminatus" />
+                        <kaiWeaponPicker enabled="false" />
                     </case>
                     <case value="9">
-                        <pick objectId="firefall"/>
-                        <kaiWeaponPicker enabled="false"  />
+                        <pick objectId="firefall" />
+                        <kaiWeaponPicker enabled="false" />
                     </case>
                 </randomTable>
             </test>
 
-            <chooseEquipment text="Click on the Random Table links to get money and choose a Kai Weapon before continuing" />
-            <kaiWeaponPicker actionButton="Choose Kai Weapon" confirmText="confirmChooseKaiWeapon" text="Choose a Kai Weapon" />
-            
-            <message text="You may take up to five of the following (all meals count as one object):" />
+            <chooseEquipment
+                text="Click on the Random Table links to get money and choose a Kai Weapon before continuing" />
+            <kaiWeaponPicker actionButton="Choose Kai Weapon" confirmText="confirmChooseKaiWeapon"
+                text="Choose a Kai Weapon" />
+
+            <message
+                text="You may take up to five of the following (all meals count as one object):" />
         </section>
 
         <section id="imprvdsc">
             <registerGlobalRule id="sunLordWpnmstryBonus">
                 <test combatsActive="true">
                     <test expression="[KAILEVEL] >= 11">
-                        <test currentWeapon="sword|broadsword|dagger|mace|warhammer|axe|spear|shortsword">
+                        <test
+                            currentWeapon="sword|broadsword|dagger|mace|warhammer|axe|spear|shortsword">
                             <test currentWeaponMagical="false">
                                 <combat enemyTurnLoss="-1" />
                             </test>
@@ -145,7 +151,7 @@
                 </test>
             </onInventoryEvent>
         </section>
-        
+
         <section id="sect2">
             <endurance count="-1" />
 
@@ -155,10 +161,10 @@
                 <combat combatSkillModifierIncrement="+1" />
             </test>
             <test currentWeapon="valiance">
-                <combat combatSkillModifierIncrement="+3"/>
+                <combat combatSkillModifierIncrement="+3" />
             </test>
             <test currentWeapon="alema">
-                <combat combatSkillModifierIncrement="+2"/>
+                <combat combatSkillModifierIncrement="+2" />
             </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
@@ -302,15 +308,280 @@
 
         <section id="sect37">
             <choiceState section="all" set="disabled" />
-                <randomTable zeroAsTen="true">
-                    <test hasDiscipline="kaiscrn">
-                        <endurance count="-(Math.max(0, ([RANDOM] - 2)))" />
+            <randomTable zeroAsTen="true">
+                <test hasDiscipline="kaiscrn">
+                    <endurance count="-(Math.max(0, ([RANDOM] - 2)))" />
+                </test>
+                <test not="true" hasDiscipline="kaiscrn">
+                    <endurance count="-[RANDOM]" />
+                </test>
+                <choiceState section="all" set="enabled" />
+            </randomTable>
+        </section>
+
+        <section id="sect38">
+            <pick class="meal" count="-1" />
+
+            <object objectId="laumspur" price="5" />
+            <object objectId="tazheng" price="6" />
+            <object objectId="sabitotincture" price="8" />
+            <object objectId="karmo" price="12" />
+        </section>
+
+        <section id="sect39">
+            <test not="true" expression="[MONEY] >= 3">
+                <choiceState section="sect156" set="disabled" />
+            </test>
+        </section>
+
+        <section id="sect42">
+            <endurance count="-4" />
+        </section>
+
+        <section id="sect43">
+            <object objectId="laumspurpotion4" price="4" />
+            <object objectId="potionofstrength" price="5" />
+            <object objectId="malavanpotion" price="6" />
+            <object objectId="sabitotincture" price="10" />
+        </section>
+
+        <section id="sect45">
+            <object objectId="mortarpestle" price="2" />
+            <object objectId="lantern" price="2" />
+            <object objectId="chisel" price="2" />
+            <object objectId="hammer" price="3" />
+            <object objectId="rope" price="3" />
+            <object objectId="laumspurpotion4" price="4" />
+            <object objectId="smalltelescope" price="6" />
+
+            <sell price="10" currency="ren" class="special" except="kirusami" />
+        </section>
+
+        <section id="sect46">
+            <endurance count="-3" />
+            <!-- TODO: Implement reduced Laumspur potion effect -->
+        </section>
+
+        <section id="sect47">
+            <test not="true" hasDiscipline="magi">
+                <choiceState section="sect178" set="disabled" />
+            </test>
+            <test not="true" hasDiscipline="alchemy">
+                <choiceState section="sect96" set="disabled" />
+            </test>
+        </section>
+
+        <section id="sect48">
+            <choiceState section="all" set="disabled" />
+            <combat />
+            <afterCombatTurn turn="1">
+                <disableCombats />
+                <test expression="[COMBATSENDURANCELOST] &lt;= [COMBATSENEMYLOST]">
+                    <choiceState section="sect141" set="enabled" />
+                </test>
+                <test expression="[COMBATSENDURANCELOST] > [COMBATSENEMYLOST]">
+                    <choiceState section="sect32" set="enabled" />
+                </test>
+            </afterCombatTurn>
+        </section>
+
+        <section id="sect49">
+            <choiceState section="all" set="disabled" />
+            <combat fromSection="sect66" />
+            <afterCombats>
+                <choiceState section="all" set="enabled" />
+            </afterCombats>
+        </section>
+
+        <section id="sect50">
+            <choiceState section="all" set="disabled" />
+            <combat fromSection="sect100" />
+            <test currentWeapon="valiance">
+                <combat combatSkillModifierIncrement="+3" />
+            </test>
+            <test currentWeapon="spawnsmite">
+                <combat combatSkillModifierIncrement="+1" />
+            </test>
+            <afterCombatTurn turn="6">
+                <combat enemyCombatSkillModifier="+5" />
+                <endurance count="+5" enemy="true" />
+            </afterCombatTurn>
+            <afterCombatTurn turn="7">
+                <combat enemyCombatSkillModifier="0" />
+            </afterCombatTurn>
+        </section>
+
+        <section id="sect51">
+            <choiceState section="all" set="disabled" />
+            <combat />
+            <test currentWeapon="valiance">
+                <combat combatSkillModifierIncrement="+3" />
+            </test>
+            <test currentWeapon="spawnsmite">
+                <combat combatSkillModifierIncrement="+1" />
+            </test>
+            <test currentWeapon="alema">
+                <combat combatSkillModifierIncrement="+2" />
+            </test>
+            <afterCombats>
+                <choiceState section="all" set="enabled" />
+            </afterCombats>
+        </section>
+
+        <section id="sect53">
+            <endurance count="-3" />
+        </section>
+
+        <section id="sect54">
+            <choiceState section="all" set="disabled" />
+            <endurance count="-2" />
+            <combat enemyImmuneTurns="1" turnLoss="-1" />
+            <afterCombatTurn turn="1">
+                <combat turnLoss="0" />
+            </afterCombatTurn>
+            <afterCombats>
+                <choiceState section="all" set="enabled" />
+            </afterCombats>
+        </section>
+
+        <section id="sect55">
+            <meal huntDisabled="true" />
+        </section>
+
+        <section id="sect56">
+            <choiceState section="sect233" set="disabled" />
+            <test canUseBow="false">
+                <choiceState section="sect115" set="disabled" />
+            </test>
+            <test hasDiscipline="anmlmstr">
+                <test expression="[KAILEVEL] >= 12">
+                    <choiceState section="sect233" set="enabled" />
+                </test>
+            </test>
+        </section>
+
+        <section id="sect57">
+            <randomTable zeroAsTen="true">
+                <!-- TODO: Implement handling of empty slot -->
+                <drop backpackItemSlots="[RANDOM]" />
+            </randomTable>
+        </section>
+
+        <section id="sect58">
+            <test not="true" hasDiscipline="assimila">
+                <choiceState section="sect322" set="disabled" />
+            </test>
+            <test hasDiscipline="assimila">
+                <choiceState section="sect168" set="disabled" />
+            </test>
+        </section>
+
+        <section id="sect60">
+            <choiceState section="all" set="disabled" />
+            <combat turnLoss="1" />
+            <afterCombats>
+                <choiceState section="all" set="enabled" />
+            </afterCombats>
+        </section>
+
+        <section id="sect61">
+            <endurance count="+[MAXENDURANCE]" />
+        </section>
+
+        <section id="sect62">
+            <numberPicker text="Choose the number of Gold Crowns you want to bet" min="1"
+            money="true" actionButton="Bet" />
+            <numberPickerChoosed>
+                <pick class="money" count="-[NUMBERPICKER]" />
+                <numberPicker enabled="false" />
+                <numberPicker text="Answer the riddle" min="1" max="350" actionButton="Choose"
+                    index="1" />
+                <numberPickerChoosed>
+                    <test expression="[NUMBERPICKER1] == 12">
+                        <pick class="money" count="[NUMBERPICKER] * 2" />
+                        <goToSection section="sect12" />
                     </test>
-                    <test not="true" hasDiscipline="kaiscrn">
-                        <endurance count="-[RANDOM]" />
+                    <test expression="[NUMBERPICKER1] != 12">
+                        <goToSection section="sect132" />
                     </test>
-                    <choiceState section="all" set="enabled" />
-                </randomTable>
+                </numberPickerChoosed>
+            </numberPickerChoosed>
+        </section>
+
+        <section id="sect66">
+            <pick class="arrow" count="-1" />
+            <choiceState section="all" set="disabled" />
+            <afterCombatTurn turn="3">
+                <disableCombats />
+                <choiceState section="sect49" set="enabled" />
+            </afterCombatTurn>
+            <afterCombats>
+                <choiceState section="sect313" set="enabled" />
+            </afterCombats>
+        </section>
+
+        <section id="sect67">
+            <endurance count="-1" />
+        </section>
+
+        <section id="sect69">
+            <test not="true" hasDiscipline="kaiscrn">
+                <choiceState section="sect25" set="disabled" />
+            </test>
+            <test hasDiscipline="kaiscrn">
+                <choiceState section="sect230" set="disabled" />
+            </test>
+        </section>
+
+        <section id="sect70">
+            <endurance count="-5" />
+            <choiceState section="all" set="disabled" />
+            <combat mentalOnly="true" kaiSurgeTurnLoss="0" />
+            <afterCombats>
+                <choiceState section="all" set="enabled" />
+            </afterCombats>
+        </section>
+
+        <section id="sect100">
+            <choiceState section="all" set="disabled" />
+            <combat noMindblast="true" turnLoss="-1" kaiSurgeBonus="+4" kaiBlastRolls="1" />
+            <test currentWeapon="valiance">
+                <combat combatSkillModifierIncrement="+3" />
+            </test>
+            <test currentWeapon="spawnsmite">
+                <combat combatSkillModifierIncrement="+1" />
+            </test>
+            <afterCombatTurn turn="6">
+                <disableCombats />
+                <choiceState section="sect50" set="enabled" />
+            </afterCombatTurn>
+            <afterCombats>
+                <choiceState section="sect312" set="enabled" />
+            </afterCombats>
+        </section>
+
+        <section id="sect291">
+            <numberPicker text="Choose the number of Gold Crowns you want to bet" min="1"
+                money="true" actionButton="Bet" />
+            <choiceState section="all" set="disabled" />
+
+            <numberPickerChoosed>
+                <pick class="money" count="-[NUMBERPICKER]" />
+                <choiceState section="all" set="enabled" />
+
+                <numberPicker enabled="false" />
+                <numberPicker text="Answer the riddle" min="1" max="350" actionButton="Choose"
+                    index="1" />
+                <numberPickerChoosed>
+                    <test expression="[NUMBERPICKER1] == 41">
+                        <pick class="money" count="[NUMBERPICKER] * 3" />
+                        <goToSection section="sect41" />
+                    </test>
+                    <test expression="[NUMBERPICKER1] != 41">
+                        <goToSection section="sect187" />
+                    </test>
+                </numberPickerChoosed>
+            </numberPickerChoosed>
         </section>
 
     </sections>

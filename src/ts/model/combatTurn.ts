@@ -144,7 +144,7 @@ export class CombatTurn {
 
         // Surge loss
         if ( combat.psiSurge ) {
-            const psiSurgeLoss = Combat.surgeTurnLoss(combat.getSurgeDiscipline());
+            const psiSurgeLoss = Combat.surgeTurnLoss(combat.getSurgeDiscipline(), combat);
             if ( this.loneWolf !== COMBATTABLE_DEATH ) {
                 this.loneWolf += psiSurgeLoss;
             }

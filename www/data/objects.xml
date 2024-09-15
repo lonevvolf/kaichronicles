@@ -2345,6 +2345,45 @@
             <name>Tazheng Potion</name>
         </object>
 
+        <object id="tazheng">
+            <name>Tazheng</name>
+            <description>A powerful anti-venom</description>
+            <image book="1|9" name="potion.png" />
+        </object>
+
+        <object id="sabitotincture">
+            <name>Tincture of Sabito root</name>
+            <description>Rare in Chai, Sabito enables the human body to extract oxygen from water through the skin, thus permitting anyone who swallows it to “breathe” underwater</description>
+            <image book="1|9" name="potion.png" />
+        </object>
+
+        <!-- TODO: Implement Karmo -->
+        <object id="karmo">
+            <name>Karmo</name>
+            <description>When taken before combat, this potion doubles your ENDURANCE points score for the duration of the combat. It has heavy side effects that sometimes can result in death. After consuming Karmo, you must pick a number from the Random Number Table. The number you choose determines how many ENDURANCE points you lose as a consequence of the side effects (0 = zero).</description>
+            <image book="1|9" name="potion.png" />
+        </object>
+
+        <!-- TODO: Check function of Malavan -->
+        <object id="malavanpotion">
+            <name>Potion of Malavan</name>
+            <description>Increases the effect of Mindblast, Psi-surge and Kai-surge, by adding 2 COMBAT SKILL for the duration of one combat.</description>
+            <image book="1|9" name="potion.png" />
+            <usage class="combatSkill" increment="+2" />
+        </object>
+
+        <object id="smalltelescope">
+            <name>Small Telescope</name>
+        </object>
+
+        <object id="mortarpestle">
+            <name>Mortar &amp; Pestle</name>
+        </object>
+
+        <object id="chisel">
+            <name>Chisel</name>
+        </object>
+
         <!-- OTHERS -->
 
         <!-- This not really an object, but needed for mechanics -->

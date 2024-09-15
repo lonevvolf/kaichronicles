@@ -522,11 +522,11 @@ export class SectionRenderer {
         const endurance = SectionRenderer.getEnemyEndurance( $combat ).text();
         return '<div class="combat well"><b>' + enemyHtml + "</b><br />" +
             '<span class="attribute">' + translations.text("combatSkillUpper") + "</span>: " +
-            combatSkill +
+            '<span class="enemy-combatskill">' + combatSkill + '</span>' +
             ' &nbsp;&nbsp; <span class="attribute">' + translations.text("enduranceUpper") + "</span>: " +
             '<span class="enemy-current-endurance">' + endurance +
-            "</span> / " +
-            endurance + "</div>";
+            "</span> / " + '<span class="enemy-max-endurance">' +
+            endurance + "</span></div>";
     }
 
     /**
