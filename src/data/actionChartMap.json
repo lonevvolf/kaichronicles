@@ -1,0 +1,336 @@
+{
+    "Kai": {
+        "discipline": {
+            "page": 1,
+            "x": 80,
+            "y": 492,
+            "height": 23,
+            "fontSize": 15
+        },
+        "backpackItem": {
+            "page": 1,
+            "x": 78,
+            "y": 250,
+            "height": 24,
+            "fontSize": 15
+        },
+        "combatSkill": {
+            "page": 1,
+            "x": 500,
+            "y": 490
+        },
+        "endurance": {
+            "page": 1,
+            "x": 650,
+            "y": 490
+        },
+        "meals": {
+            "page": 1,
+            "x": 340,
+            "y": 210
+        },
+        "beltPouch": {
+            "page": 1,
+            "x": 300,
+            "y": 140,
+            "height": 16
+        },
+        "specialItem": {
+            "page": 2,
+            "x": 78,
+            "y": 419,
+            "height": 10
+        },
+        "weapon": {
+            "page": 2,
+            "x": 450,
+            "y": 422,
+            "height": 25
+        },
+        "bookName": {
+            "page": 2,
+            "x": 78,
+            "y": 485
+        },
+        "kaiLevel": {
+            "page": 2,
+            "x": 460,
+            "y": 490
+        },
+        "currentSection": {
+            "page": 2,
+            "x": 620,
+            "y": 500
+        },
+        "arrows": {
+            "page": 2,
+            "x": 640,
+            "y": 155
+        },
+        "quiver": {
+            "page": 2,
+            "x": 450,
+            "y": 155
+        },
+        "weaponmastery": {
+            "page": 2,
+            "x": 590,
+            "y": 320
+        }
+    },
+    "Magnakai": {
+        "discipline": {
+            "page": 1,
+            "x": 80,
+            "y": 505,
+            "height": 23,
+            "fontSize": 15
+        },
+        "backpackItem": {
+            "page": 1,
+            "x": 78,
+            "y": 190,
+            "height": 16,
+            "fontSize": 15
+        },
+        "combatSkill": {
+            "page": 1,
+            "x": 500,
+            "y": 480
+        },
+        "endurance": {
+            "page": 1,
+            "x": 650,
+            "y": 480
+        },
+        "meals": {
+            "page": 1,
+            "x": 340,
+            "y": 160
+        },
+        "beltPouch": {
+            "page": 1,
+            "x": 300,
+            "y": 110,
+            "height": 16
+        },
+        "specialItem": {
+            "page": 2,
+            "x": 78,
+            "y": 419,
+            "height": 10
+        },
+        "weapon": {
+            "page": 2,
+            "x": 450,
+            "y": 422,
+            "height": 25
+        },
+        "bookName": {
+            "page": 2,
+            "x": 75,
+            "y": 485
+        },
+        "kaiLevel": {
+            "page": 2,
+            "x": 450,
+            "y": 490
+        },
+        "currentSection": {
+            "page": 2,
+            "x": 620,
+            "y": 500
+        },
+        "arrows": {
+            "page": 2,
+            "x": 640,
+            "y": 155
+        },
+        "quiver": {
+            "page": 2,
+            "x": 450,
+            "y": 155
+        },
+        "weaponmastery": {
+            "page": 2,
+            "x": 590,
+            "y": 320
+        }
+    },
+    "GrandMaster": {
+        "discipline": {
+            "page": 1,
+            "x": 80,
+            "y": 505,
+            "height": 21,
+            "fontSize": 15
+        },
+        "backpackItem": {
+            "page": 1,
+            "x": 78,
+            "y": 240,
+            "height": 19,
+            "fontSize": 15
+        },
+        "combatSkill": {
+            "page": 1,
+            "x": 500,
+            "y": 475
+        },
+        "endurance": {
+            "page": 1,
+            "x": 650,
+            "y": 475
+        },
+        "meals": {
+            "page": 1,
+            "x": 340,
+            "y": 195
+        },
+        "beltPouch": {
+            "page": 1,
+            "x": 300,
+            "y": 130,
+            "height": 16
+        },
+        "specialItem": {
+            "page": 2,
+            "x": 78,
+            "y": 419,
+            "height": 10
+        },
+        "weapon": {
+            "page": 2,
+            "x": 450,
+            "y": 422,
+            "height": 25
+        },
+        "bookName": {
+            "page": 2,
+            "x": 78,
+            "y": 485
+        },
+        "kaiLevel": {
+            "page": 2,
+            "x": 450,
+            "y": 490
+        },
+        "currentSection": {
+            "page": 2,
+            "x": 620,
+            "y": 500
+        }, 
+        "arrows": {
+            "page": 2,
+            "x": 640,
+            "y": 155
+        },
+        "quiver": {
+            "page": 2,
+            "x": 450,
+            "y": 155
+        },
+        "weaponmastery": {
+            "page": 2,
+            "x": 590,
+            "y": 320
+        }
+    },
+    "NewOrder": {
+        "discipline": {
+            "page": 1,
+            "x": 80,
+            "y": 510,
+            "height": 16
+        },
+        "backpackItem": {
+            "page": 1,
+            "x": 78,
+            "y": 222,
+            "height": 16
+        },
+        "combatSkill": {
+            "page": 1,
+            "x": 500,
+            "y": 475
+        },
+        "endurance": {
+            "page": 1,
+            "x": 650,
+            "y": 475
+        },
+        "meals": {
+            "page": 1,
+            "x": 340,
+            "y": 180
+        },
+        "beltPouch": {
+            "page": 1,
+            "x": 300,
+            "y": 120,
+            "height": 16
+        },
+        "specialItem": {
+            "page": 2,
+            "x": 78,
+            "y": 419,
+            "height": 10
+        },
+        "weapon": {
+            "page": 2,
+            "x": 450,
+            "y": 422,
+            "height": 25
+        },
+        "bookName": {
+            "page": 2,
+            "x": 78,
+            "y": 485
+        },
+        "kaiLevel": {
+            "page": 2,
+            "x": 460,
+            "y": 490
+        },
+        "currentSection": {
+            "page": 2,
+            "x": 620,
+            "y": 500
+        },
+        "kaiWeaponName": {
+            "page": 2,
+            "x": 180,
+            "y": 155
+        },
+        "kaiWeaponType": {
+            "page": 2,
+            "x": 180,
+            "y": 115
+        },
+        "kaiWeaponBonus": {
+            "page": 2,
+            "x": 355,
+            "y": 115
+        },
+        "kaiWeaponProperties": {
+            "page": 2,
+            "x": 180,
+            "y": 75
+        },
+        "arrows": {
+            "page": 2,
+            "x": 640,
+            "y": 155
+        },
+        "quiver": {
+            "page": 2,
+            "x": 450,
+            "y": 155
+        },
+        "weaponmastery": {
+            "page": 2,
+            "x": 590,
+            "y": 320
+        }
+    }
+}

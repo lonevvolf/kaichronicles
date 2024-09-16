@@ -15,6 +15,7 @@ export class Translations {
         //////////////////////////////////////
 
         "actionChart" : "Action Chart",
+        "printActionChart" : "Printable Action Chart",
         "noneFemenine" : "None",
         "noneMasculine" : "None",
         "disciplineDescription" : "Discipline description",
