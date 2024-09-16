@@ -528,7 +528,7 @@ export class Combat {
      * @returns EP loss for each turn
      */
     public static surgeTurnLoss(surgeDisciplineId: string, combat: Combat = null): number {
-        if (combat && combat.kaiSurgeTurnLoss !== null) {
+        if (combat && combat.kaiSurgeTurnLoss != null) {
             return combat.kaiSurgeTurnLoss;
         }
         
