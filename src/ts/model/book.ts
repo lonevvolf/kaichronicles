@@ -1,5 +1,5 @@
 import { state, KaiDiscipline, projectAon, Section, MgnDiscipline, GndDiscipline, BookSeriesId, SectionRenderer, BookSeries, mechanicsEngine } from "..";
-import he = require('he');
+import he from 'he';
 
 /** Book disciplines table */
 export interface DisciplinesTable {

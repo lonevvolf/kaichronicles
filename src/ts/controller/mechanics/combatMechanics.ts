@@ -1,5 +1,5 @@
 import { state, mechanicsEngine, Combat, template, SpecialObjectsUse, CombatTurn, GndDiscipline, translations, BookSeriesId, NewOrderDiscipline } from "../..";
-import striptags = require('striptags');
+import striptags from 'striptags';
 
 /**
  * Combats mechanics

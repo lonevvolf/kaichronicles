@@ -1,18 +1,21 @@
-import { degrees, PDFDocument, PDFPage, PDFFont, rgb, StandardFonts } from 'pdf-lib';
 import { state, BookSeriesId, translations, gameController } from "..";
 const actionChartMap = require('../../data/actionChartMap.json');
+import pdfLib from "pdf-lib";
 
-// /**
-//  * The print action chart view API
-//  */
+/**
+ * The print action chart view API
+ */
 export const printActionChartView = {
   async setup() {
+    const pdfLib = (await import ('pdf-lib'));
+    const rgb = pdfLib.rgb;
+
     const bookSeries = state.book.getBookSeries();
 
     const url = `/images/action-charts/${BookSeriesId[bookSeries.id]}.pdf`;
     const existingPdfBytes = await fetch(url).then(res => res.arrayBuffer());
-    const pdfDoc = await PDFDocument.load(existingPdfBytes);
-    const helveticaFont = await pdfDoc.embedFont(StandardFonts.Helvetica);
+    const pdfDoc = await pdfLib.PDFDocument.load(existingPdfBytes);
+    const helveticaFont = await pdfDoc.embedFont(pdfLib.StandardFonts.Helvetica);
 
     const pages = pdfDoc.getPages();
 
@@ -438,13 +441,25 @@ export const printActionChartView = {
     (<HTMLObjectElement>document.getElementById('pdf')).data = blobUrl;
   },
 
-  printField(pages: PDFPage[], pageNumber: number, text: string, x: number, y: number, size: number, font: PDFFont) {
-    pages[pageNumber].drawText(text, {
-      x: x,
-      y: y,
-      size: size,
-      font: font,
-      color: rgb(0, 0, 0),
+  /**
+   * Prints a field on the PDF
+   * @param pages The PDF document pages array
+   * @param pageNumber The page number of the element
+   * @param text The text to display
+   * @param x The x position of the element
+   * @param y The y position of the element
+   * @param size The font size
+   * @param font The font
+   */
+  printField(pages: pdfLib.PDFPage[], pageNumber: number, text: string, x: number, y: number, size: number, font: pdfLib.PDFFont) {
+    import("pdf-lib").then((pdfLib) => {
+      pages[pageNumber].drawText(text, {
+        x: x,
+        y: y,
+        size: size,
+        font: font,
+        color: pdfLib.rgb(0, 0, 0),
+      });
     });
   },
 

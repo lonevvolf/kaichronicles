@@ -1,5 +1,5 @@
 import { views, BookValidator, setupController, state, Section, SectionRenderer, randomTable, projectAon, mechanicsEngine } from "..";
-import striptags = require('striptags');
+import striptags from 'striptags';
 
 /**
  * Application tests

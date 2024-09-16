@@ -1,5 +1,5 @@
 import { Book, Mechanics, SectionRenderer, Combat, mechanicsEngine } from "..";
-import he = require('he');
+import he from 'he';
 
 /**
  * A book section info

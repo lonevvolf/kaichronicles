@@ -3,10 +3,11 @@
         "outDir" : "src/js",
         "sourceMap": true,
         "rootDir" : "src/ts",
-        "target": "es5",
-        "lib": ["WebWorker", "es5"],
-        "resolveJsonModule": true,
-        "esModuleInterop": true
+        "target": "ES5",
+        "lib": ["WebWorker", "ES5"],
+        "esModuleInterop": true,
+        "moduleResolution": "Node",
+        "module": "ES2020"
     },
 
     "include": [
