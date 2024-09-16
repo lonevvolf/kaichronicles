@@ -976,7 +976,7 @@ export class ActionChart {
         const bonuses: Bonus[] = [];
 
         // Current weapon bonuses
-        if (!combat.mentalOnly) {
+        if (!combat.mentalOnly && !combat.noObjectBonuses) {
             const noWeapon = combat.noWeaponCurrentTurn();
             for (const b of this.getWeaponCombatSkillBonuses(noWeapon, combat.bowCombat, combat.disabledObjects)) {
                 bonuses.push(b);
@@ -1019,7 +1019,7 @@ export class ActionChart {
         }
 
         // Other objects (not weapons). Ex. shield. They are not applied for bow combats
-        if (!combat.mentalOnly && !combat.bowCombat) {
+        if (!combat.mentalOnly && !combat.bowCombat && !combat.noObjectBonuses) {
             this.enumerateObjectsAsItems((o: Item) => {
                 if (!o.isWeapon() && (o.combatSkillEffect || o.enemyCombatSkillEffect) && !combat.disabledObjects.includes(o.id)) {
                     bonuses.push({

@@ -44,6 +44,9 @@ export class Combat {
     /** The enemy is immune to Kai-Ray? */
     public noKaiRay = false as boolean|null;
 
+    /** The enemy is immune to weapon/object bonuses? */
+    public noObjectBonuses = false as boolean|null;
+
     /** The CS bonus to apply if the player has Mindblast discipline */
     public mindblastBonus : number;
 

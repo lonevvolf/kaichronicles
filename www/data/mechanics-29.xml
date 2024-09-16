@@ -478,7 +478,7 @@
 
         <section id="sect60">
             <choiceState section="all" set="disabled" />
-            <combat turnLoss="1" />
+            <combat turnLoss="-1" />
             <afterCombats>
                 <choiceState section="all" set="enabled" />
             </afterCombats>
@@ -542,6 +542,159 @@
             </afterCombats>
         </section>
 
+        <section id="sect71">
+            <object objectId="axe" price="8" />
+            <object objectId="bow" price="20" />
+            <object objectId="arrow" price="1" unlimited="true" />
+            <object objectId="dagger" price="5" />
+            <object objectId="sword" price="10" />
+            <object objectId="mace" price="10" />
+        </section>
+
+        <section id="sect72">
+            <!-- TODO: Implement Kenga's Ring -->
+            <object objectId="kengasring" />
+        </section>
+
+        <section id="sect73">
+            <object objectId="smallblanket" price="1" />
+            <object objectId="arrow" price="1" unlimited="true" />
+            <object objectId="lantern" price="2" />
+            <object objectId="rope" price="3" />
+            <object objectId="laumspurpotion4" price="4" />
+            <object objectId="compass" price="5" />
+        </section>
+
+        <section id="sect74">
+            <pick class="arrow" count="-1" />
+            <test not="true" hasDiscipline="magi">
+                <choiceState section="sect24" set="disabled" />
+            </test>
+            <test hasDiscipline="magi">
+                <choiceState section="sect150" set="disabled" />
+            </test>
+        </section>
+
+        <section id="sect75">
+            <choiceState section="all" set="disabled" />
+            <randomTable zeroAsTen="true">
+                <!-- TODO: Implement handling of empty slot -->
+                <drop backpackItemSlots="[RANDOM]" />
+                <choiceState section="all" set="enabled" />
+            </randomTable>
+        </section>
+
+        <section id="sect76">
+            <object objectId="rope" />
+            <object objectId="lantern" />
+        </section>
+
+        <section id="sect79">
+            <drop objectId="trackergem" />
+            <drop backpackItemSlots="3|5" />
+        </section>
+
+        <section id="sect81">
+            <choiceState section="all" set="disabled" />
+            <randomTable zeroAsTen="true">
+                <test hasDiscipline="kaiscrn">
+                    <endurance count="-([RANDOM] -2)" />
+                </test>
+                <test not="true" hasDiscipline="kaiscrn">
+                    <endurance count="-([RANDOM])" />
+                </test>
+                <choiceState section="all" set="enabled" />
+            </randomTable>
+        </section>
+
+        <section id="sect83">
+            <pick class="arrow" count="-2" />
+            <choiceState section="all" set="disabled" />
+            <combat combatSkillModifier="+3" immuneTurns="1" />
+            <afterCombatTurn turn="1">
+                <combat combatSkillModifier="0" />
+            </afterCombatTurn>
+            <afterCombats>
+                <choiceState section="all" set="enabled" />
+            </afterCombats>
+        </section>
+
+        <section id="sect84">
+            <test canUseBow="false">
+                <choiceState section="sect333" set="disabled" />
+            </test>
+        </section>
+
+        <section id="sect85">
+            <choiceState section="sect61" set="disabled" />
+            <test hasDiscipline="kaiscrn">
+                <test expression="[KAILEVEL] >= 12">
+                    <choiceState section="sect61" set="enabled" />
+                    <choiceState section="sect102" set="disabled" />
+                </test>
+            </test>
+        </section>
+
+        <section id="sect86">
+            <endurance count="-5" />
+        </section>
+
+        <section id="sect88">
+            <endurance count="-2" />
+            <choiceState section="all" set="disabled" />
+            <randomTable zeroAsTen="true">
+                <endurance count="-([RANDOM])" />
+                <choiceState section="all" set="enabled" />
+            </randomTable>
+        </section>
+
+        <section id="sect90">
+            <choiceState section="sect61" set="disabled" />
+            <test hasDiscipline="kaiscrn">
+                <test expression="[KAILEVEL] >= 12">
+                    <choiceState section="sect61" set="enabled" />
+                    <choiceState section="sect102" set="disabled" />
+                </test>
+            </test>
+        </section>
+
+        <section id="sect91">
+            <choiceState section="all" set="disabled" />
+            <randomTable>
+                <case to="5">
+                    <choiceState section="sect331" set="enabled" />
+                </case>
+                <case from="6">
+                    <choiceState section="sect134" set="enabled" />
+                </case>
+            </randomTable>
+            <test hasWeaponskillWith="bow">
+                <randomTableIncrement increment="+3" />
+            </test>
+        </section>
+
+        <section id="sect94">
+            <test not="true" expression="[MONEY] > 0">
+                <choiceState section="sect190" set="disabled" />
+            </test>
+            <test expression="[MONEY] > 0">
+                <choiceState section="sect57" set="disabled" />
+            </test>
+            <choiceSelected section="sect190">
+                <pick class="money" count="-1" />
+            </choiceSelected>
+        </section>
+
+        <section id="sect95">
+            <sell price="2" class="object" />
+        </section>
+        
+        <section id="sect99">
+            <test canUseBow="false">
+                <choiceState section="sect189" set="disabled" />
+            </test>
+        </section>
+
         <section id="sect100">
             <choiceState section="all" set="disabled" />
             <combat noMindblast="true" turnLoss="-1" kaiSurgeBonus="+4" kaiBlastRolls="1" />
@@ -558,6 +711,32 @@
             <afterCombats>
                 <choiceState section="sect312" set="enabled" />
             </afterCombats>
+        </section>
+
+        <section id="sect101">
+            <choiceState section="all" set="disabled" />
+            <combat combatSkillModifier="-2" noObjectBonuses="true" noKaiBlast="true" noKaiRay="true" noKaiSurge="true" noMindblast="true" noPsiSurge="true" />
+            <afterCombats>
+                <test expression="[COMBATSDURATION] &lt;= 6">
+                    <choiceState section="sect294" set="enabled" />
+                </test>
+                <test expression="[COMBATSDURATION] >= 7">
+                    <choiceState section="sect136" set="enabled" />
+                </test>
+            </afterCombats>
+        </section>
+
+        <section id="sect102">
+            <test not="true" hasDiscipline="kaisurge">
+                <choiceState section="sect298" set="disabled" />
+            </test>
+            <test hasDiscipline="kaisurge">
+                <choiceState section="sect116" set="disabled" />
+            </test>
+        </section>
+
+        <section id="sect136">
+            <endurance count="-3" />
         </section>
 
         <section id="sect291">

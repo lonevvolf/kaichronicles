@@ -515,6 +515,11 @@
                 <xs:documentation>If true, the player cannot use any weapon on this combat. If a number, the player cannot use any weapon for that many turns</xs:documentation>
             </xs:annotation>
         </xs:attribute>
+        <xs:attribute name="noObjectBonuses" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation>If true, no weapon or item bonuses will be applied</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
         <xs:attribute name="eludeTurn" type="xs:integer">
             <xs:annotation>
                 <xs:documentation>Turn number after which the player can evade the combat</xs:documentation>
@@ -731,6 +736,11 @@
         <xs:attribute name="permanent" type="xs:boolean">
             <xs:annotation>
                 <xs:documentation>If true, the endurance increase / decrease is permanent.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="enemy" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation>If true, the endurance change will apply to the current enemy.</xs:documentation>
             </xs:annotation>
         </xs:attribute>
     </xs:complexType>
@@ -1046,6 +1056,7 @@
                     <xs:enumeration value="weaponlike" />
                     <xs:enumeration value="bow" />
                     <xs:enumeration value="backpackitems" />
+                    <xs:enumeration value="kaiweapon" />
                     <xs:enumeration value="allobjects" />
                 </xs:restriction>
             </xs:simpleType>
@@ -1283,6 +1294,7 @@
             <xs:element name="book9sect91" type="specialsection_type" />
             <xs:element name="book19sect304" type="specialsection_type" />
             <xs:element name="book28sect71" type="specialsection_type" />
+            <xs:element name="book28sect192" type="specialsection_type" />
         </xs:choice>
     </xs:group>
 

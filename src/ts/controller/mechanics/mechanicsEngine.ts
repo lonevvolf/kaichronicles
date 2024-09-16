@@ -1026,6 +1026,9 @@ export const mechanicsEngine = {
         // Check if the enemy is immune to Kai-Blast
         combat.noKaiBlast = mechanicsEngine.getBooleanProperty($rule, "noKaiBlast", combat.noKaiBlast);
 
+        // Check if the enemy is immune to object bonuses
+        combat.noObjectBonuses = mechanicsEngine.getBooleanProperty($rule, "noObjectBonuses", combat.noObjectBonuses);
+
         // Set the number of Kai-Blast rolls
         combat.kaiBlastRolls = mechanicsEngine.getIntProperty($rule, "kaiBlastRolls", false) ?? combat.kaiBlastRolls;
 

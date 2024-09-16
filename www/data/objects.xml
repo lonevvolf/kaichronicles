@@ -1102,6 +1102,15 @@
             <description>It is engraved with the consulate emblem and inlaid with silver numerals that you are unable to decipher.</description>
         </special>
 
+        <special id="kengasring">
+            <name>Kenga's Ring</name>
+            <description>Endows it wearer with a limited protection from evil.</description>
+        </special>
+
+        <special id="eyeofagarash" droppable="false">
+            <name>Eye of Agarash</name>
+        </special>
+
     </specials>
 
     <objects>
@@ -2382,6 +2391,10 @@
 
         <object id="chisel">
             <name>Chisel</name>
+        </object>
+
+        <object id="smallblanket">
+            <name>Small Blanket</name>
         </object>
 
         <!-- OTHERS -->
