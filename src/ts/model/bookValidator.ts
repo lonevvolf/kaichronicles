@@ -256,14 +256,19 @@ export class BookValidator {
     }
 
     private checkThereAreCombats( $rule: JQuery<Element> ) {
-
-        // If the rule is under a "registerGlobalRule", do no check this
+        // If the rule is under a "registerGlobalRule", do not check this
         if ( $rule.closest( "registerGlobalRule" ).length > 0 ) {
             return;
         }
 
-        // Check there are combats on this section (excetion for b19s304 because it's dynamically generated)
-        if (this.currentSection.sectionId !== 'sect304' && this.currentSection.book.bookNumber !== 19 && this.currentSection.getCombats().length === 0 ) {
+        // If a combat is being imported from another section, do not check this
+        if ( $rule.parents("section").find("combat[fromSection]").length ) {
+            return;
+        }
+
+        // Check there are combats on this section (exception for special sections)
+        if ((this.currentSection.sectionId !== 'sect304' && this.currentSection.book.bookNumber !== 19) 
+            && this.currentSection.getCombats().length === 0 ) {
             this.addError( $rule , "There are no combats on this section");
         }
     }

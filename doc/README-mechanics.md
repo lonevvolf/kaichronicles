@@ -74,6 +74,7 @@ There are some keywords that can be used on expressions. They have the following
 * **[ARROWS]**: Current number of arrows on the quiver
 * **[BOWBONUS]** : Bonus for bow usage: It's Weaponmastery bonus + bow object bonus (see "silverbowduadon" object). It will be -4 if the player has no bow
 * **[NUMBERPICKER]**: The selected number on the "numberPicker" UI
+* **[NUMBERPICKERXXX]**: The selected number on the "numberPicker" UI for the "numberPicker" with the given index
 * **[DISCIPLINEPICKER]**: The selected discipline index in the actionChart disciplines list
 
 ## Codes for Magnakai disciplines
@@ -401,6 +402,7 @@ the following properties:
 * **index="number"**: Index (zero based) of the combat to which it refers
 * **combatSkillModifier="bonus"**: Absolute bonus (positive or negative) for Lone Wolf combat skill on this combat
 * **combatSkillModifierIncrement="bonus"**: Bonus increment (positive or negative) for Lone Wolf combat skill on this combat
+* **enemyCombatSkillModifier="bonus"**: Absolute bonus (positive or negative) for the enemy combat skill on this combat
 * **mindforceCS="-number"**: Bonus (negative) to the Lone Wolf combat skill due to the enemy Mindblast. It will not be applied if the player has Mindshield / Psi-screen
 * **mindforceEP="-number"**: Endurance points lost by LW each turn, due to the enemy Mindblast. It will not be applied if the player has Mindshield / Psi-screen
 * **noMindblast="true"**: The enemy is immune to Mindblast
@@ -412,6 +414,7 @@ the following properties:
 * **mindblastMultiplier="float"**: CS multiplier to apply to Mindblast/Psi-Surge/Kai-Surge attacks this combat
 * **psiSurgeBonus="number"**: Special CS bonus to apply for Psi-Surge discipline on this combat
 * **kaiSurgeBonus="number"**: Special CS bonus to apply for Kai-Surge discipline on this combat
+* **kaiSurgeTurnLoss="number"**: Special EP turn loss to apply for Kai-Surge discipline on this combat
 * **noWeapon="boolean|number"**: If true, Lone Wolf cannot use any weapon on this combat. If a number, LW cannot use any weapon for that many turns
 * **mentalOnly="true"**: Lone Wolf cannot use any physical bonuses on this combat (any object bonus)
 * **eludeTurn="number"**: Turn number after which LW can elude the combat
@@ -431,6 +434,7 @@ the following properties:
 * **disabledObjects="objectId1|objectId2|..."** Set objects that cannot be used on this combat. "none" to enable all objects previously disabled.
 * **permanentDamage="boolean"** EP lost by LW on this combat will be permanent?
 * **allowPotions="boolean"** Allow usage of potions prior the combat
+* **fromSection="sectionId"** Imports the combat from another section to be continued in this section (currently only working for sections with 1 combat)
 
 Different combat tags with different attributes are cumulative. Different combat tags with the same attribute will
 replace that value. Ex:

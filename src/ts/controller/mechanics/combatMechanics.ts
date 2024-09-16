@@ -35,7 +35,7 @@ export class CombatMechanics {
             return;
         }
 
-        // If the player is death, do nothing
+        // If the player is dead, do nothing
         if ( state.actionChart.currentEndurance <= 0 ) {
             return;
         }
@@ -104,9 +104,11 @@ export class CombatMechanics {
                 $.each( combat.turns, (idxTurn, turn) => {
                     CombatMechanics.renderCombatTurn( $turnsTableBody , turn );
                 });
-                // Update enemy current endurance
-                CombatMechanics.updateEnemyEndurance( $combatUI , combat , true );
             }
+
+            // Update enemy current endurance/CS
+            CombatMechanics.updateEnemyEndurance( $combatUI , combat , true );
+            CombatMechanics.updateEnemyCombatSkill( $combatUI, combat );
 
             if ( sectionState.combatEluded || combat.isFinished() || combat.disabled ) {
                 // Hide button to run more turns
@@ -120,9 +122,28 @@ export class CombatMechanics {
             CombatMechanics.setupSurgeUI($combatUI, combat);
             CombatMechanics.setupBlastUI($combatUI, combat);
             CombatMechanics.setupRayUI($combatUI, combat);
-
         });
+    }
 
+    private static updateEnemyCombatSkill($combatUI: JQuery<HTMLElement>, combat: Combat) {
+        // Update enemy combat skill with any bonuses
+        const cs = $combatUI.parent().find( ".enemy-combatskill" );
+        const bonuses = combat.getCSBonuses();
+        let csEnemy: string = combat.combatSkill.toString();
+        let finalCSEnemy = combat.getCurrentEnemyCombatSkill();
+
+        for ( const bonus of bonuses.filter((b) => b.enemy) ) {
+            csEnemy += " ";
+            if ( bonus.increment >= 0 ) {
+                csEnemy += "+";
+            }
+            csEnemy += bonus.increment.toString() + " (" + bonus.concept + ")";
+        }
+        if ( bonuses.filter((b) => b.enemy).length > 0 ) {
+            csEnemy += " = " + finalCSEnemy.toString();
+        }
+
+        cs.text( csEnemy );
     }
 
     private static updateEnemyEndurance( $combatUI: JQuery<HTMLElement> , combat: Combat , doNotAnimate: boolean ) {
@@ -147,6 +168,19 @@ export class CombatMechanics {
         $.each(sectionState.combats, (index, combat) => {
             const $combatUI = $(`.mechanics-combatUI:eq(${index})`);
             CombatMechanics.updateCombatRatio( $combatUI , combat);
+            CombatMechanics.updateEnemyCombatSkill( $combatUI, combat);
+        });
+    }
+
+    public static increaseEndurance(amount: number) {
+        // Get combat to update
+        const sectionState = state.sectionStates.getSectionState();
+        if ( sectionState.combats.length === 0 ) {
+            return;
+        }
+        $.each(sectionState.combats, (index, combat) => {
+            combat.increaseEndurance(amount);
+            CombatMechanics.updateEnemyEndurance($("#mechanics-combat"), combat, false);
         });
     }
 
@@ -171,7 +205,6 @@ export class CombatMechanics {
      * combats buttons on the section will be hidden
      */
     public static showCombatButtons( $combatUI: JQuery<HTMLElement> ) {
-
         if ( !$combatUI ) {
             // Disable all combats
             $combatUI = $(".mechanics-combatUI");
@@ -388,7 +421,7 @@ export class CombatMechanics {
             CombatMechanics.disableSurge( $combatUI , combat );
         }
 
-        const rayText = translations.text("mechanics-combat-kaiblast" , [ combat.mindblastMultiplier > 1 ? ` (x${combat.mindblastMultiplier})` : "" ] );
+        const rayText = translations.text("mechanics-combat-kaiblast" , [ combat.mindblastMultiplier > 1 ? ` (x${combat.mindblastMultiplier})` : "" , combat.kaiBlastRolls] );
         $combatUI.find(".mechanics-combat-kaiblast").text( rayText );
 
         // Kai-blast selection
@@ -458,7 +491,7 @@ export class CombatMechanics {
         // UI Surge texts
         const surgeTextId = surgeDisciplineId === GndDiscipline.KaiSurge ? "mechanics-combat-kaisurge" : "mechanics-combat-psisurge";
         const surgeText = translations.text(surgeTextId , [ combat.getFinalSurgeBonus(surgeDisciplineId) ,
-            Combat.surgeTurnLoss(surgeDisciplineId) ] );
+            Combat.surgeTurnLoss(surgeDisciplineId, combat) ] );
         $combatUI.find(".mechanics-combat-psisurge").text( surgeText );
     }
 
