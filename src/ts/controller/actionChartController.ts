@@ -81,7 +81,7 @@ export const actionChartController = {
         } catch (e) {
             // Error picking
             if (showError) {
-                toastr.error(e);
+                toastr.error(e as string);
             }
             console.log(e); // This is not really an application error, so do not call mechanicsEngine.debugWarning()
             return false;
@@ -374,7 +374,7 @@ export const actionChartController = {
                     translations.text("msgDropMeal", [-count]));
             }
         } catch (e) {
-            toastr.error(e);
+            toastr.error(e as string);
         }
     },
 

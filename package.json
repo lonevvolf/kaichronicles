@@ -10,6 +10,7 @@
     "devDependencies": {
         "@types/bootstrap": "^3.3.42",
         "@types/fs-extra": "^9.0.13",
+        "@types/he": "^1.2.3",
         "@types/jest": "^29.5.12",
         "@types/jquery": "^3.5.14",
         "@types/selenium-webdriver": "4.1.22",

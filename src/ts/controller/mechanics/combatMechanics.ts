@@ -189,7 +189,7 @@ export class CombatMechanics {
      * @param {jquery} $combatUI The combat UI where disable buttons. If it's null, all
      * combats buttons on the section will be hidden
      */
-    public static hideCombatButtons( $combatUI: JQuery<HTMLElement> ) {
+    public static hideCombatButtons( $combatUI: JQuery<HTMLElement>|null ) {
         if ( !$combatUI ) {
             // Disable all combats
             $combatUI = $(".mechanics-combatUI");
@@ -204,7 +204,7 @@ export class CombatMechanics {
      * @param {jquery} $combatUI The combat UI where enable buttons. If it's null, all
      * combats buttons on the section will be hidden
      */
-    public static showCombatButtons( $combatUI: JQuery<HTMLElement> ) {
+    public static showCombatButtons( $combatUI: JQuery<HTMLElement>|null ) {
         if ( !$combatUI ) {
             // Disable all combats
             $combatUI = $(".mechanics-combatUI");
@@ -216,7 +216,7 @@ export class CombatMechanics {
 
         // Get combat data
         const sectionState = state.sectionStates.getSectionState();
-        const combatIndex = parseInt( $combatUI.attr( "data-combatIdx" ), 10 );
+        const combatIndex = Number( $combatUI.attr( "data-combatIdx" ) );
         const combat = sectionState.combats[ combatIndex ];
 
         if ( !(sectionState.combatEluded || combat.isFinished() || combat.disabled) ) {
@@ -232,7 +232,7 @@ export class CombatMechanics {
      */
     private static runCombatTurn( $combatUI: JQuery<HTMLElement>, elude: boolean ) {
         // Get the combat info:
-        const combatIndex = parseInt( $combatUI.attr( "data-combatIdx" ), 10 );
+        const combatIndex = Number( $combatUI.attr( "data-combatIdx" ) );
         const sectionState = state.sectionStates.getSectionState();
         const combat = sectionState.combats[ combatIndex ];
 
@@ -367,7 +367,7 @@ export class CombatMechanics {
     private static onRayClick(e: JQuery.Event, $kaiRayCheck: JQuery<HTMLElement>) {
 
         const $combatUI = $kaiRayCheck.parents(".mechanics-combatUI").first();
-        const combatIndex = parseInt( $combatUI.attr( "data-combatIdx" ), 10 );
+        const combatIndex = Number( $combatUI.attr( "data-combatIdx" ) );
         const sectionState = state.sectionStates.getSectionState();
         const combat = sectionState.combats[ combatIndex ];
 
@@ -434,7 +434,7 @@ export class CombatMechanics {
     private static onBlastClick(e: JQuery.Event, $kaiBlastCheck: JQuery<HTMLElement>) {
 
         const $combatUI = $kaiBlastCheck.parents(".mechanics-combatUI").first();
-        const combatIndex = parseInt( $combatUI.attr( "data-combatIdx" ), 10 );
+        const combatIndex = Number( $combatUI.attr( "data-combatIdx" ) );
         const sectionState = state.sectionStates.getSectionState();
         const combat = sectionState.combats[ combatIndex ];
 
@@ -501,7 +501,7 @@ export class CombatMechanics {
     private static onSurgeClick(e: JQuery.Event, $psiSurgeCheck: JQuery<HTMLElement>) {
 
         const $combatUI = $psiSurgeCheck.parents(".mechanics-combatUI").first();
-        const combatIndex = parseInt( $combatUI.attr( "data-combatIdx" ), 10 );
+        const combatIndex = Number( $combatUI.attr( "data-combatIdx" ) );
         const sectionState = state.sectionStates.getSectionState();
         const combat = sectionState.combats[ combatIndex ];
 
@@ -593,7 +593,7 @@ export class CombatMechanics {
      */
     private static showCombatRatioDetails( $combatUI: JQuery<HTMLElement> ) {
         // Get the combat info:
-        const combatIndex = parseInt( $combatUI.attr( "data-combatIdx" ), 10 );
+        const combatIndex = Number( $combatUI.attr( "data-combatIdx" ) );
         const sectionState = state.sectionStates.getSectionState();
         const combat = sectionState.combats[ combatIndex ];
 

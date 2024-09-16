@@ -59,7 +59,7 @@ export class Book {
     public bookNumber: number;
 
     /** The book XML document */
-    public bookXml: XMLDocument;
+    public bookXml: XMLDocument|null;
 
     /**
      * Array of 100 positions with the random table numbers as they appear on the book
@@ -67,13 +67,13 @@ export class Book {
     public bookRandomTable: number[];
 
     /** The book title cache, plain text */
-    private bookTitle: string = null;
+    private bookTitle: string|null = null;
 
     /** The book copyright text cache, HTML formatted */
-    private bookCopyrightHtml: string = null;
+    private bookCopyrightHtml: string|null = null;
 
     /** The book disciplines cache */
-    private disciplines: DisciplinesTable = null;
+    private disciplines: DisciplinesTable|null = null;
 
     /**
      * Constructor
@@ -191,7 +191,7 @@ export class Book {
      * Added on v 1.8
      * @returns The download promises. The promises text is the author XML bio, fixed
      */
-    public downloadAuthorsBio(): Array<JQueryXHR> {
+    public downloadAuthorsBio(): Array<JQueryXHR>|null {
 
         try {
             const promises: Array<JQueryXHR> = [];
@@ -223,7 +223,7 @@ export class Book {
      * Get the code name given to the book by the Project Aon
      * @returns The book code name. null if it was not found
      */
-    public getProjectAonBookCode(): string {
+    public getProjectAonBookCode(): string|null {
         const bookMetadata = projectAon.supportedBooks[ this.bookNumber - 1 ];
         if ( !bookMetadata ) {
             return null;
@@ -406,12 +406,12 @@ export class Book {
      * @param sectionId The destination section
      * @return Section ids that can go to the given section
      */
-    public getOriginSections(sectionId: string): string[] {
-        const sourceSectionIds = <string[]>[];
+    public getOriginSections(sectionId: string): (string|undefined)[] {
+        const sourceSectionIds = <(string|undefined)[]>[];
         $(this.bookXml)
             .find('section[class="numbered"]' )
             .has( 'data > choice[idref="' + sectionId + '"]')
-            .each( (index, section) => {
+            .each( (index: Number, section: Element) => {
                 sourceSectionIds.push( $(section).attr("id") );
             }) ;
         return sourceSectionIds;
@@ -455,11 +455,11 @@ export class Book {
 
     public getSectionsIds(): string[] {
         const sectionIds: string[] = [];
-        let sectionId = Book.INITIAL_SECTION;
+        let sectionId: string|undefined|null = Book.INITIAL_SECTION;
         while (sectionId != null) {
             sectionIds.push(sectionId);
 
-            const section = new Section(this, sectionId, state.mechanics);
+            const section: Section = new Section(this, sectionId, state.mechanics);
             sectionId = section.getNextSectionId();
         }
         return sectionIds;

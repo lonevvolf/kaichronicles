@@ -463,7 +463,7 @@ export const printActionChartView = {
     });
   },
 
-  b64toBlob(b64Data, contentType = '', sliceSize = 512) {
+  b64toBlob(b64Data: string, contentType = '', sliceSize = 512) {
     const byteCharacters = atob(b64Data);
     const byteArrays = [];
 

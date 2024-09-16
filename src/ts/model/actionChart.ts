@@ -547,7 +547,7 @@ export class ActionChart {
      * the first object with the given objectId will be dropped
      * @returns The dropped item. null if no item was dropped
      */
-    public drop(objectId: string, dropCount: number = 1, objectIndex: number = -1): ActionChartItem {
+    public drop(objectId: string, dropCount: number = 1, objectIndex: number = -1): ActionChartItem|null {
 
         if (objectId === Item.MEAL) {
             // Special
@@ -757,7 +757,7 @@ export class ActionChart {
      * @param bookSeriesId Book series disciplines to check. If not specified or null, current book series disciplines will be checked
      * @returns True if Weaponskill discipline is active for the currently selected hand to hand weapon, or for a owned bow
      */
-    public isWeaponskillActive(bow: boolean = false, bookSeriesId: BookSeriesId = null): boolean {
+    public isWeaponskillActive(bow: boolean = false, bookSeriesId: BookSeriesId|null = null): boolean|undefined {
 
         if (bookSeriesId === null) {
             // Current book series
@@ -809,7 +809,7 @@ export class ActionChart {
         : Bonus[] {
 
         const bonuses: Bonus[] = [];
-        let currentWeapon = this.getSelectedWeaponItem(bowCombat);
+        let currentWeapon: Item|null = this.getSelectedWeaponItem(bowCombat);
 
         // Check if the current weapon is disabled
         if (disabledObjectsIds.length > 0 && currentWeapon) {
@@ -964,7 +964,7 @@ export class ActionChart {
      * @param combat The current combat. null to check default bonuses
      * @return Array of objects with the bonuses concepts
      */
-    public getCurrentCombatSkillBonuses(combat: Combat = null): Bonus[] {
+    public getCurrentCombatSkillBonuses(combat: Combat|null = null): Bonus[] {
 
         if (!combat) {
             // Create a fake combat with the default values
@@ -1288,7 +1288,7 @@ export class ActionChart {
      * The get the discipline id that supports +20 EP ability
      * @returns The discipline id that will be used. null if the +20EP cannot be used
      */
-    public get20EPRestoreDiscipline(): string {
+    public get20EPRestoreDiscipline(): string|null {
         if (this.hasNewOrderDiscipline(NewOrderDiscipline.Deliverance)) {
             return NewOrderDiscipline.Deliverance;
         }
@@ -1357,7 +1357,7 @@ export class ActionChart {
     /**
      * PERMANENTLY damage the player's Kai Weapon
      */
-    public damageKaiWeapon(damage: number) {
+    public damageKaiWeapon(damage: number|null) {
         const kaiWeapon = this.getActionChartItem(this.getKaiWeapon());
         if (kaiWeapon) {
             kaiWeapon.damage += damage;
@@ -1408,7 +1408,7 @@ export class ActionChart {
      * @param series Book series which get disciplines. If null or not specified, we get current book disciplines
      * @returns Disciplines for that series
      */
-    public getDisciplines(series: BookSeriesId = null): string[] {
+    public getDisciplines(series: BookSeriesId|null = null): string[] {
         return this.getSeriesDisciplines(series).disciplines;
     }
 
@@ -1417,7 +1417,7 @@ export class ActionChart {
      * @param series Book series which get disciplines. If null or not specified, we get current book disciplines
      * @returns Disciplines for that series
      */
-    public getDisabledDisciplines(series: BookSeriesId = null): string[] {
+    public getDisabledDisciplines(series: BookSeriesId|null = null): string[] {
         return this.getSeriesDisciplines(series).disabledDisciplines ?? [];
     }
 
@@ -1427,7 +1427,7 @@ export class ActionChart {
      * @param seriesId Book series to check. If null or not specified, the current book series
      * @returns true if player has the discipline
      */
-    public hasDiscipline(disciplineId: string, seriesId: BookSeriesId = null): boolean {
+    public hasDiscipline(disciplineId: string, seriesId: BookSeriesId|null = null): boolean {
         if (App.debugMode === DebugMode.DEBUG || App.debugMode === DebugMode.TEST) {
             const possibleDisciplines = Disciplines.getSeriesDisciplines(seriesId !== null ? seriesId : state.book.getBookSeries().id);
             if (!possibleDisciplines.includes(disciplineId)) {
@@ -1486,7 +1486,7 @@ export class ActionChart {
      * @param series Book series which get disciplines. If null or not specified, we get current book series disciplines
      * @returns Disciplines for that series to apply. They can be different of the real disciplines with which the player finished the series
      */
-    private getSeriesDisciplines(seriesId: BookSeriesId = null): SeriesDisciplines {
+    private getSeriesDisciplines(seriesId: BookSeriesId|null = null): SeriesDisciplines {
         const currentSeriesId = state.book.getBookSeries().id;
         if (seriesId === null) {
             seriesId = currentSeriesId;
@@ -1521,7 +1521,7 @@ export class ActionChart {
      * Set current disciplines for a given book series
      * @param series Book series which set disciplines. If null or not specified, we set current book series disciplines
      */
-    public setDisciplines(disciplinesIds: string[], seriesId: BookSeriesId = null) {
+    public setDisciplines(disciplinesIds: string[], seriesId: BookSeriesId|null = null) {
         if (seriesId === null) {
             seriesId = state.book.getBookSeries().id;
         }
@@ -1533,11 +1533,11 @@ export class ActionChart {
      * On Kai series, it's a single weapon. On series >= Magnakai, they will be more than one
      * @param series Book series which get weapons. If null or not specified, we get current book series weapons
      */
-    public getWeaponSkill(seriesId: BookSeriesId = null): string[] {
+    public getWeaponSkill(seriesId: BookSeriesId|null = null): string[] {
         return this.getSeriesDisciplines(seriesId).weaponSkill;
     }
 
-    private setWeaponSkill(weaponSkill: string[], seriesId: BookSeriesId = null) {
+    private setWeaponSkill(weaponSkill: string[], seriesId: BookSeriesId|null = null) {
         this.getSeriesDisciplines(seriesId).weaponSkill = weaponSkill;
     }
 

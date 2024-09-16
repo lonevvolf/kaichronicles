@@ -76,7 +76,7 @@ export class SectionState {
      * See numberPicker.ts and numberPickerMechanics.ts
      */
     public numberPickersState = {
-        actionFired: null
+        actionFired: null as boolean|null
     };
 
     /**
@@ -84,7 +84,7 @@ export class SectionState {
      * See disciplinePicker.ts and disciplinePickerMechanics.ts
      */
     public disciplinePickersState = {
-        actionFired: null
+        actionFired: null as boolean|null
     };
 
     /**
@@ -92,7 +92,7 @@ export class SectionState {
      * See kaiWeaponPicker.ts and kaiWeaponPickerMechanics.ts
      */
     public kaiWeaponPickersState = {
-        actionFired: null
+        actionFired: null as boolean|null
     };
 
     /**
@@ -127,8 +127,8 @@ export class SectionState {
      * null to return all
      * @return The objects on this section
      */
-    public getSectionObjects(type: string = null): Item[] {
-        const items: Item[] = [];
+    public getSectionObjects(type: string|null = null): (Item|null)[] {
+        const items: (Item|null)[] = [];
         for ( const sectionItem of this.objects) {
 
             if ( sectionItem.id === Item.MONEY ) {
@@ -157,8 +157,8 @@ export class SectionState {
     /**
      * Return the weapons and weapon special object on the section
      */
-    public getWeaponObjects(): Item[] {
-        const weapons: Item[] = [];
+    public getWeaponObjects(): (Item|null)[] {
+        const weapons: (Item|null)[] = [];
         for ( const i of this.getSectionObjects() ) {
             if ( i.isWeapon() ) {
                 weapons.push( i );
@@ -349,7 +349,7 @@ export class SectionState {
      * @param count Count to decrease. Only applies if the object is 'money'
      * @param index Object index to remove. If not specified or < 0, the first object with the gived id will be removed
      */
-    public removeObjectFromSection(objectId: string, price: number, count: number = -1, index: number = -1, currency: string = null) {
+    public removeObjectFromSection(objectId: string, price: number, count: number = -1, index: number = -1, currency: string|null = null) {
         // Be sure price is not null
         if ( !price ) {
             price = 0;
@@ -406,7 +406,7 @@ export class SectionState {
     /**
      * Get the available amount of money on the section
      */
-    public getAvailableMoney(currencyId : Currency = null): number {
+    public getAvailableMoney(currencyId : Currency|null = null): number {
         let moneyCount = 0;
         for ( const o of this.objects ) {
             if ((currencyId === null || currencyId === o.currency) && o.id === Item.MONEY) {
@@ -439,7 +439,7 @@ export class SectionState {
      * @param currency If specified, the object currency to search. If it's not specified the currency will not be checked
      * @returns The object index in this.objects. -1 if the object was not found.
      */
-    private getObjectIndex(objectId: string, price: number = -1, currency: string = null): number {
+    private getObjectIndex(objectId: string, price: number = -1, currency: string|null = null): number {
         for (let i = 0; i < this.objects.length; i++) {
 
             // Be sure price is not null
@@ -448,7 +448,7 @@ export class SectionState {
                 currentPrice = 0;
             }
 
-            let currentCurrency = this.objects[i].currency;
+            let currentCurrency = this.objects[i].currency as string|null;
             if (!currentCurrency) {
                 currentCurrency = null;
             }

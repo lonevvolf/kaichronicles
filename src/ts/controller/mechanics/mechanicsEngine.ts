@@ -14,7 +14,7 @@ export const mechanicsEngine = {
     /**
      * jquery DOM object with the mechanics HTML
      */
-    $mechanicsUI:  null as JQuery<HTMLElement>,
+    $mechanicsUI: null as JQuery<HTMLElement>,
 
     /**
      * Mechanics UI URL
@@ -284,7 +284,7 @@ export const mechanicsEngine = {
         // TODO: Both do the same
 
         let reRender = false;
-        mechanicsEngine.enumerateSectionRules($sectionRules[0], (rule: Element) => {
+        mechanicsEngine.enumerateSectionRules($sectionRules[0], (rule: Element) : string|undefined => {
             if (rule.nodeName === "onInventoryEvent") {
                 // onInventoryEvent rule don't affect, has been executed
                 return "ignoreDescendants";
@@ -312,7 +312,7 @@ export const mechanicsEngine = {
                     return "finish";
                 }
 
-                const expression: string = $rule.attr("expression");
+                const expression: string|undefined = $rule.attr("expression");
                 if (expression) {
                     if (o.id === Item.MONEY && (expression.indexOf("[MONEY]") >= 0 || expression.indexOf("[MONEY-ON-SECTION]") >= 0)) {
                         // Section should be re-rendered
@@ -362,7 +362,7 @@ export const mechanicsEngine = {
         // Fire the given combat turn events
         for (const rule of mechanicsEngine.onAfterCombatTurns) {
             // Turn when to execute the rule:
-            const txtRuleTurn: string = $(rule).attr("turn");
+            const txtRuleTurn: string|undefined = $(rule).attr("turn");
             const ruleTurn = (txtRuleTurn === "any" ? 0 : ExpressionEvaluator.evalInteger(txtRuleTurn));
 
             // We reapply all rules accumulatively
@@ -829,8 +829,8 @@ export const mechanicsEngine = {
         const unlimited = ($(rule).attr("unlimited") === "true");
 
         // Number of items (only for quiver (n. arrows) and money (n.gold crowns), arrows or if you buy X objects for a single price)
-        const txtCount: string = $(rule).attr("count");
-        const count = (txtCount ? parseInt(txtCount, 10) : 0);
+        const txtCount: string|undefined = $(rule).attr("count");
+        const count = (txtCount ? Number(txtCount) : 0);
 
         // Object can be used directly from the section, without picking it?
         const useOnSection = ($(rule).attr("useOnSection") === "true");
@@ -877,7 +877,7 @@ export const mechanicsEngine = {
             return;
         }
 
-        const price = parseInt($rule.attr("price"), 10);
+        const price = Number($rule.attr("price"));
         const currency = $rule.attr("currency") ?? CurrencyName.CROWN;
         
         // Sell a specific item
@@ -890,7 +890,7 @@ export const mechanicsEngine = {
                 id: objectId,
                 price,
                 currency: currency,
-                count: parseInt($rule.attr("count"), 10),
+                count: Number($rule.attr("count")),
                 unlimited: false,
                 useOnSection: false,
                 usageCount: item && item.usageCount ? item.usageCount : 1,
@@ -942,11 +942,11 @@ export const mechanicsEngine = {
      * @param combatToApply If null, the rule will be applied to a current section combat. If not null
      * the rule will be applied to this combat
      */
-    combat(rule: Element, combatToApply: Combat = null) {
+    combat(rule: Element, combatToApply: Combat|null = null) {
         const $rule = $(rule);
 
         // Combat index
-        let combatIndex = parseInt($rule.attr("index"), 10);
+        let combatIndex = Number($rule.attr("index"));
         if (!combatIndex) {
             combatIndex = 0;
         }
@@ -1007,11 +1007,11 @@ export const mechanicsEngine = {
         // Check if the enemy has mindforce attack
         const txtMindforceCS = $rule.attr("mindforceCS");
         if (txtMindforceCS) {
-            combat.mindforceCS = parseInt(txtMindforceCS, 10);
+            combat.mindforceCS = Number(txtMindforceCS);
         }
         const txtMindforceEP = $rule.attr("mindforceEP");
         if (txtMindforceEP) {
-            combat.mindforceEP = parseInt(txtMindforceEP, 10);
+            combat.mindforceEP = Number(txtMindforceEP);
         }
 
         // Check if the enemy is immune to Mindblast
@@ -1035,7 +1035,7 @@ export const mechanicsEngine = {
         // Special mindblast bonus?
         const txtMindblastBonus = $rule.attr("mindblastBonus");
         if (txtMindblastBonus) {
-            combat.mindblastBonus = parseInt(txtMindblastBonus, 10);
+            combat.mindblastBonus = Number(txtMindblastBonus);
         }
 
         // Mindblast multiplier (to all mental attacks too, like psi-surge)
@@ -1577,7 +1577,7 @@ export const mechanicsEngine = {
      */
     toast(rule: Element) {
         let durationValue = 5000;
-        const txtDurationValue: string = $(rule).attr("duration");
+        const txtDurationValue: string|undefined = $(rule).attr("duration");
         if (txtDurationValue) {
             durationValue = parseInt(txtDurationValue, 10);
         }
@@ -1590,7 +1590,7 @@ export const mechanicsEngine = {
      */
     textToChoice(rule: Element) {
 
-        const linkText: string = $(rule).attr("text");
+        const linkText: string|undefined = $(rule).attr("text");
         if (!linkText) {
             mechanicsEngine.debugWarning("textToChoice: text attribute not found");
             return;
@@ -1843,8 +1843,8 @@ export const mechanicsEngine = {
      * @param defaultValue Value to return if the attribute is not present (default "defaultValue" is null)
      * @returns The property value. defaultValue if the property was not present
      */
-    getBooleanProperty($rule: JQuery<Element>, property: string, defaultValue: boolean = null): boolean | null {
-        const txtValue: string = $rule.attr(property);
+    getBooleanProperty($rule: JQuery<Element>, property: string, defaultValue: boolean|null = null): boolean | null {
+        const txtValue: string|undefined = $rule.attr(property);
         if (!txtValue) {
             return defaultValue;
         }
@@ -2096,7 +2096,7 @@ export const mechanicsEngine = {
      * @param {XmlNode} rule The root rule
      * @param {function(XmlNode)} callback The function to execute
      */
-    enumerateSectionRules(rule: Element, callback: (rule: Element) => string) {
+    enumerateSectionRules(rule: Element, callback: (rule: Element) => string|undefined) {
 
         let result = callback(rule);
         if (result === "finish") {
@@ -2160,7 +2160,7 @@ export const mechanicsEngine = {
      * @param msg Message text
      * @param msgId Id to set on the message HTML tag. It's optional
      */
-    showMessage(msg: string, msgId: string = null) {
+    showMessage(msg: string, msgId: string|null = null) {
 
         if (msgId) {
             // Avoid duplicated messages

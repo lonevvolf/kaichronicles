@@ -30,19 +30,19 @@ export class Combat {
     public objectsUsageModifier = 0;
 
     /** The enemy is immune to Mindblast? */
-    public noMindblast = false;
+    public noMindblast = false as boolean|null;
 
     /** The enemy is immune to Psi-Surge? */
-    public noPsiSurge = false;
+    public noPsiSurge = false as boolean|null;
 
     /** The enemy is immune to Kai-Surge? */
-    public noKaiSurge = false;
+    public noKaiSurge = false as boolean|null;
 
     /** The enemy is immune to Kai-Blast? */
-    public noKaiBlast = false;
+    public noKaiBlast = false as boolean|null;
 
     /** The enemy is immune to Kai-Ray? */
-    public noKaiRay = false;
+    public noKaiRay = false as boolean|null;
 
     /** The CS bonus to apply if the player has Mindblast discipline */
     public mindblastBonus : number;
@@ -486,7 +486,7 @@ export class Combat {
      * The applicable Surge discipline in this combat
      * @returns The applicable Surge discipline (NewOrderDiscipline.KaiSurge or GndDiscipline.KaiSurge or MgnDiscipline.PsiSurge). null if no Surge is applicable
      */
-    public getSurgeDiscipline(): string {
+    public getSurgeDiscipline(): string|null {
         if (state.actionChart.hasNewOrderDiscipline(NewOrderDiscipline.KaiSurge) && !this.noKaiSurge) {
             return NewOrderDiscipline.KaiSurge;
         } else if (state.actionChart.hasGndDiscipline(GndDiscipline.KaiSurge) && !this.noKaiSurge) {
@@ -527,7 +527,7 @@ export class Combat {
      * @param surgeDisciplineId Discipline applied in this combat (GndDiscipline.KaiSurge or MgnDiscipline.PsiSurge)
      * @returns EP loss for each turn
      */
-    public static surgeTurnLoss(surgeDisciplineId: string, combat: Combat = null): number {
+    public static surgeTurnLoss(surgeDisciplineId: string, combat: Combat|null = null): number {
         if (combat && combat.kaiSurgeTurnLoss != null) {
             return combat.kaiSurgeTurnLoss;
         }
@@ -552,7 +552,7 @@ export class Combat {
      * @param surgeDisciplineId Discipline applied in this combat (GndDiscipline.KaiSurge or MgnDiscipline.PsiSurge)
      * @returns Minimum EP to use discipline
      */
-    public static minimumEPForSurge(surgeDisciplineId: string): number {
+    public static minimumEPForSurge(surgeDisciplineId: string|null): number {
         if (surgeDisciplineId === GndDiscipline.KaiSurge || surgeDisciplineId === NewOrderDiscipline.KaiSurge) {
             return 6;
         } else {

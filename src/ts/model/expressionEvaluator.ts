@@ -234,7 +234,7 @@ export class ExpressionEvaluator {
      * @param expression Expression where to replace keywords
      * @returns The expression with the replaced values
      */
-    private static doReplacements( expression: string ): string {
+    private static doReplacements( expression: string|undefined ): string|undefined {
         for ( const keyword of ExpressionEvaluator.getKeywords(expression) ) {
             let replacement: string;
             const functionReplacer = ExpressionEvaluator.replacementFunctions[ keyword ];
@@ -254,7 +254,7 @@ export class ExpressionEvaluator {
      * @param expression Expression to evaluate
      * @returns The expression value
      */
-    private static eval( expression: string ): any {
+    private static eval( expression: string|undefined ): any {
         try {
             expression = ExpressionEvaluator.doReplacements( expression );
             // tslint:disable-next-line: no-eval
@@ -292,7 +292,7 @@ export class ExpressionEvaluator {
      * @param expression Expression to evaluate
      * @returns The expression value
      */
-    public static evalInteger( expression: string ): number {
+    public static evalInteger( expression: string|undefined ): number {
         return Math.floor( ExpressionEvaluator.eval( expression ) );
     }
 
@@ -301,7 +301,7 @@ export class ExpressionEvaluator {
      * @param expression Expression to evaluate
      * @returns The expression value
      */
-    public static evalFloat( expression: string ): number {
+    public static evalFloat( expression: string|undefined ): number {
         return <number>(ExpressionEvaluator.eval( expression ));
     }
 
