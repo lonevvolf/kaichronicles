@@ -440,7 +440,7 @@ export class Book {
      */
     public getRandomTable(): number[] {
         const $randomCells = $(this.bookXml)
-            .find("section[id=random] > data > illustration > instance[class=text]")
+            .find("section[id=random] > data > illustration > instance[class=text], section[id=random] > data > table[class=random-number-table]")
             .find("td");
         const numbers = <number[]>[];
         for (const cell of $randomCells.toArray()) {

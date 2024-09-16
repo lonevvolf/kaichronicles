@@ -179,6 +179,10 @@ export class ExpressionEvaluator {
             return numberPickerMechanics.getNumberPickerValue();
         },
 
+        "[NUMBERPICKER1]"() {
+            return numberPickerMechanics.getNumberPickerValue(1);
+        },
+
         "[DISCIPLINEPICKER]"() {
             return disciplinePickerMechanics.getDisciplinePickerValue();
         },

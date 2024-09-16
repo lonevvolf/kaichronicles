@@ -49,5 +49,9 @@ module.exports = {
         /kai\.js$/
       ]
     }),
-  ]
+  ],
+  performance: 
+  {
+    hints: false
+  }
 };

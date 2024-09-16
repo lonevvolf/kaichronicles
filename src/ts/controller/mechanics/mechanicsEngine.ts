@@ -1,9 +1,10 @@
-import { views, translations, Section, gameView, state, CombatMechanics, randomMechanics, Combat, Item, routing, gameController,
+import { views, translations, Section, SectionState, gameView, state, CombatMechanics, randomMechanics, Combat, Item, routing, gameController,
     App, ExpressionEvaluator, numberPickerMechanics, disciplinePickerMechanics, kaiWeaponPickerMechanics, SkillsSetup, KaiNameSetup, SetupDisciplines, EquipmentSectionMechanics, actionChartController,
     CurrencyName, LoreCircle, BookSeriesId, MealMechanics, ActionChartItem, InventoryState, actionChartView, template, Book,
     GrandMasterUpgrade, kaimonasteryController, book2sect238, book2sect308, book3sect88, book6sect26, book6sect284,
     book6sect340, book9sect91, book19sect304, book28sect71, book28sect192, ObjectsTable, ObjectsTableType, setupController, KaiDiscipline, MgnDiscipline,
-    GndDiscipline, projectAon, DebugMode } from "../..";
+    GndDiscipline, projectAon, DebugMode, 
+    SectionRenderer} from "../..";
 
 /**
  * Engine to render and run gamebook mechanics rules
@@ -181,7 +182,6 @@ export const mechanicsEngine = {
      * @param combatToApply Only applies if onlyCombatRules is true. Single combat where to apply the combat rules
      */
     runGlobalRules(onlyCombatRules: boolean = false, combatToApply: Combat = null) {
-
         for (const id of state.sectionStates.globalRulesIds) {
             const $globalRule = state.mechanics.getGlobalRule(id);
 
@@ -951,7 +951,26 @@ export const mechanicsEngine = {
             combatIndex = 0;
         }
 
-        const sectionState = state.sectionStates.getSectionState();
+        let fromSection = $rule.attr("fromSection");
+
+        let sectionState: SectionState;
+        if (fromSection) {
+            // Add combat section to the DOM
+            const section = new Section(state.book, fromSection, null);
+            const renderer = new SectionRenderer(section);
+            const originalSection = renderer.renderSection();
+            const combatHtml = $('<div/>').append(originalSection).find(".combat")
+            $('#game-section > p.choice').before(combatHtml);
+
+            sectionState = state.sectionStates.getSectionState(fromSection);
+            if (state.sectionStates.getSectionState().combats.length === 0) {
+                state.sectionStates.getSectionState().combats.push(sectionState.combats[0]);
+            }
+
+            sectionState.setCombatsEnabled(true);
+        } 
+        
+        sectionState = state.sectionStates.getSectionState();
 
         // Get the combat where to apply the rule
         let combat: Combat;
@@ -970,6 +989,13 @@ export const mechanicsEngine = {
         const combatSkillModifier = mechanicsEngine.getIntProperty($rule, "combatSkillModifier", true);
         if (combatSkillModifier !== null) {
             combat.combatModifier = combatSkillModifier;
+        }
+
+        // Check Enemy combat ABSOLUTE skill modifier for this section:
+        const enemyCombatSkillModifier = mechanicsEngine.getIntProperty($rule, "enemyCombatSkillModifier", true);
+        if (enemyCombatSkillModifier !== null) {
+            combat.enemyCombatModifier = enemyCombatSkillModifier;
+            CombatMechanics.updateCombats();
         }
 
         // Check LW combat skill modifier INCREMENT
@@ -1000,6 +1026,9 @@ export const mechanicsEngine = {
         // Check if the enemy is immune to Kai-Blast
         combat.noKaiBlast = mechanicsEngine.getBooleanProperty($rule, "noKaiBlast", combat.noKaiBlast);
 
+        // Set the number of Kai-Blast rolls
+        combat.kaiBlastRolls = mechanicsEngine.getIntProperty($rule, "kaiBlastRolls", false) ?? combat.kaiBlastRolls;
+
         // Check if the enemy is immune to Kai-Ray
         combat.noKaiRay = mechanicsEngine.getBooleanProperty($rule, "noKaiRay", combat.noKaiRay);
 
@@ -1025,6 +1054,12 @@ export const mechanicsEngine = {
         const txtKaiSurgeBonus: string = $rule.attr("kaiSurgeBonus");
         if (txtKaiSurgeBonus) {
             combat.kaiSurgeBonus = parseInt(txtKaiSurgeBonus, 10);
+        }
+
+        // Special Kai-Surge EP loss?
+        const txtKaiSurgeTurnLoss: string = $rule.attr("kaiSurgeTurnLoss");
+        if (txtKaiSurgeTurnLoss) {
+            combat.kaiSurgeTurnLoss = parseInt(txtKaiSurgeTurnLoss, 10);
         }
 
         // Check if the player cannot use weapons on this combat
@@ -1206,7 +1241,12 @@ export const mechanicsEngine = {
         const increase = ExpressionEvaluator.evalInteger($(rule).attr("count"));
         const toast = mechanicsEngine.getBooleanProperty($(rule), "toast", true);
         const permanent = mechanicsEngine.getBooleanProperty($(rule), "permanent", false);
-        actionChartController.increaseEndurance(increase, toast, permanent);
+        const enemy = mechanicsEngine.getBooleanProperty($(rule), "enemy", false);
+        if (enemy) {
+            CombatMechanics.increaseEndurance(increase);
+        } else {
+            actionChartController.increaseEndurance(increase, toast, permanent);
+        }
 
         state.sectionStates.markRuleAsExecuted(rule);
     },
@@ -1772,6 +1812,7 @@ export const mechanicsEngine = {
     book28sect192() {
         book28sect192.run();
     },
+
     /************************************************************/
     /**************** RULES HELPERS *****************************/
     /************************************************************/
@@ -1782,11 +1823,16 @@ export const mechanicsEngine = {
      * @param property The property to get. Property values must be separated by '|' (ex. 'a|b|c' )
      * @returns The values stored on the property. An empty array if the property does not exists
      */
-    getArrayProperty($rule: JQuery<Element>, property: string): string[] {
+    getArrayProperty($rule: JQuery<Element>, property: string, evaluateReplacements: boolean = false): string[] {
         const propertyText = $rule.attr(property);
         if (!propertyText) {
             return [];
         }
+
+        if (evaluateReplacements && propertyText.indexOf("[") !== -1) {
+            return [ExpressionEvaluator.evalInteger(propertyText).toFixed()];
+        }
+
         return propertyText.split("|");
     },
 
@@ -2080,7 +2126,7 @@ export const mechanicsEngine = {
 
         // Indices to drop
         const slotIndices: number[] = [];
-        for (const itemSlotTxt of mechanicsEngine.getArrayProperty($rule, property)) {
+        for (const itemSlotTxt of mechanicsEngine.getArrayProperty($rule, property, true)) {
 
             let slotIndex: number;
             if (itemSlotTxt === "last") {
