@@ -224,7 +224,7 @@ export const mechanicsEngine = {
     /**
      * Fire events associated to inventory changes (pick, drop, etc)
      * @param fromUI True if the event was fired from the UI
-     * @param o Only applies if fromUI is true. The object picked / droped
+     * @param o Only applies if fromUI is true. The object picked / dropped
      */
     fireInventoryEvents(fromUI: boolean = false, o: Item = null) {
 
@@ -246,7 +246,7 @@ export const mechanicsEngine = {
                 // Re-render the section
                 console.log("Re-rendering the section due to rules re-execution");
                 gameController.loadSection(state.sectionStates.currentSection, false,
-                    window.pageYOffset);
+                    window.scrollY);
             }
         }
 

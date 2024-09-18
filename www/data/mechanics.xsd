@@ -328,7 +328,7 @@
         </xs:attribute>
         <xs:attribute name="currentWeaponMagical" type="xs:boolean">
             <xs:annotation>
-                <xs:documentation>Current weapon is has a CS or EP effect (or not)?</xs:documentation>
+                <xs:documentation>Current weapon has a CS or EP effect (or not)?</xs:documentation>
             </xs:annotation>
         </xs:attribute>
         <xs:attribute name="isGlobalRuleRegistered" type="xs:string">
@@ -507,7 +507,7 @@
         </xs:attribute>
         <xs:attribute name="kaiSurgeTurnLoss" type="xs:integer">
             <xs:annotation>
-                <xs:documentation>Special EP turn loss to apply for Kai-Surge discipline on this combat</xs:documentation>
+                <xs:documentation>Special EP turn loss to apply for Kai/Psi-Surge discipline on this combat</xs:documentation>
             </xs:annotation>
         </xs:attribute>
         <xs:attribute name="noWeapon" type="xs:string">
@@ -1131,7 +1131,7 @@
 
     <xs:complexType name="objectUsed">
         <xs:annotation>
-            <xs:documentation>Event handler for an object use. If some of the objects on the "objectId" property is used on this section, the chilren rules will be executed.</xs:documentation>
+            <xs:documentation>Event handler for an object use. If some of the objects on the "objectId" property is used on this section, the children rules will be executed.</xs:documentation>
         </xs:annotation>
 
         <xs:group ref="any_rule" minOccurs="0" maxOccurs="unbounded" />

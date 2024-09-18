@@ -301,7 +301,7 @@ will be executed.
 * **hasWeaponskillWith="weaponType"** : The player has "Weaponskill" (current book discipline, no loyalty bonus) with the given weapon type?
 * **canUseBow="boolean"** : The player has a bow and one arrow (or not)?
 * **currentWeaponSpecial="boolean"** : Current weapon is a Special Item (or not)?
-* **currentWeaponMagical="boolean"** : Current weapon is has a CS or EP effect (or not)?
+* **currentWeaponMagical="boolean"** : Current weapon has a CS or EP effect (or not)?
 * **isGlobalRuleRegistered="globalRuleId"** : A global rule with a given id is currently registered?
 * **objectOnSection="objectId1|objectId2|..."**: Some of these objects is available on the current section?
 * **pickedSomethingOnSection="sectionId"**: Did the player pick something on the given section?
@@ -414,7 +414,7 @@ the following properties:
 * **mindblastMultiplier="float"**: CS multiplier to apply to Mindblast/Psi-Surge/Kai-Surge attacks this combat
 * **psiSurgeBonus="number"**: Special CS bonus to apply for Psi-Surge discipline on this combat
 * **kaiSurgeBonus="number"**: Special CS bonus to apply for Kai-Surge discipline on this combat
-* **kaiSurgeTurnLoss="number"**: Special EP turn loss to apply for Kai-Surge discipline on this combat
+* **kaiSurgeTurnLoss="number"**: Special EP turn loss to apply for Kai/Psi-Surge discipline on this combat
 * **noWeapon="boolean|number"**: If true, Lone Wolf cannot use any weapon on this combat. If a number, LW cannot use any weapon for that many turns
 * **noObjectBonuses="true"**: If true, no weapon or item bonuses will be applied
 * **mentalOnly="true"**: Lone Wolf cannot use any physical bonuses on this combat (any object bonus)
@@ -516,7 +516,7 @@ You can check if a global rule is still registered with:
 </objectUsed>
 ```
 Event handler for an object use. If some of the objects on the "objectId" property is used
-on this section, the chilren rules will be executed
+on this section, the children rules will be executed
 
 ### numberPicker / numberPickerChoosed
 ```xml

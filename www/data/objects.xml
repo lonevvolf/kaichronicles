@@ -116,6 +116,14 @@
             <effect class="combatSkill" increment="+1" />
         </weapon>
 
+        <!-- BOOK 29 -->
+        <weapon id="ansengskirusami" weaponType="spear">
+            <name>Anseng's Kirusami</name>
+            <description> In combat, the superior craftsmanship and balance of this Chai weapon will add 1 to your COMBAT SKILL. Moreover, the lingering power that remains in the blade of this weapon will double all ENDURANCE point damage you inflict upon undead enemies in combat. However, this power comes at a price. In the first round of combat in which you use this weapon, you will suffer an automatic loss of 3 ENDURANCE points.</description>
+            <image book="1|9" name="spear.png" />
+            <effect class="combatSkill" increment="+1" />
+        </weapon>
+
     </weapons>
 
     <specials>
@@ -1109,6 +1117,11 @@
 
         <special id="eyeofagarash" droppable="false">
             <name>Eye of Agarash</name>
+        </special>
+
+        <special id="wardstone">
+            <name>Wardstone</name>
+            <description>If you enter into combat against an undead adversary whilst in possession of this item, you may reduce your enemy’s COMBAT SKILL by 3 for the duration of the fight.</description>
         </special>
 
     </specials>
@@ -2395,6 +2408,13 @@
 
         <object id="smallblanket">
             <name>Small Blanket</name>
+        </object>
+
+        <object id="oxydinepotion">
+            <name>Oxydine Potion</name>
+            <description>Restores 2 ENDURANCE when swallowed at any time. It also cures Korovax infections.</description>
+            <image book="1|9" name="potion.png" />
+            <effect class="endurance" increment="+2" />
         </object>
 
         <!-- OTHERS -->

@@ -222,7 +222,7 @@ export const actionChartController = {
             template.updateStatistics();
 
             if (availableOnSection) {
-                // Add the droped object as available on the current section
+                // Add the dropped object as available on the current section
                 const sectionState = state.sectionStates.getSectionState();
                 sectionState.addActionChartItemToSection(droppedItem, dropCount);
 

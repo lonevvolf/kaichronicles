@@ -1423,7 +1423,7 @@ export class ActionChart {
 
     /**
      * Player has a given discipline on a given book series?
-     * @param disciplineId Displine to check
+     * @param disciplineId Discipline to check
      * @param seriesId Book series to check. If null or not specified, the current book series
      * @returns true if player has the discipline
      */

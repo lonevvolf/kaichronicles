@@ -193,7 +193,7 @@
         </section>
 
         <section id="sect32">
-            <!-- TODO: We should control the kind of weapon droped -->
+            <!-- TODO: We should control the kind of weapon dropped -->
             <message id="msg-drop-weapon" text="Drop a sword or spear before continuing" />
             <choiceState section="all" set="disabled" />
             <onInventoryEvent>
