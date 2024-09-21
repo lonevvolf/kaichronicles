@@ -2420,6 +2420,23 @@
             <usage class="endurance" increment="+2" />
         </object>
 
+        <object id="aletherberries29" itemCount="0">
+            <name>Alether Berries</name>
+            <description>
+                They will increase your COMBAT SKILL by 2 points for the duration of a fight. 
+                You cannot swallow more than one handful during any one combat
+            </description>
+            <usage class="combatSkill" increment="2" />
+        </object>
+
+        <object id="crowbar">
+            <name>Crowbar</name>
+        </object>
+
+        <object id="ironpot">
+            <name>Iron Pot</name>
+        </object>
+
         <!-- OTHERS -->
 
         <!-- This not really an object, but needed for mechanics -->

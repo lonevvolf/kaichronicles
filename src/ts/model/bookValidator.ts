@@ -83,6 +83,14 @@ export class BookValidator {
      */
     public validateSection( sectionId: string ) {
         this.errors = [];
+        // The book section
+        this.currentSection = new Section( this.book , sectionId , this.mechanics );
+
+        const $sectionMechanics = this.mechanics.getSection( sectionId );
+        if ( $sectionMechanics?.length > 1 ) {
+            this.addError( null, "Section mechanics defined multiple times" );
+        }
+
         this.validateSectionInternal(sectionId);
     }
 

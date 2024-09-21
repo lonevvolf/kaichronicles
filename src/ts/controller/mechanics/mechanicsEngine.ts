@@ -166,7 +166,9 @@ export const mechanicsEngine = {
             const sectionState = state.sectionStates.getSectionState();
             if (sectionState && sectionState.combats) {
                 state.sectionStates.getSectionState().combats.forEach((combat) => {
-                    combat.combatModifier = 0;
+                    if (combat) {
+                        combat.combatModifier = 0;
+                    }
                 });
             }
             mechanicsEngine.runChildRules($sectionMechanics);
