@@ -333,7 +333,7 @@
         <section id="sect38">
             <pick class="meal" count="-1" />
 
-            <object objectId="laumspur" price="5" />
+            <object objectId="laumspurpotion4" price="5" />
             <object objectId="tazheng" price="6" />
             <object objectId="sabitotincture" price="8" />
             <object objectId="karmo" price="12" />
@@ -802,6 +802,8 @@
             <sell objectId="ashexapotion" price="20" currency="ren" />
             <sell objectId="klorvapotion" price="20" currency="ren" />
             <sell objectId="sabitotincture" price="20" currency="ren" />
+            <sell objectId="laumwortpotion" price="20" currency="ren" />
+            <sell objectId="tazheng" price="20" currency="ren" />
             <sell objectId="karmo" price="200" currency="ren" />
         </section>
 
@@ -1222,6 +1224,121 @@
         <section id="sect188">
             <drop objectId="ansengskirusami" />
             <unregisterGlobalRule id="ansengskirusami-loss" />
+        </section>
+
+        <section id="sect189">
+            <choiceState section="all" set="disabled" />
+            <randomTable>
+                <case to="5">
+                    <choiceState section="sect121" set="enabled" />
+                </case>
+                <case from="6">
+                    <choiceState section="sect198" set="enabled" />
+                </case>
+            </randomTable>
+            <test hasWeaponskillWith="bow">
+                <randomTableIncrement increment="+5" />
+            </test>
+        </section>
+
+        <section id="sect191">
+            <test not="true" expression="[MONEY] >= 2">
+                <choiceState section="sect156" set="disabled" />
+            </test>
+            <choiceSelected section="sect156">
+                <pick class="money" count="-2" />
+            </choiceSelected>
+        </section>
+
+        <section id="sect192">
+            <pick objectId="eyeofagarash" />
+            <onInventoryEvent>
+                <choiceState section="all" set="disabled" />
+                <test not="true" objectOnSection="eyeofagarash">
+                    <choiceState section="all" set="enabled" />
+                </test>
+                <test objectOnSection="eyeofagarash">
+                    <choiceState section="all" set="disabled" />
+                </test>
+            </onInventoryEvent>
+        </section>
+
+        <section id="sect194">
+            <choiceState section="all" set="disabled" />
+            <combat />
+            <afterCombats>
+                <choiceState section="sect283" set="enabled" />
+            </afterCombats>
+            <afterCombatTurn turn="1">
+                <disableCombats />
+                <test expression="[COMBATSENDURANCELOST] &lt;= [COMBATSENEMYLOST]">
+                    <choiceState section="sect283" set="enabled" />
+                </test>
+                <test expression="[COMBATSENDURANCELOST] > [COMBATSENEMYLOST]">
+                    <choiceState section="sect315" set="enabled" />
+                </test>
+            </afterCombatTurn>
+        </section>
+
+        <section id="sect195">
+            <choiceState section="all" set="disabled" />
+            <combat />
+            <afterCombats>
+                <choiceState section="all" set="enabled" />
+            </afterCombats>
+        </section>
+
+        <section id="sect196">
+            <choiceState section="sect122" set="disabled" />
+            <test hasDiscipline="element">
+                <test expression="[KAILEVEL] >= 9">
+                    <choiceState section="sect122" set="enabled" />
+                    <choiceState section="sect11" set="disabled" />
+                </test>
+            </test>
+        </section>
+
+        <section id="sect199">
+            <object objectId="laumwortpotion" index="0" />
+            <object objectId="laumwortpotion" index="1" />
+            <object objectId="laumspurpotion4" index="0" />
+            <object objectId="laumspurpotion4" index="1" />
+            <object objectId="laumspurpotion4" index="2" />
+            <object objectId="oxydinepotion" />
+            <object objectId="potionofstrength" />
+            <object objectId="malavanpotion" />
+        </section>
+
+        <section id="sect200">
+            <object objectId="laumspurpotion4" price="5" />
+            <object objectId="tazheng" price="6" />
+            <object objectId="sabitotincture" price="8" />
+            <object objectId="karmo" price="12" />
+        </section>
+
+        <section id="sect206">
+            <endurance count="-3" />
+        </section>
+
+        <section id="sect207">
+            <choiceState section="all" set="disabled" />
+            <combat combatSkillModifier="+6" />
+            <afterCombats>
+                <choiceState section="all" set="enabled" />
+                <endurance count="-3" />
+            </afterCombats>
+        </section>
+
+        <section id="sect254">
+            <test not="true" expression="[MONEY] >= 3">
+                <choiceState section="sect200" set="disabled" />
+            </test>
+            <test expression="[MONEY] >= 3">
+                <choiceState section="sect339" set="disabled" />
+            </test>
+            <choiceSelected section="sect200">
+                <pick class="money" count="-3" />
+            </choiceSelected>
         </section>
 
         <section id="sect291">

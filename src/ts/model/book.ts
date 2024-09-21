@@ -420,7 +420,11 @@ export class Book {
     /**
      * Get the book cover image URL
      */
-    public getCoverURL(): string {
+    public getCoverURL(): string|null {
+        // Book 29 has no illustrations
+        if (this.bookNumber === 29) {
+            return null;
+        }
         return Book.getBaseUrl() + this.bookNumber.toFixed() + "/cover.jpg";
     }
 

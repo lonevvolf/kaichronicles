@@ -1115,8 +1115,10 @@
             <description>Endows it wearer with a limited protection from evil.</description>
         </special>
 
+        <!-- TODO: Implement Eye of Agarash -->
         <special id="eyeofagarash" droppable="false">
             <name>Eye of Agarash</name>
+            <description>The Eye radiates an evil energy that will periodically drain you of ENDURANCE points. You will be told whenever this energy drain occurs. If you possess the Grand Master Discipline of Kai-screen, the loss of ENDURANCE will be limited to only 1 point each time an energy drain occurs.</description>
         </special>
 
         <special id="wardstone">
@@ -2312,12 +2314,6 @@
             <effect class="backpackSlots" increment="+5" />
         </object>
 
-        <object id="laumspur">
-            <name>Laumspur</name>
-            <description>Restores 4 ENDURANCE points when swallowed after combat</description>
-            <usage class="endurance" increment="+4" />
-        </object>
-
         <!-- BOOK 28 -->
         <object id="ashexaconcentrate" usageCount="1">
             <name>Ashexa Concentrate</name>
@@ -2415,6 +2411,13 @@
             <description>Restores 2 ENDURANCE when swallowed at any time. It also cures Korovax infections.</description>
             <image book="1|9" name="potion.png" />
             <effect class="endurance" increment="+2" />
+        </object>
+
+        <object id="laumwortpotion">
+            <name>Potion of Laumwort</name>
+            <description>Restores 2 ENDURANCE when swallowed at any time.</description>
+            <image book="1|9" name="potion.png" />
+            <usage class="endurance" increment="+2" />
         </object>
 
         <!-- OTHERS -->

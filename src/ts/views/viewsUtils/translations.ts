@@ -158,6 +158,10 @@ export class Translations {
         //////////////////////////////////////
 
         "youMustAgree" : "You must agree the license to continue",
+        "Kai": "Kai",
+        "Magnakai": "Magnakai",
+        "GrandMaster": "Grand Master",
+        "NewOrder": "New Order",
 
         //////////////////////////////////////
         // Settings
