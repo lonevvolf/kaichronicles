@@ -41,6 +41,7 @@ export * from "./controller/mechanics/specialSections/book9sect91";
 export * from "./controller/mechanics/specialSections/book19sect304";
 export * from "./controller/mechanics/specialSections/book28sect71";
 export * from "./controller/mechanics/specialSections/book28sect192";
+export * from "./controller/mechanics/specialSections/book29sect342";
 export * from "./controller/mechanics/randomMechanics";
 export * from "./controller/mechanics/equipmentSectionMechanics";
 export * from "./controller/mechanics/numberPickerMechanics";

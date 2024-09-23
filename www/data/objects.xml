@@ -3,7 +3,7 @@
 <object-mechanics  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/cracrayol/kaichronicles/master/www/data/objects.xsd">
 
     <weapons>
-        <!-- WEAPONS ON KAI / MAGNAKAI SERIES BOOKS -->
+        <!-- WEAPONS -->
         <weapon id="axe">
             <name>Axe</name>
             <image book="1|9" name="axe.png" />
@@ -122,6 +122,48 @@
             <description> In combat, the superior craftsmanship and balance of this Chai weapon will add 1 to your COMBAT SKILL. Moreover, the lingering power that remains in the blade of this weapon will double all ENDURANCE point damage you inflict upon undead enemies in combat. However, this power comes at a price. In the first round of combat in which you use this weapon, you will suffer an automatic loss of 3 ENDURANCE points.</description>
             <image book="1|9" name="spear.png" />
             <effect class="combatSkill" increment="+1" />
+        </weapon>
+
+        <weapon id="bow29" weaponType="bow">
+            <name>Bow (+1 CS)</name>
+            <image book="6" name="bow.png" />
+            <effect class="combatSkill" increment="+1" />
+        </weapon>
+
+        <weapon id="dagger29" weaponType="dagger">
+            <name>Dagger (+1 CS)</name>
+            <image book="1|9" name="dagger.png" />
+            <effect class="combatSkill" increment="+1" />
+        </weapon>
+
+        <weapon id="shortsword29" weaponType="shortsword">
+            <name>Short Sword (+1 CS)</name>
+            <image book="1|9" name="ssword.png" />
+            <effect class="combatSkill" increment="+1" />
+        </weapon>
+
+        <weapon id="broadsword29" weaponType="broadsword">
+            <name>Broad Sword (+1 CS)</name>
+            <image book="1|9" name="bsword.png" />
+            <effect class="combatSkill" increment="+1" />
+        </weapon>
+
+        <weapon id="axe29" weaponType="axe">
+            <name>Axe (+2 CS)</name>
+            <image book="1|9" name="axe.png" />
+            <effect class="combatSkill" increment="+2" />
+        </weapon>
+
+        <weapon id="mace29" weaponType="mace">
+            <name>Mace (+2 CS)</name>
+            <image book="1|9" name="mace.png" />
+            <effect class="combatSkill" increment="+2" />
+        </weapon>
+
+        <weapon id="warhammer29" weaponType="warhammer">
+            <name>Warhammer (+2 CS)</name>
+            <image book="1|9" name="warhammr.png" />
+            <effect class="combatSkill" increment="+2" />
         </weapon>
 
     </weapons>
@@ -1124,6 +1166,11 @@
         <special id="wardstone">
             <name>Wardstone</name>
             <description>If you enter into combat against an undead adversary whilst in possession of this item, you may reduce your enemy’s COMBAT SKILL by 3 for the duration of the fight.</description>
+        </special>
+
+        <special id="quiver29">
+            <name>Quiver (up to 12 arrows)</name>
+            <image book="6|9" name="quiver.png" />
         </special>
 
     </specials>
