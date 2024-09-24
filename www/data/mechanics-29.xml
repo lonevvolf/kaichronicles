@@ -2,8 +2,6 @@
 
 <mechanics book="29" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/cracrayol/kaichronicles/master/www/data/mechanics.xsd">
-    <!-- TODO: Implement Power Strike -->
-    <!-- TODO: Review undead enemies/wardstone/kirusami -->
     <!-- TODO: Review all New Order books for BowBonus on Random Number Tables -->
 
     <!-- GAME RULES -->
@@ -159,6 +157,9 @@
 
             <choiceState section="all" set="disabled" />
             <combat />
+            <test currentWeapon="kaistar">
+                <combat combatSkillModifierIncrement="+2"/>
+            </test>
             <test currentWeapon="spawnsmite">
                 <combat combatSkillModifierIncrement="+1" />
             </test>
@@ -259,6 +260,9 @@
             <pick class="arrow" count="-1" />
             <choiceState section="all" set="disabled" />
             <combat combatSkillModifier="-4" />
+            <test currentWeapon="sunstrike">
+                <combat combatSkillModifierIncrement="+1"/>
+            </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
             </afterCombats>
@@ -282,6 +286,9 @@
         <section id="sect28">
             <choiceState section="all" set="disabled" />
             <combat combatSkillModifier="+6" immuneTurns="1" />
+            <test currentWeapon="sunstrike">
+                <combat combatSkillModifierIncrement="+1"/>
+            </test>
             <test hasObject="wardstone">
                 <combat enemyCombatSkillModifier="-3" />
             </test>
@@ -388,6 +395,9 @@
         <section id="sect48">
             <choiceState section="all" set="disabled" />
             <combat />
+            <test currentWeapon="sunstrike">
+                <combat combatSkillModifierIncrement="+1"/>
+            </test>
             <afterCombatTurn turn="1">
                 <disableCombats />
                 <test expression="[COMBATSENDURANCELOST] &lt;= [COMBATSENEMYLOST]">
@@ -403,9 +413,15 @@
             <choiceState section="all" set="disabled" />
             <test sectionVisited="sect66">
                 <combat fromSection="sect66" />
+                <test currentWeapon="sunstrike">
+                    <combat combatSkillModifierIncrement="+1"/>
+                </test>
             </test>
             <test sectionVisited="sect265">
                 <combat fromSection="sect265" />
+                <test currentWeapon="sunstrike">
+                    <combat combatSkillModifierIncrement="+1"/>
+                </test>
             </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
@@ -415,6 +431,9 @@
         <section id="sect50">
             <choiceState section="all" set="disabled" />
             <combat fromSection="sect100" />
+            <test currentWeapon="kaistar">
+                <combat combatSkillModifierIncrement="+2"/>
+            </test>
             <test currentWeapon="valiance">
                 <combat combatSkillModifierIncrement="+3" />
             </test>
@@ -433,6 +452,9 @@
         <section id="sect51">
             <choiceState section="all" set="disabled" />
             <combat />
+            <test currentWeapon="kaistar">
+                <combat combatSkillModifierIncrement="+2"/>
+            </test>
             <test hasObject="wardstone">
                 <combat enemyCombatSkillModifier="-3" />
             </test>
@@ -461,7 +483,9 @@
             <choiceState section="all" set="disabled" />
             <endurance count="-2" />
             <combat enemyImmuneTurns="1" turnLoss="-1" />
-
+            <test currentWeapon="sunstrike">
+                <combat combatSkillModifierIncrement="+1"/>
+            </test>
             <test hasObject="wardstone">
                 <combat enemyCombatSkillModifier="-3" />
             </test>
@@ -511,6 +535,9 @@
         <section id="sect60">
             <choiceState section="all" set="disabled" />
             <combat turnLoss="-1" />
+            <test currentWeapon="kaistar">
+                <combat combatSkillModifierIncrement="+2"/>
+            </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
             </afterCombats>
@@ -543,6 +570,10 @@
 
         <section id="sect66">
             <pick class="arrow" count="-1" />
+            <combat />
+            <test currentWeapon="sunstrike">
+                <combat combatSkillModifierIncrement="+1"/>
+            </test>
             <choiceState section="all" set="disabled" />
             <afterCombatTurn turn="3">
                 <disableCombats />
@@ -644,6 +675,9 @@
             <pick class="arrow" count="-2" />
             <choiceState section="all" set="disabled" />
             <combat combatSkillModifier="+3" immuneTurns="1" />
+            <test currentWeapon="kaistar">
+                <combat combatSkillModifierIncrement="+2"/>
+            </test>
             <afterCombatTurn turn="1">
                 <combat combatSkillModifier="0" />
             </afterCombatTurn>
@@ -731,6 +765,9 @@
         <section id="sect100">
             <choiceState section="all" set="disabled" />
             <combat noMindblast="true" turnLoss="-1" kaiSurgeBonus="+4" kaiBlastRolls="1" />
+            <test currentWeapon="kaistar">
+                <combat combatSkillModifierIncrement="+2"/>
+            </test>
             <test currentWeapon="valiance">
                 <combat combatSkillModifierIncrement="+3" />
             </test>
@@ -832,6 +869,9 @@
             <pick class="arrow" count="-1" />
             <choiceState section="all" set="disabled" />
             <combat immuneTurns="1" />
+            <test currentWeapon="kaistar">
+                <combat combatSkillModifierIncrement="+2"/>
+            </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
             </afterCombats>
@@ -885,6 +925,9 @@
         <section id="sect118">
             <choiceState section="all" set="disabled" />
             <combat />
+            <test currentWeapon="sunstrike">
+                <combat combatSkillModifierIncrement="+1"/>
+            </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
             </afterCombats>
@@ -918,6 +961,9 @@
             <pick class="arrow" count="-1" />
             <choiceState section="all" set="disabled" />
             <combat kaiSurgeBonus="+3" noKaiBlast="true" noMindblast="true" noKaiRay="true" noPsiSurge="true" />
+            <test currentWeapon="sunstrike">
+                <combat combatSkillModifierIncrement="+1"/>
+            </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
             </afterCombats>
@@ -982,6 +1028,9 @@
             <pick class="arrow" count="-1" />
             <choiceState section="all" set="disabled" />
             <combat combatSkillModifier="+5" />
+            <test currentWeapon="sunstrike">
+                <combat combatSkillModifierIncrement="+1"/>
+            </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
             </afterCombats>
@@ -1069,6 +1118,9 @@
             <choiceState section="all" set="disabled" />
             <endurance count="-4" />
             <combat />
+            <test currentWeapon="kaistar">
+                <combat combatSkillModifierIncrement="+2"/>
+            </test>
             <test hasObject="wardstone">
                 <combat enemyCombatSkillModifier="-3" />
             </test>
@@ -1114,6 +1166,9 @@
         <section id="sect157">
             <choiceState section="all" set="disabled" />
             <combat />
+            <test currentWeapon="sunstrike">
+                <combat combatSkillModifierIncrement="+1"/>
+            </test>
             <afterCombats>
                 <choiceState section="sect267" set="enabled" />
             </afterCombats>
@@ -1131,6 +1186,9 @@
         <section id="sect158">
             <choiceState section="all" set="disabled" />
             <combat immuneTurns="1" />
+            <test currentWeapon="kaistar">
+                <combat combatSkillModifierIncrement="+2"/>
+            </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
             </afterCombats>
@@ -1166,6 +1224,9 @@
         <section id="sect161">
             <choiceState section="all" set="disabled" />
             <combat combatSkillModifier="+3" immuneTurns="1" />
+            <test currentWeapon="kaistar">
+                <combat combatSkillModifierIncrement="+2"/>
+            </test>
             <afterCombatTurn turn="1">
                 <combat combatSkillModifier="0" />
             </afterCombatTurn>
@@ -1228,6 +1289,9 @@
         <section id="sect174">
             <choiceState section="all" set="disabled" />
             <combat combatSkillModifier="+6" />
+            <test currentWeapon="sunstrike">
+                <combat combatSkillModifierIncrement="+1"/>
+            </test>
             <test hasObject="wardstone">
                 <combat enemyCombatSkillModifier="-3" />
             </test>
@@ -1285,6 +1349,9 @@
         <section id="sect194">
             <choiceState section="all" set="disabled" />
             <combat />
+            <test currentWeapon="sunstrike">
+                <combat combatSkillModifierIncrement="+1"/>
+            </test>
             <afterCombats>
                 <choiceState section="sect283" set="enabled" />
             </afterCombats>
@@ -1302,6 +1369,9 @@
         <section id="sect195">
             <choiceState section="all" set="disabled" />
             <combat />
+            <test currentWeapon="sunstrike">
+                <combat combatSkillModifierIncrement="+1"/>
+            </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
             </afterCombats>
@@ -1342,6 +1412,15 @@
         <section id="sect207">
             <choiceState section="all" set="disabled" />
             <combat combatSkillModifier="+6" />
+            <test currentWeapon="sunstrike">
+                <combat combatSkillModifierIncrement="+1"/>
+            </test>
+            <test hasObject="wardstone">
+                <combat enemyCombatSkillModifier="-3" />
+            </test>
+            <test currentWeapon="alema">
+                <combat combatSkillModifierIncrement="+2" />
+            </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
                 <endurance count="-3" />
@@ -1477,6 +1556,9 @@
             <endurance count="-4" />
             <choiceState section="all" set="disabled" />
             <combat />
+            <test currentWeapon="kaistar">
+                <combat combatSkillModifierIncrement="+2"/>
+            </test>
             <test hasObject="wardstone">
                 <combat enemyCombatSkillModifier="-3" />
             </test>
@@ -1572,6 +1654,9 @@
         <section id="sect242">
             <choiceState section="all" set="disabled" />
             <combat combatSkillModifier="-4" />
+            <test currentWeapon="sunstrike">
+                <combat combatSkillModifierIncrement="+1"/>
+            </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
             </afterCombats>
@@ -1652,6 +1737,9 @@
         <section id="sect256">
             <choiceState section="all" set="disabled" />
             <combat noKaiBlast="true" noKaiRay="true" noMindblast="true" noPsiSurge="true" kaiSurgeBonus="+3" />
+            <test currentWeapon="sunstrike">
+                <combat combatSkillModifierIncrement="+1"/>
+            </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
             </afterCombats>
@@ -1688,6 +1776,9 @@
         <section id="sect262">
             <choiceState section="all" set="disabled" />
             <combat />
+            <test currentWeapon="sunstrike">
+                <combat combatSkillModifierIncrement="+1"/>
+            </test>
             <test hasObject="wardstone">
                 <combat enemyCombatSkillModifier="-3" />
             </test>
@@ -1732,6 +1823,9 @@
         <section id="sect265">
             <choiceState section="all" set="disabled" />
             <combat />
+            <test currentWeapon="sunstrike">
+                <combat combatSkillModifierIncrement="+1"/>
+            </test>
             <afterCombats>
                 <choiceState section="sect313" set="enabled" />
             </afterCombats>
@@ -1744,6 +1838,9 @@
         <section id="sect268">
             <choiceState section="all" set="disabled" />
             <combat combatSkillModifier="-4" />
+            <test currentWeapon="sunstrike">
+                <combat combatSkillModifierIncrement="+1"/>
+            </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
             </afterCombats>
@@ -1890,6 +1987,9 @@
         <section id="sect296">
             <choiceState section="all" set="disabled" />
             <combat combatSkillModifier="+3" immuneTurns="1" />
+            <test currentWeapon="kaistar">
+                <combat combatSkillModifierIncrement="+2"/>
+            </test>
             <afterCombatTurn turn="1">
                 <combat combatSkillModifier="0" />
             </afterCombatTurn>
@@ -1948,6 +2048,9 @@
         <section id="sect304">
             <choiceState section="all" set="disabled" />
             <combat combatSkillModifier="+6" />
+            <test currentWeapon="sunstrike">
+                <combat combatSkillModifierIncrement="+1"/>
+            </test>
             <test hasObject="wardstone">
                 <combat enemyCombatSkillModifier="-3" />
             </test>
@@ -1974,6 +2077,9 @@
         <section id="sect307">
             <choiceState section="all" set="disabled" />
             <combat combatSkillModifier="-4" />
+            <test currentWeapon="sunstrike">
+                <combat combatSkillModifierIncrement="+1"/>
+            </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
             </afterCombats>
@@ -2042,6 +2148,9 @@
             <endurance count="+3" />
             <choiceState section="all" set="disabled" />
             <combat />
+            <test currentWeapon="kaistar">
+                <combat combatSkillModifierIncrement="+2"/>
+            </test>
             <test currentWeapon="spawnsmite">
                 <combat combatSkillModifierIncrement="+1" />
             </test>
@@ -2080,6 +2189,9 @@
         <section id="sect324">
             <choiceState section="all" set="disabled" />
             <combat />
+            <test currentWeapon="sunstrike">
+                <combat combatSkillModifierIncrement="+1"/>
+            </test>
             <afterCombats>
                 <choiceState section="sect267" set="enabled" />
             </afterCombats>
@@ -2117,6 +2229,9 @@
             <pick class="arrow" count="-2" />
             <choiceState section="all" set="disabled" />
             <combat combatSkillModifier="+3" />
+            <test currentWeapon="kaistar">
+                <combat combatSkillModifierIncrement="+2"/>
+            </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
             </afterCombats>
@@ -2181,6 +2296,9 @@
         <section id="sect342">
             <choiceState section="all" set="disabled" />
             <book29sect342 />
+            <test currentWeapon="kaistar">
+                <combat combatSkillModifierIncrement="+2"/>
+            </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
             </afterCombats>
@@ -2208,6 +2326,9 @@
         <section id="sect347">
             <choiceState section="all" set="disabled" />
             <combat />
+            <test currentWeapon="sunstrike">
+                <combat combatSkillModifierIncrement="+1"/>
+            </test>
             <test hasDiscipline="anmlmstr">
                 <combat combatSkillModifierIncrement="+2" />
             </test>

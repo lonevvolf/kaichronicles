@@ -1004,7 +1004,6 @@ export class ActionChart {
                     increment: combat.getFinalSurgeBonus(MgnDiscipline.PsiSurge)
                 });
             }
-
         } else if (!combat.noMindblast) {
             if (((this.hasKaiDiscipline(KaiDiscipline.Mindblast) || this.hasMgnDiscipline(MgnDiscipline.PsiSurge) ||
                 this.hasGndDiscipline(GndDiscipline.KaiSurge)) && state.book.getBookSeries().id !== BookSeriesId.NewOrder)
@@ -1014,6 +1013,15 @@ export class ActionChart {
                 bonuses.push({
                     concept: translations.text("mindblast"),
                     increment: combat.getFinalMindblastBonus()
+                });
+            }
+        }
+
+        if (!combat.mentalOnly) {
+            if (combat.powerStrike) {
+                bonuses.push({
+                    concept: translations.text("powerstrike"),
+                    increment: +1
                 });
             }
         }

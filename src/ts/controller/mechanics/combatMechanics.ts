@@ -1,4 +1,4 @@
-import { state, mechanicsEngine, Combat, template, SpecialObjectsUse, CombatTurn, GndDiscipline, translations, BookSeriesId, NewOrderDiscipline } from "../..";
+import { state, mechanicsEngine, Combat, template, SpecialObjectsUse, CombatTurn, GndDiscipline, translations, BookSeriesId, NewOrderDiscipline, BookSeries } from "../..";
 import striptags from 'striptags';
 
 /**
@@ -18,11 +18,14 @@ export class CombatMechanics {
     /** Selector for XXX surge checkbox */
     public static readonly SURGE_CHECK_SELECTOR = ".psisurgecheck input";
 
-    /** Selector for XXX surge checkbox */
+    /** Selector for XXX Blast checkbox */
     public static readonly BLAST_CHECK_SELECTOR = ".kaiblastcheck input";
 
-    /** Selector for XXX surge checkbox */
+    /** Selector for XXX Ray checkbox */
     public static readonly RAY_CHECK_SELECTOR = ".kairaycheck input";
+
+    /** Selector for XXX Power Strike checkbox */
+    public static readonly POWER_STRIKE_CHECK_SELECTOR = ".powerstrikecheck input";
 
     /**
      * Render section combats
@@ -122,6 +125,7 @@ export class CombatMechanics {
             CombatMechanics.setupSurgeUI($combatUI, combat);
             CombatMechanics.setupBlastUI($combatUI, combat);
             CombatMechanics.setupRayUI($combatUI, combat);
+            CombatMechanics.setupPowerStrikeUI($combatUI, combat);
         });
     }
 
@@ -304,6 +308,8 @@ export class CombatMechanics {
 
             // Check if the XXX-surge should be disabled after this turn
             CombatMechanics.checkSurgeEnabled();
+            // Check if Power Strike checkbox should be locked in
+            CombatMechanics.disablePowerStrikeCheck();
 
             // For testing, add marker to notify to the test we are ready
             template.addSectionReadyMarker();
@@ -385,6 +391,50 @@ export class CombatMechanics {
         if ( !selected && state.actionChart.currentEndurance <= 10 ) {
             CombatMechanics.disableRay( $combatUI , combat );
         }
+
+        CombatMechanics.updateCombatRatio( $combatUI , combat);
+
+        template.addSectionReadyMarker();
+    }
+
+    /**
+     * Setup the Power Strike checkbox for a given combat
+     * @param $combatUI Combat UI main tag
+     * @param combat Related combat info
+     */
+    private static setupPowerStrikeUI($combatUI: JQuery<HTMLElement>, combat: Combat) {
+
+        // Check if player can use Power Strike
+        const hasPowerStrike = state.actionChart.hasNewOrderDiscipline(NewOrderDiscipline.MagiMagic);
+        if (state.book.getBookSeries().id !== BookSeriesId.NewOrder ||
+            !hasPowerStrike || state.actionChart.getDisciplines().length < 13 || combat.mentalOnly) {
+            // Hide Power Strike check
+            $combatUI.find(".powerstrikecheck").hide();
+            return;
+        }
+
+        const $powerStrikeCheck = $combatUI.find(CombatMechanics.POWER_STRIKE_CHECK_SELECTOR);
+        const currentSection = state.sectionStates.getSectionState();
+        $powerStrikeCheck.prop("disabled", currentSection.areCombatsStarted());
+        $powerStrikeCheck.prop("checked", combat.powerStrike);
+
+        // Power Strike selection
+        const powerStrikeText = translations.text("mechanics-combat-powerstrike" );
+        $combatUI.find(".mechanics-combat-powerstrike").text( powerStrikeText );
+        $powerStrikeCheck.on("click", (e: JQuery.Event) => CombatMechanics.onPowerStrikeClick(e, $powerStrikeCheck));
+    }
+
+    /**
+     * Power Strike checkbox event handler
+     */
+    private static onPowerStrikeClick(e: JQuery.Event, $powerStrikeCheck: JQuery<HTMLElement>) {
+        const $combatUI = $powerStrikeCheck.parents(".mechanics-combatUI").first();
+        const combatIndex = Number( $combatUI.attr( "data-combatIdx" ) );
+        const sectionState = state.sectionStates.getSectionState();
+        const combat = sectionState.combats[ combatIndex ];
+
+        const selected: boolean = $powerStrikeCheck.prop( "checked" ) ? true : false;
+        combat.powerStrike = selected;
 
         CombatMechanics.updateCombatRatio( $combatUI , combat);
 
@@ -535,6 +585,20 @@ export class CombatMechanics {
         for ( let i = 0; i < sectionState.combats.length; i++ ) {
             const $combatUI = $(`.mechanics-combatUI:eq(${i})`);
             CombatMechanics.checkSurgeEnabledInCombat( $combatUI , sectionState.combats[i]);
+        }
+    }
+
+    /**
+     * Disable the Power Strike checkbox if combats have started
+     */
+    public static disablePowerStrikeCheck() {
+        const sectionState = state.sectionStates.getSectionState();
+        for ( let i = 0; i < sectionState.combats.length; i++ ) {
+            const $combatUI = $(`.mechanics-combatUI:eq(${i})`);
+            const $powerStrikeCheck = $combatUI.find(CombatMechanics.POWER_STRIKE_CHECK_SELECTOR);
+            const currentSection = state.sectionStates.getSectionState();
+            $powerStrikeCheck.prop("disabled", currentSection.areCombatsStarted());
+            $powerStrikeCheck.prop("checked", sectionState.combats[i].powerStrike);
         }
     }
 

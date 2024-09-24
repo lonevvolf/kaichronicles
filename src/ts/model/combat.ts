@@ -61,7 +61,7 @@ export class Combat {
 
     /** The state of the kai-ray usage (0: not used, 1: selected, 2: used) */
     public kaiRayUse = 0;
-
+    
     /** The CS multiplier to apply to Mindblast/Psi-Surge attacks. It can have decimals (ex. 0.5) */
     public mindblastMultiplier = 1;
 
@@ -142,6 +142,9 @@ export class Combat {
 
     /** Kai-blast is activated on this combat? */
     public kaiBlast = false;
+
+    /** Power Strike is activated on this combat? */
+    public powerStrike = false;
 
     /** Kai-blast rolls */
     public kaiBlastRolls = 2;
