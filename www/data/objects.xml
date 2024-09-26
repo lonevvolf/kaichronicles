@@ -124,6 +124,13 @@
             <effect class="combatSkill" increment="+1" />
         </weapon>
 
+        <weapon id="ansengskirusamienhanced" weaponType="spear">
+            <name>Anseng's Kirusami (Enhanced)</name>
+            <description> In combat, the superior craftsmanship and balance of this Chai weapon will add 1 to your COMBAT SKILL. This special weapon will now triple all ENDURANCE point damage you inflict upon undead enemies in combat. However, this increased power comes at an increased price. In the first round of combat in which you use this enhanced weapon, you will suffer an automatic loss of 4 ENDURANCE points.</description>
+            <image book="1|9" name="spear.png" />
+            <effect class="combatSkill" increment="+1" />
+        </weapon>
+
         <weapon id="bow29" weaponType="bow">
             <name>Bow (+1 CS)</name>
             <image book="6" name="bow.png" />
@@ -1154,10 +1161,9 @@
 
         <special id="kengasring">
             <name>Kenga's Ring</name>
-            <description>Endows it wearer with a limited protection from evil.</description>
+            <description>Endows its wearer with a limited protection from evil.</description>
         </special>
 
-        <!-- TODO: Implement Eye of Agarash -->
         <special id="eyeofagarash" droppable="false">
             <name>Eye of Agarash</name>
             <description>The Eye radiates an evil energy that will periodically drain you of ENDURANCE points. You will be told whenever this energy drain occurs. If you possess the Grand Master Discipline of Kai-screen, the loss of ENDURANCE will be limited to only 1 point each time an energy drain occurs.</description>
@@ -2407,10 +2413,6 @@
         </object>
 
         <object id="tazhengpotion">
-            <name>Tazheng Potion</name>
-        </object>
-
-        <object id="tazheng">
             <name>Tazheng</name>
             <description>A powerful anti-venom</description>
             <image book="1|9" name="potion.png" />
@@ -2422,19 +2424,20 @@
             <image book="1|9" name="potion.png" />
         </object>
 
-        <!-- TODO: Implement Karmo -->
         <object id="karmo">
             <name>Karmo</name>
-            <description>When taken before combat, this potion doubles your ENDURANCE points score for the duration of the combat. It has heavy side effects that sometimes can result in death. After consuming Karmo, you must pick a number from the Random Number Table. The number you choose determines how many ENDURANCE points you lose as a consequence of the side effects (0 = zero).</description>
+            <description>When taken before combat, this potion doubles your ENDURANCE points score for the duration of the combat. It has heavy side effects that sometimes can result in death. After consuming Karmo, you must pick a number from the Random Number Table. The number you choose determines how many ENDURANCE points you lose as a consequence of the side effects (0 = zero).
+            </description>
             <image book="1|9" name="potion.png" />
+            <usage class="special" />
         </object>
 
-        <!-- TODO: Check function of Malavan -->
         <object id="malavanpotion">
             <name>Potion of Malavan</name>
             <description>Increases the effect of Mindblast, Psi-surge and Kai-surge, by adding 2 COMBAT SKILL for the duration of one combat.</description>
             <image book="1|9" name="potion.png" />
-            <usage class="combatSkill" increment="+2" />
+            <usage class="special" />
+
         </object>
 
         <object id="smalltelescope">

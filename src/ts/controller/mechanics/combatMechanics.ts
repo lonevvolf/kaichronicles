@@ -287,6 +287,11 @@ export class CombatMechanics {
                     // Fire post-combat adgana effects
                     SpecialObjectsUse.postAdganaUse();
                 }
+
+                if ( ( combatsResult === "finished" || combatsResult === "eluded" ) && combat.karmoUsed ) {
+                    // Fire post-combat karmo effects
+                    SpecialObjectsUse.postKarmoUse();
+                }
             } else {
                 // Combat continues
 

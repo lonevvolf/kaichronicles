@@ -536,13 +536,29 @@ export const mechanicsEngine = {
      * Assign an action to a random table link.
      */
     randomTable(rule: Element) {
-        // console.log( 'randomTable rule' );
         randomMechanics.randomTable(rule);
     },
 
     /** Increment for random table selection */
     randomTableIncrement(rule: Element) {
         randomMechanics.randomTableIncrement(rule);
+    },
+
+    /**
+    * Choose a random number and store it
+    */
+    randomNumber(rule: Element) {
+        const sectionState = state.sectionStates.getSectionState();
+
+        // Do not execute the rule twice:
+        if (sectionState.ruleHasBeenExecuted(rule)) {
+            return;
+        }
+
+        randomMechanics.randomNumber(rule);
+
+        // Mark the rule as executed
+        sectionState.markRuleAsExecuted(rule);
     },
 
     /**
@@ -751,6 +767,13 @@ export const mechanicsEngine = {
         const pickedSomethingOnSection: string = $rule.attr("pickedSomethingOnSection");
         if (pickedSomethingOnSection && EquipmentSectionMechanics.getNPickedObjects(pickedSomethingOnSection) > 0) {
             return true;
+        }
+
+        // Any object sold on a given section?
+        const soldSomethingOnSection: string =  $rule.attr("pickedSomethingOnSection");
+        if (soldSomethingOnSection) {
+            const sectionState = state.sectionStates.getSectionState(soldSomethingOnSection);
+            return sectionState.soldObject;
         }
 
         // Section contains text?
@@ -1587,7 +1610,23 @@ export const mechanicsEngine = {
             durationValue = parseInt(txtDurationValue, 10);
         }
 
-        toastr.info(mechanicsEngine.getRuleText(rule), null, {timeOut: durationValue});
+        const type: string|undefined = $(rule).attr("type");
+
+        switch( type ) {
+            case undefined:
+            case "info":
+                toastr.info(mechanicsEngine.getRuleText(rule), null, {timeOut: durationValue});
+                break;
+            case "error":
+                toastr.error(mechanicsEngine.getRuleText(rule), null, {timeOut: durationValue});
+                break;
+            case "success":
+                toastr.success(mechanicsEngine.getRuleText(rule), null, {timeOut: durationValue});
+                break;
+            case "warning":
+                toastr.warning(mechanicsEngine.getRuleText(rule), null, {timeOut: durationValue});
+                break;      
+        }
     },
 
     /**

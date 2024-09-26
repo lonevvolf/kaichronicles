@@ -228,6 +228,12 @@
         </xs:attribute>
     </xs:complexType>
 
+    <xs:complexType name="randomNumber">
+        <xs:annotation>
+            <xs:documentation>Choose a random number and store it</xs:documentation>
+        </xs:annotation>
+    </xs:complexType>
+
     <xs:complexType name="chooseEquipment">
         <xs:annotation>
             <xs:documentation>Game setup: Choose equipment.</xs:documentation>
@@ -344,6 +350,11 @@
         <xs:attribute name="pickedSomethingOnSection" type="xs:string">
             <xs:annotation>
                 <xs:documentation>Did the player pick something on the given section?</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="soldSomethingOnSection" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>Did the player sell something on the given section?</xs:documentation>
             </xs:annotation>
         </xs:attribute>
         <xs:attribute name="sectionContainsText" type="xs:string">
@@ -1102,6 +1113,19 @@
                 <xs:documentation>Optional. Toast duration in milliseconds. Default is 5000 ms.</xs:documentation>
             </xs:annotation>
         </xs:attribute>
+        <xs:attribute name="type">
+            <xs:annotation>
+                <xs:documentation>Optional. Style of the toast. Default is info.</xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="info" />
+                    <xs:enumeration value="warning" />
+                    <xs:enumeration value="error" />
+                    <xs:enumeration value="success" />
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
     </xs:complexType>
 
     <xs:complexType name="registerGlobalRule">
@@ -1237,6 +1261,7 @@
             <xs:element name="setDisciplines" type="setDisciplines" />
             <xs:element name="pick" type="pick" />
             <xs:element name="randomTable" type="randomTable" />
+            <xs:element name="randomNumber" type="randomNumber" />
             <xs:element name="chooseEquipment" type="chooseEquipment" />
             <xs:element name="test" type="test" />
             <xs:element name="choiceState" type="choiceState" />

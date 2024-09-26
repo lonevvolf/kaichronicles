@@ -161,6 +161,9 @@ export class Combat {
     /** Adgana has been used on this combat? (see "pouchadgana" object) */
     public adganaUsed = false;
 
+    /** Karmo has been used on this combat? (see "karmo" object) */
+    public karmoUsed = false;
+
     /** Loss on this combat is permanent (reduce original endurance)? */
     public permanentDamage = false;
 
@@ -278,7 +281,10 @@ export class Combat {
             .then((randomValue) => {
                 if(randomValue !== null) {
                     const helshezagUsed = (state.actionChart.getSelectedWeapon() === Item.HELSHEZAG);
-                    const turn = new CombatTurn(this, randomValue, elude, helshezagUsed);
+                    const ansengsKirusamiLoss = 
+                        (state.actionChart.getSelectedWeapon() === Item.ANSENGS_KIRUSAMI ? 3 :
+                        state.actionChart.getSelectedWeapon() === Item.ANSENGS_KIRUSAMI_ENHANCED ? 4 : 0);
+                    const turn = new CombatTurn(this, randomValue, elude, helshezagUsed, ansengsKirusamiLoss);
                     this.turns.push(turn);
                     void dfd.resolve(turn);
                 } else {

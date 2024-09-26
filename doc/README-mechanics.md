@@ -271,6 +271,13 @@ This will add the combat skill bonus, plus bow object bonus
 
 A "randomTableIncrement" with a increment="reset" will reset to zero any previous increment.
 
+### randomNumber
+```xml
+<randomNumber />
+```
+
+Chooses a random number and stores it. Can be read out with [RANDOM]. Should not be used on sections with <randomTable> elements.
+
 ### test
 ```xml
 <test not="true" hasDiscipline="anmlknsp">
@@ -305,6 +312,7 @@ will be executed.
 * **isGlobalRuleRegistered="globalRuleId"** : A global rule with a given id is currently registered?
 * **objectOnSection="objectId1|objectId2|..."**: Some of these objects is available on the current section?
 * **pickedSomethingOnSection="sectionId"**: Did the player pick something on the given section?
+* **soldSomethingOnSection="sectionId"**: Did the player sell something on the given section?
 
 To make AND conditions, embed test tags. Example: Enable a choice if the player has the lantern, or torch AND tinderbox:
 ```xml
@@ -451,6 +459,15 @@ replace that value. Ex:
 
 The exception is "combatSkillModifierIncrement": It's always cumulative
 
+### afterCombatTurn
+```xml
+<afterCombatTurn turn="1">
+    ...
+</afterCombatTurn>
+```
+
+Optional event handler to execute after a combat turn specified in the "turn" attribute.
+
 ### disableCombats
 ```xml
 <disableCombats disabled="false" />
@@ -595,10 +612,10 @@ Changes the player current weapon to the set on "objectId" property
 
 ### toast
 ```xml
-<toast text="Wrong number!" />
+<toast text="Wrong number!" type="warning" />
 <toast duration="10000" text="Because you possess..." />
 ```
-Display a "toast" message. "duration" is the toast duration in milliseconds. It's optional, the default is 5000 ms
+Display a "toast" message. "duration" is the toast duration in milliseconds. It's optional, the default is 5000 ms. "type" is the style of the toast (info, error, success, warning) and is optional, the default is info.
 
 ### textToChoice
 ```xml

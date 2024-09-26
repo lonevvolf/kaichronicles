@@ -146,6 +146,7 @@ export class Translations {
         "playerNumber" : "Player {0}",
         "number" : "Number {0}",
         "adganaUse" : "Adgana use, Random Table number: {0}",
+        "karmoUse" : "Karmo use, Random Table number: {0}",
         "heads" : "Heads",
         "tails" : "Tails",
 

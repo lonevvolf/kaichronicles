@@ -50,6 +50,8 @@ export class Item {
     public static readonly MEAL = "meal";
     public static readonly BACKPACK = "backpack";
     public static readonly HELSHEZAG = "helshezag";
+    public static readonly ANSENGS_KIRUSAMI = "ansengskirusami";
+    public static readonly ANSENGS_KIRUSAMI_ENHANCED = "ansengskirusamienhanced";
 
     /** Allowed Special Items to carry to Grand Master from previous series */
     public static readonly ALLOWED_GRAND_MASTER = ["crystalstar", "sommerswerd", "silverhelm", "daggerofvashna", "silverbracers", "jewelledmace",

@@ -2,7 +2,6 @@
 
 <mechanics book="29" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/cracrayol/kaichronicles/master/www/data/mechanics.xsd">
-    <!-- TODO: Review all New Order books for BowBonus on Random Number Tables -->
 
     <!-- GAME RULES -->
     <sections>
@@ -175,6 +174,9 @@
             <test currentWeapon="ansengskirusami">
                 <combat damageMultiplier="2" />
             </test>
+            <test currentWeapon="ansengskirusamienhanced">
+                <combat damageMultiplier="3" />
+            </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
             </afterCombats>
@@ -247,7 +249,31 @@
         </section>
 
         <section id="sect20">
-            <endurance count="-3" />
+            <executeOnce>
+                <test hasObject="kengasring">
+                    <randomNumber />
+                    <test expression="[RANDOM] &lt;= 5">
+                        <toast type="success" text="Kenga's Ring has saved you from the Eye's damage" />
+                    </test>
+                    <test expression="[RANDOM] > 5">
+                        <toast type="warning" text="Kenga's Ring has failed to save you from the Eye's damage" />
+                        <test hasDiscipline="kaiscrn">
+                            <endurance count="-1" />
+                        </test>
+                        <test not="true" hasDiscipline="kaiscrn">
+                            <endurance count="-3" />
+                        </test>
+                    </test>
+                </test>
+                <test not="true" hasObject="kengasring">
+                    <test hasDiscipline="kaiscrn">
+                        <endurance count="-1" />
+                    </test>
+                    <test not="true" hasDiscipline="kaiscrn">
+                        <endurance count="-3" />
+                    </test>
+                </test>
+            </executeOnce>
         </section>
 
         <section id="sect22">
@@ -344,7 +370,7 @@
             <pick class="meal" count="-1" />
 
             <object objectId="laumspurpotion4" price="5" />
-            <object objectId="tazheng" price="6" />
+            <object objectId="tazhengpotion" price="6" />
             <object objectId="sabitotincture" price="8" />
             <object objectId="karmo" price="12" />
         </section>
@@ -356,7 +382,31 @@
         </section>
 
         <section id="sect42">
-            <endurance count="-4" />
+            <executeOnce>
+                <test hasObject="kengasring">
+                    <randomNumber />
+                    <test expression="[RANDOM] &lt;= 5">
+                        <toast type="success" text="Kenga's Ring has saved you from the Eye's damage" />
+                    </test>
+                    <test expression="[RANDOM] > 5">
+                        <toast type="warning" text="Kenga's Ring has failed to save you from the Eye's damage" />
+                        <test hasDiscipline="kaiscrn">
+                            <endurance count="-1" />
+                        </test>
+                        <test not="true" hasDiscipline="kaiscrn">
+                            <endurance count="-4" />
+                        </test>
+                    </test>
+                </test>
+                <test not="true" hasObject="kengasring">
+                    <test hasDiscipline="kaiscrn">
+                        <endurance count="-1" />
+                    </test>
+                    <test not="true" hasDiscipline="kaiscrn">
+                        <endurance count="-4" />
+                    </test>
+                </test>
+            </executeOnce>
         </section>
 
         <section id="sect43">
@@ -380,7 +430,9 @@
 
         <section id="sect46">
             <endurance count="-3" />
-            <!-- TODO: Implement reduced Laumspur potion effect -->
+            <!-- TODO: Implement reduced Laumspur potion effect; tbh this is very unclear
+            I think we would have to specifically track Eye damage or else Laumspur will be 
+            fully functional in the next section again -->
         </section>
 
         <section id="sect47">
@@ -470,6 +522,9 @@
             <test currentWeapon="ansengskirusami">
                 <combat damageMultiplier="2" />
             </test>
+            <test currentWeapon="ansengskirusamienhanced">
+                <combat damageMultiplier="3" />
+            </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
             </afterCombats>
@@ -518,8 +573,14 @@
 
         <section id="sect57">
             <randomTable zeroAsTen="true">
-                <!-- TODO: Implement handling of empty slot -->
-                <drop backpackItemSlots="[RANDOM]" />
+                <!-- Logic takes advantage of the fact that the backpack is compressed with no empty slots in between -->
+                <test expression="[BACKPACK-ITEMS-CNT-ON-ACTIONCHART] &lt; [RANDOM]">
+                    <drop backpackItemSlots="1" />
+                </test>
+                <test expression="[BACKPACK-ITEMS-CNT-ON-ACTIONCHART] >= [RANDOM]">
+                    <drop backpackItemSlots="[RANDOM]" />
+                </test>
+                
             </randomTable>
         </section>
 
@@ -616,7 +677,6 @@
         </section>
 
         <section id="sect72">
-            <!-- TODO: Implement Kenga's Ring -->
             <object objectId="kengasring" />
         </section>
 
@@ -642,8 +702,13 @@
         <section id="sect75">
             <choiceState section="all" set="disabled" />
             <randomTable zeroAsTen="true">
-                <!-- TODO: Implement handling of empty slot -->
-                <drop backpackItemSlots="[RANDOM]" />
+                <!-- Logic takes advantage of the fact that the backpack is compressed with no empty slots in between -->
+                <test expression="[BACKPACK-ITEMS-CNT-ON-ACTIONCHART] &lt; [RANDOM]">
+                    <drop backpackItemSlots="1" />
+                </test>
+                <test expression="[BACKPACK-ITEMS-CNT-ON-ACTIONCHART] >= [RANDOM]">
+                    <drop backpackItemSlots="[RANDOM]" />
+                </test>
                 <choiceState section="all" set="enabled" />
             </randomTable>
         </section>
@@ -703,7 +768,31 @@
         </section>
 
         <section id="sect86">
-            <endurance count="-5" />
+            <executeOnce>
+                <test hasObject="kengasring">
+                    <randomNumber />
+                    <test expression="[RANDOM] &lt;= 5">
+                        <toast type="success" text="Kenga's Ring has saved you from the Eye's damage" />
+                    </test>
+                    <test expression="[RANDOM] > 5">
+                        <toast type="warning" text="Kenga's Ring has failed to save you from the Eye's damage" />
+                        <test hasDiscipline="kaiscrn">
+                            <endurance count="-1" />
+                        </test>
+                        <test not="true" hasDiscipline="kaiscrn">
+                            <endurance count="-5" />
+                        </test>
+                    </test>
+                </test>
+                <test not="true" hasObject="kengasring">
+                    <test hasDiscipline="kaiscrn">
+                        <endurance count="-1" />
+                    </test>
+                    <test not="true" hasDiscipline="kaiscrn">
+                        <endurance count="-5" />
+                    </test>
+                </test>
+            </executeOnce>
         </section>
 
         <section id="sect88">
@@ -825,13 +914,21 @@
         </section>
         
         <section id="sect105">
-            <!-- TODO: Check all potions available in New Order -->
-            <!-- TODO: Implement bought/sold check-->
             <choiceState section="sect180" set="disabled" />
+
             <object objectId="oxydinepotion" price="4" />
             <object objectId="laumspurpotion4" price="5" />
             <object objectId="potionofstrength" price="6" />
             <object objectId="malavanpotion" price="6" />
+
+            <onInventoryEvent>
+                <test pickedSomethingOnSection="sect105" soldSomethingOnSection="sect105">
+                    <choiceState section="sect180" set="enabled" />
+                    <choiceState section="sect266" set="disabled" />
+                    <choiceState section="sect292" set="disabled" />
+                    <choiceState section="sect221" set="disabled" />
+                </test>
+            </onInventoryEvent>
 
             <sell objectId="laumspurpotion4" price="20" currency="ren" />
             <sell objectId="potionofstrength" price="20" currency="ren" />
@@ -852,7 +949,7 @@
             <sell objectId="klorvapotion" price="20" currency="ren" />
             <sell objectId="sabitotincture" price="20" currency="ren" />
             <sell objectId="laumwortpotion" price="20" currency="ren" />
-            <sell objectId="tazheng" price="20" currency="ren" />
+            <sell objectId="tazhengpotion" price="20" currency="ren" />
             <sell objectId="karmo" price="200" currency="ren" />
         </section>
 
@@ -934,7 +1031,8 @@
         </section>
 
         <section id="sect119">
-            <!-- TODO: Implement Kirusami -->
+            <drop objectId="ansengskirusami" />
+            <pick objectId="ansengskirusamienhanced" />
         </section>
 
         <section id="sect120">
@@ -985,15 +1083,6 @@
         </section>
 
         <section id="sect125">
-            <registerGlobalRule id="ansengskirusami-loss">
-                <test combatsActive="true"> 
-                    <test currentWeapon="ansengskirusami">
-                        <afterCombatTurn turn="1">
-                            <endurance count="-3" />
-                        </afterCombatTurn>                 
-                    </test>
-                </test>  
-            </registerGlobalRule>
             <pick objectId="ansengskirusami" />
             <onInventoryEvent>
                 <choiceState section="all" set="disabled" />
@@ -1038,11 +1127,59 @@
 
         <section id="sect134">
             <pick class="arrow" count="-1" />
-            <endurance count="-5" />
+            <executeOnce>
+                <test hasObject="kengasring">
+                    <randomNumber />
+                    <test expression="[RANDOM] &lt;= 5">
+                        <toast type="success" text="Kenga's Ring has saved you from the Eye's damage" />
+                    </test>
+                    <test expression="[RANDOM] > 5">
+                        <toast type="warning" text="Kenga's Ring has failed to save you from the Eye's damage" />
+                        <test hasDiscipline="kaiscrn">
+                            <endurance count="-1" />
+                        </test>
+                        <test not="true" hasDiscipline="kaiscrn">
+                            <endurance count="-5" />
+                        </test>
+                    </test>
+                </test>
+                <test not="true" hasObject="kengasring">
+                    <test hasDiscipline="kaiscrn">
+                        <endurance count="-1" />
+                    </test>
+                    <test not="true" hasDiscipline="kaiscrn">
+                        <endurance count="-5" />
+                    </test>
+                </test>
+            </executeOnce>
         </section>
 
         <section id="sect136">
-            <endurance count="-3" />
+            <executeOnce>
+                <test hasObject="kengasring">
+                    <randomNumber />
+                    <test expression="[RANDOM] &lt;= 5">
+                        <toast type="success" text="Kenga's Ring has saved you from the Eye's damage" />
+                    </test>
+                    <test expression="[RANDOM] > 5">
+                        <toast type="warning" text="Kenga's Ring has failed to save you from the Eye's damage" />
+                        <test hasDiscipline="kaiscrn">
+                            <endurance count="-1" />
+                        </test>
+                        <test not="true" hasDiscipline="kaiscrn">
+                            <endurance count="-3" />
+                        </test>
+                    </test>
+                </test>
+                <test not="true" hasObject="kengasring">
+                    <test hasDiscipline="kaiscrn">
+                        <endurance count="-1" />
+                    </test>
+                    <test not="true" hasDiscipline="kaiscrn">
+                        <endurance count="-3" />
+                    </test>
+                </test>
+            </executeOnce>
         </section>
 
         <section id="sect137">
@@ -1116,7 +1253,31 @@
 
         <section id="sect150">
             <choiceState section="all" set="disabled" />
-            <endurance count="-4" />
+            <executeOnce>
+                <test hasObject="kengasring">
+                    <randomNumber />
+                    <test expression="[RANDOM] &lt;= 5">
+                        <toast type="success" text="Kenga's Ring has saved you from the Eye's damage" />
+                    </test>
+                    <test expression="[RANDOM] > 5">
+                        <toast type="warning" text="Kenga's Ring has failed to save you from the Eye's damage" />
+                        <test hasDiscipline="kaiscrn">
+                            <endurance count="-1" />
+                        </test>
+                        <test not="true" hasDiscipline="kaiscrn">
+                            <endurance count="-4" />
+                        </test>
+                    </test>
+                </test>
+                <test not="true" hasObject="kengasring">
+                    <test hasDiscipline="kaiscrn">
+                        <endurance count="-1" />
+                    </test>
+                    <test not="true" hasDiscipline="kaiscrn">
+                        <endurance count="-4" />
+                    </test>
+                </test>
+            </executeOnce>
             <combat />
             <test currentWeapon="kaistar">
                 <combat combatSkillModifierIncrement="+2"/>
@@ -1133,7 +1294,31 @@
         </section>
 
         <section id="sect151">
-            <endurance count="-6" />
+            <executeOnce>
+                <test hasObject="kengasring">
+                    <randomNumber />
+                    <test expression="[RANDOM] &lt;= 5">
+                        <toast type="success" text="Kenga's Ring has saved you from the Eye's damage" />
+                    </test>
+                    <test expression="[RANDOM] > 5">
+                        <toast type="warning" text="Kenga's Ring has failed to save you from the Eye's damage" />
+                        <test hasDiscipline="kaiscrn">
+                            <endurance count="-1" />
+                        </test>
+                        <test not="true" hasDiscipline="kaiscrn">
+                            <endurance count="-6" />
+                        </test>
+                    </test>
+                </test>
+                <test not="true" hasObject="kengasring">
+                    <test hasDiscipline="kaiscrn">
+                        <endurance count="-1" />
+                    </test>
+                    <test not="true" hasDiscipline="kaiscrn">
+                        <endurance count="-6" />
+                    </test>
+                </test>
+            </executeOnce>
         </section>
 
         <section id="sect153">
@@ -1306,7 +1491,6 @@
 
         <section id="sect188">
             <drop objectId="ansengskirusami" />
-            <unregisterGlobalRule id="ansengskirusami-loss" />
         </section>
 
         <section id="sect189">
@@ -1400,7 +1584,7 @@
 
         <section id="sect200">
             <object objectId="laumspurpotion4" price="5" />
-            <object objectId="tazheng" price="6" />
+            <object objectId="tazhengpotion" price="6" />
             <object objectId="sabitotincture" price="8" />
             <object objectId="karmo" price="12" />
         </section>
@@ -1574,6 +1758,9 @@
             <test currentWeapon="ansengskirusami">
                 <combat damageMultiplier="2" />
             </test>
+            <test currentWeapon="ansengskirusamienhanced">
+                <combat damageMultiplier="3" />
+            </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
             </afterCombats>
@@ -1614,11 +1801,59 @@
 
         <section id="sect235">
             <pick class="arrow" count="-1" />
-            <endurance count="-2" />
+            <executeOnce>
+                <test hasObject="kengasring">
+                    <randomNumber />
+                    <test expression="[RANDOM] &lt;= 5">
+                        <toast type="success" text="Kenga's Ring has saved you from the Eye's damage" />
+                    </test>
+                    <test expression="[RANDOM] > 5">
+                        <toast type="warning" text="Kenga's Ring has failed to save you from the Eye's damage" />
+                        <test hasDiscipline="kaiscrn">
+                            <endurance count="-1" />
+                        </test>
+                        <test not="true" hasDiscipline="kaiscrn">
+                            <endurance count="-2" />
+                        </test>
+                    </test>
+                </test>
+                <test not="true" hasObject="kengasring">
+                    <test hasDiscipline="kaiscrn">
+                        <endurance count="-1" />
+                    </test>
+                    <test not="true" hasDiscipline="kaiscrn">
+                        <endurance count="-2" />
+                    </test>
+                </test>
+            </executeOnce>
         </section>
 
         <section id="sect236">
-            <endurance count="-5" />
+            <executeOnce>
+                <test hasObject="kengasring">
+                    <randomNumber />
+                    <test expression="[RANDOM] &lt;= 5">
+                        <toast type="success" text="Kenga's Ring has saved you from the Eye's damage" />
+                    </test>
+                    <test expression="[RANDOM] > 5">
+                        <toast type="warning" text="Kenga's Ring has failed to save you from the Eye's damage" />
+                        <test hasDiscipline="kaiscrn">
+                            <endurance count="-1" />
+                        </test>
+                        <test not="true" hasDiscipline="kaiscrn">
+                            <endurance count="-5" />
+                        </test>
+                    </test>
+                </test>
+                <test not="true" hasObject="kengasring">
+                    <test hasDiscipline="kaiscrn">
+                        <endurance count="-1" />
+                    </test>
+                    <test not="true" hasDiscipline="kaiscrn">
+                        <endurance count="-5" />
+                    </test>
+                </test>
+            </executeOnce>
         </section>
 
         <section id="sect237">
@@ -1760,7 +1995,31 @@
         </section>
 
         <section id="sect260">
-            <endurance count="-4" />
+            <executeOnce>
+                <test hasObject="kengasring">
+                    <randomNumber />
+                    <test expression="[RANDOM] &lt;= 5">
+                        <toast type="success" text="Kenga's Ring has saved you from the Eye's damage" />
+                    </test>
+                    <test expression="[RANDOM] > 5">
+                        <toast type="warning" text="Kenga's Ring has failed to save you from the Eye's damage" />
+                        <test hasDiscipline="kaiscrn">
+                            <endurance count="-1" />
+                        </test>
+                        <test not="true" hasDiscipline="kaiscrn">
+                            <endurance count="-4" />
+                        </test>
+                    </test>
+                </test>
+                <test not="true" hasObject="kengasring">
+                    <test hasDiscipline="kaiscrn">
+                        <endurance count="-1" />
+                    </test>
+                    <test not="true" hasDiscipline="kaiscrn">
+                        <endurance count="-4" />
+                    </test>
+                </test>
+            </executeOnce>
         </section>
         
         <section id="sect261">
@@ -1787,6 +2046,9 @@
             </test>
             <test currentWeapon="ansengskirusami">
                 <combat damageMultiplier="2" />
+            </test>
+            <test currentWeapon="ansengskirusamienhanced">
+                <combat damageMultiplier="3" />
             </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
@@ -1879,7 +2141,6 @@
         </section>
 
         <section id="sect275">
-            <!-- TODO: Implement Eye loss-->
             <endurance count="-1" />
         </section>
 
@@ -1892,7 +2153,31 @@
         </section>
 
         <section id="sect287">
-            <endurance count="-5" />
+            <executeOnce>
+                <test hasObject="kengasring">
+                    <randomNumber />
+                    <test expression="[RANDOM] &lt;= 5">
+                        <toast type="success" text="Kenga's Ring has saved you from the Eye's damage" />
+                    </test>
+                    <test expression="[RANDOM] > 5">
+                        <toast type="warning" text="Kenga's Ring has failed to save you from the Eye's damage" />
+                        <test hasDiscipline="kaiscrn">
+                            <endurance count="-1" />
+                        </test>
+                        <test not="true" hasDiscipline="kaiscrn">
+                            <endurance count="-5" />
+                        </test>
+                    </test>
+                </test>
+                <test not="true" hasObject="kengasring">
+                    <test hasDiscipline="kaiscrn">
+                        <endurance count="-1" />
+                    </test>
+                    <test not="true" hasDiscipline="kaiscrn">
+                        <endurance count="-5" />
+                    </test>
+                </test>
+            </executeOnce>
         </section>
 
         <section id="sect288">
@@ -2060,6 +2345,9 @@
             <test currentWeapon="ansengskirusami">
                 <combat damageMultiplier="2" />
             </test>
+            <test currentWeapon="ansengskirusamienhanced">
+                <combat damageMultiplier="3" />
+            </test>
             <afterCombats>
                 <endurance count="-3" />
                 <choiceState section="all" set="enabled" />
@@ -2165,6 +2453,9 @@
             </test>
             <test currentWeapon="ansengskirusami">
                 <combat damageMultiplier="2" />
+            </test>
+            <test currentWeapon="ansengskirusamienhanced">
+                <combat damageMultiplier="3" />
             </test>
             <afterCombats>
                 <choiceState section="all" set="enabled" />
@@ -2282,15 +2573,39 @@
             <endurance count="+1" />
         </section>
 
-        <section id="sect338">
+        <section id="sect339">
             <object objectId="laumspurpotion4" price="5" />
-            <object objectId="tazheng" price="6" />
+            <object objectId="tazhengpotion" price="6" />
             <object objectId="sabitotincture" price="8" />
             <object objectId="karmo" price="12" />
         </section>
 
         <section id="sect340">
-            <endurance count="-2" />
+            <executeOnce>
+                <test hasObject="kengasring">
+                    <randomNumber />
+                    <test expression="[RANDOM] &lt;= 5">
+                        <toast type="success" text="Kenga's Ring has saved you from the Eye's damage" />
+                    </test>
+                    <test expression="[RANDOM] > 5">
+                        <toast type="warning" text="Kenga's Ring has failed to save you from the Eye's damage" />
+                        <test hasDiscipline="kaiscrn">
+                            <endurance count="-1" />
+                        </test>
+                        <test not="true" hasDiscipline="kaiscrn">
+                            <endurance count="-2" />
+                        </test>
+                    </test>
+                </test>
+                <test not="true" hasObject="kengasring">
+                    <test hasDiscipline="kaiscrn">
+                        <endurance count="-1" />
+                    </test>
+                    <test not="true" hasDiscipline="kaiscrn">
+                        <endurance count="-2" />
+                    </test>
+                </test>
+            </executeOnce>
         </section>
 
         <section id="sect342">
@@ -2337,8 +2652,12 @@
             </afterCombats>
         </section>
 
-        <section id="sect248">
+        <section id="sect348">
             <endurance count="-4" />
+        </section>
+
+        <section id="sect350">
+            <drop objectId="eyeofagarash" />
         </section>
 
     </sections>

@@ -451,6 +451,10 @@ export class ObjectsTableItem {
             actionChartController.drop( this.item.id , false , true );
         }
         actionChartController.increaseMoney( this.objectInfo.price, false, false, this.objectInfo.currency );
+
+        const sectionState = state.sectionStates.getSectionState();
+        sectionState.soldObject = true;
+
         mechanicsEngine.fireInventoryEvents(true, this.item);
     }
 

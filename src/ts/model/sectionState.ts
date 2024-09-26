@@ -71,6 +71,9 @@ export class SectionState {
     /** Healing discipline has been executed on this section? */
     public healingExecuted = false;
 
+    /** An object was sold on the section? */
+    public soldObject = false;
+
     /**
      * Number picker states for this section.
      * See numberPicker.ts and numberPickerMechanics.ts
