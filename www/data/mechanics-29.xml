@@ -2620,7 +2620,6 @@
         </section>
 
         <section id="sect344">
-            <!-- TODO: Implement large quiver -->
             <object objectId="bow29" />
             <object objectId="arrow" unlimited="true" />
             <object objectId="quiver29" />

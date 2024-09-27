@@ -272,7 +272,7 @@ export const mechanicsEngine = {
     /**
      * Check if we must to re-render the section. This may be needed if the
      * picked / dropped object affects to the rules
-     * @param o The object picked / droped
+     * @param o The object picked / dropped
      */
     checkReRenderAfterInventoryEvent(o: Item) {
 
@@ -302,7 +302,7 @@ export const mechanicsEngine = {
                     return "finish";
                 }
 
-                if ($rule.attr("canUseBow") && (o.id === Item.QUIVER || o.isWeaponType(Item.BOW))) {
+                if ($rule.attr("canUseBow") && (o.id === Item.QUIVER || o.id === Item.LARGE_QUIVER || o.isWeaponType(Item.BOW))) {
                     // Section should be re-rendered
                     reRender = true;
                     return "finish";
@@ -989,7 +989,11 @@ export const mechanicsEngine = {
 
             sectionState = state.sectionStates.getSectionState(fromSection);
             if (state.sectionStates.getSectionState().combats.length === 0) {
-                state.sectionStates.getSectionState().combats.push(sectionState.combats[0]);
+                if ( sectionState.combats.length === 0 ) {
+                    state.sectionStates.getSectionState().combats.push(new Combat("Fake enemy", 0, 0));
+                } else {
+                    state.sectionStates.getSectionState().combats.push(sectionState.combats[0]);
+                }
             }
 
             sectionState.setCombatsEnabled(true);

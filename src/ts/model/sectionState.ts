@@ -17,7 +17,7 @@ export interface SectionItem {
     unlimited: boolean;
 
     /**
-     * Only applies if id = 'quiver' (number of arrows on the quiver)
+     * Only applies if id = 'quiver/quiver29' (number of arrows on the quiver)
      * or id = 'money' (number of Gold Crowns)
      * or id = 'fireseed'
      */
@@ -291,7 +291,7 @@ export class SectionState {
     /**
      * Add an object from the Action Chart to the section available objects
      * @param aChartItem Action Chart item information
-     * @param arrowCount Only applies if id = Item.QUIVER (number of arrows on the quiver)
+     * @param arrowCount Only applies if id = Item.QUIVER/Item.LARGE_QUIVER (number of arrows on the quiver)
      */
     public addActionChartItemToSection(aChartItem: ActionChartItem, arrowCount: number = 0) {
         this.addObjectToSection(aChartItem.id, 0, false, arrowCount, false, aChartItem.usageCount);
@@ -302,7 +302,7 @@ export class SectionState {
      * @param objectId Object id to add
      * @param price The object price. 0 === no buy (free)
      * @param unlimited True if there are an infinite number of this kind of object on the section
-     * @param count Only applies if id = Item.QUIVER (number of arrows on the quiver), Item.ARROW (number of arrows), or Item.MONEY
+     * @param count Only applies if id = Item.QUIVER/Item.LARGE_QUIVER (number of arrows on the quiver), Item.ARROW (number of arrows), or Item.MONEY
      * (number of Gold Crowns/Nobles), or if price is is not zero (-> you buy "count" items for one "price")
      * @param useOnSection The object is allowed to be used on the section (not picked object)?
      * @param usageCount Number of remaining object uses. If not specified or < 0, the default Item usageCount will be used
@@ -338,7 +338,7 @@ export class SectionState {
             price,
             currency: currency,
             unlimited,
-            count: (objectId === Item.QUIVER || objectId === Item.ARROW || objectId === Item.MONEY || objectId === Item.FIRESEED || price > 0 ? count : 0),
+            count: (objectId === Item.QUIVER || objectId === Item.LARGE_QUIVER || objectId === Item.ARROW || objectId === Item.MONEY || objectId === Item.FIRESEED || price > 0 ? count : 0),
             useOnSection,
             usageCount,
             dessiStoneBonus: false

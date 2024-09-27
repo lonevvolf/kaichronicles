@@ -278,10 +278,10 @@ export const actionChartController = {
             const item = arrayOfItems[index];
             let count = 0;
 
-            if(item.id === Item.FIRESEED) {
+            if( item.id === Item.FIRESEED ) {
                 // Erase all fireseeds
                 count = state.actionChart.fireseeds;
-            } else if(item.id === Item.QUIVER) {
+            } else if ( item.id === Item.QUIVER ) {
                 // Erase one quiver
                 count = state.actionChart.arrows % 6;
             }

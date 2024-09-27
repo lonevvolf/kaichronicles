@@ -70,7 +70,7 @@ export class ObjectsTableItem {
         let name = this.item.name;
 
         // Number of arrows on the quiver
-        if ( this.objectInfo.id === Item.QUIVER ) {
+        if ( this.objectInfo.id === Item.QUIVER || this.objectInfo.id === Item.LARGE_QUIVER ) {
             // Be sure count is not null
             const count = ( this.objectInfo.count ? this.objectInfo.count : 0 );
             // In INVENTORY always show "0 arrows", but not in SELL or AVAILABLE (ugly)
@@ -102,8 +102,9 @@ export class ObjectsTableItem {
         }
 
         // Buy X objects for a given price
-        if ( this.objectInfo.id !== Item.MONEY && this.objectInfo.id !== Item.ARROW && this.objectInfo.id !== Item.QUIVER &&
-            this.objectInfo.price > 0 && this.objectInfo.count > 1 ) {
+        if ( this.objectInfo.id !== Item.MONEY && this.objectInfo.id !== Item.ARROW 
+            && this.objectInfo.id !== Item.QUIVER && this.objectInfo.id !== Item.LARGE_QUIVER 
+            && this.objectInfo.price > 0 && this.objectInfo.count > 1 ) {
             name = this.objectInfo.count.toFixed() + " x " + name;
         }
 
@@ -160,7 +161,7 @@ export class ObjectsTableItem {
 
         let link = `<a href="#" data-objectId="${this.item.id}" data-index="${this.index}" class="equipment-op btn btn-default" `;
 
-        if ( this.item.id === Item.QUIVER || this.item.id === Item.ARROW || this.item.id === Item.MONEY || this.item.id === Item.FIRESEED ||
+        if ( this.item.id === Item.QUIVER || this.item.id === Item.LARGE_QUIVER || this.item.id === Item.ARROW || this.item.id === Item.MONEY || this.item.id === Item.FIRESEED ||
             ( this.objectInfo.price > 0 && this.objectInfo.count > 0 ) ) {
             // Store the number of arrows on the quiver / gold crowns / number of items to buy by the given price
             link += 'data-count="' + this.objectInfo.count.toFixed() + '" ';
@@ -382,7 +383,7 @@ export class ObjectsTableItem {
             // A count === 0 means one object
             // "Count" for quivers means "count of arrows", not "count of quivers"
             let nItems = this.objectInfo.count;
-            if ( !nItems || this.item.id === Item.QUIVER ) {
+            if ( !nItems || this.item.id === Item.QUIVER || this.item.id === Item.LARGE_QUIVER ) {
                 nItems = 1;
             }
 
@@ -396,7 +397,7 @@ export class ObjectsTableItem {
         if ( objectPicked ) {
             let countPicked = this.objectInfo.count;
 
-            if ( this.item.id === Item.QUIVER || this.item.id === Item.ARROW ) {
+            if ( this.item.id === Item.QUIVER || this.item.id === Item.LARGE_QUIVER || this.item.id === Item.ARROW ) {
                 // Allow refilling of arrows if unlimited supply
                 if (this.objectInfo.unlimited && this.objectInfo.price === 0) {
                     countPicked = 100;

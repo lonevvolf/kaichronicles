@@ -2437,7 +2437,6 @@
             <description>Increases the effect of Mindblast, Psi-surge and Kai-surge, by adding 2 COMBAT SKILL for the duration of one combat.</description>
             <image book="1|9" name="potion.png" />
             <usage class="special" />
-
         </object>
 
         <object id="smalltelescope">

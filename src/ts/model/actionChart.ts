@@ -295,7 +295,7 @@ export class ActionChart {
                 }
 
                 // If the object is an Arrow, check if the player has some quiver
-                if (item.isArrow && !this.hasObject(Item.QUIVER)) {
+                if (item.isArrow && !this.hasObject(Item.QUIVER) && !this.hasObject(Item.LARGE_QUIVER)) {
                     throw translations.text("noQuiversEnough");
                 }
 
@@ -602,7 +602,7 @@ export class ActionChart {
         this.checkMaxEndurance();
         this.checkCurrentWeapon();
 
-        if (aChartItem.id === Item.QUIVER) {
+        if (aChartItem.id === Item.QUIVER || aChartItem.id === Item.LARGE_QUIVER) {
             // Decrease arrows count
             this.arrows -= dropCount;
             this.sanitizeArrowCount();
@@ -1213,6 +1213,10 @@ export class ActionChart {
             if (aItem.id === Item.QUIVER) {
                 // Only 6 arrows per quiver
                 max += 6;
+            }
+            if (aItem.id === Item.LARGE_QUIVER) {
+                // Large quiver holds 12
+                max += 12;
             }
         }
 
