@@ -5,6 +5,7 @@ import { views, translations, Section, SectionState, gameView, state, CombatMech
     book6sect340, book9sect91, book19sect304, book28sect71, book28sect192, book29sect342, ObjectsTable, ObjectsTableType, setupController, KaiDiscipline, MgnDiscipline,
     GndDiscipline, projectAon, DebugMode, 
     SectionRenderer} from "../..";
+import DOMPurify from 'dompurify';
 
 /**
  * Engine to render and run gamebook mechanics rules
@@ -2236,7 +2237,7 @@ export const mechanicsEngine = {
         if (msgId) {
             $messageUI.attr("id", msgId);
         }
-        $messageUI.find("b").html(msg);
+        $messageUI.find("b").html(DOMPurify.sanitize(msg));
         gameView.appendToSection($messageUI);
     },
 
