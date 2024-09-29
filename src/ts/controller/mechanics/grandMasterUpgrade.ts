@@ -71,7 +71,7 @@ export class GrandMasterUpgrade {
         state.sectionStates.markRuleAsExecuted(rule);
 
         // Re-render the section
-        gameController.loadSection(state.sectionStates.currentSection, false, window.pageYOffset);
+        gameController.loadSection(state.sectionStates.currentSection, false, window.scrollY);
 
         toastr.info(translations.text("gmupgrade-applied"));
     }

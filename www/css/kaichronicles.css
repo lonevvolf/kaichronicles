@@ -34,7 +34,7 @@ p, ol, ul, dl, blockquote { text-align: justify }
 
 ul.unbulleted { list-style-type: none }
 
-h1 {
+div.h1, h1 {
     margin-top: 0;
     margin-bottom: 15px;
 }
@@ -188,11 +188,6 @@ div.signpost {
     font-style: italic;
     padding-left: 12px;
     padding-top: 3px; 
-}
-
-/* Action chart print icon */
-.print {
-    float: right;
 }
 
 /* Combats */

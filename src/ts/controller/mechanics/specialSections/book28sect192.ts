@@ -57,7 +57,7 @@ export const book28sect192 = {
 
         if (refresh) {
             gameController.loadSection(state.sectionStates.currentSection, false,
-                window.pageYOffset);
+                window.scrollY);
         }
     }
 };

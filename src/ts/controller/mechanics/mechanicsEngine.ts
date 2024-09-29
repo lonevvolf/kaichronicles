@@ -2,7 +2,7 @@ import { views, translations, Section, SectionState, gameView, state, CombatMech
     App, ExpressionEvaluator, numberPickerMechanics, disciplinePickerMechanics, kaiWeaponPickerMechanics, SkillsSetup, KaiNameSetup, SetupDisciplines, EquipmentSectionMechanics, actionChartController,
     CurrencyName, LoreCircle, BookSeriesId, MealMechanics, ActionChartItem, InventoryState, actionChartView, template, Book,
     GrandMasterUpgrade, kaimonasteryController, book2sect238, book2sect308, book3sect88, book6sect26, book6sect284,
-    book6sect340, book9sect91, book19sect304, book28sect71, book28sect192, ObjectsTable, ObjectsTableType, setupController, KaiDiscipline, MgnDiscipline,
+    book6sect340, book9sect91, book19sect304, book28sect71, book28sect192, book29sect342, ObjectsTable, ObjectsTableType, setupController, KaiDiscipline, MgnDiscipline,
     GndDiscipline, projectAon, DebugMode, 
     SectionRenderer} from "../..";
 
@@ -14,7 +14,7 @@ export const mechanicsEngine = {
     /**
      * jquery DOM object with the mechanics HTML
      */
-    $mechanicsUI:  null as JQuery<HTMLElement>,
+    $mechanicsUI: null as JQuery<HTMLElement>,
 
     /**
      * Mechanics UI URL
@@ -166,7 +166,9 @@ export const mechanicsEngine = {
             const sectionState = state.sectionStates.getSectionState();
             if (sectionState && sectionState.combats) {
                 state.sectionStates.getSectionState().combats.forEach((combat) => {
-                    combat.combatModifier = 0;
+                    if (combat) {
+                        combat.combatModifier = 0;
+                    }
                 });
             }
             mechanicsEngine.runChildRules($sectionMechanics);
@@ -224,9 +226,9 @@ export const mechanicsEngine = {
     /**
      * Fire events associated to inventory changes (pick, drop, etc)
      * @param fromUI True if the event was fired from the UI
-     * @param o Only applies if fromUI is true. The object picked / droped
+     * @param o Only applies if fromUI is true. The object picked / dropped
      */
-    fireInventoryEvents(fromUI: boolean = false, o: Item = null) {
+    fireInventoryEvents(fromUI: boolean = false, o: Item|null = null) {
 
         // Render object tables
         mechanicsEngine.showAvailableObjects();
@@ -246,7 +248,7 @@ export const mechanicsEngine = {
                 // Re-render the section
                 console.log("Re-rendering the section due to rules re-execution");
                 gameController.loadSection(state.sectionStates.currentSection, false,
-                    window.pageYOffset);
+                    window.scrollY);
             }
         }
 
@@ -270,7 +272,7 @@ export const mechanicsEngine = {
     /**
      * Check if we must to re-render the section. This may be needed if the
      * picked / dropped object affects to the rules
-     * @param o The object picked / droped
+     * @param o The object picked / dropped
      */
     checkReRenderAfterInventoryEvent(o: Item) {
 
@@ -284,7 +286,7 @@ export const mechanicsEngine = {
         // TODO: Both do the same
 
         let reRender = false;
-        mechanicsEngine.enumerateSectionRules($sectionRules[0], (rule: Element) => {
+        mechanicsEngine.enumerateSectionRules($sectionRules[0], (rule: Element) : string|undefined => {
             if (rule.nodeName === "onInventoryEvent") {
                 // onInventoryEvent rule don't affect, has been executed
                 return "ignoreDescendants";
@@ -300,7 +302,7 @@ export const mechanicsEngine = {
                     return "finish";
                 }
 
-                if ($rule.attr("canUseBow") && (o.id === Item.QUIVER || o.isWeaponType(Item.BOW))) {
+                if ($rule.attr("canUseBow") && (o.id === Item.QUIVER || o.id === Item.LARGE_QUIVER || o.isWeaponType(Item.BOW))) {
                     // Section should be re-rendered
                     reRender = true;
                     return "finish";
@@ -312,7 +314,7 @@ export const mechanicsEngine = {
                     return "finish";
                 }
 
-                const expression: string = $rule.attr("expression");
+                const expression: string|undefined = $rule.attr("expression");
                 if (expression) {
                     if (o.id === Item.MONEY && (expression.indexOf("[MONEY]") >= 0 || expression.indexOf("[MONEY-ON-SECTION]") >= 0)) {
                         // Section should be re-rendered
@@ -362,7 +364,7 @@ export const mechanicsEngine = {
         // Fire the given combat turn events
         for (const rule of mechanicsEngine.onAfterCombatTurns) {
             // Turn when to execute the rule:
-            const txtRuleTurn: string = $(rule).attr("turn");
+            const txtRuleTurn: string|undefined = $(rule).attr("turn");
             const ruleTurn = (txtRuleTurn === "any" ? 0 : ExpressionEvaluator.evalInteger(txtRuleTurn));
 
             // We reapply all rules accumulatively
@@ -534,13 +536,29 @@ export const mechanicsEngine = {
      * Assign an action to a random table link.
      */
     randomTable(rule: Element) {
-        // console.log( 'randomTable rule' );
         randomMechanics.randomTable(rule);
     },
 
     /** Increment for random table selection */
     randomTableIncrement(rule: Element) {
         randomMechanics.randomTableIncrement(rule);
+    },
+
+    /**
+    * Choose a random number and store it
+    */
+    randomNumber(rule: Element) {
+        const sectionState = state.sectionStates.getSectionState();
+
+        // Do not execute the rule twice:
+        if (sectionState.ruleHasBeenExecuted(rule)) {
+            return;
+        }
+
+        randomMechanics.randomNumber(rule);
+
+        // Mark the rule as executed
+        sectionState.markRuleAsExecuted(rule);
     },
 
     /**
@@ -751,6 +769,13 @@ export const mechanicsEngine = {
             return true;
         }
 
+        // Any object sold on a given section?
+        const soldSomethingOnSection: string =  $rule.attr("pickedSomethingOnSection");
+        if (soldSomethingOnSection) {
+            const sectionState = state.sectionStates.getSectionState(soldSomethingOnSection);
+            return sectionState.soldObject;
+        }
+
         // Section contains text?
         const sectionContainsText: string = $rule.attr("sectionContainsText");
         if (sectionContainsText) {
@@ -829,8 +854,8 @@ export const mechanicsEngine = {
         const unlimited = ($(rule).attr("unlimited") === "true");
 
         // Number of items (only for quiver (n. arrows) and money (n.gold crowns), arrows or if you buy X objects for a single price)
-        const txtCount: string = $(rule).attr("count");
-        const count = (txtCount ? parseInt(txtCount, 10) : 0);
+        const txtCount: string|undefined = $(rule).attr("count");
+        const count = (txtCount ? Number(txtCount) : 0);
 
         // Object can be used directly from the section, without picking it?
         const useOnSection = ($(rule).attr("useOnSection") === "true");
@@ -877,7 +902,7 @@ export const mechanicsEngine = {
             return;
         }
 
-        const price = parseInt($rule.attr("price"), 10);
+        const price = Number($rule.attr("price"));
         const currency = $rule.attr("currency") ?? CurrencyName.CROWN;
         
         // Sell a specific item
@@ -890,7 +915,7 @@ export const mechanicsEngine = {
                 id: objectId,
                 price,
                 currency: currency,
-                count: parseInt($rule.attr("count"), 10),
+                count: Number($rule.attr("count")),
                 unlimited: false,
                 useOnSection: false,
                 usageCount: item && item.usageCount ? item.usageCount : 1,
@@ -942,11 +967,11 @@ export const mechanicsEngine = {
      * @param combatToApply If null, the rule will be applied to a current section combat. If not null
      * the rule will be applied to this combat
      */
-    combat(rule: Element, combatToApply: Combat = null) {
+    combat(rule: Element, combatToApply: Combat|null = null) {
         const $rule = $(rule);
 
         // Combat index
-        let combatIndex = parseInt($rule.attr("index"), 10);
+        let combatIndex = Number($rule.attr("index"));
         if (!combatIndex) {
             combatIndex = 0;
         }
@@ -964,7 +989,11 @@ export const mechanicsEngine = {
 
             sectionState = state.sectionStates.getSectionState(fromSection);
             if (state.sectionStates.getSectionState().combats.length === 0) {
-                state.sectionStates.getSectionState().combats.push(sectionState.combats[0]);
+                if ( sectionState.combats.length === 0 ) {
+                    state.sectionStates.getSectionState().combats.push(new Combat("Fake enemy", 0, 0));
+                } else {
+                    state.sectionStates.getSectionState().combats.push(sectionState.combats[0]);
+                }
             }
 
             sectionState.setCombatsEnabled(true);
@@ -1007,11 +1036,11 @@ export const mechanicsEngine = {
         // Check if the enemy has mindforce attack
         const txtMindforceCS = $rule.attr("mindforceCS");
         if (txtMindforceCS) {
-            combat.mindforceCS = parseInt(txtMindforceCS, 10);
+            combat.mindforceCS = Number(txtMindforceCS);
         }
         const txtMindforceEP = $rule.attr("mindforceEP");
         if (txtMindforceEP) {
-            combat.mindforceEP = parseInt(txtMindforceEP, 10);
+            combat.mindforceEP = Number(txtMindforceEP);
         }
 
         // Check if the enemy is immune to Mindblast
@@ -1026,6 +1055,9 @@ export const mechanicsEngine = {
         // Check if the enemy is immune to Kai-Blast
         combat.noKaiBlast = mechanicsEngine.getBooleanProperty($rule, "noKaiBlast", combat.noKaiBlast);
 
+        // Check if the enemy is immune to object bonuses
+        combat.noObjectBonuses = mechanicsEngine.getBooleanProperty($rule, "noObjectBonuses", combat.noObjectBonuses);
+
         // Set the number of Kai-Blast rolls
         combat.kaiBlastRolls = mechanicsEngine.getIntProperty($rule, "kaiBlastRolls", false) ?? combat.kaiBlastRolls;
 
@@ -1035,7 +1067,7 @@ export const mechanicsEngine = {
         // Special mindblast bonus?
         const txtMindblastBonus = $rule.attr("mindblastBonus");
         if (txtMindblastBonus) {
-            combat.mindblastBonus = parseInt(txtMindblastBonus, 10);
+            combat.mindblastBonus = Number(txtMindblastBonus);
         }
 
         // Mindblast multiplier (to all mental attacks too, like psi-surge)
@@ -1364,9 +1396,20 @@ export const mechanicsEngine = {
 
         // Drop backpack item slots by its index (1-based index)
         droppedObjects = droppedObjects.concat(
+            mechanicsEngine.dropActionChartSlots($rule, "weaponSlots", state.actionChart.weapons));
+        
+        // Hack to drop all arrows when slot contains a bow (this only happens in book 29)
+        for (const item of droppedObjects) {
+            if (item.getItem().id === "bow" || item.getItem().weaponType === "bow") {
+                actionChartController.increaseArrows(-state.actionChart.arrows);
+            }
+        }
+
+        droppedObjects = droppedObjects.concat(
             mechanicsEngine.dropActionChartSlots($rule, "backpackItemSlots", state.actionChart.backpackItems));
         droppedObjects = droppedObjects.concat(
             mechanicsEngine.dropActionChartSlots($rule, "specialItemSlots", state.actionChart.specialItems));
+
 
         // Store dropped objects as an inventory state
         const restorePointId: string = $rule.attr("restorePoint");
@@ -1577,12 +1620,28 @@ export const mechanicsEngine = {
      */
     toast(rule: Element) {
         let durationValue = 5000;
-        const txtDurationValue: string = $(rule).attr("duration");
+        const txtDurationValue: string|undefined = $(rule).attr("duration");
         if (txtDurationValue) {
             durationValue = parseInt(txtDurationValue, 10);
         }
 
-        toastr.info(mechanicsEngine.getRuleText(rule), null, {timeOut: durationValue});
+        const type: string|undefined = $(rule).attr("type");
+
+        switch( type ) {
+            case undefined:
+            case "info":
+                toastr.info(mechanicsEngine.getRuleText(rule), null, {timeOut: durationValue});
+                break;
+            case "error":
+                toastr.error(mechanicsEngine.getRuleText(rule), null, {timeOut: durationValue});
+                break;
+            case "success":
+                toastr.success(mechanicsEngine.getRuleText(rule), null, {timeOut: durationValue});
+                break;
+            case "warning":
+                toastr.warning(mechanicsEngine.getRuleText(rule), null, {timeOut: durationValue});
+                break;      
+        }
     },
 
     /**
@@ -1590,7 +1649,7 @@ export const mechanicsEngine = {
      */
     textToChoice(rule: Element) {
 
-        const linkText: string = $(rule).attr("text");
+        const linkText: string|undefined = $(rule).attr("text");
         if (!linkText) {
             mechanicsEngine.debugWarning("textToChoice: text attribute not found");
             return;
@@ -1813,6 +1872,10 @@ export const mechanicsEngine = {
         book28sect192.run();
     },
 
+    book29sect342() {
+        book29sect342.run();
+    },
+
     /************************************************************/
     /**************** RULES HELPERS *****************************/
     /************************************************************/
@@ -1843,8 +1906,8 @@ export const mechanicsEngine = {
      * @param defaultValue Value to return if the attribute is not present (default "defaultValue" is null)
      * @returns The property value. defaultValue if the property was not present
      */
-    getBooleanProperty($rule: JQuery<Element>, property: string, defaultValue: boolean = null): boolean | null {
-        const txtValue: string = $rule.attr(property);
+    getBooleanProperty($rule: JQuery<Element>, property: string, defaultValue: boolean|null = null): boolean | null {
+        const txtValue: string|undefined = $rule.attr(property);
         if (!txtValue) {
             return defaultValue;
         }
@@ -2096,7 +2159,7 @@ export const mechanicsEngine = {
      * @param {XmlNode} rule The root rule
      * @param {function(XmlNode)} callback The function to execute
      */
-    enumerateSectionRules(rule: Element, callback: (rule: Element) => string) {
+    enumerateSectionRules(rule: Element, callback: (rule: Element) => string|undefined) {
 
         let result = callback(rule);
         if (result === "finish") {
@@ -2116,7 +2179,7 @@ export const mechanicsEngine = {
     },
 
     /**
-     * Drop backpack / special items slots by its index (1-based index)
+     * Drop backpack / special / weapon items slots by its index (1-based index)
      * @param $rule The "drop" rule
      * @param property The rule property with the slots to drop
      * @param objectsArray The Action Chart array (the Special Items or BackBackItems)
@@ -2160,7 +2223,7 @@ export const mechanicsEngine = {
      * @param msg Message text
      * @param msgId Id to set on the message HTML tag. It's optional
      */
-    showMessage(msg: string, msgId: string = null) {
+    showMessage(msg: string, msgId: string|null = null) {
 
         if (msgId) {
             // Avoid duplicated messages
@@ -2173,7 +2236,7 @@ export const mechanicsEngine = {
         if (msgId) {
             $messageUI.attr("id", msgId);
         }
-        $messageUI.find("b").text(msg);
+        $messageUI.find("b").html(msg);
         gameView.appendToSection($messageUI);
     },
 

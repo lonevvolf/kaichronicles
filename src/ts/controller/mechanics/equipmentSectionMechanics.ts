@@ -17,11 +17,11 @@ export class EquipmentSectionMechanics {
         if ( !$sectionMechanics ) {
             return;
         }
-        const txtNPickableObjects: string = $sectionMechanics.attr("pickMaximum");
+        const txtNPickableObjects: string|undefined = $sectionMechanics.attr("pickMaximum");
         if ( !txtNPickableObjects ) {
             return;
         }
-        const nPickableObjects = parseInt( txtNPickableObjects, 10 );
+        const nPickableObjects = Number( txtNPickableObjects );
 
         // Get the original objects on the section:
         const originalObjects = EquipmentSectionMechanics.getOriginalObjects( $sectionMechanics );

@@ -61,6 +61,13 @@ export const randomMechanics = {
         }
     },
 
+    /**
+     * Choose a random number and store it.
+     */
+    randomNumber(rule: Element) {
+        randomMechanics.onRandomTableMechanicsClicked(rule, randomTable.getRandomValue(), 0);
+    },
+
     getRandomTableRefByIndex(index: number): JQuery<HTMLElement> {
         if (!index) {
             index = 0;
@@ -226,10 +233,10 @@ export const randomMechanics = {
      */
     onRandomTableMechanicsClicked(rule: Element, randomValue: number, increment: number) {
 
-        // Set the last choosed value
+        // Set the last chosen value
         randomMechanics.lastValue = randomValue + increment;
 
-        // Process rule childs. It can be a single action, and/or a set of "case" rules
+        // Process rule children. It can be a single action, and/or a set of "case" rules
         $(rule).children().each((index, childRule) => {
             if (childRule.nodeName === "case") {
                 // Evaluate the case rule

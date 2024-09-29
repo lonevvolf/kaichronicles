@@ -8,13 +8,13 @@ import { SectionState, Section, Combat, CombatTurn } from "..";
 export class BookSectionStates {
 
     /** The current section id */
-    public currentSection: string = null;
+    public currentSection: string|null = null;
 
     /**
      * Visited section states. The key is the section id (string), and the value
      * is a SectionState instance
      */
-    public sectionStates: { [ sectionId: string ]: SectionState } = {};
+    public sectionStates: { [ sectionId: string ]: SectionState|null } = {};
 
     /**
      * Hunting discipline enabled?
@@ -26,10 +26,10 @@ export class BookSectionStates {
      * Enumerated properties are NOT the only ones, there can be others
      */
     public otherStates = {
-        book6sect26TargetPoints: <number>null,
-        book6sect284: <number[][]>null,
+        book6sect26TargetPoints: <number|null>null,
+        book6sect284: <number[][]|null>null,
         book6sect340: [-1 , -1 , -1],
-        book9sect91: <string>null,
+        book9sect91: <string|null>null,
     };
 
     /**
@@ -43,18 +43,23 @@ export class BookSectionStates {
      * will be returned.
      * @return The section state
      */
-    public getSectionState( sectionId: string = null ): SectionState {
+    public getSectionState( sectionId: string|null = null ): SectionState {
 
         if ( !sectionId ) {
             sectionId = this.currentSection;
         }
 
-        let sectionState = this.sectionStates[ sectionId ];
-        if ( !sectionState ) {
-            sectionState = new SectionState();
-            this.sectionStates[ sectionId ] = sectionState;
+        if ( sectionId ) {
+            let sectionState = this.sectionStates[ sectionId ];
+            if ( !sectionState ) {
+                sectionState = new SectionState();
+                this.sectionStates[ sectionId ] = sectionState;
+            }
+
+            return sectionState;
         }
-        return sectionState;
+
+        return new SectionState();
     }
 
     /**
@@ -114,12 +119,18 @@ export class BookSectionStates {
             $.each( sectionState.combats , ( index , combat ) => {
                 const rightCombat = $.extend( new Combat( "" , 0 , 0 ) , combat );
                 // Fix for spelling error in old saves
+                // @ts-ignore
                 if (rightCombat["dammageMultiplier"] !== undefined) {
+                    // @ts-ignore
                     rightCombat.damageMultiplier = rightCombat["dammageMultiplier"];
+                    // @ts-ignore
                     delete(rightCombat["dammageMultiplier"]);
                 }
+                // @ts-ignore
                 if (rightCombat["permanentDammage"] !== undefined) {
+                    // @ts-ignore
                     rightCombat.permanentDamage = rightCombat["permanentDammage"];
+                    // @ts-ignore
                     delete(rightCombat["permanentDammage"]);
                 }
                 combats.push( rightCombat );
@@ -128,8 +139,11 @@ export class BookSectionStates {
                 const turns = <CombatTurn[]>[];
                 $.each( rightCombat.turns , ( turnIndex , turn ) => {
                     // Fix for spelling error in old saves
+                    // @ts-ignore
                     if (turn["dammageMultiplier"] !== undefined) {
+                        // @ts-ignore
                         turn.damageMultiplier = turn["dammageMultiplier"];
+                        // @ts-ignore
                         delete(turn["dammageMultiplier"]);
                     }
                     turns.push( $.extend( new CombatTurn(null, 0, false, false) , turn ) );

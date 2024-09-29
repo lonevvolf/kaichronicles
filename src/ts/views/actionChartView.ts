@@ -326,7 +326,7 @@ export const actionChartView = {
         $("#achart-specialtotal").text(`(${state.actionChart.getNSpecialItems()})`);
     },
 
-    showInventoryMsg(action: string, object: Item, msg: string) {
+    showInventoryMsg(action: string, object: Item|null, msg: string) {
         const toastType = ( action === "pick" ? "success" : "warning" );
         let html = "";
 

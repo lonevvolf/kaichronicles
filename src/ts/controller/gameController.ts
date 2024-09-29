@@ -147,8 +147,8 @@ export const gameController = {
 
         // Store the scroll position.
         // Special case: Do not store if we are going redirected from 'game' controller, at the index function to 'kaimonastery'
-        if (!(routing.getControllerName() === "kaimonasteryController" && window.pageYOffset === 0)) {
-            state.actionChart.yScrollPosition = window.pageYOffset;
+        if (!(routing.getControllerName() === "kaimonasteryController" && window.scrollY === 0)) {
+            state.actionChart.yScrollPosition = window.scrollY;
         }
 
         state.persistState();

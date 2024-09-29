@@ -10,6 +10,7 @@
     "devDependencies": {
         "@types/bootstrap": "^3.3.42",
         "@types/fs-extra": "^9.0.13",
+        "@types/he": "^1.2.3",
         "@types/jest": "^29.5.12",
         "@types/jquery": "^3.5.14",
         "@types/selenium-webdriver": "4.1.22",
@@ -23,7 +24,7 @@
         "jest": "^29.7.0",
         "jest-ctrf-json-reporter": "^0.0.9",
         "jest-environment-jsdom": "^29.7.0",
-        "jquery": "^3.6.0",
+        "jquery": "^3.7.1",
         "klaw-sync": "^6.0.0",
         "pdf-lib": "^1.17.1",
         "preprocess": "^3.2.0",

@@ -2,7 +2,7 @@
  * The setup view API
  */
 export const setupView = {
-    log(text: string, level: string = null) {
+    log(text: string, level: string|null = null) {
         let style: string = "";
         if (level === "ok") {
             style = "color: green";

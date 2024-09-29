@@ -26,7 +26,7 @@ describe("currency", () => {
 
     test("Drop all coins", testDropAllCoins);
     test("Drop partial crowns", testDropPartialCrowns);
-    test("Text Belt Pouch capacity", testMaxCapacity);
+    test("Test Belt Pouch capacity", testMaxCapacity);
 });
 
 async function testDropAllCoins() {

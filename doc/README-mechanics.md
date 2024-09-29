@@ -157,7 +157,7 @@ Execute once only. New Order: PERMANENTLY damage the player's Kai Weapon
 ```xml
 <damageKaiWeapon damage="-2" />
 ```
-Permanently applies -2CS to the player's Kai Weapon
+Permanently applies the specified CS penalty to the player's Kai Weapon
 
 ### setSkills
 Game setup: The player selects the initial Endurance and Combat Skill
@@ -223,7 +223,7 @@ decrease a counter, use the "pick" rule. The "objectId" can be one or more objec
 
 If you set more than one object id, the first one owned by the player will be dropped
 
-The property "backpackItemSlots" and specialItemSlots is used to drop objects on some given Backpack / Special Items positions. They
+The property "backpackItemSlots", "weaponSlots" and "specialItemSlots" is used to drop objects on some given Backpack / Weapon / Special Items positions. They
 can contain the index positions (1-based), or "last" for the last item
 
 If the optional property "restorePoint" is specified, the dropped item will can be restored with the rule "restoreInventoryState", with
@@ -271,6 +271,13 @@ This will add the combat skill bonus, plus bow object bonus
 
 A "randomTableIncrement" with a increment="reset" will reset to zero any previous increment.
 
+### randomNumber
+```xml
+<randomNumber />
+```
+
+Chooses a random number and stores it. Can be read out with [RANDOM]. Should not be used on sections with <randomTable> elements.
+
 ### test
 ```xml
 <test not="true" hasDiscipline="anmlknsp">
@@ -301,10 +308,11 @@ will be executed.
 * **hasWeaponskillWith="weaponType"** : The player has "Weaponskill" (current book discipline, no loyalty bonus) with the given weapon type?
 * **canUseBow="boolean"** : The player has a bow and one arrow (or not)?
 * **currentWeaponSpecial="boolean"** : Current weapon is a Special Item (or not)?
-* **currentWeaponMagical="boolean"** : Current weapon is has a CS or EP effect (or not)?
+* **currentWeaponMagical="boolean"** : Current weapon has a CS or EP effect (or not)?
 * **isGlobalRuleRegistered="globalRuleId"** : A global rule with a given id is currently registered?
 * **objectOnSection="objectId1|objectId2|..."**: Some of these objects is available on the current section?
 * **pickedSomethingOnSection="sectionId"**: Did the player pick something on the given section?
+* **soldSomethingOnSection="sectionId"**: Did the player sell something on the given section?
 
 To make AND conditions, embed test tags. Example: Enable a choice if the player has the lantern, or torch AND tinderbox:
 ```xml
@@ -414,8 +422,9 @@ the following properties:
 * **mindblastMultiplier="float"**: CS multiplier to apply to Mindblast/Psi-Surge/Kai-Surge attacks this combat
 * **psiSurgeBonus="number"**: Special CS bonus to apply for Psi-Surge discipline on this combat
 * **kaiSurgeBonus="number"**: Special CS bonus to apply for Kai-Surge discipline on this combat
-* **kaiSurgeTurnLoss="number"**: Special EP turn loss to apply for Kai-Surge discipline on this combat
+* **kaiSurgeTurnLoss="number"**: Special EP turn loss to apply for Kai/Psi-Surge discipline on this combat
 * **noWeapon="boolean|number"**: If true, Lone Wolf cannot use any weapon on this combat. If a number, LW cannot use any weapon for that many turns
+* **noObjectBonuses="true"**: If true, no weapon or item bonuses will be applied
 * **mentalOnly="true"**: Lone Wolf cannot use any physical bonuses on this combat (any object bonus)
 * **eludeTurn="number"**: Turn number after which LW can elude the combat
 * **maxEludeTurn="number"**: Turn number after which LW cannot elude the combat anymore
@@ -449,6 +458,15 @@ replace that value. Ex:
 ```
 
 The exception is "combatSkillModifierIncrement": It's always cumulative
+
+### afterCombatTurn
+```xml
+<afterCombatTurn turn="1">
+    ...
+</afterCombatTurn>
+```
+
+Optional event handler to execute after a combat turn specified in the "turn" attribute.
 
 ### disableCombats
 ```xml
@@ -515,7 +533,7 @@ You can check if a global rule is still registered with:
 </objectUsed>
 ```
 Event handler for an object use. If some of the objects on the "objectId" property is used
-on this section, the chilren rules will be executed
+on this section, the children rules will be executed
 
 ### numberPicker / numberPickerChoosed
 ```xml
@@ -594,10 +612,10 @@ Changes the player current weapon to the set on "objectId" property
 
 ### toast
 ```xml
-<toast text="Wrong number!" />
+<toast text="Wrong number!" type="warning" />
 <toast duration="10000" text="Because you possess..." />
 ```
-Display a "toast" message. "duration" is the toast duration in milliseconds. It's optional, the default is 5000 ms
+Display a "toast" message. "duration" is the toast duration in milliseconds. It's optional, the default is 5000 ms. "type" is the style of the toast (info, error, success, warning) and is optional, the default is info.
 
 ### textToChoice
 ```xml
@@ -644,6 +662,8 @@ Increase / decrease the current player endurance.
 The "toast" property is optional (default value="true"). If true, a toast will be displayed with the endurance increase / decrease.
 
 The "permanent" property is optional (default value="false"). If true, the endurance increase / decrease is permanent.
+
+The "enemy" property is optional (defualt value="false"). If true the endurance increase / decrease applies to the current enemy
 
 ### combatSkill (has state)
 ```xml

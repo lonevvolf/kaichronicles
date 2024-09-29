@@ -1,4 +1,4 @@
-import { Item, randomTable, translations, state, actionChartController, mechanicsEngine } from "../..";
+import { Item, randomTable, translations, state, actionChartController, mechanicsEngine, randomMechanics } from "../..";
 
 /**
  * Special objects use
@@ -9,6 +9,10 @@ export class SpecialObjectsUse {
     public static use( item: Item ) {
         if ( item.id === "pouchadgana" ) {
             SpecialObjectsUse.useAdgana();
+        } else if ( item.id === "karmo" ) {
+            SpecialObjectsUse.useKarmo();
+        } else if ( item.id === "malavanpotion" ) {
+            SpecialObjectsUse.useMalavan();
         } else {
             mechanicsEngine.debugWarning("SpecialObjectsUse - Unknown object: " + item.id );
         }
@@ -32,8 +36,14 @@ export class SpecialObjectsUse {
             actionChartController.increaseEndurance( -4 , false , true );
         }
 
-        // Rembember adgana use
+        // Remember adgana use
         state.actionChart.adganaUsed = true;
+    }
+
+    /** Effects of Karmo after combats ( object id "karmo") */
+    public static postKarmoUse() {
+        // Halve the player's EP after combats
+        actionChartController.increaseEndurance(-(Math.floor(state.actionChart.currentEndurance/2)));
     }
 
     /** Use Adgana ( object id "pouchadgana") */
@@ -42,7 +52,7 @@ export class SpecialObjectsUse {
         // There are pending combats on the current section?
         const sectionState = state.sectionStates.getSectionState();
 
-        // Set flag for ccombats
+        // Set flag for combats
         for ( const c of sectionState.combats ) {
             c.adganaUsed = true;
         }
@@ -56,7 +66,44 @@ export class SpecialObjectsUse {
             // No pending combats. Fire the adgana post-combat effects right now
             SpecialObjectsUse.postAdganaUse();
         }
-
     }
 
+    /** Use Karmo ( object id "karmo") */
+    private static useKarmo() {
+        // There are pending combats on the current section?
+        const sectionState = state.sectionStates.getSectionState();
+
+        // Determine random EP loss
+        const r = randomTable.getRandomValue();
+        state.actionChart.increaseEndurance(-r);
+        toastr.info( translations.text( "karmoUse" , [r] ) );
+
+        // Double the player's EP for the duration of the combat
+        // Note that according to the Game Rules: ...your number of ENDURANCE points cannot rise above the number you have when you start an adventure.
+        actionChartController.increaseEndurance(state.actionChart.currentEndurance);
+
+        // Set flag for combats
+        for ( const c of sectionState.combats ) {
+            c.karmoUsed = true;
+        }
+
+        const combatsState = sectionState.areAllCombatsFinished(state.actionChart);
+        if ( combatsState === "finished" || combatsState === "eluded"  ) {
+            // No pending combats. Fire the adgana post-combat effects right now
+            SpecialObjectsUse.postKarmoUse();
+        }
+    }
+
+    /** Use Malavan ( object id "malavanpotion") */
+    private static useMalavan() {
+        // There are pending combats on the current section?
+        const sectionState = state.sectionStates.getSectionState();
+
+        // Increase stats for combats
+        for ( const c of sectionState.combats ) {
+            c.mindblastBonus += 2;
+            c.kaiSurgeBonus += 2;
+        }
+        
+    }
 }

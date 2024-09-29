@@ -67,6 +67,11 @@ export class ObjectsTable {
                     arrows -= count;
                 }
 
+                if ( aChartItem.id === Item.LARGE_QUIVER ) {
+                    count = Math.min( 12, arrows );
+                    arrows -= count;
+                }
+
                 // Copy the global fireseed count into the item stack
                 if (aChartItem.id === Item.FIRESEED) {
                     count = fireseeds;

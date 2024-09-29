@@ -127,9 +127,11 @@ export function declareJqueryNumberFunctions() {
                 // Check if you have enough money
                 let currency = this.attr("data-moneypickercurrency");
                 if (!currency) {
-                    currency = CurrencyName.CROWN;
-                }
-                if ( state.actionChart.beltPouch[currency] < num) {
+                    if ( state.actionChart.getBeltPouchUsedAmount() < num) {
+                        alert( translations.text( "noEnoughMoney" ) );
+                        return false;
+                    }
+                } else if ( state.actionChart.beltPouch[currency] < num) {
                     alert( translations.text( "noEnoughMoney" ) );
                     return false;
                 }
