@@ -21,6 +21,7 @@ jobs:
           npm run test --kaibook=1 --kaisect=tssf
           npm run dist
       - name: Summarize Tests
+        if: '!cancelled()'
         run: npx github-actions-ctrf ctrf/ctrf-report.json
       - name: 'Tar files'
         run: tar -cvf dist.tar -C dist .
