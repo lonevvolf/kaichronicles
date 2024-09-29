@@ -24,10 +24,10 @@ export const numberPickerMechanics = {
         if ($(rule).attr("money") === "true") {
             $ui.find("#mechanics-mpAmount").attr("data-ismoneypicker", "true");
             let currency = $(rule).attr("currency");
-            if (!currency) {
-                currency = CurrencyName.CROWN;
+
+            if( currency ) {
+                $ui.find("#mechanics-mpAmount").attr("data-moneypickercurrency", currency);
             }
-            $ui.find("#mechanics-mpAmount").attr("data-moneypickercurrency", currency);
         }
 
         // Check if it has an action button
@@ -107,7 +107,7 @@ export const numberPickerMechanics = {
     isValid(): boolean {
         const $picker = $("#mechanics-mpAmount");
 
-        // If the money picker has been disabled, dont check it
+        // If the money picker has been disabled, don't check it
         if (!$picker.isEnabled()) {
             return true;
         }

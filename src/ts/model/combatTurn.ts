@@ -64,7 +64,7 @@ export class CombatTurn {
      * @param elude True if the player is eluding the combat
      * @param helshezagUsed Helshezag used on this turn?
      */
-    public constructor( combat: Combat , randomValue: number , elude: boolean , helshezagUsed: boolean , ansengsKirusamiLoss?: number ) {
+    public constructor( combat: Combat|null , randomValue: number , elude: boolean , helshezagUsed: boolean , ansengsKirusamiLoss?: number ) {
 
         if ( !combat ) {
             // Default constructor (called on BookSectionStates.prototype.fromStateObject)

@@ -17,7 +17,7 @@ export class Cookie {
     /**
      *
      */
-    public getValue(): string {
+    public getValue(): string|null {
         const nameEQ = this.name + "=";
 
         const currentCookies = document.cookie.split(";");

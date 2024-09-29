@@ -228,7 +228,7 @@ export const mechanicsEngine = {
      * @param fromUI True if the event was fired from the UI
      * @param o Only applies if fromUI is true. The object picked / dropped
      */
-    fireInventoryEvents(fromUI: boolean = false, o: Item = null) {
+    fireInventoryEvents(fromUI: boolean = false, o: Item|null = null) {
 
         // Render object tables
         mechanicsEngine.showAvailableObjects();
@@ -1396,9 +1396,20 @@ export const mechanicsEngine = {
 
         // Drop backpack item slots by its index (1-based index)
         droppedObjects = droppedObjects.concat(
+            mechanicsEngine.dropActionChartSlots($rule, "weaponSlots", state.actionChart.weapons));
+        
+        // Hack to drop all arrows when slot contains a bow (this only happens in book 29)
+        for (const item of droppedObjects) {
+            if (item.getItem().id === "bow" || item.getItem().weaponType === "bow") {
+                actionChartController.increaseArrows(-state.actionChart.arrows);
+            }
+        }
+
+        droppedObjects = droppedObjects.concat(
             mechanicsEngine.dropActionChartSlots($rule, "backpackItemSlots", state.actionChart.backpackItems));
         droppedObjects = droppedObjects.concat(
             mechanicsEngine.dropActionChartSlots($rule, "specialItemSlots", state.actionChart.specialItems));
+
 
         // Store dropped objects as an inventory state
         const restorePointId: string = $rule.attr("restorePoint");
@@ -2168,7 +2179,7 @@ export const mechanicsEngine = {
     },
 
     /**
-     * Drop backpack / special items slots by its index (1-based index)
+     * Drop backpack / special / weapon items slots by its index (1-based index)
      * @param $rule The "drop" rule
      * @param property The rule property with the slots to drop
      * @param objectsArray The Action Chart array (the Special Items or BackBackItems)
@@ -2225,7 +2236,7 @@ export const mechanicsEngine = {
         if (msgId) {
             $messageUI.attr("id", msgId);
         }
-        $messageUI.find("b").text(msg);
+        $messageUI.find("b").html(msg);
         gameView.appendToSection($messageUI);
     },
 

@@ -7,6 +7,9 @@ import pdfLib from "pdf-lib";
  */
 export const printActionChartView = {
   async setup() {
+    
+    // TODO: Fix Safari iOS (doesn't support multi-page PDFs)
+
     const pdfLib = (await import ('pdf-lib'));
     const rgb = pdfLib.rgb;
 
@@ -29,6 +32,12 @@ export const printActionChartView = {
     const disciplines = actionChart.getDisciplines();
     let mappingsField = bookMappings.discipline;
 
+    $("#permanent-check").one('change', function(){ // on change of state
+       printActionChartView.setup(); 
+    });
+
+    var onlyPermanent = $("#permanent-check").prop("checked");
+
     if (mappingsField) {
       for (let i = 0; i < disciplines.length; i++) {
         let discipline = disciplines[i];
@@ -46,38 +55,46 @@ export const printActionChartView = {
     }
 
     // Print Backpack Items
-    const backpackItems = actionChart.backpackItems;
-    mappingsField = bookMappings.backpackItem;
+    if (!onlyPermanent) {
+      const backpackItems = actionChart.backpackItems;
+      mappingsField = bookMappings.backpackItem;
 
-    if (mappingsField) {
-      for (let i = 0; i < Math.min(backpackItems.length, 10); i++) {
-        let item = backpackItems[i];
-        let name = item.getItem().name + " - " + item.getItem().description.trim().substring(0, 20);
+      if (mappingsField) {
+        let textHeight = mappingsField.height;
+        if (backpackItems.length > 10) {
+          textHeight = (mappingsField.height * 10) / backpackItems.length;
+        }
+        for (let i = 0; i < backpackItems.length; i++) {
+          let item = backpackItems[i];
+          let name = item.getItem().name;
 
-        // Meals are counted in their own section
-        if (item.id !== 'meal') {
-          pages[mappingsField.page - 1].drawText(name, {
-            x: mappingsField.x,
-            y: mappingsField.y - (i * mappingsField.height),
-            size: mappingsField.fontSize ?? 10,
-            font: helveticaFont,
-            color: rgb(0, 0, 0),
-          });
+          // Meals are counted in their own section
+          if (item.id !== 'meal') {
+            pages[mappingsField.page - 1].drawText(name, {
+              x: mappingsField.x,
+              y: mappingsField.y - (i * textHeight),
+              size: mappingsField.fontSize ?? 10,
+              font: helveticaFont,
+              color: rgb(0, 0, 0),
+            });
+          }
         }
       }
     }
 
     // Print meals
-    let mealsCount = actionChart.meals;
-    mappingsField = bookMappings.meals;
-    if (mappingsField) {
-      pages[mappingsField.page - 1].drawText(mealsCount.toFixed(), {
-        x: mappingsField.x,
-        y: mappingsField.y,
-        size: 30,
-        font: helveticaFont,
-        color: rgb(0, 0, 0),
-      });
+    if (!onlyPermanent) {
+      let mealsCount = actionChart.meals;
+      mappingsField = bookMappings.meals;
+      if (mappingsField) {
+        pages[mappingsField.page - 1].drawText(mealsCount.toFixed(), {
+          x: mappingsField.x,
+          y: mappingsField.y,
+          size: 30,
+          font: helveticaFont,
+          color: rgb(0, 0, 0),
+        });
+      }
     }
 
     // Print Combat Skill
@@ -94,9 +111,12 @@ export const printActionChartView = {
       });
     }
 
-
     // Print Endurance
-    let currentEndurance = actionChart.currentEndurance.toFixed();
+    var currentEndurance = actionChart.currentEndurance.toFixed();
+
+    if (onlyPermanent) {
+      currentEndurance = "  ";
+    }
     let maxEndurance = actionChart.getMaxEndurance().toFixed();
     mappingsField = bookMappings.endurance;
 
@@ -111,66 +131,70 @@ export const printActionChartView = {
     }
 
     // Print Belt Pouch
-    mappingsField = bookMappings.beltPouch;
-    if (mappingsField) {
-      const beltPouch = actionChart.beltPouch;
-      let currenciesCount = 0;
-      for (const currency in beltPouch) {
-        if (beltPouch[currency] > 0 || currency === "crown") {
-          currenciesCount++;
+    if (!onlyPermanent) {
+      mappingsField = bookMappings.beltPouch;
+      if (mappingsField) {
+        const beltPouch = actionChart.beltPouch;
+        let currenciesCount = 0;
+        for (const currency in beltPouch) {
+          if (beltPouch[currency] > 0 || currency === "crown") {
+            currenciesCount++;
+          }
         }
-      }
 
-      let height = Math.min(50 / currenciesCount, 10);
-      let itemToPrint = 0;
-      for (const currency in beltPouch) {
-        if (beltPouch[currency] > 0 || currency === "crown") {
-          pages[mappingsField.page - 1].drawText(`${translations.text(currency)}: ${beltPouch[currency]}`, {
-            x: mappingsField.x,
-            y: mappingsField.y - (height * itemToPrint),
-            size: 8,
-            //lineHeight: height,
-            font: helveticaFont,
-            color: rgb(0, 0, 0),
-          });
+        let height = Math.min(50 / currenciesCount, 10);
+        let itemToPrint = 0;
+        for (const currency in beltPouch) {
+          if (beltPouch[currency] > 0 || currency === "crown") {
+            pages[mappingsField.page - 1].drawText(`${translations.text(currency)}: ${beltPouch[currency]}`, {
+              x: mappingsField.x,
+              y: mappingsField.y - (height * itemToPrint),
+              size: 8,
+              //lineHeight: height,
+              font: helveticaFont,
+              color: rgb(0, 0, 0),
+            });
 
-          itemToPrint++;
+            itemToPrint++;
+          }
         }
       }
     }
 
     // Print Special Items
-    const specialItems = actionChart.specialItems;
-    mappingsField = bookMappings.specialItem;
+    if (!onlyPermanent) {
+      const specialItems = actionChart.specialItems;
+      mappingsField = bookMappings.specialItem;
 
-    if (mappingsField) {
-      for (let i = 0; i < specialItems.length; i++) {
-        let item = specialItems[i];
-        let name = item.getItem().name;
+      if (mappingsField) {
+        for (let i = 0; i < specialItems.length; i++) {
+          let item = specialItems[i];
+          let name = item.getItem().name;
 
-        printActionChartView.printField(
-          pages,
-          mappingsField.page - 1,
-          name,
-          mappingsField.x,
-          mappingsField.y - (i * mappingsField.height),
-          8,
-          helveticaFont
-        );
+          printActionChartView.printField(
+            pages,
+            mappingsField.page - 1,
+            name,
+            mappingsField.x,
+            mappingsField.y - (i * mappingsField.height),
+            8,
+            helveticaFont
+          );
 
-        printActionChartView.printField(
-          pages,
-          mappingsField.page - 1,
-          item.getItem().combatSkillEffect
-            ? `+${item.getItem().combatSkillEffect} CS`
-            : item.getItem().enduranceEffect
-              ? `+${item.getItem().enduranceEffect} EP`
-              : item.getItem().description.trim().substring(0, 40),
-          mappingsField.x + 160,
-          mappingsField.y - (i * mappingsField.height),
-          8,
-          helveticaFont
-        );
+          printActionChartView.printField(
+            pages,
+            mappingsField.page - 1,
+            item.getItem().combatSkillEffect
+              ? `+${item.getItem().combatSkillEffect} CS`
+              : item.getItem().enduranceEffect
+                ? `+${item.getItem().enduranceEffect} EP`
+                : item.getItem().description.trim().substring(0, 40),
+            mappingsField.x + 160,
+            mappingsField.y - (i * mappingsField.height),
+            8,
+            helveticaFont
+          );
+        }
       }
     }
 
@@ -291,21 +315,23 @@ export const printActionChartView = {
     }
 
     // Print Weapons
-    const weapons = actionChart.weapons;
-    mappingsField = bookMappings.weapon;
+    if (!onlyPermanent) {
+      const weapons = actionChart.weapons;
+      mappingsField = bookMappings.weapon;
 
-    if (mappingsField) {
-      for (let i = 0; i < weapons.length; i++) {
-        let item = weapons[i];
-        let name = item.getItem().name;
+      if (mappingsField) {
+        for (let i = 0; i < weapons.length; i++) {
+          let item = weapons[i];
+          let name = item.getItem().name;
 
-        pages[mappingsField.page - 1].drawText(name, {
-          x: mappingsField.x,
-          y: mappingsField.y - (i * mappingsField.height),
-          size: 15,
-          font: helveticaFont,
-          color: rgb(0, 0, 0),
-        });
+          pages[mappingsField.page - 1].drawText(name, {
+            x: mappingsField.x,
+            y: mappingsField.y - (i * mappingsField.height),
+            size: 15,
+            font: helveticaFont,
+            color: rgb(0, 0, 0),
+          });
+        }
       }
     }
 
@@ -407,31 +433,35 @@ export const printActionChartView = {
     }
 
     // Print Arrows
-    mappingsField = bookMappings.arrows;
-    if (mappingsField) {
-      printActionChartView.printField(
-        pages,
-        mappingsField.page - 1,
-        actionChart.arrows.toFixed(),
-        mappingsField.x,
-        mappingsField.y,
-        15,
-        helveticaFont
-      );
+    if (!onlyPermanent) {
+      mappingsField = bookMappings.arrows;
+      if (mappingsField) {
+        printActionChartView.printField(
+          pages,
+          mappingsField.page - 1,
+          actionChart.arrows.toFixed(),
+          mappingsField.x,
+          mappingsField.y,
+          15,
+          helveticaFont
+        );
+      }
     }
-
+    
     // Print Quiver
-    mappingsField = bookMappings.quiver;
-    if (mappingsField) {
-      printActionChartView.printField(
-        pages,
-        mappingsField.page - 1,
-        (actionChart.getMaxArrowCount() / 6).toFixed(),
-        mappingsField.x,
-        mappingsField.y,
-        15,
-        helveticaFont
-      );
+    if (!onlyPermanent) {
+      mappingsField = bookMappings.quiver;
+      if (mappingsField) {
+        printActionChartView.printField(
+          pages,
+          mappingsField.page - 1,
+          (actionChart.getMaxArrowCount() / 6).toFixed(),
+          mappingsField.x,
+          mappingsField.y,
+          15,
+          helveticaFont
+        );
+      }
     }
 
     const base64 = await pdfDoc.saveAsBase64();

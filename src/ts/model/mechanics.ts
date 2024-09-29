@@ -100,7 +100,7 @@ export class Mechanics {
      * Returns an jquery object with the section mechanics XML. null if there are no mechanics
      */
     public getSection(sectionId: string|null|undefined): JQuery<HTMLElement>|null {
-        const $section = $(this.mechanicsXml)
+        const $section = $(this.mechanicsXml as XMLDocument)
             .find("mechanics > sections > section[id=" + sectionId + "]");
         return $section.length === 0 ? null : $section;
     }
@@ -108,7 +108,7 @@ export class Mechanics {
     /**
      * Returns a JS object with the object properties. null if it was not found
      */
-    public getObject(objectId: string|undefined): Item|null {
+    public getObject(objectId: string|null|undefined): Item|null {
 
         if (!objectId) {
             return null;

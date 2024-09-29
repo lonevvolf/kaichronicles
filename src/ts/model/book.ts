@@ -406,9 +406,9 @@ export class Book {
      * @param sectionId The destination section
      * @return Section ids that can go to the given section
      */
-    public getOriginSections(sectionId: string): (string|undefined)[] {
+    public getOriginSections(sectionId: string): (string|undefined|null)[] {
         const sourceSectionIds = <(string|undefined)[]>[];
-        $(this.bookXml)
+        $(this.bookXml as XMLDocument)
             .find('section[class="numbered"]' )
             .has( 'data > choice[idref="' + sectionId + '"]')
             .each( (index: Number, section: Element) => {
@@ -443,7 +443,7 @@ export class Book {
      * @return Array with the 100 numbers of the random table
      */
     public getRandomTable(): number[] {
-        const $randomCells = $(this.bookXml)
+        const $randomCells = $(this.bookXml as XMLDocument)
             .find("section[id=random] > data > illustration > instance[class=text], section[id=random] > data > table[class=random-number-table]")
             .find("td");
         const numbers = <number[]>[];

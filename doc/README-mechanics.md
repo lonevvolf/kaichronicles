@@ -157,7 +157,7 @@ Execute once only. New Order: PERMANENTLY damage the player's Kai Weapon
 ```xml
 <damageKaiWeapon damage="-2" />
 ```
-Permanently applies -2CS to the player's Kai Weapon
+Permanently applies the specified CS penalty to the player's Kai Weapon
 
 ### setSkills
 Game setup: The player selects the initial Endurance and Combat Skill
@@ -223,7 +223,7 @@ decrease a counter, use the "pick" rule. The "objectId" can be one or more objec
 
 If you set more than one object id, the first one owned by the player will be dropped
 
-The property "backpackItemSlots" and specialItemSlots is used to drop objects on some given Backpack / Special Items positions. They
+The property "backpackItemSlots", "weaponSlots" and "specialItemSlots" is used to drop objects on some given Backpack / Weapon / Special Items positions. They
 can contain the index positions (1-based), or "last" for the last item
 
 If the optional property "restorePoint" is specified, the dropped item will can be restored with the rule "restoreInventoryState", with

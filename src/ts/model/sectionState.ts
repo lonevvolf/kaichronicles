@@ -5,7 +5,7 @@ import { Combat, Mechanics, Item, state, ActionChart, ActionChartItem, mechanics
  */
 export interface SectionItem {
     /** The object id */
-    id: string;
+    id: string|undefined|null;
 
     /** The object price. If its zero or null, the object is free */
     price: number;
@@ -140,7 +140,7 @@ export class SectionState {
             }
 
             const i = state.mechanics.getObject( sectionItem.id );
-            if ( !type || i.type === type ) {
+            if ( !type || i?.type === type ) {
                 items.push(i);
             }
         }
@@ -163,7 +163,7 @@ export class SectionState {
     public getWeaponObjects(): (Item|null)[] {
         const weapons: (Item|null)[] = [];
         for ( const i of this.getSectionObjects() ) {
-            if ( i.isWeapon() ) {
+            if ( i?.isWeapon() ) {
                 weapons.push( i );
             }
         }

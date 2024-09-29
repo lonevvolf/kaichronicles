@@ -275,7 +275,7 @@ export class ObjectsTableItem {
 
     }
 
-    public static restoreFromLink( $link: JQuery<HTMLElement> , tableType: ObjectsTableType ): ObjectsTableItem {
+    public static restoreFromLink( $link: JQuery<HTMLElement> , tableType: ObjectsTableType ): ObjectsTableItem|null {
 
         const objectInfo: SectionItem = {
             id : null,
@@ -293,12 +293,12 @@ export class ObjectsTableItem {
             return null;
         }
 
-        const txtPrice: string = $link.attr("data-price");
+        const txtPrice: string|undefined = $link.attr("data-price");
         if ( txtPrice ) {
             objectInfo.price = parseInt( txtPrice, 10 );
         }
 
-        const txtCurrency: string = $link.attr("data-currency");
+        const txtCurrency: string|undefined = $link.attr("data-currency");
         if ( txtCurrency ) {
             objectInfo.currency = txtCurrency;
         }
@@ -307,7 +307,7 @@ export class ObjectsTableItem {
             objectInfo.unlimited = true;
         }
 
-        const txtCount: string = $link.attr("data-count");
+        const txtCount: string|undefined = $link.attr("data-count");
         if ( txtCount ) {
             objectInfo.count = parseInt( txtCount, 10 );
         }
@@ -375,7 +375,7 @@ export class ObjectsTableItem {
             }
         }
 
-        let objectPicked: boolean;
+        let objectPicked: boolean = false;
         if ( this.item.id === Item.MONEY || this.item.id === Item.ARROW ) {
             // Not really an object
             objectPicked = true;
@@ -462,7 +462,7 @@ export class ObjectsTableItem {
     /** Use object operation */
     private use() {
 
-        if ( !confirm( translations.text( "confirmUse" , [this.item.name] ) ) ) {
+        if ( !confirm( translations.text( "confirmUse" , [this.item?.name] ) ) ) {
             return;
         }
 

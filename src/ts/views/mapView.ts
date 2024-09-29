@@ -17,7 +17,9 @@ export const mapView = {
         const map = state.mechanics.getObject( Item.MAP );
         // On book 11, map is on section 233
         const mapSection = new Section( state.book , "sect233" , state.mechanics );
-        mapView.setContent( map.name , mapSection.getFirstIllustrationHtml() );
+        if (map) {
+            mapView.setContent( map.name , mapSection.getFirstIllustrationHtml() );
+        }
     },
 
     /**

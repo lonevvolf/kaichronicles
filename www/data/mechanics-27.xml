@@ -2295,6 +2295,8 @@
 
         <section id="sect350">
             <!-- Reset any disabled disciplines -->
+            <drop objectId="clawofnaar" />
+
             <resetNewOrderDisabledDisciplines />
         </section>
     </sections>

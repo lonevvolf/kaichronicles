@@ -246,7 +246,7 @@ export class Translations {
      * @param {Array<object>} replacements Replacements to do on the message. It can be null
      * @returns {string} The text
      */
-    public text( textId: string , replacements: any[] = null ): string {
+    public text( textId: string , replacements: any[]|null = null ): string {
         try {
             const table = this["texts"];
 

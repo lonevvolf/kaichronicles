@@ -412,7 +412,7 @@ export class CombatMechanics {
         // Check if player can use Power Strike
         const hasPowerStrike = state.actionChart.hasNewOrderDiscipline(NewOrderDiscipline.MagiMagic);
         if (state.book.getBookSeries().id !== BookSeriesId.NewOrder ||
-            !hasPowerStrike || state.actionChart.getDisciplines().length < 13 || combat.mentalOnly) {
+            !hasPowerStrike || state.actionChart.getDisciplines().length < 13 || combat.mentalOnly || combat.noObjectBonuses) {
             // Hide Power Strike check
             $combatUI.find(".powerstrikecheck").hide();
             return;

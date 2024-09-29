@@ -1645,7 +1645,6 @@
         <section id="sect300">
             <!-- Reset any disabled disciplines -->
             <resetNewOrderDisabledDisciplines />
-            <message text="Congratulations! You have finished the last book of Kai Chronicles!" />
         </section>
     </sections>
 </mechanics>

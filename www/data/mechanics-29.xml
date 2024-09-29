@@ -207,6 +207,12 @@
             </test>
         </section>
 
+        <section id="sect10">
+            <test expression="[MEALS] > 0">
+                <drop objectId="meal" />
+            </test>
+        </section>
+
         <section id="sect13">
             <object objectId="4candles" price="2" />
             <object objectId="lantern" price="2" />
@@ -301,12 +307,18 @@
         </section>
 
         <section id="sect25">
-            <test not="true" expression="[KAILEVEL] >= 12">
+            <choiceState section="all" set="disabled" />
+            <test expression="[KAILEVEL] >= 12">
+                <choiceState section="sect51" set="enabled" />
+            </test>
+            <test expression="[KAILEVEL] >= 13">
                 <choiceState section="sect51" set="disabled" />
+                <choiceState section="sect319" set="enabled" />
             </test>
-            <test not="true" expression="[KAILEVEL] >= 13">
-                <choiceState section="sect319" set="disabled" />
+            <test not="true" expression="[KAILEVEL] >= 12">
+                <choiceState section="sect2" set="enabled" />
             </test>
+
         </section>
 
         <section id="sect28">
@@ -376,9 +388,12 @@
         </section>
 
         <section id="sect39">
-            <test not="true" expression="[MONEY] >= 3">
+            <test not="true" expression="[MONEY] >= 2">
                 <choiceState section="sect156" set="disabled" />
             </test>
+            <choiceSelected section="sect156">
+                <pick class="money" count="-2" />
+            </choiceSelected>
         </section>
 
         <section id="sect42">
@@ -719,6 +734,7 @@
         </section>
 
         <section id="sect79">
+            <endurance count="-1" />
             <drop objectId="trackergem" />
             <drop backpackItemSlots="3|5" />
         </section>
@@ -752,6 +768,7 @@
         </section>
 
         <section id="sect84">
+            <drop objectId="tazhengpotion" />
             <test canUseBow="false">
                 <choiceState section="sect333" set="disabled" />
             </test>
@@ -873,6 +890,7 @@
         </section>
 
         <section id="sect101">
+            <drop weaponSlots="1" />
             <choiceState section="all" set="disabled" />
             <combat combatSkillModifier="-2" noObjectBonuses="true" noKaiBlast="true" noKaiRay="true" noKaiSurge="true" noMindblast="true" noPsiSurge="true" />
             <afterCombats>
@@ -1009,14 +1027,12 @@
         <section id="sect117">
             <choiceState section="all" set="disabled" />
             <randomTable zeroAsTen="true">
-                <test hasDiscipline="kaiscrn">
-                    <endurance count="-(Math.max(0, ([RANDOM] - 2)))" />
-                </test>
-                <test not="true" hasDiscipline="kaiscrn">
-                    <endurance count="-[RANDOM]" />
-                </test>
+                <endurance count="-(Math.max(0, [RANDOM]))" />
                 <choiceState section="all" set="enabled" />
             </randomTable>
+            <test hasDiscipline="kaiscrn">
+                <randomTableIncrement increment="-2" />
+            </test>
         </section>
 
         <section id="sect118">
@@ -1398,10 +1414,10 @@
         </section>
 
         <section id="sect160">
-            <test not="true" hasObject="ansengskirusami">
+            <test not="true" hasObject="ansengskirusami|ansengskirusamienhanced">
                 <choiceState section="sect188" set="disabled" />
             </test>
-            <test hasObject="ansengskirusami">
+            <test hasObject="ansengskirusami|ansengskirusamienhanced">
                 <choiceState section="sect89" set="disabled" />
             </test>
         </section>
@@ -1473,7 +1489,7 @@
 
         <section id="sect174">
             <choiceState section="all" set="disabled" />
-            <combat combatSkillModifier="+6" />
+            <combat combatSkillModifier="+6" immuneTurns="2" />
             <test currentWeapon="sunstrike">
                 <combat combatSkillModifierIncrement="+1"/>
             </test>
@@ -1489,8 +1505,77 @@
             </afterCombats>
         </section>
 
+        <section id="sect176" pickMaximum="1">
+            <object objectId="laumspurpotion4" />
+            <object objectId="tazhengpotion" />
+            <object objectId="sabitotincture" />
+        </section>
+
+        <section id="sect177">
+            <test canUseBow="false">
+                <choiceState section="sect328" set="disabled" />
+            </test>
+        </section>
+
+        <section id="sect179">
+            <test sectionVisited="sect52">
+                <endurance count="+5" />
+            </test>
+            <test not="true" sectionVisited="sect52">
+                <endurance count="+3" />
+            </test>
+
+            <test not="true" hasObject="samorqueen">
+                <choiceState section="sect128" set="disabled" />
+            </test>
+            <test hasObject="samorqueen">
+                <choiceState section="sect225" set="disabled" />
+            </test>
+        </section>
+
+        <section id="sect181">
+            <choiceState section="sect14" set="disabled" />
+            <test not="true" hasDiscipline="element">
+                <choiceState section="sect92" set="disabled" />
+            </test>
+            <test hasDiscipline="element">
+                <choiceState section="sect165" set="disabled" />
+            </test>
+            <test hasDiscipline="alchemy">
+                <test expression="[KAILEVEL] >= 10">
+                    <choiceState section="sect14" set="enabled" />
+                    <choiceState section="sect165" set="disabled" />
+                </test>
+            </test>
+        </section>
+
+        <section id="sect182">
+            <test canUseBow="false">
+                <choiceState section="sect333" set="disabled" />
+            </test>
+        </section>
+
+        <section id="sect184">
+            <endurance count="-2" />
+        </section>
+
+        <section id="sect185">
+            <object objectId="laumwortpotion" price="2" />
+            <object objectId="oxydinepotion" price="4" />
+            <object objectId="laumspurpotion4" price="5" />
+            <object objectId="potionofstrength" price="6" />
+            <object objectId="malavanpotion" price="6" />
+            <object objectId="karmo" price="10" />
+        </section>
+
+        <section id="sect186">
+            <endurance count="+8" />
+            <object objectId="laumspurpotion4" />
+        </section>
+
         <section id="sect188">
             <drop objectId="ansengskirusami" />
+            <drop objectId="ansengskirusamienhanced" />
         </section>
 
         <section id="sect189">
@@ -1595,7 +1680,7 @@
 
         <section id="sect207">
             <choiceState section="all" set="disabled" />
-            <combat combatSkillModifier="+6" />
+            <combat combatSkillModifier="+6" immuneTurns="1" />
             <test currentWeapon="sunstrike">
                 <combat combatSkillModifierIncrement="+1"/>
             </test>
@@ -1680,9 +1765,13 @@
         </section>
 
         <section id="sect215">
-            <test not="true" expression="[MONEY] >= 3">
+            <pick class="money" count="-1" />
+            <test not="true" expression="[MONEY] >= 2">
                 <choiceState section="sect156" set="disabled" />
             </test>
+            <choiceSelected section="sect156">
+                <pick class="money" count="-2" />
+            </choiceSelected>
         </section>
 
         <section id="sect217">
@@ -1709,6 +1798,10 @@
             <afterCombats>
                 <choiceState section="all" set="enabled" />
             </afterCombats>
+        </section>
+
+        <section id="sect223">
+            <endurance count="+3" />
         </section>
 
         <section id="sect225">
@@ -1767,6 +1860,7 @@
         </section>
 
         <section id="sect232">
+            <drop objectId="sabitotincture" />
             <message id="msg-drop-item" text="Drop two Backpack Items of your choice" />
             <onInventoryEvent>
                 <test expression="[BACKPACK-ITEMS-CNT-ON-ACTIONCHART] === 0 || [BACKPACK-ITEMS-CNT-ON-SECTION] >= 2">
@@ -2148,6 +2242,15 @@
             <endurance count="-2" />
         </section>
 
+        <section id="sect280">
+            <test not="true" sectionVisited="sect114">
+                <choiceState section="sect62" set="disabled" />
+            </test>
+            <test sectionContainsText="sect114">
+                <choiceState section="sect314" set="disabled" />
+            </test>
+        </section>
+
         <section id="sect282">
             <endurance count="-1" />
         </section>
@@ -2213,7 +2316,7 @@
         </section>
 
         <section id="sect291">
-            <numberPicker text="Choose the number of Gold Crowns you want to bet" min="0"
+            <numberPicker text="Choose the number of Gold Crowns you want to bet" min="1"
                 money="true" actionButton="Bet" />
             <choiceState section="all" set="disabled" />
 
@@ -2632,12 +2735,16 @@
         </section>
 
         <section id="sect345">
-            <test not="true" expression="[MONEY] >= 3">
+            <test not="true" expression="[MONEY] >= 2">
                 <choiceState section="sect156" set="disabled" />
             </test>
+            <choiceSelected section="sect156">
+                <pick class="money" count="-2" />
+            </choiceSelected>
         </section>
 
         <section id="sect347">
+            <meal />
             <choiceState section="all" set="disabled" />
             <combat />
             <test currentWeapon="sunstrike">
@@ -2657,6 +2764,7 @@
 
         <section id="sect350">
             <drop objectId="eyeofagarash" />
+            <message text="Congratulations! You have finished the last book of Kai Chronicles! To continue the adventure and support the world of Lone Wolf, visit &lt;a href=&quot;https://www.magnamund.com&quot;>Magnamund.com&lt;/a>" />
         </section>
 
     </sections>
