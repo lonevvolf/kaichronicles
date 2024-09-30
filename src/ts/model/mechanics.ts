@@ -8,12 +8,12 @@ export class Mechanics {
     /**
      * The book
      */
-    public book: Book = null;
+    public book: Book|null = null;
 
     /**
      * The book mechanics XML document (XmlDocument)
      */
-    public mechanicsXml: XMLDocument = null;
+    public mechanicsXml: XMLDocument|null = null;
 
     /**
      * The original XML text. It will be saved only if we are on debug mode. Otherwise it will be null
@@ -43,10 +43,10 @@ export class Mechanics {
      * @return Promise with the download
      */
     public downloadXml(): JQueryXHR {
-
         return $.get({
             url: this.getXmlURL(),
-            dataType: "text"
+            dataType: "text",
+            context: this
         })
         .done((xml: string) => {
             this.mechanicsXml = $.parseXML(xml);
@@ -99,8 +99,8 @@ export class Mechanics {
     /**
      * Returns an jquery object with the section mechanics XML. null if there are no mechanics
      */
-    public getSection(sectionId: string): JQuery<HTMLElement> {
-        const $section = $(this.mechanicsXml)
+    public getSection(sectionId: string|null|undefined): JQuery<HTMLElement>|null {
+        const $section = $(this.mechanicsXml as XMLDocument)
             .find("mechanics > sections > section[id=" + sectionId + "]");
         return $section.length === 0 ? null : $section;
     }
@@ -108,7 +108,7 @@ export class Mechanics {
     /**
      * Returns a JS object with the object properties. null if it was not found
      */
-    public getObject(objectId: string): Item {
+    public getObject(objectId: string|null|undefined): Item|null {
 
         if (!objectId) {
             return null;

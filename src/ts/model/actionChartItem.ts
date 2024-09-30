@@ -8,7 +8,7 @@ export class ActionChartItem {
     /**
      * Item id
      */
-    public id: string;
+    public id: string|null;
 
     /**
      * Number of allowed item uses
@@ -19,6 +19,11 @@ export class ActionChartItem {
      * For weapons : True if has the dessi stone (damage x2 if undead)
      */
     public dessiStoneBonus = false;
+
+    /**
+     * For Kai Weapons : Permanent CS bonus reduction
+     */
+    public damage = 0;
 
     /**
      * Returns the Item info. null if it was not found
@@ -32,7 +37,7 @@ export class ActionChartItem {
      * @param id Item identifier
      * @param usageCount Number of allowed item uses. If < 0 or not passed, the default numberuses will be assigned from the Item
      */
-    constructor(id: string = null, usageCount: number = -1) {
+    constructor(id: string|null = null, usageCount: number = -1) {
         this.id = id;
         if (usageCount >= 0) {
             this.usageCount = usageCount;

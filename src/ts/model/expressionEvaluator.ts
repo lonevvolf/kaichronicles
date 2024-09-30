@@ -8,7 +8,7 @@ export class ExpressionEvaluator {
      * Expression to find texts to replace
      * Matches anything between "[" and "]", both included
      */
-    private static replacementsRegex: RegExp = /\[[^\]]*\]/g;
+    private static replacementsRegex: RegExp = /\[[^\[\]]*?\]/g;
 
     /**
      * Dictionary of functions to do the replacements.
@@ -19,7 +19,7 @@ export class ExpressionEvaluator {
         // Last random value
         "[RANDOM]"() {
             // TODO Find a way to load previous value if lastValue is null
-            return randomMechanics.lastValue || 0;
+            return randomMechanics.lastValue ?? -1;
         },
 
         // Last combat random value
@@ -179,6 +179,10 @@ export class ExpressionEvaluator {
             return numberPickerMechanics.getNumberPickerValue();
         },
 
+        "[NUMBERPICKER1]"() {
+            return numberPickerMechanics.getNumberPickerValue(1);
+        },
+
         "[DISCIPLINEPICKER]"() {
             return disciplinePickerMechanics.getDisciplinePickerValue();
         },
@@ -230,7 +234,7 @@ export class ExpressionEvaluator {
      * @param expression Expression where to replace keywords
      * @returns The expression with the replaced values
      */
-    private static doReplacements( expression: string ): string {
+    private static doReplacements( expression: string|undefined ): string|undefined {
         for ( const keyword of ExpressionEvaluator.getKeywords(expression) ) {
             let replacement: string;
             const functionReplacer = ExpressionEvaluator.replacementFunctions[ keyword ];
@@ -250,7 +254,7 @@ export class ExpressionEvaluator {
      * @param expression Expression to evaluate
      * @returns The expression value
      */
-    private static eval( expression: string ): any {
+    private static eval( expression: string|undefined ): any {
         try {
             expression = ExpressionEvaluator.doReplacements( expression );
             // tslint:disable-next-line: no-eval
@@ -288,7 +292,7 @@ export class ExpressionEvaluator {
      * @param expression Expression to evaluate
      * @returns The expression value
      */
-    public static evalInteger( expression: string ): number {
+    public static evalInteger( expression: string|undefined ): number {
         return Math.floor( ExpressionEvaluator.eval( expression ) );
     }
 
@@ -297,7 +301,7 @@ export class ExpressionEvaluator {
      * @param expression Expression to evaluate
      * @returns The expression value
      */
-    public static evalFloat( expression: string ): number {
+    public static evalFloat( expression: string|undefined ): number {
         return <number>(ExpressionEvaluator.eval( expression ));
     }
 

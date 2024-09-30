@@ -49,7 +49,7 @@
         </div>
     </div>
 
-    <!-- Select kai disciplines -->
+    <!-- Select Kai Disciplines -->
     <div class="well" id="mechanics-setDisciplines">
         <div class="checkbox">
             <label>
@@ -144,7 +144,7 @@
             <label>
                 <input type="checkbox"> 
                 <span class="mechanics-combat-kaiblast">
-                    Kai-blast: -4EP, enemy lose a Random Number of EP 2 times
+                    Kai-blast: -4EP, enemy loses a Random Number of EP 2 times
                 </span>
             </label>
         </div>
@@ -153,7 +153,16 @@
             <label>
                 <input type="checkbox"> 
                 <span class="mechanics-combat-kairay">
-                    Kai-ray: -4EP, enemy lose 15EP
+                    Kai-ray: -4EP, enemy loses 15EP
+                </span>
+            </label>
+        </div>
+        <!-- Power Strike -->
+        <div class="checkbox powerstrikecheck">
+            <label>
+                <input type="checkbox"> 
+                <span class="mechanics-combat-powerstrike">
+                    Power Strike: -3 EP, +1 CS, -1 EP to enemy per round
                 </span>
             </label>
         </div>
@@ -277,6 +286,22 @@
         </div>
         
         <button class="btn btn-primary btn-block" type="button" id="mechanics-pickdiscipline" 
+            style="display: none; margin-top: 5px;">
+            Action
+        </button>
+    </div>
+
+    <!-- Kai Weapon picker -->
+    <div class="well" id="mechanics-kaiweaponpicker">
+        <p><b id="mechanics-kwpTitle">Kai Weapon picker</b></p>
+        <div class="radio" id="mechanics-kwpOption">
+            <label>
+                <input title="Kai Weapon Picker Radio Button" id="mechanics-kwpRadioButton" type="radio" name="mechanics-kaiWeaponGroup" value="0">
+                <span id="mechanics-kwpRadioLabel"></span>
+            </label>
+        </div>
+        
+        <button class="btn btn-primary btn-block" type="button" id="mechanics-pickkaiweapon" 
             style="display: none; margin-top: 5px;">
             Action
         </button>

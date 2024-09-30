@@ -14,6 +14,9 @@ export interface BookMetadata {
 
     /** Authors biographies (.inc files in [LANGUAGECODE]/xml ) */
     biographies: string[];
+
+    /** Whether a cover exists for the book */
+    hasCover: boolean; 
 }
 
 /**
@@ -237,7 +240,33 @@ export const projectAon = {
             illustrators: [ "williams" ],
             biographies: [ "jdbiolw" , "bwbiolw" ]
         }, 
-    ] as BookMetadata[],
+
+        // Book 27:
+        {
+            title: "Vampirium",
+            code: "27v",
+            illustrators: [ "williams" ],
+            biographies: [ "jdbiolw" , "bwbiolw" ]
+        },
+
+        // Book 28:
+        {
+            title: "The Hunger of Sejanoz",
+            code: "28thos",
+            illustrators: [ "williams" ],
+            biographies: [ "jdbiolw" , "bwbiolw" ]
+        },    
+
+        // Book 29:
+        {
+            title: "The Storms of Chai",
+            code: "29tsoc",
+            illustrators: [ "williams" ],
+            biographies: [ "jdbiolw" , "bwbiolw" ],
+            hasCover: false,
+        },
+
+        ] as BookMetadata[],
 
     /**
      * Returns the title of a book
@@ -256,7 +285,7 @@ export const projectAon = {
 
 };
 
-// Do not use Typescript modules here, plain node.js modules for browser JS compatiblity (oh javascript...)
+// Do not use Typescript modules here, plain node.js modules for browser JS compatibility (oh javascript...)
 try {
     if (typeof exports !== "undefined") {
         exports.projectAon = projectAon;

@@ -27,6 +27,8 @@ export const mapController = {
                 mapView.setMapBook11();
             } else {
                 mapView.setSectionContent( mapSection );
+                // Hide map controls if there is no map (Book 29)
+                $("#map-section img").length ? $("#map-controls").show() : $("#map-controls").hide();
             }
             mapView.bindEvents();
         }, null);

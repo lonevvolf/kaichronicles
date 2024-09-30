@@ -81,7 +81,7 @@ export const actionChartController = {
         } catch (e) {
             // Error picking
             if (showError) {
-                toastr.error(e);
+                toastr.error(e as string);
             }
             console.log(e); // This is not really an application error, so do not call mechanicsEngine.debugWarning()
             return false;
@@ -222,7 +222,7 @@ export const actionChartController = {
             template.updateStatistics();
 
             if (availableOnSection) {
-                // Add the droped object as available on the current section
+                // Add the dropped object as available on the current section
                 const sectionState = state.sectionStates.getSectionState();
                 sectionState.addActionChartItemToSection(droppedItem, dropCount);
 
@@ -278,10 +278,10 @@ export const actionChartController = {
             const item = arrayOfItems[index];
             let count = 0;
 
-            if(item.id === Item.FIRESEED) {
+            if( item.id === Item.FIRESEED ) {
                 // Erase all fireseeds
                 count = state.actionChart.fireseeds;
-            } else if(item.id === Item.QUIVER) {
+            } else if ( item.id === Item.QUIVER ) {
                 // Erase one quiver
                 count = state.actionChart.arrows % 6;
             }
@@ -374,7 +374,7 @@ export const actionChartController = {
                     translations.text("msgDropMeal", [-count]));
             }
         } catch (e) {
-            toastr.error(e);
+            toastr.error(e as string);
         }
     },
 
@@ -545,7 +545,7 @@ export const actionChartController = {
      */
     getBonusesText(bonuses: Bonus[]) {
         const txt = [];
-        for (const bonus of bonuses) {
+        for (const bonus of bonuses.filter((b) => !b.enemy)) {
             let txtInc = bonus.increment.toString();
             if (bonus.increment > 0) {
                 txtInc = "+" + txtInc;

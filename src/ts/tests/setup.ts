@@ -1,7 +1,6 @@
-import * as Webpack from "webpack";
-import * as WebpackDevServer from "webpack-dev-server";
-import * as webpackConfig from "../../../webpack.config.js";
-
+const Webpack = require("webpack");
+const WebpackDevServer = require('webpack-dev-server');
+const webpackConfig = require("../../../webpack.config.js");
 
 module.exports = async function () {
   const compiler = Webpack(webpackConfig);

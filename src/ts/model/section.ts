@@ -1,4 +1,5 @@
 import { Book, Mechanics, SectionRenderer, Combat, mechanicsEngine } from "..";
+import he from 'he';
 
 /**
  * A book section info
@@ -6,15 +7,15 @@ import { Book, Mechanics, SectionRenderer, Combat, mechanicsEngine } from "..";
 export class Section {
 
     /** The section id */
-    public sectionId: string;
+    public sectionId: string|null|undefined;
 
     /** The owner book */
-    public book: Book;
+    public book: Book|null;
 
     /** The mechanics of the owner book.
      * It can be null
      */
-    public mechanics: Mechanics;
+    public mechanics: Mechanics|null;
 
     /** The jQuery handler for the section XML */
     public $xmlSection: JQuery<HTMLElement>;
@@ -29,7 +30,7 @@ export class Section {
      * @param {Mechanics} mechanics The book mechanics. It can be null. In this
      * case, the images will not be translated
      */
-    public constructor( book: Book , sectionId: string, mechanics: Mechanics) {
+    public constructor( book: Book|null , sectionId: string|null|undefined, mechanics: Mechanics|null) {
 
         /** The section id */
         this.sectionId = sectionId;
@@ -77,19 +78,19 @@ export class Section {
     /**
      * Return the section number. null if it has no number
      */
-    public getSectionNumber(): number {
+    public getSectionNumber(): number|null {
         if ( this.$xmlSection.attr("class") !== "numbered" ) {
             return null;
         }
         // Id is "sectXXX"
-        return parseInt( this.sectionId.substring(4), 10 );
+        return Number( this.sectionId.substring(4) );
     }
 
     /**
      * Returns the next section id
      * @returns The next section id. null if there is no next section
      */
-    public getNextSectionId(): string {
+    public getNextSectionId(): string|undefined|null {
 
         if (this.mechanics && this.sectionId === this.mechanics.getLastSectionId() ) {
             return null;
@@ -112,7 +113,7 @@ export class Section {
      * Returns the next section id
      * @returns The previous section id. null if there is no next section
      */
-    public getPreviousSectionId(): string {
+    public getPreviousSectionId(): string|undefined|null {
 
         if (this.sectionId === Book.INITIAL_SECTION ) {
             return null;
@@ -185,7 +186,8 @@ export class Section {
                 }
             }
         }
-        return title;
+        // Remove any HTML encoding
+        return he.decode(title);
     }
 
     /**

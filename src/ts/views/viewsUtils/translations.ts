@@ -15,6 +15,7 @@ export class Translations {
         //////////////////////////////////////
 
         "actionChart" : "Action Chart",
+        "printActionChart" : "Printable Action Chart",
         "noneFemenine" : "None",
         "noneMasculine" : "None",
         "disciplineDescription" : "Discipline description",
@@ -40,6 +41,7 @@ export class Translations {
         "confirmUse" : 'Are you sure you want to use "{0}"?',
         "confirmDrop" : 'Are you sure you want to drop "{0}"?',
         "confirmDisableDiscipline" : "Are you sure you want to disable {0} for the rest of the book?",
+        "confirmChooseKaiWeapon" : "Are you sure you want to select {0} as your Kai Weapon?",
         "noEnoughMoney" : "You don't have enough money",
         "confirmBuy" : "Are you sure you want to buy the object for {0} {1}?",
         "msgGetObject" : 'You got "{0}"',
@@ -60,6 +62,7 @@ export class Translations {
         "msgAlreadyBackpack" : "You already have a Backpack",
         "msgNoMoreBackpackItems" : "You cannot get more Backpack Items",
         "msgNoMoreSpecialItems" : "You cannot get more Special Items",
+        "msgKaiWeaponDamaged" : "Your Kai Weapon has been permanently damaged",
         "noWeapon" : "No weapon",
         "weaponskill" : "Weaponskill",
         "weaponmastery" : "Weaponmastery",
@@ -67,6 +70,7 @@ export class Translations {
         "mindblast" : "Mindblast",
         "psisurge" : "Psi-surge",
         "kaisurge" : "Kai-surge",
+        "powerstrike" : "Power Strike",
         "countAsObjects"  : "(Counts as {0} items)",
         "circleFire" : "Circle of Fire",
         "circleLight" : "Circle of Light",
@@ -100,8 +104,9 @@ export class Translations {
         "deathLetter" : "K",
         "mechanics-combat-psisurge" : "Psi-surge: +{0} CS, -{1} EP per round",
         "mechanics-combat-kaisurge" : "Kai-surge: +{0} CS, -{1} EP per round",
-        "mechanics-combat-kaiblast" : "Kai-blast: -4EP, enemy lose a Random Number{0} of EP 2 times",
-        "mechanics-combat-kairay" : "Kai-ray: -4EP, enemy lose {0}EP (one time per combat)",
+        "mechanics-combat-kaiblast" : "Kai-blast: -4EP, enemy loses a Random Number{0} of EP {1} times",
+        "mechanics-combat-kairay" : "Kai-ray: -4EP, enemy loses {0}EP (one time per combat)",
+        "mechanics-combat-powerstrike" : "Power Strike: -3 EP (once), +1 CS, -1 EP to enemy per round",
         "sectionModifier" : "Section modifier",
         "objectsUse" : "Objects use",
         "enemyMindblast" : "Enemy mindblast",
@@ -141,6 +146,7 @@ export class Translations {
         "playerNumber" : "Player {0}",
         "number" : "Number {0}",
         "adganaUse" : "Adgana use, Random Table number: {0}",
+        "karmoUse" : "Karmo use, Random Table number: {0}",
         "heads" : "Heads",
         "tails" : "Tails",
 
@@ -155,6 +161,10 @@ export class Translations {
         //////////////////////////////////////
 
         "youMustAgree" : "You must agree the license to continue",
+        "Kai": "Kai",
+        "Magnakai": "Magnakai",
+        "GrandMaster": "Grand Master",
+        "NewOrder": "New Order",
 
         //////////////////////////////////////
         // Settings
@@ -236,7 +246,7 @@ export class Translations {
      * @param {Array<object>} replacements Replacements to do on the message. It can be null
      * @returns {string} The text
      */
-    public text( textId: string , replacements: any[] = null ): string {
+    public text( textId: string , replacements: any[]|null = null ): string {
         try {
             const table = this["texts"];
 

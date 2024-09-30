@@ -6,7 +6,7 @@ import { Book, translations, mechanicsEngine, Section, state } from "..";
 export interface ItemEffect {
 
     /** Combat.COMBATSKILL for combat skill increment. Item.ENDURANCE for endurance points increment. */
-    cls: string;
+    cls: string|undefined;
 
     /** Attribute increment */
     increment: number;
@@ -30,6 +30,7 @@ export class Item {
     public static readonly COMBATSKILL = "combatSkill";
     public static readonly ENDURANCE = "endurance";
     public static readonly BACKPACKSLOTS = "backpackSlots";
+    public static readonly ENEMYCOMBATSKILL = "enemyCombatSkill";
 
     // Object types
     /** Special item type */
@@ -42,6 +43,7 @@ export class Item {
     // Object ids
     public static readonly MONEY = "money";
     public static readonly QUIVER = "quiver";
+    public static readonly LARGE_QUIVER = "quiver29";
     public static readonly ARROW = "arrow";
     public static readonly FIRESEED = "fireseed";
     public static readonly MAP = "map";
@@ -49,6 +51,8 @@ export class Item {
     public static readonly MEAL = "meal";
     public static readonly BACKPACK = "backpack";
     public static readonly HELSHEZAG = "helshezag";
+    public static readonly ANSENGS_KIRUSAMI = "ansengskirusami";
+    public static readonly ANSENGS_KIRUSAMI_ENHANCED = "ansengskirusamienhanced";
 
     /** Allowed Special Items to carry to Grand Master from previous series */
     public static readonly ALLOWED_GRAND_MASTER = ["crystalstar", "sommerswerd", "silverhelm", "daggerofvashna", "silverbracers", "jewelledmace",
@@ -86,14 +90,14 @@ export class Item {
      * Translated extra description.
      * It's optional (can be null)
      */
-    public extraDescription: string = null;
+    public extraDescription: string|null = null;
 
     /**
      * The weapon type. Only for special and object types. It is the kind of weapon.
      * If it can be handled as more than one weapon type, separate the with a '|'.
      * Ex. 'sword|shortsword'
      */
-    public weaponType: string;
+    public weaponType: string|undefined;
 
     /** Object image URL, untranslated. null if the object has no image. */
     private imageUrl: string;
@@ -115,6 +119,9 @@ export class Item {
     /** Number of extra backpack slots */
     public backpackSlotsBonusEffect: number = 0;
 
+    /** Combat Skill increment TO ENEMY */
+    public enemyCombatSkillEffect?: number;
+    
     /** Usage effect */
     public usage: ItemEffect;
 
@@ -132,7 +139,7 @@ export class Item {
     /**
      * True if the weapon is affected by Sun Lord Grand Weaponmastery bonus
      */
-    public grdWpnmstryBonus: boolean = true;
+    public grdWpnmstryBonus: boolean|null = true;
 
     /**
      * Game object information
@@ -140,7 +147,7 @@ export class Item {
      * @param $o The XML tag with the object info
      * @param objectId The object identifier
      */
-    constructor(book: Book, $o: JQuery<Element>, objectId: string) {
+    constructor(book: Book|null, $o: JQuery<Element>, objectId: string) {
 
         /** The object type ('special', 'object' or 'weapon' ) */
         this.type = $o.prop("tagName");
@@ -160,7 +167,7 @@ export class Item {
         this.droppable = $o.attr("droppable") !== "false";
 
         /** Number of items the object it occupies on the backpack */
-        const txtItemCount: string = $o.attr("itemCount");
+        const txtItemCount: string|undefined = $o.attr("itemCount");
         this.itemCount = txtItemCount ? parseFloat(txtItemCount) : 1;
         if(this.itemCount < 0) {
             // Cannot be negative
@@ -168,7 +175,7 @@ export class Item {
         }
 
         /** Number of usage of the object */
-        const txtUsageCount: string = $o.attr("usageCount");
+        const txtUsageCount: string|undefined = $o.attr("usageCount");
         this.usageCount = txtUsageCount ? parseInt(txtUsageCount, 10) : 1;
         if(this.usageCount <= 0) {
             // Cannot be negative or zero
@@ -209,7 +216,7 @@ export class Item {
         if ($usage.length > 0) {
             this.usage = {
                 cls: $usage.attr("class"),
-                increment: parseInt($usage.attr("increment"), 10),
+                increment: Number($usage.attr("increment")),
                 priorCombat: $usage.attr("priorCombat") === "true",
                 takenWithMeal: $usage.attr("takenWithMeal") === "true",
                 takenWithLaumspur: $usage.attr("takenWithLaumspur") === "true",
@@ -220,14 +227,16 @@ export class Item {
         const $effects = $o.find("effect");
         for (const effect of $effects.toArray()) {
             const $effect = $(effect);
-            const increment = parseInt($effect.attr("increment"), 10);
-            const cls: string = $effect.attr("class");
+            const increment = Number($effect.attr("increment"));
+            const cls: string|undefined = $effect.attr("class");
             if (cls === Item.COMBATSKILL) {
                 this.combatSkillEffect = increment;
             } else if (cls === Item.ENDURANCE) {
                 this.enduranceEffect = increment;
             } else if (cls === Item.BACKPACKSLOTS) {
                 this.backpackSlotsBonusEffect = increment;
+            } else if (cls == Item.ENEMYCOMBATSKILL) {
+                this.enemyCombatSkillEffect = increment;
             } else {
                 mechanicsEngine.debugWarning("Object " + this.id + ", wrong class effect: " + cls);
             }
@@ -240,7 +249,7 @@ export class Item {
         this.grdWpnmstryBonus = mechanicsEngine.getBooleanProperty($o, "grdWpnmstryBonus", true);
     }
 
-    private assignMapDescription(book: Book) {
+    private assignMapDescription(book: Book|null) {
         // Exception with book 11: The "map" section refers to "Northern Magnamund", no the real map at sect233
         if (book.bookNumber === 11) {
             return;
@@ -279,7 +288,7 @@ export class Item {
      * @return The object image URL. null if the object has no image or we are
      * running the Cordova app and the book for the image is not downloaded
      */
-    public getImageUrl(): string {
+    public getImageUrl(): string|null {
 
         if (!this.imageUrl) {
             return null;
@@ -300,7 +309,7 @@ export class Item {
 
         // Get the book number:
         const candidateBookNumbers: number[] = [];
-        const txtBook: string = $image.attr("book");
+        const txtBook: string|undefined = $image.attr("book");
         for (const txtBookNumber of txtBook.split("|")) {
             candidateBookNumbers.push(parseInt(txtBookNumber, 10));
         }

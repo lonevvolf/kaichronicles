@@ -26,7 +26,7 @@ export const setupController = {
             state.restoreState();            
         } else {
             // New game. Get hash URL parameters
-            const bookNumber = parseInt(routing.getHashParameter("bookNumber"), 10);
+            const bookNumber = Number(routing.getHashParameter("bookNumber"));
             const keepActionChart = routing.getHashParameter("keepActionChart") === "true";
             state.setup(bookNumber, keepActionChart);
         }

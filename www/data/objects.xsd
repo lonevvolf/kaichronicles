@@ -237,5 +237,10 @@
                 <xs:documentation>Optional. If true, it can only be used if the player has a meal or Grand Huntmastery (meal will be consumed)</xs:documentation>
             </xs:annotation>
         </xs:attribute>
+        <xs:attribute name="takenWithLaumspur" type="xs:boolean" default="false">
+            <xs:annotation>
+                <xs:documentation>Optional. If true, it can only be used if the player has a Laumspur potion or Herbmastery (potion will be consumed)</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
     </xs:complexType>
 </xs:schema>

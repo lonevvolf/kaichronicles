@@ -66,31 +66,40 @@ export function declareCommonHelpers(declareJqueryPlugins: boolean = true) {
     /****************** ARRAY ******************/
 
     if (typeof Array.prototype.removeValue !== "function") {
-        Array.prototype.removeValue = function(value) {
-            const index = $.inArray(value, this);
-            if ( index >= 0 ) {
-                this.splice(index, 1);
-                return true;
-            } else {
-                return false;
+        Object.defineProperty(Array.prototype, 'removeValue', {
+            enumerable: false,
+            value: function(value) {
+                const index = $.inArray(value, this);
+                if ( index >= 0 ) {
+                    this.splice(index, 1);
+                    return true;
+                } else {
+                    return false;
+                }
             }
-        };
+        });
     }
 
     if (!Array.prototype.clone) {
-        Array.prototype.clone = function() {
-            return this.slice(0);
-        };
+        Object.defineProperty(Array.prototype, 'clone', {
+            enumerable: false,
+            value: function() {
+                return this.slice(0);
+            }
+        });
     }
 
     if (!Array.prototype.deepClone) {
-        Array.prototype.deepClone = function() {
-            const copy = [];
-            for (const element of this) {
-                copy.push( element.clone ? element.clone() : element );
+        Object.defineProperty(Array.prototype, 'deepClone', {
+            enumerable: false,
+            value: function() {
+                const copy = [];
+                for (const element of this) {
+                    copy.push( element.clone ? element.clone() : element );
+                }
+                return copy;
             }
-            return copy;
-        };
+        });
     }
 
     /****************** WINDOW ******************/

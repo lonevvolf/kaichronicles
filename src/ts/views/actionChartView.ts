@@ -161,16 +161,28 @@ export const actionChartView = {
 
                 // Unescape the HTML description:
                 const descriptionHtml = $("<div />").html(dInfo.description).text();
-                $disciplines.append( "<tr><td>" +
-                    '<button class="btn btn-default table-op" title="' +
+                const td = $("<td>");
+                td[0].innerHTML = '<button class="btn btn-default table-op" type="button" title="' +
                     translations.text("disciplineDescription") +
                     '">' +
                         '<span class="fa fa-question-sign"></span>' +
-                    "</button>" +
-                    "<b" + (disabledDisciplines.includes(disciplineId) ? " class='disabled'" : "") 
-                    + ">" + name + `</b><br/>${dInfo.imageHtml}<i style="display:none"><small>` +
-                    descriptionHtml +
-                    "</small></i></td></tr>" );
+                    "</button>";
+
+                const b = $("<b>");
+                if (disabledDisciplines.includes(disciplineId)) {
+                    b.prop("class", "disabled")
+                }
+                
+                b[0].innerText = name;
+                const small = $("<small>");
+                small[0].innerText = descriptionHtml;
+
+                const i = $("<i>").prop("style", "display:none").append(small);
+                td.append(b).append(`<br/>${dInfo.imageHtml}`).append(i);
+
+                const tr = $("<tr>").append(td);
+
+                $disciplines.append( tr[0].outerHTML );
             }
             // Bind help button events
             $disciplines.find("button").on("click", function() {
@@ -188,10 +200,12 @@ export const actionChartView = {
             const kaiWeapon = actionChart.getKaiWeapon();
             if (kaiWeapon) {
                 const item = state.mechanics.getObject(kaiWeapon);
+                const acItem = state.actionChart.getActionChartItem(item.id);
+                const csBonus = item.combatSkillEffect + acItem.damage;
                 $("#kaiWeaponName").text(item.name.charAt(0).toUpperCase() + item.name.slice(1));
                 $("#kaiWeaponProperties").text(item.description);
                 $("#kaiWeaponType").text(item.weaponType.charAt(0).toUpperCase() + item.weaponType.slice(1));
-                $("#kaiWeaponBonus").text(`+ ${item.combatSkillEffect} CS`);
+                $("#kaiWeaponBonus").text(`+ ${csBonus} CS ${acItem.damage !== 0 ? " (damaged)" : ""}`);
             } else {
                 $("#kaiWeaponName").text("");
                 $("#kaiWeaponProperties").text("");
@@ -267,7 +281,10 @@ export const actionChartView = {
 
         // Current weapon:
         const current: Item = state.actionChart.getSelectedWeaponItem();
-        $("#achart-currentWeapon").html( current ? current.name : "<i>" + translations.text("noneFemenine") + "</i>" );
+
+        current ? 
+            $("#achart-currentWeapon").text(current.name) :
+            $("#achart-currentWeapon").empty().append($("<i>").text(translations.text("noneFemenine")));
 
         // Fight unarmed?
         const $fightUnarmed = $("#achart-fightUnarmed");
@@ -309,7 +326,7 @@ export const actionChartView = {
         $("#achart-specialtotal").text(`(${state.actionChart.getNSpecialItems()})`);
     },
 
-    showInventoryMsg(action: string, object: Item, msg: string) {
+    showInventoryMsg(action: string, object: Item|null, msg: string) {
         const toastType = ( action === "pick" ? "success" : "warning" );
         let html = "";
 

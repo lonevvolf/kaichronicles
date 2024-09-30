@@ -157,7 +157,12 @@ export const template = {
      */
     setErrorMessage(msg: string) {
         mechanicsEngine.debugWarning(msg);
-        template.setViewContent('<p style="color: red">' + msg + "</p>");
+
+        const p = document.createElement('p');
+        $(p).prop("style", "color: red");
+        p.innerText = msg;
+
+        template.setViewContent(p.outerHTML);
     },
 
     /**
@@ -184,7 +189,7 @@ export const template = {
         }
 
         $("#template-objectDescription").text(o.description);
-        $("#template-objectDescriptionExtra").text(o.extraDescription);
+        $("#template-objectDescriptionExtra").text(o.extraDescription ?? "");
 
         $("#template-objectDetails").modal("show");
     },
@@ -197,7 +202,7 @@ export const template = {
      * @param newColor The final HTML color of the element. If it's null, the default
      * color for the DOM element will be used
      */
-    animateValueChange( $element: JQuery<HTMLElement> , newValue: number , doNotAnimate: boolean , newColor: string = null ) {
+    animateValueChange( $element: JQuery<HTMLElement> , newValue: number , doNotAnimate: boolean , newColor: string|null = null ) {
 
         // Clear previous animations
         $element.stop(true, true);
@@ -213,7 +218,7 @@ export const template = {
             $element.css("color", newColor ? newColor : "" );
         } else {
             const miliseconds = 500;
-            const currentValue = parseInt( $element.text(), 10 );
+            const currentValue = Number( $element.text() );
             $element.css("color", newValue < currentValue ? "red" : "green" );
             $element.fadeOut(miliseconds, function() {
                 $(this).css("color", newColor ? newColor : "");
@@ -280,7 +285,7 @@ export const template = {
         // Add click event handlers:
         $("#template-randomcontent td").on("mousedown", function(e) {
             e.preventDefault();
-            randomTable.randomTableUIClicked( parseInt( $(this).attr("data-number"), 10 ) );
+            randomTable.randomTableUIClicked( Number( $(this).attr("data-number") ) );
         });
 
         $("#template-randomtable").on('hidden.bs.modal', (e) => {

@@ -36,7 +36,7 @@ export class pwa {
     public static registerServiceWorker() {
         if ("serviceWorker" in window.navigator) {
             try {         
-                this.wb = new Workbox("/sw.js");
+                this.wb = new Workbox("./sw.js");
 
                 const showSkipWaitingPrompt = async (event) => {
                     // Assuming the user accepted the update, set up a listener

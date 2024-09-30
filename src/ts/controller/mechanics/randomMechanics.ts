@@ -45,7 +45,7 @@ export const randomMechanics = {
         // Check if the rule was already executed (= link clicked):
         const result = <RuleExecuted>state.sectionStates.ruleHasBeenExecuted(rule);
         if (result) {
-            // Setup the link, but disabled and with the value choosed:
+            // Setup the link, but disabled and with the value chosen:
             randomMechanics.setupRandomTableLink($link, true, result.randomValue,
                 result.increment);
             // Fire the inner rules:
@@ -59,6 +59,13 @@ export const randomMechanics = {
             },
                 zeroAsTen);
         }
+    },
+
+    /**
+     * Choose a random number and store it.
+     */
+    randomNumber(rule: Element) {
+        randomMechanics.onRandomTableMechanicsClicked(rule, randomTable.getRandomValue(), 0);
     },
 
     getRandomTableRefByIndex(index: number): JQuery<HTMLElement> {
@@ -226,10 +233,10 @@ export const randomMechanics = {
      */
     onRandomTableMechanicsClicked(rule: Element, randomValue: number, increment: number) {
 
-        // Set the last choosed value
+        // Set the last chosen value
         randomMechanics.lastValue = randomValue + increment;
 
-        // Process rule childs. It can be a single action, and/or a set of "case" rules
+        // Process rule children. It can be a single action, and/or a set of "case" rules
         $(rule).children().each((index, childRule) => {
             if (childRule.nodeName === "case") {
                 // Evaluate the case rule
@@ -313,6 +320,18 @@ export const randomMechanics = {
         }
 
         return parseInt(txtPicked, 10);
+    },
+
+    /**
+     * Disables the link for the given random table on the section
+     * @param {number} index The index of the random table on the section
+     */
+    disableRandomTableByIndex(index: number) {
+        if (!index) {
+            index = 0;
+        }
+        const $link = $(`.random:eq(${index})`);
+        $link.addClass("disabled");
     }
 
 };

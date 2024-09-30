@@ -18,15 +18,16 @@ export const numberPickerMechanics = {
 
         // The number picker UI
         const $ui = mechanicsEngine.getMechanicsUI("mechanics-numberpicker");
+        const index = $(rule).attr("index");
 
         // Check if it's a money picker
         if ($(rule).attr("money") === "true") {
             $ui.find("#mechanics-mpAmount").attr("data-ismoneypicker", "true");
             let currency = $(rule).attr("currency");
-            if (!currency) {
-                currency = CurrencyName.CROWN;
+
+            if( currency ) {
+                $ui.find("#mechanics-mpAmount").attr("data-moneypickercurrency", currency);
             }
-            $ui.find("#mechanics-mpAmount").attr("data-moneypickercurrency", currency);
         }
 
         // Check if it has an action button
@@ -41,32 +42,40 @@ export const numberPickerMechanics = {
                     sectionState.numberPickersState.actionFired = true;
                 }
             });
+
+            if(index) {
+                $ui.find("#mechanics-picknumber").prop("id", "mechanics-picknumber" + index)
+            }
         }
 
-        // Add HTML to do the choose
-        gameView.appendToSection($ui);
-
         // Set the title
-        $("#mechanics-mpTitle").text(mechanicsEngine.getRuleText(rule));
-
+        $ui.find("#mechanics-mpTitle").text(mechanicsEngine.getRuleText(rule));
+    
         // Bind number picker events
-        $("#mechanics-mpAmount").bindNumberEvents();
+        $ui.find("#mechanics-mpAmount").bindNumberEvents();
 
         // Set the minimum value
         const min = $(rule).attr("min");
         if (min) {
-            $("#mechanics-mpAmount").attr("min", min);
+            $ui.find("#mechanics-mpAmount").attr("min", min);
         }
 
         // Set the maximum value
         const max = $(rule).attr("max");
         if (max) {
-            $("#mechanics-mpAmount").attr("max", max);
+            $ui.find("#mechanics-mpAmount").attr("max", max);
         }
 
         // Initialize (or restore) the value
-        $("#mechanics-mpAmount").initializeValue();
+        $ui.find("#mechanics-mpAmount").initializeValue();
 
+        if (index) {
+            $ui.find("#mechanics-mpAmount").prop("id", "mechanics-mpAmount" + index)
+            $ui.prop("id", "mechanics-numberpicker" + index );
+        }
+
+        // Add HTML to do the choose
+        gameView.appendToSection($ui);
     },
 
     /** Return true if the action button has been already clicked  */
@@ -98,7 +107,7 @@ export const numberPickerMechanics = {
     isValid(): boolean {
         const $picker = $("#mechanics-mpAmount");
 
-        // If the money picker has been disabled, dont check it
+        // If the money picker has been disabled, don't check it
         if (!$picker.isEnabled()) {
             return true;
         }
@@ -112,10 +121,12 @@ export const numberPickerMechanics = {
 
     /**
      * Get the number picker value
+     * @param pickerIndex The index number of the picker on the section (if there are multiple)
      */
-    getNumberPickerValue(): number {
+    getNumberPickerValue(pickerIndex?: number): number {
         try {
-            const $picker = $("#mechanics-mpAmount");
+            const selector = "#mechanics-mpAmount" + (pickerIndex ? pickerIndex.toFixed() : "");
+            const $picker = $(selector);
             if ($picker.length > 0) {
                 return $picker.getNumber();
             } else {

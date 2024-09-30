@@ -1,4 +1,5 @@
 import { views, BookValidator, setupController, state, Section, SectionRenderer, randomTable, projectAon, mechanicsEngine } from "..";
+import striptags from 'striptags';
 
 /**
  * Application tests
@@ -161,7 +162,7 @@ export class testsController {
     }
 
     private static addLog( textLine: string ) {
-        $("#tests-log").append(textLine + "</br>");
+        $("#tests-log").append(striptags(textLine) + "</br>");
     }
 
     private static addError( textLine: string , exception: any = null ) {

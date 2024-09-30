@@ -1,4 +1,5 @@
-import { projectAon, translations, newGameController, state, pwa } from "..";
+import { projectAon, translations, newGameController, state, pwa, Book, BookSeriesId } from "..";
+import { BookData } from "../scripts/bookData";
 
 /**
  * The new game view API
@@ -9,7 +10,13 @@ export const newGameView = {
 
         // Add supported books
         let html = "";
+        let series: BookSeriesId|null = null;
         for ( let i = 1; i <= projectAon.supportedBooks.length; i++) {
+            let seriesId = new Book(i).getBookSeries().id;
+            if (seriesId !== series) {
+                html += `<optgroup label="${translations.text(BookSeriesId[seriesId])}"></optgroup>`;
+                series = seriesId;
+            }
             const title = projectAon.getBookTitle( i )
             html += '<option value="' + i.toFixed() + '" >' + i.toFixed() + ". " + title + "</option>";
         }
@@ -58,8 +65,14 @@ export const newGameView = {
      * Change the current book cover
      * @param {string} url The cover URL
      */
-    setCoverImage(url: string) {
-        $("#newgame-cover").attr("src", "");
-        $("#newgame-cover").attr("src", url);
+    setCoverImage(url: string|null) {
+        if (url === null) {
+            $("#newgame-cover").hide();
+        } else {
+            $("#newgame-cover").show();
+            $("#newgame-cover").attr("src", "");
+            $("#newgame-cover").attr("src", url);
+        }
+        
     }
 };

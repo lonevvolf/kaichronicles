@@ -446,11 +446,16 @@ export class SectionRenderer {
         const source = this.sectionToRender.book.getIllustrationURL(fileName);
 
         const isLargeIllustration = (fileName.indexOf("ill") === 0);
-        illustrationContent += '<div class="illustration' +
-            (isLargeIllustration ? " ill" : "") +
-            '"><img src="' + source + '" alt="' + description +
-            '" title="' + description + '"></div><p class="illustration-label">' +
-            description + "</p>";
+        let illDiv = $("<div>", {"class": isLargeIllustration ? "illustration ill" : "illustration"});
+        let illImg = $("<img>").prop("src", source);
+        illImg.prop("alt", description);
+        illImg.prop("title", description);
+        illDiv.append(illImg);
+
+        let illP = $("<p>").prop("class", "illustration-label");
+        illP.text(description); 
+
+        illustrationContent += illDiv[0].outerHTML + illP[0].outerHTML;
 
         if ( this.renderIllustrationsText ) {
             // Render the text instance too
@@ -517,11 +522,11 @@ export class SectionRenderer {
         const endurance = SectionRenderer.getEnemyEndurance( $combat ).text();
         return '<div class="combat well"><b>' + enemyHtml + "</b><br />" +
             '<span class="attribute">' + translations.text("combatSkillUpper") + "</span>: " +
-            combatSkill +
+            '<span class="enemy-combatskill">' + combatSkill + '</span>' +
             ' &nbsp;&nbsp; <span class="attribute">' + translations.text("enduranceUpper") + "</span>: " +
             '<span class="enemy-current-endurance">' + endurance +
-            "</span> / " +
-            endurance + "</div>";
+            "</span> / " + '<span class="enemy-max-endurance">' +
+            endurance + "</span></div>";
     }
 
     /**

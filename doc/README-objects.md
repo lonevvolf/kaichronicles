@@ -1,7 +1,7 @@
 # Objects
 
 This a brief of the objects descriptions. They are stored at objects.xml file. 
-General struture:
+General structure:
 
 ```xml
 <object-mechanics>

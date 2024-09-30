@@ -1,4 +1,5 @@
-import { state, mechanicsEngine, Combat, template, SpecialObjectsUse, CombatTurn, GndDiscipline, translations, BookSeriesId } from "../..";
+import { state, mechanicsEngine, Combat, template, SpecialObjectsUse, CombatTurn, GndDiscipline, translations, BookSeriesId, NewOrderDiscipline, BookSeries } from "../..";
+import striptags from 'striptags';
 
 /**
  * Combats mechanics
@@ -17,11 +18,14 @@ export class CombatMechanics {
     /** Selector for XXX surge checkbox */
     public static readonly SURGE_CHECK_SELECTOR = ".psisurgecheck input";
 
-    /** Selector for XXX surge checkbox */
+    /** Selector for XXX Blast checkbox */
     public static readonly BLAST_CHECK_SELECTOR = ".kaiblastcheck input";
 
-    /** Selector for XXX surge checkbox */
+    /** Selector for XXX Ray checkbox */
     public static readonly RAY_CHECK_SELECTOR = ".kairaycheck input";
+
+    /** Selector for XXX Power Strike checkbox */
+    public static readonly POWER_STRIKE_CHECK_SELECTOR = ".powerstrikecheck input";
 
     /**
      * Render section combats
@@ -34,7 +38,7 @@ export class CombatMechanics {
             return;
         }
 
-        // If the player is death, do nothing
+        // If the player is dead, do nothing
         if ( state.actionChart.currentEndurance <= 0 ) {
             return;
         }
@@ -103,9 +107,11 @@ export class CombatMechanics {
                 $.each( combat.turns, (idxTurn, turn) => {
                     CombatMechanics.renderCombatTurn( $turnsTableBody , turn );
                 });
-                // Update enemy current endurance
-                CombatMechanics.updateEnemyEndurance( $combatUI , combat , true );
             }
+
+            // Update enemy current endurance/CS
+            CombatMechanics.updateEnemyEndurance( $combatUI , combat , true );
+            CombatMechanics.updateEnemyCombatSkill( $combatUI, combat );
 
             if ( sectionState.combatEluded || combat.isFinished() || combat.disabled ) {
                 // Hide button to run more turns
@@ -119,9 +125,29 @@ export class CombatMechanics {
             CombatMechanics.setupSurgeUI($combatUI, combat);
             CombatMechanics.setupBlastUI($combatUI, combat);
             CombatMechanics.setupRayUI($combatUI, combat);
-
+            CombatMechanics.setupPowerStrikeUI($combatUI, combat);
         });
+    }
 
+    private static updateEnemyCombatSkill($combatUI: JQuery<HTMLElement>, combat: Combat) {
+        // Update enemy combat skill with any bonuses
+        const cs = $combatUI.parent().find( ".enemy-combatskill" );
+        const bonuses = combat.getCSBonuses();
+        let csEnemy: string = combat.combatSkill.toString();
+        let finalCSEnemy = combat.getCurrentEnemyCombatSkill();
+
+        for ( const bonus of bonuses.filter((b) => b.enemy) ) {
+            csEnemy += " ";
+            if ( bonus.increment >= 0 ) {
+                csEnemy += "+";
+            }
+            csEnemy += bonus.increment.toString() + " (" + bonus.concept + ")";
+        }
+        if ( bonuses.filter((b) => b.enemy).length > 0 ) {
+            csEnemy += " = " + finalCSEnemy.toString();
+        }
+
+        cs.text( csEnemy );
     }
 
     private static updateEnemyEndurance( $combatUI: JQuery<HTMLElement> , combat: Combat , doNotAnimate: boolean ) {
@@ -146,6 +172,19 @@ export class CombatMechanics {
         $.each(sectionState.combats, (index, combat) => {
             const $combatUI = $(`.mechanics-combatUI:eq(${index})`);
             CombatMechanics.updateCombatRatio( $combatUI , combat);
+            CombatMechanics.updateEnemyCombatSkill( $combatUI, combat);
+        });
+    }
+
+    public static increaseEndurance(amount: number) {
+        // Get combat to update
+        const sectionState = state.sectionStates.getSectionState();
+        if ( sectionState.combats.length === 0 ) {
+            return;
+        }
+        $.each(sectionState.combats, (index, combat) => {
+            combat.increaseEndurance(amount);
+            CombatMechanics.updateEnemyEndurance($("#mechanics-combat"), combat, false);
         });
     }
 
@@ -154,7 +193,7 @@ export class CombatMechanics {
      * @param {jquery} $combatUI The combat UI where disable buttons. If it's null, all
      * combats buttons on the section will be hidden
      */
-    public static hideCombatButtons( $combatUI: JQuery<HTMLElement> ) {
+    public static hideCombatButtons( $combatUI: JQuery<HTMLElement>|null ) {
         if ( !$combatUI ) {
             // Disable all combats
             $combatUI = $(".mechanics-combatUI");
@@ -169,8 +208,7 @@ export class CombatMechanics {
      * @param {jquery} $combatUI The combat UI where enable buttons. If it's null, all
      * combats buttons on the section will be hidden
      */
-    public static showCombatButtons( $combatUI: JQuery<HTMLElement> ) {
-
+    public static showCombatButtons( $combatUI: JQuery<HTMLElement>|null ) {
         if ( !$combatUI ) {
             // Disable all combats
             $combatUI = $(".mechanics-combatUI");
@@ -182,7 +220,7 @@ export class CombatMechanics {
 
         // Get combat data
         const sectionState = state.sectionStates.getSectionState();
-        const combatIndex = parseInt( $combatUI.attr( "data-combatIdx" ), 10 );
+        const combatIndex = Number( $combatUI.attr( "data-combatIdx" ) );
         const combat = sectionState.combats[ combatIndex ];
 
         if ( !(sectionState.combatEluded || combat.isFinished() || combat.disabled) ) {
@@ -198,7 +236,7 @@ export class CombatMechanics {
      */
     private static runCombatTurn( $combatUI: JQuery<HTMLElement>, elude: boolean ) {
         // Get the combat info:
-        const combatIndex = parseInt( $combatUI.attr( "data-combatIdx" ), 10 );
+        const combatIndex = Number( $combatUI.attr( "data-combatIdx" ) );
         const sectionState = state.sectionStates.getSectionState();
         const combat = sectionState.combats[ combatIndex ];
 
@@ -249,6 +287,11 @@ export class CombatMechanics {
                     // Fire post-combat adgana effects
                     SpecialObjectsUse.postAdganaUse();
                 }
+
+                if ( ( combatsResult === "finished" || combatsResult === "eluded" ) && combat.karmoUsed ) {
+                    // Fire post-combat karmo effects
+                    SpecialObjectsUse.postKarmoUse();
+                }
             } else {
                 // Combat continues
 
@@ -270,6 +313,8 @@ export class CombatMechanics {
 
             // Check if the XXX-surge should be disabled after this turn
             CombatMechanics.checkSurgeEnabled();
+            // Check if Power Strike checkbox should be locked in
+            CombatMechanics.disablePowerStrikeCheck();
 
             // For testing, add marker to notify to the test we are ready
             template.addSectionReadyMarker();
@@ -297,7 +342,7 @@ export class CombatMechanics {
      * @param turn The turn to render
      */
     private static renderCombatTurn( $combatTableBody: JQuery<HTMLElement> , turn: CombatTurn ) {
-        $combatTableBody.append(`<tr><td class="hidden-xs">${turn.turnNumber}</td><td>${turn.randomValue}</td><td>${turn.getPlayerLossText()}</td><td>${turn.getEnemyLossText()}</td></tr>`);
+        $combatTableBody.append(`<tr><td class="hidden-xs">${striptags(turn.turnNumber.toFixed())}</td><td>${striptags(turn.randomValue.toFixed())}</td><td>${striptags(turn.getPlayerLossText())}</td><td>${striptags(turn.getEnemyLossText())}</td></tr>`);
     }
 
     /**
@@ -333,7 +378,7 @@ export class CombatMechanics {
     private static onRayClick(e: JQuery.Event, $kaiRayCheck: JQuery<HTMLElement>) {
 
         const $combatUI = $kaiRayCheck.parents(".mechanics-combatUI").first();
-        const combatIndex = parseInt( $combatUI.attr( "data-combatIdx" ), 10 );
+        const combatIndex = Number( $combatUI.attr( "data-combatIdx" ) );
         const sectionState = state.sectionStates.getSectionState();
         const combat = sectionState.combats[ combatIndex ];
 
@@ -358,6 +403,50 @@ export class CombatMechanics {
     }
 
     /**
+     * Setup the Power Strike checkbox for a given combat
+     * @param $combatUI Combat UI main tag
+     * @param combat Related combat info
+     */
+    private static setupPowerStrikeUI($combatUI: JQuery<HTMLElement>, combat: Combat) {
+
+        // Check if player can use Power Strike
+        const hasPowerStrike = state.actionChart.hasNewOrderDiscipline(NewOrderDiscipline.MagiMagic);
+        if (state.book.getBookSeries().id !== BookSeriesId.NewOrder ||
+            !hasPowerStrike || state.actionChart.getDisciplines().length < 13 || combat.mentalOnly || combat.noObjectBonuses) {
+            // Hide Power Strike check
+            $combatUI.find(".powerstrikecheck").hide();
+            return;
+        }
+
+        const $powerStrikeCheck = $combatUI.find(CombatMechanics.POWER_STRIKE_CHECK_SELECTOR);
+        const currentSection = state.sectionStates.getSectionState();
+        $powerStrikeCheck.prop("disabled", currentSection.areCombatsStarted());
+        $powerStrikeCheck.prop("checked", combat.powerStrike);
+
+        // Power Strike selection
+        const powerStrikeText = translations.text("mechanics-combat-powerstrike" );
+        $combatUI.find(".mechanics-combat-powerstrike").text( powerStrikeText );
+        $powerStrikeCheck.on("click", (e: JQuery.Event) => CombatMechanics.onPowerStrikeClick(e, $powerStrikeCheck));
+    }
+
+    /**
+     * Power Strike checkbox event handler
+     */
+    private static onPowerStrikeClick(e: JQuery.Event, $powerStrikeCheck: JQuery<HTMLElement>) {
+        const $combatUI = $powerStrikeCheck.parents(".mechanics-combatUI").first();
+        const combatIndex = Number( $combatUI.attr( "data-combatIdx" ) );
+        const sectionState = state.sectionStates.getSectionState();
+        const combat = sectionState.combats[ combatIndex ];
+
+        const selected: boolean = $powerStrikeCheck.prop( "checked" ) ? true : false;
+        combat.powerStrike = selected;
+
+        CombatMechanics.updateCombatRatio( $combatUI , combat);
+
+        template.addSectionReadyMarker();
+    }
+
+    /**
      * Setup the Kai-blast checkbox for a given combat
      * @param $combatUI Combat UI main tag
      * @param combat Related combat info
@@ -365,8 +454,12 @@ export class CombatMechanics {
     private static setupBlastUI($combatUI: JQuery<HTMLElement>, combat: Combat) {
 
         // Check if player can use Kai-blast
-        const hasKaiSurge = state.actionChart.hasGndDiscipline(GndDiscipline.KaiSurge);
-        if (!hasKaiSurge || state.actionChart.getDisciplines().length < 7 || combat.noKaiBlast) {
+        const hasKaiSurge = state.actionChart.hasGndDiscipline(GndDiscipline.KaiSurge) 
+                            || state.actionChart.hasNewOrderDiscipline(NewOrderDiscipline.KaiSurge);
+        const kaiSurgeLevelCheck = 
+            (state.actionChart.getDisciplines().length < 7 && state.book.getBookSeries().id === BookSeriesId.GrandMaster)
+            || (state.actionChart.getDisciplines().length < 11 && state.book.getBookSeries().id === BookSeriesId.NewOrder);
+        if (!hasKaiSurge || kaiSurgeLevelCheck || combat.noKaiBlast) {
             // Hide Kai-blast check
             $combatUI.find(".kaiblastcheck").hide();
             return;
@@ -383,7 +476,7 @@ export class CombatMechanics {
             CombatMechanics.disableSurge( $combatUI , combat );
         }
 
-        const rayText = translations.text("mechanics-combat-kaiblast" , [ combat.mindblastMultiplier > 1 ? ` (x${combat.mindblastMultiplier})` : "" ] );
+        const rayText = translations.text("mechanics-combat-kaiblast" , [ combat.mindblastMultiplier > 1 ? ` (x${combat.mindblastMultiplier})` : "" , combat.kaiBlastRolls] );
         $combatUI.find(".mechanics-combat-kaiblast").text( rayText );
 
         // Kai-blast selection
@@ -396,7 +489,7 @@ export class CombatMechanics {
     private static onBlastClick(e: JQuery.Event, $kaiBlastCheck: JQuery<HTMLElement>) {
 
         const $combatUI = $kaiBlastCheck.parents(".mechanics-combatUI").first();
-        const combatIndex = parseInt( $combatUI.attr( "data-combatIdx" ), 10 );
+        const combatIndex = Number( $combatUI.attr( "data-combatIdx" ) );
         const sectionState = state.sectionStates.getSectionState();
         const combat = sectionState.combats[ combatIndex ];
 
@@ -453,7 +546,7 @@ export class CombatMechanics {
         // UI Surge texts
         const surgeTextId = surgeDisciplineId === GndDiscipline.KaiSurge ? "mechanics-combat-kaisurge" : "mechanics-combat-psisurge";
         const surgeText = translations.text(surgeTextId , [ combat.getFinalSurgeBonus(surgeDisciplineId) ,
-            Combat.surgeTurnLoss(surgeDisciplineId) ] );
+            Combat.surgeTurnLoss(surgeDisciplineId, combat) ] );
         $combatUI.find(".mechanics-combat-psisurge").text( surgeText );
     }
 
@@ -463,7 +556,7 @@ export class CombatMechanics {
     private static onSurgeClick(e: JQuery.Event, $psiSurgeCheck: JQuery<HTMLElement>) {
 
         const $combatUI = $psiSurgeCheck.parents(".mechanics-combatUI").first();
-        const combatIndex = parseInt( $combatUI.attr( "data-combatIdx" ), 10 );
+        const combatIndex = Number( $combatUI.attr( "data-combatIdx" ) );
         const sectionState = state.sectionStates.getSectionState();
         const combat = sectionState.combats[ combatIndex ];
 
@@ -497,6 +590,20 @@ export class CombatMechanics {
         for ( let i = 0; i < sectionState.combats.length; i++ ) {
             const $combatUI = $(`.mechanics-combatUI:eq(${i})`);
             CombatMechanics.checkSurgeEnabledInCombat( $combatUI , sectionState.combats[i]);
+        }
+    }
+
+    /**
+     * Disable the Power Strike checkbox if combats have started
+     */
+    public static disablePowerStrikeCheck() {
+        const sectionState = state.sectionStates.getSectionState();
+        for ( let i = 0; i < sectionState.combats.length; i++ ) {
+            const $combatUI = $(`.mechanics-combatUI:eq(${i})`);
+            const $powerStrikeCheck = $combatUI.find(CombatMechanics.POWER_STRIKE_CHECK_SELECTOR);
+            const currentSection = state.sectionStates.getSectionState();
+            $powerStrikeCheck.prop("disabled", currentSection.areCombatsStarted());
+            $powerStrikeCheck.prop("checked", sectionState.combats[i].powerStrike);
         }
     }
 
@@ -555,23 +662,25 @@ export class CombatMechanics {
      */
     private static showCombatRatioDetails( $combatUI: JQuery<HTMLElement> ) {
         // Get the combat info:
-        const combatIndex = parseInt( $combatUI.attr( "data-combatIdx" ), 10 );
+        const combatIndex = Number( $combatUI.attr( "data-combatIdx" ) );
         const sectionState = state.sectionStates.getSectionState();
         const combat = sectionState.combats[ combatIndex ];
 
         const finalCSPlayer = combat.getCurrentCombatSkill();
+        let finalCSEnemy = combat.getCurrentEnemyCombatSkill();
 
         // Player CS for this combat:
         let csPlayer: string = state.actionChart.combatSkill.toString();
+        let csEnemy: string = combat.combatSkill.toString();
         const bonuses = combat.getCSBonuses();
-        for ( const bonus of bonuses ) {
+        for ( const bonus of bonuses.filter((b) => !b.enemy) ) {
             csPlayer += " ";
             if ( bonus.increment >= 0 ) {
                 csPlayer += "+";
             }
             csPlayer += bonus.increment.toString() + " (" + bonus.concept + ")";
         }
-        if ( bonuses.length > 0 ) {
+        if ( bonuses.filter((b) => !b.enemy).length > 0 ) {
             csPlayer += " = " + finalCSPlayer.toString();
         }
         $("#game-ratioplayer").text( csPlayer );
@@ -580,11 +689,21 @@ export class CombatMechanics {
         }
 
         // Enemy info:
+        for ( const bonus of bonuses.filter((b) => b.enemy) ) {
+            csEnemy += " ";
+            if ( bonus.increment >= 0 ) {
+                csEnemy += "+";
+            }
+            csEnemy += bonus.increment.toString() + " (" + bonus.concept + ")";
+        }
+        if ( bonuses.filter((b) => b.enemy).length > 0 ) {
+            csEnemy += " = " + finalCSEnemy.toString();
+        }
         $("#game-ratioenemyname").html( combat.enemy );
-        $("#game-ratioenemy").text( combat.combatSkill );
+        $("#game-ratioenemy").text( csEnemy );
 
         // Combat ratio result:
-        $("#game-ratioresult").text( `${finalCSPlayer} - ${combat.combatSkill} =  ${( finalCSPlayer - combat.combatSkill )}` );
+        $("#game-ratioresult").text( `${finalCSPlayer} - ${finalCSEnemy} =  ${( finalCSPlayer - finalCSEnemy )}` );
 
         // Show dialog
         $("#game-ratiodetails").modal();

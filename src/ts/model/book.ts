@@ -1,4 +1,5 @@
 import { state, KaiDiscipline, projectAon, Section, MgnDiscipline, GndDiscipline, BookSeriesId, SectionRenderer, BookSeries, mechanicsEngine } from "..";
+import he from 'he';
 
 /** Book disciplines table */
 export interface DisciplinesTable {
@@ -58,7 +59,7 @@ export class Book {
     public bookNumber: number;
 
     /** The book XML document */
-    public bookXml: XMLDocument;
+    public bookXml: XMLDocument|null;
 
     /**
      * Array of 100 positions with the random table numbers as they appear on the book
@@ -66,13 +67,13 @@ export class Book {
     public bookRandomTable: number[];
 
     /** The book title cache, plain text */
-    private bookTitle: string = null;
+    private bookTitle: string|null = null;
 
     /** The book copyright text cache, HTML formatted */
-    private bookCopyrightHtml: string = null;
+    private bookCopyrightHtml: string|null = null;
 
     /** The book disciplines cache */
-    private disciplines: DisciplinesTable = null;
+    private disciplines: DisciplinesTable|null = null;
 
     /**
      * Constructor
@@ -190,7 +191,7 @@ export class Book {
      * Added on v 1.8
      * @returns The download promises. The promises text is the author XML bio, fixed
      */
-    public downloadAuthorsBio(): Array<JQueryXHR> {
+    public downloadAuthorsBio(): Array<JQueryXHR>|null {
 
         try {
             const promises: Array<JQueryXHR> = [];
@@ -222,7 +223,7 @@ export class Book {
      * Get the code name given to the book by the Project Aon
      * @returns The book code name. null if it was not found
      */
-    public getProjectAonBookCode(): string {
+    public getProjectAonBookCode(): string|null {
         const bookMetadata = projectAon.supportedBooks[ this.bookNumber - 1 ];
         if ( !bookMetadata ) {
             return null;
@@ -272,14 +273,7 @@ export class Book {
      */
     public getBookTitle(): string {
         if ( !this.bookTitle ) {
-            this.bookTitle = $( this.bookXml ).find( "gamebook > meta > title").first().text();
-        }
-
-        // Trick for book 19/23 title
-        if(this.bookNumber === 19 || this.bookNumber === 23) {
-            const txt = document.createElement("textarea");
-            txt.innerHTML = this.bookTitle;
-            this.bookTitle = txt.value;
+            this.bookTitle = he.decode($( this.bookXml ).find( "gamebook > meta > title").first().text());
         }
 
         return this.bookTitle;
@@ -412,12 +406,12 @@ export class Book {
      * @param sectionId The destination section
      * @return Section ids that can go to the given section
      */
-    public getOriginSections(sectionId: string): string[] {
-        const sourceSectionIds = <string[]>[];
-        $(this.bookXml)
+    public getOriginSections(sectionId: string): (string|undefined|null)[] {
+        const sourceSectionIds = <(string|undefined)[]>[];
+        $(this.bookXml as XMLDocument)
             .find('section[class="numbered"]' )
             .has( 'data > choice[idref="' + sectionId + '"]')
-            .each( (index, section) => {
+            .each( (index: Number, section: Element) => {
                 sourceSectionIds.push( $(section).attr("id") );
             }) ;
         return sourceSectionIds;
@@ -426,7 +420,11 @@ export class Book {
     /**
      * Get the book cover image URL
      */
-    public getCoverURL(): string {
+    public getCoverURL(): string|null {
+        // Book 29 has no illustrations
+        if (this.bookNumber === 29) {
+            return null;
+        }
         return Book.getBaseUrl() + this.bookNumber.toFixed() + "/cover.jpg";
     }
 
@@ -445,8 +443,8 @@ export class Book {
      * @return Array with the 100 numbers of the random table
      */
     public getRandomTable(): number[] {
-        const $randomCells = $(this.bookXml)
-            .find("section[id=random] > data > illustration > instance[class=text]")
+        const $randomCells = $(this.bookXml as XMLDocument)
+            .find("section[id=random] > data > illustration > instance[class=text], section[id=random] > data > table[class=random-number-table]")
             .find("td");
         const numbers = <number[]>[];
         for (const cell of $randomCells.toArray()) {
@@ -461,11 +459,11 @@ export class Book {
 
     public getSectionsIds(): string[] {
         const sectionIds: string[] = [];
-        let sectionId = Book.INITIAL_SECTION;
+        let sectionId: string|undefined|null = Book.INITIAL_SECTION;
         while (sectionId != null) {
             sectionIds.push(sectionId);
 
-            const section = new Section(this, sectionId, state.mechanics);
+            const section: Section = new Section(this, sectionId, state.mechanics);
             sectionId = section.getNextSectionId();
         }
         return sectionIds;
