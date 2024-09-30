@@ -8,7 +8,7 @@
     },
     "license": "MIT",
     "devDependencies": {
-        "@types/bootstrap": "^3.3.42",
+        "@types/bootstrap": "^4.6.6",
         "@types/fs-extra": "^9.0.13",
         "@types/he": "^1.2.3",
         "@types/jest": "^29.5.12",

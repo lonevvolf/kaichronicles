@@ -165,7 +165,7 @@ export const actionChartView = {
                 td[0].innerHTML = '<button class="btn btn-default table-op" type="button" title="' +
                     translations.text("disciplineDescription") +
                     '">' +
-                        '<span class="glyphicon glyphicon-question-sign"></span>' +
+                        '<span class="fa fa-question-sign"></span>' +
                     "</button>";
 
                 const b = $("<b>");
