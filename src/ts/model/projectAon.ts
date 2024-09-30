@@ -14,6 +14,9 @@ export interface BookMetadata {
 
     /** Authors biographies (.inc files in [LANGUAGECODE]/xml ) */
     biographies: string[];
+
+    /** Whether a cover exists for the book */
+    hasCover: boolean; 
 }
 
 /**
@@ -253,7 +256,17 @@ export const projectAon = {
             illustrators: [ "williams" ],
             biographies: [ "jdbiolw" , "bwbiolw" ]
         },    
-    ] as BookMetadata[],
+
+        // Book 29:
+        {
+            title: "The Storms of Chai",
+            code: "29tsoc",
+            illustrators: [ "williams" ],
+            biographies: [ "jdbiolw" , "bwbiolw" ],
+            hasCover: false,
+        },
+
+        ] as BookMetadata[],
 
     /**
      * Returns the title of a book

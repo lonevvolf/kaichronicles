@@ -21,6 +21,9 @@ export class BookData {
     /** The english book code */
     private code: string;
 
+    /** Whether a cover exists for the book */
+    private hasCover: boolean; 
+
     /** Array with illustrations authors directories names */
     private illAuthors: string[];
 
@@ -33,6 +36,7 @@ export class BookData {
         this.bookMetadata = projectAon.supportedBooks[ bookNumber - 1 ];
         this.code = this.bookMetadata.code;
         this.illAuthors = this.bookMetadata.illustrators;
+        this.hasCover = this.bookMetadata.hasCover === undefined ? true : this.bookMetadata.hasCover;
     }
 
     /**
@@ -134,10 +138,12 @@ export class BookData {
      * Download the book cover
      */
     private downloadCover() {
-        const coverPath = "project-aon/en/jpeg/lw/" + this.code +
-            "/skins/ebook/cover.jpg";
-        const targetPath = this.getBookDir() + "/cover.jpg";
-        fs.copyFileSync(coverPath, targetPath);
+        if ( this.hasCover ) {
+            const coverPath = "project-aon/en/jpeg/lw/" + this.code +
+                "/skins/ebook/cover.jpg";
+            const targetPath = this.getBookDir() + "/cover.jpg";
+            fs.copyFileSync(coverPath, targetPath);
+        }
     }
 
     public downloadBookData() {

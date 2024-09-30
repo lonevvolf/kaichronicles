@@ -19,7 +19,7 @@ interface SectionConf {
 GameDriver.globalSetup();
 
 // To debug I add "sleeps", so increase the timeout
-jest.setTimeout(30000);
+jest.setTimeout(60000);
 
 // Selenium web driver
 const driver: GameDriver = new GameDriver();

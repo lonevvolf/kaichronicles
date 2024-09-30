@@ -1,6 +1,6 @@
 ## Kai Chronicles
 
-[Kai Chronicles](https://kaichronicles.projectaon.org) is a game player for Lone Wolf game books. Books 1 - 26 are playable. The game player can run as a website.
+[Kai Chronicles](https://kaichronicles.projectaon.org) is a game player for Lone Wolf game books. Books 1 - 29 are playable. The game player can run as a website.
 
 This is a fork from the [original "Kai Chronicles"](https://github.com/tonib/kaichronicles) as tonib stopped development in November 2021.
 

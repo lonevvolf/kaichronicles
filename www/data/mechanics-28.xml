@@ -337,6 +337,10 @@
             </afterCombats>
         </section>
 
+        <section id="sect40">
+            <tag id="javai" />
+        </section>
+
         <section id="sect41">
             <test not="true" hasDiscipline="pthmnshp">
                 <choiceState section="sect246" set="disabled" />
@@ -581,8 +585,8 @@
         </section>
 
         <section id="sect87">
-            <object objectId="laumspur" index="0" />
-            <object objectId="laumspur" index="1" />
+            <object objectId="laumspurpotion4" index="0" />
+            <object objectId="laumspurpotion4" index="1" />
             <object objectId="potiongallowbrush" />
             <object objectId="ashexaconcentrate" />
         </section>
@@ -1075,13 +1079,13 @@
         </section>
 
         <section id="sect196">
-            <test not="true" hasObject="laumspur">
+            <test not="true" hasObject="laumspurpotion4">
                 <choiceState section="sect297" set="disabled" />
             </test>
             <test not="true" hasObject="klorvapotion">
                 <choiceState section="sect120" set="disabled" />
             </test>
-            <test hasObject="laumspur|klorvapotion">
+            <test hasObject="laumspurpotion4|klorvapotion">
                 <choiceState section="sect90" set="disabled" />
             </test>
         </section>
@@ -1635,13 +1639,12 @@
         </section>
 
         <section id="sect297">
-            <drop objectId="laumspur" />
+            <drop objectId="laumspurpotion4" />
         </section>
 
         <section id="sect300">
             <!-- Reset any disabled disciplines -->
             <resetNewOrderDisabledDisciplines />
-            <message text="Congratulations! You have finished the last book of Kai Chronicles!" />
         </section>
     </sections>
 </mechanics>

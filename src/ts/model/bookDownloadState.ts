@@ -13,7 +13,7 @@ export class BookDownloadState {
     public downloaded = false;
 
     /** Book zip size, in MB, to show on UI */
-    public size: string;
+    public size: string|null = null;
 
     /**
      * Constructor

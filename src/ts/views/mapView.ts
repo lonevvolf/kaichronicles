@@ -7,13 +7,6 @@ export const mapView = {
      * @param section The map Section
      */
     setSectionContent( section: Section ) {
-
-        /*const titleText = section.getTitleText();
-        document.title = titleText;
-        $('#map-title').text( titleText );
-        // Render the map, with the illustrations text. On book 5, it's the
-        // map description
-        $('#map-section').html( section.getHtml(true) );*/
         mapView.setContent( section.getTitleText() , section.getHtml(true) );
     },
 
@@ -24,7 +17,9 @@ export const mapView = {
         const map = state.mechanics.getObject( Item.MAP );
         // On book 11, map is on section 233
         const mapSection = new Section( state.book , "sect233" , state.mechanics );
-        mapView.setContent( map.name , mapSection.getFirstIllustrationHtml() );
+        if (map) {
+            mapView.setContent( map.name , mapSection.getFirstIllustrationHtml() );
+        }
     },
 
     /**
@@ -35,8 +30,7 @@ export const mapView = {
     setContent( titleText: string , mapSectionHtml: string ) {
         document.title = titleText;
         $("#map-title").text( titleText );
-        // Render the map, with the illustrations text. On book 5, there is a textual
-        // map description
+        // Render the map, with the illustrations text. On books 5 and 29, there is a textual map description
         $("#map-section").html( mapSectionHtml );
     },
 

@@ -3,7 +3,7 @@
 <object-mechanics  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/cracrayol/kaichronicles/master/www/data/objects.xsd">
 
     <weapons>
-        <!-- WEAPONS ON KAI / MAGNAKAI SERIES BOOKS -->
+        <!-- WEAPONS -->
         <weapon id="axe">
             <name>Axe</name>
             <image book="1|9" name="axe.png" />
@@ -114,6 +114,63 @@
             <name>Kirusami (Chai Spear)</name>
             <image book="1|9" name="spear.png" />
             <effect class="combatSkill" increment="+1" />
+        </weapon>
+
+        <!-- BOOK 29 -->
+        <weapon id="ansengskirusami" weaponType="spear">
+            <name>Anseng's Kirusami</name>
+            <description> In combat, the superior craftsmanship and balance of this Chai weapon will add 1 to your COMBAT SKILL. Moreover, the lingering power that remains in the blade of this weapon will double all ENDURANCE point damage you inflict upon undead enemies in combat. However, this power comes at a price. In the first round of combat in which you use this weapon, you will suffer an automatic loss of 3 ENDURANCE points.</description>
+            <image book="1|9" name="spear.png" />
+            <effect class="combatSkill" increment="+1" />
+        </weapon>
+
+        <weapon id="ansengskirusamienhanced" weaponType="spear">
+            <name>Anseng's Kirusami (Enhanced)</name>
+            <description> In combat, the superior craftsmanship and balance of this Chai weapon will add 1 to your COMBAT SKILL. This special weapon will now triple all ENDURANCE point damage you inflict upon undead enemies in combat. However, this increased power comes at an increased price. In the first round of combat in which you use this enhanced weapon, you will suffer an automatic loss of 4 ENDURANCE points.</description>
+            <image book="1|9" name="spear.png" />
+            <effect class="combatSkill" increment="+1" />
+        </weapon>
+
+        <weapon id="bow29" weaponType="bow">
+            <name>Bow (+1 CS)</name>
+            <image book="6" name="bow.png" />
+            <effect class="combatSkill" increment="+1" />
+        </weapon>
+
+        <weapon id="dagger29" weaponType="dagger">
+            <name>Dagger (+1 CS)</name>
+            <image book="1|9" name="dagger.png" />
+            <effect class="combatSkill" increment="+1" />
+        </weapon>
+
+        <weapon id="shortsword29" weaponType="shortsword">
+            <name>Short Sword (+1 CS)</name>
+            <image book="1|9" name="ssword.png" />
+            <effect class="combatSkill" increment="+1" />
+        </weapon>
+
+        <weapon id="broadsword29" weaponType="broadsword">
+            <name>Broad Sword (+1 CS)</name>
+            <image book="1|9" name="bsword.png" />
+            <effect class="combatSkill" increment="+1" />
+        </weapon>
+
+        <weapon id="axe29" weaponType="axe">
+            <name>Axe (+2 CS)</name>
+            <image book="1|9" name="axe.png" />
+            <effect class="combatSkill" increment="+2" />
+        </weapon>
+
+        <weapon id="mace29" weaponType="mace">
+            <name>Mace (+2 CS)</name>
+            <image book="1|9" name="mace.png" />
+            <effect class="combatSkill" increment="+2" />
+        </weapon>
+
+        <weapon id="warhammer29" weaponType="warhammer">
+            <name>Warhammer (+2 CS)</name>
+            <image book="1|9" name="warhammr.png" />
+            <effect class="combatSkill" increment="+2" />
         </weapon>
 
     </weapons>
@@ -1028,7 +1085,7 @@
         </special>
 
         <special id="bronzedisc26" itemCount="0">
-            <name>Bonze Disc</name>
+            <name>Bronze Disc</name>
             <description>A Bronze Disc that is stamped with the Drodarin numerals "3–2–1"</description>
         </special>
 
@@ -1086,6 +1143,40 @@
 
         <special id="arrowofatonement">
             <name>Arrow of Atonement</name>
+        </special>
+
+        <!-- BOOK 29 -->
+        <special id="trackergem">
+            <name>Tracker-Gem</name>
+        </special>
+
+        <special id="samorqueen">
+            <name>Samor Queen</name>
+        </special>
+
+        <special id="dureneseconsulatepass">
+            <name>Durenese Consulate Pass</name>
+            <description>It is engraved with the consulate emblem and inlaid with silver numerals that you are unable to decipher.</description>
+        </special>
+
+        <special id="kengasring">
+            <name>Kenga's Ring</name>
+            <description>Endows its wearer with a limited protection from evil.</description>
+        </special>
+
+        <special id="eyeofagarash" droppable="false">
+            <name>Eye of Agarash</name>
+            <description>The Eye radiates an evil energy that will periodically drain you of ENDURANCE points. You will be told whenever this energy drain occurs. If you possess the Grand Master Discipline of Kai-screen, the loss of ENDURANCE will be limited to only 1 point each time an energy drain occurs.</description>
+        </special>
+
+        <special id="wardstone">
+            <name>Wardstone</name>
+            <description>If you enter into combat against an undead adversary whilst in possession of this item, you may reduce your enemy’s COMBAT SKILL by 3 for the duration of the fight.</description>
+        </special>
+
+        <special id="quiver29">
+            <name>Quiver (up to 12 arrows)</name>
+            <image book="6|9" name="quiver.png" />
         </special>
 
     </specials>
@@ -1954,8 +2045,13 @@
             <name>Scented Oil</name>
         </object>
 
+        <!-- Left for compatibility-->
         <object id="candle">
             <name>Candle</name>
+        </object>
+
+        <object id="3candles">
+            <name>3 Candles</name>
         </object>
 
         <object id="slippers">
@@ -2271,12 +2367,6 @@
             <effect class="backpackSlots" increment="+5" />
         </object>
 
-        <object id="laumspur">
-            <name>Laumspur</name>
-            <description>Restores 4 ENDURANCE points when swallowed after combat</description>
-            <usage class="endurance" increment="+4" />
-        </object>
-
         <!-- BOOK 28 -->
         <object id="ashexaconcentrate" usageCount="1">
             <name>Ashexa Concentrate</name>
@@ -2303,6 +2393,97 @@
             <name>Andui Flask</name>
             <description>Purifies any liquid placed in it</description>
             <image book="1|9" name="potion.png" />
+        </object>
+
+        <!-- BOOK 29 -->
+        <object id="4candles">
+            <name>4 Candles</name>
+        </object>
+
+        <object id="whetstone">
+            <name>Whetstone</name>
+        </object>
+
+        <object id="compass">
+            <name>Compass</name>
+        </object>
+
+        <object id="manacles">
+            <name>Manacles (with two keys)</name>
+        </object>
+
+        <object id="tazhengpotion">
+            <name>Tazheng</name>
+            <description>A powerful anti-venom</description>
+            <image book="1|9" name="potion.png" />
+        </object>
+
+        <object id="sabitotincture">
+            <name>Tincture of Sabito root</name>
+            <description>Rare in Chai, Sabito enables the human body to extract oxygen from water through the skin, thus permitting anyone who swallows it to “breathe” underwater</description>
+            <image book="1|9" name="potion.png" />
+        </object>
+
+        <object id="karmo">
+            <name>Karmo</name>
+            <description>When taken before combat, this potion doubles your ENDURANCE points score for the duration of the combat. It has heavy side effects that sometimes can result in death. After consuming Karmo, you must pick a number from the Random Number Table. The number you choose determines how many ENDURANCE points you lose as a consequence of the side effects (0 = zero).
+            </description>
+            <image book="1|9" name="potion.png" />
+            <usage class="special" />
+        </object>
+
+        <object id="malavanpotion">
+            <name>Potion of Malavan</name>
+            <description>Increases the effect of Mindblast, Psi-surge and Kai-surge, by adding 2 COMBAT SKILL for the duration of one combat.</description>
+            <image book="1|9" name="potion.png" />
+            <usage class="special" />
+        </object>
+
+        <object id="smalltelescope">
+            <name>Small Telescope</name>
+        </object>
+
+        <object id="mortarpestle">
+            <name>Mortar &amp; Pestle</name>
+        </object>
+
+        <object id="chisel">
+            <name>Chisel</name>
+        </object>
+
+        <object id="smallblanket">
+            <name>Small Blanket</name>
+        </object>
+
+        <object id="oxydinepotion">
+            <name>Oxydine Potion</name>
+            <description>Restores 2 ENDURANCE when swallowed at any time. It also cures Korovax infections.</description>
+            <image book="1|9" name="potion.png" />
+            <effect class="endurance" increment="+2" />
+        </object>
+
+        <object id="laumwortpotion">
+            <name>Potion of Laumwort</name>
+            <description>Restores 2 ENDURANCE when swallowed at any time.</description>
+            <image book="1|9" name="potion.png" />
+            <usage class="endurance" increment="+2" />
+        </object>
+
+        <object id="aletherberries29" itemCount="0">
+            <name>Alether Berries</name>
+            <description>
+                They will increase your COMBAT SKILL by 2 points for the duration of a fight. 
+                You cannot swallow more than one handful during any one combat
+            </description>
+            <usage class="combatSkill" increment="2" />
+        </object>
+
+        <object id="crowbar">
+            <name>Crowbar</name>
+        </object>
+
+        <object id="ironpot">
+            <name>Iron Pot</name>
         </object>
 
         <!-- OTHERS -->

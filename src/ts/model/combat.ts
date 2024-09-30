@@ -20,23 +20,32 @@ export class Combat {
     /** Increment of combat skill of Lone Wolf in this combat  */
     public combatModifier = 0;
 
+    /** Increment of combat skill of the enemy in this combat  */
+    public enemyCombatModifier = 0;
+        
+    /** Increment of endurance points of the enemy in this combat  */
+    public enemyEnduranceModifier = 0;
+
     /** Increment of combat skill by objects usage  */
     public objectsUsageModifier = 0;
 
     /** The enemy is immune to Mindblast? */
-    public noMindblast = false;
+    public noMindblast = false as boolean|null;
 
     /** The enemy is immune to Psi-Surge? */
-    public noPsiSurge = false;
+    public noPsiSurge = false as boolean|null;
 
     /** The enemy is immune to Kai-Surge? */
-    public noKaiSurge = false;
+    public noKaiSurge = false as boolean|null;
 
     /** The enemy is immune to Kai-Blast? */
-    public noKaiBlast = false;
+    public noKaiBlast = false as boolean|null;
 
     /** The enemy is immune to Kai-Ray? */
-    public noKaiRay = false;
+    public noKaiRay = false as boolean|null;
+
+    /** The enemy is immune to weapon/object bonuses? */
+    public noObjectBonuses = false as boolean|null;
 
     /** The CS bonus to apply if the player has Mindblast discipline */
     public mindblastBonus : number;
@@ -47,9 +56,12 @@ export class Combat {
     /** The CS bonus to apply if the player has Kai-Surge discipline */
     public kaiSurgeBonus: number;
 
+    /** The number of EP to lose when using Kai-Surge discipline (to override default) */
+    public kaiSurgeTurnLoss?: number;
+
     /** The state of the kai-ray usage (0: not used, 1: selected, 2: used) */
     public kaiRayUse = 0;
-
+    
     /** The CS multiplier to apply to Mindblast/Psi-Surge attacks. It can have decimals (ex. 0.5) */
     public mindblastMultiplier = 1;
 
@@ -131,6 +143,12 @@ export class Combat {
     /** Kai-blast is activated on this combat? */
     public kaiBlast = false;
 
+    /** Power Strike is activated on this combat? */
+    public powerStrike = false;
+
+    /** Kai-blast rolls */
+    public kaiBlastRolls = 2;
+
     /** Extra E.P. lost by the enemy due to KaiBlast. */
     public enemyKaiBlastLoss = 0;
 
@@ -143,6 +161,9 @@ export class Combat {
     /** Adgana has been used on this combat? (see "pouchadgana" object) */
     public adganaUsed = false;
 
+    /** Karmo has been used on this combat? (see "karmo" object) */
+    public karmoUsed = false;
+
     /** Loss on this combat is permanent (reduce original endurance)? */
     public permanentDamage = false;
 
@@ -152,7 +173,7 @@ export class Combat {
      * @param combatSkill Enemy combat skill
      * @param endurance Enemy endurance points
      */
-    constructor(enemy: string, combatSkill: number, endurance: number) {
+    constructor(enemy: string, combatSkill: number, endurance: number, originalEndurance?: number) {
 
         /** Enemy name */
         this.enemy = enemy;
@@ -161,7 +182,7 @@ export class Combat {
         /** Enemy endurance points  */
         this.endurance = endurance;
         /** Enemy original endurance points  */
-        this.originalEndurance = endurance;
+        this.originalEndurance = originalEndurance ?? endurance;
 
         /** The original endurance of the player before the combat (for fake combats) */
         this.originalPlayerEndurance = state.actionChart.currentEndurance;
@@ -214,6 +235,14 @@ export class Combat {
             });
         }
 
+        if (this.enemyCombatModifier) {
+            bonuses.push({
+                increment: this.enemyCombatModifier,
+                concept: translations.text("sectionModifier"),
+                enemy: true
+            });
+        }
+
         if (!this.mentalOnly && this.objectsUsageModifier) {
             bonuses.push({
                 increment: this.objectsUsageModifier,
@@ -252,7 +281,10 @@ export class Combat {
             .then((randomValue) => {
                 if(randomValue !== null) {
                     const helshezagUsed = (state.actionChart.getSelectedWeapon() === Item.HELSHEZAG);
-                    const turn = new CombatTurn(this, randomValue, elude, helshezagUsed);
+                    const ansengsKirusamiLoss = 
+                        (state.actionChart.getSelectedWeapon() === Item.ANSENGS_KIRUSAMI ? 3 :
+                        state.actionChart.getSelectedWeapon() === Item.ANSENGS_KIRUSAMI_ENHANCED ? 4 : 0);
+                    const turn = new CombatTurn(this, randomValue, elude, helshezagUsed, ansengsKirusamiLoss);
                     this.turns.push(turn);
                     void dfd.resolve(turn);
                 } else {
@@ -283,15 +315,21 @@ export class Combat {
                     return;
                 }
                 // Get the second value
-                randomTable.getRandomValueAsync(false, translations.text("pickKaiBlast", [2])).then((value2) => {
-                    if(value2 === null) {
-                        void dfd.reject();
-                        return;
-                    }
+                if (this.kaiBlastRolls > 1) {
+                        randomTable.getRandomValueAsync(false, translations.text("pickKaiBlast", [2])).then((value2) => {
+                        if(value2 === null) {
+                            void dfd.reject();
+                            return;
+                        }
+                        // Set the enemy loss
+                        this.enemyKaiBlastLoss = -((value1 == 0 ? 1 : value1) + (value2 == 0 ? 1 : value2)) * this.mindblastMultiplier;
+                        void dfd.resolve();
+                    }, null)
+                } else {
                     // Set the enemy loss
-                    this.enemyKaiBlastLoss = -((value1 == 0 ? 1 : value1) + (value2 == 0 ? 1 : value2)) * this.mindblastMultiplier;
+                    this.enemyKaiBlastLoss = -(value1 == 0 ? 1 : value1) * this.mindblastMultiplier;
                     void dfd.resolve();
-                }, null)
+                }
             }, null);
         }
 
@@ -334,6 +372,11 @@ export class Combat {
             }
         }
         return false;
+    }
+
+    public increaseEndurance(amount: number) {
+        // Apply enemy damages:
+        this.endurance += amount;
     }
 
     /**
@@ -455,7 +498,7 @@ export class Combat {
      * The applicable Surge discipline in this combat
      * @returns The applicable Surge discipline (NewOrderDiscipline.KaiSurge or GndDiscipline.KaiSurge or MgnDiscipline.PsiSurge). null if no Surge is applicable
      */
-    public getSurgeDiscipline(): string {
+    public getSurgeDiscipline(): string|null {
         if (state.actionChart.hasNewOrderDiscipline(NewOrderDiscipline.KaiSurge) && !this.noKaiSurge) {
             return NewOrderDiscipline.KaiSurge;
         } else if (state.actionChart.hasGndDiscipline(GndDiscipline.KaiSurge) && !this.noKaiSurge) {
@@ -496,7 +539,11 @@ export class Combat {
      * @param surgeDisciplineId Discipline applied in this combat (GndDiscipline.KaiSurge or MgnDiscipline.PsiSurge)
      * @returns EP loss for each turn
      */
-    public static surgeTurnLoss(surgeDisciplineId: string): number {
+    public static surgeTurnLoss(surgeDisciplineId: string, combat: Combat|null = null): number {
+        if (combat && combat.kaiSurgeTurnLoss != null) {
+            return combat.kaiSurgeTurnLoss;
+        }
+        
         if (surgeDisciplineId === GndDiscipline.KaiSurge) {
             return 1;
         } else {
@@ -517,7 +564,7 @@ export class Combat {
      * @param surgeDisciplineId Discipline applied in this combat (GndDiscipline.KaiSurge or MgnDiscipline.PsiSurge)
      * @returns Minimum EP to use discipline
      */
-    public static minimumEPForSurge(surgeDisciplineId: string): number {
+    public static minimumEPForSurge(surgeDisciplineId: string|null): number {
         if (surgeDisciplineId === GndDiscipline.KaiSurge || surgeDisciplineId === NewOrderDiscipline.KaiSurge) {
             return 6;
         } else {

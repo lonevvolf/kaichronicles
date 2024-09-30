@@ -1,4 +1,4 @@
-import { state, Combat, InventoryState, actionChartController, mechanicsEngine, gameController, ObjectsTableType, ObjectsTable, Mechanics } from "../../..";
+import { state, gameController, Mechanics } from "../../..";
 
 /**
  * Generate trader with funny deals
@@ -57,7 +57,7 @@ export const book28sect192 = {
 
         if (refresh) {
             gameController.loadSection(state.sectionStates.currentSection, false,
-                window.pageYOffset);
+                window.scrollY);
         }
     }
 };

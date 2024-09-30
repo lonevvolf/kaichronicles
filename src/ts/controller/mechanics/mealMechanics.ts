@@ -68,7 +68,7 @@ export class MealMechanics {
         const priceValue = $rule.attr("price");
         let price = 0;
         if (priceValue) {
-            price = parseInt(priceValue, 10);
+            price = Number(priceValue);
             $(mealSelector + " .mechanics-mealPrice").text(price);
         } else {
             $(mealSelector + " .mechanics-buyMeal").hide();

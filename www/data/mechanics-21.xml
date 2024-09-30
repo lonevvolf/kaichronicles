@@ -922,10 +922,9 @@
         </section>
 
         <section id="sect142">
-            <!-- TODO: The three candles are purchased as one, should probably be a stack in the backpack -->
             <object objectId="dagger" price="1" />
             <object objectId="scentedoil" price="1" />
-            <object objectId="candle" price="1" count="3" />
+            <object objectId="3candles" price="1" />
             <object objectId="slippers" price="1" />
             <object objectId="coppercup" price="1" />
             <object objectId="rope" price="1" />

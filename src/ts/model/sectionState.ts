@@ -5,7 +5,7 @@ import { Combat, Mechanics, Item, state, ActionChart, ActionChartItem, mechanics
  */
 export interface SectionItem {
     /** The object id */
-    id: string;
+    id: string|undefined|null;
 
     /** The object price. If its zero or null, the object is free */
     price: number;
@@ -17,7 +17,7 @@ export interface SectionItem {
     unlimited: boolean;
 
     /**
-     * Only applies if id = 'quiver' (number of arrows on the quiver)
+     * Only applies if id = 'quiver/quiver29' (number of arrows on the quiver)
      * or id = 'money' (number of Gold Crowns)
      * or id = 'fireseed'
      */
@@ -71,12 +71,15 @@ export class SectionState {
     /** Healing discipline has been executed on this section? */
     public healingExecuted = false;
 
+    /** An object was sold on the section? */
+    public soldObject = false;
+
     /**
      * Number picker states for this section.
      * See numberPicker.ts and numberPickerMechanics.ts
      */
     public numberPickersState = {
-        actionFired: null
+        actionFired: null as boolean|null
     };
 
     /**
@@ -84,7 +87,7 @@ export class SectionState {
      * See disciplinePicker.ts and disciplinePickerMechanics.ts
      */
     public disciplinePickersState = {
-        actionFired: null
+        actionFired: null as boolean|null
     };
 
     /**
@@ -92,7 +95,7 @@ export class SectionState {
      * See kaiWeaponPicker.ts and kaiWeaponPickerMechanics.ts
      */
     public kaiWeaponPickersState = {
-        actionFired: null
+        actionFired: null as boolean|null
     };
 
     /**
@@ -127,8 +130,8 @@ export class SectionState {
      * null to return all
      * @return The objects on this section
      */
-    public getSectionObjects(type: string = null): Item[] {
-        const items: Item[] = [];
+    public getSectionObjects(type: string|null = null): (Item|null)[] {
+        const items: (Item|null)[] = [];
         for ( const sectionItem of this.objects) {
 
             if ( sectionItem.id === Item.MONEY ) {
@@ -137,7 +140,7 @@ export class SectionState {
             }
 
             const i = state.mechanics.getObject( sectionItem.id );
-            if ( !type || i.type === type ) {
+            if ( !type || i?.type === type ) {
                 items.push(i);
             }
         }
@@ -157,10 +160,10 @@ export class SectionState {
     /**
      * Return the weapons and weapon special object on the section
      */
-    public getWeaponObjects(): Item[] {
-        const weapons: Item[] = [];
+    public getWeaponObjects(): (Item|null)[] {
+        const weapons: (Item|null)[] = [];
         for ( const i of this.getSectionObjects() ) {
-            if ( i.isWeapon() ) {
+            if ( i?.isWeapon() ) {
                 weapons.push( i );
             }
         }
@@ -288,7 +291,7 @@ export class SectionState {
     /**
      * Add an object from the Action Chart to the section available objects
      * @param aChartItem Action Chart item information
-     * @param arrowCount Only applies if id = Item.QUIVER (number of arrows on the quiver)
+     * @param arrowCount Only applies if id = Item.QUIVER/Item.LARGE_QUIVER (number of arrows on the quiver)
      */
     public addActionChartItemToSection(aChartItem: ActionChartItem, arrowCount: number = 0) {
         this.addObjectToSection(aChartItem.id, 0, false, arrowCount, false, aChartItem.usageCount);
@@ -299,7 +302,7 @@ export class SectionState {
      * @param objectId Object id to add
      * @param price The object price. 0 === no buy (free)
      * @param unlimited True if there are an infinite number of this kind of object on the section
-     * @param count Only applies if id = Item.QUIVER (number of arrows on the quiver), Item.ARROW (number of arrows), or Item.MONEY
+     * @param count Only applies if id = Item.QUIVER/Item.LARGE_QUIVER (number of arrows on the quiver), Item.ARROW (number of arrows), or Item.MONEY
      * (number of Gold Crowns/Nobles), or if price is is not zero (-> you buy "count" items for one "price")
      * @param useOnSection The object is allowed to be used on the section (not picked object)?
      * @param usageCount Number of remaining object uses. If not specified or < 0, the default Item usageCount will be used
@@ -335,7 +338,7 @@ export class SectionState {
             price,
             currency: currency,
             unlimited,
-            count: (objectId === Item.QUIVER || objectId === Item.ARROW || objectId === Item.MONEY || objectId === Item.FIRESEED || price > 0 ? count : 0),
+            count: (objectId === Item.QUIVER || objectId === Item.LARGE_QUIVER || objectId === Item.ARROW || objectId === Item.MONEY || objectId === Item.FIRESEED || price > 0 ? count : 0),
             useOnSection,
             usageCount,
             dessiStoneBonus: false
@@ -349,7 +352,7 @@ export class SectionState {
      * @param count Count to decrease. Only applies if the object is 'money'
      * @param index Object index to remove. If not specified or < 0, the first object with the gived id will be removed
      */
-    public removeObjectFromSection(objectId: string, price: number, count: number = -1, index: number = -1, currency: string = null) {
+    public removeObjectFromSection(objectId: string, price: number, count: number = -1, index: number = -1, currency: string|null = null) {
         // Be sure price is not null
         if ( !price ) {
             price = 0;
@@ -406,7 +409,7 @@ export class SectionState {
     /**
      * Get the available amount of money on the section
      */
-    public getAvailableMoney(currencyId : Currency = null): number {
+    public getAvailableMoney(currencyId : Currency|null = null): number {
         let moneyCount = 0;
         for ( const o of this.objects ) {
             if ((currencyId === null || currencyId === o.currency) && o.id === Item.MONEY) {
@@ -439,7 +442,7 @@ export class SectionState {
      * @param currency If specified, the object currency to search. If it's not specified the currency will not be checked
      * @returns The object index in this.objects. -1 if the object was not found.
      */
-    private getObjectIndex(objectId: string, price: number = -1, currency: string = null): number {
+    private getObjectIndex(objectId: string, price: number = -1, currency: string|null = null): number {
         for (let i = 0; i < this.objects.length; i++) {
 
             // Be sure price is not null
@@ -448,7 +451,7 @@ export class SectionState {
                 currentPrice = 0;
             }
 
-            let currentCurrency = this.objects[i].currency;
+            let currentCurrency = this.objects[i].currency as string|null;
             if (!currentCurrency) {
                 currentCurrency = null;
             }

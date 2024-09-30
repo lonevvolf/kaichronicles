@@ -228,6 +228,12 @@
         </xs:attribute>
     </xs:complexType>
 
+    <xs:complexType name="randomNumber">
+        <xs:annotation>
+            <xs:documentation>Choose a random number and store it</xs:documentation>
+        </xs:annotation>
+    </xs:complexType>
+
     <xs:complexType name="chooseEquipment">
         <xs:annotation>
             <xs:documentation>Game setup: Choose equipment.</xs:documentation>
@@ -328,7 +334,7 @@
         </xs:attribute>
         <xs:attribute name="currentWeaponMagical" type="xs:boolean">
             <xs:annotation>
-                <xs:documentation>Current weapon is has a CS or EP effect (or not)?</xs:documentation>
+                <xs:documentation>Current weapon has a CS or EP effect (or not)?</xs:documentation>
             </xs:annotation>
         </xs:attribute>
         <xs:attribute name="isGlobalRuleRegistered" type="xs:string">
@@ -344,6 +350,11 @@
         <xs:attribute name="pickedSomethingOnSection" type="xs:string">
             <xs:annotation>
                 <xs:documentation>Did the player pick something on the given section?</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="soldSomethingOnSection" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>Did the player sell something on the given section?</xs:documentation>
             </xs:annotation>
         </xs:attribute>
         <xs:attribute name="sectionContainsText" type="xs:string">
@@ -445,6 +456,11 @@
                 <xs:documentation>Absolute bonus (positive or negative) for player's combat skill on this combat</xs:documentation>
             </xs:annotation>
         </xs:attribute>
+        <xs:attribute name="enemyCombatSkillModifier" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>Absolute bonus (positive or negative) for the enemy's combat skill on this combat</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
         <xs:attribute name="combatSkillModifierIncrement" type="xs:string">
             <xs:annotation>
                 <xs:documentation>Bonus increment (positive or negative) for player's combat skill on this combat</xs:documentation>
@@ -500,9 +516,19 @@
                 <xs:documentation>Special CS bonus to apply for Kai-Surge discipline on this combat</xs:documentation>
             </xs:annotation>
         </xs:attribute>
+        <xs:attribute name="kaiSurgeTurnLoss" type="xs:integer">
+            <xs:annotation>
+                <xs:documentation>Special EP turn loss to apply for Kai/Psi-Surge discipline on this combat</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
         <xs:attribute name="noWeapon" type="xs:string">
             <xs:annotation>
                 <xs:documentation>If true, the player cannot use any weapon on this combat. If a number, the player cannot use any weapon for that many turns</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="noObjectBonuses" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation>If true, no weapon or item bonuses will be applied</xs:documentation>
             </xs:annotation>
         </xs:attribute>
         <xs:attribute name="eludeTurn" type="xs:integer">
@@ -565,6 +591,11 @@
                 <xs:documentation>Set objects that cannot be used on this combat. "none" to enable all objects previously disabled.</xs:documentation>
             </xs:annotation>
         </xs:attribute>
+        <xs:attribute name="fromSection" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>Imports the combat from another section to be continued in this section (currently only working for sections with 1 combat)</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>        
         <xs:attribute name="mindblastMultiplier" type="xs:decimal">
             <xs:annotation>
                 <xs:documentation>CS multiplier to apply to Mindblast/Psi-Surge/Kai-Surge attacks this combat</xs:documentation>
@@ -718,6 +749,11 @@
                 <xs:documentation>If true, the endurance increase / decrease is permanent.</xs:documentation>
             </xs:annotation>
         </xs:attribute>
+        <xs:attribute name="enemy" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation>If true, the endurance change will apply to the current enemy.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
     </xs:complexType>
 
     <xs:complexType name="meal">
@@ -798,6 +834,11 @@
         <xs:attribute name="backpackItemSlots" type="xs:string">
             <xs:annotation>
                 <xs:documentation>Drop objects on some given Backpack index positions (1-based)</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="weaponSlots" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>Drop objects on some given Weapon index positions (1-based)</xs:documentation>
             </xs:annotation>
         </xs:attribute>
         <xs:attribute name="specialItemSlots" type="xs:string">
@@ -900,6 +941,11 @@
         <xs:attribute name="currency" type="currency">
             <xs:annotation>
                 <xs:documentation>Optional, and only for "money"="true". The currency to check for limits.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="index" type="xs:nonNegativeInteger">
+            <xs:annotation>
+                <xs:documentation>Required, for ugly reasons, when there are two or more numberPicker rules on a section.</xs:documentation>
             </xs:annotation>
         </xs:attribute>
     </xs:complexType>
@@ -1026,6 +1072,7 @@
                     <xs:enumeration value="weaponlike" />
                     <xs:enumeration value="bow" />
                     <xs:enumeration value="backpackitems" />
+                    <xs:enumeration value="kaiweapon" />
                     <xs:enumeration value="allobjects" />
                 </xs:restriction>
             </xs:simpleType>
@@ -1071,6 +1118,19 @@
                 <xs:documentation>Optional. Toast duration in milliseconds. Default is 5000 ms.</xs:documentation>
             </xs:annotation>
         </xs:attribute>
+        <xs:attribute name="type">
+            <xs:annotation>
+                <xs:documentation>Optional. Style of the toast. Default is info.</xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="info" />
+                    <xs:enumeration value="warning" />
+                    <xs:enumeration value="error" />
+                    <xs:enumeration value="success" />
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
     </xs:complexType>
 
     <xs:complexType name="registerGlobalRule">
@@ -1100,7 +1160,7 @@
 
     <xs:complexType name="objectUsed">
         <xs:annotation>
-            <xs:documentation>Event handler for an object use. If some of the objects on the "objectId" property is used on this section, the chilren rules will be executed.</xs:documentation>
+            <xs:documentation>Event handler for an object use. If some of the objects on the "objectId" property is used on this section, the children rules will be executed.</xs:documentation>
         </xs:annotation>
 
         <xs:group ref="any_rule" minOccurs="0" maxOccurs="unbounded" />
@@ -1206,6 +1266,7 @@
             <xs:element name="setDisciplines" type="setDisciplines" />
             <xs:element name="pick" type="pick" />
             <xs:element name="randomTable" type="randomTable" />
+            <xs:element name="randomNumber" type="randomNumber" />
             <xs:element name="chooseEquipment" type="chooseEquipment" />
             <xs:element name="test" type="test" />
             <xs:element name="choiceState" type="choiceState" />
@@ -1263,6 +1324,8 @@
             <xs:element name="book9sect91" type="specialsection_type" />
             <xs:element name="book19sect304" type="specialsection_type" />
             <xs:element name="book28sect71" type="specialsection_type" />
+            <xs:element name="book28sect192" type="specialsection_type" />
+            <xs:element name="book29sect342" type="specialsection_type" />
         </xs:choice>
     </xs:group>
 
