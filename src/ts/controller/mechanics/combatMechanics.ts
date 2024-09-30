@@ -342,7 +342,7 @@ export class CombatMechanics {
      * @param turn The turn to render
      */
     private static renderCombatTurn( $combatTableBody: JQuery<HTMLElement> , turn: CombatTurn ) {
-        $combatTableBody.append(`<tr><td class="hidden-xs">${striptags(turn.turnNumber.toFixed())}</td><td>${striptags(turn.randomValue.toFixed())}</td><td>${striptags(turn.getPlayerLossText())}</td><td>${striptags(turn.getEnemyLossText())}</td></tr>`);
+        $combatTableBody.append(`<tr><td class="d-none d-sm-inline">${striptags(turn.turnNumber.toFixed())}</td><td>${striptags(turn.randomValue.toFixed())}</td><td>${striptags(turn.getPlayerLossText())}</td><td>${striptags(turn.getEnemyLossText())}</td></tr>`);
     }
 
     /**

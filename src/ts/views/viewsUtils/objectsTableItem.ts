@@ -159,7 +159,7 @@ export class ObjectsTableItem {
      */
     private getOperationTag(operation: string, title: string = null , opDescription: string ) {
 
-        let link = `<a href="#" data-objectId="${this.item.id}" data-index="${this.index}" class="equipment-op btn btn-default" `;
+        let link = `<a href="#" data-objectId="${this.item.id}" data-index="${this.index}" class="equipment-op btn btn-outline-secondary" `;
 
         if ( this.item.id === Item.QUIVER || this.item.id === Item.LARGE_QUIVER || this.item.id === Item.ARROW || this.item.id === Item.MONEY || this.item.id === Item.FIRESEED ||
             ( this.objectInfo.price > 0 && this.objectInfo.count > 0 ) ) {

@@ -520,7 +520,7 @@ export class SectionRenderer {
         const enemyHtml = this.renderNodeChildren( $combat.find("enemy") , level );
         const combatSkill = SectionRenderer.getEnemyCombatSkill( $combat ).text();
         const endurance = SectionRenderer.getEnemyEndurance( $combat ).text();
-        return '<div class="combat well"><b>' + enemyHtml + "</b><br />" +
+        return '<div class="combat card card-body bg-light p-4 my-4 d-block"><b>' + enemyHtml + "</b><br />" +
             '<span class="attribute">' + translations.text("combatSkillUpper") + "</span>: " +
             '<span class="enemy-combatskill">' + combatSkill + '</span>' +
             ' &nbsp;&nbsp; <span class="attribute">' + translations.text("enduranceUpper") + "</span>: " +

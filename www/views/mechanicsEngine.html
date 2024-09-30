@@ -3,7 +3,7 @@
     <!-- This is no really a view. Its the set of UI fragments to run game mechanics -->
 
     <!-- Set skills -->
-    <div class="well" id="mechanics-setSkills">
+    <div class="card card-body bg-light p-4 my-4 d-block" id="mechanics-setSkills">
         <p id="mechanics-detWeapon">
             <span data-translation="chooseNumberOn">Choose a number on the</span> 
             <a href="#" class="random action" id="mechanics-chooseWeapon" data-translation="randomTable">
@@ -21,7 +21,7 @@
     </div>
 
     <!-- Set Kai name -->
-    <div class="well" id="mechanics-setKaiName">
+    <div class="card card-body bg-light p-4 my-4 d-block" id="mechanics-setKaiName">
         <div id="mechanics-existingKaiName">
             <span data-translation="yourKaiName">Your Kai Name:</span>
             <span id="kaiName"></span>
@@ -50,7 +50,7 @@
     </div>
 
     <!-- Select Kai Disciplines -->
-    <div class="well" id="mechanics-setDisciplines">
+    <div class="card card-body bg-light p-4 my-4 d-block" id="mechanics-setDisciplines">
         <div class="checkbox">
             <label>
                 <input type="checkbox"> 
@@ -67,12 +67,12 @@
             </label>
         </div>
     </div>
-    <div class="well" id="mechanics-setDisciplines-NDis">
+    <div class="card card-body bg-light p-4 my-4 d-block" id="mechanics-setDisciplines-NDis">
         <b data-translation="selectNDisciplines">
             Please, select <span id="mechanics-nDisciplines"></span> disciplines before continuing.
         </b>
     </div>
-    <div class="well" id="mechanics-setDisciplines-NWeapons">
+    <div class="card card-body bg-light p-4 my-4 d-block" id="mechanics-setDisciplines-NWeapons">
         <b data-translation="selectNWeapons">
             Please, select <span id="mechanics-setDisciplines-weaponsmax">3</span> weapons for Weaponmastery.
         </b>
@@ -80,14 +80,14 @@
 
     <!-- Choose equipment -->
     <div id="mechanics-chooseEquipment">
-        <div class="well" id="mechanics-chooseEquipment-randoms">
+        <div class="card card-body bg-light p-4 my-4 d-block" id="mechanics-chooseEquipment-randoms">
             <b id="mechanics-chooseEquipment-randoms-msg" >
                 Message goes here
             </b>
         </div>
 
         <!-- Max. Special Items, starting from book 8 -->
-        <div class="well" id="mechanics-chooseEquipment-maxSpecials">
+        <div class="card card-body bg-light p-4 my-4 d-block" id="mechanics-chooseEquipment-maxSpecials">
             <b data-translation="maxSpecialItems">
                 From this book, the maximum number of Special Items that can be carried is twelve.
                 Any additional Special Items may be left for safekeeping at the Kai Monastery, or left here.
@@ -119,7 +119,7 @@
     <!-- Combat template -->
     <div class="mechanics-combatUI" id="mechanics-combat">
         <!-- Combat tables -->
-        <button class="btn btn-default table-op mechanics-combatTables" 
+        <button class="btn btn-outline-secondary table-op mechanics-combatTables" 
             title="Show combat tables">
             <span class="fa fa-th"></span>
         </button>
@@ -170,10 +170,10 @@
         <table class="table table-striped table-bordered bold-head" style="display:none">
             <thead>
                 <tr>
-                    <td class="hidden-xs">#</td>
+                    <td class="d-none d-sm-table-cell">#</td>
                     <td>
-                        <span class="hidden-xs" data-translation="randomTable">Random table</span>
-                        <span class="visible-xs-inline" data-translation="randomTableSmall">R.</span>
+                        <span class="d-none d-sm-inline" data-translation="randomTable">Random table</span>
+                        <span class="d-sm-none" data-translation="randomTableSmall">R.</span>
                     </td>
                     <td class="mechanics-playerName">Lone Wolf</td>
                     <td><span class="mechanics-enemyName">Enemy</span></td>
@@ -192,7 +192,7 @@
 
     <!-- Player death -->
     <div id="mechanics-death">
-        <div class="well">
+        <div class="card card-body bg-light p-4 my-4 d-block">
             <p><b id="mechanics-deathmsg" data-translation="msgDeath">
                 Your life and your mission end here
             </b></p>
@@ -208,7 +208,7 @@
     </div>
 
     <!-- Have a Meal -->
-    <div class="well mechanics-meal-ui" id="mechanics-meal">
+    <div class="card card-body bg-light p-4 my-4 d-block mechanics-meal-ui" id="mechanics-meal">
         <p><b data-translation="meal">Meal</b></p>
         <div class="radio mechanics-eatHunt">
             <label>
@@ -249,22 +249,22 @@
     </div>
 
     <!-- Message to user. DO NOT REMOVE CLASS "mechanics-message", it's checked by the mechanics -->
-    <div class="well mechanics-message" id="mechanics-message">
+    <div class="card card-body bg-light p-4 my-4 d-block mechanics-message" id="mechanics-message">
         <b>Message goes here</b>
     </div>
 
     <!-- Number picker -->
-    <div class="well" id="mechanics-numberpicker">
+    <div class="card card-body bg-light p-4 my-4 d-block" id="mechanics-numberpicker">
         <label id="mechanics-mpTitle" for="mechanics-mpAmount">Number picker</label>
         <div class="input-group">
             <input type="number" class="form-control"
                 id="mechanics-mpAmount" min="0"
                 data-ismoneypicker="false" value="0">
             <div class="input-group-btn">
-                <button type="button" class="btn btn-default add-number">
+                <button type="button" class="btn btn-outline-secondary add-number">
                     <span class="fa fa-plus"></span>
                 </button> 
-                <button type="button" class="btn btn-default sub-number">
+                <button type="button" class="btn btn-outline-secondary sub-number">
                     <span class="fa fa-minus"></span>
                 </button> 
             </div>
@@ -276,7 +276,7 @@
     </div>
 
     <!-- Discipline picker -->
-    <div class="well" id="mechanics-disciplinepicker">
+    <div class="card card-body bg-light p-4 my-4 d-block" id="mechanics-disciplinepicker">
         <p><b id="mechanics-dpTitle">Discipline picker</b></p>
         <div class="radio" id="mechanics-dpOption">
             <label>
@@ -292,7 +292,7 @@
     </div>
 
     <!-- Kai Weapon picker -->
-    <div class="well" id="mechanics-kaiweaponpicker">
+    <div class="card card-body bg-light p-4 my-4 d-block" id="mechanics-kaiweaponpicker">
         <p><b id="mechanics-kwpTitle">Kai Weapon picker</b></p>
         <div class="radio" id="mechanics-kwpOption">
             <label>
@@ -334,10 +334,10 @@
                             <input type="number" class="form-control" id="mechanics-moneyamount" min="1" 
                                 data-ismoneypicker="true" value="1">
                             <div class="input-group-btn">
-                                <button type="button" class="btn btn-default add-number">
+                                <button type="button" class="btn btn-outline-secondary add-number">
                                     <span class="fa fa-plus"></span>
                                 </button> 
-                                <button type="button" class="btn btn-default sub-number">
+                                <button type="button" class="btn btn-outline-secondary sub-number">
                                     <span class="fa fa-minus"></span>
                                 </button> 
                             </div>
@@ -346,7 +346,7 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal" data-translation="close">
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" data-translation="close">
                         Close
                     </button>
                     <button class="btn btn-primary" type="button" id="mechanics-moneyapply" data-translation="dropMoney">
@@ -359,13 +359,13 @@
     </div>
     
     <!-- Display a section image -->
-    <div class="well" id="mechanics-displayillustration">
+    <div class="card card-body bg-light p-4 my-4 d-block" id="mechanics-displayillustration">
         <p id="mechanics-illtitlecontainer"><b id="mechanics-illtitle">This is the illustration title</b></p>
         <p id="mechanics-ill"></p>
     </div>
 
     <!-- Upgrade stats at Grand Master beginning -->
-    <div class="well" id="mechanics-gmupgrade">
+    <div class="card card-body bg-light p-4 my-4 d-block" id="mechanics-gmupgrade">
         <p data-translation="gmupgrade-info">
             According to <a href="https://www.projectaon.org/en/ReadersHandbook/GrandMaster" target="_blank">The Readers’ Handbook</a>, you
             can change your stats at the Grand Master beginning. We support the Handbook recommendations:
@@ -418,7 +418,7 @@
     <!-- *** SPECIAL SECTIONS *** -->
 
     <!-- Cartwheel game -->
-    <div class="well" id="mechanics-book2Sect238">
+    <div class="card card-body bg-light p-4 my-4 d-block" id="mechanics-book2Sect238">
         <div class="form-group">
             <b>
                 <span data-translation="beltPouch">Belt pouch</span>: 
@@ -435,10 +435,10 @@
                 <input type="number" min="0" max="9" class="form-control" 
                     id="mechanics-numberToBet" value="5">
                 <div class="input-group-btn">
-                    <button type="button" class="btn btn-default add-number">
+                    <button type="button" class="btn btn-outline-secondary add-number">
                         <span class="fa fa-plus"></span>
                     </button> 
-                    <button type="button" class="btn btn-default sub-number">
+                    <button type="button" class="btn btn-outline-secondary sub-number">
                         <span class="fa fa-minus"></span>
                     </button> 
                 </div>
@@ -453,10 +453,10 @@
                     id="mechanics-moneyToBet" min="1" max="50" 
                     data-ismoneypicker="true" value="1">
                 <div class="input-group-btn">
-                    <button type="button" class="btn btn-default add-number">
+                    <button type="button" class="btn btn-outline-secondary add-number">
                         <span class="fa fa-plus"></span>
                     </button> 
-                    <button type="button" class="btn btn-default sub-number">
+                    <button type="button" class="btn btn-outline-secondary sub-number">
                         <span class="fa fa-minus"></span>
                     </button> 
                 </div>
@@ -471,7 +471,7 @@
     </div>
 
     <!-- Portholes game -->
-    <div class="well" id="mechanics-book2Sect308">
+    <div class="card card-body bg-light p-4 my-4 d-block" id="mechanics-book2Sect308">
         <div class="form-group">
             <b>
                 <span data-translation="beltPouch">Belt pouch</span>: 
@@ -496,7 +496,7 @@
     </div>
 
     <!-- Book 6 / sect340, bow tournment -->
-    <div class="well" id="mechanics-book6sect340">
+    <div class="card card-body bg-light p-4 my-4 d-block" id="mechanics-book6sect340">
         <p>
             <span data-translation="weaponmastery">Weaponmastery</span>: +<span id="mechanics-book6sect340-bonus">0</span>
         </p>
@@ -506,7 +506,7 @@
     </div>
 
     <!-- Show info about writting in Action Chart -->
-    <div class="well" id="mechanics-actionChartInfo" data-translation="actionchartinfo">
+    <div class="card card-body bg-light p-4 my-4 d-block" id="mechanics-actionChartInfo" data-translation="actionchartinfo">
         <p>
             The following sections explain how to play with the printed books. This application is an adaptation of the game books, 
             and you will not need to write by hand on the Action Chart (except on the "Annotations" field). The

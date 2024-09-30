@@ -55,7 +55,7 @@ export const book28sect71 = {
         state.sectionStates.getSectionState().combats[0].combatSkill = enemyCS;
 
         $('#game-section > p.choice').before(
-            `<div class="combat well">
+            `<div class="combat card card-body bg-light p-4 my-4 d-block">
                 <b>Tomb Robbers (with Kai Weapon)</b>
                 <br>
                 <span class="attribute">

@@ -307,6 +307,7 @@ body.dark .action.random.picked {
 }
 
 body.dark .well,
+body.dark .card,
 body.dark .modal-content {
     background: #333;
 }
@@ -315,7 +316,7 @@ body.dark .btn img {
     filter: invert(87%);
 }
 
-body.dark .btn-default, 
+body.dark .btn-outline-secondary,
 body.dark .form-control[disabled], 
 body.dark .form-control[readonly], 
 body.dark fieldset[disabled], 
@@ -350,4 +351,48 @@ body.dark #template-containertable {
 /** Downloaded book on Work With Books */
 body.dark #wwbooks-list tr.success > td {
     background-color: #006400;
+}
+
+/** Changes to make Bootstrap 4 appear like Bootstrap 3 */
+.bg-dark {
+    background-color: #222 !important;
+}
+
+a {
+    color: #337ab7;
+}
+
+html {
+    font-size: 14px;
+}
+
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.btn-primary {
+    background-color: #337ab7;
+    border-color: #2e6da4;
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #286090;
+    border-color: #204d74;
+}
+
+.btn-warning {
+    color: #fff;
+    background-color: #f0ad4e;
+    border-color: #eea236;
+}
+
+.btn-warning:hover {
+    color: #fff;
+    background-color: #ec971f;
+    border-color: #d58512;
+}
+
+label {
+    margin-bottom: 0;
 }

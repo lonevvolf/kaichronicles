@@ -21,9 +21,9 @@ export const template = {
         $("#template-img-logo").attr("href", url);
 
         if ( showTitleOnSmallDevs ) {
-            $title.removeClass("hidden-xs hidden-sm");
+            $title.removeClass("d-none d-md-inline");
         } else {
-            $title.addClass("hidden-xs hidden-sm");
+            $title.addClass("d-none d-md-inline");
         }
 
     },

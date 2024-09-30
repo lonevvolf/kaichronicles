@@ -137,7 +137,7 @@ export class SetupDisciplines {
                 html += "</div>";
             }
         }
-        const $well = $("#wpnmstry .well");
+        const $well = $("#wpnmstry .card");
         $well.append(html);
 
         // Add event handlers
@@ -367,7 +367,7 @@ export class SetupDisciplines {
 
                 // Show on UI the selected weapon
                 this.setWeaponSkillWeaponNameOnUI();
-                const $well = $("#wepnskll .well");
+                const $well = $("#wepnskll .card");
                 $well.append(`<div><i><small>${translations.text("randomTable")}: ${value}</small></i></div>`);
 
                 // Mark the checkbox
