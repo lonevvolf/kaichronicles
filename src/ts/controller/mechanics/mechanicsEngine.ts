@@ -1335,9 +1335,9 @@ export const mechanicsEngine = {
         if (op) {
             // Change the state of the message
             if (op === "show") {
-                $("#" + msgId).show();
+                $("#" + msgId).addClass("d-block").show();
             } else {
-                $("#" + msgId).hide();
+                $("#" + msgId).removeClass("d-block").hide();
             }
             return;
         }

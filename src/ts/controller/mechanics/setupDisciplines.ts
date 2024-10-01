@@ -88,7 +88,7 @@ export class SetupDisciplines {
         // If we are on a magnakai book, add the weapons checkboxes
         this.populateMagnakaiWeapons();
 
-        // Set the already choosen weapon for the Weaponskill
+        // Set the already chosen weapon for the Weaponskill
         this.setWeaponSkillWeaponNameOnUI();
 
         // Initialize UI state
@@ -314,11 +314,11 @@ export class SetupDisciplines {
 
         let enableNextPage = true;
 
-        // Check all disiciplines selected
+        // Check all disciplines selected
         if (this.getAllDisciplinesSelected()) {
-            $("#mechanics-setDisciplines-NDis").hide();
+            $("#mechanics-setDisciplines-NDis").removeClass("d-block").hide();
         } else {
-            $("#mechanics-setDisciplines-NDis").show();
+            $("#mechanics-setDisciplines-NDis").addClass("d-block").show();
             enableNextPage = false;
         }
 
@@ -329,9 +329,9 @@ export class SetupDisciplines {
             state.actionChart.getWeaponSkill().length < this.getExpectedNWeaponsWeaponmastery()
         ) {
             enableNextPage = false;
-            $("#mechanics-setDisciplines-NWeapons").show();
+            $("#mechanics-setDisciplines-NWeapons").addClass("d-block").show();
         } else {
-            $("#mechanics-setDisciplines-NWeapons").hide();
+            $("#mechanics-setDisciplines-NWeapons").removeClass("d-block").hide();
         }
 
         gameView.enableNextLink(enableNextPage);
@@ -347,7 +347,7 @@ export class SetupDisciplines {
     private chooseWeaponskillWeapon(e: JQuery.TriggeredEvent) {
 
         if (state.actionChart.getWeaponSkill().length > 0) {
-            // Weapon already choosed
+            // Weapon already chosen
             state.actionChart.getDisciplines().push(KaiDiscipline.Weaponskill);
             return;
         }
