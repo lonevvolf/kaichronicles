@@ -396,3 +396,8 @@ body {
 label {
     margin-bottom: 0;
 }
+
+.navbar {
+    padding: 0;
+    min-height: 50px;
+}

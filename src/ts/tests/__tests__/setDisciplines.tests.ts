@@ -1,5 +1,5 @@
 import { GameDriver } from "../gameDriver";
-import { WebElement } from "selenium-webdriver";
+import { Actions, By, WebElement } from "selenium-webdriver";
 import { SetupDisciplines, Book, BookSeries, BookSeriesId, KaiDiscipline, state, projectAon } from "../..";
 
 // Selenium web driver
@@ -177,8 +177,8 @@ async function testCarryDisciplinesPreviousBook(bookNumber: number) {
         }
 
         // Select next weapon
+        await (await driver.moveToElement(SetupDisciplines.WEAPON_CHECKBOX_ID + nextWeaponId)).perform();
         await( await driver.getElementById(SetupDisciplines.WEAPON_CHECKBOX_ID + nextWeaponId) ).click();
-
         // Expect message to be hidden
         expect( await selectWeaponsMsg.isDisplayed() ).toBe(false);
 

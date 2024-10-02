@@ -1,4 +1,4 @@
-import { WebDriver, Builder, WebElement, By, until, Alert, Browser } from "selenium-webdriver";
+import { WebDriver, Builder, WebElement, By, until, Alert, Browser, Actions } from "selenium-webdriver";
 import { state, Mechanics, BookSectionStates, Book, declareCommonHelpers, BookSeriesId, CombatMechanics, CurrencyName } from "..";
 import { Type, Level } from "selenium-webdriver/lib/logging";
 import { readFileSync } from "fs-extra";
@@ -21,6 +21,8 @@ export class GameDriver {
     // Selenium web driver
     private driver: WebDriver = null;
 
+    private actions: Actions = null;
+
     /** URL to start a new game */
     private newGameUrl: string;
 
@@ -42,6 +44,9 @@ export class GameDriver {
             .forBrowser(Browser.CHROME)
             .setChromeOptions(new Options().addArguments('--headless=new'))
             .build();
+
+        this.actions = await this.driver.actions({async: true});
+
         // Maximize to avoid links get shadows by toastr
         await this.driver.manage().window().maximize();
     }
@@ -73,6 +78,14 @@ export class GameDriver {
     public async getElementById(id: string): Promise<WebElement> {
         try {
             return await this.driver.findElement(By.id(id));
+        } catch (e) {
+            return null;
+        }
+    }
+
+    public async moveToElement(id: string): Promise<Actions> {
+        try {
+            return this.actions.move({origin: await this.getElementById(id)});
         } catch (e) {
             return null;
         }
@@ -139,9 +152,9 @@ export class GameDriver {
         return errors;
     }
 
-    public async debugSleep(miliseconds: number = 2500) {
+    public async debugSleep(milliseconds: number = 2500) {
         try {
-            await this.driver.wait(until.elementLocated(By.id("notexists")), miliseconds);
+            await this.driver.wait(until.elementLocated(By.id("notexists")), milliseconds);
         // eslint-disable-next-line no-empty
         } catch { }
     }
