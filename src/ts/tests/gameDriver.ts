@@ -21,8 +21,6 @@ export class GameDriver {
     // Selenium web driver
     private driver: WebDriver = null;
 
-    private actions: Actions = null;
-
     /** URL to start a new game */
     private newGameUrl: string;
 
@@ -38,14 +36,11 @@ export class GameDriver {
 
     public async setupBrowser() {
         // Setup Selenium
-        // console.log("Setup Selenium");
 
         this.driver = await new Builder()
             .forBrowser(Browser.CHROME)
             .setChromeOptions(new Options().addArguments('--headless=new'))
             .build();
-
-        this.actions = await this.driver.actions({async: true});
 
         // Maximize to avoid links get shadows by toastr
         await this.driver.manage().window().maximize();
@@ -53,7 +48,6 @@ export class GameDriver {
 
     public async close() {
         // Close Selenium
-        // console.log("Close Selenium");
         await this.driver.close();
     }
 
@@ -85,7 +79,8 @@ export class GameDriver {
 
     public async moveToElement(id: string): Promise<Actions> {
         try {
-            return this.actions.move({origin: await this.getElementById(id)});
+            let actions = await this.driver.actions({async: true});
+            return actions.move({origin: await this.getElementById(id)});
         } catch (e) {
             return null;
         }
