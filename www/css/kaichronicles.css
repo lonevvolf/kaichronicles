@@ -301,21 +301,22 @@ body.dark {
     color: #ccc;
 }
 
-
 body.dark .action.random.picked {
     color: #ddd;
 }
 
 body.dark .well,
 body.dark .card,
+body.dark .card b,
 body.dark .modal-content {
-    background: #333;
+    background: #333 !important;
 }
 
 body.dark .btn img {
     filter: invert(87%);
 }
 
+body.dark .btn-outline-dark,
 body.dark .btn-outline-secondary,
 body.dark .form-control[disabled], 
 body.dark .form-control[readonly], 
@@ -368,6 +369,18 @@ html {
 
 body {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    card {
+        border-color: #343a40 !important;
+    }
+}
+
+body.dark {
+    table {
+        color: #ccc;
+    }
+    .card {
+        border-color: #f8f9fa !important;
+    }
 }
 
 .btn-primary {
@@ -395,9 +408,23 @@ body {
 
 label {
     margin-bottom: 0;
+    font-weight: 700;
+}
+
+.checkbox label,.radio label {
+    font-weight: 400;
 }
 
 .navbar {
     padding: 0;
     min-height: 50px;
+}
+
+.navbar-dark .navbar-brand {
+    color: #9d9d9d
+}
+
+.h1,.h2,.h3,h1,h2,h3 {
+    margin-top: 20px;
+    margin-bottom: 10px
 }

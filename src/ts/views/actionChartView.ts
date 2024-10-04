@@ -162,10 +162,10 @@ export const actionChartView = {
                 // Unescape the HTML description:
                 const descriptionHtml = $("<div />").html(dInfo.description).text();
                 const td = $("<td>");
-                td[0].innerHTML = '<button class="btn btn-outline-secondary table-op" type="button" title="' +
+                td[0].innerHTML = '<button class="btn btn-outline-dark table-op" type="button" title="' +
                     translations.text("disciplineDescription") +
                     '">' +
-                        '<span class="fa fa-question-sign"></span>' +
+                        '<span class="fa fa-question-circle"></span>' +
                     "</button>";
 
                 const b = $("<b>");

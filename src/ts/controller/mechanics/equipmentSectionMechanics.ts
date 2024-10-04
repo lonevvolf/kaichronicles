@@ -96,7 +96,7 @@ export class EquipmentSectionMechanics {
         if ( maxSpecials && state.actionChart.getNSpecialItems() > maxSpecials ) {
             ok = false;
         } else {
-            $("#mechanics-chooseEquipment-maxSpecials").hide();
+            $("#mechanics-chooseEquipment-maxSpecials").removeClass("d-block").hide();
         }
 
         if ( ok ) {
