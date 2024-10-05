@@ -2,81 +2,80 @@
 
 <form>
 
-    <div class="form-group">
-      <label for="settings-color-theme" data-translation="colorTheme">
-        Color Theme Selector
-      </label>
-      <select class="form-control" id="settings-color-theme">
-          <option value="Light" data-translation="settings-light">Light</option>
-          <option value="Dark" data-translation="settings-dark">Dark</option>
-      </select>
+  <div class="mb-3">
+    <label for="settings-color-theme" data-translation="colorTheme">
+      Color Theme Selector
+    </label>
+    <select class="form-control" id="settings-color-theme">
+      <option value="Light" data-translation="settings-light">Light</option>
+      <option value="Dark" data-translation="settings-dark">Dark</option>
+    </select>
   </div>
 
-    <div class="form-group">
-        <label for="settings-randomtable" data-translation="randomTableValues">
-          Random Number Table values
-        </label>
-        <select class="form-control" id="settings-randomtable">
-            <option value="computer" data-translation="computerGenerated">Computer generated</option>
-            <option value="manual" data-translation="manual">Manual</option>
-        </select>
-    </div>
-
-    <div class="form-group">
-        <label for="settings-extendedcrt" data-translation="extendedCRT">
-          Use Extended Combat Results Table (LW club newsletter 29)? 
-        </label>
-        <select class="form-control" id="settings-extendedcrt">
-            <option value="yes" data-translation="Yes">Yes</option>
-            <option value="no" data-translation="No">No</option>
-        </select>
-    </div>
-
-    <div class="form-group">
-      <label for="settings-textsize" data-translation="textSize">
-        Text Size 
-      </label>
-      <select class="form-control" id="settings-textsize">
-          <option value="Normal" data-translation="settings-normal">Normal</option>
-          <option value="Large" data-translation="settings-large">Large</option>
-      </select>
+  <div class="mb-3">
+    <label for="settings-randomtable" data-translation="randomTableValues">
+      Random Number Table values
+    </label>
+    <select class="form-control" id="settings-randomtable">
+      <option value="computer" data-translation="computerGenerated">Computer generated</option>
+      <option value="manual" data-translation="manual">Manual</option>
+    </select>
   </div>
-    
-    <button class="btn btn-outline-secondary large-button" type="button" id="settings-gamerules">
-        <img src="images/game-icons/bookmark.png" alt="Rules" />
-        <b data-translation="gameRules">Game rules</b>
-    </button>
 
-    <button class="btn btn-outline-secondary large-button" type="button" id="settings-save">
-        <img src="images/game-icons/save.png" alt="Save" />
-        <b data-translation="saveGame">Save game</b>
-    </button>
+  <div class="mb-3">
+    <label for="settings-extendedcrt" data-translation="extendedCRT">
+      Use Extended Combat Results Table (LW club newsletter 29)?
+    </label>
+    <select class="form-control" id="settings-extendedcrt">
+      <option value="yes" data-translation="Yes">Yes</option>
+      <option value="no" data-translation="No">No</option>
+    </select>
+  </div>
 
-    <button class="btn btn-outline-secondary large-button" type="button" id="settings-restart">
-        <img src="images/game-icons/ink-swirl.png" alt="Restart from scrach" />
-        <b id="settings-restart-label" data-translation="restartBook">Restart book</b>
-    </button>
+  <div class="mb-3">
+    <label for="settings-textsize" data-translation="textSize">
+      Text Size
+    </label>
+    <select class="form-control" id="settings-textsize">
+      <option value="Normal" data-translation="settings-normal">Normal</option>
+      <option value="Large" data-translation="settings-large">Large</option>
+    </select>
+  </div>
 
-    <button class="btn btn-outline-secondary large-button" type="button" id="settings-restart-sect1">
-        <img src="images/game-icons/ink-swirl-sect1.png" alt="Restart from section 1" />
-        <b id="settings-restart-sect1-label" data-translation="restartBookSection1">Restart book from section 1</b>
-    </button>
+  <button class="btn btn-outline-secondary large-button" type="button" id="settings-gamerules">
+    <img src="images/game-icons/bookmark.png" alt="Rules" />
+    <b data-translation="gameRules">Game rules</b>
+  </button>
 
-    <button class="btn btn-outline-secondary large-button" type="button" id="settings-new">
-      <img src="images/game-icons/enlightenment.png" alt="New game" />
-      <b data-translation="newGame">Start new game</b>
-    </button>
+  <button class="btn btn-outline-secondary large-button" type="button" id="settings-save">
+    <img src="images/game-icons/save.png" alt="Save" />
+    <b data-translation="saveGame">Save game</b>
+  </button>
 
-    <button class="btn btn-outline-secondary large-button" type="button" id="settings-about">
-        <img src="images/game-icons/wolf-howl.png" alt="About" />
-        <b data-translation="about">About the book</b>
-    </button>
+  <button class="btn btn-outline-secondary large-button" type="button" id="settings-restart">
+    <img src="images/game-icons/ink-swirl.png" alt="Restart from scrach" />
+    <b id="settings-restart-label" data-translation="restartBook">Restart book</b>
+  </button>
+
+  <button class="btn btn-outline-secondary large-button" type="button" id="settings-restart-sect1">
+    <img src="images/game-icons/ink-swirl-sect1.png" alt="Restart from section 1" />
+    <b id="settings-restart-sect1-label" data-translation="restartBookSection1">Restart book from section 1</b>
+  </button>
+
+  <button class="btn btn-outline-secondary large-button" type="button" id="settings-new">
+    <img src="images/game-icons/enlightenment.png" alt="New game" />
+    <b data-translation="newGame">Start new game</b>
+  </button>
+
+  <button class="btn btn-outline-secondary large-button" type="button" id="settings-about">
+    <img src="images/game-icons/wolf-howl.png" alt="About" />
+    <b data-translation="about">About the book</b>
+  </button>
 
 </form>
 
-<!-- Modal to chage the save game file name -->
-<div class="modal fade" id="settings-saveDialog" tabindex="-1" role="dialog" 
-    aria-labelledby="settings-saveTitle">
+<!-- Modal to change the save game file name -->
+<div class="modal fade" id="settings-saveDialog" tabindex="-1" role="dialog" aria-labelledby="settings-saveTitle">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -85,28 +84,24 @@
         </h4>
       </div>
       <div class="modal-body">
-        <div class="form-group">
-            <label for="settings-saveName" data-translation="fileName">File name</label>
-            <div class="input-group">
-                <input type="text" class="form-control"
-                  id="settings-saveName" />
-                <div class="input-group-btn">
-                    <button type="button" class="btn btn-outline-secondary" 
-                      id="settings-saveRemove">
-                        <span class="fa fa-remove"></span>
-                    </button> 
-                </div>
+        <div class="mb-3">
+          <label for="settings-saveName" data-translation="fileName">File name</label>
+          <div class="input-group">
+            <input type="text" class="form-control" id="settings-saveName" />
+            <div class="input-group-btn">
+              <button title="Save/Remove" type="button" class="btn btn-outline-secondary" id="settings-saveRemove">
+                <span class="fa fa-remove"></span>
+              </button>
             </div>
+          </div>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" 
-          data-translation="close">
-            Close
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" data-translation="close">
+          Close
         </button>
-        <button type="button" id="settings-saveBtn" class="btn btn-primary"
-          data-translation="saveGame">
-            Save game
+        <button type="button" id="settings-saveBtn" class="btn btn-primary" data-translation="saveGame">
+          Save game
         </button>
       </div>
     </div>

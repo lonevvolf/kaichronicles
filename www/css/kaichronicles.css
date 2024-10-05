@@ -361,6 +361,7 @@ body.dark #wwbooks-list tr.success > td {
 
 a {
     color: #337ab7;
+    text-decoration: none;  
 }
 
 html {
@@ -378,6 +379,11 @@ body.dark {
     table {
         color: #ccc;
     }
+
+    .table-striped > tbody > tr:nth-of-type(odd) > * {
+        color: #ccc;
+    }
+
     .card {
         border-color: #f8f9fa !important;
     }
@@ -424,7 +430,26 @@ label {
     color: #9d9d9d
 }
 
+.navbar-toggler:focus  {
+    background-color: #333;
+    box-shadow: none;
+}
+
 .h1,.h2,.h3,h1,h2,h3 {
-    margin-top: 20px;
-    margin-bottom: 10px
+    margin-bottom: 10px;
+}
+
+.table-outline {
+    border: 1px solid #ddd;
+}
+
+.table > :not(caption) > * > * {
+    padding: 0;
+}
+
+.table>tbody>tr>td,.table>tbody>tr>th,.table>tfoot>tr>td,.table>tfoot>tr>th,.table>thead>tr>td,.table>thead>tr>th {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #ddd
 }

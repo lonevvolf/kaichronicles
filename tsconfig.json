@@ -8,7 +8,10 @@
         "esModuleInterop": true,
         "moduleResolution": "Node",
         "module": "ES2020",
-        "forceConsistentCasingInFileNames": true
+        "forceConsistentCasingInFileNames": true,
+        "paths": {
+            "bootstrap": ["./www/lib/bootstrap-5.2.3-dist/js"]
+        }
     },
 
     "include": [

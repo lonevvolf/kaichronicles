@@ -77,15 +77,6 @@ export class GameDriver {
         }
     }
 
-    public async moveToElement(id: string): Promise<Actions> {
-        try {
-            let actions = await this.driver.actions({async: true});
-            return actions.move({origin: await this.getElementById(id)});
-        } catch (e) {
-            return null;
-        }
-    }
-
     public async getAlert(): Promise<Alert> {
         try {
             return await this.driver.switchTo().alert();

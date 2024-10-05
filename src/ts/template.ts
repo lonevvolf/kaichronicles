@@ -1,3 +1,4 @@
+import { Collapse } from "bootstrap";
 import { routing, state, Item, translations, randomTable, mechanicsEngine, App, DebugMode, Color, TextSize } from ".";
 
 /**
@@ -139,7 +140,10 @@ export const template = {
     /**
      * Collapse the template menu
      */
-    collapseMenu() { $("#navbar").collapse("hide"); },
+    collapseMenu() {
+        let element = document.querySelector('#navbar');
+        Collapse.getOrCreateInstance(element, {toggle: false}).hide();
+    },
 
     /**
      * Show an HTML view
@@ -335,7 +339,7 @@ export const template = {
      *  Needed for testing with selenium (sometimes the navbar blocks clicks of some elements)
      */
     fixedNavbarTop() {
-        $("#template-header").removeClass("navbar-fixed-top");
+        $("#template-header").removeClass("fixed-top");
     },
 
     addSectionReadyMarker() {

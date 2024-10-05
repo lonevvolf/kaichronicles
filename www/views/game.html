@@ -27,20 +27,20 @@
 <div style="display:none" id="game-debugSection">
     <h2>Debug</h2>
 
-    <form class="form-inline" id="game-debugJump" >
-        <div class="form-group">
+    <form class="d-flex flex-row align-items-center flex-wrap" id="game-debugJump" >
+        <div class="mb-3">
             <label for="game-debugNSection">Jump to section</label>
-            <input type="text" class="form-control mx-1" id="game-debugNSection" 
+            <input type="text" class="mx-1" id="game-debugNSection" 
                 placeholder="section id">
             <button type="submit" class="btn btn-outline-dark mr-1">Go</button>
             <a id="game-goDisciplines" href="#">Go to disciplines</a>
         </div>
     </form>
 
-    <form class="form-inline" id="game-debugRandomTable" >
-        <div class="form-group">
+    <form class="d-flex flex-row align-items-center flex-wrap" id="game-debugRandomTable" >
+        <div class="mb-3">
             <label for="game-debugRandomFix">Set next random number</label>
-            <input type="text" class="form-control mx-1" id="game-debugRandomFix" 
+            <input type="text" class="mx-1" id="game-debugRandomFix" 
                 placeholder="Random number">
             <button type="submit" class="btn btn-outline-dark">Set</button>
         </div>
@@ -64,8 +64,7 @@
         <div class="modal-content">
 
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                 </button>
                 <h4 class="modal-title" id="game-ratiotitle" data-translation="combatRatio">
                     COMBAT RATIO
@@ -85,7 +84,7 @@
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal"
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
                 data-translation="close">
                     Close
                 </button>

@@ -50,4 +50,7 @@ module.exports = {
       ]
     }),
   ],
+  externals: {
+    bootstrap: 'bootstrap'
+  },
 };
