@@ -373,9 +373,7 @@ export class Book {
         // Normalize
         if ( nDisciplines < 1 ) {
             nDisciplines = 1;
-        } else if ( nDisciplines > 10 ) {
-            nDisciplines = 10;
-        }
+        } 
 
         // Get the title
         const countOffset = $(this.bookXml).find('section[id="levels"] > data > ol').attr("start");
