@@ -15,7 +15,7 @@ export const printActionChartView = {
 
     const bookSeries = state.book.getBookSeries();
 
-    const url = `/images/action-charts/${BookSeriesId[bookSeries.id]}.pdf`;
+    const url = `/images/action-charts/${BookSeriesId[bookSeries.id].toLowerCase()}.pdf`;
     const existingPdfBytes = await fetch(url).then(res => res.arrayBuffer());
     const pdfDoc = await pdfLib.PDFDocument.load(existingPdfBytes);
     const helveticaFont = await pdfDoc.embedFont(pdfLib.StandardFonts.Helvetica);
@@ -390,7 +390,7 @@ export const printActionChartView = {
         printActionChartView.printField(
           pages,
           mappingsField.page - 1,
-          kaiWeapon.name,
+          kaiWeapon.name + (kaiWeaponAC.damage !== 0 ? " (damaged)" : ""),
           mappingsField.x,
           mappingsField.y,
           15,
