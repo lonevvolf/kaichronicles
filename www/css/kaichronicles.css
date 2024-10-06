@@ -366,6 +366,7 @@ a {
 
 html {
     font-size: 14px;
+    scroll-behavior: auto !important;
 }
 
 body {
