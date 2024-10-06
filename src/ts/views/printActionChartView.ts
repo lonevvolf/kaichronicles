@@ -451,11 +451,19 @@ export const printActionChartView = {
     // Print Quiver
     if (!onlyPermanent) {
       mappingsField = bookMappings.quiver;
+
+      let quiversCount = 0;
+      for(let i = 0; i < actionChart.specialItems.length; i++) {
+        if (actionChart.specialItems[i].getItem().id === "quiver29" || actionChart.specialItems[i].getItem().id === "quiver") {
+          quiversCount++;
+        }
+      }
+
       if (mappingsField) {
         printActionChartView.printField(
           pages,
           mappingsField.page - 1,
-          (actionChart.getMaxArrowCount() / 6).toFixed(),
+          quiversCount.toFixed(),
           mappingsField.x,
           mappingsField.y,
           15,
