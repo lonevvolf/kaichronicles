@@ -6,7 +6,7 @@ www/js
 src/js
 
 # Distribution directory
-dist
+/dist
 
 # NPM / node.js stuff
 npm-debug.log

@@ -15,7 +15,7 @@ export const printActionChartView = {
 
     const bookSeries = state.book.getBookSeries();
 
-    const url = `/images/action-charts/${BookSeriesId[bookSeries.id]}.pdf`;
+    const url = `/images/action-charts/${BookSeriesId[bookSeries.id].toLowerCase()}.pdf`;
     const existingPdfBytes = await fetch(url).then(res => res.arrayBuffer());
     const pdfDoc = await pdfLib.PDFDocument.load(existingPdfBytes);
     const helveticaFont = await pdfDoc.embedFont(pdfLib.StandardFonts.Helvetica);
@@ -390,7 +390,7 @@ export const printActionChartView = {
         printActionChartView.printField(
           pages,
           mappingsField.page - 1,
-          kaiWeapon.name,
+          kaiWeapon.name + (kaiWeaponAC.damage !== 0 ? " (damaged)" : ""),
           mappingsField.x,
           mappingsField.y,
           15,
@@ -451,11 +451,19 @@ export const printActionChartView = {
     // Print Quiver
     if (!onlyPermanent) {
       mappingsField = bookMappings.quiver;
+
+      let quiversCount = 0;
+      for(let i = 0; i < actionChart.specialItems.length; i++) {
+        if (actionChart.specialItems[i].getItem().id === "quiver29" || actionChart.specialItems[i].getItem().id === "quiver") {
+          quiversCount++;
+        }
+      }
+
       if (mappingsField) {
         printActionChartView.printField(
           pages,
           mappingsField.page - 1,
-          (actionChart.getMaxArrowCount() / 6).toFixed(),
+          quiversCount.toFixed(),
           mappingsField.x,
           mappingsField.y,
           15,
