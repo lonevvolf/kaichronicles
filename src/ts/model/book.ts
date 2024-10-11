@@ -61,9 +61,7 @@ export class Book {
     /** The book XML document */
     public bookXml: XMLDocument|null;
 
-    /**
-     * Array of 100 positions with the random table numbers as they appear on the book
-     */
+    /** Array of 100 positions with the random table numbers as they appear on the book */
     public bookRandomTable: number[];
 
     /** The book title cache, plain text */
@@ -75,14 +73,18 @@ export class Book {
     /** The book disciplines cache */
     private disciplines: DisciplinesTable|null = null;
 
+    /** The book series (lw, gs) */
+    public bookSeries: string = "lw";
+
     /**
      * Constructor
      * @param number The book index number to create (1 = first)
      */
-    public constructor(num: number) {
+    public constructor(num: number, bookSeries?: string) {
         this.bookNumber = num;
         this.bookXml = null;
         this.bookRandomTable = [];
+        this.bookSeries = bookSeries ?? "lw";
     }
 
     /**
@@ -224,7 +226,7 @@ export class Book {
      * @returns The book code name. null if it was not found
      */
     public getProjectAonBookCode(): string|null {
-        const bookMetadata = projectAon.supportedBooks[ this.bookNumber - 1 ];
+        const bookMetadata = this.bookSeries === "gs" ? projectAon.supportedBooks.filter((b) => b.series === "gs")[ this.bookNumber - 1 ] : projectAon.supportedBooks[ this.bookNumber - 1 ];
         if ( !bookMetadata ) {
             return null;
         }
@@ -241,7 +243,7 @@ export class Book {
      * Returns the book XML source URL
      */
     public getBookXmlURL() {
-        return Book.getBaseUrl() + this.bookNumber.toFixed() + "/" + this.getProjectAonBookCode() +
+        return Book.getBaseUrl() + (this.bookSeries === "gs" ? "gs/" : "") + this.bookNumber.toFixed() + "/" + this.getProjectAonBookCode() +
             ".xml";
     }
 
@@ -423,7 +425,7 @@ export class Book {
         if (this.bookNumber === 29) {
             return null;
         }
-        return Book.getBaseUrl() + this.bookNumber.toFixed() + "/cover.jpg";
+        return Book.getBaseUrl() + (this.bookSeries !== "lw" ? this.bookSeries + "/" : "") + this.bookNumber.toFixed() + "/cover.jpg";
     }
 
     /**

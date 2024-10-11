@@ -61,7 +61,7 @@ export class Mechanics {
      * Returns the book XML URL
      */
     public getXmlURL(): string {
-        return `data/mechanics-${this.book.bookNumber}.xml`;
+        return `data/mechanics${!this.book.bookSeries || this.book.bookSeries === "lw" ?  "" : "-gs"}-${this.book.bookNumber}.xml`;
     }
 
     /** Set mechanics XML */

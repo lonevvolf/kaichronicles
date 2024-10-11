@@ -104,14 +104,14 @@ export class State {
     /**
      * Setup the state for a book number
      */
-    public setup(bookNumber: number, keepActionChart: boolean) {
+    public setup(bookNumber: number, keepActionChart: boolean, bookSeries?: string) {
 
         if (!bookNumber) {
             bookNumber = 1;
         }
 
         this.sectionStates = new BookSectionStates();
-        this.book = new Book(bookNumber);
+        this.book = new Book(bookNumber, bookSeries);
 
         // Action chart
         this.actionChart = null;

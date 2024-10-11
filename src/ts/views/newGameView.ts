@@ -12,13 +12,15 @@ export const newGameView = {
         let html = "";
         let series: BookSeriesId|null = null;
         for ( let i = 1; i <= projectAon.supportedBooks.length; i++) {
-            let seriesId = new Book(i).getBookSeries().id;
+            let bookNumber = projectAon.supportedBooks[i-1].bookNumber ?? i;
+            let bookSeries = projectAon.supportedBooks[i-1].series;
+            let seriesId = new Book(bookNumber, bookSeries).getBookSeries().id;
             if (seriesId !== series) {
                 html += `<optgroup label="${translations.text(BookSeriesId[seriesId])}"></optgroup>`;
                 series = seriesId;
             }
-            const title = projectAon.getBookTitle( i )
-            html += '<option value="' + i.toFixed() + '" >' + i.toFixed() + ". " + title + "</option>";
+            const title = projectAon.getBookTitle( bookNumber, bookSeries );
+            html += "<option value='" + JSON.stringify({"bookNumber": bookNumber.toFixed(), "bookSeries": bookSeries}) + "' >" + bookNumber.toFixed() + ". " + title + "</option>";
         }
         $("#newgame-book").html(html);
 
@@ -29,12 +31,15 @@ export const newGameView = {
                 alert(translations.text("youMustAgree"));
                 return;
             }
-            newGameController.startNewGame(parseInt(<string>$("#newgame-book").val()));
+
+            let selectedBook = JSON.parse(<string>$("#newgame-book").val());
+            newGameController.startNewGame(parseInt(selectedBook.bookNumber), selectedBook.bookSeries);
         });
 
         // Book change
         $("#newgame-book").on("change", () => {
-            newGameController.selectedBookChanged(parseInt(<string>$("#newgame-book").val()));
+            let selectedBook = JSON.parse(<string>$("#newgame-book").val());
+            newGameController.selectedBookChanged(parseInt(selectedBook.bookNumber), selectedBook.bookSeries);
         });
         
         // Random table change

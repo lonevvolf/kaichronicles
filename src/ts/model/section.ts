@@ -126,7 +126,9 @@ export class Section {
 
         const sNumber = this.getSectionNumber();
         if ( sNumber ) {
-            if ( sNumber === 1 ) {
+            if (this.book.bookSeries === "gs" && sNumber === 1) {
+                return "sage";
+            } else if ( sNumber === 1) {
                 return "kaiwisdm";
             } else {
                 return `sect${( sNumber - 1 )}`;

@@ -17,6 +17,12 @@ export interface BookMetadata {
 
     /** Whether a cover exists for the book */
     hasCover: boolean; 
+
+    /** Book Series (lw, gs) */
+    series: string;
+
+    /** Book Number in the series */
+    bookNumber: number;
 }
 
 /**
@@ -266,14 +272,25 @@ export const projectAon = {
             hasCover: false,
         },
 
+        /////////// WORLD OF LONE WOLF ///////////
+        // Book 1:
+        {
+            bookNumber: 1,
+            title: "Grey Star the Wizard",
+            code: "01gstw",
+            illustrators: ["bonner"],
+            biographies: ["ipbiogs", "jdbiogs", "pbbiogs"],
+            series: "gs",
+        },
+
         ] as BookMetadata[],
 
     /**
      * Returns the title of a book
      * @param bookNumber Book number, 1-index based
      */
-    getBookTitle( bookNumber: number ): string {
-        return projectAon.supportedBooks[bookNumber - 1][ "title" ];
+    getBookTitle( bookNumber: number, bookSeries?: string ): string {
+        return projectAon.supportedBooks.filter((b) => (b.series === bookSeries))[bookNumber - 1][ "title" ];
     },
 
     /**

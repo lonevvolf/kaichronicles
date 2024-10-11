@@ -28,17 +28,18 @@ export const newGameController = {
      * Start new game event
      * @param {string} bookNumber The book number
      */
-    startNewGame( bookNumber: number) {
+    startNewGame( bookNumber: number, bookSeries?: string) {
 
         state.reset(true);
         routing.redirect( "setup" , {
-            bookNumber
+            bookNumber,
+            bookSeries
         });
 
     },
 
-    selectedBookChanged(newBookNumber: number) {
-        const book = new Book(newBookNumber);
+    selectedBookChanged(newBookNumber: number, bookSeries?: string) {
+        const book = new Book(newBookNumber, bookSeries ?? "lw");
         newGameView.setCoverImage( book.getCoverURL() );
     },
 

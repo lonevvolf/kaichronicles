@@ -27,23 +27,27 @@ export class BookData {
     /** Array with illustrations authors directories names */
     private illAuthors: string[];
 
+    /** Book Series (lw, gs) */
+    private bookSeries: string = "lw";
+
     /**
      * Constructor
      * @param bookNumber The book number (1-based index)
      */
     constructor(bookNumber: number) {
-        this.bookNumber = bookNumber;
+        this.bookNumber = projectAon.supportedBooks[ bookNumber - 1 ].bookNumber ?? bookNumber;
         this.bookMetadata = projectAon.supportedBooks[ bookNumber - 1 ];
         this.code = this.bookMetadata.code;
         this.illAuthors = this.bookMetadata.illustrators;
         this.hasCover = this.bookMetadata.hasCover === undefined ? true : this.bookMetadata.hasCover;
+        this.bookSeries = this.bookMetadata.series ?? "lw";
     }
 
     /**
      * Get the local relative path for the book data
      */
     private getBookDir(): string {
-        return BookData.TARGET_ROOT + "/" + this.bookNumber.toFixed();
+        return BookData.TARGET_ROOT + "/" + (this.bookSeries !== "lw" ? this.bookSeries + "/" : "") + this.bookNumber.toFixed();
     }
 
     /**
@@ -86,7 +90,7 @@ export class BookData {
      * Get the svn absolute URL for illustrations directory of a given author
      */
     private getSvnIllustrationsDir(author: string): string {
-        return "project-aon/en/png/lw/" + this.code + "/ill/" +
+        return `project-aon/en/png/${this.bookSeries}/` + this.code + "/ill/" +
             author;
     }
 
@@ -139,7 +143,7 @@ export class BookData {
      */
     private downloadCover() {
         if ( this.hasCover ) {
-            const coverPath = "project-aon/en/jpeg/lw/" + this.code +
+            const coverPath = `project-aon/en/jpeg/${this.bookSeries}/` + this.code +
                 "/skins/ebook/cover.jpg";
             const targetPath = this.getBookDir() + "/cover.jpg";
             fs.copyFileSync(coverPath, targetPath);
@@ -147,11 +151,11 @@ export class BookData {
     }
 
     public downloadBookData() {
-        const bookDir = BookData.TARGET_ROOT + "/" + this.bookNumber.toFixed();
+        const bookDir = this.getBookDir();
 
         console.log("Re-creating directory " + bookDir);
         fs.removeSync( bookDir );
-        fs.mkdirSync( bookDir );
+        fs.mkdirSync( bookDir, {recursive: true} );
 
         this.downloadCover();
 
