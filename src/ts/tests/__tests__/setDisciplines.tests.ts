@@ -40,6 +40,10 @@ async function testSelectWeaponskill() {
         // Expect to choose weapon when selection Weaponskill discipline
         await driver.setNextRandomValue(7);
         await (await getDisciplineCheck(KaiDiscipline.Weaponskill)).click();
+
+        // The random number selection is asynchronous, so wait a bit
+        await new Promise((r) => setTimeout(r, 10));
+
         const actionChart = await driver.getActionChart();
         expect( actionChart.getWeaponSkill() ).toStrictEqual( [ "sword" ] );
 
@@ -82,6 +86,12 @@ async function testSelectDisciplines() {
         // Check the discipline. Expect to get the discipline
         const disciplineCheck = await getDisciplineCheck(disciplineId);
         await disciplineCheck.click();
+
+        if (disciplineId === KaiDiscipline.Weaponskill) {
+            // The random number selection is asynchronous, so wait a bit
+            await new Promise((r) => setTimeout(r, 10));
+        }
+
         let actionChart = await driver.getActionChart();
         expect( actionChart.getDisciplines() ).toStrictEqual( [ disciplineId ] );
 
