@@ -336,13 +336,14 @@ export class CombatTable {
             ponderatedIndex = - ponderatedIndex;
         } else {
            table = tableAboveEnemy;
+           ponderatedIndex--; // since the 0 Combat Ratio column is not present in this table
         }
 
         // round 4.5 to 5
         ponderatedIndex = Math.ceil(ponderatedIndex);
 
         // check if we're using the extended CRT or not and set max column
-        const maxPonderatedIndex = state.actionChart.extendedCRT && combatRatio > 0 ? 15 : 6;
+        const maxPonderatedIndex = state.actionChart.extendedCRT && combatRatio > 0 ? 14 : 5;
         if ( ponderatedIndex > maxPonderatedIndex ) {
             ponderatedIndex = maxPonderatedIndex;
         }
