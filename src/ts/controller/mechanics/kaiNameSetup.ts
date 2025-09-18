@@ -29,7 +29,7 @@ export class KaiNameSetup {
         
         // If the name is already set show the name
         if (state.actionChart.kaiName !== "") {
-            $("#kaiName").append("<b>" + state.actionChart.kaiName + "</b>");
+            $("#kaiName").append($("<b>").text(state.actionChart.kaiName));
             $("#mechanics-setNames").hide();
             return;
         } else {
