@@ -343,7 +343,7 @@ export class CombatTable {
         ponderatedIndex = Math.ceil(ponderatedIndex);
 
         // check if we're using the extended CRT or not and set max column
-        const maxPonderatedIndex = state.actionChart.extendedCRT && combatRatio > 0 ? 15 : 6;
+        const maxPonderatedIndex = state.actionChart.extendedCRT && combatRatio > 0 ? 14 : 5;
         if ( ponderatedIndex > maxPonderatedIndex ) {
             ponderatedIndex = maxPonderatedIndex;
         }
