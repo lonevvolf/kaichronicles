@@ -336,6 +336,7 @@ export class CombatTable {
             ponderatedIndex = - ponderatedIndex;
         } else {
            table = tableAboveEnemy;
+           ponderatedIndex--; // since the 0 Combat Ratio column is not present in this table
         }
 
         // round 4.5 to 5
