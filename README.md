@@ -7,7 +7,7 @@ This is a fork from the [original "Kai Chronicles"](https://github.com/tonib/kai
 This repository does not contain game books data. Data must be downloaded from the [Project Aon web site](https://www.projectaon.org). 
 **REMEMBER** that game books data is under the [Project Aon license](https://www.projectaon.org/en/Main/License), so:
 
-* You cannot put this application on a public web server (only on your local machine, for your own use). The only place where this game can be published is on the Project Aon web site. It's available here : https://kaichronicles.projectaon.org
+* You cannot put this application on a public web server (only on your local machine, for your own use).
 * You cannot redistribute the game books data in any way
 
 ## Setup
